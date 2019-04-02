@@ -18,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.kerry.gogobasketball.component.ProfileAvatarOutlineProvider;
 import com.kerry.gogobasketball.home.item.LookingForRoomFragment;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -97,11 +96,11 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
             iconView.setLayoutParams(layoutParams);
         }
 
-        BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(2);
-        mBadge = LayoutInflater.from(this)
-                .inflate(R.layout.badge_main_bottom, itemView, true);
+        BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(1);
+//        mBadge = LayoutInflater.from(this)
+//                .inflate(R.layout.badge_main_bottom, itemView, true);
 
-        mPresenter.updateFriendBadge();
+//        mPresenter.updateFriendBadge();
     }
 
     /**
@@ -130,13 +129,13 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         navigationView.setNavigationItemSelectedListener(this);
 
         // nav view header
-        mDrawerUserImage = navigationView.getHeaderView(0).findViewById(R.id.image_drawer_avatar);
-        mDrawerUserImage.setOutlineProvider(new ProfileAvatarOutlineProvider());
-        mDrawerUserImage.setOnClickListener(v -> mPresenter.onClickDrawerAvatar());
-
-        mDrawerUserName = navigationView.getHeaderView(0).findViewById(R.id.image_drawer_name);
-
-        mDrawerUserInfo = navigationView.getHeaderView(0).findViewById(R.id.image_drawer_info);
+//        mDrawerUserImage = navigationView.getHeaderView(0).findViewById(R.id.image_drawer_avatar);
+//        mDrawerUserImage.setOutlineProvider(new ProfileAvatarOutlineProvider());
+//        mDrawerUserImage.setOnClickListener(v -> mPresenter.onClickDrawerAvatar());
+//
+//        mDrawerUserName = navigationView.getHeaderView(0).findViewById(R.id.image_drawer_name);
+//
+//        mDrawerUserInfo = navigationView.getHeaderView(0).findViewById(R.id.image_drawer_info);
     }
 
     /**
@@ -163,15 +162,15 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
                 mPresenter.openHome();
                 return true;
 
-            case R.id.navigation_catalog:
+            case R.id.navigation_friends:
 
-                mPresenter.updateToolbar(MainActivity.this.getResources().getString(R.string.catalog));
+                mPresenter.updateToolbar(MainActivity.this.getResources().getString(R.string.friends));
                 mPresenter.openFriend();
                 return true;
 
-            case R.id.navigation_cart:
+            case R.id.navigation_rank:
 
-                mPresenter.updateToolbar(MainActivity.this.getResources().getString(R.string.cart));
+                mPresenter.updateToolbar(MainActivity.this.getResources().getString(R.string.rank));
                 mPresenter.openRank();
                 return true;
 

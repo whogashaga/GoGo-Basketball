@@ -9,7 +9,7 @@ public class LookingForRoomPresenter implements LookingForRoomContract.Presenter
     private final LookingForRoomContract.View mLookingForRoomView;
 
     public LookingForRoomPresenter(@NonNull LookingForRoomContract.View lookingForRoomView) {
-        mLookingForRoomView = checkNotNull(catalogItemView, "catalogItemView cannot be null!");
+        mLookingForRoomView = checkNotNull(lookingForRoomView, "catalogItemView cannot be null!");
         mLookingForRoomView.setPresenter(this);
     }
 

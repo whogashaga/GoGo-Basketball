@@ -7,13 +7,13 @@
         android:title="" />
 
     <item
-        android:id="@+id/navigation_catalog"
-        android:icon="@drawable/ic_nav_catalog_selector"
+        android:id="@+id/navigation_friends"
+        android:icon="@drawable/ic_nav_friend_selector"
         android:title="" />
 
     <item
-        android:id="@+id/navigation_cart"
-        android:icon="@drawable/ic_nav_cart_selector"
+        android:id="@+id/navigation_rank"
+        android:icon="@drawable/ic_nav_rank_selector"
         android:title="" />
 
     <item
