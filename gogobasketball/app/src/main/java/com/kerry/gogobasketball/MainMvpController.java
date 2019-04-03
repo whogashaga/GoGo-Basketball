@@ -9,6 +9,8 @@ import com.kerry.gogobasketball.home.HomeFragment;
 import com.kerry.gogobasketball.home.HomePresenter;
 import com.kerry.gogobasketball.home.item.LookingForRoomFragment;
 import com.kerry.gogobasketball.home.item.LookingForRoomPresenter;
+import com.kerry.gogobasketball.home.map.CourtsMapFragment;
+import com.kerry.gogobasketball.home.map.CourtsMapPresenter;
 import com.kerry.gogobasketball.util.ActivityUtils;
 
 import java.lang.annotation.Retention;
@@ -24,6 +26,7 @@ public class MainMvpController {
     private HomePresenter mHomePresenter;
 
     private LookingForRoomPresenter mLookingForRoomPresenter;
+    private CourtsMapPresenter mCourtsMapPresenter;
 
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({
@@ -69,7 +72,7 @@ public class MainMvpController {
 
     /**
      * LookingForRooms View
-     * @return CatalogItemFragment: Women Fragment
+     * @return CatalogItemFragment: Rooms Fragment
      */
     LookingForRoomFragment findOrCreateLookingForRoomView() {
 
@@ -77,11 +80,28 @@ public class MainMvpController {
 
         mLookingForRoomPresenter = new LookingForRoomPresenter(fragment);
         fragment.setPresenter(mMainPresenter);
-        fragment.setItemType(ROOMS);
         mMainPresenter.setLookingForRoomPresenter(mLookingForRoomPresenter);
 
         return fragment;
     }
+
+    /**
+     * LookingForRooms View
+     * @return CatalogItemFragment: Rooms Fragment
+     */
+    CourtsMapFragment findOrCreateMapView() {
+
+        CourtsMapFragment fragment = findOrCreateMapItemFragment(MAP);
+
+        mCourtsMapPresenter = new CourtsMapPresenter(fragment);
+        fragment.setPresenter(mMainPresenter);
+        mMainPresenter.setCourtsMapPresenter(mCourtsMapPresenter);
+
+        return fragment;
+    }
+
+    /* ------------------------------------------------------------------------------------------ */
+
 
     /**
      * Home Fragment
@@ -104,7 +124,7 @@ public class MainMvpController {
     }
 
     /**
-     * HomeFragment: Room, Map
+     * Home Item Fragment: Map
      * @param itemType: @HomeItem
      * @return LookingForRoomFragment
      */
@@ -122,6 +142,25 @@ public class MainMvpController {
         return fragment;
     }
 
+
+    /**
+     * Home Item Fragment: Map
+     * @param itemType: @HomeItem
+     * @return CourtsMapFragment
+     */
+    @NonNull
+    private CourtsMapFragment findOrCreateMapItemFragment(@HomeItem String itemType) {
+
+        CourtsMapFragment fragment =
+                (CourtsMapFragment) (getFragmentManager().findFragmentByTag(HOME))
+                        .getChildFragmentManager().findFragmentByTag(itemType);
+        if (fragment == null) {
+            // Create the fragment
+            fragment = CourtsMapFragment.newInstance();
+        }
+
+        return fragment;
+    }
 
     /**
      * Creates a controller.

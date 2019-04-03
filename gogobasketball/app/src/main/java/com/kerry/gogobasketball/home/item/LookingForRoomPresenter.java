@@ -29,12 +29,12 @@ public class LookingForRoomPresenter implements LookingForRoomContract.Presenter
     }
 
     @Override
-    public boolean isCatalogItemHasNextPaging(String itemType) {
+    public boolean isHomeItemHasNextPaging(String itemType) {
         return false;
     }
 
     @Override
-    public void onCatalogItemScrollToBottom(String itemType) {
+    public void onHomeItemScrollToBottom(String itemType) {
 
     }
 

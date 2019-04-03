@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kerry.gogobasketball.home.item.LookingForRoomFragment;
+import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -242,8 +243,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
-    public Fragment findMapView() {
-        return null;
+    public CourtsMapFragment findMapView() {
+        return mMainMvpController.findOrCreateMapView();
     }
 
     @Override

@@ -10,15 +10,20 @@ import com.kerry.gogobasketball.home.HomePresenter;
 import com.kerry.gogobasketball.home.item.LookingForRoomContract;
 import com.kerry.gogobasketball.home.item.LookingForRoomFragment;
 import com.kerry.gogobasketball.home.item.LookingForRoomPresenter;
+import com.kerry.gogobasketball.home.map.CourtsMapContract;
+import com.kerry.gogobasketball.home.map.CourtsMapFragment;
+import com.kerry.gogobasketball.home.map.CourtsMapPresenter;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class MainPresenter implements MainContract.Presenter, HomeContract.Presenter, LookingForRoomContract.Presenter {
+public class MainPresenter implements MainContract.Presenter, HomeContract.Presenter,
+        LookingForRoomContract.Presenter, CourtsMapContract.Presenter {
 
     private MainContract.View mMainView;
 
     private HomePresenter mHomePresenter;
     private LookingForRoomPresenter mLookingForRoomPresenter;
+    private CourtsMapPresenter mCourtsMapPresenter;
 
 //    public MainPresenter(
 //            @NonNull StylishRepository stylishRepository,
@@ -42,6 +47,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mLookingForRoomPresenter = checkNotNull(lookingForRoomPresenter);
     }
 
+    void setCourtsMapPresenter(CourtsMapPresenter courtsMapPresenter) {
+        mCourtsMapPresenter = checkNotNull(courtsMapPresenter);
+    }
+
     @Override
     public void result(int requestCode, int resultCode, Intent data) {
 
@@ -49,7 +58,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void openHome() {
-
+        mMainView.openHomeUi();
     }
 
     @Override
@@ -161,7 +170,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public Fragment findMapView() {
+    public CourtsMapFragment findMapView() {
         return mMainView.findMapView();
     }
 
@@ -179,12 +188,12 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public boolean isCatalogItemHasNextPaging(String itemType) {
+    public boolean isHomeItemHasNextPaging(String itemType) {
         return false;
     }
 
     @Override
-    public void onCatalogItemScrollToBottom(String itemType) {
+    public void onHomeItemScrollToBottom(String itemType) {
 
     }
 

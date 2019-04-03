@@ -24,9 +24,9 @@ public interface LookingForRoomContract {
 
         void setExistedRoomsData();
 
-        boolean isCatalogItemHasNextPaging(@MainMvpController.HomeItem String itemType);
+        boolean isHomeItemHasNextPaging(@MainMvpController.HomeItem String itemType);
 
-        void onCatalogItemScrollToBottom(@MainMvpController.HomeItem String itemType);
+        void onHomeItemScrollToBottom(@MainMvpController.HomeItem String itemType);
 
 //        void openDetail(Product product);
     }

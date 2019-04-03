@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 
 import com.kerry.gogobasketball.home.item.LookingForRoomFragment;
+import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 
 public interface MainContract {
 
@@ -26,7 +27,7 @@ public interface MainContract {
 
         LookingForRoomFragment findHomeView();
 
-        Fragment findMapView();
+        CourtsMapFragment findMapView();
 
 //        CatalogItemFragment findAccessoriesView();
 

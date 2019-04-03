@@ -14,6 +14,7 @@ public class HomeAdapter extends FragmentPagerAdapter {
     private HomeContract.Presenter mPresenter;
     private String[] mItemTypes = new String[]{ROOMS, MAP};
 
+
     public HomeAdapter(FragmentManager fragmentManager, HomeContract.Presenter presenter) {
         super(fragmentManager);
         mFragmentManager = fragmentManager;

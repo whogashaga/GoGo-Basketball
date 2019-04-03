@@ -69,8 +69,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
         mTabLayout.setupWithViewPager(mViewPager);
         mViewPager.setAdapter(mHomeAdapter);
-        mViewPager.addOnPageChangeListener(
-                new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
+//        mViewPager.addOnPageChangeListener(
+//                new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
 
     }
 

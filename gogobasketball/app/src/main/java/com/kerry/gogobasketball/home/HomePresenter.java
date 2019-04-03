@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.v4.app.Fragment;
 
 import com.kerry.gogobasketball.home.item.LookingForRoomFragment;
+import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -27,7 +28,7 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     @Override
-    public Fragment findMapView() {
+    public CourtsMapFragment findMapView() {
         return null;
     }
 
