@@ -5,6 +5,8 @@ import android.support.annotation.StringDef;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 
+import com.kerry.gogobasketball.friends.FriendFragment;
+import com.kerry.gogobasketball.friends.FriendPresenter;
 import com.kerry.gogobasketball.home.HomeFragment;
 import com.kerry.gogobasketball.home.HomePresenter;
 import com.kerry.gogobasketball.home.item.LookingForRoomFragment;
@@ -26,6 +28,7 @@ public class MainMvpController {
     private MainPresenter mMainPresenter;
 
     private HomePresenter mHomePresenter;
+    private FriendPresenter mFriendPresenter;
     private ProfilePresenter mProfilePresenter;
 
     private LookingForRoomPresenter mLookingForRoomPresenter;
@@ -69,6 +72,20 @@ public class MainMvpController {
             mHomePresenter = new HomePresenter(homeFragment);
             mMainPresenter.setHomePresenter(mHomePresenter);
             homeFragment.setPresenter(mMainPresenter);
+        }
+    }
+
+    /**
+     * Home Friends View
+     */
+    void findOrCreateFriendsView() {
+
+        FriendFragment friendsFragment = findOrCreateFriendFragment();
+
+        if (mFriendPresenter == null) {
+            mFriendPresenter = new FriendPresenter(friendsFragment);
+            mMainPresenter.setFriendPresenter(mFriendPresenter);
+            friendsFragment.setPresenter(mMainPresenter);
         }
     }
 
@@ -138,6 +155,26 @@ public class MainMvpController {
                 getFragmentManager(), homeFragment, HOME);
 
         return homeFragment;
+    }
+
+    /**
+     * Profile Fragment
+     * @return ProfileFragment
+     */
+    @NonNull
+    private FriendFragment findOrCreateFriendFragment() {
+
+        FriendFragment friendsFragment =
+                (FriendFragment) getFragmentManager().findFragmentByTag(FRIEND);
+        if (friendsFragment == null) {
+            // Create the fragment
+            friendsFragment = FriendFragment.newInstance();
+        }
+
+        ActivityUtils.showOrAddFragmentByTag(
+                getFragmentManager(), friendsFragment, FRIEND);
+
+        return friendsFragment;
     }
 
     /**

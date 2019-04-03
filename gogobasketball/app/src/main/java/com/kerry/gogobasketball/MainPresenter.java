@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
+import com.kerry.gogobasketball.friends.FriendContract;
+import com.kerry.gogobasketball.friends.FriendPresenter;
 import com.kerry.gogobasketball.home.HomeContract;
 import com.kerry.gogobasketball.home.HomePresenter;
 import com.kerry.gogobasketball.home.item.LookingForRoomContract;
@@ -19,11 +21,13 @@ import com.kerry.gogobasketball.profile.ProfilePresenter;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class MainPresenter implements MainContract.Presenter, HomeContract.Presenter,
-        LookingForRoomContract.Presenter, CourtsMapContract.Presenter, ProfileContract.Presenter {
+        LookingForRoomContract.Presenter, CourtsMapContract.Presenter, ProfileContract.Presenter,
+        FriendContract.Presenter {
 
     private MainContract.View mMainView;
 
     private HomePresenter mHomePresenter;
+    private FriendPresenter mFriendPresenter;
     private ProfilePresenter mProfilePresenter;
 
     private LookingForRoomPresenter mLookingForRoomPresenter;
@@ -44,6 +48,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     void setHomePresenter(HomePresenter homePresenter) {
         mHomePresenter = checkNotNull(homePresenter);
+    }
+
+    void setFriendPresenter(FriendPresenter friendPresenter) {
+        mFriendPresenter = checkNotNull(friendPresenter);
     }
 
     void setProfilePresenter(ProfilePresenter profilePresenter) {
@@ -70,7 +78,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void openFriend() {
-
+        mMainView.openFriendsUi();
     }
 
     @Override

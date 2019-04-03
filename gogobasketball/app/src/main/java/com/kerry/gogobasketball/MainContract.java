@@ -15,6 +15,8 @@ public interface MainContract {
 
         void openProfileUi();
 
+        void openFriendsUi();
+
         void openLoginUi(int loginFrom);
 
 //        void openAdd2CartUi(Product product);

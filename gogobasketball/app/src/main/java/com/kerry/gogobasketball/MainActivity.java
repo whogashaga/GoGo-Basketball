@@ -160,7 +160,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         switch (item.getItemId()) {
             case R.id.navigation_home:
 
-                mPresenter.updateToolbar("");
+                mPresenter.updateToolbar(MainActivity.this.getResources().getString(R.string.lobby));
                 mPresenter.openHome();
                 return true;
 
@@ -230,6 +230,11 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     @Override
     public void openProfileUi() {
         mMainMvpController.findOrCreateProfileView();
+    }
+
+    @Override
+    public void openFriendsUi() {
+        mMainMvpController.findOrCreateFriendsView();
     }
 
     @Override

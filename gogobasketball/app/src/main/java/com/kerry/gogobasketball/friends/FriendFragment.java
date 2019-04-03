@@ -1,4 +1,4 @@
-package com.kerry.gogobasketball.profile;
+package com.kerry.gogobasketball.friends;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,19 +9,30 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kerry.gogobasketball.R;
+import com.kerry.gogobasketball.profile.ProfileContract;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class ProfileFragment extends Fragment implements ProfileContract.View {
+public class FriendFragment extends Fragment implements FriendContract.View {
 
-    private ProfileContract.Presenter mPresenter;
+    private FriendContract.Presenter mPresenter;
 
-    public ProfileFragment() {
+    public FriendFragment() {
         // Requires empty public constructor
     }
 
-    public static ProfileFragment newInstance() {
-        return new ProfileFragment();
+    public static FriendFragment newInstance() {
+        return new FriendFragment();
+    }
+
+    @Override
+    public void showFriendUi() {
+
+    }
+
+    @Override
+    public boolean isActive() {
+        return false;
     }
 
     @Override
@@ -35,7 +46,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
     }
 
     @Override
-    public void setPresenter(ProfileContract.Presenter presenter) {
+    public void setPresenter(FriendContract.Presenter presenter) {
         mPresenter = checkNotNull(presenter);
     }
 
@@ -47,24 +58,8 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_profile, container, false);
+        View root = inflater.inflate(R.layout.fragment_friends, container, false);
 
         return root;
     }
-
-    @Override
-    public void showUserUi() {
-
-    }
-
-    @Override
-    public boolean isActive() {
-        return false;
-    }
-
-    @Override
-    public void showLogoutDialogUi() {
-
-    }
-
 }
