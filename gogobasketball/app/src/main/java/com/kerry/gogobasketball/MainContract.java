@@ -13,6 +13,8 @@ public interface MainContract {
 
         void openHomeUi();
 
+        void openProfileUi();
+
         void openLoginUi(int loginFrom);
 
 //        void openAdd2CartUi(Product product);

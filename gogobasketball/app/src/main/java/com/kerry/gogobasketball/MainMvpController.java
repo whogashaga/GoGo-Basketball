@@ -11,6 +11,8 @@ import com.kerry.gogobasketball.home.item.LookingForRoomFragment;
 import com.kerry.gogobasketball.home.item.LookingForRoomPresenter;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapPresenter;
+import com.kerry.gogobasketball.profile.ProfileFragment;
+import com.kerry.gogobasketball.profile.ProfilePresenter;
 import com.kerry.gogobasketball.util.ActivityUtils;
 
 import java.lang.annotation.Retention;
@@ -24,6 +26,7 @@ public class MainMvpController {
     private MainPresenter mMainPresenter;
 
     private HomePresenter mHomePresenter;
+    private ProfilePresenter mProfilePresenter;
 
     private LookingForRoomPresenter mLookingForRoomPresenter;
     private CourtsMapPresenter mCourtsMapPresenter;
@@ -60,12 +63,26 @@ public class MainMvpController {
      */
     void findOrCreateHomeView() {
 
-        HomeFragment catalogFragment = findOrCreateHomeFragment();
+        HomeFragment homeFragment = findOrCreateHomeFragment();
 
         if (mHomePresenter == null) {
-            mHomePresenter = new HomePresenter(catalogFragment);
+            mHomePresenter = new HomePresenter(homeFragment);
             mMainPresenter.setHomePresenter(mHomePresenter);
-            catalogFragment.setPresenter(mMainPresenter);
+            homeFragment.setPresenter(mMainPresenter);
+        }
+    }
+
+    /**
+     * Home Profile View
+     */
+    void findOrCreateProfileView() {
+
+        ProfileFragment profileFragment = findOrCreateProfileFragment();
+
+        if (mProfilePresenter == null) {
+            mProfilePresenter = new ProfilePresenter(profileFragment);
+            mMainPresenter.setProfilePresenter(mProfilePresenter);
+            profileFragment.setPresenter(mMainPresenter);
         }
     }
 
@@ -121,6 +138,26 @@ public class MainMvpController {
                 getFragmentManager(), homeFragment, HOME);
 
         return homeFragment;
+    }
+
+    /**
+     * Profile Fragment
+     * @return ProfileFragment
+     */
+    @NonNull
+    private ProfileFragment findOrCreateProfileFragment() {
+
+        ProfileFragment profileFragment =
+                (ProfileFragment) getFragmentManager().findFragmentByTag(PROFILE);
+        if (profileFragment == null) {
+            // Create the fragment
+            profileFragment = ProfileFragment.newInstance();
+        }
+
+        ActivityUtils.showOrAddFragmentByTag(
+                getFragmentManager(), profileFragment, PROFILE);
+
+        return profileFragment;
     }
 
     /**

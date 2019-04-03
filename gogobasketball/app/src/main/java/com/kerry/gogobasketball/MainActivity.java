@@ -228,6 +228,11 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
+    public void openProfileUi() {
+        mMainMvpController.findOrCreateProfileView();
+    }
+
+    @Override
     public void openLoginUi(int loginFrom) {
 
     }
@@ -274,7 +279,29 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
     @Override
     public void setToolbarTitleUi(String title) {
+        if ("".equals(title)) {
 
+            mToolbarTitle.setVisibility(View.GONE);
+            mToolbarLogo.setVisibility(View.VISIBLE);
+
+        } else {
+
+            if (title.equals(getString(R.string.payment))) {
+                mActionBarDrawerToggle.setDrawerIndicatorEnabled(false);
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                mToolbar.setNavigationIcon(R.drawable.toolbar_back);
+                mActionBarDrawerToggle.setToolbarNavigationClickListener(v -> onBackPressed());
+            } else {
+                mActionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                mToolbar.setNavigationIcon(R.drawable.toolbar_menu);
+                mActionBarDrawerToggle.setToolbarNavigationClickListener(null);
+            }
+
+            mToolbarLogo.setVisibility(View.GONE);
+            mToolbarTitle.setVisibility(View.VISIBLE);
+            mToolbarTitle.setText(title);
+        }
     }
 
     @Override

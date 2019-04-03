@@ -13,15 +13,19 @@ import com.kerry.gogobasketball.home.item.LookingForRoomPresenter;
 import com.kerry.gogobasketball.home.map.CourtsMapContract;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapPresenter;
+import com.kerry.gogobasketball.profile.ProfileContract;
+import com.kerry.gogobasketball.profile.ProfilePresenter;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class MainPresenter implements MainContract.Presenter, HomeContract.Presenter,
-        LookingForRoomContract.Presenter, CourtsMapContract.Presenter {
+        LookingForRoomContract.Presenter, CourtsMapContract.Presenter, ProfileContract.Presenter {
 
     private MainContract.View mMainView;
 
     private HomePresenter mHomePresenter;
+    private ProfilePresenter mProfilePresenter;
+
     private LookingForRoomPresenter mLookingForRoomPresenter;
     private CourtsMapPresenter mCourtsMapPresenter;
 
@@ -42,6 +46,9 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mHomePresenter = checkNotNull(homePresenter);
     }
 
+    void setProfilePresenter(ProfilePresenter profilePresenter) {
+        mProfilePresenter = checkNotNull(profilePresenter);
+    }
 
     void setLookingForRoomPresenter(LookingForRoomPresenter lookingForRoomPresenter) {
         mLookingForRoomPresenter = checkNotNull(lookingForRoomPresenter);
@@ -71,9 +78,14 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     }
 
+
+    /**
+     * Open Profile
+     * @return: it for BottomNavigation
+     */
     @Override
     public void openProfile() {
-
+        mMainView.openProfileUi();
     }
 
     @Override
@@ -108,7 +120,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void updateToolbar(String title) {
-
+        mMainView.setToolbarTitleUi(title);
     }
 
     @Override
@@ -158,6 +170,19 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void result(int requestCode, int resultCode) {
+
+    }
+
+    /* ------------------------------------------------------------------------------------------ */
+    /* Profile Presenter Use Only */
+
+    @Override
+    public void loadProfileUserData() {
+
+    }
+
+    @Override
+    public void checkProfileUserData() {
 
     }
 
