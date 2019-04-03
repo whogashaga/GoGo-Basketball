@@ -41,4 +41,12 @@
     <color name="purple_voyage">#7830b8</color>
     <color name="blue_voyage">#33a4cc</color>
 
+    <!-- Want2CreateRoom Referee on not -->
+    <color name="referee_yes">#00E1FF</color>
+    <color name="referee_no">#888888</color>
+
+
+
+    <color name="transparent">#00888888</color>
+
 </resources>

@@ -39,6 +39,11 @@ public class LookingForRoomPresenter implements LookingForRoomContract.Presenter
     }
 
     @Override
+    public void openWant2CreateRoom() {
+
+    }
+
+    @Override
     public void start() {
 
     }

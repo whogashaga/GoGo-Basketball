@@ -28,6 +28,8 @@ public interface LookingForRoomContract {
 
         void onHomeItemScrollToBottom(@MainMvpController.HomeItem String itemType);
 
+        void openWant2CreateRoom();
+
 //        void openDetail(Product product);
     }
 }

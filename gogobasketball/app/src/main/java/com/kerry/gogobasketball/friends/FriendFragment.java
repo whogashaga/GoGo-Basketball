@@ -25,11 +25,6 @@ public class FriendFragment extends Fragment implements FriendContract.View {
     }
 
     @Override
-    public void showFriendUi() {
-
-    }
-
-    @Override
     public boolean isActive() {
         return false;
     }
@@ -62,4 +57,8 @@ public class FriendFragment extends Fragment implements FriendContract.View {
         return root;
     }
 
+    @Override
+    public void showFriendUi() {
+
+    }
 }

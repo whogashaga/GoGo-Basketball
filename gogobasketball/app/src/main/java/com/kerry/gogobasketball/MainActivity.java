@@ -86,6 +86,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
         mBottomNavigation = findViewById(R.id.bottom_navigation_main);
         mBottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        mBottomNavigation.setBackgroundTintList(null);
 
         BottomNavigationMenuView menuView =
                 (BottomNavigationMenuView) mBottomNavigation.getChildAt(0);
@@ -243,6 +244,11 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
+    public void openWant2CreateRoomUi() {
+        mMainMvpController.findOrCreateWant2CreateRoomView();
+    }
+
+    @Override
     public void openLoginUi(int loginFrom) {
 
     }
@@ -269,22 +275,22 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
     @Override
     public void hideToolbarUi() {
-
+        mToolbar.setVisibility(View.GONE);
     }
 
     @Override
     public void showToolbarUi() {
-
+        mToolbar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideBottomNavigationUi() {
-
+        mBottomNavigation.setVisibility(View.GONE);
     }
 
     @Override
     public void showBottomNavigationUi() {
-
+        mBottomNavigation.setVisibility(View.VISIBLE);
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.kerry.gogobasketball.BaseView;
 import com.kerry.gogobasketball.profile.ProfileContract;
 
 public interface FriendContract {
+
     interface View extends BaseView<Presenter> {
 
         void showFriendUi();

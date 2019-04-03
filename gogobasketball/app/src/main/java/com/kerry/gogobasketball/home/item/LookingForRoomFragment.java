@@ -7,18 +7,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.kerry.gogobasketball.MainMvpController;
 import com.kerry.gogobasketball.R;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class LookingForRoomFragment extends Fragment implements LookingForRoomContract.View {
+public class LookingForRoomFragment extends Fragment implements LookingForRoomContract.View, View.OnClickListener {
 
     private LookingForRoomContract.Presenter mPresenter;
 
 
     private String mItemType;
+    private Button mBtnBuildRoom;
 
     public LookingForRoomFragment(){}
 
@@ -36,12 +38,20 @@ public class LookingForRoomFragment extends Fragment implements LookingForRoomCo
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home_child_rooms, container, false);
 
-//        mOrderItemAdapter = new OrderItemAdapter(mPresenter, mItemType);
-//        RecyclerView recyclerView = root.findViewById(R.id.recycler_order_child);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//        recyclerView.setAdapter(mOrderItemAdapter);
+        mBtnBuildRoom = root.findViewById(R.id.btn_home_rooms_build);
+        mBtnBuildRoom.setOnClickListener(this);
 
         return root;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_home_rooms_build:
+                mPresenter.openWant2CreateRoom();
+                break;
+        }
+
     }
 
     @Override
@@ -64,4 +74,6 @@ public class LookingForRoomFragment extends Fragment implements LookingForRoomCo
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         mPresenter.result(requestCode, resultCode);
     }
+
+
 }

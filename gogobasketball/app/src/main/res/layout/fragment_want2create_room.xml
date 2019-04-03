@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_toolbar"
+        android:background="@drawable/border_want2create_room_topbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/text_want2create_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/stalinist_one"
+            android:gravity="center"
+            android:letterSpacing="0.15"
+            android:text="創建房間"
+            android:textColor="@color/black_3f3a3a"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btn_want2create_backstack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@null"
+            app:layout_constraintBottom_toBottomOf="@+id/text_want2create_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/text_want2create_title"
+            app:srcCompat="@drawable/toolbar_back" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/text_want2create_room_name_title"
+        style="@style/Want2CreateRoomTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/room_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <TextView
+        android:id="@+id/text_want2create_location_title"
+        style="@style/Want2CreateRoomTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_want2create_room_name_title" />
+
+    <TextView
+        android:id="@+id/text_want2create_referee_title"
+        style="@style/Want2CreateRoomTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/referee_or_not"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_want2create_location_title" />
+
+    <EditText
+        android:id="@+id/edit_want2create_room_name_content"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_payment_editor"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/edit_room_name"
+        android:imeOptions="actionNext"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textColor="@color/black_3f3a3a"
+        android:textColorHint="@color/gray_646464"
+        android:theme="@style/PaymentColorTheme"
+        app:layout_constraintBottom_toBottomOf="@+id/text_want2create_room_name_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/text_want2create_room_name_title"
+        app:layout_constraintTop_toTopOf="@+id/text_want2create_room_name_title" />
+
+    <Spinner
+        android:id="@+id/spinner_payment_methods"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_payment_editor"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:entries="@array/payment_method_list"
+        android:prompt="@string/select_court"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="@+id/text_want2create_location_title"
+        app:layout_constraintEnd_toStartOf="@+id/btn_want2create_refresh"
+        app:layout_constraintStart_toEndOf="@+id/text_want2create_location_title"
+        app:layout_constraintTop_toTopOf="@+id/text_want2create_location_title" />
+
+    <ImageButton
+        android:id="@+id/btn_want2create_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/text_want2create_location_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_want2create_location_title"
+        app:srcCompat="@drawable/ic_refresh" />
+
+    <RadioGroup
+        android:id="@+id/radios_referee_selector"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/pink_out_line"
+        android:checkedButton="@+id/radios_referee_yes"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/text_want2create_referee_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text_want2create_referee_title"
+        app:layout_constraintTop_toTopOf="@+id/text_want2create_referee_title">
+
+        <RadioButton
+            android:id="@+id/radios_referee_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/toggle_widget_background"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/referee_yes"
+            android:textColor="@color/black_3f3a3a"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/radios_referee_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/toggle_widget_background"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/referee_no"
+            android:textColor="@color/black_3f3a3a"
+            android:textSize="18sp" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/text_want2create_warning"
+        style="@style/Want2CreateRoomTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/warning_rank_yes"
+        android:textColor="#F11B1B"
+        app:layout_constraintEnd_toEndOf="@+id/radios_referee_selector"
+        app:layout_constraintStart_toStartOf="@+id/text_want2create_referee_title"
+        app:layout_constraintTop_toBottomOf="@+id/radios_referee_selector" />
+
+    <Button
+        android:id="@+id/btn_want2create_build_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/build_confirm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_want2create_build_cancel"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_want2create_build_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/build_cancel"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_want2create_build_confirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_want2create_build_confirm"
+        app:layout_constraintTop_toTopOf="@+id/btn_want2create_build_confirm" />
+
+
+</android.support.constraint.ConstraintLayout>

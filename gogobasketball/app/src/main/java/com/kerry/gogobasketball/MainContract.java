@@ -19,6 +19,8 @@ public interface MainContract {
 
         void openRankUi();
 
+        void openWant2CreateRoomUi();
+
         void openLoginUi(int loginFrom);
 
 //        void openAdd2CartUi(Product product);

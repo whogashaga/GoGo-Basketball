@@ -19,12 +19,14 @@ import com.kerry.gogobasketball.profile.ProfileContract;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
 import com.kerry.gogobasketball.rank.RankContract;
 import com.kerry.gogobasketball.rank.RankPresenter;
+import com.kerry.gogobasketball.want2create.Want2CreateRoomContract;
+import com.kerry.gogobasketball.want2create.Want2CreateRoomPresenter;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class MainPresenter implements MainContract.Presenter, HomeContract.Presenter,
         LookingForRoomContract.Presenter, CourtsMapContract.Presenter, ProfileContract.Presenter,
-        FriendContract.Presenter, RankContract.Presenter {
+        FriendContract.Presenter, RankContract.Presenter, Want2CreateRoomContract.Presenter {
 
     private MainContract.View mMainView;
 
@@ -35,6 +37,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     private LookingForRoomPresenter mLookingForRoomPresenter;
     private CourtsMapPresenter mCourtsMapPresenter;
+
+    private Want2CreateRoomPresenter mWant2CreateRoomPresenter;
 
 //    public MainPresenter(
 //            @NonNull StylishRepository stylishRepository,
@@ -71,6 +75,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     void setCourtsMapPresenter(CourtsMapPresenter courtsMapPresenter) {
         mCourtsMapPresenter = checkNotNull(courtsMapPresenter);
+    }
+
+    void setWant2CreateRoomPresenter(Want2CreateRoomPresenter want2CreateRoomPresenter) {
+        mWant2CreateRoomPresenter = checkNotNull(want2CreateRoomPresenter);
     }
 
     @Override
@@ -110,13 +118,41 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void hideToolbarAndBottomNavigation() {
-
+        mMainView.hideToolbarUi();
+        mMainView.hideBottomNavigationUi();
     }
 
     @Override
     public void showToolbarAndBottomNavigation() {
+        mMainView.showToolbarUi();
+        mMainView.showBottomNavigationUi();
+    }
+
+    /**
+     * Open Want2CreateRoom
+     * @return: it for BottomNavigation
+     */
+    @Override
+    public void updateRoomName2Firebase() {
 
     }
+
+    @Override
+    public void updateLocation2Firebase() {
+
+    }
+
+    @Override
+    public void showWaitingJoinUi() {
+
+    }
+
+    @Override
+    public void finishWant2CreateRoomUi() {
+
+    }
+
+    /* ------------------------------------------------------------------------------------------ */
 
     @Override
     public void hideBottomNavigation() {
@@ -235,6 +271,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void onHomeItemScrollToBottom(String itemType) {
 
+    }
+
+    @Override
+    public void openWant2CreateRoom() {
+        mMainView.openWant2CreateRoomUi();
     }
 
 

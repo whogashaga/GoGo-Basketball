@@ -18,6 +18,8 @@ import com.kerry.gogobasketball.profile.ProfilePresenter;
 import com.kerry.gogobasketball.rank.RankFragment;
 import com.kerry.gogobasketball.rank.RankPresenter;
 import com.kerry.gogobasketball.util.ActivityUtils;
+import com.kerry.gogobasketball.want2create.Want2CreateRoomFragment;
+import com.kerry.gogobasketball.want2create.Want2CreateRoomPresenter;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -34,18 +36,21 @@ public class MainMvpController {
     private RankPresenter mRankPresenter;
     private ProfilePresenter mProfilePresenter;
 
+    private Want2CreateRoomPresenter mWant2CreateRoomPresenter;
+
     private LookingForRoomPresenter mLookingForRoomPresenter;
     private CourtsMapPresenter mCourtsMapPresenter;
 
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({
-            HOME, FRIEND, RANK, PROFILE
+            HOME, FRIEND, RANK, PROFILE, WANT2CREATEROOM
     })
     public @interface FragmentType {}
     static final String HOME    = "HOME";
     static final String FRIEND = "FRIEND";
     static final String RANK    = "RANK";
     static final String PROFILE = "PROFILE";
+    static final String WANT2CREATEROOM = "WANT2CREATEROOM";
 
 
     @Retention(RetentionPolicy.SOURCE)
@@ -79,7 +84,7 @@ public class MainMvpController {
     }
 
     /**
-     * Home Friends View
+     *  Friends View
      */
     void findOrCreateFriendsView() {
 
@@ -93,7 +98,7 @@ public class MainMvpController {
     }
 
     /**
-     * Home Rank View
+     *  Rank View
      */
     void findOrCreateRankView() {
 
@@ -107,7 +112,7 @@ public class MainMvpController {
     }
 
     /**
-     * Home Profile View
+     *  Profile View
      */
     void findOrCreateProfileView() {
 
@@ -149,6 +154,19 @@ public class MainMvpController {
         mMainPresenter.setCourtsMapPresenter(mCourtsMapPresenter);
 
         return fragment;
+    }
+
+    /**
+     * Want2CreateRoom View
+     */
+    void findOrCreateWant2CreateRoomView() {
+
+        Want2CreateRoomFragment want2CreateRoomFragment = createWant2CreateRoomFragment();
+
+        mWant2CreateRoomPresenter = new Want2CreateRoomPresenter(want2CreateRoomFragment);
+
+        mMainPresenter.setWant2CreateRoomPresenter(mWant2CreateRoomPresenter);
+        want2CreateRoomFragment.setPresenter(mMainPresenter);
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -272,6 +290,23 @@ public class MainMvpController {
 
         return fragment;
     }
+
+    /**
+     * Faq Fragment
+     * @return FaqFragment
+     */
+    @NonNull
+    private Want2CreateRoomFragment createWant2CreateRoomFragment() {
+
+        Want2CreateRoomFragment want2CreateRoomFragment = Want2CreateRoomFragment.newInstance();
+
+        ActivityUtils.addFragmentByTag(
+                getFragmentManager(), want2CreateRoomFragment, WANT2CREATEROOM);
+
+        return want2CreateRoomFragment;
+    }
+
+    /* ------------------------------------------------------------------------------------------ */
 
     /**
      * Creates a controller.
