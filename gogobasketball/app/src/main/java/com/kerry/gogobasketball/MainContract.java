@@ -2,6 +2,7 @@ package com.kerry.gogobasketball;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 
 import com.kerry.gogobasketball.home.item.LookingForRoomFragment;
 
@@ -25,7 +26,7 @@ public interface MainContract {
 
         LookingForRoomFragment findHomeView();
 
-        Activity findMapView();
+        Fragment findMapView();
 
 //        CatalogItemFragment findAccessoriesView();
 

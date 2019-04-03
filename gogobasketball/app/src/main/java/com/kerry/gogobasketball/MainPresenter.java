@@ -3,6 +3,7 @@ package com.kerry.gogobasketball;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 
 import com.kerry.gogobasketball.home.HomeContract;
 import com.kerry.gogobasketball.home.HomePresenter;
@@ -160,7 +161,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public Activity findMapView() {
+    public Fragment findMapView() {
         return mMainView.findMapView();
     }
 

@@ -1,6 +1,7 @@
 package com.kerry.gogobasketball.home;
 
 import android.app.Activity;
+import android.support.v4.app.Fragment;
 
 import com.kerry.gogobasketball.home.item.LookingForRoomFragment;
 
@@ -26,7 +27,7 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     @Override
-    public Activity findMapView() {
+    public Fragment findMapView() {
         return null;
     }
 

@@ -1,6 +1,7 @@
 package com.kerry.gogobasketball.home;
 
 import android.app.Activity;
+import android.support.v4.app.Fragment;
 
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
@@ -19,7 +20,7 @@ public interface HomeContract {
 
         LookingForRoomFragment findRoomsView();
 
-        Activity findMapView();
+        Fragment findMapView();
 
     }
 }
