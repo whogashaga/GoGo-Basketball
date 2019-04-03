@@ -5,8 +5,11 @@ import android.support.annotation.StringDef;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 
+import com.kerry.gogobasketball.home.HomeFragment;
+import com.kerry.gogobasketball.home.HomePresenter;
 import com.kerry.gogobasketball.home.item.LookingForRoomFragment;
 import com.kerry.gogobasketball.home.item.LookingForRoomPresenter;
+import com.kerry.gogobasketball.util.ActivityUtils;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -18,7 +21,9 @@ public class MainMvpController {
     private final FragmentActivity mActivity;
     private MainPresenter mMainPresenter;
 
+    private HomePresenter mHomePresenter;
 
+    private LookingForRoomPresenter mLookingForRoomPresenter;
 
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({
@@ -44,7 +49,23 @@ public class MainMvpController {
     }
 
 
-    private LookingForRoomPresenter mLookingForRoomPresenter;
+
+
+
+    /**
+     * Home Fragment View
+     */
+    void findOrCreateHomeView() {
+
+        HomeFragment catalogFragment = findOrCreateHomeFragment();
+
+        if (mHomePresenter == null) {
+            mHomePresenter = new HomePresenter(catalogFragment);
+            mMainPresenter.setHomePresenter(mHomePresenter);
+            catalogFragment.setPresenter(mMainPresenter);
+        }
+    }
+
 
     /**
      * LookingForRooms View
@@ -60,6 +81,26 @@ public class MainMvpController {
         mMainPresenter.setLookingForRoomPresenter(mLookingForRoomPresenter);
 
         return fragment;
+    }
+
+    /**
+     * Home Fragment
+     * @return HomeFragment
+     */
+    @NonNull
+    private HomeFragment findOrCreateHomeFragment() {
+
+        HomeFragment homeFragment =
+                (HomeFragment) getFragmentManager().findFragmentByTag(HOME);
+        if (homeFragment == null) {
+            // Create the fragment
+            homeFragment = HomeFragment.newInstance();
+        }
+
+        ActivityUtils.showOrAddFragmentByTag(
+                getFragmentManager(), homeFragment, HOME);
+
+        return homeFragment;
     }
 
     /**
