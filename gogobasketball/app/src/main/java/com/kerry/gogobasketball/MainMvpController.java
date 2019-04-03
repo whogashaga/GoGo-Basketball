@@ -15,6 +15,8 @@ import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapPresenter;
 import com.kerry.gogobasketball.profile.ProfileFragment;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
+import com.kerry.gogobasketball.rank.RankFragment;
+import com.kerry.gogobasketball.rank.RankPresenter;
 import com.kerry.gogobasketball.util.ActivityUtils;
 
 import java.lang.annotation.Retention;
@@ -29,6 +31,7 @@ public class MainMvpController {
 
     private HomePresenter mHomePresenter;
     private FriendPresenter mFriendPresenter;
+    private RankPresenter mRankPresenter;
     private ProfilePresenter mProfilePresenter;
 
     private LookingForRoomPresenter mLookingForRoomPresenter;
@@ -86,6 +89,20 @@ public class MainMvpController {
             mFriendPresenter = new FriendPresenter(friendsFragment);
             mMainPresenter.setFriendPresenter(mFriendPresenter);
             friendsFragment.setPresenter(mMainPresenter);
+        }
+    }
+
+    /**
+     * Home Rank View
+     */
+    void findOrCreateRankView() {
+
+        RankFragment rankFragment = findOrCreateRankFragment();
+
+        if (mRankPresenter == null) {
+            mRankPresenter = new RankPresenter(rankFragment);
+            mMainPresenter.setRankPresenter(mRankPresenter);
+            rankFragment.setPresenter(mMainPresenter);
         }
     }
 
@@ -158,8 +175,8 @@ public class MainMvpController {
     }
 
     /**
-     * Profile Fragment
-     * @return ProfileFragment
+     * Friend Fragment
+     * @return FriendFragment
      */
     @NonNull
     private FriendFragment findOrCreateFriendFragment() {
@@ -175,6 +192,26 @@ public class MainMvpController {
                 getFragmentManager(), friendsFragment, FRIEND);
 
         return friendsFragment;
+    }
+
+    /**
+     * Rank Fragment
+     * @return RankFragment
+     */
+    @NonNull
+    private RankFragment findOrCreateRankFragment() {
+
+        RankFragment rankFragment =
+                (RankFragment) getFragmentManager().findFragmentByTag(RANK);
+        if (rankFragment == null) {
+            // Create the fragment
+            rankFragment = RankFragment.newInstance();
+        }
+
+        ActivityUtils.showOrAddFragmentByTag(
+                getFragmentManager(), rankFragment, RANK);
+
+        return rankFragment;
     }
 
     /**

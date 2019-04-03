@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kerry.gogobasketball.R;
-import com.kerry.gogobasketball.profile.ProfileContract;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -62,4 +61,5 @@ public class FriendFragment extends Fragment implements FriendContract.View {
 
         return root;
     }
+
 }

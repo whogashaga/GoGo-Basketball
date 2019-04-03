@@ -17,17 +17,20 @@ import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapPresenter;
 import com.kerry.gogobasketball.profile.ProfileContract;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
+import com.kerry.gogobasketball.rank.RankContract;
+import com.kerry.gogobasketball.rank.RankPresenter;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class MainPresenter implements MainContract.Presenter, HomeContract.Presenter,
         LookingForRoomContract.Presenter, CourtsMapContract.Presenter, ProfileContract.Presenter,
-        FriendContract.Presenter {
+        FriendContract.Presenter, RankContract.Presenter {
 
     private MainContract.View mMainView;
 
     private HomePresenter mHomePresenter;
     private FriendPresenter mFriendPresenter;
+    private RankPresenter mRankPresenter;
     private ProfilePresenter mProfilePresenter;
 
     private LookingForRoomPresenter mLookingForRoomPresenter;
@@ -52,6 +55,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     void setFriendPresenter(FriendPresenter friendPresenter) {
         mFriendPresenter = checkNotNull(friendPresenter);
+    }
+
+    void setRankPresenter(RankPresenter rankPresenter) {
+        mRankPresenter = checkNotNull(rankPresenter);
     }
 
     void setProfilePresenter(ProfilePresenter profilePresenter) {
@@ -83,7 +90,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void openRank() {
-
+        mMainView.openRankUi();
     }
 
 

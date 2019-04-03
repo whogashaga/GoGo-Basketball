@@ -33,7 +33,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     private Toolbar mToolbar;
     private TextView mToolbarTitle;
     private ImageView mToolbarLogo;
-    //    private LoginDialog mLoginDialog;
+//    private LoginDialog mLoginDialog;
 //    private MessageDialog mMessageDialog;
     private View mBadge;
     private ImageView mDrawerUserImage;
@@ -235,6 +235,11 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     @Override
     public void openFriendsUi() {
         mMainMvpController.findOrCreateFriendsView();
+    }
+
+    @Override
+    public void openRankUi() {
+        mMainMvpController.findOrCreateRankView();
     }
 
     @Override
