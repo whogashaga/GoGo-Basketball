@@ -9,7 +9,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     private final Want2CreateRoomContract.View mWant2CreateRoomView;
 
     public Want2CreateRoomPresenter(@NonNull Want2CreateRoomContract.View want2CreateRoomView) {
-        mWant2CreateRoomView = checkNotNull(want2CreateRoomView, "FriendView cannot be null!");
+        mWant2CreateRoomView = checkNotNull(want2CreateRoomView, "Want2CreateRoomView cannot be null!");
         mWant2CreateRoomView.setPresenter(this);
     }
 

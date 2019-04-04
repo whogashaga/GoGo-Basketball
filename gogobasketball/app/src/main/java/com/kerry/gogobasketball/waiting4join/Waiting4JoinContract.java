@@ -7,7 +7,7 @@ public interface Waiting4JoinContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showWaiting4JoinUi();
+        void showPlayingGameUi();
 
         boolean needTimer();
 

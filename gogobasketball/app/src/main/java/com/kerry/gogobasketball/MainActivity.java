@@ -250,7 +250,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
     @Override
     public void openWait4JoinUi() {
-//        mMainMvpController.findOrCreateWaiting4JoinView();
+        mMainMvpController.findOrCreateWaiting4JoinView();
     }
 
     @Override

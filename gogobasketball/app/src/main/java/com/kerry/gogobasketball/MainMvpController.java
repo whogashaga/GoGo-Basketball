@@ -39,6 +39,7 @@ public class MainMvpController {
     private ProfilePresenter mProfilePresenter;
 
     private Want2CreateRoomPresenter mWant2CreateRoomPresenter;
+    private Waiting4JoinPresenter mWaiting4JoinPresenter;
 
     private LookingForRoomPresenter mLookingForRoomPresenter;
     private CourtsMapPresenter mCourtsMapPresenter;
@@ -175,15 +176,15 @@ public class MainMvpController {
     /**
      * Waiting4Join View
      */
-//    void findOrCreateWaiting4JoinView() {
-//
-//        Waiting4JoinFragment waiting4JoinFragment = createWaiting4JoinFragment();
-//
-//        mWant2CreateRoomPresenter = new Waiting4JoinPresenter(waiting4JoinFragment);
-//
-//        mMainPresenter.setWaiting4JoinPresenter(mWant2CreateRoomPresenter);
-//        waiting4JoinFragment.setPresenter(mMainPresenter);
-//    }
+    void findOrCreateWaiting4JoinView() {
+
+        Waiting4JoinFragment waiting4JoinFragment = createWaiting4JoinFragment();
+
+        mWaiting4JoinPresenter = new Waiting4JoinPresenter(waiting4JoinFragment);
+
+        mMainPresenter.setWaiting4JoinPresenter(mWaiting4JoinPresenter);
+        waiting4JoinFragment.setPresenter(mMainPresenter);
+    }
 
     /* ------------------------------------------------------------------------------------------ */
 
@@ -327,15 +328,15 @@ public class MainMvpController {
      * @return FaqFragment
      */
     @NonNull
-//    private Waiting4JoinFragment createWaiting4JoinFragment() {
-//
-//        Waiting4JoinFragment waiting4JoinFragmentFragment = Waiting4JoinFragment.newInstance();
-//
-//        ActivityUtils.addFragmentByTag(
-//                getFragmentManager(), waiting4JoinFragmentFragment, WAITING4JOIN);
-//
-//        return waiting4JoinFragmentFragment;
-//    }
+    private Waiting4JoinFragment createWaiting4JoinFragment() {
+
+        Waiting4JoinFragment waiting4JoinFragmentFragment = Waiting4JoinFragment.newInstance();
+
+        ActivityUtils.addFragmentByTag(
+                getFragmentManager(), waiting4JoinFragmentFragment, WAITING4JOIN);
+
+        return waiting4JoinFragmentFragment;
+    }
 
     /* ------------------------------------------------------------------------------------------ */
 

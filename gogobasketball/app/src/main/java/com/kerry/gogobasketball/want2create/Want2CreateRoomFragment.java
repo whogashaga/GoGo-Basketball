@@ -1,9 +1,11 @@
 package com.kerry.gogobasketball.want2create;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,8 @@ import android.widget.TextView;
 
 import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
+
+import java.util.Objects;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -46,6 +50,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     @Override
     public void onResume() {
         super.onResume();
+
     }
 
     @Override

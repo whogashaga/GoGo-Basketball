@@ -19,6 +19,8 @@ import com.kerry.gogobasketball.profile.ProfileContract;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
 import com.kerry.gogobasketball.rank.RankContract;
 import com.kerry.gogobasketball.rank.RankPresenter;
+import com.kerry.gogobasketball.waiting4join.Waiting4JoinContract;
+import com.kerry.gogobasketball.waiting4join.Waiting4JoinPresenter;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomContract;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomPresenter;
 
@@ -26,7 +28,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class MainPresenter implements MainContract.Presenter, HomeContract.Presenter,
         LookingForRoomContract.Presenter, CourtsMapContract.Presenter, ProfileContract.Presenter,
-        FriendContract.Presenter, RankContract.Presenter, Want2CreateRoomContract.Presenter {
+        FriendContract.Presenter, RankContract.Presenter, Want2CreateRoomContract.Presenter,
+        Waiting4JoinContract.Presenter {
 
     private MainContract.View mMainView;
 
@@ -39,6 +42,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private CourtsMapPresenter mCourtsMapPresenter;
 
     private Want2CreateRoomPresenter mWant2CreateRoomPresenter;
+    private Waiting4JoinPresenter mWaiting4JoinPresenter;
 
 //    public MainPresenter(
 //            @NonNull StylishRepository stylishRepository,
@@ -81,6 +85,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mWant2CreateRoomPresenter = checkNotNull(want2CreateRoomPresenter);
     }
 
+    void setWaiting4JoinPresenter(Waiting4JoinPresenter waiting4JoinPresenter) {
+        mWaiting4JoinPresenter = checkNotNull(waiting4JoinPresenter);
+    }
+
     @Override
     public void result(int requestCode, int resultCode, Intent data) {
 
@@ -104,7 +112,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     /**
      * Open Profile
-     * @return: it for BottomNavigation
      */
     @Override
     public void openProfile() {
@@ -129,8 +136,31 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     /**
+     * Open Wait4Join
+     */
+
+    @Override
+    public void loadPlayersInfoFromFirebase() {
+
+    }
+
+    @Override
+    public void loadRefereeInfoFromFirebase() {
+
+    }
+
+    @Override
+    public void showPlayingGameUi() {
+
+    }
+
+    @Override
+    public void finishWaiting4JoinUi() {
+
+    }
+
+    /**
      * Open Want2CreateRoom
-     * @return: it for BottomNavigation
      */
     @Override
     public void updateRoomName2Firebase() {
