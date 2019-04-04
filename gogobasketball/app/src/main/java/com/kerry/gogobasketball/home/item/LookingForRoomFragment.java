@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.home.item;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,8 +14,6 @@ import android.widget.Button;
 import com.kerry.gogobasketball.MainMvpController;
 import com.kerry.gogobasketball.R;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 public class LookingForRoomFragment extends Fragment implements LookingForRoomContract.View, View.OnClickListener {
 
     private LookingForRoomContract.Presenter mPresenter;
@@ -22,7 +22,8 @@ public class LookingForRoomFragment extends Fragment implements LookingForRoomCo
     private String mItemType;
     private Button mBtnBuildRoom;
 
-    public LookingForRoomFragment(){}
+    public LookingForRoomFragment() {
+    }
 
     public static LookingForRoomFragment newInstance() {
         return new LookingForRoomFragment();
@@ -51,7 +52,8 @@ public class LookingForRoomFragment extends Fragment implements LookingForRoomCo
             case R.id.btn_home_rooms_build:
                 mPresenter.openWant2CreateRoom();
                 break;
-
+            default:
+                break;
         }
 
     }

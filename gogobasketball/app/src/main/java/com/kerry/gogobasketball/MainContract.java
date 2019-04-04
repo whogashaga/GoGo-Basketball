@@ -31,7 +31,7 @@ public interface MainContract {
 
         void openWait4JoinUi();
 
-        void finishWant2CreateRoomUi();
+        void popBackStackUi();
 
 //        void finishPaymentUi();
 

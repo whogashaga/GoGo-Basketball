@@ -1,13 +1,10 @@
 package com.kerry.gogobasketball.waiting4join;
 
-import android.support.annotation.NonNull;
-
-import com.kerry.gogobasketball.BasePresenter;
-import com.kerry.gogobasketball.BaseView;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class Waiting4JoinPresenter implements Waiting4JoinContract.Presenter{
+import android.support.annotation.NonNull;
+
+public class Waiting4JoinPresenter implements Waiting4JoinContract.Presenter {
 
     private final Waiting4JoinContract.View mWaiting4JoineView;
 

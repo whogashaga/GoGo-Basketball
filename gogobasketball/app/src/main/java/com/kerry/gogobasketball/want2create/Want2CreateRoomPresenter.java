@@ -1,8 +1,8 @@
 package com.kerry.gogobasketball.want2create;
 
-import android.support.annotation.NonNull;
-
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import android.support.annotation.NonNull;
 
 public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Presenter {
 

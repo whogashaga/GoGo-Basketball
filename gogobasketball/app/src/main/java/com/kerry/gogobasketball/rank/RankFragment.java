@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.rank;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,9 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kerry.gogobasketball.R;
-import com.kerry.gogobasketball.friends.FriendContract;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class RankFragment extends Fragment implements RankContract.View {
 

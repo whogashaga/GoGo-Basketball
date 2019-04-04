@@ -1,8 +1,8 @@
 package com.kerry.gogobasketball.rank;
 
-import android.support.annotation.NonNull;
-
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import android.support.annotation.NonNull;
 
 public class RankPresenter implements RankContract.Presenter {
 

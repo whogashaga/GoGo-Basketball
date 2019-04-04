@@ -23,11 +23,12 @@
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/outline_team_a_seat"
         app:layout_constraintBottom_toTopOf="@+id/waiting_team_b_player1_seat"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_waiting4join_back_arrow">
 
 
         <ImageView
@@ -129,12 +130,13 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/outline_team_b_seat"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/waiting_team_a_player1_seat">
+        app:layout_constraintStart_toStartOf="@+id/waiting_team_a_player1_seat"
+        app:layout_constraintTop_toBottomOf="@+id/waiting_team_a_player1_seat">
 
     </android.support.constraint.ConstraintLayout>
 
     <ImageButton
-        android:id="@+id/btn_waitingjoin_back_arrow"
+        android:id="@+id/btn_waiting4join_back_arrow"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
@@ -189,12 +191,15 @@
 
     <Spinner
         android:id="@+id/spinner_timer_selector"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
         android:entries="@array/timer_list"
         android:prompt="@string/select_time"
+        android:background="@drawable/outline_minutes"
         android:spinnerMode="dialog"
+        app:layout_constraintBottom_toTopOf="@+id/btn_waiting4join_start"
         app:layout_constraintStart_toStartOf="@+id/radios_timer_selector"
         app:layout_constraintTop_toBottomOf="@+id/radios_timer_selector" />
 
@@ -202,7 +207,7 @@
         android:id="@+id/text_timer_minutes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:layout_marginStart="8sp"
         android:text="分鐘"
         android:textColor="@color/black_3f3a3a"
         android:textSize="18sp"
@@ -211,28 +216,28 @@
         app:layout_constraintTop_toTopOf="@+id/spinner_timer_selector" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_waiting4join_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="24dp"
         android:text="@string/game_start"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintEnd_toStartOf="@+id/btn_waiting4join_cancel"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player3_seat" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_waiting4join_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="@string/build_cancel"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_waiting4join_start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/button" />
+        app:layout_constraintStart_toEndOf="@+id/btn_waiting4join_start"
+        app:layout_constraintTop_toTopOf="@+id/btn_waiting4join_start" />
 
 
 </android.support.constraint.ConstraintLayout>

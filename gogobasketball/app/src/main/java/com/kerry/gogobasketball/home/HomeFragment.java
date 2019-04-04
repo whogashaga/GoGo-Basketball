@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.home;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,8 +15,6 @@ import android.view.ViewGroup;
 import com.kerry.gogobasketball.MainMvpController;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.home.HomeContract;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class HomeFragment extends Fragment implements HomeContract.View {
 

@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.want2create;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -17,10 +19,6 @@ import android.widget.TextView;
 
 import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
-
-import java.util.Objects;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoomContract.View,
         RadioGroup.OnCheckedChangeListener, View.OnClickListener {
@@ -68,17 +66,18 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_want2create_room, container, false);
 
-        mRadioGroup = root.findViewById(R.id.radios_timer_selector);
-        mRadioRefereeYes = root.findViewById(R.id.radios_timer_yes);
-        mRadioRefereeNo = root.findViewById(R.id.radios_timer_no);
         mTextRefereeWarning = root.findViewById(R.id.text_want2create_warning);
-        mBtnCreateConfirm = root.findViewById(R.id.btn_want2create_build_confirm);
-        mBtnCreateCancel = root.findViewById(R.id.btn_want2create_build_cancel);
-        mBtnBackStack = root.findViewById(R.id.btn_want2create_backstack);
 
+        mRadioGroup = root.findViewById(R.id.radios_referee_selector);
         mRadioGroup.setOnCheckedChangeListener(this);
+
+        mBtnCreateConfirm = root.findViewById(R.id.btn_want2create_build_confirm);
         mBtnCreateConfirm.setOnClickListener(this);
+
+        mBtnCreateCancel = root.findViewById(R.id.btn_want2create_build_cancel);
         mBtnCreateCancel.setOnClickListener(this);
+
+        mBtnBackStack = root.findViewById(R.id.btn_want2create_backstack);
         mBtnBackStack.setOnClickListener(this);
 
 
@@ -97,21 +96,25 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
             case R.id.btn_want2create_backstack:
                 mPresenter.finishWant2CreateRoomUi();
                 break;
+            default:
+                break;
         }
     }
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId){
-            case R.id.radios_timer_yes:
+        switch (checkedId) {
+            case R.id.radios_referee_yes:
 //                mTextRefereeWarning.setText(GoGoBasketball.getAppContext().getString(R.string.referee_yes));
                 mTextRefereeWarning.setText("裁判模式結果將列入天梯排名");
                 mTextRefereeWarning.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.orange_FF6025));
                 break;
-            case R.id.radios_timer_no:
+            case R.id.radios_referee_no:
 //                mTextRefereeWarning.setText(GoGoBasketball.getAppContext().getString(R.string.referee_no));
                 mTextRefereeWarning.setText("非裁判模式結果不列入天梯排名");
                 mTextRefereeWarning.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.red_FF001F));
+                break;
+            default:
                 break;
         }
     }
@@ -142,7 +145,6 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     public boolean isActive() {
         return false;
     }
-
 
 
 }

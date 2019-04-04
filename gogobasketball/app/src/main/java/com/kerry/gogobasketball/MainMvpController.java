@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.support.annotation.NonNull;
 import android.support.annotation.StringDef;
 import android.support.v4.app.FragmentActivity;
@@ -25,8 +27,6 @@ import com.kerry.gogobasketball.want2create.Want2CreateRoomPresenter;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class MainMvpController {
 

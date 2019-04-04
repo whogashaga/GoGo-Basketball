@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.home.map;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,7 +14,6 @@ import android.view.ViewGroup;
 
 import com.kerry.gogobasketball.R;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class CourtsMapFragment extends Fragment implements CourtsMapContract.View {
 

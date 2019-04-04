@@ -1,12 +1,12 @@
 package com.kerry.gogobasketball.home;
 
+import static com.kerry.gogobasketball.MainMvpController.MAP;
+import static com.kerry.gogobasketball.MainMvpController.ROOMS;
+
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
-import static com.kerry.gogobasketball.MainMvpController.MAP;
-import static com.kerry.gogobasketball.MainMvpController.ROOMS;
 
 public class HomeAdapter extends FragmentPagerAdapter {
 

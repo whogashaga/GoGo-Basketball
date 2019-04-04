@@ -13,14 +13,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.kerry.gogobasketball.R;
 
-public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContract.View {
+public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContract.View,
+        View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
     private Waiting4JoinContract.Presenter mPresenter;
+    private RadioGroup mRaidoGroupTimer;
+    private Spinner mSpinnerMinuteSelector;
+    private TextView mTextMinute;
 
-    public Waiting4JoinFragment(){}
+    private ImageButton mBtnBackStack;
+    private Button mBtnCancel;
+
+    public Waiting4JoinFragment() {
+    }
 
     public static Waiting4JoinFragment newInstance() {
         return new Waiting4JoinFragment();
@@ -36,8 +48,53 @@ public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContra
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_waiting4join, container, false);
+        root.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+
+        mBtnBackStack = root.findViewById(R.id.btn_waiting4join_back_arrow);
+        mBtnBackStack.setOnClickListener(this);
+
+        mBtnCancel = root.findViewById(R.id.btn_waiting4join_cancel);
+        mBtnCancel.setOnClickListener(this);
+
+        mRaidoGroupTimer = root.findViewById(R.id.radios_timer_selector);
+        mRaidoGroupTimer.setOnCheckedChangeListener(this);
+
+        mSpinnerMinuteSelector = root.findViewById(R.id.spinner_timer_selector);
+        mTextMinute = root.findViewById(R.id.text_timer_minutes);
+        mSpinnerMinuteSelector.setVisibility(View.GONE);
+        mTextMinute.setVisibility(View.GONE);
 
         return root;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_waiting4join_back_arrow:
+                mPresenter.finishWaiting4JoinUi();
+                break;
+            case R.id.btn_waiting4join_cancel:
+                mPresenter.finishWaiting4JoinUi();
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (checkedId) {
+            case R.id.radios_timer_yes:
+                mSpinnerMinuteSelector.setVisibility(View.VISIBLE);
+                mTextMinute.setVisibility(View.VISIBLE);
+                break;
+            case R.id.radios_timer_no:
+                mSpinnerMinuteSelector.setVisibility(View.GONE);
+                mTextMinute.setVisibility(View.GONE);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
@@ -49,7 +106,6 @@ public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContra
     @Override
     public void onPause() {
         super.onPause();
-        Log.d("Kerry","onResume here!");
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
@@ -72,4 +128,5 @@ public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContra
     public void setPresenter(Waiting4JoinContract.Presenter presenter) {
 
     }
+
 }

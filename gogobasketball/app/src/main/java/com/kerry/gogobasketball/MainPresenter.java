@@ -1,9 +1,10 @@
 package com.kerry.gogobasketball;
 
-import android.app.Activity;
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
+import android.util.Log;
 
 import com.kerry.gogobasketball.friends.FriendContract;
 import com.kerry.gogobasketball.friends.FriendPresenter;
@@ -23,8 +24,6 @@ import com.kerry.gogobasketball.waiting4join.Waiting4JoinContract;
 import com.kerry.gogobasketball.waiting4join.Waiting4JoinPresenter;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomContract;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomPresenter;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class MainPresenter implements MainContract.Presenter, HomeContract.Presenter,
         LookingForRoomContract.Presenter, CourtsMapContract.Presenter, ProfileContract.Presenter,
@@ -87,6 +86,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     void setWaiting4JoinPresenter(Waiting4JoinPresenter waiting4JoinPresenter) {
         mWaiting4JoinPresenter = checkNotNull(waiting4JoinPresenter);
+    }
+
+    @Override
+    public void result(int requestCode, int resultCode) {
+
     }
 
     @Override
@@ -156,7 +160,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void finishWaiting4JoinUi() {
-
+        Log.w("Kerry","MainPresenter finish");
+        mMainView.popBackStackUi();
     }
 
     /**
@@ -179,7 +184,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void finishWant2CreateRoomUi() {
-        mMainView.finishWant2CreateRoomUi();
+        mMainView.popBackStackUi();
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -246,11 +251,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void start() {
-
-    }
-
-    @Override
-    public void result(int requestCode, int resultCode) {
 
     }
 
