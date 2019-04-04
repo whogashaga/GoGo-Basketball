@@ -18,6 +18,8 @@ import com.kerry.gogobasketball.profile.ProfilePresenter;
 import com.kerry.gogobasketball.rank.RankFragment;
 import com.kerry.gogobasketball.rank.RankPresenter;
 import com.kerry.gogobasketball.util.ActivityUtils;
+import com.kerry.gogobasketball.waiting4join.Waiting4JoinFragment;
+import com.kerry.gogobasketball.waiting4join.Waiting4JoinPresenter;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomFragment;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomPresenter;
 
@@ -43,7 +45,7 @@ public class MainMvpController {
 
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({
-            HOME, FRIEND, RANK, PROFILE, WANT2CREATEROOM
+            HOME, FRIEND, RANK, PROFILE, WANT2CREATEROOM, WAITING4JOIN
     })
     public @interface FragmentType {}
     static final String HOME    = "HOME";
@@ -51,6 +53,7 @@ public class MainMvpController {
     static final String RANK    = "RANK";
     static final String PROFILE = "PROFILE";
     static final String WANT2CREATEROOM = "WANT2CREATEROOM";
+    static final String WAITING4JOIN = "WAITING4JOIN";
 
 
     @Retention(RetentionPolicy.SOURCE)
@@ -168,6 +171,19 @@ public class MainMvpController {
         mMainPresenter.setWant2CreateRoomPresenter(mWant2CreateRoomPresenter);
         want2CreateRoomFragment.setPresenter(mMainPresenter);
     }
+
+    /**
+     * Waiting4Join View
+     */
+//    void findOrCreateWaiting4JoinView() {
+//
+//        Waiting4JoinFragment waiting4JoinFragment = createWaiting4JoinFragment();
+//
+//        mWant2CreateRoomPresenter = new Waiting4JoinPresenter(waiting4JoinFragment);
+//
+//        mMainPresenter.setWaiting4JoinPresenter(mWant2CreateRoomPresenter);
+//        waiting4JoinFragment.setPresenter(mMainPresenter);
+//    }
 
     /* ------------------------------------------------------------------------------------------ */
 
@@ -292,7 +308,7 @@ public class MainMvpController {
     }
 
     /**
-     * Faq Fragment
+     * Want2CreateRoom Fragment
      * @return FaqFragment
      */
     @NonNull
@@ -305,6 +321,21 @@ public class MainMvpController {
 
         return want2CreateRoomFragment;
     }
+
+    /**
+     * Waiting4Join Fragment
+     * @return FaqFragment
+     */
+    @NonNull
+//    private Waiting4JoinFragment createWaiting4JoinFragment() {
+//
+//        Waiting4JoinFragment waiting4JoinFragmentFragment = Waiting4JoinFragment.newInstance();
+//
+//        ActivityUtils.addFragmentByTag(
+//                getFragmentManager(), waiting4JoinFragmentFragment, WAITING4JOIN);
+//
+//        return waiting4JoinFragmentFragment;
+//    }
 
     /* ------------------------------------------------------------------------------------------ */
 

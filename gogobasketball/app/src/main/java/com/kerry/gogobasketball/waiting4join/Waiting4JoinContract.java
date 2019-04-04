@@ -1,15 +1,15 @@
-package com.kerry.gogobasketball.want2create;
+package com.kerry.gogobasketball.waiting4join;
 
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
 
-public interface Want2CreateRoomContract {
+public interface Waiting4JoinContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showWant2CreateRoomUi();
+        void showWaiting4JoinUi();
 
-        boolean needReferee();
+        boolean needTimer();
 
         boolean isActive();
 
@@ -23,13 +23,13 @@ public interface Want2CreateRoomContract {
 
         void showToolbarAndBottomNavigation();
 
-        void updateRoomName2Firebase();
+        void loadPlayersInfoFromFirebase();
 
-        void updateLocation2Firebase();
+        void loadRefereeInfoFromFirebase();
 
-        void openWaitingJoin();
+        void showPlayingGameUi();
 
-        void finishWant2CreateRoomUi();
+        void finishWaiting4JoinUi();
 
     }
 }

@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -16,13 +18,17 @@ import com.kerry.gogobasketball.R;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoomContract.View, RadioGroup.OnCheckedChangeListener {
+public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoomContract.View,
+        RadioGroup.OnCheckedChangeListener, View.OnClickListener {
 
     private Want2CreateRoomContract.Presenter mPresenter;
     private RadioGroup mRadioGroup;
     private RadioButton mRadioRefereeYes;
     private RadioButton mRadioRefereeNo;
     private TextView mTextRefereeWarning;
+    private Button mBtnCreateConfirm;
+    private Button mBtnCreateCancel;
+    private ImageButton mBtnBackStack;
 
     public Want2CreateRoomFragment() {
         // Requires empty public constructor
@@ -61,11 +67,32 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         mRadioRefereeYes = root.findViewById(R.id.radios_timer_yes);
         mRadioRefereeNo = root.findViewById(R.id.radios_timer_no);
         mTextRefereeWarning = root.findViewById(R.id.text_want2create_warning);
+        mBtnCreateConfirm = root.findViewById(R.id.btn_want2create_build_confirm);
+        mBtnCreateCancel = root.findViewById(R.id.btn_want2create_build_cancel);
+        mBtnBackStack = root.findViewById(R.id.btn_want2create_backstack);
 
         mRadioGroup.setOnCheckedChangeListener(this);
+        mBtnCreateConfirm.setOnClickListener(this);
+        mBtnCreateCancel.setOnClickListener(this);
+        mBtnBackStack.setOnClickListener(this);
 
 
         return root;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_want2create_build_confirm:
+                mPresenter.openWaitingJoin();
+                break;
+            case R.id.btn_want2create_build_cancel:
+                mPresenter.finishWant2CreateRoomUi();
+                break;
+            case R.id.btn_want2create_backstack:
+                mPresenter.finishWant2CreateRoomUi();
+                break;
+        }
     }
 
     @Override

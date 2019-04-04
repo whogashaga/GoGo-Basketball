@@ -249,6 +249,11 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
+    public void openWait4JoinUi() {
+//        mMainMvpController.findOrCreateWaiting4JoinView();
+    }
+
+    @Override
     public void openLoginUi(int loginFrom) {
 
     }
@@ -256,6 +261,11 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     @Override
     public void openCheckOutSuccessUi() {
 
+    }
+
+    @Override
+    public void finishWant2CreateRoomUi() {
+        getSupportFragmentManager().popBackStack();
     }
 
     @Override

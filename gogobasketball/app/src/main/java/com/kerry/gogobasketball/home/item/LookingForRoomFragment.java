@@ -41,6 +41,7 @@ public class LookingForRoomFragment extends Fragment implements LookingForRoomCo
         mBtnBuildRoom = root.findViewById(R.id.btn_home_rooms_build);
         mBtnBuildRoom.setOnClickListener(this);
 
+
         return root;
     }
 
@@ -50,6 +51,7 @@ public class LookingForRoomFragment extends Fragment implements LookingForRoomCo
             case R.id.btn_home_rooms_build:
                 mPresenter.openWant2CreateRoom();
                 break;
+
         }
 
     }

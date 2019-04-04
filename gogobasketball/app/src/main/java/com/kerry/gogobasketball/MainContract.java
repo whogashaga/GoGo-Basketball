@@ -29,7 +29,9 @@ public interface MainContract {
 
 //        void openDetailUi(Product product);
 
-//        void finishDetailUi();
+        void openWait4JoinUi();
+
+        void finishWant2CreateRoomUi();
 
 //        void finishPaymentUi();
 

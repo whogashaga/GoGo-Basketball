@@ -143,13 +143,13 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void showWaitingJoinUi() {
-
+    public void openWaitingJoin() {
+        mMainView.openWait4JoinUi();
     }
 
     @Override
     public void finishWant2CreateRoomUi() {
-
+        mMainView.finishWant2CreateRoomUi();
     }
 
     /* ------------------------------------------------------------------------------------------ */
