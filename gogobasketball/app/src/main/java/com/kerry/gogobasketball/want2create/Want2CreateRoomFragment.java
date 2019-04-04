@@ -2,13 +2,11 @@ package com.kerry.gogobasketball.want2create;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -59,9 +57,9 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_want2create_room, container, false);
 
-        mRadioGroup = root.findViewById(R.id.radios_referee_selector);
-        mRadioRefereeYes = root.findViewById(R.id.radios_referee_yes);
-        mRadioRefereeNo = root.findViewById(R.id.radios_referee_no);
+        mRadioGroup = root.findViewById(R.id.radios_timer_selector);
+        mRadioRefereeYes = root.findViewById(R.id.radios_timer_yes);
+        mRadioRefereeNo = root.findViewById(R.id.radios_timer_no);
         mTextRefereeWarning = root.findViewById(R.id.text_want2create_warning);
 
         mRadioGroup.setOnCheckedChangeListener(this);
@@ -73,12 +71,12 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId){
-            case R.id.radios_referee_yes:
+            case R.id.radios_timer_yes:
 //                mTextRefereeWarning.setText(GoGoBasketball.getAppContext().getString(R.string.referee_yes));
                 mTextRefereeWarning.setText("裁判模式結果將列入天梯排名");
                 mTextRefereeWarning.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.orange_FF6025));
                 break;
-            case R.id.radios_referee_no:
+            case R.id.radios_timer_no:
 //                mTextRefereeWarning.setText(GoGoBasketball.getAppContext().getString(R.string.referee_no));
                 mTextRefereeWarning.setText("非裁判模式結果不列入天梯排名");
                 mTextRefereeWarning.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.red_FF001F));

@@ -100,12 +100,12 @@
         app:layout_constraintTop_toTopOf="@+id/text_want2create_room_name_title" />
 
     <Spinner
-        android:id="@+id/spinner_payment_methods"
+        android:id="@+id/spinner_referee_selector"
         android:layout_width="0dp"
         android:layout_height="@dimen/height_payment_editor"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:entries="@array/payment_method_list"
+        android:entries="@array/basketball_courts_list"
         android:prompt="@string/select_court"
         android:spinnerMode="dialog"
         app:layout_constraintBottom_toBottomOf="@+id/text_want2create_location_title"
@@ -125,13 +125,13 @@
         app:srcCompat="@drawable/ic_refresh" />
 
     <RadioGroup
-        android:id="@+id/radios_referee_selector"
+        android:id="@+id/radios_timer_selector"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/pink_out_line"
-        android:checkedButton="@+id/radios_referee_yes"
+        android:background="@drawable/outline_radio_btn_referee"
+        android:checkedButton="@+id/radios_timer_yes"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/text_want2create_referee_title"
         app:layout_constraintEnd_toEndOf="parent"
@@ -139,14 +139,14 @@
         app:layout_constraintTop_toTopOf="@+id/text_want2create_referee_title">
 
         <RadioButton
-            android:id="@+id/radios_referee_yes"
+            android:id="@+id/radios_timer_yes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
             android:layout_weight="1"
-            android:background="@drawable/toggle_widget_background"
+            android:background="@drawable/radio_background_referee_mode"
             android:button="@null"
             android:gravity="center"
             android:text="@string/referee_yes"
@@ -154,14 +154,14 @@
             android:textSize="18sp" />
 
         <RadioButton
-            android:id="@+id/radios_referee_no"
+            android:id="@+id/radios_timer_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
             android:layout_marginRight="1dp"
             android:layout_marginBottom="1dp"
             android:layout_weight="1"
-            android:background="@drawable/toggle_widget_background"
+            android:background="@drawable/radio_background_referee_mode"
             android:button="@null"
             android:gravity="center"
             android:text="@string/referee_no"
@@ -179,9 +179,9 @@
         android:layout_marginEnd="8dp"
         android:text="@string/warning_rank_yes"
         android:textColor="@color/orange_FF6025"
-        app:layout_constraintEnd_toEndOf="@+id/radios_referee_selector"
+        app:layout_constraintEnd_toEndOf="@+id/radios_timer_selector"
         app:layout_constraintStart_toStartOf="@+id/text_want2create_referee_title"
-        app:layout_constraintTop_toBottomOf="@+id/radios_referee_selector" />
+        app:layout_constraintTop_toBottomOf="@+id/radios_timer_selector" />
 
     <Button
         android:id="@+id/btn_want2create_build_confirm"

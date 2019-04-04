@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="timer_list">
+        <item>@string/timer_ten</item>
+        <item>@string/timer_fifteen</item>
+    </string-array>
+</resources>

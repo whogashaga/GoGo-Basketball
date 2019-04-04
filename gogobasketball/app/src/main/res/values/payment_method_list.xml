@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="payment_method_list">
+    <string-array name="basketball_courts_list">
         <item>@string/young_park</item>
         <item>@string/da_an_park</item>
         <item>@string/jan_kuo_viaduct</item>

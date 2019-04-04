@@ -24,6 +24,9 @@
     <color name="red_d0021b">#d0021b</color>
     <color name="red_FF001F">#FF001F</color>
 
+    <!-- Yellow Series -->
+    <color name="yellow_FFB700">#FFB700</color>
+
     <!-- Orange Series -->
     <color name="orange_8b572a">#8b572a</color>
     <color name="orange_FF6025">#FF6025</color>
@@ -46,7 +49,6 @@
     <!-- Want2CreateRoom Referee on not -->
     <color name="referee_yes">#00E1FF</color>
     <color name="referee_no">#888888</color>
-
 
 
     <color name="transparent">#00888888</color>
