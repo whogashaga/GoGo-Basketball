@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.kerry.gogobasketball.friends.FriendContract;
 import com.kerry.gogobasketball.friends.FriendPresenter;
 import com.kerry.gogobasketball.home.HomeContract;
@@ -30,6 +31,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         FriendContract.Presenter, RankContract.Presenter, Want2CreateRoomContract.Presenter,
         Waiting4JoinContract.Presenter {
 
+    private FirebaseFirestore mDb;
     private MainContract.View mMainView;
 
     private HomePresenter mHomePresenter;
