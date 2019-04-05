@@ -11,17 +11,39 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.kerry.gogobasketball.home.item.LookingForRoomFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends BaseActivity implements MainContract.View, NavigationView.OnNavigationItemSelectedListener {
+
+    private Button mBtnCreateUser;
+    FirebaseFirestore mDb = FirebaseFirestore.getInstance();
+
+    private String mAvatar = "https://graph.facebook.com/2177302648995421/picture?type=large";
+    private String mDocId = "User6";
+    private String mName = "User6";
+    private String mEmail = "ooq@kamil";
+    private String mGender = "male";
+    private String mId = "Pita";
+    private String mPosition = "sg";
+    private ArrayList<String> mSkills = new ArrayList<>();
 
 
     private DrawerLayout mDrawerLayout;
@@ -30,7 +52,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     private Toolbar mToolbar;
     private TextView mToolbarTitle;
     private ImageView mToolbarLogo;
-//    private LoginDialog mLoginDialog;
+    //    private LoginDialog mLoginDialog;
 //    private MessageDialog mMessageDialog;
     private View mBadge;
     private ImageView mDrawerUserImage;
@@ -44,8 +66,49 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         init();
+
+//        createUserInfo();
+
+    }
+
+    public void createUserInfo(){
+
+        mSkills.add("coding");
+        mSkills.add("digging");
+
+        final DocumentReference docRef = mDb.collection("users").document(mDocId);
+        mBtnCreateUser = findViewById(R.id.main_layout_create_user);
+        mBtnCreateUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map<String, Object> user = new HashMap<>();
+                user.put("avatar", mAvatar);
+                user.put("email", mEmail);
+                user.put("gender", mGender);
+                user.put("id", mId);
+                user.put("name", mName);
+                user.put("position", mPosition);
+                user.put("skills", mSkills);
+
+                // Add a new document with a generated ID
+                mDb.collection("users")
+                        .document(mDocId)
+                        .set(user)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d("Kerry", "DocumentSnapshot successfully written!");
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Kerry", "Error adding document", e);
+                    }
+
+                });
+            }
+        });
     }
 
     private void init() {
@@ -336,10 +399,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     public void showDrawerUserUi() {
 
     }
-
-
-
-
 
 
 }

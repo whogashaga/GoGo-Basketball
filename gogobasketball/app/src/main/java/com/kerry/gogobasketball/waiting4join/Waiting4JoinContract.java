@@ -30,6 +30,5 @@ public interface Waiting4JoinContract {
         void showPlayingGameUi();
 
         void finishWaiting4JoinUi();
-
     }
 }

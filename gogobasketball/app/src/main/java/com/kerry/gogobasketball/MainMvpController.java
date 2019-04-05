@@ -48,10 +48,12 @@ public class MainMvpController {
     @StringDef({
             HOME, FRIEND, RANK, PROFILE, WANT2CREATEROOM, WAITING4JOIN
     })
-    public @interface FragmentType {}
-    static final String HOME    = "HOME";
+    public @interface FragmentType {
+    }
+
+    static final String HOME = "HOME";
     static final String FRIEND = "FRIEND";
-    static final String RANK    = "RANK";
+    static final String RANK = "RANK";
     static final String PROFILE = "PROFILE";
     static final String WANT2CREATEROOM = "WANT2CREATEROOM";
     static final String WAITING4JOIN = "WAITING4JOIN";
@@ -61,16 +63,15 @@ public class MainMvpController {
     @StringDef({
             ROOMS, MAP
     })
-    public @interface HomeItem {}
-    public static final String ROOMS       = "ROOMS";
-    public static final String MAP         = "MAP";
+    public @interface HomeItem {
+    }
+
+    public static final String ROOMS = "ROOMS";
+    public static final String MAP = "MAP";
 
     private MainMvpController(@NonNull FragmentActivity activity) {
         mActivity = activity;
     }
-
-
-
 
 
     /**
@@ -88,7 +89,7 @@ public class MainMvpController {
     }
 
     /**
-     *  Friends View
+     * Friends View
      */
     void findOrCreateFriendsView() {
 
@@ -102,7 +103,7 @@ public class MainMvpController {
     }
 
     /**
-     *  Rank View
+     * Rank View
      */
     void findOrCreateRankView() {
 
@@ -116,7 +117,7 @@ public class MainMvpController {
     }
 
     /**
-     *  Profile View
+     * Profile View
      */
     void findOrCreateProfileView() {
 
@@ -132,6 +133,7 @@ public class MainMvpController {
 
     /**
      * LookingForRooms View
+     *
      * @return CatalogItemFragment: Rooms Fragment
      */
     LookingForRoomFragment findOrCreateLookingForRoomView() {
@@ -147,6 +149,7 @@ public class MainMvpController {
 
     /**
      * LookingForRooms View
+     *
      * @return CatalogItemFragment: Rooms Fragment
      */
     CourtsMapFragment findOrCreateMapView() {
@@ -191,6 +194,7 @@ public class MainMvpController {
 
     /**
      * Home Fragment
+     *
      * @return HomeFragment
      */
     @NonNull
@@ -211,6 +215,7 @@ public class MainMvpController {
 
     /**
      * Friend Fragment
+     *
      * @return FriendFragment
      */
     @NonNull
@@ -231,6 +236,7 @@ public class MainMvpController {
 
     /**
      * Rank Fragment
+     *
      * @return RankFragment
      */
     @NonNull
@@ -251,6 +257,7 @@ public class MainMvpController {
 
     /**
      * Profile Fragment
+     *
      * @return ProfileFragment
      */
     @NonNull
@@ -271,6 +278,7 @@ public class MainMvpController {
 
     /**
      * Home Item Fragment: Map
+     *
      * @param itemType: @HomeItem
      * @return LookingForRoomFragment
      */
@@ -291,6 +299,7 @@ public class MainMvpController {
 
     /**
      * Home Item Fragment: Map
+     *
      * @param itemType: @HomeItem
      * @return CourtsMapFragment
      */
@@ -310,6 +319,7 @@ public class MainMvpController {
 
     /**
      * Want2CreateRoom Fragment
+     *
      * @return FaqFragment
      */
     @NonNull
@@ -325,6 +335,7 @@ public class MainMvpController {
 
     /**
      * Waiting4Join Fragment
+     *
      * @return FaqFragment
      */
     @NonNull
@@ -342,6 +353,7 @@ public class MainMvpController {
 
     /**
      * Creates a controller.
+     *
      * @param activity the context activity
      * @return a MainMvpController
      */
@@ -354,6 +366,7 @@ public class MainMvpController {
 
     /**
      * Create Main Presenter
+     *
      * @return MainPresenter
      */
     private MainPresenter createMainPresenter() {

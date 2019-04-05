@@ -51,13 +51,8 @@ public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContra
         root.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
         mBtnBackStack = root.findViewById(R.id.btn_waiting4join_back_arrow);
-        mBtnBackStack.setOnClickListener(this);
-
         mBtnCancel = root.findViewById(R.id.btn_waiting4join_cancel);
-        mBtnCancel.setOnClickListener(this);
-
         mRaidoGroupTimer = root.findViewById(R.id.radios_timer_selector);
-        mRaidoGroupTimer.setOnCheckedChangeListener(this);
 
         mSpinnerMinuteSelector = root.findViewById(R.id.spinner_timer_selector);
         mTextMinute = root.findViewById(R.id.text_timer_minutes);
@@ -100,7 +95,9 @@ public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContra
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        mBtnBackStack.setOnClickListener(this);
+        mBtnCancel.setOnClickListener(this);
+        mRaidoGroupTimer.setOnCheckedChangeListener(this);
     }
 
     @Override
