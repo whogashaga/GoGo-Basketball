@@ -1,17 +1,14 @@
 package com.kerry.gogobasketball.waiting4join;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
@@ -20,11 +17,13 @@ import android.widget.TextView;
 
 import com.kerry.gogobasketball.R;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContract.View,
         View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
     private Waiting4JoinContract.Presenter mPresenter;
-    private RadioGroup mRaidoGroupTimer;
+    private RadioGroup mRadioGroupTimer;
     private Spinner mSpinnerMinuteSelector;
     private TextView mTextMinute;
 
@@ -44,6 +43,22 @@ public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContra
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
+    @Override
+    public void setPresenter(Waiting4JoinContract.Presenter presenter) {
+        mPresenter = checkNotNull(presenter);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        mPresenter.result(requestCode, resultCode);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -52,7 +67,7 @@ public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContra
 
         mBtnBackStack = root.findViewById(R.id.btn_waiting4join_back_arrow);
         mBtnCancel = root.findViewById(R.id.btn_waiting4join_cancel);
-        mRaidoGroupTimer = root.findViewById(R.id.radios_timer_selector);
+        mRadioGroupTimer = root.findViewById(R.id.radios_timer_selector);
 
         mSpinnerMinuteSelector = root.findViewById(R.id.spinner_timer_selector);
         mTextMinute = root.findViewById(R.id.text_timer_minutes);
@@ -97,7 +112,7 @@ public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContra
         super.onViewCreated(view, savedInstanceState);
         mBtnBackStack.setOnClickListener(this);
         mBtnCancel.setOnClickListener(this);
-        mRaidoGroupTimer.setOnCheckedChangeListener(this);
+        mRadioGroupTimer.setOnCheckedChangeListener(this);
     }
 
     @Override
@@ -121,9 +136,6 @@ public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContra
         return false;
     }
 
-    @Override
-    public void setPresenter(Waiting4JoinContract.Presenter presenter) {
 
-    }
 
 }

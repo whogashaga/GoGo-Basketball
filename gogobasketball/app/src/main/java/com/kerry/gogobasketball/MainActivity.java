@@ -36,14 +36,14 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     private Button mBtnCreateUser;
     FirebaseFirestore mDb = FirebaseFirestore.getInstance();
 
-    private String mAvatar = "https://graph.facebook.com/2177302648995421/picture?type=large";
-    private String mDocId = "User6";
-    private String mName = "User6";
-    private String mEmail = "ooq@kamil";
-    private String mGender = "male";
-    private String mId = "Pita";
-    private String mPosition = "sg";
-    private ArrayList<String> mSkills = new ArrayList<>();
+    private String mAvatar;
+    private String mDocId;
+    private String mName;
+    private String mEmail;
+    private String mGender;
+    private String mId;
+    private String mPosition;
+    private ArrayList<String> mSkills;
 
 
     private DrawerLayout mDrawerLayout;
@@ -72,13 +72,35 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
     }
 
-    public void createUserInfo(){
+    private void init() {
+        setContentView(R.layout.activity_main);
 
-        mSkills.add("coding");
-        mSkills.add("digging");
+        mMainMvpController = MainMvpController.create(this);
+        mPresenter.openHome();
+
+        setToolbar();
+        setBottomNavigation();
+        setDrawerLayout();
+    }
+
+    public void createUserInfo(){
+        mBtnCreateUser = findViewById(R.id.main_layout_create_user);
+        mBtnCreateUser.setVisibility(View.VISIBLE);
+
+        mAvatar = "https://graph.facebook.com/2177302648995421/picture?type=large";
+        mDocId = "User7";
+        mName = "User7";
+        mEmail = "kjkj@kamil";
+        mGender = "female";
+        mId = "Londa";
+        mPosition = "pf";
+        mSkills = new ArrayList<>();
+
+        mSkills.add("drive");
+        mSkills.add("ride");
 
         final DocumentReference docRef = mDb.collection("users").document(mDocId);
-        mBtnCreateUser = findViewById(R.id.main_layout_create_user);
+
         mBtnCreateUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,17 +131,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
                 });
             }
         });
-    }
-
-    private void init() {
-        setContentView(R.layout.activity_main);
-
-        mMainMvpController = MainMvpController.create(this);
-        mPresenter.openHome();
-
-        setToolbar();
-        setBottomNavigation();
-        setDrawerLayout();
     }
 
     /**
