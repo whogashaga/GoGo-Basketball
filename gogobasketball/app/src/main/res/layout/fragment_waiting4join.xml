@@ -6,21 +6,12 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/waiting_team_a_player2_seat"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/outline_team_a_seat"
-        app:layout_constraintBottom_toBottomOf="@+id/waiting_team_a_player1_seat"
-        app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player1_seat"
-        app:layout_constraintTop_toTopOf="@+id/waiting_team_a_player1_seat">
-
-    </android.support.constraint.ConstraintLayout>
+    /* ------------------------------------------------------------------------------------------ */
+    /* Team A */
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/waiting_team_a_player1_seat"
-        android:layout_width="160dp"
+        android:layout_width="170dp"
         android:layout_height="160dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
@@ -69,25 +60,157 @@
             app:layout_constraintBottom_toBottomOf="@+id/waiting_team_a_player1_gender"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player1_gender"
             app:layout_constraintTop_toTopOf="@+id/waiting_team_a_player1_gender"
-            app:srcCompat="@drawable/ic_center_basketball" />
+            app:srcCompat="@drawable/ic_position_sf" />
+
+        <Button
+            android:id="@+id/btn_waiting_team_a_player1_change_seat"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_bench_chair"
+            android:text="@string/change_seat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_a_player1_info"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/waiting_team_a_player1_avatar" />
+
+        <Button
+            android:id="@+id/btn_waiting_team_a_player1_info"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_info_player"
+            android:text="@string/person_info"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_a_player1_change_seat"
+            app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_a_player1_add"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_a_player1_change_seat"
+            app:layout_constraintTop_toTopOf="@+id/btn_waiting_team_a_player1_change_seat" />
+
+        <Button
+            android:id="@+id/btn_waiting_team_a_player1_add"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_add_user"
+            android:text="@string/add_user"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_a_player1_change_seat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_a_player1_info"
+            app:layout_constraintTop_toTopOf="@+id/btn_waiting_team_a_player1_change_seat" />
 
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/waiting_team_b_player2_seat"
-        android:layout_width="160dp"
+        android:id="@+id/waiting_team_a_player2_seat"
+        android:layout_width="170dp"
         android:layout_height="160dp"
         android:layout_marginStart="8dp"
-        android:background="@drawable/outline_team_b_seat"
-        app:layout_constraintBottom_toBottomOf="@+id/waiting_team_b_player1_seat"
-        app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player1_seat"
-        app:layout_constraintTop_toTopOf="@+id/waiting_team_b_player1_seat">
+        android:background="@drawable/outline_team_a_seat"
+        app:layout_constraintBottom_toBottomOf="@+id/waiting_team_a_player1_seat"
+        app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player1_seat"
+        app:layout_constraintTop_toTopOf="@+id/waiting_team_a_player1_seat">
+
+        <ImageView
+            android:id="@+id/waiting_team_a_player2_avatar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_placeholder" />
+
+        <TextView
+            android:id="@+id/waiting_team_a_player2_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:gravity="left"
+            android:text="Player2"
+            app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player2_avatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/waiting_team_a_player2_gender"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/waiting_team_a_player2_id"
+            app:layout_constraintTop_toBottomOf="@+id/waiting_team_a_player2_id"
+            app:srcCompat="@drawable/ic_female" />
+
+        <ImageView
+            android:id="@+id/waiting_team_a_player2_position"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/waiting_team_a_player2_gender"
+            app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player2_gender"
+            app:layout_constraintTop_toTopOf="@+id/waiting_team_a_player2_gender"
+            app:srcCompat="@drawable/ic_position_sf" />
+
+        <Button
+            android:id="@+id/btn_waiting_team_a_player2_change_seat"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_bench_chair"
+            android:text="@string/change_seat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_a_player2_info"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/waiting_team_a_player2_avatar" />
+
+        <Button
+            android:id="@+id/btn_waiting_team_a_player2_info"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_info_player"
+            android:text="@string/person_info"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_a_player2_change_seat"
+            app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_a_player2_add"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_a_player2_change_seat"
+            app:layout_constraintTop_toTopOf="@+id/btn_waiting_team_a_player2_change_seat" />
+
+        <Button
+            android:id="@+id/btn_waiting_team_a_player2_add"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_add_user"
+            android:text="@string/add_user"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_a_player2_change_seat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_a_player2_info"
+            app:layout_constraintTop_toTopOf="@+id/btn_waiting_team_a_player2_change_seat" />
 
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/waiting_team_a_player3_seat"
-        android:layout_width="160dp"
+        android:layout_width="170dp"
         android:layout_height="160dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/outline_team_a_seat"
@@ -95,11 +218,399 @@
         app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player2_seat"
         app:layout_constraintTop_toTopOf="@+id/waiting_team_a_player2_seat">
 
+        <ImageView
+            android:id="@+id/waiting_team_a_player3_avatar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_placeholder" />
+
+        <TextView
+            android:id="@+id/waiting_team_a_player3_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:gravity="left"
+            android:text="Player3"
+            app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player3_avatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/waiting_team_a_player3_gender"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/waiting_team_a_player3_id"
+            app:layout_constraintTop_toBottomOf="@+id/waiting_team_a_player3_id"
+            app:srcCompat="@drawable/ic_female" />
+
+        <ImageView
+            android:id="@+id/waiting_team_a_player3_position"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/waiting_team_a_player3_gender"
+            app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player3_gender"
+            app:layout_constraintTop_toTopOf="@+id/waiting_team_a_player3_gender"
+            app:srcCompat="@drawable/ic_position_pf" />
+
+        <Button
+            android:id="@+id/btn_waiting_team_a_player3_change_seat"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_bench_chair"
+            android:text="@string/change_seat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_a_player3_info"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/waiting_team_a_player3_avatar" />
+
+        <Button
+            android:id="@+id/btn_waiting_team_a_player3_info"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_info_player"
+            android:text="@string/person_info"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_a_player3_change_seat"
+            app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_a_player3_add"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_a_player3_change_seat"
+            app:layout_constraintTop_toTopOf="@+id/btn_waiting_team_a_player3_change_seat" />
+
+        <Button
+            android:id="@+id/btn_waiting_team_a_player3_add"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_add_user"
+            android:text="@string/add_user"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_a_player3_change_seat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_a_player3_info"
+            app:layout_constraintTop_toTopOf="@+id/btn_waiting_team_a_player3_change_seat" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    /* ------------------------------------------------------------------------------------------ */
+    /* Team B */
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/waiting_team_b_player1_seat"
+        android:layout_width="170dp"
+        android:layout_height="160dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/outline_team_b_seat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/waiting_team_a_player1_seat"
+        app:layout_constraintTop_toBottomOf="@+id/waiting_team_a_player1_seat">
+
+        <ImageView
+            android:id="@+id/waiting_team_b_player1_avatar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_placeholder" />
+
+        <TextView
+            android:id="@+id/waiting_team_b_player1_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:gravity="left"
+            android:text="Player4"
+            app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player1_avatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/waiting_team_b_player1_gender"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/waiting_team_b_player1_id"
+            app:layout_constraintTop_toBottomOf="@+id/waiting_team_b_player1_id"
+            app:srcCompat="@drawable/ic_female" />
+
+        <ImageView
+            android:id="@+id/waiting_team_b_player1_position"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/waiting_team_b_player1_gender"
+            app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player1_gender"
+            app:layout_constraintTop_toTopOf="@+id/waiting_team_b_player1_gender"
+            app:srcCompat="@drawable/ic_position_pg" />
+
+        <Button
+            android:id="@+id/btn_waiting_team_b_player1_change_seat"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_bench_chair"
+            android:text="@string/change_seat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_b_player1_info"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/waiting_team_b_player1_avatar" />
+
+        <Button
+            android:id="@+id/btn_waiting_team_b_player1_info"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_info_player"
+            android:text="@string/person_info"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_b_player1_change_seat"
+            app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_b_player1_add"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_b_player1_change_seat"
+            app:layout_constraintTop_toTopOf="@+id/btn_waiting_team_b_player1_change_seat" />
+
+        <Button
+            android:id="@+id/btn_waiting_team_b_player1_add"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_add_user"
+            android:text="@string/add_user"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_b_player1_change_seat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_b_player1_info"
+            app:layout_constraintTop_toTopOf="@+id/btn_waiting_team_b_player1_change_seat" />
+
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/waiting_team_b_player2_seat"
+        android:layout_width="170dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/outline_team_b_seat"
+        app:layout_constraintBottom_toBottomOf="@+id/waiting_team_b_player1_seat"
+        app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player1_seat"
+        app:layout_constraintTop_toTopOf="@+id/waiting_team_b_player1_seat">
+
+        <ImageView
+            android:id="@+id/waiting_team_b_player2_avatar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_placeholder" />
+
+        <TextView
+            android:id="@+id/waiting_team_b_player2_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:gravity="left"
+            android:text="Player5"
+            app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player2_avatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/waiting_team_b_player2_gender"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/waiting_team_b_player2_id"
+            app:layout_constraintTop_toBottomOf="@+id/waiting_team_b_player2_id"
+            app:srcCompat="@drawable/ic_female" />
+
+        <ImageView
+            android:id="@+id/waiting_team_b_player2_position"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/waiting_team_b_player2_gender"
+            app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player2_gender"
+            app:layout_constraintTop_toTopOf="@+id/waiting_team_b_player2_gender"
+            app:srcCompat="@drawable/ic_position_center" />
+
+        <Button
+            android:id="@+id/btn_waiting_team_b_player2_change_seat"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_bench_chair"
+            android:text="@string/change_seat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_b_player2_info"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/waiting_team_b_player2_avatar" />
+
+        <Button
+            android:id="@+id/btn_waiting_team_b_player2_info"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_info_player"
+            android:text="@string/person_info"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_b_player2_change_seat"
+            app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_b_player2_add"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_b_player2_change_seat"
+            app:layout_constraintTop_toTopOf="@+id/btn_waiting_team_b_player2_change_seat" />
+
+        <Button
+            android:id="@+id/btn_waiting_team_b_player2_add"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_add_user"
+            android:text="@string/add_user"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_b_player2_change_seat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_b_player2_info"
+            app:layout_constraintTop_toTopOf="@+id/btn_waiting_team_b_player2_change_seat" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/waiting_team_b_player3_seat"
+        android:layout_width="170dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/outline_team_b_seat"
+        app:layout_constraintBottom_toBottomOf="@+id/waiting_team_b_player2_seat"
+        app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player2_seat"
+        app:layout_constraintTop_toTopOf="@+id/waiting_team_b_player2_seat">
+
+        <ImageView
+            android:id="@+id/waiting_team_b_player3_avatar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_placeholder" />
+
+        <TextView
+            android:id="@+id/waiting_team_b_player3_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:gravity="left"
+            android:text="Player6"
+            app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player3_avatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/waiting_team_b_player3_gender"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/waiting_team_b_player3_id"
+            app:layout_constraintTop_toBottomOf="@+id/waiting_team_b_player3_id"
+            app:srcCompat="@drawable/ic_female" />
+
+        <ImageView
+            android:id="@+id/waiting_team_b_player3_position"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/waiting_team_b_player3_gender"
+            app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player3_gender"
+            app:layout_constraintTop_toTopOf="@+id/waiting_team_b_player3_gender"
+            app:srcCompat="@drawable/ic_position_sg" />
+
+        <Button
+            android:id="@+id/btn_waiting_team_b_player3_change_seat"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_bench_chair"
+            android:text="@string/change_seat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_b_player3_info"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/waiting_team_b_player3_avatar" />
+
+        <Button
+            android:id="@+id/btn_waiting_team_b_player3_info"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_info_player"
+            android:text="@string/person_info"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_b_player3_change_seat"
+            app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_b_player3_add"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_b_player3_change_seat"
+            app:layout_constraintTop_toTopOf="@+id/btn_waiting_team_b_player3_change_seat" />
+
+        <Button
+            android:id="@+id/btn_waiting_team_b_player3_add"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_add_user"
+            android:text="@string/add_user"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_b_player3_change_seat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_b_player3_info"
+            app:layout_constraintTop_toTopOf="@+id/btn_waiting_team_b_player3_change_seat" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    /* ------------------------------------------------------------------------------------------ */
+    /* Referee */
+
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/waiting_referee_seat"
-        android:layout_width="160dp"
+        android:layout_width="170dp"
         android:layout_height="160dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
@@ -109,31 +620,96 @@
         app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player3_seat"
         app:layout_constraintTop_toTopOf="@+id/waiting_team_a_player3_seat">
 
+        <ImageView
+            android:id="@+id/waiting_referee_avatar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_placeholder" />
+
+        <TextView
+            android:id="@+id/waiting_referee_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:gravity="left"
+            android:text="Referee"
+            app:layout_constraintStart_toEndOf="@+id/waiting_referee_avatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/waiting_referee_gender"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/waiting_referee_id"
+            app:layout_constraintTop_toBottomOf="@+id/waiting_referee_id"
+            app:srcCompat="@drawable/ic_female" />
+
+        <ImageView
+            android:id="@+id/waiting_referee_position"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/waiting_referee_gender"
+            app:layout_constraintStart_toEndOf="@+id/waiting_referee_gender"
+            app:layout_constraintTop_toTopOf="@+id/waiting_referee_gender"
+            app:srcCompat="@drawable/ic_position_referee" />
+
+        <Button
+            android:id="@+id/btn_waiting_referee_change_seat"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_sofa_referee"
+            android:text="@string/change_seat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_waiting_referee_info"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/waiting_referee_avatar" />
+
+        <Button
+            android:id="@+id/btn_waiting_referee_info"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_info_referee"
+            android:text="@string/person_info"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_referee_change_seat"
+            app:layout_constraintEnd_toStartOf="@+id/btn_waiting_referee_add"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_waiting_referee_change_seat"
+            app:layout_constraintTop_toTopOf="@+id/btn_waiting_referee_change_seat" />
+
+        <Button
+            android:id="@+id/btn_waiting_referee_add"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_add_user"
+            android:text="@string/add_user"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_referee_change_seat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_waiting_referee_info"
+            app:layout_constraintTop_toTopOf="@+id/btn_waiting_referee_change_seat" />
+
     </android.support.constraint.ConstraintLayout>
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/waiting_team_b_player3_seat"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/outline_team_b_seat"
-        app:layout_constraintBottom_toBottomOf="@+id/waiting_team_b_player2_seat"
-        app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player2_seat"
-        app:layout_constraintTop_toTopOf="@+id/waiting_team_b_player2_seat">
-
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/waiting_team_b_player1_seat"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/outline_team_b_seat"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/waiting_team_a_player1_seat"
-        app:layout_constraintTop_toBottomOf="@+id/waiting_team_a_player1_seat">
-
-    </android.support.constraint.ConstraintLayout>
+    /* ------------------------------------------------------------------------------------------ */
+    /* Referee */
 
     <ImageButton
         android:id="@+id/btn_waiting4join_back_arrow"
@@ -145,6 +721,41 @@
         android:src="@drawable/ic_previous"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_waiting4join_message"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="4dp"
+        android:background="@null"
+        android:src="@drawable/ic_paper_plane"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_waiting4join_back_arrow"
+        app:layout_constraintTop_toTopOf="@+id/btn_waiting4join_back_arrow"
+        app:layout_constraintStart_toEndOf="@+id/view_waiting4join_message_border"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="107dp" />
+
+    <ImageButton
+        android:id="@+id/btn_waiting4join_group"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:background="@null"
+        android:src="@drawable/ic_group"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_waiting4join_message"
+        app:layout_constraintStart_toEndOf="@+id/btn_waiting4join_message"
+        app:layout_constraintTop_toTopOf="@+id/btn_waiting4join_message"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:id="@+id/view_waiting4join_message_border"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="80dp"
+        android:background="@drawable/outline_minutes"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_waiting4join_message"
+        app:layout_constraintStart_toEndOf="@+id/btn_waiting4join_back_arrow"
+        app:layout_constraintTop_toTopOf="@+id/btn_waiting4join_message" />
 
     <RadioGroup
         android:id="@+id/radios_timer_selector"
@@ -214,6 +825,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/spinner_timer_selector"
         app:layout_constraintStart_toEndOf="@+id/spinner_timer_selector"
         app:layout_constraintTop_toTopOf="@+id/spinner_timer_selector" />
+
+
 
     <Button
         android:id="@+id/btn_waiting4join_start"
