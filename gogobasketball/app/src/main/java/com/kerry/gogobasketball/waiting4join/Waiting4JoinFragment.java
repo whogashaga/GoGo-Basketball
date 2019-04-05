@@ -40,7 +40,7 @@ public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContra
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContra
     @Override
     public void onResume() {
         super.onResume();
-
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContra
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_waiting4join, container, false);
+        View root = inflater.inflate(R.layout.fragment_waiting4join_master, container, false);
         root.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
         mBtnBackStack = root.findViewById(R.id.btn_waiting4join_back_arrow);

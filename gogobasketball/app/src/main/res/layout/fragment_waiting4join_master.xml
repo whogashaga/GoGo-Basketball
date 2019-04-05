@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:id="@+id/fragment_waiting4join_master">
 
     /* ------------------------------------------------------------------------------------------ */
     /* Team A */
@@ -759,14 +760,16 @@
 
     <RadioGroup
         android:id="@+id/radios_timer_selector"
-        android:layout_width="0dp"
+        android:layout_width="138dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/outline_radio_btn_timer"
         android:checkedButton="@+id/radios_timer_no"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/waiting_referee_seat"
-        app:layout_constraintStart_toStartOf="@+id/waiting_referee_seat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player3_seat"
         app:layout_constraintTop_toBottomOf="@+id/waiting_referee_seat">
 
         <RadioButton
@@ -780,7 +783,7 @@
             android:background="@drawable/radio_background_timer"
             android:button="@null"
             android:gravity="center"
-            android:text="@string/referee_yes"
+            android:text="@string/count_down_yes"
             android:textColor="@color/black_3f3a3a"
             android:textSize="18sp" />
 
@@ -795,7 +798,7 @@
             android:background="@drawable/radio_background_timer"
             android:button="@null"
             android:gravity="center"
-            android:text="@string/referee_no"
+            android:text="@string/count_down_no"
             android:textColor="@color/black_3f3a3a"
             android:textSize="18sp" />
     </RadioGroup>
@@ -819,7 +822,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8sp"
-        android:text="分鐘"
+        android:text="@string/text_minutes"
         android:textColor="@color/black_3f3a3a"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/spinner_timer_selector"

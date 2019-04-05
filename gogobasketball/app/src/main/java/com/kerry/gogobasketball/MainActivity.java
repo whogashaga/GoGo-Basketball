@@ -147,7 +147,9 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         mToolbar.setPadding(0, getStatusBarHeight(), 0, 0);
 
         mToolbarTitle = mToolbar.findViewById(R.id.text_toolbar_title);
+        mToolbarTitle.setVisibility(View.VISIBLE);
         mToolbarLogo = mToolbar.findViewById(R.id.image_toolbar_logo);
+        mToolbarLogo.setVisibility(View.GONE);
     }
 
     /**
