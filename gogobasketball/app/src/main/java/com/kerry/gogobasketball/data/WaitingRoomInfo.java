@@ -3,7 +3,7 @@ package com.kerry.gogobasketball.data;
 public class WaitingRoomInfo {
 
     private String mRoomName;
-    private String mCourtLoaction;
+    private String mCourtLocation;
     private String mRefereeOnOff;
 
     public WaitingRoomInfo(){}
@@ -16,12 +16,12 @@ public class WaitingRoomInfo {
         this.mRoomName = roomName;
     }
 
-    public String getCourtLoaction() {
-        return mCourtLoaction;
+    public String getCourtLocation() {
+        return mCourtLocation;
     }
 
-    public void setCourtLoaction(String courtLoaction) {
-        this.mCourtLoaction = courtLoaction;
+    public void setCourtLocation(String courtLocation) {
+        this.mCourtLocation = courtLocation;
     }
 
     public String getRefereeOnOff() {
@@ -31,4 +31,5 @@ public class WaitingRoomInfo {
     public void setRefereeOnOff(String refereeOnOff) {
         this.mRefereeOnOff = refereeOnOff;
     }
+
 }
