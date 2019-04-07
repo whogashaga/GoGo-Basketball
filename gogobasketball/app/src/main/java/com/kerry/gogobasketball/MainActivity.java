@@ -15,6 +15,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -82,6 +84,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         setBottomNavigation();
         setDrawerLayout();
     }
+
 
     public void createUserInfo(){
         mBtnCreateUser = findViewById(R.id.main_layout_create_user);

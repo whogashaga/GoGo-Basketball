@@ -54,6 +54,7 @@ public class ActivityUtils {
         checkNotNull(fragmentManager);
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.fragment_no_change,R.anim.my_animation);
 
         for (Fragment element : fragmentManager.getFragments()) {
             if (!element.isHidden()) {

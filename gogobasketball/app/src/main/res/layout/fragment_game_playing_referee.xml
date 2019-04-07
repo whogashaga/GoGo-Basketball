@@ -4,34 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="@color/black_3f3a3a"
+    android:id="@+id/layout_playing_referee">
 
 
     <TextView
         android:id="@+id/text_gaming_current_score"
-        style="@style/CurrentScore"
+        style="@style/PlayingBigTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/audiowide"
         android:text="SCORE"
-        android:textColor="@color/black_3f3a3a"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/team_a_player3_seat"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/text_gaming_current_time_title"
+        app:layout_constraintStart_toStartOf="@+id/text_gaming_current_time_title"
+        app:layout_constraintTop_toBottomOf="@+id/text_gaming_current_time" />
 
     <TextView
         android:id="@+id/text_gaming_current_score_team_a"
-        style="@style/CurrentScore"
+        style="@style/PlayingBigTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/audiowide"
         android:text="5"
-        android:textColor="@color/black_3f3a3a"
+        android:textColor="@color/red_d0021b"
         app:layout_constraintEnd_toStartOf="@+id/text_gaming_current_score_separation"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -40,12 +41,13 @@
 
     <TextView
         android:id="@+id/text_gaming_current_score_separation"
-        style="@style/CurrentScore"
+        style="@style/PlayingBigTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text=":"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/text_gaming_current_score_team_a"
         app:layout_constraintEnd_toStartOf="@+id/text_gaming_current_score_team_b"
         app:layout_constraintHorizontal_bias="0.5"
@@ -54,21 +56,50 @@
 
     <TextView
         android:id="@+id/text_gaming_current_score_team_b"
-        style="@style/CurrentScore"
+        style="@style/PlayingBigTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/audiowide"
         android:text="2"
+        android:textColor="@color/blue_voyage"
         app:layout_constraintBottom_toBottomOf="@+id/text_gaming_current_score_separation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/text_gaming_current_score_separation"
         app:layout_constraintTop_toTopOf="@+id/text_gaming_current_score_separation" />
 
+    <TextView
+        android:id="@+id/text_gaming_current_time_title"
+        style="@style/PlayingBigTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/audiowide"
+        android:text="Time"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/team_a_player3_seat"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_gaming_current_time"
+        style="@style/PlayingBigTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/audiowide"
+        android:text="00:00"
+        android:textColor="@color/yellow_FFB700"
+        app:layout_constraintEnd_toEndOf="@+id/text_gaming_current_time_title"
+        app:layout_constraintStart_toStartOf="@+id/text_gaming_current_time_title"
+        app:layout_constraintTop_toBottomOf="@+id/text_gaming_current_time_title" />
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/team_a_player1_seat"
-        android:layout_width="170dp"
-        android:layout_height="180dp"
+        android:layout_width="190dp"
+        android:layout_height="185dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/outline_team_a_seat"
@@ -87,46 +118,407 @@
             app:srcCompat="@drawable/ic_placeholder" />
 
         <TextView
-            android:id="@+id/team_a_player1_id"
+            android:id="@+id/playing_team_a_player1_id"
+            style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:gravity="left"
-            android:text="Kerry"
+            android:text="Player1"
+            android:textColor="@color/white"
             app:layout_constraintStart_toEndOf="@+id/team_a_player1_avatar"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/playing_team_a_player1_gender"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/playing_team_a_player1_id"
+            app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player1_id"
+            app:srcCompat="@drawable/ic_female" />
+
+        <ImageView
+            android:id="@+id/playing_team_a_player1_position"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="8dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_gender"
+            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_gender"
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_gender"
+            app:srcCompat="@drawable/ic_position_sf" />
+
         <TextView
-            android:id="@+id/team_a_player1_gender"
+            android:id="@+id/playing_team_a_player1_point_title"
+            style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="得分"
+            app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player1_rebound_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/team_a_player1_avatar" />
+
+        <TextView
+            android:id="@+id/playing_team_a_player1_rebound_title"
+            style="@style/PlayingRecordTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:gravity="left"
-            android:text="Center"
-            app:layout_constraintStart_toStartOf="@+id/team_a_player1_id"
-            app:layout_constraintTop_toBottomOf="@+id/team_a_player1_id" />
+            android:text="籃板"
+            app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player1_foul_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player1_point_title" />
 
+        <TextView
+            android:id="@+id/playing_team_a_player1_foul_title"
+            style="@style/PlayingRecordTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="犯規"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player1_rebound_title" />
 
+        <Button
+            android:id="@+id/btn_playing_team_a_player1_point_minus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/ic_minus"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_point_title"
+            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player1_point"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_point_title"
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_point_title" />
+
+        <Button
+            android:id="@+id/playing_team_a_player1_point_plus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ic_add"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_point_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_point"
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_point_title" />
+
+        <TextView
+            android:id="@+id/playing_team_a_player1_point"
+            style="@style/PlayingRecordContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="0"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_playing_team_a_player1_point_minus"
+            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player1_point_plus"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_playing_team_a_player1_point_minus"
+            app:layout_constraintTop_toTopOf="@+id/btn_playing_team_a_player1_point_minus" />
+
+        <Button
+            android:id="@+id/playing_team_a_player1_rebound_minus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/ic_minus"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_rebound_title"
+            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player1_rebound"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_rebound_title"
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_rebound_title" />
+
+        <Button
+            android:id="@+id/playing_team_a_player1_rebound_plus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ic_add"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_rebound_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_rebound"
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_rebound_title" />
+
+        <TextView
+            android:id="@+id/playing_team_a_player1_rebound"
+            style="@style/PlayingRecordContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="0"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_rebound_minus"
+            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player1_rebound_plus"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_rebound_minus"
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_rebound_minus" />
+
+        <Button
+            android:id="@+id/playing_team_a_player1_foul_minus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/ic_minus"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_foul_title"
+            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player1_foul"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_foul_title"
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_foul_title" />
+
+        <Button
+            android:id="@+id/playing_team_a_player1_foul_plus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ic_add"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_foul_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_foul"
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_foul_title" />
+
+        <TextView
+            android:id="@+id/playing_team_a_player1_foul"
+            style="@style/PlayingRecordContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="0"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_foul_minus"
+            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player1_foul_plus"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_foul_minus"
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_foul_minus" />
 
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/team_a_player2_seat"
-        android:layout_width="170dp"
-        android:layout_height="180dp"
+        android:layout_width="190dp"
+        android:layout_height="185dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/outline_team_a_seat"
         app:layout_constraintBottom_toBottomOf="@+id/team_a_player1_seat"
         app:layout_constraintStart_toEndOf="@+id/team_a_player1_seat"
         app:layout_constraintTop_toTopOf="@+id/team_a_player1_seat">
 
+        <ImageView
+            android:id="@+id/team_a_player2_avatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_placeholder" />
+
+        <TextView
+            android:id="@+id/playing_team_a_player2_id"
+            style="@style/PlayingRecordTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:gravity="left"
+            android:text="Player2"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/team_a_player2_avatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/playing_team_a_player2_gender"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/playing_team_a_player2_id"
+            app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player2_id"
+            app:srcCompat="@drawable/ic_male" />
+
+        <ImageView
+            android:id="@+id/playing_team_a_player2_position"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="8dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_gender"
+            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_gender"
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_gender"
+            app:srcCompat="@drawable/ic_position_pf" />
+
+        <TextView
+            android:id="@+id/playing_team_a_player2_point_title"
+            style="@style/PlayingRecordTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="得分"
+            app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player2_rebound_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/team_a_player2_avatar" />
+
+        <TextView
+            android:id="@+id/playing_team_a_player2_rebound_title"
+            style="@style/PlayingRecordTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="籃板"
+            app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player2_foul_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player2_point_title" />
+
+        <TextView
+            android:id="@+id/playing_team_a_player2_foul_title"
+            style="@style/PlayingRecordTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="犯規"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player2_rebound_title" />
+
+        <Button
+            android:id="@+id/btn_playing_team_a_player2_point_minus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/ic_minus"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_point_title"
+            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player2_point"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_point_title"
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_point_title" />
+
+        <Button
+            android:id="@+id/playing_team_a_player2_point_plus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ic_add"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_point_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_point"
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_point_title" />
+
+        <TextView
+            android:id="@+id/playing_team_a_player2_point"
+            style="@style/PlayingRecordContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="0"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_playing_team_a_player2_point_minus"
+            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player2_point_plus"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_playing_team_a_player2_point_minus"
+            app:layout_constraintTop_toTopOf="@+id/btn_playing_team_a_player2_point_minus" />
+
+        <Button
+            android:id="@+id/playing_team_a_player2_rebound_minus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/ic_minus"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_rebound_title"
+            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player2_rebound"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_rebound_title"
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_rebound_title" />
+
+        <Button
+            android:id="@+id/playing_team_a_player2_rebound_plus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ic_add"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_rebound_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_rebound"
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_rebound_title" />
+
+        <TextView
+            android:id="@+id/playing_team_a_player2_rebound"
+            style="@style/PlayingRecordContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="0"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_rebound_minus"
+            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player2_rebound_plus"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_rebound_minus"
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_rebound_minus" />
+
+        <Button
+            android:id="@+id/playing_team_a_player2_foul_minus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/ic_minus"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_foul_title"
+            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player2_foul"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_foul_title"
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_foul_title" />
+
+        <Button
+            android:id="@+id/playing_team_a_player2_foul_plus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ic_add"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_foul_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_foul"
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_foul_title" />
+
+        <TextView
+            android:id="@+id/playing_team_a_player2_foul"
+            style="@style/PlayingRecordContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="0"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_foul_minus"
+            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player2_foul_plus"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_foul_minus"
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_foul_minus" />
+
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/team_a_player3_seat"
-        android:layout_width="170dp"
-        android:layout_height="180dp"
+        android:layout_width="190dp"
+        android:layout_height="185dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/outline_team_a_seat"
         app:layout_constraintBottom_toBottomOf="@+id/team_a_player2_seat"
@@ -137,20 +529,20 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/team_b_player1_seat"
-        android:layout_width="170dp"
-        android:layout_height="180dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="190dp"
+        android:layout_height="185dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/outline_team_b_seat"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/team_a_player1_seat">
+        app:layout_constraintStart_toStartOf="@+id/team_a_player1_seat"
+        app:layout_constraintTop_toBottomOf="@+id/team_a_player1_seat">
 
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/team_b_player2_seat"
-        android:layout_width="170dp"
-        android:layout_height="180dp"
+        android:layout_width="190dp"
+        android:layout_height="185dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/outline_team_b_seat"
         app:layout_constraintBottom_toBottomOf="@+id/team_b_player1_seat"
@@ -161,8 +553,8 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/team_b_player3_seat"
-        android:layout_width="170dp"
-        android:layout_height="180dp"
+        android:layout_width="190dp"
+        android:layout_height="185dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/outline_team_b_seat"
         app:layout_constraintBottom_toBottomOf="@+id/team_b_player2_seat"

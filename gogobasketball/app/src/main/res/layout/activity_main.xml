@@ -21,6 +21,7 @@
             android:layout_marginEnd="40dp"
             android:text="創建User"
             android:visibility="gone"
+            android:onClick="tapToAnimate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/layout_main_container" />
 

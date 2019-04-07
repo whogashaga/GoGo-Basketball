@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
@@ -67,7 +69,6 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         View root = inflater.inflate(R.layout.fragment_want2create_room, container, false);
 
         mTextRefereeWarning = root.findViewById(R.id.text_want2create_warning);
-
         mRadioGroup = root.findViewById(R.id.radios_referee_selector);
         mBtnCreateConfirm = root.findViewById(R.id.btn_want2create_build_confirm);
         mBtnCreateCancel = root.findViewById(R.id.btn_want2create_build_cancel);
@@ -99,16 +100,22 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
             case R.id.radios_referee_yes:
 //                mTextRefereeWarning.setText(GoGoBasketball.getAppContext().getString(R.string.referee_yes));
                 mTextRefereeWarning.setText("裁判模式結果將列入天梯排名");
-                mTextRefereeWarning.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.orange_FF6025));
+                mTextRefereeWarning.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.black_3f3a3a));
                 break;
             case R.id.radios_referee_no:
 //                mTextRefereeWarning.setText(GoGoBasketball.getAppContext().getString(R.string.referee_no));
-                mTextRefereeWarning.setText("非裁判模式結果不列入天梯排名");
+                mTextRefereeWarning.setText("暫不支援非裁判模式");
                 mTextRefereeWarning.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.red_FF001F));
+                mBtnCreateConfirm.setClickable(false);
                 break;
             default:
                 break;
         }
+    }
+
+    public void tapToAnimate(View view){
+        final Animation animation = AnimationUtils.loadAnimation(getActivity(),R.anim.bounce);
+        mBtnCreateConfirm.startAnimation(animation);
     }
 
     @Override

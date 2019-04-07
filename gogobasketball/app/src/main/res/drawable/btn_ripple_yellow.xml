@@ -1,0 +1,17 @@
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#FFDE00">
+    <!--ripple中的color為點擊時的顏色-->
+
+    <item>
+        <!--基本顏色-->
+        <color android:color="@color/gray_f0f0f0" />
+        <corners android:radius="20dip" />
+        <scale android:scaleWidth="1.0" />
+        <scale android:scaleHeight="1.0" />
+
+    </item>
+</ripple>
+
+
+
+
