@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_home_child"
@@ -25,7 +26,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:text="隨機加入"
-        android:background="@drawable/btn_gray_ripple"
+        android:background="@drawable/btn_ripple_yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_home_rooms_by_id"
         app:layout_constraintHorizontal_bias="0.5"
@@ -37,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="輸入房號"
-        android:background="@drawable/btn_black_ripple"
+        android:background="@drawable/btn_ripple_yellow"
         app:layout_constraintBottom_toBottomOf="@+id/btn_home_rooms_random"
         app:layout_constraintEnd_toStartOf="@+id/btn_home_rooms_build"
         app:layout_constraintHorizontal_bias="0.5"

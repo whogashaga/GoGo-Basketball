@@ -1,8 +1,8 @@
 package com.kerry.gogobasketball.playing0referee;
 
-import android.support.annotation.NonNull;
-
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import android.support.annotation.NonNull;
 
 public class GamePlayingOfRefereePresenter implements GamePlayingOfRefereeContract.Presenter {
 
@@ -47,6 +47,37 @@ public class GamePlayingOfRefereePresenter implements GamePlayingOfRefereeContra
     public void showGameResultUi() {
 
     }
+
+    @Override
+    public void clickScorePlusP1() {
+
+    }
+
+    @Override
+    public void clickScoreMinusP1() {
+
+    }
+
+    @Override
+    public void clickReboundPlusP1() {
+
+    }
+
+    @Override
+    public void clickReboundMinusP1() {
+
+    }
+
+    @Override
+    public void clickFoulPlusP1() {
+
+    }
+
+    @Override
+    public void clickFoulMinusP1() {
+
+    }
+
 
     @Override
     public void start() {

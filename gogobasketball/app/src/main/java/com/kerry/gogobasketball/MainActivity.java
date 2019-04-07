@@ -86,7 +86,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
 
-    public void createUserInfo(){
+    public void createUserInfo() {
         mBtnCreateUser = findViewById(R.id.main_layout_create_user);
         mBtnCreateUser.setVisibility(View.VISIBLE);
 

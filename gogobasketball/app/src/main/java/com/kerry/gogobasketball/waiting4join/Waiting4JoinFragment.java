@@ -110,10 +110,14 @@ public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContra
             case R.id.radios_timer_yes:
                 mSpinnerMinuteSelector.setVisibility(View.VISIBLE);
                 mTextMinute.setVisibility(View.VISIBLE);
+                mBtnStartGame.setBackgroundResource(R.drawable.ic_start_unclick);
+                mBtnStartGame.setClickable(false);
                 break;
             case R.id.radios_timer_no:
                 mSpinnerMinuteSelector.setVisibility(View.GONE);
                 mTextMinute.setVisibility(View.GONE);
+                mBtnStartGame.setBackgroundResource(R.drawable.button_effect_start);
+                mBtnStartGame.setClickable(true);
                 break;
             default:
                 break;

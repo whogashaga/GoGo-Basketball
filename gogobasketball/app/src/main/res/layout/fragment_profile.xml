@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="app.waynechen.stylish.profile.ProfileFragment">
+    tools:context="com.kerry.gogobasketball.profile.ProfileFragment">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/layout_profile_header"
@@ -77,13 +77,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:text="@string/profile_order_title"
+        android:text="@string/profile_record_title"
         app:layout_constraintEnd_toStartOf="@+id/text_profile_see_all"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_profile_header"
-        tools:text="@string/profile_order_title" />
+        tools:text="@string/profile_record_title" />
 
     <TextView
         android:id="@+id/text_profile_see_all"

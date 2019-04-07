@@ -31,6 +31,7 @@ public class ActivityUtils {
                                               @MainMvpController.FragmentType String fragmentTag) {
         checkNotNull(fragmentManager);
         FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.fragment_no_change,R.anim.fragment_out_from_right_side);
 
         for (Fragment element : fragmentManager.getFragments()) {
             if (!element.isHidden()) {
@@ -54,7 +55,7 @@ public class ActivityUtils {
         checkNotNull(fragmentManager);
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.setCustomAnimations(R.anim.fragment_no_change,R.anim.my_animation);
+        transaction.setCustomAnimations(R.anim.fragment_no_change,R.anim.fragment_out_from_right_side);
 
         for (Fragment element : fragmentManager.getFragments()) {
             if (!element.isHidden()) {

@@ -11,6 +11,19 @@ public interface GamePlayingOfRefereeContract {
 
         boolean isActive();
 
+
+        void increaseScoreP1();
+
+        void decreaseScoreP1();
+
+        void increaseReboundP1();
+
+        void decreaseReboundP1();
+
+        void increaseFoulP1();
+
+        void decreaseFoulP1();
+
     }
 
     interface Presenter extends BasePresenter {
@@ -28,5 +41,18 @@ public interface GamePlayingOfRefereeContract {
         void forced2FinishPlayingUi();
 
         void showGameResultUi();
+
+        void clickScorePlusP1();
+
+        void clickScoreMinusP1();
+
+        void clickReboundPlusP1();
+
+        void clickReboundMinusP1();
+
+        void clickFoulPlusP1();
+
+        void clickFoulMinusP1();
+
     }
 }

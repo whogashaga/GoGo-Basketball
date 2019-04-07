@@ -194,13 +194,13 @@
             android:layout_marginStart="12dp"
             android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_point_title"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player1_point"
+            app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player1_point"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_point_title"
             app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_point_title" />
 
         <Button
-            android:id="@+id/playing_team_a_player1_point_plus"
+            android:id="@+id/btn_playing_team_a_player1_point_plus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
@@ -209,11 +209,11 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_point_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_point"
+            app:layout_constraintStart_toEndOf="@+id/text_playing_team_a_player1_point"
             app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_point_title" />
 
         <TextView
-            android:id="@+id/playing_team_a_player1_point"
+            android:id="@+id/text_playing_team_a_player1_point"
             style="@style/PlayingRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -221,25 +221,25 @@
             android:text="0"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/btn_playing_team_a_player1_point_minus"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player1_point_plus"
+            app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_a_player1_point_plus"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_playing_team_a_player1_point_minus"
             app:layout_constraintTop_toTopOf="@+id/btn_playing_team_a_player1_point_minus" />
 
         <Button
-            android:id="@+id/playing_team_a_player1_rebound_minus"
+            android:id="@+id/btn_playing_team_a_player1_rebound_minus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
-            android:background="@drawable/ic_minus"
+            android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_rebound_title"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player1_rebound"
+            app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player1_rebound"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_rebound_title"
             app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_rebound_title" />
 
         <Button
-            android:id="@+id/playing_team_a_player1_rebound_plus"
+            android:id="@+id/btn_playing_team_a_player1_rebound_plus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
@@ -248,37 +248,37 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_rebound_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_rebound"
+            app:layout_constraintStart_toEndOf="@+id/text_playing_team_a_player1_rebound"
             app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_rebound_title" />
 
         <TextView
-            android:id="@+id/playing_team_a_player1_rebound"
+            android:id="@+id/text_playing_team_a_player1_rebound"
             style="@style/PlayingRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="0"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_rebound_minus"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player1_rebound_plus"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_playing_team_a_player1_rebound_minus"
+            app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_a_player1_rebound_plus"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_rebound_minus"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_rebound_minus" />
+            app:layout_constraintStart_toEndOf="@+id/btn_playing_team_a_player1_rebound_minus"
+            app:layout_constraintTop_toTopOf="@+id/btn_playing_team_a_player1_rebound_minus" />
 
         <Button
-            android:id="@+id/playing_team_a_player1_foul_minus"
+            android:id="@+id/btn_playing_team_a_player1_foul_minus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
-            android:background="@drawable/ic_minus"
+            android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_foul_title"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player1_foul"
+            app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player1_foul"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_foul_title"
             app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_foul_title" />
 
         <Button
-            android:id="@+id/playing_team_a_player1_foul_plus"
+            android:id="@+id/btn_playing_team_a_player1_foul_plus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
@@ -287,22 +287,22 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_foul_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_foul"
+            app:layout_constraintStart_toEndOf="@+id/text_playing_team_a_player1_foul"
             app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_foul_title" />
 
         <TextView
-            android:id="@+id/playing_team_a_player1_foul"
+            android:id="@+id/text_playing_team_a_player1_foul"
             style="@style/PlayingRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="0"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_foul_minus"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player1_foul_plus"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_playing_team_a_player1_foul_minus"
+            app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_a_player1_foul_plus"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_foul_minus"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_foul_minus" />
+            app:layout_constraintStart_toEndOf="@+id/btn_playing_team_a_player1_foul_minus"
+            app:layout_constraintTop_toTopOf="@+id/btn_playing_team_a_player1_foul_minus" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -401,15 +401,15 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
-            android:background="@drawable/ic_minus"
+            android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_point_title"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player2_point"
+            app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player2_point"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_point_title"
             app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_point_title" />
 
         <Button
-            android:id="@+id/playing_team_a_player2_point_plus"
+            android:id="@+id/btn_playing_team_a_player2_point_plus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
@@ -418,11 +418,11 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_point_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_point"
+            app:layout_constraintStart_toEndOf="@+id/text_playing_team_a_player2_point"
             app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_point_title" />
 
         <TextView
-            android:id="@+id/playing_team_a_player2_point"
+            android:id="@+id/text_playing_team_a_player2_point"
             style="@style/PlayingRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -430,25 +430,25 @@
             android:text="0"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/btn_playing_team_a_player2_point_minus"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player2_point_plus"
+            app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_a_player2_point_plus"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_playing_team_a_player2_point_minus"
             app:layout_constraintTop_toTopOf="@+id/btn_playing_team_a_player2_point_minus" />
 
         <Button
-            android:id="@+id/playing_team_a_player2_rebound_minus"
+            android:id="@+id/btn_playing_team_a_player2_rebound_minus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
-            android:background="@drawable/ic_minus"
+            android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_rebound_title"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player2_rebound"
+            app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player2_rebound"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_rebound_title"
             app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_rebound_title" />
 
         <Button
-            android:id="@+id/playing_team_a_player2_rebound_plus"
+            android:id="@+id/btn_playing_team_a_player2_rebound_plus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
@@ -457,37 +457,37 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_rebound_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_rebound"
+            app:layout_constraintStart_toEndOf="@+id/text_playing_team_a_player2_rebound"
             app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_rebound_title" />
 
         <TextView
-            android:id="@+id/playing_team_a_player2_rebound"
+            android:id="@+id/text_playing_team_a_player2_rebound"
             style="@style/PlayingRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="0"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_rebound_minus"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player2_rebound_plus"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_playing_team_a_player2_rebound_minus"
+            app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_a_player2_rebound_plus"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_rebound_minus"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_rebound_minus" />
+            app:layout_constraintStart_toEndOf="@+id/btn_playing_team_a_player2_rebound_minus"
+            app:layout_constraintTop_toTopOf="@+id/btn_playing_team_a_player2_rebound_minus" />
 
         <Button
-            android:id="@+id/playing_team_a_player2_foul_minus"
+            android:id="@+id/btn_playing_team_a_player2_foul_minus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
-            android:background="@drawable/ic_minus"
+            android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_foul_title"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player2_foul"
+            app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player2_foul"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_foul_title"
             app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_foul_title" />
 
         <Button
-            android:id="@+id/playing_team_a_player2_foul_plus"
+            android:id="@+id/btn_playing_team_a_player2_foul_plus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
@@ -496,22 +496,22 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_foul_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_foul"
+            app:layout_constraintStart_toEndOf="@+id/text_playing_team_a_player2_foul"
             app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_foul_title" />
 
         <TextView
-            android:id="@+id/playing_team_a_player2_foul"
+            android:id="@+id/text_playing_team_a_player2_foul"
             style="@style/PlayingRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="0"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_foul_minus"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player2_foul_plus"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_playing_team_a_player2_foul_minus"
+            app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_a_player2_foul_plus"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_foul_minus"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_foul_minus" />
+            app:layout_constraintStart_toEndOf="@+id/btn_playing_team_a_player2_foul_minus"
+            app:layout_constraintTop_toTopOf="@+id/btn_playing_team_a_player2_foul_minus" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -610,15 +610,15 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
-            android:background="@drawable/ic_minus"
+            android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player3_point_title"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player3_point"
+            app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player3_point"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player3_point_title"
             app:layout_constraintTop_toTopOf="@+id/playing_team_a_player3_point_title" />
 
         <Button
-            android:id="@+id/playing_team_a_player3_point_plus"
+            android:id="@+id/btn_playing_team_a_player3_point_plus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
@@ -627,11 +627,11 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player3_point_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player3_point"
+            app:layout_constraintStart_toEndOf="@+id/text_playing_team_a_player3_point"
             app:layout_constraintTop_toTopOf="@+id/playing_team_a_player3_point_title" />
 
         <TextView
-            android:id="@+id/playing_team_a_player3_point"
+            android:id="@+id/text_playing_team_a_player3_point"
             style="@style/PlayingRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -639,25 +639,25 @@
             android:text="0"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/btn_playing_team_a_player3_point_minus"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player3_point_plus"
+            app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_a_player3_point_plus"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_playing_team_a_player3_point_minus"
             app:layout_constraintTop_toTopOf="@+id/btn_playing_team_a_player3_point_minus" />
 
         <Button
-            android:id="@+id/playing_team_a_player3_rebound_minus"
+            android:id="@+id/btn_playing_team_a_player3_rebound_minus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
-            android:background="@drawable/ic_minus"
+            android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player3_rebound_title"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player3_rebound"
+            app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player3_rebound"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player3_rebound_title"
             app:layout_constraintTop_toTopOf="@+id/playing_team_a_player3_rebound_title" />
 
         <Button
-            android:id="@+id/playing_team_a_player3_rebound_plus"
+            android:id="@+id/btn_playing_team_a_player3_rebound_plus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
@@ -666,37 +666,37 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player3_rebound_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player3_rebound"
+            app:layout_constraintStart_toEndOf="@+id/text_playing_team_a_player3_rebound"
             app:layout_constraintTop_toTopOf="@+id/playing_team_a_player3_rebound_title" />
 
         <TextView
-            android:id="@+id/playing_team_a_player3_rebound"
+            android:id="@+id/text_playing_team_a_player3_rebound"
             style="@style/PlayingRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="0"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player3_rebound_minus"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player3_rebound_plus"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_playing_team_a_player3_rebound_minus"
+            app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_a_player3_rebound_plus"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player3_rebound_minus"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player3_rebound_minus" />
+            app:layout_constraintStart_toEndOf="@+id/btn_playing_team_a_player3_rebound_minus"
+            app:layout_constraintTop_toTopOf="@+id/btn_playing_team_a_player3_rebound_minus" />
 
         <Button
-            android:id="@+id/playing_team_a_player3_foul_minus"
+            android:id="@+id/btn_playing_team_a_player3_foul_minus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
-            android:background="@drawable/ic_minus"
+            android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player3_foul_title"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player3_foul"
+            app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player3_foul"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player3_foul_title"
             app:layout_constraintTop_toTopOf="@+id/playing_team_a_player3_foul_title" />
 
         <Button
-            android:id="@+id/playing_team_a_player3_foul_plus"
+            android:id="@+id/btn_playing_team_a_player3_foul_plus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
@@ -705,22 +705,22 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player3_foul_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player3_foul"
+            app:layout_constraintStart_toEndOf="@+id/text_playing_team_a_player3_foul"
             app:layout_constraintTop_toTopOf="@+id/playing_team_a_player3_foul_title" />
 
         <TextView
-            android:id="@+id/playing_team_a_player3_foul"
+            android:id="@+id/text_playing_team_a_player3_foul"
             style="@style/PlayingRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="0"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player3_foul_minus"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player3_foul_plus"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_playing_team_a_player3_foul_minus"
+            app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_a_player3_foul_plus"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_a_player3_foul_minus"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player3_foul_minus" />
+            app:layout_constraintStart_toEndOf="@+id/btn_playing_team_a_player3_foul_minus"
+            app:layout_constraintTop_toTopOf="@+id/btn_playing_team_a_player3_foul_minus" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -819,15 +819,15 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
-            android:background="@drawable/ic_minus"
+            android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player1_point_title"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_b_player1_point"
+            app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player1_point"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player1_point_title"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player1_point_title" />
 
         <Button
-            android:id="@+id/playing_team_b_player1_point_plus"
+            android:id="@+id/btn_playing_team_b_player1_point_plus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
@@ -836,11 +836,11 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player1_point_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_b_player1_point"
+            app:layout_constraintStart_toEndOf="@+id/text_playing_team_b_player1_point"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player1_point_title" />
 
         <TextView
-            android:id="@+id/playing_team_b_player1_point"
+            android:id="@+id/text_playing_team_b_player1_point"
             style="@style/PlayingRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -848,25 +848,25 @@
             android:text="0"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/btn_playing_team_b_player1_point_minus"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_b_player1_point_plus"
+            app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_b_player1_point_plus"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_playing_team_b_player1_point_minus"
             app:layout_constraintTop_toTopOf="@+id/btn_playing_team_b_player1_point_minus" />
 
         <Button
-            android:id="@+id/playing_team_b_player1_rebound_minus"
+            android:id="@+id/btn_playing_team_b_player1_rebound_minus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
-            android:background="@drawable/ic_minus"
+            android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player1_rebound_title"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_b_player1_rebound"
+            app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player1_rebound"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player1_rebound_title"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player1_rebound_title" />
 
         <Button
-            android:id="@+id/playing_team_b_player1_rebound_plus"
+            android:id="@+id/btn_playing_team_b_player1_rebound_plus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
@@ -875,37 +875,37 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player1_rebound_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_b_player1_rebound"
+            app:layout_constraintStart_toEndOf="@+id/text_playing_team_b_player1_rebound"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player1_rebound_title" />
 
         <TextView
-            android:id="@+id/playing_team_b_player1_rebound"
+            android:id="@+id/text_playing_team_b_player1_rebound"
             style="@style/PlayingRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="0"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player1_rebound_minus"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_b_player1_rebound_plus"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_playing_team_b_player1_rebound_minus"
+            app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_b_player1_rebound_plus"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_b_player1_rebound_minus"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_b_player1_rebound_minus" />
+            app:layout_constraintStart_toEndOf="@+id/btn_playing_team_b_player1_rebound_minus"
+            app:layout_constraintTop_toTopOf="@+id/btn_playing_team_b_player1_rebound_minus" />
 
         <Button
-            android:id="@+id/playing_team_b_player1_foul_minus"
+            android:id="@+id/btn_playing_team_b_player1_foul_minus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
-            android:background="@drawable/ic_minus"
+            android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player1_foul_title"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_b_player1_foul"
+            app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player1_foul"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player1_foul_title"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player1_foul_title" />
 
         <Button
-            android:id="@+id/playing_team_b_player1_foul_plus"
+            android:id="@+id/btn_playing_team_b_player1_foul_plus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
@@ -914,22 +914,22 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player1_foul_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_b_player1_foul"
+            app:layout_constraintStart_toEndOf="@+id/text_playing_team_b_player1_foul"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player1_foul_title" />
 
         <TextView
-            android:id="@+id/playing_team_b_player1_foul"
+            android:id="@+id/text_playing_team_b_player1_foul"
             style="@style/PlayingRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="0"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player1_foul_minus"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_b_player1_foul_plus"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_playing_team_b_player1_foul_minus"
+            app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_b_player1_foul_plus"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_b_player1_foul_minus"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_b_player1_foul_minus" />
+            app:layout_constraintStart_toEndOf="@+id/btn_playing_team_b_player1_foul_minus"
+            app:layout_constraintTop_toTopOf="@+id/btn_playing_team_b_player1_foul_minus" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -1028,15 +1028,15 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
-            android:background="@drawable/ic_minus"
+            android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player2_point_title"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_b_player2_point"
+            app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player2_point"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player2_point_title"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player2_point_title" />
 
         <Button
-            android:id="@+id/playing_team_b_player2_point_plus"
+            android:id="@+id/btn_playing_team_b_player2_point_plus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
@@ -1045,11 +1045,11 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player2_point_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_b_player2_point"
+            app:layout_constraintStart_toEndOf="@+id/text_playing_team_b_player2_point"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player2_point_title" />
 
         <TextView
-            android:id="@+id/playing_team_b_player2_point"
+            android:id="@+id/text_playing_team_b_player2_point"
             style="@style/PlayingRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -1057,25 +1057,25 @@
             android:text="0"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/btn_playing_team_b_player2_point_minus"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_b_player2_point_plus"
+            app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_b_player2_point_plus"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_playing_team_b_player2_point_minus"
             app:layout_constraintTop_toTopOf="@+id/btn_playing_team_b_player2_point_minus" />
 
         <Button
-            android:id="@+id/playing_team_b_player2_rebound_minus"
+            android:id="@+id/btn_playing_team_b_player2_rebound_minus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
-            android:background="@drawable/ic_minus"
+            android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player2_rebound_title"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_b_player2_rebound"
+            app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player2_rebound"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player2_rebound_title"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player2_rebound_title" />
 
         <Button
-            android:id="@+id/playing_team_b_player2_rebound_plus"
+            android:id="@+id/btn_playing_team_b_player2_rebound_plus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
@@ -1084,37 +1084,37 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player2_rebound_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_b_player2_rebound"
+            app:layout_constraintStart_toEndOf="@+id/text_playing_team_b_player2_rebound"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player2_rebound_title" />
 
         <TextView
-            android:id="@+id/playing_team_b_player2_rebound"
+            android:id="@+id/text_playing_team_b_player2_rebound"
             style="@style/PlayingRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="0"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player2_rebound_minus"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_b_player2_rebound_plus"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_playing_team_b_player2_rebound_minus"
+            app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_b_player2_rebound_plus"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_b_player2_rebound_minus"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_b_player2_rebound_minus" />
+            app:layout_constraintStart_toEndOf="@+id/btn_playing_team_b_player2_rebound_minus"
+            app:layout_constraintTop_toTopOf="@+id/btn_playing_team_b_player2_rebound_minus" />
 
         <Button
-            android:id="@+id/playing_team_b_player2_foul_minus"
+            android:id="@+id/btn_playing_team_b_player2_foul_minus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
-            android:background="@drawable/ic_minus"
+            android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player2_foul_title"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_b_player2_foul"
+            app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player2_foul"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player2_foul_title"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player2_foul_title" />
 
         <Button
-            android:id="@+id/playing_team_b_player2_foul_plus"
+            android:id="@+id/btn_playing_team_b_player2_foul_plus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
@@ -1123,22 +1123,22 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player2_foul_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_b_player2_foul"
+            app:layout_constraintStart_toEndOf="@+id/text_playing_team_b_player2_foul"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player2_foul_title" />
 
         <TextView
-            android:id="@+id/playing_team_b_player2_foul"
+            android:id="@+id/text_playing_team_b_player2_foul"
             style="@style/PlayingRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="0"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player2_foul_minus"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_b_player2_foul_plus"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_playing_team_b_player2_foul_minus"
+            app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_b_player2_foul_plus"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_b_player2_foul_minus"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_b_player2_foul_minus" />
+            app:layout_constraintStart_toEndOf="@+id/btn_playing_team_b_player2_foul_minus"
+            app:layout_constraintTop_toTopOf="@+id/btn_playing_team_b_player2_foul_minus" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -1237,15 +1237,15 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
-            android:background="@drawable/ic_minus"
+            android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player3_point_title"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_b_player3_point"
+            app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player3_point"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player3_point_title"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player3_point_title" />
 
         <Button
-            android:id="@+id/playing_team_b_player3_point_plus"
+            android:id="@+id/btn_playing_team_b_player3_point_plus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
@@ -1254,11 +1254,11 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player3_point_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_b_player3_point"
+            app:layout_constraintStart_toEndOf="@+id/text_playing_team_b_player3_point"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player3_point_title" />
 
         <TextView
-            android:id="@+id/playing_team_b_player3_point"
+            android:id="@+id/text_playing_team_b_player3_point"
             style="@style/PlayingRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -1266,25 +1266,25 @@
             android:text="0"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/btn_playing_team_b_player3_point_minus"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_b_player3_point_plus"
+            app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_b_player3_point_plus"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_playing_team_b_player3_point_minus"
             app:layout_constraintTop_toTopOf="@+id/btn_playing_team_b_player3_point_minus" />
 
         <Button
-            android:id="@+id/playing_team_b_player3_rebound_minus"
+            android:id="@+id/btn_playing_team_b_player3_rebound_minus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
-            android:background="@drawable/ic_minus"
+            android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player3_rebound_title"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_b_player3_rebound"
+            app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player3_rebound"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player3_rebound_title"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player3_rebound_title" />
 
         <Button
-            android:id="@+id/playing_team_b_player3_rebound_plus"
+            android:id="@+id/btn_playing_team_b_player3_rebound_plus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
@@ -1293,37 +1293,37 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player3_rebound_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_b_player3_rebound"
+            app:layout_constraintStart_toEndOf="@+id/text_playing_team_b_player3_rebound"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player3_rebound_title" />
 
         <TextView
-            android:id="@+id/playing_team_b_player3_rebound"
+            android:id="@+id/text_playing_team_b_player3_rebound"
             style="@style/PlayingRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="0"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player3_rebound_minus"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_b_player3_rebound_plus"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_playing_team_b_player3_rebound_minus"
+            app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_b_player3_rebound_plus"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_b_player3_rebound_minus"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_b_player3_rebound_minus" />
+            app:layout_constraintStart_toEndOf="@+id/btn_playing_team_b_player3_rebound_minus"
+            app:layout_constraintTop_toTopOf="@+id/btn_playing_team_b_player3_rebound_minus" />
 
         <Button
-            android:id="@+id/playing_team_b_player3_foul_minus"
+            android:id="@+id/btn_playing_team_b_player3_foul_minus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
-            android:background="@drawable/ic_minus"
+            android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player3_foul_title"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_b_player3_foul"
+            app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player3_foul"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player3_foul_title"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player3_foul_title" />
 
         <Button
-            android:id="@+id/playing_team_b_player3_foul_plus"
+            android:id="@+id/btn_playing_team_b_player3_foul_plus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
@@ -1332,22 +1332,22 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player3_foul_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_b_player3_foul"
+            app:layout_constraintStart_toEndOf="@+id/text_playing_team_b_player3_foul"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player3_foul_title" />
 
         <TextView
-            android:id="@+id/playing_team_b_player3_foul"
+            android:id="@+id/text_playing_team_b_player3_foul"
             style="@style/PlayingRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="0"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player3_foul_minus"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_b_player3_foul_plus"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_playing_team_b_player3_foul_minus"
+            app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_b_player3_foul_plus"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/playing_team_b_player3_foul_minus"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_b_player3_foul_minus" />
+            app:layout_constraintStart_toEndOf="@+id/btn_playing_team_b_player3_foul_minus"
+            app:layout_constraintTop_toTopOf="@+id/btn_playing_team_b_player3_foul_minus" />
 
     </android.support.constraint.ConstraintLayout>
 
