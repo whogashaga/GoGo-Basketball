@@ -15,6 +15,8 @@ import com.kerry.gogobasketball.home.item.LookingForRoomFragment;
 import com.kerry.gogobasketball.home.item.LookingForRoomPresenter;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapPresenter;
+import com.kerry.gogobasketball.playing0referee.GamePlayingOfRefereeFragment;
+import com.kerry.gogobasketball.playing0referee.GamePlayingOfRefereePresenter;
 import com.kerry.gogobasketball.profile.ProfileFragment;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
 import com.kerry.gogobasketball.rank.RankFragment;
@@ -40,13 +42,14 @@ public class MainMvpController {
 
     private Want2CreateRoomPresenter mWant2CreateRoomPresenter;
     private Waiting4JoinPresenter mWaiting4JoinPresenter;
+    private GamePlayingOfRefereePresenter mGamePlayingPresenterOfRefereePresenter;
 
     private LookingForRoomPresenter mLookingForRoomPresenter;
     private CourtsMapPresenter mCourtsMapPresenter;
 
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({
-            HOME, FRIEND, RANK, PROFILE, WANT2CREATEROOM, WAITING4JOIN
+            HOME, FRIEND, RANK, PROFILE, WANT2CREATEROOM, WAITING4JOIN, PLAYINGOFREFEREE
     })
     public @interface FragmentType {
     }
@@ -57,6 +60,7 @@ public class MainMvpController {
     static final String PROFILE = "PROFILE";
     static final String WANT2CREATEROOM = "WANT2CREATEROOM";
     static final String WAITING4JOIN = "WAITING4JOIN";
+    static final String PLAYINGOFREFEREE = "PLAYINGOFREFEREE";
 
 
     @Retention(RetentionPolicy.SOURCE)
@@ -187,6 +191,16 @@ public class MainMvpController {
 
         mMainPresenter.setWaiting4JoinPresenter(mWaiting4JoinPresenter);
         waiting4JoinFragment.setPresenter(mMainPresenter);
+    }
+
+    void findOrCreateGamePlayingOfRefereeView() {
+
+        GamePlayingOfRefereeFragment gamePlayingOfRefereeFragment = createGamePlayingOfRefereeFragment();
+
+        mGamePlayingPresenterOfRefereePresenter = new GamePlayingOfRefereePresenter(gamePlayingOfRefereeFragment);
+
+        mMainPresenter.setGamePlayingOfRefereePresenter(mGamePlayingPresenterOfRefereePresenter);
+        gamePlayingOfRefereeFragment.setPresenter(mMainPresenter);
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -336,7 +350,7 @@ public class MainMvpController {
     /**
      * Waiting4Join Fragment
      *
-     * @return FaqFragment
+     * @return Waiting4JoinFragment
      */
     @NonNull
     private Waiting4JoinFragment createWaiting4JoinFragment() {
@@ -347,6 +361,22 @@ public class MainMvpController {
                 getFragmentManager(), waiting4JoinFragmentFragment, WAITING4JOIN);
 
         return waiting4JoinFragmentFragment;
+    }
+
+    /**
+     * GamePlayingOfReferee Fragment
+     *
+     * @return GamePlayingOfRefereeFragment
+     */
+    @NonNull
+    private GamePlayingOfRefereeFragment createGamePlayingOfRefereeFragment() {
+
+        GamePlayingOfRefereeFragment gamePlayingFragmentOfReferee = GamePlayingOfRefereeFragment.newInstance();
+
+        ActivityUtils.addFragmentByTag(
+                getFragmentManager(), gamePlayingFragmentOfReferee, PLAYINGOFREFEREE);
+
+        return gamePlayingFragmentOfReferee;
     }
 
     /* ------------------------------------------------------------------------------------------ */

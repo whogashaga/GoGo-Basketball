@@ -31,6 +31,7 @@ public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContra
 
     private ImageButton mBtnBackStack;
     private Button mBtnCancel;
+    private Button mBtnStartGame;
 
     public Waiting4JoinFragment() {
     }
@@ -53,8 +54,8 @@ public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContra
     @Override
     public void onResume() {
         super.onResume();
+
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        //
         mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
 
@@ -75,6 +76,8 @@ public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContra
         mBtnCancel.setOnClickListener(this);
         mRadioGroupTimer = mRoot.findViewById(R.id.radios_timer_selector);
         mRadioGroupTimer.setOnCheckedChangeListener(this);
+        mBtnStartGame = mRoot.findViewById(R.id.btn_waiting4join_start);
+        mBtnStartGame.setOnClickListener(this);
 
         mSpinnerMinuteSelector = mRoot.findViewById(R.id.spinner_timer_selector);
         mTextMinute = mRoot.findViewById(R.id.text_timer_minutes);
@@ -92,6 +95,9 @@ public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContra
                 break;
             case R.id.btn_waiting4join_cancel:
                 mPresenter.finishWaiting4JoinUi();
+                break;
+            case R.id.btn_waiting4join_start:
+                mPresenter.openGamePlayingOfReferee();
                 break;
             default:
                 break;

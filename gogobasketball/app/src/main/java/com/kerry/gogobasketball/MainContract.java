@@ -31,6 +31,8 @@ public interface MainContract {
 
         void openWait4JoinUi();
 
+        void openGamePlayingOfRefereeUi();
+
         void popBackStackUi();
 
 //        void finishPaymentUi();

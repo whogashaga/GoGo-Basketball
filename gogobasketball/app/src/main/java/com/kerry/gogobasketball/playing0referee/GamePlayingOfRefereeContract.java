@@ -1,15 +1,13 @@
-package com.kerry.gogobasketball.waiting4join;
+package com.kerry.gogobasketball.playing0referee;
 
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
 
-public interface Waiting4JoinContract {
+public interface GamePlayingOfRefereeContract {
 
     interface View extends BaseView<Presenter> {
 
         void showPlayingGameUi();
-
-        boolean needTimer();
 
         boolean isActive();
 
@@ -27,8 +25,8 @@ public interface Waiting4JoinContract {
 
         void loadRefereeInfoFromFirebase();
 
-        void openGamePlayingOfReferee();
+        void forced2FinishPlayingUi();
 
-        void finishWaiting4JoinUi();
+        void showGameResultUi();
     }
 }

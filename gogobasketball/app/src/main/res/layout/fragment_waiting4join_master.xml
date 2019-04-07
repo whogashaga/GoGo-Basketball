@@ -833,11 +833,11 @@
 
     <Button
         android:id="@+id/btn_waiting4join_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="24dp"
-        android:text="@string/game_start"
+        android:background="@drawable/button_effect_start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_waiting4join_cancel"
         app:layout_constraintHorizontal_bias="0.5"
@@ -845,10 +845,10 @@
 
     <Button
         android:id="@+id/btn_waiting4join_cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/build_cancel"
+        android:background="@drawable/button_effect_cancel"
         app:layout_constraintBottom_toBottomOf="@+id/btn_waiting4join_start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

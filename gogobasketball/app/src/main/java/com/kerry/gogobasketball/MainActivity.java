@@ -299,6 +299,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         mPresenter = checkNotNull(presenter);
     }
 
+    /* ------------------------------------------------------------------------------------------ */
+    /* open UI */
     @Override
     public void openHomeUi() {
         mMainMvpController.findOrCreateHomeView();
@@ -330,6 +332,11 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
+    public void openGamePlayingOfRefereeUi() {
+        mMainMvpController.findOrCreateGamePlayingOfRefereeView();
+    }
+
+    @Override
     public void openLoginUi(int loginFrom) {
 
     }
@@ -343,6 +350,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     public void popBackStackUi() {
         getSupportFragmentManager().popBackStack();
     }
+
+    /* ------------------------------------------------------------------------------------------ */
 
     @Override
     public LookingForRoomFragment findHomeView() {

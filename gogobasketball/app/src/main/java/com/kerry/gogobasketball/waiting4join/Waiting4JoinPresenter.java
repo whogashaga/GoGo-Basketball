@@ -39,7 +39,7 @@ public class Waiting4JoinPresenter implements Waiting4JoinContract.Presenter {
     }
 
     @Override
-    public void showPlayingGameUi() {
+    public void openGamePlayingOfReferee() {
 
     }
 

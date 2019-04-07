@@ -802,44 +802,31 @@
     </RadioGroup>
 
 
-
     <TextView
         android:id="@+id/text_timer_minutes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8sp"
+        android:layout_marginBottom="8dp"
         android:text="分鐘"
         android:textColor="@color/black_3f3a3a"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_slave_waiting4join_start"
+        app:layout_constraintBottom_toTopOf="@+id/btn_slave_waiting4join_cancel"
         app:layout_constraintStart_toStartOf="@+id/radios_timer_selector"
         app:layout_constraintTop_toBottomOf="@+id/radios_timer_selector" />
 
-
-
-    <Button
-        android:id="@+id/btn_slave_waiting4join_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="24dp"
-        android:text="@string/game_start"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting4join_cancel"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/slave_waiting_team_b_player3_seat" />
 
     <Button
         android:id="@+id/btn_slave_waiting4join_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/build_cancel"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting4join_start"
+        android:layout_marginBottom="24dp"
+        android:text="@string/leave_room"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting4join_start"
-        app:layout_constraintTop_toTopOf="@+id/btn_slave_waiting4join_start" />
+        app:layout_constraintStart_toEndOf="@+id/slave_waiting_team_b_player3_seat" />
 
 
 </android.support.constraint.ConstraintLayout>
