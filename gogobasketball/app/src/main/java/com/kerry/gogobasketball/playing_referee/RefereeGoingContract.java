@@ -51,6 +51,43 @@ public interface RefereeGoingContract {
         void decreaseFoulP3();
 
 
+        void increaseScoreP4();
+
+        void decreaseScoreP4();
+
+        void increaseReboundP4();
+
+        void decreaseReboundP4();
+
+        void increaseFoulP4();
+
+        void decreaseFoulP4();
+
+
+        void increaseScoreP5();
+
+        void decreaseScoreP5();
+
+        void increaseReboundP5();
+
+        void decreaseReboundP5();
+
+        void increaseFoulP5();
+
+        void decreaseFoulP5();
+
+
+        void increaseScoreP6();
+
+        void decreaseScoreP6();
+
+        void increaseReboundP6();
+
+        void decreaseReboundP6();
+
+        void increaseFoulP6();
+
+        void decreaseFoulP6();
     }
 
     interface Presenter extends BasePresenter {
