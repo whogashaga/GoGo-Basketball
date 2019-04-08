@@ -21,7 +21,7 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         return new Looking4RoomAdapter.RoomViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_home_rooms, parent, false));
+                .inflate(R.layout.item_home_looking4rooms, parent, false));
     }
 
     @Override
@@ -36,6 +36,7 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
 
     private class RoomViewHolder extends RecyclerView.ViewHolder{
 
+        private View mLayout;
         private TextView mRoomName;
         private TextView mLocation;
         private TextView mPlayerCount;
@@ -48,6 +49,7 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
             mLocation = itemView.findViewById(R.id.text_item_room_location);
             mPlayerCount = itemView.findViewById(R.id.text_item_room_current_player);
             mRefereeCount = itemView.findViewById(R.id.text_item_room_current_referee);
+            mLayout = itemView.findViewById(R.id.item_child_looking4room);
         }
 
         public TextView getRoomName() {
@@ -64,6 +66,10 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
 
         public TextView getRefereeCount() {
             return mRefereeCount;
+        }
+
+        public View getLayout() {
+            return mLayout;
         }
     }
 }

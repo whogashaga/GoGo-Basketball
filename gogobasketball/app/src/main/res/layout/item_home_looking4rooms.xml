@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/outline_room_recycler_view">
+    android:background="@drawable/background_effect_looking4room"
+    android:id="@+id/item_child_looking4room"
+    android:clickable="true">
 
     <ImageView
         android:id="@+id/image_item_room_pic"
@@ -14,7 +16,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_room" />
+        app:srcCompat="@drawable/image_effect_room" />
 
     <TextView
         style="@style/RoomRecyclerView"
@@ -34,7 +36,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@+id/image_item_room_pic"
         app:layout_constraintTop_toBottomOf="@+id/image_item_room_pic"
-        app:srcCompat="@drawable/ic_location" />
+        app:srcCompat="@drawable/image_effect_location" />
 
     <TextView
         style="@style/RoomRecyclerView"
@@ -56,7 +58,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/image_item_room_pic"
         app:layout_constraintTop_toBottomOf="@+id/image_item_location_pic"
-        app:srcCompat="@drawable/ic_player" />
+        app:srcCompat="@drawable/image_effect_player" />
 
     <TextView
         style="@style/RoomRecyclerView"
@@ -99,7 +101,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/text_item_room_total_player"
         app:layout_constraintEnd_toStartOf="@+id/text_item_room_current_referee"
         app:layout_constraintTop_toTopOf="@+id/text_item_room_total_player"
-        app:srcCompat="@drawable/ic_whistle" />
+        app:srcCompat="@drawable/image_effect_whistle" />
 
     <TextView
         style="@style/RoomRecyclerView"

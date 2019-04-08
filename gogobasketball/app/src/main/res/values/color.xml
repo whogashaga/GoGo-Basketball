@@ -26,6 +26,7 @@
 
     <!-- Yellow Series -->
     <color name="yellow_FFB700">#FFB700</color>
+    <color name="yellow_FAFFC5">#FAFFC5</color>
 
     <!-- Orange Series -->
     <color name="orange_8b572a">#8b572a</color>
@@ -33,6 +34,7 @@
 
     <!-- Blue Series -->
     <color name="blue_facebook">#3b5998</color>
+    <color name="blue_BBF6FF">#BBF6FF</color>
 
     <!-- Bottom Navigation -->
     <color name="bottom_navigation_item_normal">@color/gray_999999</color>
