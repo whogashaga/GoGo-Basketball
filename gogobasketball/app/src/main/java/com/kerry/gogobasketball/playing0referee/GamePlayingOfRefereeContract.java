@@ -24,6 +24,33 @@ public interface GamePlayingOfRefereeContract {
 
         void decreaseFoulP1();
 
+
+        void increaseScoreP2();
+
+        void decreaseScoreP2();
+
+        void increaseReboundP2();
+
+        void decreaseReboundP2();
+
+        void increaseFoulP2();
+
+        void decreaseFoulP2();
+
+
+        void increaseScoreP3();
+
+        void decreaseScoreP3();
+
+        void increaseReboundP3();
+
+        void decreaseReboundP3();
+
+        void increaseFoulP3();
+
+        void decreaseFoulP3();
+
+
     }
 
     interface Presenter extends BasePresenter {
@@ -42,17 +69,17 @@ public interface GamePlayingOfRefereeContract {
 
         void showGameResultUi();
 
-        void clickScorePlusP1();
+        void fireStoreScorePlusP1();
 
-        void clickScoreMinusP1();
+        void fireStoreScoreMinusP1();
 
-        void clickReboundPlusP1();
+        void fireStoreReboundPlusP1();
 
-        void clickReboundMinusP1();
+        void fireStoreReboundMinusP1();
 
-        void clickFoulPlusP1();
+        void fireStoreFoulPlusP1();
 
-        void clickFoulMinusP1();
+        void fireStoreFoulMinusP1();
 
     }
 }

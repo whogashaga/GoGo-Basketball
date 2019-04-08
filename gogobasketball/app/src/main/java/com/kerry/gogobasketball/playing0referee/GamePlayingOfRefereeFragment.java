@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,10 +55,31 @@ public class GamePlayingOfRefereeFragment extends Fragment implements GamePlayin
     private TextView mTextP6Score, mTextP6Rebound, mTextP6Foul;
     private int mIntScoreP6, mIntReboundP6, mIntFoulP6;
 
+    private TextView mTeamScoreA, mTeamScoreB;
+    private int mIntScoreA;
+    private int mIntScoreB;
+
     private GamePlayingOfRefereeContract.Presenter mPresenter;
 
     public GamePlayingOfRefereeFragment() {
-
+        mIntScoreP1 = 0;
+        mIntScoreP2 = 0;
+        mIntScoreP3 = 0;
+        mIntScoreP4 = 0;
+        mIntScoreP5 = 0;
+        mIntScoreP6 = 0;
+        mIntReboundP1 = 0;
+        mIntReboundP2 = 0;
+        mIntReboundP3 = 0;
+        mIntReboundP4 = 0;
+        mIntReboundP5 = 0;
+        mIntReboundP6 = 0;
+        mIntFoulP1 = 0;
+        mIntFoulP2 = 0;
+        mIntFoulP3 = 0;
+        mIntFoulP4 = 0;
+        mIntFoulP5 = 0;
+        mIntFoulP6 = 0;
     }
 
     public static GamePlayingOfRefereeFragment newInstance() {
@@ -150,6 +170,9 @@ public class GamePlayingOfRefereeFragment extends Fragment implements GamePlayin
         mTextP6Rebound = mRoot.findViewById(R.id.text_playing_team_b_player3_rebound);
         mTextP6Foul = mRoot.findViewById(R.id.text_playing_team_b_player3_foul);
 
+        mTeamScoreA = mRoot.findViewById(R.id.text_gaming_current_score_team_a);
+        mTeamScoreB = mRoot.findViewById(R.id.text_gaming_current_score_team_b);
+
         return mRoot;
     }
 
@@ -174,6 +197,42 @@ public class GamePlayingOfRefereeFragment extends Fragment implements GamePlayin
             case R.id.btn_playing_team_a_player1_foul_minus:
                 decreaseFoulP1();
                 break;
+            case R.id.btn_playing_team_a_player2_point_plus:
+                increaseScoreP2();
+                break;
+            case R.id.btn_playing_team_a_player2_point_minus:
+                decreaseScoreP2();
+                break;
+            case R.id.btn_playing_team_a_player2_rebound_plus:
+                increaseReboundP2();
+                break;
+            case R.id.btn_playing_team_a_player2_rebound_minus:
+                decreaseReboundP2();
+                break;
+            case R.id.btn_playing_team_a_player2_foul_plus:
+                increaseFoulP2();
+                break;
+            case R.id.btn_playing_team_a_player2_foul_minus:
+                decreaseFoulP2();
+                break;
+            case R.id.btn_playing_team_a_player3_point_plus:
+                increaseScoreP3();
+                break;
+            case R.id.btn_playing_team_a_player3_point_minus:
+                decreaseScoreP3();
+                break;
+            case R.id.btn_playing_team_a_player3_rebound_plus:
+                increaseReboundP3();
+                break;
+            case R.id.btn_playing_team_a_player3_rebound_minus:
+                decreaseReboundP3();
+                break;
+            case R.id.btn_playing_team_a_player3_foul_plus:
+                increaseFoulP3();
+                break;
+            case R.id.btn_playing_team_a_player3_foul_minus:
+                decreaseFoulP3();
+                break;
             default:
                 break;
         }
@@ -182,12 +241,28 @@ public class GamePlayingOfRefereeFragment extends Fragment implements GamePlayin
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         mBtnP1ScorePlus.setOnClickListener(this);
         mBtnP1ScoreMinus.setOnClickListener(this);
         mBtnP1ReboundPlus.setOnClickListener(this);
         mBtnP1ReboundMinus.setOnClickListener(this);
         mBtnP1FoulPlus.setOnClickListener(this);
         mBtnP1FoulMinus.setOnClickListener(this);
+
+        mBtnP2ScorePlus.setOnClickListener(this);
+        mBtnP2ScoreMinus.setOnClickListener(this);
+        mBtnP2ReboundPlus.setOnClickListener(this);
+        mBtnP2ReboundMinus.setOnClickListener(this);
+        mBtnP2FoulPlus.setOnClickListener(this);
+        mBtnP2FoulMinus.setOnClickListener(this);
+
+        mBtnP3ScorePlus.setOnClickListener(this);
+        mBtnP3ScoreMinus.setOnClickListener(this);
+        mBtnP3ReboundPlus.setOnClickListener(this);
+        mBtnP3ReboundMinus.setOnClickListener(this);
+        mBtnP3FoulPlus.setOnClickListener(this);
+        mBtnP3FoulMinus.setOnClickListener(this);
+
     }
 
     @Override
@@ -210,29 +285,77 @@ public class GamePlayingOfRefereeFragment extends Fragment implements GamePlayin
         return false;
     }
 
+    public int getIntScoreA() {
+        mIntScoreA = mIntScoreP1 + mIntScoreP2 + mIntScoreP3;
+        return mIntScoreA;
+    }
+
+    public int getIntScoreB() {
+        mIntScoreB = mIntScoreP4 + mIntScoreP5 + mIntScoreP6;
+        return mIntScoreB;
+    }
+
+    public void setScorePlusClickableTeamA(boolean clickable) {
+        mBtnP1ScorePlus.setClickable(clickable);
+        mBtnP2ScorePlus.setClickable(clickable);
+        mBtnP3ScorePlus.setClickable(clickable);
+    }
+
+    public void setScoreMinusClickableTeamA(boolean clickable) {
+        mBtnP1ScoreMinus.setClickable(clickable);
+        mBtnP2ScoreMinus.setClickable(clickable);
+        mBtnP3ScoreMinus.setClickable(clickable);
+    }
+
+    public void setScoreMinusUnclickWhenFullPoint() {
+        if (mIntScoreP1 == 0 && getIntScoreA() == 6) {
+            mBtnP1ScoreMinus.setClickable(false);
+        } else if (mIntScoreP2 == 0 && getIntScoreA() == 6) {
+            mBtnP2ScoreMinus.setClickable(false);
+        } else if (mIntScoreP3 == 0 && getIntScoreA() == 6) {
+            mBtnP3ScoreMinus.setClickable(false);
+        }
+    }
+
+    public void setScoreMinusUnclickWhenSelfZero() {
+        if (mIntScoreP1 == 0) {
+            mBtnP1ScoreMinus.setClickable(false);
+        } else if (mIntScoreP2 == 0) {
+            mBtnP2ScoreMinus.setClickable(false);
+        } else if (mIntScoreP3 == 0) {
+            mBtnP3ScoreMinus.setClickable(false);
+        }
+    }
+
 
     /* ------------------------------------------------------------------------------------------ */
     /* Player1 */
 
     @Override
     public void increaseScoreP1() {
-        if (mIntScoreP1 < 6) {
+        if (mIntScoreP1 < 6 && getIntScoreA() < 6) {
             mIntScoreP1 += 1;
             mTextP1Score.setText(String.valueOf(mIntScoreP1));
-            mBtnP1ScoreMinus.setClickable(true);
-        } else {
-            mBtnP1ScorePlus.setClickable(false);
+            mTeamScoreA.setText(String.valueOf(getIntScoreA()));
+            if (getIntScoreA() == 6) {
+                mBtnP1ScoreMinus.setClickable(true);
+                setScoreMinusUnclickWhenFullPoint();
+            }
+        } else if (getIntScoreA() == 6) {
+            setScorePlusClickableTeamA(false);
+            setScoreMinusUnclickWhenFullPoint();
         }
     }
 
     @Override
     public void decreaseScoreP1() {
-        if (0 < mIntScoreP1 && mIntScoreP1 < 7) {
+        if (0 < mIntScoreP1 && mIntScoreP1 < 7 && 0 < getIntScoreA() && getIntScoreA() < 7) {
             mIntScoreP1 -= 1;
             mTextP1Score.setText(String.valueOf(mIntScoreP1));
-            mBtnP1ScorePlus.setClickable(true);
+            mTeamScoreA.setText(String.valueOf(getIntScoreA()));
+            setScorePlusClickableTeamA(true);
         } else {
-            mBtnP1ScoreMinus.setClickable(false);
+            setScoreMinusUnclickWhenSelfZero();
         }
     }
 
@@ -283,5 +406,144 @@ public class GamePlayingOfRefereeFragment extends Fragment implements GamePlayin
 
     /* ------------------------------------------------------------------------------------------ */
     /* Player2 */
+    @Override
+    public void increaseScoreP2() {
+        if (mIntScoreP2 < 6 && getIntScoreA() < 6) {
+            mIntScoreP2 += 1;
+            mTextP2Score.setText(String.valueOf(mIntScoreP2));
+            mTeamScoreA.setText(String.valueOf(getIntScoreA()));
+            mBtnP2ScoreMinus.setClickable(true);
+        } else if (getIntScoreA() == 6) {
+            setScorePlusClickableTeamA(false);
+            setScoreMinusUnclickWhenFullPoint();
+        }
+    }
+
+    @Override
+    public void decreaseScoreP2() {
+        if (0 < mIntScoreP2 && mIntScoreP2 < 7 && 0 < getIntScoreA() && getIntScoreA() < 7) {
+            mIntScoreP2 -= 1;
+            mTextP2Score.setText(String.valueOf(mIntScoreP2));
+            mTeamScoreA.setText(String.valueOf(getIntScoreA()));
+            mBtnP2ScorePlus.setClickable(true);
+        } else if (getIntScoreA() == 6) {
+            setScoreMinusUnclickWhenSelfZero();
+        }
+    }
+
+    @Override
+    public void increaseReboundP2() {
+        if (mIntReboundP2 < 20) {
+            mIntReboundP2 += 1;
+            mTextP2Rebound.setText(String.valueOf(mIntReboundP2));
+            mBtnP2ReboundMinus.setClickable(true);
+        } else {
+            mBtnP2ReboundPlus.setClickable(false);
+        }
+    }
+
+    @Override
+    public void decreaseReboundP2() {
+        if (0 < mIntReboundP2 && mIntReboundP2 < 21) {
+            mIntReboundP2 -= 1;
+            mTextP2Rebound.setText(String.valueOf(mIntReboundP2));
+            mBtnP2ReboundPlus.setClickable(true);
+        } else {
+            mBtnP2ReboundMinus.setClickable(false);
+        }
+    }
+
+    @Override
+    public void increaseFoulP2() {
+        if (mIntFoulP2 < 10) {
+            mIntFoulP2 += 1;
+            mTextP2Foul.setText(String.valueOf(mIntFoulP2));
+            mBtnP2FoulMinus.setClickable(true);
+        } else {
+            mBtnP2FoulPlus.setClickable(false);
+        }
+    }
+
+    @Override
+    public void decreaseFoulP2() {
+        if (0 < mIntFoulP2 && mIntFoulP2 < 11) {
+            mIntFoulP2 -= 1;
+            mTextP2Foul.setText(String.valueOf(mIntFoulP2));
+            mBtnP2FoulPlus.setClickable(true);
+        } else {
+            mBtnP2FoulMinus.setClickable(false);
+        }
+    }
+
+    /* ------------------------------------------------------------------------------------------ */
+    /* Player3 */
+    @Override
+    public void increaseScoreP3() {
+        if (mIntScoreP3 < 6 && getIntScoreA() < 6) {
+            mIntScoreP3 += 1;
+            mTextP3Score.setText(String.valueOf(mIntScoreP3));
+            mTeamScoreA.setText(String.valueOf(getIntScoreA()));
+            mBtnP3ScoreMinus.setClickable(true);
+        } else if (getIntScoreA() == 6) {
+            setScorePlusClickableTeamA(false);
+            setScoreMinusUnclickWhenFullPoint();
+        }
+    }
+
+    @Override
+    public void decreaseScoreP3() {
+        if (0 < mIntScoreP3 && mIntScoreP3 < 7 && 0 < getIntScoreA() && getIntScoreA() < 7) {
+            mIntScoreP3 -= 1;
+            mTextP3Score.setText(String.valueOf(mIntScoreP3));
+            mTeamScoreA.setText(String.valueOf(getIntScoreA()));
+            mBtnP3ScorePlus.setClickable(true);
+        } else {
+            setScoreMinusUnclickWhenSelfZero();
+        }
+    }
+
+    @Override
+    public void increaseReboundP3() {
+        if (mIntReboundP3 < 20) {
+            mIntReboundP3 += 1;
+            mTextP3Rebound.setText(String.valueOf(mIntReboundP3));
+            mBtnP3ReboundMinus.setClickable(true);
+        } else {
+            mBtnP3ReboundPlus.setClickable(false);
+        }
+    }
+
+    @Override
+    public void decreaseReboundP3() {
+        if (0 < mIntReboundP3 && mIntReboundP3 < 21) {
+            mIntReboundP3 -= 1;
+            mTextP3Rebound.setText(String.valueOf(mIntReboundP3));
+            mBtnP3ReboundPlus.setClickable(true);
+        } else {
+            mBtnP3ReboundMinus.setClickable(false);
+        }
+    }
+
+    @Override
+    public void increaseFoulP3() {
+        if (mIntFoulP3 < 10) {
+            mIntFoulP3 += 1;
+            mTextP3Foul.setText(String.valueOf(mIntFoulP3));
+            mBtnP3FoulMinus.setClickable(true);
+        } else {
+            mBtnP3FoulPlus.setClickable(false);
+        }
+    }
+
+    @Override
+    public void decreaseFoulP3() {
+        if (0 < mIntFoulP3 && mIntFoulP3 < 11) {
+            mIntFoulP3 -= 1;
+            mTextP3Foul.setText(String.valueOf(mIntFoulP3));
+            mBtnP3FoulPlus.setClickable(true);
+        } else {
+            mBtnP3FoulMinus.setClickable(false);
+        }
+    }
 
 }

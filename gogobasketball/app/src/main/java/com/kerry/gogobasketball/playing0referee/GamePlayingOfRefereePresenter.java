@@ -49,32 +49,32 @@ public class GamePlayingOfRefereePresenter implements GamePlayingOfRefereeContra
     }
 
     @Override
-    public void clickScorePlusP1() {
+    public void fireStoreScorePlusP1() {
 
     }
 
     @Override
-    public void clickScoreMinusP1() {
+    public void fireStoreScoreMinusP1() {
 
     }
 
     @Override
-    public void clickReboundPlusP1() {
+    public void fireStoreReboundPlusP1() {
 
     }
 
     @Override
-    public void clickReboundMinusP1() {
+    public void fireStoreReboundMinusP1() {
 
     }
 
     @Override
-    public void clickFoulPlusP1() {
+    public void fireStoreFoulPlusP1() {
 
     }
 
     @Override
-    public void clickFoulMinusP1() {
+    public void fireStoreFoulMinusP1() {
 
     }
 

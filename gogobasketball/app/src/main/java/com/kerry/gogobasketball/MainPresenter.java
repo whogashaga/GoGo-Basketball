@@ -175,33 +175,33 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     /* adjust player's records - PlayingFragment */
 
     @Override
-    public void clickScorePlusP1() {
-        mPlayingOfRefereePresenter.clickScorePlusP1();
+    public void fireStoreScorePlusP1() {
+        mPlayingOfRefereePresenter.fireStoreScorePlusP1();
     }
 
     @Override
-    public void clickScoreMinusP1() {
-        mPlayingOfRefereePresenter.clickFoulMinusP1();
+    public void fireStoreScoreMinusP1() {
+        mPlayingOfRefereePresenter.fireStoreScoreMinusP1();
     }
 
     @Override
-    public void clickReboundPlusP1() {
-        mPlayingOfRefereePresenter.clickReboundPlusP1();
+    public void fireStoreReboundPlusP1() {
+        mPlayingOfRefereePresenter.fireStoreReboundPlusP1();
     }
 
     @Override
-    public void clickReboundMinusP1() {
-        mPlayingOfRefereePresenter.clickReboundMinusP1();
+    public void fireStoreReboundMinusP1() {
+        mPlayingOfRefereePresenter.fireStoreReboundMinusP1();
     }
 
     @Override
-    public void clickFoulPlusP1() {
-        mPlayingOfRefereePresenter.clickFoulPlusP1();
+    public void fireStoreFoulPlusP1() {
+        mPlayingOfRefereePresenter.fireStoreFoulPlusP1();
     }
 
     @Override
-    public void clickFoulMinusP1() {
-        mPlayingOfRefereePresenter.clickFoulMinusP1();
+    public void fireStoreFoulMinusP1() {
+        mPlayingOfRefereePresenter.fireStoreFoulMinusP1();
     }
 
     /* ------------------------------------------------------------------------------------------ */
