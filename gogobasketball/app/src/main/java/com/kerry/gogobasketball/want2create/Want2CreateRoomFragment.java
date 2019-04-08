@@ -70,9 +70,16 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
 
         mTextRefereeWarning = root.findViewById(R.id.text_want2create_warning);
         mRadioGroup = root.findViewById(R.id.radios_referee_selector);
+        mRadioGroup.setOnCheckedChangeListener(this);
+
         mBtnCreateConfirm = root.findViewById(R.id.btn_want2create_build_confirm);
+        mBtnCreateConfirm.setOnClickListener(this);
+
         mBtnCreateCancel = root.findViewById(R.id.btn_want2create_build_cancel);
+        mBtnCreateCancel.setOnClickListener(this);
+
         mBtnBackStack = root.findViewById(R.id.btn_want2create_backstack);
+        mBtnBackStack.setOnClickListener(this);
 
         return root;
     }
@@ -82,6 +89,8 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         switch (v.getId()) {
             case R.id.btn_want2create_build_confirm:
                 mPresenter.openWaitingJoin();
+
+
                 break;
             case R.id.btn_want2create_build_cancel:
                 mPresenter.finishWant2CreateRoomUi();
@@ -121,11 +130,6 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mRadioGroup.setOnCheckedChangeListener(this);
-        mBtnCreateConfirm.setOnClickListener(this);
-        mBtnCreateCancel.setOnClickListener(this);
-        mBtnBackStack.setOnClickListener(this);
-
         mPresenter.hideToolbarAndBottomNavigation();
     }
 

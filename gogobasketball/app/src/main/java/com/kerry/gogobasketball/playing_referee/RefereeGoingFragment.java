@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -307,15 +308,15 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
         mBtnP3ScoreMinus.setClickable(clickable);
     }
 
-    public void setScoreMinusUnclickWhenFullPoint() {
-        if (mIntScoreP1 == 0 && getIntScoreA() == 6) {
-            mBtnP1ScoreMinus.setClickable(false);
-        } else if (mIntScoreP2 == 0 && getIntScoreA() == 6) {
-            mBtnP2ScoreMinus.setClickable(false);
-        } else if (mIntScoreP3 == 0 && getIntScoreA() == 6) {
-            mBtnP3ScoreMinus.setClickable(false);
-        }
-    }
+//    public void setScoreMinusUnclickWhenFullPoint() {
+//        if (mIntScoreP1 == 0 && getIntScoreA() == 6) {
+//            mBtnP1ScoreMinus.setClickable(false);
+//        } else if (mIntScoreP2 == 0 && getIntScoreA() == 6) {
+//            mBtnP2ScoreMinus.setClickable(false);
+//        } else if (mIntScoreP3 == 0 && getIntScoreA() == 6) {
+//            mBtnP3ScoreMinus.setClickable(false);
+//        }
+//    }
 
     public void setScoreMinusUnclickWhenSelfZero() {
         if (mIntScoreP1 == 0) {
@@ -333,29 +334,29 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
 
     @Override
     public void increaseScoreP1() {
-        if (mIntScoreP1 < 6 && getIntScoreA() < 6) {
+        if (getIntScoreA() == 6) {
+            setScorePlusClickableTeamA(false);
+        } else if (mIntScoreP1 < 6 && getIntScoreA() < 6) {
             mIntScoreP1 += 1;
             mTextP1Score.setText(String.valueOf(mIntScoreP1));
             mTeamScoreA.setText(String.valueOf(getIntScoreA()));
-            if (getIntScoreA() == 6) {
-                mBtnP1ScoreMinus.setClickable(true);
-                setScoreMinusUnclickWhenFullPoint();
-            }
-        } else if (getIntScoreA() == 6) {
-            setScorePlusClickableTeamA(false);
-            setScoreMinusUnclickWhenFullPoint();
+            mBtnP1ScoreMinus.setClickable(true);
+        } else {
+
         }
     }
 
     @Override
     public void decreaseScoreP1() {
-        if (0 < mIntScoreP1 && mIntScoreP1 < 7 && 0 < getIntScoreA() && getIntScoreA() < 7) {
+        if (mIntScoreP1 == 0) {
+            mBtnP1ScoreMinus.setClickable(false);
+        } else if (0 < getIntScoreA() && getIntScoreA() < 7) {
             mIntScoreP1 -= 1;
             mTextP1Score.setText(String.valueOf(mIntScoreP1));
             mTeamScoreA.setText(String.valueOf(getIntScoreA()));
             setScorePlusClickableTeamA(true);
         } else {
-            setScoreMinusUnclickWhenSelfZero();
+            Log.d("Kerry", "P1 Score error !");
         }
     }
 
@@ -406,28 +407,32 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
 
     /* ------------------------------------------------------------------------------------------ */
     /* Player2 */
+
     @Override
     public void increaseScoreP2() {
-        if (mIntScoreP2 < 6 && getIntScoreA() < 6) {
+        if (getIntScoreA() == 6) {
+            setScorePlusClickableTeamA(false);
+        } else if (mIntScoreP2 < 6 && getIntScoreA() < 6) {
             mIntScoreP2 += 1;
             mTextP2Score.setText(String.valueOf(mIntScoreP2));
             mTeamScoreA.setText(String.valueOf(getIntScoreA()));
             mBtnP2ScoreMinus.setClickable(true);
-        } else if (getIntScoreA() == 6) {
-            setScorePlusClickableTeamA(false);
-            setScoreMinusUnclickWhenFullPoint();
+        } else {
+
         }
     }
 
     @Override
     public void decreaseScoreP2() {
-        if (0 < mIntScoreP2 && mIntScoreP2 < 7 && 0 < getIntScoreA() && getIntScoreA() < 7) {
+        if (mIntScoreP2 == 0) {
+            mBtnP2ScoreMinus.setClickable(false);
+        } else if (0 < getIntScoreA() && getIntScoreA() < 7) {
             mIntScoreP2 -= 1;
             mTextP2Score.setText(String.valueOf(mIntScoreP2));
             mTeamScoreA.setText(String.valueOf(getIntScoreA()));
-            mBtnP2ScorePlus.setClickable(true);
-        } else if (getIntScoreA() == 6) {
-            setScoreMinusUnclickWhenSelfZero();
+            setScorePlusClickableTeamA(true);
+        } else {
+            Log.d("Kerry", "P2 Score error !");
         }
     }
 
@@ -477,28 +482,32 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
 
     /* ------------------------------------------------------------------------------------------ */
     /* Player3 */
+
     @Override
     public void increaseScoreP3() {
-        if (mIntScoreP3 < 6 && getIntScoreA() < 6) {
+        if (getIntScoreA() == 6) {
+            setScorePlusClickableTeamA(false);
+        } else if (mIntScoreP3 < 6 && getIntScoreA() < 6) {
             mIntScoreP3 += 1;
             mTextP3Score.setText(String.valueOf(mIntScoreP3));
             mTeamScoreA.setText(String.valueOf(getIntScoreA()));
             mBtnP3ScoreMinus.setClickable(true);
-        } else if (getIntScoreA() == 6) {
-            setScorePlusClickableTeamA(false);
-            setScoreMinusUnclickWhenFullPoint();
+        } else {
+
         }
     }
 
     @Override
     public void decreaseScoreP3() {
-        if (0 < mIntScoreP3 && mIntScoreP3 < 7 && 0 < getIntScoreA() && getIntScoreA() < 7) {
+        if (mIntScoreP3 == 0) {
+            mBtnP3ScoreMinus.setClickable(false);
+        } else if (0 < getIntScoreA() && getIntScoreA() < 7) {
             mIntScoreP3 -= 1;
             mTextP3Score.setText(String.valueOf(mIntScoreP3));
             mTeamScoreA.setText(String.valueOf(getIntScoreA()));
-            mBtnP3ScorePlus.setClickable(true);
+            setScorePlusClickableTeamA(true);
         } else {
-            setScoreMinusUnclickWhenSelfZero();
+            Log.d("Kerry", "P3 Score error !");
         }
     }
 
