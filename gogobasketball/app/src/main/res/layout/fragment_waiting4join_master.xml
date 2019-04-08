@@ -31,7 +31,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_player" />
+            app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
             android:id="@+id/waiting_team_a_player1_id"
@@ -129,7 +129,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_player" />
+            app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
             android:id="@+id/waiting_team_a_player2_id"
@@ -227,7 +227,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_player" />
+            app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
             android:id="@+id/waiting_team_a_player3_id"
@@ -329,7 +329,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_player" />
+            app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
             android:id="@+id/waiting_team_b_player1_id"
@@ -427,7 +427,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_player" />
+            app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
             android:id="@+id/waiting_team_b_player2_id"
@@ -526,7 +526,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_player" />
+            app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
             android:id="@+id/waiting_team_b_player3_id"
@@ -629,7 +629,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_player" />
+            app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
             android:id="@+id/waiting_referee_id"
