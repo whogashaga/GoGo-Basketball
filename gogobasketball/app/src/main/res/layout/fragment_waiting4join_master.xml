@@ -2,23 +2,25 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_waiting4join_master"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:id="@+id/fragment_waiting4join_master">
+    android:orientation="horizontal">
 
     /* ------------------------------------------------------------------------------------------ */
     /* Team A */
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/waiting_team_a_player1_seat"
-        android:layout_width="170dp"
-        android:layout_height="145dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/outline_team_a_seat"
         app:layout_constraintBottom_toTopOf="@+id/waiting_team_b_player1_seat"
+        app:layout_constraintEnd_toStartOf="@+id/waiting_team_a_player2_seat"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_waiting4join_back_arrow">
 
@@ -72,7 +74,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/ic_bench_chair"
+            android:drawableTop="@drawable/ic_chair_player"
             android:text="@string/change_seat"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_a_player1_info"
@@ -114,11 +116,13 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/waiting_team_a_player2_seat"
-        android:layout_width="170dp"
-        android:layout_height="145dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/outline_team_a_seat"
         app:layout_constraintBottom_toBottomOf="@+id/waiting_team_a_player1_seat"
+        app:layout_constraintEnd_toStartOf="@+id/waiting_team_a_player3_seat"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player1_seat"
         app:layout_constraintTop_toTopOf="@+id/waiting_team_a_player1_seat">
 
@@ -156,8 +160,8 @@
             android:id="@+id/waiting_team_a_player2_position"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:scaleType="centerCrop"
             android:layout_marginStart="8dp"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="@+id/waiting_team_a_player2_gender"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player2_gender"
             app:layout_constraintTop_toTopOf="@+id/waiting_team_a_player2_gender"
@@ -171,7 +175,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/ic_bench_chair"
+            android:drawableTop="@drawable/ic_chair_player"
             android:text="@string/change_seat"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_a_player2_info"
@@ -213,11 +217,13 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/waiting_team_a_player3_seat"
-        android:layout_width="170dp"
-        android:layout_height="145dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/outline_team_a_seat"
         app:layout_constraintBottom_toBottomOf="@+id/waiting_team_a_player2_seat"
+        app:layout_constraintEnd_toStartOf="@+id/waiting_referee_seat"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player2_seat"
         app:layout_constraintTop_toTopOf="@+id/waiting_team_a_player2_seat">
 
@@ -255,8 +261,8 @@
             android:id="@+id/waiting_team_a_player3_position"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:scaleType="centerCrop"
             android:layout_marginStart="8dp"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="@+id/waiting_team_a_player3_gender"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player3_gender"
             app:layout_constraintTop_toTopOf="@+id/waiting_team_a_player3_gender"
@@ -270,7 +276,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/ic_bench_chair"
+            android:drawableTop="@drawable/ic_chair_player"
             android:text="@string/change_seat"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_a_player3_info"
@@ -316,11 +322,12 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/waiting_team_b_player1_seat"
-        android:layout_width="170dp"
-        android:layout_height="145dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/outline_team_b_seat"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/waiting_team_a_player1_seat"
         app:layout_constraintStart_toStartOf="@+id/waiting_team_a_player1_seat"
         app:layout_constraintTop_toBottomOf="@+id/waiting_team_a_player1_seat">
 
@@ -358,8 +365,8 @@
             android:id="@+id/waiting_team_b_player1_position"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:scaleType="centerCrop"
             android:layout_marginStart="8dp"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="@+id/waiting_team_b_player1_gender"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player1_gender"
             app:layout_constraintTop_toTopOf="@+id/waiting_team_b_player1_gender"
@@ -373,7 +380,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/ic_bench_chair"
+            android:drawableTop="@drawable/ic_chair_player"
             android:text="@string/change_seat"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_b_player1_info"
@@ -415,12 +422,12 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/waiting_team_b_player2_seat"
-        android:layout_width="170dp"
-        android:layout_height="145dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/outline_team_b_seat"
         app:layout_constraintBottom_toBottomOf="@+id/waiting_team_b_player1_seat"
-        app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player1_seat"
+        app:layout_constraintEnd_toEndOf="@+id/waiting_team_a_player2_seat"
+        app:layout_constraintStart_toStartOf="@+id/waiting_team_a_player2_seat"
         app:layout_constraintTop_toTopOf="@+id/waiting_team_b_player1_seat">
 
         <ImageView
@@ -457,8 +464,8 @@
             android:id="@+id/waiting_team_b_player2_position"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:scaleType="centerCrop"
             android:layout_marginStart="8dp"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="@+id/waiting_team_b_player2_gender"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player2_gender"
             app:layout_constraintTop_toTopOf="@+id/waiting_team_b_player2_gender"
@@ -472,7 +479,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/ic_bench_chair"
+            android:drawableTop="@drawable/ic_chair_player"
             android:text="@string/change_seat"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_b_player2_info"
@@ -515,12 +522,13 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/waiting_team_b_player3_seat"
-        android:layout_width="170dp"
-        android:layout_height="145dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
         android:background="@drawable/outline_team_b_seat"
         app:layout_constraintBottom_toBottomOf="@+id/waiting_team_b_player2_seat"
-        app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player2_seat"
+        app:layout_constraintEnd_toEndOf="@+id/waiting_team_a_player3_seat"
+        app:layout_constraintStart_toStartOf="@+id/waiting_team_a_player3_seat"
         app:layout_constraintTop_toTopOf="@+id/waiting_team_b_player2_seat">
 
         <ImageView
@@ -557,8 +565,8 @@
             android:id="@+id/waiting_team_b_player3_position"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:scaleType="centerCrop"
             android:layout_marginStart="8dp"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="@+id/waiting_team_b_player3_gender"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player3_gender"
             app:layout_constraintTop_toTopOf="@+id/waiting_team_b_player3_gender"
@@ -572,7 +580,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/ic_bench_chair"
+            android:drawableTop="@drawable/ic_chair_player"
             android:text="@string/change_seat"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_b_player3_info"
@@ -617,13 +625,14 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/waiting_referee_seat"
-        android:layout_width="170dp"
-        android:layout_height="145dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/outline_referee_seat"
         app:layout_constraintBottom_toBottomOf="@+id/waiting_team_a_player3_seat"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player3_seat"
         app:layout_constraintTop_toTopOf="@+id/waiting_team_a_player3_seat">
 
@@ -661,8 +670,8 @@
             android:id="@+id/waiting_referee_position"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:scaleType="centerCrop"
             android:layout_marginStart="8dp"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="@+id/waiting_referee_gender"
             app:layout_constraintStart_toEndOf="@+id/waiting_referee_gender"
             app:layout_constraintTop_toTopOf="@+id/waiting_referee_gender"
@@ -676,7 +685,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/ic_sofa_referee"
+            android:drawableTop="@drawable/ic_chair_referee"
             android:text="@string/change_seat"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_referee_info"
@@ -738,8 +747,8 @@
         android:background="@null"
         android:src="@drawable/ic_paper_plane"
         app:layout_constraintBottom_toBottomOf="@+id/btn_waiting4join_back_arrow"
-        app:layout_constraintTop_toTopOf="@+id/btn_waiting4join_back_arrow"
         app:layout_constraintStart_toEndOf="@+id/view_waiting4join_message_border"
+        app:layout_constraintTop_toTopOf="@+id/btn_waiting4join_back_arrow"
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="107dp" />
 
@@ -816,9 +825,9 @@
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="12dp"
+        android:background="@drawable/outline_minutes"
         android:entries="@array/timer_list"
         android:prompt="@string/select_time"
-        android:background="@drawable/outline_minutes"
         android:spinnerMode="dialog"
         app:layout_constraintBottom_toTopOf="@+id/btn_waiting4join_start"
         app:layout_constraintStart_toStartOf="@+id/radios_timer_selector"
@@ -835,7 +844,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/spinner_timer_selector"
         app:layout_constraintStart_toEndOf="@+id/spinner_timer_selector"
         app:layout_constraintTop_toTopOf="@+id/spinner_timer_selector" />
-
 
 
     <Button

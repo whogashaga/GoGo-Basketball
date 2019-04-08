@@ -181,10 +181,8 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
                 } else if (s.length() == 0) {
                     Toast.makeText(GoGoBasketball.getAppContext(), "請輸入房名", Toast.LENGTH_LONG).show();
                     mBtnCreateConfirm.setClickable(false);
-                } else if (s.length() > 10) {
-                    Toast.makeText(GoGoBasketball.getAppContext(), "不得超過10個字", Toast.LENGTH_LONG).show();
-                    mEditorRoomName.setFocusable(false);
-                    mBtnCreateConfirm.setClickable(false);
+                } else if (s.length() == 10) {
+                    Toast.makeText(GoGoBasketball.getAppContext(), "最多10個字", Toast.LENGTH_LONG).show();
                 }
             }
 

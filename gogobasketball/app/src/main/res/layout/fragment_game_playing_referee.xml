@@ -2,11 +2,11 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_playing_referee"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
     android:background="@color/black_3f3a3a"
-    android:id="@+id/layout_playing_referee">
+    android:orientation="horizontal">
 
 
     <TextView
@@ -15,12 +15,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
         android:fontFamily="@font/audiowide"
         android:text="SCORE"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/text_gaming_current_time_title"
-        app:layout_constraintStart_toStartOf="@+id/text_gaming_current_time_title"
+        app:layout_constraintEnd_toEndOf="@+id/text_gaming_current_time"
+        app:layout_constraintStart_toStartOf="@+id/text_gaming_current_time"
         app:layout_constraintTop_toBottomOf="@+id/text_gaming_current_time" />
 
     <TextView
@@ -28,7 +27,6 @@
         style="@style/PlayingBigTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/audiowide"
         android:text="0"
@@ -36,7 +34,7 @@
         app:layout_constraintEnd_toStartOf="@+id/text_gaming_current_score_separation"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@+id/playing_team_a_player3_seat"
+        app:layout_constraintStart_toStartOf="@+id/text_gaming_current_score"
         app:layout_constraintTop_toBottomOf="@+id/text_gaming_current_score" />
 
     <TextView
@@ -59,12 +57,11 @@
         style="@style/PlayingBigTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:fontFamily="@font/audiowide"
         android:text="0"
         android:textColor="@color/blue_voyage"
         app:layout_constraintBottom_toBottomOf="@+id/text_gaming_current_score_separation"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/text_gaming_current_score"
         app:layout_constraintStart_toEndOf="@+id/text_gaming_current_score_separation"
         app:layout_constraintTop_toTopOf="@+id/text_gaming_current_score_separation" />
 
@@ -73,14 +70,13 @@
         style="@style/PlayingBigTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/audiowide"
         android:text="Time"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/playing_team_a_player3_seat"
+        app:layout_constraintEnd_toEndOf="@+id/text_gaming_current_time"
+        app:layout_constraintStart_toStartOf="@+id/text_gaming_current_time"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -88,21 +84,28 @@
         style="@style/PlayingBigTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
+        android:layout_marginEnd="24dp"
         android:fontFamily="@font/audiowide"
         android:text="00:00"
         android:textColor="@color/yellow_FFB700"
-        app:layout_constraintEnd_toEndOf="@+id/text_gaming_current_time_title"
-        app:layout_constraintStart_toStartOf="@+id/text_gaming_current_time_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/playing_team_a_player3_seat"
         app:layout_constraintTop_toBottomOf="@+id/text_gaming_current_time_title" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/playing_team_a_player1_seat"
-        android:layout_width="180dp"
-        android:layout_height="160dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/outline_team_a_seat"
+        app:layout_constraintBottom_toTopOf="@+id/team_b_player1_seat"
+        app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player2_seat"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -308,11 +311,13 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/playing_team_a_player2_seat"
-        android:layout_width="180dp"
-        android:layout_height="160dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/outline_team_a_seat"
         app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_seat"
+        app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player3_seat"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_seat"
         app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_seat">
 
@@ -517,11 +522,13 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/playing_team_a_player3_seat"
-        android:layout_width="180dp"
-        android:layout_height="160dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/outline_team_a_seat"
         app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_seat"
+        app:layout_constraintEnd_toStartOf="@+id/text_gaming_current_time"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_seat"
         app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_seat">
 
@@ -726,11 +733,14 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/team_b_player1_seat"
-        android:layout_width="180dp"
-        android:layout_height="160dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/outline_team_b_seat"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/playing_team_a_player1_seat"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/playing_team_a_player1_seat"
         app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player1_seat">
 
@@ -935,12 +945,12 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/team_b_player2_seat"
-        android:layout_width="180dp"
-        android:layout_height="160dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/outline_team_b_seat"
         app:layout_constraintBottom_toBottomOf="@+id/team_b_player1_seat"
-        app:layout_constraintStart_toEndOf="@+id/team_b_player1_seat"
+        app:layout_constraintEnd_toEndOf="@+id/playing_team_a_player2_seat"
+        app:layout_constraintStart_toStartOf="@+id/playing_team_a_player2_seat"
         app:layout_constraintTop_toTopOf="@+id/team_b_player1_seat">
 
         <ImageView
@@ -1144,12 +1154,12 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/team_b_player3_seat"
-        android:layout_width="180dp"
-        android:layout_height="160dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/outline_team_b_seat"
         app:layout_constraintBottom_toBottomOf="@+id/team_b_player2_seat"
-        app:layout_constraintStart_toEndOf="@+id/team_b_player2_seat"
+        app:layout_constraintEnd_toEndOf="@+id/playing_team_a_player3_seat"
+        app:layout_constraintStart_toStartOf="@+id/playing_team_a_player3_seat"
         app:layout_constraintTop_toTopOf="@+id/team_b_player2_seat">
 
         <ImageView
@@ -1355,13 +1365,11 @@
         android:id="@+id/btn_game_shut_down_forced"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="強制結束"
         app:layout_constraintBottom_toTopOf="@+id/btn_gaming_game_over"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/team_b_player3_seat" />
+        app:layout_constraintEnd_toEndOf="@+id/btn_gaming_game_over"
+        app:layout_constraintStart_toStartOf="@+id/btn_gaming_game_over" />
 
     <Button
         android:id="@+id/btn_gaming_game_over"
