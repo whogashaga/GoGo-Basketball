@@ -30,6 +30,6 @@ public interface Looking4RoomContract {
 
         void openWant2CreateRoom();
 
-//        void openDetail(Product product);
+        void openWaiting4JoinSlave();
     }
 }

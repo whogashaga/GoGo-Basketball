@@ -1,9 +1,9 @@
-package com.kerry.gogobasketball.waiting4join;
+package com.kerry.gogobasketball.waiting4join.master;
 
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
 
-public interface Waiting4JoinContract {
+public interface Waiting4JoinMasterContract {
 
     interface View extends BaseView<Presenter> {
 

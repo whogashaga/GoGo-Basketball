@@ -22,15 +22,18 @@ import com.kerry.gogobasketball.profile.ProfileContract;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
 import com.kerry.gogobasketball.rank.RankContract;
 import com.kerry.gogobasketball.rank.RankPresenter;
-import com.kerry.gogobasketball.waiting4join.Waiting4JoinContract;
-import com.kerry.gogobasketball.waiting4join.Waiting4JoinPresenter;
+import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterContract;
+import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterPresenter;
+import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlaveContract;
+import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlavePresenter;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomContract;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomPresenter;
 
 public class MainPresenter implements MainContract.Presenter, HomeContract.Presenter,
         Looking4RoomContract.Presenter, CourtsMapContract.Presenter, ProfileContract.Presenter,
         FriendContract.Presenter, RankContract.Presenter, Want2CreateRoomContract.Presenter,
-        Waiting4JoinContract.Presenter, RefereeGoingContract.Presenter {
+        Waiting4JoinMasterContract.Presenter, Waiting4JoinSlaveContract.Presenter,
+        RefereeGoingContract.Presenter {
 
     private FirebaseFirestore mDb;
     private MainContract.View mMainView;
@@ -44,7 +47,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private CourtsMapPresenter mCourtsMapPresenter;
 
     private Want2CreateRoomPresenter mWant2CreateRoomPresenter;
-    private Waiting4JoinPresenter mWaiting4JoinPresenter;
+    private Waiting4JoinMasterPresenter mWaiting4JoinMasterPresenter;
+    private Waiting4JoinSlavePresenter mWaiting4JoinSlavePresenter;
     private RefereeGoingPresenter mPlayingOfRefereePresenter;
 
 //    public MainPresenter(
@@ -88,8 +92,12 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mWant2CreateRoomPresenter = checkNotNull(want2CreateRoomPresenter);
     }
 
-    void setWaiting4JoinPresenter(Waiting4JoinPresenter waiting4JoinPresenter) {
-        mWaiting4JoinPresenter = checkNotNull(waiting4JoinPresenter);
+    void setWaiting4JoinPresenter(Waiting4JoinMasterPresenter waiting4JoinPresenter) {
+        mWaiting4JoinMasterPresenter = checkNotNull(waiting4JoinPresenter);
+    }
+
+    void setWaiting4JoinSlavePresenter(Waiting4JoinSlavePresenter waiting4JoinSlavePresenter) {
+        mWaiting4JoinSlavePresenter = checkNotNull(waiting4JoinSlavePresenter);
     }
 
     void setGamePlayingOfRefereePresenter(RefereeGoingPresenter playingOfRefereePresenter) {
@@ -161,6 +169,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     }
 
+    /**
+     * Open Wait4Join
+     */
+
     @Override
     public void forced2FinishPlayingUi() {
 
@@ -209,6 +221,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void openGamePlayingOfReferee() {
         mMainView.openGamePlayingOfRefereeUi();
+    }
+
+    @Override
+    public void openGamePlayingOfSlave() {
+//        mMainView.openGamePlayingOfSlaveUi();
     }
 
     @Override
@@ -360,6 +377,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void openWant2CreateRoom() {
         mMainView.openWant2CreateRoomUi();
+    }
+
+    @Override
+    public void openWaiting4JoinSlave() {
+        mMainView.openWaiting4JoinSlaveUi();
     }
 
 

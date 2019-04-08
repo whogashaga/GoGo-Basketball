@@ -44,6 +44,11 @@ public class Looking4RoomPresenter implements Looking4RoomContract.Presenter {
     }
 
     @Override
+    public void openWaiting4JoinSlave() {
+
+    }
+
+    @Override
     public void start() {
 
     }

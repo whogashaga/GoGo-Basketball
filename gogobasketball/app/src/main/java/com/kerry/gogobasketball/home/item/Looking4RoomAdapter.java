@@ -13,7 +13,7 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
 
     Looking4RoomContract.Presenter mPresenter;
 
-    public Looking4RoomAdapter(Looking4RoomContract.Presenter presenter){
+    public Looking4RoomAdapter(Looking4RoomContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
@@ -34,14 +34,14 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
         return 6;
     }
 
-    private class RoomViewHolder extends RecyclerView.ViewHolder{
+    private class RoomViewHolder extends RecyclerView.ViewHolder {
 
         private View mLayout;
+
         private TextView mRoomName;
         private TextView mLocation;
         private TextView mPlayerCount;
         private TextView mRefereeCount;
-
         public RoomViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -50,6 +50,9 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
             mPlayerCount = itemView.findViewById(R.id.text_item_room_current_player);
             mRefereeCount = itemView.findViewById(R.id.text_item_room_current_referee);
             mLayout = itemView.findViewById(R.id.item_child_looking4room);
+            mLayout.setOnClickListener(view -> {
+                mPresenter.openWaiting4JoinSlave();
+            });
         }
 
         public TextView getRoomName() {
@@ -72,4 +75,5 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
             return mLayout;
         }
     }
+
 }

@@ -1,4 +1,4 @@
-package com.kerry.gogobasketball.waiting4join;
+package com.kerry.gogobasketball.waiting4join.master;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -19,12 +19,12 @@ import com.kerry.gogobasketball.R;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContract.View,
+public class Waiting4JoinMasterFragment extends Fragment implements Waiting4JoinMasterContract.View,
         View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
     View mRoot;
 
-    private Waiting4JoinContract.Presenter mPresenter;
+    private Waiting4JoinMasterContract.Presenter mPresenter;
     private RadioGroup mRadioGroupTimer;
     private Spinner mSpinnerMinuteSelector;
     private TextView mTextMinute;
@@ -33,11 +33,11 @@ public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContra
     private Button mBtnCancel;
     private Button mBtnStartGame;
 
-    public Waiting4JoinFragment() {
+    public Waiting4JoinMasterFragment() {
     }
 
-    public static Waiting4JoinFragment newInstance() {
-        return new Waiting4JoinFragment();
+    public static Waiting4JoinMasterFragment newInstance() {
+        return new Waiting4JoinMasterFragment();
     }
 
     @Override
@@ -47,7 +47,7 @@ public class Waiting4JoinFragment extends Fragment implements Waiting4JoinContra
     }
 
     @Override
-    public void setPresenter(Waiting4JoinContract.Presenter presenter) {
+    public void setPresenter(Waiting4JoinMasterContract.Presenter presenter) {
         mPresenter = checkNotNull(presenter);
     }
 

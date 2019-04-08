@@ -22,8 +22,10 @@ import com.kerry.gogobasketball.profile.ProfilePresenter;
 import com.kerry.gogobasketball.rank.RankFragment;
 import com.kerry.gogobasketball.rank.RankPresenter;
 import com.kerry.gogobasketball.util.ActivityUtils;
-import com.kerry.gogobasketball.waiting4join.Waiting4JoinFragment;
-import com.kerry.gogobasketball.waiting4join.Waiting4JoinPresenter;
+import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterFragment;
+import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterPresenter;
+import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlaveFragment;
+import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlavePresenter;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomFragment;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomPresenter;
 
@@ -41,7 +43,8 @@ public class MainMvpController {
     private ProfilePresenter mProfilePresenter;
 
     private Want2CreateRoomPresenter mWant2CreateRoomPresenter;
-    private Waiting4JoinPresenter mWaiting4JoinPresenter;
+    private Waiting4JoinMasterPresenter mWaiting4JoinMasterPresenter;
+    private Waiting4JoinSlavePresenter mWaiting4JoinSlavePresenter;
     private RefereeGoingPresenter mGamePlayingPresenterOfRefereePresenter;
 
     private Looking4RoomPresenter mLooking4RoomPresenter;
@@ -185,14 +188,30 @@ public class MainMvpController {
      */
     void findOrCreateWaiting4JoinView() {
 
-        Waiting4JoinFragment waiting4JoinFragment = createWaiting4JoinFragment();
+        Waiting4JoinMasterFragment waiting4JoinFragment = createWaiting4JoinFragment();
 
-        mWaiting4JoinPresenter = new Waiting4JoinPresenter(waiting4JoinFragment);
+        mWaiting4JoinMasterPresenter = new Waiting4JoinMasterPresenter(waiting4JoinFragment);
 
-        mMainPresenter.setWaiting4JoinPresenter(mWaiting4JoinPresenter);
+        mMainPresenter.setWaiting4JoinPresenter(mWaiting4JoinMasterPresenter);
         waiting4JoinFragment.setPresenter(mMainPresenter);
     }
 
+    /**
+     * Waiting4JoinSlave View
+     */
+    void findOrCreateWaiting4JoinSlaveView() {
+
+        Waiting4JoinSlaveFragment waiting4JoinSlaveFragment = createWaiting4JoinSlaveFragment();
+
+        mWaiting4JoinSlavePresenter = new Waiting4JoinSlavePresenter(waiting4JoinSlaveFragment);
+
+        mMainPresenter.setWaiting4JoinSlavePresenter(mWaiting4JoinSlavePresenter);
+        waiting4JoinSlaveFragment.setPresenter(mMainPresenter);
+    }
+
+    /**
+     * GamePlayingOfReferee View
+     */
     void findOrCreateGamePlayingOfRefereeView() {
 
         RefereeGoingFragment gamePlayingOfRefereeFragment = createGamePlayingOfRefereeFragment();
@@ -350,17 +369,33 @@ public class MainMvpController {
     /**
      * Waiting4Join Fragment
      *
-     * @return Waiting4JoinFragment
+     * @return Waiting4JoinMasterFragment
      */
     @NonNull
-    private Waiting4JoinFragment createWaiting4JoinFragment() {
+    private Waiting4JoinMasterFragment createWaiting4JoinFragment() {
 
-        Waiting4JoinFragment waiting4JoinFragmentFragment = Waiting4JoinFragment.newInstance();
+        Waiting4JoinMasterFragment waiting4JoinFragmentFragment = Waiting4JoinMasterFragment.newInstance();
 
         ActivityUtils.addFragmentByTag(
                 getFragmentManager(), waiting4JoinFragmentFragment, WAITING4JOIN);
 
         return waiting4JoinFragmentFragment;
+    }
+
+    /**
+     * Waiting4JoinSlave Fragment
+     *
+     * @return Waiting4JoinSlaveFragment
+     */
+    @NonNull
+    private Waiting4JoinSlaveFragment createWaiting4JoinSlaveFragment() {
+
+        Waiting4JoinSlaveFragment waiting4JoinSlaveFragment = Waiting4JoinSlaveFragment.newInstance();
+
+        ActivityUtils.addFragmentByTag(
+                getFragmentManager(), waiting4JoinSlaveFragment, WAITING4JOIN);
+
+        return waiting4JoinSlaveFragment;
     }
 
     /**

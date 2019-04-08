@@ -1,14 +1,14 @@
-package com.kerry.gogobasketball.waiting4join;
-
-import static com.google.common.base.Preconditions.checkNotNull;
+package com.kerry.gogobasketball.waiting4join.slave;
 
 import android.support.annotation.NonNull;
 
-public class Waiting4JoinPresenter implements Waiting4JoinContract.Presenter {
+import static com.google.common.base.Preconditions.checkNotNull;
 
-    private final Waiting4JoinContract.View mWaiting4JoineView;
+public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Presenter {
 
-    public Waiting4JoinPresenter(@NonNull Waiting4JoinContract.View waiting4JoinView) {
+    private final Waiting4JoinSlaveContract.View mWaiting4JoineView;
+
+    public Waiting4JoinSlavePresenter(@NonNull Waiting4JoinSlaveContract.View waiting4JoinView) {
         mWaiting4JoineView = checkNotNull(waiting4JoinView, "Waiting4JoinView cannot be null!");
         mWaiting4JoineView.setPresenter(this);
     }
@@ -39,7 +39,7 @@ public class Waiting4JoinPresenter implements Waiting4JoinContract.Presenter {
     }
 
     @Override
-    public void openGamePlayingOfReferee() {
+    public void openGamePlayingOfSlave() {
 
     }
 
