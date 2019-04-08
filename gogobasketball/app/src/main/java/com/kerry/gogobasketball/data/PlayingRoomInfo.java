@@ -1,31 +1,41 @@
 package com.kerry.gogobasketball.data;
 
+import java.util.ArrayList;
+
 public class PlayingRoomInfo {
 
-    private String mId;
-    private String mGender;
+    private String mLocation;
+    private String mRoomName;
+    private ArrayList<PlayingDerGamers> mPlayingDerGamersList;
 
     public PlayingRoomInfo() {
+        mLocation = "";
+        mRoomName = "";
+        mPlayingDerGamersList = new ArrayList<>();
     }
 
-    public PlayingRoomInfo(String id, String gender) {
-        mId = id;
-        mGender = gender;
+    public String getLocation() {
+        return mLocation;
     }
 
-    public String getId() {
-        return mId;
+    public void setLocation(String location) {
+        this.mLocation = location;
     }
 
-    public void setId(String id) {
-        this.mId = id;
+    public String getRoomName() {
+        return mRoomName;
     }
 
-    public String getGender() {
-        return mGender;
+    public void setRoomName(String roomName) {
+        this.mRoomName = roomName;
     }
 
-    public void setGender(String gender) {
-        this.mGender = gender;
+    public ArrayList<PlayingDerGamers> getPlayingDerGamersList() {
+        return mPlayingDerGamersList;
     }
+
+    public void setPlayingDerGamersList(ArrayList<PlayingDerGamers> playingDerGamersList) {
+        this.mPlayingDerGamersList = playingDerGamersList;
+    }
+
 }

@@ -25,7 +25,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.kerry.gogobasketball.data.PlayingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
@@ -70,8 +69,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 //        createWaitingRoom();
 //        addWaitingDerPlayers();
 
-        postCustomObject();
-        getCustomObject();
+//        postCustomObject();
+//        getCustomObject();
 
     }
 

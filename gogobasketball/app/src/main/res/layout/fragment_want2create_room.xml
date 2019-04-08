@@ -65,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="@string/location"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_want2create_room_name_title" />
@@ -76,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="@string/referee_or_not"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_want2create_location_title" />
@@ -106,7 +106,6 @@
         android:layout_height="@dimen/height_payment_editor"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:entries="@array/basketball_courts_list"
         android:prompt="@string/select_court"
         android:spinnerMode="dialog"
         app:layout_constraintBottom_toBottomOf="@+id/text_want2create_location_title"

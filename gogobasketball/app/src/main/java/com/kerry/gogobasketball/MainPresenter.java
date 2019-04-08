@@ -238,25 +238,29 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mMainView.openWait4JoinUi();
     }
 
+    /**
+     * Open Want2CreateRoom
+     */
+
     @Override
     public void finishWant2CreateRoomUi() {
         mMainView.popBackStackUi();
     }
 
-    /**
-     * Open Want2CreateRoom
-     */
+    @Override
+    public void onRoomNameEditTextChange(CharSequence charSequence) {
+        mWant2CreateRoomPresenter.onRoomNameEditTextChange(charSequence);
+    }
+
     @Override
     public void updateRoomName2Firebase() {
-
+        mWant2CreateRoomPresenter.updateRoomName2Firebase();
     }
 
     @Override
-    public void updateLocation2Firebase() {
-
+    public void getCourtLocationFromSpinner(String courtLocation) {
+        mWant2CreateRoomPresenter.getCourtLocationFromSpinner(courtLocation);
     }
-
-
 
     /* ------------------------------------------------------------------------------------------ */
 

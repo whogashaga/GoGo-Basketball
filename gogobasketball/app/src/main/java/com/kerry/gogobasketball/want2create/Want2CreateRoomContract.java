@@ -25,11 +25,13 @@ public interface Want2CreateRoomContract {
 
         void updateRoomName2Firebase();
 
-        void updateLocation2Firebase();
+        void getCourtLocationFromSpinner(String courtLocation);
 
         void openWaitingJoin();
 
         void finishWant2CreateRoomUi();
+
+        void onRoomNameEditTextChange(CharSequence charSequence);
 
     }
 }

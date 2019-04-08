@@ -1,29 +1,23 @@
 package com.kerry.gogobasketball.data;
 
-public class WaitingRoomSeats {
+public class UserInfo {
 
     private String mAvatar;
     private String mId;
     private String mPosition;
     private String mGender;
-    private int mSort;
-    private boolean mSeatAvailable;
+    private String mEmail;
+    private RecordOfPlayer mPlayerRecord;
+    private RecordOfReferee mRefereeRecord;
 
-    public WaitingRoomSeats(){
+    public UserInfo(){
         mAvatar = "";
         mId = "";
         mPosition = "";
         mGender = "";
-        mSort = -1;
-        mSeatAvailable = false;
-    }
-
-    public int getSort() {
-        return mSort;
-    }
-
-    public void setSort(int sort) {
-        this.mSort = sort;
+        mEmail = "";
+        mPlayerRecord = new RecordOfPlayer();
+        mRefereeRecord = new RecordOfReferee();
     }
 
     public String getAvatar() {
@@ -58,11 +52,27 @@ public class WaitingRoomSeats {
         this.mGender = gender;
     }
 
-    public boolean isSeatAvailable() {
-        return mSeatAvailable;
+    public String getEmail() {
+        return mEmail;
     }
 
-    public void setSeatAvailable(boolean seatAvailable) {
-        this.mSeatAvailable = seatAvailable;
+    public void setEmail(String email) {
+        this.mEmail = email;
+    }
+
+    public RecordOfPlayer getPlayerRecord() {
+        return mPlayerRecord;
+    }
+
+    public void setPlayerRecord(RecordOfPlayer playerRecord) {
+        this.mPlayerRecord = playerRecord;
+    }
+
+    public RecordOfReferee getRefereeRecord() {
+        return mRefereeRecord;
+    }
+
+    public void setRefereeRecord(RecordOfReferee refereeRecord) {
+        this.mRefereeRecord = refereeRecord;
     }
 }
