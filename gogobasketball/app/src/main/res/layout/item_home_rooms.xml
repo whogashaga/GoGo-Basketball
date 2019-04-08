@@ -17,6 +17,7 @@
         app:srcCompat="@drawable/ic_room" />
 
     <TextView
+        style="@style/RoomRecyclerView"
         android:id="@+id/text_item_room_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,6 +37,7 @@
         app:srcCompat="@drawable/ic_location" />
 
     <TextView
+        style="@style/RoomRecyclerView"
         android:id="@+id/text_item_room_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,6 +59,7 @@
         app:srcCompat="@drawable/ic_player" />
 
     <TextView
+        style="@style/RoomRecyclerView"
         android:id="@+id/text_item_room_current_player"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,6 +70,7 @@
         app:layout_constraintTop_toTopOf="@+id/image_item_player_pic" />
 
     <TextView
+        style="@style/RoomRecyclerView"
         android:id="@+id/text_item_room_player_separation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,6 +81,7 @@
         app:layout_constraintTop_toTopOf="@+id/image_item_player_pic" />
 
     <TextView
+        style="@style/RoomRecyclerView"
         android:id="@+id/text_item_room_total_player"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -97,6 +102,7 @@
         app:srcCompat="@drawable/ic_whistle" />
 
     <TextView
+        style="@style/RoomRecyclerView"
         android:id="@+id/text_item_room_current_referee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -107,6 +113,7 @@
         app:layout_constraintTop_toTopOf="@+id/image_item_referee_pic" />
 
     <TextView
+        style="@style/RoomRecyclerView"
         android:id="@+id/text_item_room_referee_separation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -117,11 +124,12 @@
         app:layout_constraintTop_toTopOf="@+id/image_item_referee_pic" />
 
     <TextView
+        style="@style/RoomRecyclerView"
         android:id="@+id/text_item_room_total_referee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        android:text="6"
+        android:text="1"
         app:layout_constraintBottom_toBottomOf="@+id/image_item_referee_pic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/image_item_referee_pic" />

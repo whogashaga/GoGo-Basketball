@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,20 +15,21 @@ import android.widget.Button;
 
 import com.kerry.gogobasketball.MainMvpController;
 import com.kerry.gogobasketball.R;
+import com.kerry.gogobasketball.component.GridSpacingItemDecoration;
 
-public class LookingForRoomFragment extends Fragment implements LookingForRoomContract.View, View.OnClickListener {
+public class Looking4RoomFragment extends Fragment implements Looking4RoomContract.View, View.OnClickListener {
 
-    private LookingForRoomContract.Presenter mPresenter;
-
+    private Looking4RoomContract.Presenter mPresenter;
+    private Looking4RoomAdapter mLooking4RoomAdapter;
 
     private String mItemType;
     private Button mBtnBuildRoom;
 
-    public LookingForRoomFragment() {
+    public Looking4RoomFragment() {
     }
 
-    public static LookingForRoomFragment newInstance() {
-        return new LookingForRoomFragment();
+    public static Looking4RoomFragment newInstance() {
+        return new Looking4RoomFragment();
     }
 
     @Override
@@ -42,6 +45,13 @@ public class LookingForRoomFragment extends Fragment implements LookingForRoomCo
         mBtnBuildRoom = root.findViewById(R.id.btn_home_rooms_build);
         mBtnBuildRoom.setOnClickListener(this);
 
+        mLooking4RoomAdapter = new Looking4RoomAdapter(mPresenter);
+        RecyclerView recyclerView = root.findViewById(R.id.recycler_home_child_room);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(1,
+                getContext().getResources().getDimensionPixelSize(R.dimen.space_look4room_grid),
+                true));
+        recyclerView.setAdapter(mLooking4RoomAdapter);
 
         return root;
     }
@@ -65,7 +75,7 @@ public class LookingForRoomFragment extends Fragment implements LookingForRoomCo
     }
 
     @Override
-    public void setPresenter(LookingForRoomContract.Presenter presenter) {
+    public void setPresenter(Looking4RoomContract.Presenter presenter) {
         mPresenter = checkNotNull(presenter);
     }
 

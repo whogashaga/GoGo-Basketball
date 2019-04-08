@@ -11,8 +11,8 @@ import com.kerry.gogobasketball.friends.FriendFragment;
 import com.kerry.gogobasketball.friends.FriendPresenter;
 import com.kerry.gogobasketball.home.HomeFragment;
 import com.kerry.gogobasketball.home.HomePresenter;
-import com.kerry.gogobasketball.home.item.LookingForRoomFragment;
-import com.kerry.gogobasketball.home.item.LookingForRoomPresenter;
+import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
+import com.kerry.gogobasketball.home.item.Looking4RoomPresenter;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapPresenter;
 import com.kerry.gogobasketball.playing_referee.RefereeGoingFragment;
@@ -44,7 +44,7 @@ public class MainMvpController {
     private Waiting4JoinPresenter mWaiting4JoinPresenter;
     private RefereeGoingPresenter mGamePlayingPresenterOfRefereePresenter;
 
-    private LookingForRoomPresenter mLookingForRoomPresenter;
+    private Looking4RoomPresenter mLooking4RoomPresenter;
     private CourtsMapPresenter mCourtsMapPresenter;
 
     @Retention(RetentionPolicy.SOURCE)
@@ -140,13 +140,13 @@ public class MainMvpController {
      *
      * @return CatalogItemFragment: Rooms Fragment
      */
-    LookingForRoomFragment findOrCreateLookingForRoomView() {
+    Looking4RoomFragment findOrCreateLookingForRoomView() {
 
-        LookingForRoomFragment fragment = findOrCreateRoomsItemFragment(ROOMS);
+        Looking4RoomFragment fragment = findOrCreateRoomsItemFragment(ROOMS);
 
-        mLookingForRoomPresenter = new LookingForRoomPresenter(fragment);
+        mLooking4RoomPresenter = new Looking4RoomPresenter(fragment);
         fragment.setPresenter(mMainPresenter);
-        mMainPresenter.setLookingForRoomPresenter(mLookingForRoomPresenter);
+        mMainPresenter.setLookingForRoomPresenter(mLooking4RoomPresenter);
 
         return fragment;
     }
@@ -294,17 +294,17 @@ public class MainMvpController {
      * Home Item Fragment: Map
      *
      * @param itemType: @HomeItem
-     * @return LookingForRoomFragment
+     * @return Looking4RoomFragment
      */
     @NonNull
-    private LookingForRoomFragment findOrCreateRoomsItemFragment(@HomeItem String itemType) {
+    private Looking4RoomFragment findOrCreateRoomsItemFragment(@HomeItem String itemType) {
 
-        LookingForRoomFragment fragment =
-                (LookingForRoomFragment) (getFragmentManager().findFragmentByTag(HOME))
+        Looking4RoomFragment fragment =
+                (Looking4RoomFragment) (getFragmentManager().findFragmentByTag(HOME))
                         .getChildFragmentManager().findFragmentByTag(itemType);
         if (fragment == null) {
             // Create the fragment
-            fragment = LookingForRoomFragment.newInstance();
+            fragment = Looking4RoomFragment.newInstance();
         }
 
         return fragment;

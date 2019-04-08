@@ -10,9 +10,9 @@ import com.kerry.gogobasketball.friends.FriendContract;
 import com.kerry.gogobasketball.friends.FriendPresenter;
 import com.kerry.gogobasketball.home.HomeContract;
 import com.kerry.gogobasketball.home.HomePresenter;
-import com.kerry.gogobasketball.home.item.LookingForRoomContract;
-import com.kerry.gogobasketball.home.item.LookingForRoomFragment;
-import com.kerry.gogobasketball.home.item.LookingForRoomPresenter;
+import com.kerry.gogobasketball.home.item.Looking4RoomContract;
+import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
+import com.kerry.gogobasketball.home.item.Looking4RoomPresenter;
 import com.kerry.gogobasketball.home.map.CourtsMapContract;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapPresenter;
@@ -28,7 +28,7 @@ import com.kerry.gogobasketball.want2create.Want2CreateRoomContract;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomPresenter;
 
 public class MainPresenter implements MainContract.Presenter, HomeContract.Presenter,
-        LookingForRoomContract.Presenter, CourtsMapContract.Presenter, ProfileContract.Presenter,
+        Looking4RoomContract.Presenter, CourtsMapContract.Presenter, ProfileContract.Presenter,
         FriendContract.Presenter, RankContract.Presenter, Want2CreateRoomContract.Presenter,
         Waiting4JoinContract.Presenter, RefereeGoingContract.Presenter {
 
@@ -40,7 +40,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private RankPresenter mRankPresenter;
     private ProfilePresenter mProfilePresenter;
 
-    private LookingForRoomPresenter mLookingForRoomPresenter;
+    private Looking4RoomPresenter mLooking4RoomPresenter;
     private CourtsMapPresenter mCourtsMapPresenter;
 
     private Want2CreateRoomPresenter mWant2CreateRoomPresenter;
@@ -76,8 +76,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mProfilePresenter = checkNotNull(profilePresenter);
     }
 
-    void setLookingForRoomPresenter(LookingForRoomPresenter lookingForRoomPresenter) {
-        mLookingForRoomPresenter = checkNotNull(lookingForRoomPresenter);
+    void setLookingForRoomPresenter(Looking4RoomPresenter looking4RoomPresenter) {
+        mLooking4RoomPresenter = checkNotNull(looking4RoomPresenter);
     }
 
     void setCourtsMapPresenter(CourtsMapPresenter courtsMapPresenter) {
@@ -325,7 +325,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     /* Home View Pager Use Only */
 
     @Override
-    public LookingForRoomFragment findRoomsView() {
+    public Looking4RoomFragment findRoomsView() {
         return mMainView.findHomeView();
     }
 

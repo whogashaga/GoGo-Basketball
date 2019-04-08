@@ -4,7 +4,7 @@ import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
 import com.kerry.gogobasketball.MainMvpController;
 
-public interface LookingForRoomContract {
+public interface Looking4RoomContract {
 
     interface View extends BaseView<Presenter> {
 

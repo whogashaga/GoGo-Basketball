@@ -62,6 +62,14 @@
         <item name="android:letterSpacing">0.15</item>
     </style>
 
+    <style name="RoomRecyclerView">
+        <item name="android:fontFamily">@font/noto_sans</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">@color/black_3f3a3a</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+
     <style name="PlayingBigTitle">
         <item name="android:fontFamily">@font/stalinist_one</item>
         <item name="android:textColor">@color/black_3f3a3a</item>

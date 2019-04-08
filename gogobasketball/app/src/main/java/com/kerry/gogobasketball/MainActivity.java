@@ -15,8 +15,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,7 +24,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.kerry.gogobasketball.home.item.LookingForRoomFragment;
+import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 
 import java.util.ArrayList;
@@ -354,7 +352,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     /* ------------------------------------------------------------------------------------------ */
 
     @Override
-    public LookingForRoomFragment findHomeView() {
+    public Looking4RoomFragment findHomeView() {
         return mMainMvpController.findOrCreateLookingForRoomView();
     }
 

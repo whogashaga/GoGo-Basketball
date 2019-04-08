@@ -4,11 +4,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.support.annotation.NonNull;
 
-public class LookingForRoomPresenter implements LookingForRoomContract.Presenter {
+public class Looking4RoomPresenter implements Looking4RoomContract.Presenter {
 
-    private final LookingForRoomContract.View mLookingForRoomView;
+    private final Looking4RoomContract.View mLookingForRoomView;
 
-    public LookingForRoomPresenter(@NonNull LookingForRoomContract.View lookingForRoomView) {
+    public Looking4RoomPresenter(@NonNull Looking4RoomContract.View lookingForRoomView) {
         mLookingForRoomView = checkNotNull(lookingForRoomView, "catalogItemView cannot be null!");
         mLookingForRoomView.setPresenter(this);
     }

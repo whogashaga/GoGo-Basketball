@@ -2,10 +2,7 @@ package com.kerry.gogobasketball.home;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import android.app.Activity;
-import android.support.v4.app.Fragment;
-
-import com.kerry.gogobasketball.home.item.LookingForRoomFragment;
+import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 
 public class HomePresenter implements HomeContract.Presenter {
@@ -23,7 +20,7 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     @Override
-    public LookingForRoomFragment findRoomsView() {
+    public Looking4RoomFragment findRoomsView() {
         return null;
     }
 

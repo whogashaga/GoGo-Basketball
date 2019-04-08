@@ -2,8 +2,6 @@ package com.kerry.gogobasketball.home.map;
 
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
-import com.kerry.gogobasketball.MainMvpController;
-import com.kerry.gogobasketball.home.item.LookingForRoomContract;
 
 public interface CourtsMapContract {
 

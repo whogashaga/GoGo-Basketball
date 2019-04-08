@@ -73,4 +73,7 @@
     <dimen name="height_logo">39dp</dimen>
     <dimen name="duration_logo_translate">-575dp</dimen>
 
+    <!-- LookingForRoom -->
+    <dimen name="space_look4room_grid">16dp</dimen>
+
 </resources>
