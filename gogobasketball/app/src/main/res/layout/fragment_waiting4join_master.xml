@@ -13,7 +13,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/waiting_team_a_player1_seat"
         android:layout_width="170dp"
-        android:layout_height="160dp"
+        android:layout_height="145dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
@@ -114,7 +114,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/waiting_team_a_player2_seat"
         android:layout_width="170dp"
-        android:layout_height="160dp"
+        android:layout_height="145dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/outline_team_a_seat"
         app:layout_constraintBottom_toBottomOf="@+id/waiting_team_a_player1_seat"
@@ -212,7 +212,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/waiting_team_a_player3_seat"
         android:layout_width="170dp"
-        android:layout_height="160dp"
+        android:layout_height="145dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/outline_team_a_seat"
         app:layout_constraintBottom_toBottomOf="@+id/waiting_team_a_player2_seat"
@@ -314,7 +314,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/waiting_team_b_player1_seat"
         android:layout_width="170dp"
-        android:layout_height="160dp"
+        android:layout_height="145dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/outline_team_b_seat"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -412,7 +412,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/waiting_team_b_player2_seat"
         android:layout_width="170dp"
-        android:layout_height="160dp"
+        android:layout_height="145dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/outline_team_b_seat"
         app:layout_constraintBottom_toBottomOf="@+id/waiting_team_b_player1_seat"
@@ -511,7 +511,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/waiting_team_b_player3_seat"
         android:layout_width="170dp"
-        android:layout_height="160dp"
+        android:layout_height="145dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/outline_team_b_seat"
         app:layout_constraintBottom_toBottomOf="@+id/waiting_team_b_player2_seat"
@@ -612,7 +612,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/waiting_referee_seat"
         android:layout_width="170dp"
-        android:layout_height="160dp"
+        android:layout_height="145dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/outline_referee_seat"
@@ -808,7 +808,7 @@
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="12dp"
         android:entries="@array/timer_list"
         android:prompt="@string/select_time"
         android:background="@drawable/outline_minutes"
@@ -833,10 +833,10 @@
 
     <Button
         android:id="@+id/btn_waiting4join_start"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/button_effect_start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_waiting4join_cancel"
@@ -845,8 +845,8 @@
 
     <Button
         android:id="@+id/btn_waiting4join_cancel"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/button_effect_cancel"
         app:layout_constraintBottom_toBottomOf="@+id/btn_waiting4join_start"

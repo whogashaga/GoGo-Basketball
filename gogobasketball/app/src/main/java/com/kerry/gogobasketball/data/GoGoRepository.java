@@ -7,7 +7,7 @@ public class GoGoRepository implements GoGoDataSource {
 
 
     @Override
-    public void getRoomInformation(@NonNull GetRoomInfoCallback callback) {
+    public void getWaitingRoomInfo(@NonNull GetWaitingRoomInfoCallback callback) {
 
     }
 }

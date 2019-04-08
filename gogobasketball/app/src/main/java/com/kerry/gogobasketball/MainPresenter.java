@@ -16,8 +16,8 @@ import com.kerry.gogobasketball.home.item.LookingForRoomPresenter;
 import com.kerry.gogobasketball.home.map.CourtsMapContract;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapPresenter;
-import com.kerry.gogobasketball.playing0referee.GamePlayingOfRefereeContract;
-import com.kerry.gogobasketball.playing0referee.GamePlayingOfRefereePresenter;
+import com.kerry.gogobasketball.playing_referee.RefereeGoingContract;
+import com.kerry.gogobasketball.playing_referee.RefereeGoingPresenter;
 import com.kerry.gogobasketball.profile.ProfileContract;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
 import com.kerry.gogobasketball.rank.RankContract;
@@ -30,7 +30,7 @@ import com.kerry.gogobasketball.want2create.Want2CreateRoomPresenter;
 public class MainPresenter implements MainContract.Presenter, HomeContract.Presenter,
         LookingForRoomContract.Presenter, CourtsMapContract.Presenter, ProfileContract.Presenter,
         FriendContract.Presenter, RankContract.Presenter, Want2CreateRoomContract.Presenter,
-        Waiting4JoinContract.Presenter, GamePlayingOfRefereeContract.Presenter {
+        Waiting4JoinContract.Presenter, RefereeGoingContract.Presenter {
 
     private FirebaseFirestore mDb;
     private MainContract.View mMainView;
@@ -45,7 +45,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     private Want2CreateRoomPresenter mWant2CreateRoomPresenter;
     private Waiting4JoinPresenter mWaiting4JoinPresenter;
-    private GamePlayingOfRefereePresenter mPlayingOfRefereePresenter;
+    private RefereeGoingPresenter mPlayingOfRefereePresenter;
 
 //    public MainPresenter(
 //            @NonNull StylishRepository stylishRepository,
@@ -92,7 +92,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mWaiting4JoinPresenter = checkNotNull(waiting4JoinPresenter);
     }
 
-    void setGamePlayingOfRefereePresenter(GamePlayingOfRefereePresenter playingOfRefereePresenter) {
+    void setGamePlayingOfRefereePresenter(RefereeGoingPresenter playingOfRefereePresenter) {
         mPlayingOfRefereePresenter = checkNotNull(playingOfRefereePresenter);
     }
 

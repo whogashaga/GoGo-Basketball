@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/outline_room_recycler_view">
+
+    <ImageView
+        android:id="@+id/image_item_room_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_room" />
+
+    <TextView
+        android:id="@+id/text_item_room_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Room Name"
+        app:layout_constraintBottom_toBottomOf="@+id/image_item_room_pic"
+        app:layout_constraintStart_toEndOf="@+id/image_item_room_pic"
+        app:layout_constraintTop_toTopOf="@+id/image_item_room_pic" />
+
+    <ImageView
+        android:id="@+id/image_item_location_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/image_item_room_pic"
+        app:layout_constraintTop_toBottomOf="@+id/image_item_room_pic"
+        app:srcCompat="@drawable/ic_location" />
+
+    <TextView
+        android:id="@+id/text_item_room_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="location"
+        app:layout_constraintBottom_toBottomOf="@+id/image_item_location_pic"
+        app:layout_constraintStart_toEndOf="@+id/image_item_location_pic"
+        app:layout_constraintTop_toTopOf="@+id/image_item_location_pic" />
+
+    <ImageView
+        android:id="@+id/image_item_player_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/image_item_room_pic"
+        app:layout_constraintTop_toBottomOf="@+id/image_item_location_pic"
+        app:srcCompat="@drawable/ic_player" />
+
+    <TextView
+        android:id="@+id/text_item_room_current_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/image_item_player_pic"
+        app:layout_constraintStart_toEndOf="@+id/image_item_player_pic"
+        app:layout_constraintTop_toTopOf="@+id/image_item_player_pic" />
+
+    <TextView
+        android:id="@+id/text_item_room_player_separation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="/"
+        app:layout_constraintBottom_toBottomOf="@+id/image_item_player_pic"
+        app:layout_constraintStart_toEndOf="@+id/text_item_room_current_player"
+        app:layout_constraintTop_toTopOf="@+id/image_item_player_pic" />
+
+    <TextView
+        android:id="@+id/text_item_room_total_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="6"
+        app:layout_constraintBottom_toBottomOf="@+id/image_item_player_pic"
+        app:layout_constraintStart_toEndOf="@+id/text_item_room_player_separation"
+        app:layout_constraintTop_toTopOf="@+id/image_item_player_pic" />
+
+    <ImageView
+        android:id="@+id/image_item_referee_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_item_room_total_player"
+        app:layout_constraintEnd_toStartOf="@+id/text_item_room_current_referee"
+        app:layout_constraintTop_toTopOf="@+id/text_item_room_total_player"
+        app:srcCompat="@drawable/ic_whistle" />
+
+    <TextView
+        android:id="@+id/text_item_room_current_referee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/image_item_referee_pic"
+        app:layout_constraintEnd_toStartOf="@+id/text_item_room_referee_separation"
+        app:layout_constraintTop_toTopOf="@+id/image_item_referee_pic" />
+
+    <TextView
+        android:id="@+id/text_item_room_referee_separation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="/"
+        app:layout_constraintBottom_toBottomOf="@+id/image_item_referee_pic"
+        app:layout_constraintEnd_toStartOf="@+id/text_item_room_total_referee"
+        app:layout_constraintTop_toTopOf="@+id/image_item_referee_pic" />
+
+    <TextView
+        android:id="@+id/text_item_room_total_referee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="6"
+        app:layout_constraintBottom_toBottomOf="@+id/image_item_referee_pic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image_item_referee_pic" />
+
+</android.support.constraint.ConstraintLayout>

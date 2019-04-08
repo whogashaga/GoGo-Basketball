@@ -1,4 +1,4 @@
-package com.kerry.gogobasketball.playing0referee;
+package com.kerry.gogobasketball.playing_referee;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.kerry.gogobasketball.R;
 
-public class GamePlayingOfRefereeFragment extends Fragment implements GamePlayingOfRefereeContract.View, View.OnClickListener {
+public class RefereeGoingFragment extends Fragment implements RefereeGoingContract.View, View.OnClickListener {
 
     View mRoot;
     private Button mBtnP1ScorePlus, mBtnP1ScoreMinus;
@@ -59,9 +59,9 @@ public class GamePlayingOfRefereeFragment extends Fragment implements GamePlayin
     private int mIntScoreA;
     private int mIntScoreB;
 
-    private GamePlayingOfRefereeContract.Presenter mPresenter;
+    private RefereeGoingContract.Presenter mPresenter;
 
-    public GamePlayingOfRefereeFragment() {
+    public RefereeGoingFragment() {
         mIntScoreP1 = 0;
         mIntScoreP2 = 0;
         mIntScoreP3 = 0;
@@ -82,12 +82,12 @@ public class GamePlayingOfRefereeFragment extends Fragment implements GamePlayin
         mIntFoulP6 = 0;
     }
 
-    public static GamePlayingOfRefereeFragment newInstance() {
-        return new GamePlayingOfRefereeFragment();
+    public static RefereeGoingFragment newInstance() {
+        return new RefereeGoingFragment();
     }
 
     @Override
-    public void setPresenter(GamePlayingOfRefereeContract.Presenter presenter) {
+    public void setPresenter(RefereeGoingContract.Presenter presenter) {
         mPresenter = checkNotNull(presenter);
     }
 

@@ -4,12 +4,15 @@ import android.support.annotation.NonNull;
 
 public interface GoGoDataSource {
 
-    interface GetRoomInfoCallback {
+    interface GetWaitingRoomInfoCallback {
 
-        void onCompleted();
+        void onCompleted(WaitingRoomInfo roomInfo);
 
         void onError(String errorMessage);
     }
 
-    void getRoomInformation(@NonNull GetRoomInfoCallback callback);
+
+    void getWaitingRoomInfo(@NonNull GetWaitingRoomInfoCallback callback);
+
+
 }

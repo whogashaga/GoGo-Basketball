@@ -1,14 +1,14 @@
-package com.kerry.gogobasketball.playing0referee;
+package com.kerry.gogobasketball.playing_referee;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.support.annotation.NonNull;
 
-public class GamePlayingOfRefereePresenter implements GamePlayingOfRefereeContract.Presenter {
+public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
 
-    private final GamePlayingOfRefereeContract.View mGamePlayingView;
+    private final RefereeGoingContract.View mGamePlayingView;
 
-    public GamePlayingOfRefereePresenter(@NonNull GamePlayingOfRefereeContract.View waiting4JoinView) {
+    public RefereeGoingPresenter(@NonNull RefereeGoingContract.View waiting4JoinView) {
         mGamePlayingView = checkNotNull(waiting4JoinView, "GamePlayingView cannot be null!");
         mGamePlayingView.setPresenter(this);
     }

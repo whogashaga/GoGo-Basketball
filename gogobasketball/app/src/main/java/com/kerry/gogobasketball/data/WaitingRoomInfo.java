@@ -5,8 +5,16 @@ public class WaitingRoomInfo {
     private String mRoomName;
     private String mCourtLocation;
     private String mRefereeOnOff;
+    private int mPlayers;
+    private int mReferee;
 
-    public WaitingRoomInfo(){}
+    public WaitingRoomInfo() {
+        mRoomName = "";
+        mCourtLocation = "";
+        mRefereeOnOff = "";
+        mPlayers = 0;
+        mReferee = 0;
+    }
 
     public String getRoomName() {
         return mRoomName;
@@ -31,5 +39,22 @@ public class WaitingRoomInfo {
     public void setRefereeOnOff(String refereeOnOff) {
         this.mRefereeOnOff = refereeOnOff;
     }
+
+    public int getPlayers() {
+        return mPlayers;
+    }
+
+    public void setPlayers(int players) {
+        this.mPlayers = players;
+    }
+
+    public int getReferee() {
+        return mReferee;
+    }
+
+    public void setReferee(int referee) {
+        this.mReferee = referee;
+    }
+
 
 }

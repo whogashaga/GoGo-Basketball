@@ -1,9 +1,9 @@
-package com.kerry.gogobasketball.playing0referee;
+package com.kerry.gogobasketball.playing_referee;
 
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
 
-public interface GamePlayingOfRefereeContract {
+public interface RefereeGoingContract {
 
     interface View extends BaseView<Presenter> {
 

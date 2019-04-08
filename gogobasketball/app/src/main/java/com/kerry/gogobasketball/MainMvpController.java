@@ -15,8 +15,8 @@ import com.kerry.gogobasketball.home.item.LookingForRoomFragment;
 import com.kerry.gogobasketball.home.item.LookingForRoomPresenter;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapPresenter;
-import com.kerry.gogobasketball.playing0referee.GamePlayingOfRefereeFragment;
-import com.kerry.gogobasketball.playing0referee.GamePlayingOfRefereePresenter;
+import com.kerry.gogobasketball.playing_referee.RefereeGoingFragment;
+import com.kerry.gogobasketball.playing_referee.RefereeGoingPresenter;
 import com.kerry.gogobasketball.profile.ProfileFragment;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
 import com.kerry.gogobasketball.rank.RankFragment;
@@ -42,7 +42,7 @@ public class MainMvpController {
 
     private Want2CreateRoomPresenter mWant2CreateRoomPresenter;
     private Waiting4JoinPresenter mWaiting4JoinPresenter;
-    private GamePlayingOfRefereePresenter mGamePlayingPresenterOfRefereePresenter;
+    private RefereeGoingPresenter mGamePlayingPresenterOfRefereePresenter;
 
     private LookingForRoomPresenter mLookingForRoomPresenter;
     private CourtsMapPresenter mCourtsMapPresenter;
@@ -195,9 +195,9 @@ public class MainMvpController {
 
     void findOrCreateGamePlayingOfRefereeView() {
 
-        GamePlayingOfRefereeFragment gamePlayingOfRefereeFragment = createGamePlayingOfRefereeFragment();
+        RefereeGoingFragment gamePlayingOfRefereeFragment = createGamePlayingOfRefereeFragment();
 
-        mGamePlayingPresenterOfRefereePresenter = new GamePlayingOfRefereePresenter(gamePlayingOfRefereeFragment);
+        mGamePlayingPresenterOfRefereePresenter = new RefereeGoingPresenter(gamePlayingOfRefereeFragment);
 
         mMainPresenter.setGamePlayingOfRefereePresenter(mGamePlayingPresenterOfRefereePresenter);
         gamePlayingOfRefereeFragment.setPresenter(mMainPresenter);
@@ -366,12 +366,12 @@ public class MainMvpController {
     /**
      * GamePlayingOfReferee Fragment
      *
-     * @return GamePlayingOfRefereeFragment
+     * @return RefereeGoingFragment
      */
     @NonNull
-    private GamePlayingOfRefereeFragment createGamePlayingOfRefereeFragment() {
+    private RefereeGoingFragment createGamePlayingOfRefereeFragment() {
 
-        GamePlayingOfRefereeFragment gamePlayingFragmentOfReferee = GamePlayingOfRefereeFragment.newInstance();
+        RefereeGoingFragment gamePlayingFragmentOfReferee = RefereeGoingFragment.newInstance();
 
         ActivityUtils.addFragmentByTag(
                 getFragmentManager(), gamePlayingFragmentOfReferee, PLAYINGOFREFEREE);
