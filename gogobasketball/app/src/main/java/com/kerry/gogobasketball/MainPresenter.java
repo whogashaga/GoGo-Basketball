@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.friends.FriendContract;
 import com.kerry.gogobasketball.friends.FriendPresenter;
 import com.kerry.gogobasketball.home.HomeContract;
@@ -234,8 +235,13 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void openWaitingJoin() {
-        mMainView.openWait4JoinUi();
+    public void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo) {
+        mWaiting4JoinMasterPresenter.getRoomInfoFromWant2Create(waitingRoomInfo);
+    }
+
+    @Override
+    public void openWaitingJoin(WaitingRoomInfo waitingRoomInfo) {
+        mMainView.openWait4JoinUi(waitingRoomInfo);
     }
 
     /**

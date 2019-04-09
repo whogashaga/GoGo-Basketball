@@ -2,6 +2,7 @@ package com.kerry.gogobasketball.waiting4join.master;
 
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
+import com.kerry.gogobasketball.data.WaitingRoomInfo;
 
 public interface Waiting4JoinMasterContract {
 
@@ -12,6 +13,8 @@ public interface Waiting4JoinMasterContract {
         boolean needTimer();
 
         boolean isActive();
+
+        void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo);
 
     }
 
@@ -30,5 +33,7 @@ public interface Waiting4JoinMasterContract {
         void openGamePlayingOfReferee();
 
         void finishWaiting4JoinUi();
+
+        void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo);
     }
 }

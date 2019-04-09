@@ -2,6 +2,7 @@ package com.kerry.gogobasketball;
 
 import android.content.Intent;
 
+import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 
@@ -29,7 +30,7 @@ public interface MainContract {
 
 //        void openDetailUi(Product product);
 
-        void openWait4JoinUi();
+        void openWait4JoinUi(WaitingRoomInfo waitingRoomInfo);
 
         void openGamePlayingOfRefereeUi();
 

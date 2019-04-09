@@ -7,6 +7,7 @@ import android.support.annotation.StringDef;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 
+import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.friends.FriendFragment;
 import com.kerry.gogobasketball.friends.FriendPresenter;
 import com.kerry.gogobasketball.home.HomeFragment;
@@ -186,11 +187,12 @@ public class MainMvpController {
     /**
      * Waiting4Join View
      */
-    void findOrCreateWaiting4JoinView() {
+    void findOrCreateWaiting4JoinView(WaitingRoomInfo waitingRoomInfo) {
 
         Waiting4JoinMasterFragment waiting4JoinFragment = createWaiting4JoinFragment();
 
         mWaiting4JoinMasterPresenter = new Waiting4JoinMasterPresenter(waiting4JoinFragment);
+        mWaiting4JoinMasterPresenter.getRoomInfoFromWant2Create(waitingRoomInfo);
 
         mMainPresenter.setWaiting4JoinPresenter(mWaiting4JoinMasterPresenter);
         waiting4JoinFragment.setPresenter(mMainPresenter);

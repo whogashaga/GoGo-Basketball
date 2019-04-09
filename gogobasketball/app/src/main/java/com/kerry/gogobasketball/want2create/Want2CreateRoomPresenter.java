@@ -54,23 +54,25 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
         // 都是 hardcode 的，屆時要帶入 user info
         WaitingRoomSeats waitingRoomSeats = new WaitingRoomSeats();
         waitingRoomSeats.setAvatar("https://graph.facebook.com/2177302648995421/picture?type=large");
-        waitingRoomSeats.setPosition("sg");
+        waitingRoomSeats.setPosition("c");
         waitingRoomSeats.setSort(0);
         waitingRoomSeats.setGender("male");
         waitingRoomSeats.setSeatAvailable(true);
-        waitingRoomSeats.setId(GoGoBasketball.getAppContext().getString(R.string.id_player1));
+        waitingRoomSeats.setId(GoGoBasketball.getAppContext().getString(R.string.id_player4));
 
-        ArrayList<WaitingRoomSeats> list = new ArrayList<>();
-        list.add(waitingRoomSeats);
+        ArrayList<WaitingRoomSeats> waitingSeatList = new ArrayList<>();
+        waitingSeatList.add(waitingRoomSeats);
 
         WaitingRoomInfo waitingRoomInfo = new WaitingRoomInfo();
         waitingRoomInfo.setJustice(mWaitingRoomInfo.getJustice());
         waitingRoomInfo.setCourtLocation(mWaitingRoomInfo.getCourtLocation());
         waitingRoomInfo.setRoomName(mWaitingRoomInfo.getRoomName());
-        waitingRoomInfo.setHostName(GoGoBasketball.getAppContext().getString(R.string.id_player1));
+        waitingRoomInfo.setHostName(waitingRoomSeats.getId());
         waitingRoomInfo.setPlayerAmount(1);
         waitingRoomInfo.setRefereeAmount(0);
-        waitingRoomInfo.setWaitingPlayersList(list);
+        waitingRoomInfo.setWaitingPlayersList(waitingSeatList);
+
+        mWant2CreateRoomView.getRoomInfoFromPresenter(waitingRoomInfo);
 
         // Add a new document with a generated ID
         FirestoreHelper.getFirestore().collection(Constants.WAITING_ROOM)
@@ -87,6 +89,8 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
                 Log.w("Kerry", "Error adding document", e);
             }
         });
+
+
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -107,7 +111,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     }
 
     @Override
-    public void openWaitingJoin() {
+    public void openWaitingJoin(WaitingRoomInfo waitingRoomInfo) {
 
     }
 

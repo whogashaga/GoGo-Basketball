@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
+import com.kerry.gogobasketball.data.WaitingRoomInfo;
 
 import java.util.ArrayList;
 
@@ -43,9 +44,11 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     private String mRoomName;
     private Spinner mSpinnerCourts;
     private ArrayList<String> mCourtsList;
+    private WaitingRoomInfo mWaitingRoomInfo;
 
     public Want2CreateRoomFragment() {
         // Requires empty public constructor
+        mWaitingRoomInfo = new WaitingRoomInfo();
     }
 
     public static Want2CreateRoomFragment newInstance() {
@@ -132,7 +135,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
             case R.id.btn_want2create_build_confirm:
                 mPresenter.updateWaitingRoomInfo2FireBase();
 
-                mPresenter.openWaitingJoin();
+                mPresenter.openWaitingJoin(mWaitingRoomInfo);
 
                 break;
             case R.id.btn_want2create_build_cancel:
@@ -144,6 +147,11 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
             default:
                 break;
         }
+    }
+
+    @Override
+    public void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo) {
+        mWaitingRoomInfo = waitingRoomInfo;
     }
 
     @Override
@@ -207,11 +215,6 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     public void onDestroy() {
         super.onDestroy();
         mPresenter.showToolbarAndBottomNavigation();
-    }
-
-    @Override
-    public void showWant2CreateRoomUi() {
-
     }
 
     @Override

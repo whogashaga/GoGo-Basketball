@@ -29,18 +29,19 @@
             android:id="@+id/waiting_team_a_player1_avatar"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
             android:id="@+id/waiting_team_a_player1_id"
+            style="@style/Waiting4JoinUserId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
             android:gravity="left"
             android:text="Player1"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player1_avatar"
@@ -48,8 +49,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_a_player1_gender"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@+id/waiting_team_a_player1_id"
             app:layout_constraintTop_toBottomOf="@+id/waiting_team_a_player1_id"
@@ -57,8 +58,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_a_player1_position"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="@+id/waiting_team_a_player1_gender"
@@ -95,8 +96,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_a_player1_change_seat"
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_a_player1_add"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_a_player1_change_seat"
-            app:layout_constraintTop_toTopOf="@+id/btn_waiting_team_a_player1_change_seat" />
+            app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_a_player1_change_seat" />
 
         <Button
             android:id="@+id/btn_waiting_team_a_player1_add"
@@ -109,8 +109,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_a_player1_change_seat"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_a_player1_info"
-            app:layout_constraintTop_toTopOf="@+id/btn_waiting_team_a_player1_change_seat" />
+            app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_a_player1_info" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -130,18 +129,19 @@
             android:id="@+id/waiting_team_a_player2_avatar"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
             android:id="@+id/waiting_team_a_player2_id"
+            style="@style/Waiting4JoinUserId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
             android:gravity="left"
             android:text="Player2"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player2_avatar"
@@ -149,8 +149,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_a_player2_gender"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@+id/waiting_team_a_player2_id"
             app:layout_constraintTop_toBottomOf="@+id/waiting_team_a_player2_id"
@@ -158,8 +158,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_a_player2_position"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="@+id/waiting_team_a_player2_gender"
@@ -231,18 +231,19 @@
             android:id="@+id/waiting_team_a_player3_avatar"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
             android:id="@+id/waiting_team_a_player3_id"
+            style="@style/Waiting4JoinUserId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
             android:gravity="left"
             android:text="Player3"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player3_avatar"
@@ -250,8 +251,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_a_player3_gender"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@+id/waiting_team_a_player3_id"
             app:layout_constraintTop_toBottomOf="@+id/waiting_team_a_player3_id"
@@ -259,8 +260,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_a_player3_position"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="@+id/waiting_team_a_player3_gender"
@@ -335,18 +336,19 @@
             android:id="@+id/waiting_team_b_player1_avatar"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
             android:id="@+id/waiting_team_b_player1_id"
+            style="@style/Waiting4JoinUserId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
             android:gravity="left"
             android:text="Player4"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player1_avatar"
@@ -354,8 +356,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_b_player1_gender"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@+id/waiting_team_b_player1_id"
             app:layout_constraintTop_toBottomOf="@+id/waiting_team_b_player1_id"
@@ -363,8 +365,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_b_player1_position"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="@+id/waiting_team_b_player1_gender"
@@ -434,18 +436,19 @@
             android:id="@+id/waiting_team_b_player2_avatar"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
             android:id="@+id/waiting_team_b_player2_id"
+            style="@style/Waiting4JoinUserId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
             android:gravity="left"
             android:text="Player5"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player2_avatar"
@@ -453,8 +456,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_b_player2_gender"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@+id/waiting_team_b_player2_id"
             app:layout_constraintTop_toBottomOf="@+id/waiting_team_b_player2_id"
@@ -462,8 +465,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_b_player2_position"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="@+id/waiting_team_b_player2_gender"
@@ -535,18 +538,19 @@
             android:id="@+id/waiting_team_b_player3_avatar"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
             android:id="@+id/waiting_team_b_player3_id"
+            style="@style/Waiting4JoinUserId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
             android:gravity="left"
             android:text="Player6"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player3_avatar"
@@ -554,8 +558,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_b_player3_gender"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@+id/waiting_team_b_player3_id"
             app:layout_constraintTop_toBottomOf="@+id/waiting_team_b_player3_id"
@@ -563,8 +567,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_b_player3_position"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="@+id/waiting_team_b_player3_gender"
@@ -640,18 +644,19 @@
             android:id="@+id/waiting_referee_avatar"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
             android:id="@+id/waiting_referee_id"
+            style="@style/Waiting4JoinUserId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
             android:gravity="left"
             android:text="Referee"
             app:layout_constraintStart_toEndOf="@+id/waiting_referee_avatar"
@@ -659,8 +664,8 @@
 
         <ImageView
             android:id="@+id/waiting_referee_gender"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@+id/waiting_referee_id"
             app:layout_constraintTop_toBottomOf="@+id/waiting_referee_id"
@@ -668,8 +673,8 @@
 
         <ImageView
             android:id="@+id/waiting_referee_position"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="@+id/waiting_referee_gender"

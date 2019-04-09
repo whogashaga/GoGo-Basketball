@@ -6,16 +6,21 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.kerry.gogobasketball.R;
+import com.kerry.gogobasketball.component.ProfileAvatarOutlineProvider;
+import com.kerry.gogobasketball.data.WaitingRoomInfo;
+import com.kerry.gogobasketball.util.ImageManager;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -33,7 +38,14 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     private Button mBtnCancel;
     private Button mBtnStartGame;
 
+    private ImageView mAvatarP1, mGenderP1, mPositionP1;
+    private TextView mTextIdP1;
+    private Button mBtnSeatP1, mBtnInfoP1, mBtnAddFriendP1;
+
+    private WaitingRoomInfo mWaitingRoomInfo;
+
     public Waiting4JoinMasterFragment() {
+        mWaitingRoomInfo = new WaitingRoomInfo();
     }
 
     public static Waiting4JoinMasterFragment newInstance() {
@@ -64,6 +76,12 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mPresenter.result(requestCode, resultCode);
     }
 
+    @Override
+    public void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo) {
+        mWaitingRoomInfo = waitingRoomInfo;
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -84,7 +102,45 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mSpinnerMinuteSelector.setVisibility(View.GONE);
         mTextMinute.setVisibility(View.GONE);
 
+        mAvatarP1 = mRoot.findViewById(R.id.waiting_team_a_player1_avatar);
+        mAvatarP1.setOutlineProvider(new ProfileAvatarOutlineProvider());
+        mGenderP1 = mRoot.findViewById(R.id.waiting_team_a_player1_gender);
+        mPositionP1 = mRoot.findViewById(R.id.waiting_team_a_player1_position);
+        mTextIdP1 = mRoot.findViewById(R.id.waiting_team_a_player1_id);
+
         return mRoot;
+    }
+
+    public void setUserInfo2TheSeat(WaitingRoomInfo waitingRoomInfo) {
+
+        // set avatar
+        ImageManager.getInstance().setImageByUrl(mAvatarP1, waitingRoomInfo.getWaitingPlayersList().get(0).getAvatar());
+
+        // set Gender
+        if (waitingRoomInfo.getWaitingPlayersList().get(0).getGender().equals("male")) {
+            mGenderP1.setImageResource(R.drawable.ic_male);
+        } else {
+            mGenderP1.setImageResource(R.drawable.ic_female);
+        }
+
+        // set Position
+        if (waitingRoomInfo.getWaitingPlayersList().get(0).getPosition().equals("pg")) {
+            mPositionP1.setImageResource(R.drawable.ic_position_pg);
+        } else if (waitingRoomInfo.getWaitingPlayersList().get(0).getPosition().equals("sg")) {
+            mPositionP1.setImageResource(R.drawable.ic_position_sg);
+        } else if (waitingRoomInfo.getWaitingPlayersList().get(0).getPosition().equals("sf")) {
+            mPositionP1.setImageResource(R.drawable.ic_position_sf);
+        } else if (waitingRoomInfo.getWaitingPlayersList().get(0).getPosition().equals("pf")) {
+            mPositionP1.setImageResource(R.drawable.ic_position_pf);
+        } else if (waitingRoomInfo.getWaitingPlayersList().get(0).getPosition().equals("c")) {
+            mPositionP1.setImageResource(R.drawable.ic_position_center);
+        } else {
+            Log.d("Kerry","It's not gonna happen!");
+        }
+
+        // set id
+        mTextIdP1.setText(waitingRoomInfo.getWaitingPlayersList().get(0).getId());
+
     }
 
     @Override
@@ -127,6 +183,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setUserInfo2TheSeat(mWaitingRoomInfo);
 
     }
 
@@ -150,7 +207,6 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     public boolean isActive() {
         return false;
     }
-
 
 
 }
