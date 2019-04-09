@@ -6,7 +6,7 @@ public class WaitingRoomInfo {
 
     private String mRoomName;
     private String mCourtLocation;
-    private String mRefereeOnOff;
+    private boolean mJustice;
     private int mPlayers;
     private int mReferee;
     private ArrayList<WaitingRoomSeats> mWaitingDerPlayersList;
@@ -15,7 +15,7 @@ public class WaitingRoomInfo {
         mWaitingDerPlayersList = new ArrayList<>();
         mRoomName = "";
         mCourtLocation = "";
-        mRefereeOnOff = "";
+        mJustice = true;
         mPlayers = 0;
         mReferee = 0;
     }
@@ -36,27 +36,27 @@ public class WaitingRoomInfo {
         this.mCourtLocation = courtLocation;
     }
 
-    public String getRefereeOnOff() {
-        return mRefereeOnOff;
+    public boolean getJustice() {
+        return mJustice;
     }
 
-    public void setRefereeOnOff(String refereeOnOff) {
-        this.mRefereeOnOff = refereeOnOff;
+    public void setJustice(boolean needReferee) {
+        this.mJustice = needReferee;
     }
 
-    public int getPlayers() {
+    public int getPlayerAmount() {
         return mPlayers;
     }
 
-    public void setPlayers(int players) {
+    public void setPlayerAmount(int players) {
         this.mPlayers = players;
     }
 
-    public int getReferee() {
+    public int getRefereeAmount() {
         return mReferee;
     }
 
-    public void setReferee(int referee) {
+    public void setRefereeAmount(int referee) {
         this.mReferee = referee;
     }
 

@@ -253,13 +253,18 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void updateRoomName2Firebase() {
-        mWant2CreateRoomPresenter.updateRoomName2Firebase();
+    public void updateWaitingRoomInfo2FireBase() {
+        mWant2CreateRoomPresenter.updateWaitingRoomInfo2FireBase();
     }
 
     @Override
     public void getCourtLocationFromSpinner(String courtLocation) {
         mWant2CreateRoomPresenter.getCourtLocationFromSpinner(courtLocation);
+    }
+
+    @Override
+    public void getRefereeOnOffFromRadioGroup(boolean justice) {
+        mWant2CreateRoomPresenter.getRefereeOnOffFromRadioGroup(justice);
     }
 
     /* ------------------------------------------------------------------------------------------ */

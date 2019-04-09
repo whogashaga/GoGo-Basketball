@@ -12,8 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -85,6 +83,8 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
 
         mBtnCreateConfirm = root.findViewById(R.id.btn_want2create_build_confirm);
         mBtnCreateConfirm.setOnClickListener(this);
+        mBtnCreateConfirm.setClickable(false);
+        mBtnCreateConfirm.setBackgroundResource(R.drawable.btn_gray_ripple);
 
         mBtnCreateCancel = root.findViewById(R.id.btn_want2create_build_cancel);
         mBtnCreateCancel.setOnClickListener(this);
@@ -130,6 +130,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_want2create_build_confirm:
+                mPresenter.updateWaitingRoomInfo2FireBase();
                 mPresenter.openWaitingJoin();
                 break;
             case R.id.btn_want2create_build_cancel:
@@ -148,13 +149,17 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         switch (checkedId) {
             case R.id.radios_referee_yes:
                 mTextRefereeWarning.setText("裁判模式結果將列入天梯排名");
-                mTextRefereeWarning.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.black_3f3a3a));
-                mBtnCreateConfirm.setClickable(true);
+                mTextRefereeWarning.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.blue_facebook));
+                mPresenter.getRefereeOnOffFromRadioGroup(true);
+                if (mEditorRoomName.getText().length() != 0) {
+                    setBtnCreateConfirmCliclable(true);
+                }
                 break;
             case R.id.radios_referee_no:
                 mTextRefereeWarning.setText("暫不支援非裁判模式～");
                 mTextRefereeWarning.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.red_FF001F));
-                mBtnCreateConfirm.setClickable(false);
+                mPresenter.getRefereeOnOffFromRadioGroup(false);
+                setBtnCreateConfirmCliclable(false);
                 break;
             default:
                 break;
@@ -177,12 +182,15 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
                 if (!"".equals(s.toString()) && s.length() < 11) {
                     mPresenter.onRoomNameEditTextChange(s);
                     mEditorRoomName.setFocusable(true);
-                    mBtnCreateConfirm.setClickable(true);
+                    setBtnCreateConfirmCliclable(true);
+                    if (s.length() == 10) {
+                        Toast.makeText(GoGoBasketball.getAppContext(), "最多10個字", Toast.LENGTH_SHORT).show();
+                    }
                 } else if (s.length() == 0) {
-                    Toast.makeText(GoGoBasketball.getAppContext(), "請輸入房名", Toast.LENGTH_LONG).show();
-                    mBtnCreateConfirm.setClickable(false);
-                } else if (s.length() == 10) {
-                    Toast.makeText(GoGoBasketball.getAppContext(), "最多10個字", Toast.LENGTH_LONG).show();
+                    Toast.makeText(GoGoBasketball.getAppContext(), "請輸入房名", Toast.LENGTH_SHORT).show();
+                    setBtnCreateConfirmCliclable(false);
+                } else {
+                    Log.d("Kerry", "no this kind of situation!");
                 }
             }
 
@@ -214,5 +222,14 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         return false;
     }
 
+    public void setBtnCreateConfirmCliclable(boolean clickable) {
 
+        if (clickable) {
+            mBtnCreateConfirm.setClickable(true);
+            mBtnCreateConfirm.setBackgroundResource(R.drawable.btn_black_ripple);
+        } else {
+            mBtnCreateConfirm.setClickable(false);
+            mBtnCreateConfirm.setBackgroundResource(R.drawable.btn_gray_ripple);
+        }
+    }
 }

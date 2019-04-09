@@ -99,9 +99,9 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         list.add(waitingRoomSeats);
         list.add(waitingRoomSeats2);
 
-        WaitingRoomInfo playingRoomInfo = new WaitingRoomInfo();
-        playingRoomInfo.setRoomName("aaa");
-        playingRoomInfo.setWaitingPlayersList(list);
+        WaitingRoomInfo waitingRoomInfo = new WaitingRoomInfo();
+        waitingRoomInfo.setRoomName("bbb");
+        waitingRoomInfo.setWaitingPlayersList(list);
 
         mBtnCreateUser = findViewById(R.id.main_layout_create_user);
         mBtnCreateUser.setVisibility(View.VISIBLE);
@@ -112,8 +112,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
                 // Add a new document with a generated ID
                 mDb.collection("custom_obj")
-                        .document("test3")
-                        .set(playingRoomInfo)
+                        .document("waitingRoomInfo1")
+                        .set(waitingRoomInfo)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {

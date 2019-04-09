@@ -23,9 +23,11 @@ public interface Want2CreateRoomContract {
 
         void showToolbarAndBottomNavigation();
 
-        void updateRoomName2Firebase();
+        void updateWaitingRoomInfo2FireBase();
 
         void getCourtLocationFromSpinner(String courtLocation);
+
+        void getRefereeOnOffFromRadioGroup(boolean needReferee);
 
         void openWaitingJoin();
 
