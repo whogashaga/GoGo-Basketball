@@ -47,6 +47,9 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
         // Set location
         holder.getLocation().setText(waitingRoomInfo.getCourtLocation());
 
+        // Set host name
+        holder.getHostName().setText(waitingRoomInfo.getHostName());
+
         // Set current player amount
         holder.getPlayerCount().setText(String.valueOf(waitingRoomInfo.getPlayerAmount()));
 
@@ -73,8 +76,9 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
         private View mLayout;
 
         private TextView mRoomName;
-        private TextView mLocation;
         private TextView mPlayerCount;
+        private TextView mHostName;
+        private TextView mLocation;
         private TextView mRefereeCount;
 
         public RoomViewHolder(@NonNull View itemView) {
@@ -82,6 +86,7 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
 
             mRoomName = itemView.findViewById(R.id.text_item_room_name);
             mLocation = itemView.findViewById(R.id.text_item_room_location);
+            mHostName = itemView.findViewById(R.id.text_item_room_host_name);
 
             mPlayerCount = itemView.findViewById(R.id.text_item_room_current_player);
             mRefereeCount = itemView.findViewById(R.id.text_item_room_current_referee);
@@ -90,6 +95,10 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
             mLayout.setOnClickListener(view -> {
                 mPresenter.openWaiting4JoinSlave();
             });
+        }
+
+        public TextView getHostName() {
+            return mHostName;
         }
 
         public TextView getRoomName() {

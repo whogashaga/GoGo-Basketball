@@ -49,6 +49,28 @@
         app:layout_constraintStart_toEndOf="@+id/image_item_location_pic"
         app:layout_constraintTop_toTopOf="@+id/image_item_location_pic" />
 
+
+    <ImageView
+        android:id="@+id/image_item_host_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/image_item_location_pic"
+        app:layout_constraintStart_toStartOf="@+id/image_item_location_pic"
+        app:layout_constraintTop_toBottomOf="@+id/image_item_location_pic"
+        app:srcCompat="@drawable/image_effect_host_name" />
+
+    <TextView
+        android:id="@+id/text_item_room_host_name"
+        style="@style/RoomRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Host Name"
+        app:layout_constraintBottom_toBottomOf="@+id/image_item_host_pic"
+        app:layout_constraintStart_toEndOf="@+id/image_item_host_pic"
+        app:layout_constraintTop_toTopOf="@+id/image_item_host_pic" />
+
     <ImageView
         android:id="@+id/image_item_player_pic"
         android:layout_width="wrap_content"
@@ -57,41 +79,42 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/image_item_room_pic"
-        app:layout_constraintTop_toBottomOf="@+id/image_item_location_pic"
+        app:layout_constraintTop_toBottomOf="@+id/image_item_host_pic"
         app:srcCompat="@drawable/image_effect_player" />
 
     <TextView
-        style="@style/RoomRecyclerView"
         android:id="@+id/text_item_room_current_player"
+        style="@style/RoomRecyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
         android:text="0"
         app:layout_constraintBottom_toBottomOf="@+id/image_item_player_pic"
         app:layout_constraintStart_toEndOf="@+id/image_item_player_pic"
         app:layout_constraintTop_toTopOf="@+id/image_item_player_pic" />
 
     <TextView
-        style="@style/RoomRecyclerView"
         android:id="@+id/text_item_room_player_separation"
+        style="@style/RoomRecyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="/"
-        app:layout_constraintBottom_toBottomOf="@+id/image_item_player_pic"
+        app:layout_constraintBottom_toBottomOf="@+id/text_item_room_current_player"
         app:layout_constraintStart_toEndOf="@+id/text_item_room_current_player"
-        app:layout_constraintTop_toTopOf="@+id/image_item_player_pic" />
+        app:layout_constraintTop_toTopOf="@+id/text_item_room_current_player" />
 
     <TextView
-        style="@style/RoomRecyclerView"
         android:id="@+id/text_item_room_total_player"
+        style="@style/RoomRecyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="6"
-        app:layout_constraintBottom_toBottomOf="@+id/image_item_player_pic"
+        app:layout_constraintBottom_toBottomOf="@+id/text_item_room_player_separation"
         app:layout_constraintStart_toEndOf="@+id/text_item_room_player_separation"
-        app:layout_constraintTop_toTopOf="@+id/image_item_player_pic" />
+        app:layout_constraintTop_toTopOf="@+id/text_item_room_player_separation" />
 
     <ImageView
         android:id="@+id/image_item_referee_pic"

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class WaitingRoomInfo {
 
+    private String mHostName;
     private String mRoomName;
     private String mCourtLocation;
     private boolean mJustice;
@@ -18,6 +19,15 @@ public class WaitingRoomInfo {
         mJustice = true;
         mPlayers = 0;
         mReferee = 0;
+        mHostName = "";
+    }
+
+    public String getHostName() {
+        return mHostName;
+    }
+
+    public void setHostName(String mHostName) {
+        this.mHostName = mHostName;
     }
 
     public String getRoomName() {

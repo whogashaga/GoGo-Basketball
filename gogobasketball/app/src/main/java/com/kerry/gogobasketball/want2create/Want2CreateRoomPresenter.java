@@ -67,6 +67,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
         waitingRoomInfo.setJustice(mWaitingRoomInfo.getJustice());
         waitingRoomInfo.setCourtLocation(mWaitingRoomInfo.getCourtLocation());
         waitingRoomInfo.setRoomName(mWaitingRoomInfo.getRoomName());
+        waitingRoomInfo.setHostName(GoGoBasketball.getAppContext().getString(R.string.id_player1));
         waitingRoomInfo.setPlayerAmount(1);
         waitingRoomInfo.setRefereeAmount(0);
         waitingRoomInfo.setWaitingPlayersList(list);
