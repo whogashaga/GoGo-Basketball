@@ -559,8 +559,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
-    public void openWaiting4JoinSlaveUi() {
-        mMainMvpController.findOrCreateWaiting4JoinSlaveView();
+    public void openWaiting4JoinSlaveUi(WaitingRoomInfo waitingRoomInfo) {
+        mMainMvpController.findOrCreateWaiting4JoinSlaveView(waitingRoomInfo);
     }
 
     @Override

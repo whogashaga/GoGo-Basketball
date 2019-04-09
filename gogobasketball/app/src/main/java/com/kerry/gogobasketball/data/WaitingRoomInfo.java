@@ -77,4 +77,8 @@ public class WaitingRoomInfo {
     public void setWaitingPlayersList(ArrayList<WaitingRoomSeats> waitingDerPlayersList) {
         this.mWaitingDerPlayersList = waitingDerPlayersList;
     }
+
+    public int getTotalPlayerAmount() {
+        return mPlayers + mReferee;
+    }
 }

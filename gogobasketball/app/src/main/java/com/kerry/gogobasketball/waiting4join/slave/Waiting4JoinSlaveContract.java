@@ -2,6 +2,7 @@ package com.kerry.gogobasketball.waiting4join.slave;
 
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
+import com.kerry.gogobasketball.data.WaitingRoomInfo;
 
 public interface Waiting4JoinSlaveContract {
 
@@ -11,6 +12,7 @@ public interface Waiting4JoinSlaveContract {
 
         boolean isActive();
 
+        void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo);
     }
 
     interface Presenter extends BasePresenter {
@@ -28,5 +30,9 @@ public interface Waiting4JoinSlaveContract {
         void openGamePlayingOfSlave();
 
         void finishWaiting4JoinUi();
+
+        void updateMyInfo2FireBase();
+
+        void getHostNameFromLooking4Room(WaitingRoomInfo waitingRoomInfo);
     }
 }

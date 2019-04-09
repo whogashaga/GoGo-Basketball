@@ -35,6 +35,6 @@ public interface Looking4RoomContract {
 
         void openWant2CreateRoom();
 
-        void openWaiting4JoinSlave();
+        void openWaiting4JoinSlave(WaitingRoomInfo waitingRoomInfo);
     }
 }

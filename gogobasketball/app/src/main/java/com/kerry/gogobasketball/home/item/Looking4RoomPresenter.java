@@ -25,7 +25,7 @@ public class Looking4RoomPresenter implements Looking4RoomContract.Presenter {
     private ArrayList<WaitingRoomInfo> mWaitingRoomInfoList;
 
     public Looking4RoomPresenter(@NonNull Looking4RoomContract.View lookingForRoomView) {
-        mLookingForRoomView = checkNotNull(lookingForRoomView, "catalogItemView cannot be null!");
+        mLookingForRoomView = checkNotNull(lookingForRoomView, "Looking4RoomView cannot be null!");
         mLookingForRoomView.setPresenter(this);
         mWaitingRoomInfoList = new ArrayList<>();
     }
@@ -70,7 +70,7 @@ public class Looking4RoomPresenter implements Looking4RoomContract.Presenter {
     }
 
     @Override
-    public void openWaiting4JoinSlave() {
+    public void openWaiting4JoinSlave(WaitingRoomInfo waitingRoomInfo) {
 
     }
 

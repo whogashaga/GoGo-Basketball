@@ -134,9 +134,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         switch (v.getId()) {
             case R.id.btn_want2create_build_confirm:
                 mPresenter.updateWaitingRoomInfo2FireBase();
-
                 mPresenter.openWaitingJoin(mWaitingRoomInfo);
-
                 break;
             case R.id.btn_want2create_build_cancel:
                 mPresenter.finishWant2CreateRoomUi();

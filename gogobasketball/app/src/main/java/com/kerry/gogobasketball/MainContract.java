@@ -20,7 +20,7 @@ public interface MainContract {
 
         void openWant2CreateRoomUi();
 
-        void openWaiting4JoinSlaveUi();
+        void openWaiting4JoinSlaveUi(WaitingRoomInfo waitingRoomInfo);
 
         void openLoginUi(int loginFrom);
 

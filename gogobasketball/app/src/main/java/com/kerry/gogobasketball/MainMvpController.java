@@ -201,11 +201,12 @@ public class MainMvpController {
     /**
      * Waiting4JoinSlave View
      */
-    void findOrCreateWaiting4JoinSlaveView() {
+    void findOrCreateWaiting4JoinSlaveView(WaitingRoomInfo waitingRoomInfo) {
 
         Waiting4JoinSlaveFragment waiting4JoinSlaveFragment = createWaiting4JoinSlaveFragment();
 
         mWaiting4JoinSlavePresenter = new Waiting4JoinSlavePresenter(waiting4JoinSlaveFragment);
+        mWaiting4JoinSlavePresenter.getHostNameFromLooking4Room(waitingRoomInfo);
 
         mMainPresenter.setWaiting4JoinSlavePresenter(mWaiting4JoinSlavePresenter);
         waiting4JoinSlaveFragment.setPresenter(mMainPresenter);

@@ -57,7 +57,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
         waitingRoomSeats.setPosition("c");
         waitingRoomSeats.setSort(0);
         waitingRoomSeats.setGender("male");
-        waitingRoomSeats.setSeatAvailable(true);
+        waitingRoomSeats.setSeatAvailable(false);
         waitingRoomSeats.setId(GoGoBasketball.getAppContext().getString(R.string.id_player4));
 
         ArrayList<WaitingRoomSeats> waitingSeatList = new ArrayList<>();
@@ -72,6 +72,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
         waitingRoomInfo.setRefereeAmount(0);
         waitingRoomInfo.setWaitingPlayersList(waitingSeatList);
 
+        // for open waiting4join view
         mWant2CreateRoomView.getRoomInfoFromPresenter(waitingRoomInfo);
 
         // Add a new document with a generated ID

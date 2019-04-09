@@ -235,6 +235,16 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
+    public void updateMyInfo2FireBase() {
+        mWaiting4JoinSlavePresenter.updateMyInfo2FireBase();
+    }
+
+    @Override
+    public void getHostNameFromLooking4Room(WaitingRoomInfo waitingRoomInfo) {
+        mWaiting4JoinSlavePresenter.getHostNameFromLooking4Room(waitingRoomInfo);
+    }
+
+    @Override
     public void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo) {
         mWaiting4JoinMasterPresenter.getRoomInfoFromWant2Create(waitingRoomInfo);
     }
@@ -394,9 +404,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mMainView.openWant2CreateRoomUi();
     }
 
+
     @Override
-    public void openWaiting4JoinSlave() {
-        mMainView.openWaiting4JoinSlaveUi();
+    public void openWaiting4JoinSlave(WaitingRoomInfo waitingRoomInfo) {
+        mMainView.openWaiting4JoinSlaveUi(waitingRoomInfo);
     }
 
 

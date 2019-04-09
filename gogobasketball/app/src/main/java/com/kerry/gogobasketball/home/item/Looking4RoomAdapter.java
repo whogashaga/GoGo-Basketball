@@ -2,6 +2,7 @@ package com.kerry.gogobasketball.home.item;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,14 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
         // Set current referee amount
         holder.getRefereeCount().setText(String.valueOf(waitingRoomInfo.getRefereeAmount()));
 
+        holder.getLayout().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.openWaiting4JoinSlave(waitingRoomInfo);
+
+            }
+        });
+
     }
 
     public void updateData(ArrayList<WaitingRoomInfo> roomInfoList) {
@@ -92,9 +101,7 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
             mRefereeCount = itemView.findViewById(R.id.text_item_room_current_referee);
 
             mLayout = itemView.findViewById(R.id.item_child_looking4room);
-            mLayout.setOnClickListener(view -> {
-                mPresenter.openWaiting4JoinSlave();
-            });
+
         }
 
         public TextView getHostName() {

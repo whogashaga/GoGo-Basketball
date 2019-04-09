@@ -111,36 +111,41 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         return mRoot;
     }
 
-    public void setUserInfo2TheSeat(WaitingRoomInfo waitingRoomInfo) {
+    public void setUserInfo2TheSeat(WaitingRoomInfo waitingRoomInfo, int seatNumber) {
 
         // set avatar
         ImageManager.getInstance().setImageByUrl(mAvatarP1, waitingRoomInfo.getWaitingPlayersList().get(0).getAvatar());
 
         // set Gender
-        if (waitingRoomInfo.getWaitingPlayersList().get(0).getGender().equals("male")) {
+        if (waitingRoomInfo.getWaitingPlayersList().get(seatNumber).getGender().equals("male")) {
             mGenderP1.setImageResource(R.drawable.ic_male);
         } else {
             mGenderP1.setImageResource(R.drawable.ic_female);
         }
 
-        // set Position
-        if (waitingRoomInfo.getWaitingPlayersList().get(0).getPosition().equals("pg")) {
-            mPositionP1.setImageResource(R.drawable.ic_position_pg);
-        } else if (waitingRoomInfo.getWaitingPlayersList().get(0).getPosition().equals("sg")) {
-            mPositionP1.setImageResource(R.drawable.ic_position_sg);
-        } else if (waitingRoomInfo.getWaitingPlayersList().get(0).getPosition().equals("sf")) {
-            mPositionP1.setImageResource(R.drawable.ic_position_sf);
-        } else if (waitingRoomInfo.getWaitingPlayersList().get(0).getPosition().equals("pf")) {
-            mPositionP1.setImageResource(R.drawable.ic_position_pf);
-        } else if (waitingRoomInfo.getWaitingPlayersList().get(0).getPosition().equals("c")) {
-            mPositionP1.setImageResource(R.drawable.ic_position_center);
-        } else {
-            Log.d("Kerry","It's not gonna happen!");
-        }
+        // set Position image
+        setPositionImage(waitingRoomInfo, mPositionP1, seatNumber);
 
         // set id
-        mTextIdP1.setText(waitingRoomInfo.getWaitingPlayersList().get(0).getId());
+        mTextIdP1.setText(waitingRoomInfo.getWaitingPlayersList().get(seatNumber).getId());
 
+    }
+
+    public void setPositionImage(WaitingRoomInfo waitingRoomInfo,ImageView imageView, int sort) {
+
+        if (waitingRoomInfo.getWaitingPlayersList().get(sort).getPosition().equals("pg")) {
+            imageView.setImageResource(R.drawable.ic_position_pg);
+        } else if (waitingRoomInfo.getWaitingPlayersList().get(sort).getPosition().equals("sg")) {
+            imageView.setImageResource(R.drawable.ic_position_sg);
+        } else if (waitingRoomInfo.getWaitingPlayersList().get(sort).getPosition().equals("sf")) {
+            imageView.setImageResource(R.drawable.ic_position_sf);
+        } else if (waitingRoomInfo.getWaitingPlayersList().get(sort).getPosition().equals("pf")) {
+            imageView.setImageResource(R.drawable.ic_position_pf);
+        } else if (waitingRoomInfo.getWaitingPlayersList().get(sort).getPosition().equals("c")) {
+            imageView.setImageResource(R.drawable.ic_position_center);
+        } else {
+            Log.d("Kerry", "It's not gonna happen!");
+        }
     }
 
     @Override
@@ -183,7 +188,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setUserInfo2TheSeat(mWaitingRoomInfo);
+        setUserInfo2TheSeat(mWaitingRoomInfo,0);
 
     }
 
