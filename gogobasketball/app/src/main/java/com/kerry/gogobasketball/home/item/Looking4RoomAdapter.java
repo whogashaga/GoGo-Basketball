@@ -30,12 +30,33 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+
+        if (holder instanceof Looking4RoomAdapter.RoomViewHolder) {
+
+            bindView((Looking4RoomAdapter.RoomViewHolder) holder, mWaitingRoomList.get(position));
+        }
 
     }
 
-    public void updateData(ArrayList<WaitingRoomInfo> roomInfoList){
-        mWaitingRoomList = roomInfoList;
+    private void bindView(RoomViewHolder holder, WaitingRoomInfo waitingRoomInfo) {
+
+        // Set room name
+        holder.getRoomName().setText(waitingRoomInfo.getRoomName());
+
+        // Set location
+        holder.getLocation().setText(waitingRoomInfo.getCourtLocation());
+
+        // Set current player amount
+        holder.getPlayerCount().setText(String.valueOf(waitingRoomInfo.getPlayerAmount()));
+
+        // Set current referee amount
+        holder.getRefereeCount().setText(String.valueOf(waitingRoomInfo.getRefereeAmount()));
+
+    }
+
+    public void updateData(ArrayList<WaitingRoomInfo> roomInfoList) {
+        mWaitingRoomList.addAll(roomInfoList);
         notifyDataSetChanged();
     }
 
@@ -55,13 +76,16 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
         private TextView mLocation;
         private TextView mPlayerCount;
         private TextView mRefereeCount;
+
         public RoomViewHolder(@NonNull View itemView) {
             super(itemView);
 
             mRoomName = itemView.findViewById(R.id.text_item_room_name);
             mLocation = itemView.findViewById(R.id.text_item_room_location);
+
             mPlayerCount = itemView.findViewById(R.id.text_item_room_current_player);
             mRefereeCount = itemView.findViewById(R.id.text_item_room_current_referee);
+
             mLayout = itemView.findViewById(R.id.item_child_looking4room);
             mLayout.setOnClickListener(view -> {
                 mPresenter.openWaiting4JoinSlave();

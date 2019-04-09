@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +44,9 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
 
     @Override
     public void getWaitingRoomListFromPresenter(ArrayList<WaitingRoomInfo> roomInfoList) {
-
+        mRoomInfoList.addAll(roomInfoList);
+        mLooking4RoomAdapter.updateData(mRoomInfoList);
+        Log.d("Kerry","list size in fragment = " + mRoomInfoList.size());
     }
 
     @Nullable
@@ -79,7 +82,8 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.loadExistedRoomsData4RecyclerView();
-        mLooking4RoomAdapter.updateData(mRoomInfoList);
+
+
     }
 
     @Override
