@@ -31,7 +31,7 @@ public interface Waiting4JoinSlaveContract {
 
         void finishWaiting4JoinUi();
 
-        void updateMyInfo2FireBase();
+//        void updateMyInfo2FireBase();
 
         void getHostNameFromLooking4Room(WaitingRoomInfo waitingRoomInfo);
     }

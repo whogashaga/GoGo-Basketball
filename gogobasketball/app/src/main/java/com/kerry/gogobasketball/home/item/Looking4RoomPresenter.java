@@ -46,7 +46,7 @@ public class Looking4RoomPresenter implements Looking4RoomContract.Presenter {
                                 mWaitingRoomInfoList.add(waitingRoomInfo);
 //                                Log.d("Kerry", "doc id = " + document.getId());
                             }
-                            Log.e("Kerry", "doc id = " + mWaitingRoomInfoList.size());
+//                            Log.e("Kerry", "doc count = " + mWaitingRoomInfoList.size());
                             mLookingForRoomView.getWaitingRoomListFromPresenter(mWaitingRoomInfoList);
                         }
                     }

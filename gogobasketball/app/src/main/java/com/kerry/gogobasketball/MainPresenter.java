@@ -234,10 +234,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mMainView.popBackStackUi();
     }
 
-    @Override
-    public void updateMyInfo2FireBase() {
-        mWaiting4JoinSlavePresenter.updateMyInfo2FireBase();
-    }
+//    @Override
+//    public void updateMyInfo2FireBase() {
+//        mWaiting4JoinSlavePresenter.updateMyInfo2FireBase();
+//    }
 
     @Override
     public void getHostNameFromLooking4Room(WaitingRoomInfo waitingRoomInfo) {
