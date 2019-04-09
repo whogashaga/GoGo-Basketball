@@ -16,16 +16,20 @@ import android.widget.Button;
 import com.kerry.gogobasketball.MainMvpController;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.GridSpacingItemDecoration;
+import com.kerry.gogobasketball.data.WaitingRoomInfo;
+
+import java.util.ArrayList;
 
 public class Looking4RoomFragment extends Fragment implements Looking4RoomContract.View, View.OnClickListener {
 
     private Looking4RoomContract.Presenter mPresenter;
     private Looking4RoomAdapter mLooking4RoomAdapter;
 
-    private String mItemType;
+    private ArrayList<WaitingRoomInfo> mRoomInfoList;
     private Button mBtnBuildRoom;
 
     public Looking4RoomFragment() {
+        mRoomInfoList = new ArrayList<>();
     }
 
     public static Looking4RoomFragment newInstance() {
@@ -34,6 +38,11 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
 
     @Override
     public void showRoomsUi() {
+
+    }
+
+    @Override
+    public void getWaitingRoomListFromPresenter(ArrayList<WaitingRoomInfo> roomInfoList) {
 
     }
 
@@ -48,9 +57,7 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
         mLooking4RoomAdapter = new Looking4RoomAdapter(mPresenter);
         RecyclerView recyclerView = root.findViewById(R.id.recycler_home_child_room);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(1,
-                getContext().getResources().getDimensionPixelSize(R.dimen.space_look4room_grid),
-                true));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, getContext().getResources().getDimensionPixelSize(R.dimen.space_look4room_grid), true));
         recyclerView.setAdapter(mLooking4RoomAdapter);
 
         return root;
@@ -71,7 +78,8 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        mPresenter.loadExistedRoomsData4RecyclerView();
+        mLooking4RoomAdapter.updateData(mRoomInfoList);
     }
 
     @Override
@@ -79,15 +87,10 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
         mPresenter = checkNotNull(presenter);
     }
 
-    public void setItemType(@MainMvpController.HomeItem String itemType) {
-        mItemType = itemType;
-    }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         mPresenter.result(requestCode, resultCode);
     }
-
 
 }

@@ -20,15 +20,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
+import com.kerry.gogobasketball.util.Constants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,6 +76,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
 //        postCustomObject();
 //        getCustomObject();
+
+
 
     }
 
@@ -133,13 +140,13 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     public void getCustomObject() {
 
         DocumentReference docRef = mDb.collection("custom_obj")
-                .document("test3");
+                .document("waitingRoomInfo1");
 
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 WaitingRoomInfo waitingRoomInfo = documentSnapshot.toObject(WaitingRoomInfo.class);
-                Log.w("Kerry", "test3 seat2 id = " + waitingRoomInfo.getWaitingPlayersList().get(0).getId());
+                Log.w("Kerry", "waitingRoomInfo1 seat2 id = " + waitingRoomInfo.getWaitingPlayersList().get(0).getId());
 
             }
         });

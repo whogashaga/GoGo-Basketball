@@ -8,13 +8,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.kerry.gogobasketball.R;
+import com.kerry.gogobasketball.data.WaitingRoomInfo;
+
+import java.util.ArrayList;
 
 public class Looking4RoomAdapter extends RecyclerView.Adapter {
 
     Looking4RoomContract.Presenter mPresenter;
+    private ArrayList<WaitingRoomInfo> mWaitingRoomList;
 
     public Looking4RoomAdapter(Looking4RoomContract.Presenter presenter) {
         mPresenter = presenter;
+        mWaitingRoomList = new ArrayList<>();
     }
 
     @NonNull
@@ -29,9 +34,17 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
 
     }
 
+    public void updateData(ArrayList<WaitingRoomInfo> roomInfoList){
+        mWaitingRoomList = roomInfoList;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
-        return 6;
+        if (mWaitingRoomList == null) {
+            return 0;
+        }
+        return mWaitingRoomList.size();
     }
 
     private class RoomViewHolder extends RecyclerView.ViewHolder {

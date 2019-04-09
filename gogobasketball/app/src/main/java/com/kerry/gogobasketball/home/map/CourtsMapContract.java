@@ -15,7 +15,7 @@ public interface CourtsMapContract {
 
         void result(int requestCode, int resultCode);
 
-//    void loadExistedRoomsData();
+//    void loadExistedRoomsData4RecyclerView();
 
 //    void setExistedRoomsData();
 

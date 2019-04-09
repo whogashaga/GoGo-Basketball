@@ -364,13 +364,13 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     /* LookingForRoom Presenter */
 
     @Override
-    public void loadExistedRoomsData() {
-
+    public void loadExistedRoomsData4RecyclerView() {
+        mLooking4RoomPresenter.loadExistedRoomsData4RecyclerView();
     }
 
     @Override
     public void setExistedRoomsData() {
-
+        mLooking4RoomPresenter.setExistedRoomsData();
     }
 
     @Override

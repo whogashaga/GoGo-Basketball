@@ -232,4 +232,5 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
             mBtnCreateConfirm.setBackgroundResource(R.drawable.btn_gray_ripple);
         }
     }
+
 }

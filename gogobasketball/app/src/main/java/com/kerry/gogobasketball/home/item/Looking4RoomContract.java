@@ -3,12 +3,17 @@ package com.kerry.gogobasketball.home.item;
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
 import com.kerry.gogobasketball.MainMvpController;
+import com.kerry.gogobasketball.data.WaitingRoomInfo;
+
+import java.util.ArrayList;
 
 public interface Looking4RoomContract {
 
     interface View extends BaseView<Presenter> {
 
         void showRoomsUi();
+
+        void getWaitingRoomListFromPresenter(ArrayList<WaitingRoomInfo> roomInfoList);
 
 //        boolean hasNextPaging();
 
@@ -20,7 +25,7 @@ public interface Looking4RoomContract {
 
         void result(int requestCode, int resultCode);
 
-        void loadExistedRoomsData();
+        void loadExistedRoomsData4RecyclerView();
 
         void setExistedRoomsData();
 

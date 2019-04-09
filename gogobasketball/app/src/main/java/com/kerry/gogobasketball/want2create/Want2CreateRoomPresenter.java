@@ -13,6 +13,7 @@ import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
+import com.kerry.gogobasketball.util.Constants;
 
 import java.util.ArrayList;
 
@@ -22,18 +23,13 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
 
     private WaitingRoomInfo mWaitingRoomInfo;
 
-    public static final String WAITING_ROOM = "waiting_room";
+
 
     public Want2CreateRoomPresenter(@NonNull Want2CreateRoomContract.View want2CreateRoomView) {
         mWant2CreateRoomView = checkNotNull(want2CreateRoomView, "Want2CreateRoomView cannot be null!");
         mWant2CreateRoomView.setPresenter(this);
 
         mWaitingRoomInfo = new WaitingRoomInfo();
-    }
-
-    @Override
-    public void result(int requestCode, int resultCode) {
-
     }
 
     @Override
@@ -55,6 +51,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     @Override
     public void updateWaitingRoomInfo2FireBase() {
 
+        // 都是 hardcode 的，屆時要帶入 user info
         WaitingRoomSeats waitingRoomSeats = new WaitingRoomSeats();
         waitingRoomSeats.setAvatar("https://graph.facebook.com/2177302648995421/picture?type=large");
         waitingRoomSeats.setPosition("sg");
@@ -75,7 +72,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
         waitingRoomInfo.setWaitingPlayersList(list);
 
         // Add a new document with a generated ID
-        FirestoreHelper.getFirestore().collection(WAITING_ROOM)
+        FirestoreHelper.getFirestore().collection(Constants.WAITING_ROOM)
                 .document(mWaitingRoomInfo.getRoomName())
                 .set(waitingRoomInfo)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -92,6 +89,11 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     }
 
     /* ------------------------------------------------------------------------------------------ */
+
+    @Override
+    public void result(int requestCode, int resultCode) {
+
+    }
 
     @Override
     public void hideToolbarAndBottomNavigation() {
