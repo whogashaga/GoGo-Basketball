@@ -74,7 +74,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/btn_ripple_waiting4join"
-            android:drawableTop="@drawable/button_effect_chair_player"
+            android:drawableTop="@drawable/button_effect_change_seats"
             android:text="@string/change_seat"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_team_a_player1_info"
@@ -175,7 +175,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/button_effect_chair_player"
+            android:drawableTop="@drawable/button_effect_change_seats"
             android:text="@string/change_seat"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_team_a_player2_info"
@@ -276,7 +276,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/button_effect_chair_player"
+            android:drawableTop="@drawable/button_effect_change_seats"
             android:text="@string/change_seat"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_team_a_player3_info"
@@ -380,7 +380,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/button_effect_chair_player"
+            android:drawableTop="@drawable/button_effect_change_seats"
             android:text="@string/change_seat"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_team_b_player1_info"
@@ -479,7 +479,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/button_effect_chair_player"
+            android:drawableTop="@drawable/button_effect_change_seats"
             android:text="@string/change_seat"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_team_b_player2_info"
@@ -579,7 +579,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/button_effect_chair_player"
+            android:drawableTop="@drawable/button_effect_change_seats"
             android:text="@string/change_seat"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_team_b_player3_info"
@@ -684,7 +684,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/ic_chair_referee"
+            android:drawableTop="@drawable/button_effect_change_seats"
             android:text="@string/change_seat"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_referee_info"
@@ -725,16 +725,17 @@
     </android.support.constraint.ConstraintLayout>
 
     /* ------------------------------------------------------------------------------------------ */
-    /* Referee */
+    /* General */
 
     <ImageButton
         android:id="@+id/btn_slave_waiting4join_back_arrow"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:background="@null"
-        android:src="@drawable/ic_previous"
+        android:scaleType="centerCrop"
+        android:src="@drawable/button_effect_back_arrow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -745,18 +746,31 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:background="@null"
-        android:src="@drawable/ic_paper_plane"
+        android:src="@drawable/button_effect_chat"
         app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting4join_back_arrow"
         app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting4join_group"
         app:layout_constraintTop_toTopOf="@+id/btn_slave_waiting4join_back_arrow"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/text_slave_waiting4join_room_name"
+        style="@style/Waiting4JoinRoomName"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Room Name"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting4join_message"
+        app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting4join_message"
+        app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting4join_back_arrow"
+        app:layout_constraintTop_toTopOf="@+id/btn_slave_waiting4join_message" />
 
     <ImageButton
         android:id="@+id/btn_slave_waiting4join_group"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@null"
-        android:src="@drawable/ic_group"
+        android:src="@drawable/button_effect_friends"
         app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting4join_message"
         app:layout_constraintEnd_toEndOf="@+id/slave_waiting_team_a_player3_seat"
         app:layout_constraintTop_toTopOf="@+id/btn_slave_waiting4join_message"
@@ -823,28 +837,17 @@
 
     <Button
         android:id="@+id/btn_slave_waiting4join_cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="24dp"
-        android:text="@string/leave_room"
+        android:background="@drawable/button_effect_cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/slave_waiting_team_b_player3_seat" />
 
-    <TextView
-        android:id="@+id/text_slave_waiting4join_room_name"
-        style="@style/Waiting4JoinRoomName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Room Name"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting4join_message"
-        app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting4join_message"
-        app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting4join_back_arrow"
-        app:layout_constraintTop_toTopOf="@+id/btn_slave_waiting4join_message" />
+
 
 
 </android.support.constraint.ConstraintLayout>

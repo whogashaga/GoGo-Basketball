@@ -11,18 +11,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.kerry.gogobasketball.R;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinSlaveContract.View {
+public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinSlaveContract.View, View.OnClickListener {
 
     View mRoot;
 
     private Waiting4JoinSlaveContract.Presenter mPresenter;
     private RadioGroup mRadioGroupTimer;
+    private RadioButton mRadioTimerOn;
+    private RadioButton mRadioTimerOff;
     private ImageButton mBtnBackStack;
     private Button mBtnCancel;
 
@@ -58,9 +61,14 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
         mBtnBackStack = mRoot.findViewById(R.id.btn_slave_waiting4join_back_arrow);
-//        mBtnBackStack.setOnClickListener(this);
+        mBtnBackStack.setOnClickListener(this);
         mBtnCancel = mRoot.findViewById(R.id.btn_slave_waiting4join_cancel);
-//        mBtnCancel.setOnClickListener(this);
+        mBtnCancel.setOnClickListener(this);
+
+        mRadioTimerOn = mRoot.findViewById(R.id.radio_slave_timer_yes);
+        mRadioTimerOn.setClickable(false);
+        mRadioTimerOff = mRoot.findViewById(R.id.radio_slave_timer_no);
+        mRadioTimerOff.setClickable(false);
         mRadioGroupTimer = mRoot.findViewById(R.id.radio_slave_timer_selector);
 //        mRadioGroupTimer.setOnCheckedChangeListener(this);
 
@@ -69,10 +77,23 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     }
 
     @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_slave_waiting4join_back_arrow:
+                mPresenter.finishWaiting4JoinUi();
+                break;
+            case R.id.btn_slave_waiting4join_cancel:
+                mPresenter.finishWaiting4JoinUi();
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.hideToolbarAndBottomNavigation();
-
     }
 
     @Override
@@ -96,4 +117,6 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public boolean isActive() {
         return false;
     }
+
+
 }

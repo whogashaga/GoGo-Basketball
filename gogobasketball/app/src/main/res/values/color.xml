@@ -52,7 +52,7 @@
     <color name="referee_yes">#00E1FF</color>
     <color name="referee_no">#888888</color>
 
-
+    <!-- transparent -->
     <color name="transparent">#00888888</color>
 
 </resources>
