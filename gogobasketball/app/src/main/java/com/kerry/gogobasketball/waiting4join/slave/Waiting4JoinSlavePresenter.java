@@ -16,6 +16,8 @@ import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.util.Constants;
 
+import java.util.ArrayList;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Presenter {
@@ -27,6 +29,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
     private String mRoomDocId;
     private String mSortDocId;
+    private int mIntJoinerSort;
 
     public Waiting4JoinSlavePresenter(@NonNull Waiting4JoinSlaveContract.View waiting4JoinView) {
         mWaiting4JoineView = checkNotNull(waiting4JoinView, "Waiting4JoinView cannot be null!");
@@ -34,6 +37,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
         mWaitingRoomInfo = new WaitingRoomInfo();
         mJoinerInfo = new WaitingRoomSeats();
         mRoomDocId = "";
+        mIntJoinerSort = 0;
     }
 
     @Override
@@ -56,8 +60,8 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                // 只有一筆，跑 for 沒關係
                                 mRoomDocId = document.getId();
-//                                Log.w("Kerry", "Doc id = " + mRoomDocId);
                                 changeRoomPlayerAmountWhenJoin(document.getId());
                             }
                         } else {
@@ -70,30 +74,64 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     private void changeRoomPlayerAmountWhenJoin(String roomId) {
         if (mWaitingRoomInfo.getPlayerAmount() < 6) {
             mWaitingRoomInfo.setPlayerAmount(mWaitingRoomInfo.getPlayerAmount() + 1);
-            setJoinerInfo(mWaitingRoomInfo.getTotalPlayerAmount(), roomId);
+
+            queryExistedSort();
 
         } else if (mWaitingRoomInfo.getPlayerAmount() == 6 && mWaitingRoomInfo.getRefereeAmount() < 1) {
             mWaitingRoomInfo.setRefereeAmount(1);
-            setJoinerInfo(mWaitingRoomInfo.getTotalPlayerAmount(), roomId);
+
+            queryExistedSort();
+
         } else {
             Log.d(Constants.TAG, "Slave Join Room Error !");
         }
     }
 
-    private void setJoinerInfo(int currentPlayerAmount, String roomId) {
+    private void queryExistedSort() {
+
+        ArrayList<String> existedSortList = new ArrayList<>();
+
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .collection(Constants.WAITING_SEATS)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                existedSortList.add(document.getId());
+                            }
+
+                            Log.d("Kerry","boolean = " + (existedSortList.contains(String.valueOf(mIntJoinerSort))));
+                            Log.d("Kerry","boolean = " + existedSortList.toString());
+                            while (existedSortList.contains(String.valueOf(mIntJoinerSort))) {
+                                mIntJoinerSort++;
+                                Log.w("Kerry","mIntJoinerSort = " + mIntJoinerSort);
+                            }
+
+                            setJoinerInfo();
+
+                        } else {
+                            Log.w("Kerry", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+    }
+
+    private void setJoinerInfo() {
 
 
         // 都是 hardcode 的，屆時要帶入 user info
-        WaitingRoomSeats joinerSeatInfo = new WaitingRoomSeats();
-        joinerSeatInfo.setAvatar("https://graph.facebook.com/2177302648995421/picture?type=large");
-        joinerSeatInfo.setPosition("c");
-        joinerSeatInfo.setSort(currentPlayerAmount - 1);
-        joinerSeatInfo.setGender("male");
-        joinerSeatInfo.setSeatAvailable(false);
-        joinerSeatInfo.setId(GoGoBasketball.getAppContext().getString(R.string.id_player2));
 
-        // for leaving room delete doc
-        mJoinerInfo = joinerSeatInfo;
+        mJoinerInfo.setAvatar("https://graph.facebook.com/2177302648995421/picture?type=large");
+        mJoinerInfo.setPosition("c");
+        mJoinerInfo.setSort(mIntJoinerSort);
+        mJoinerInfo.setGender("male");
+        mJoinerInfo.setSeatAvailable(false);
+        mJoinerInfo.setId(GoGoBasketball.getAppContext().getString(R.string.id_player6));
 
         mWaiting4JoineView.getRoomInfoFromPresenter(mWaitingRoomInfo);
 
@@ -110,7 +148,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d("Kerry", "加入，並改變房間人數");
+                        Log.d("Kerry", "Slave 加入，並改變房間人數");
                         updateJoinerInfo2FireBase(mJoinerInfo, mRoomDocId);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -134,7 +172,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d("Kerry", "加入，並改變座位資訊！");
+                        Log.d("Kerry", "Slave 加入，並改變座位資訊！");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -145,6 +183,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     }
 
     /* ------------------------------------------------------------------------------------------ */
+    /* delete */
 
     @Override
     public void deleteSeatInfoWhenLeaveRoom() {
@@ -187,7 +226,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d("Kerry", "離開，刪除資料");
+                        Log.d("Kerry", "Slave 離開，刪除資料");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
