@@ -36,5 +36,7 @@ public interface Looking4RoomContract {
         void openWant2CreateRoom();
 
         void openWaiting4JoinSlave(WaitingRoomInfo waitingRoomInfo);
+
+        void showErrorToast(String message);
     }
 }

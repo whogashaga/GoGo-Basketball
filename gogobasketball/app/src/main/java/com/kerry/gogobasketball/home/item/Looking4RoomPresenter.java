@@ -75,6 +75,11 @@ public class Looking4RoomPresenter implements Looking4RoomContract.Presenter {
     }
 
     @Override
+    public void showErrorToast(String message) {
+
+    }
+
+    @Override
     public void start() {
 
     }

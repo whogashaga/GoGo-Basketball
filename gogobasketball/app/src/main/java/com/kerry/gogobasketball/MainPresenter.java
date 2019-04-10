@@ -4,6 +4,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.view.Gravity;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
@@ -424,6 +428,17 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void openWaiting4JoinSlave(WaitingRoomInfo waitingRoomInfo) {
         mMainView.openWaiting4JoinSlaveUi(waitingRoomInfo);
+    }
+
+    @Override
+    public void showErrorToast(String message) {
+        Toast toast = Toast.makeText(GoGoBasketball.getAppContext(), "無效", Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        LinearLayout toastLayout = (LinearLayout) toast.getView();
+        TextView toastTV = (TextView) toastLayout.getChildAt(0);
+        toastTV.setTextSize(16);
+        toastTV.setText(message);
+        toast.show();
     }
 
 

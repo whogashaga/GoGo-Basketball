@@ -108,7 +108,7 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
                 if (waitingRoomInfo.getTotalPlayerAmount() < 7) {
                     mPresenter.openWaiting4JoinSlave(waitingRoomInfo);
                 } else {
-                    Toast.makeText(GoGoBasketball.getAppContext(), "人數已滿！", Toast.LENGTH_SHORT).show();
+                    mPresenter.showErrorToast("\""+waitingRoomInfo.getRoomName()+"\" 人數已滿 !");
                 }
             }
         });
