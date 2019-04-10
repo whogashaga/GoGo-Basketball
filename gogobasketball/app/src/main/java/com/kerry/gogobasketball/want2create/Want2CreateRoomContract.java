@@ -3,12 +3,13 @@ package com.kerry.gogobasketball.want2create;
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
+import com.kerry.gogobasketball.data.WaitingRoomSeats;
 
 public interface Want2CreateRoomContract {
 
     interface View extends BaseView<Presenter> {
 
-        void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo);
+        void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats);
 
         boolean needReferee();
 
@@ -30,7 +31,7 @@ public interface Want2CreateRoomContract {
 
         void getRefereeOnOffFromRadioGroup(boolean needReferee);
 
-        void openWaitingJoin(WaitingRoomInfo waitingRoomInfo);
+        void openWaitingJoin(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo);
 
         void finishWant2CreateRoomUi();
 

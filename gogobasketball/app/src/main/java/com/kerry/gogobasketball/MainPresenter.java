@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
+import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.friends.FriendContract;
 import com.kerry.gogobasketball.friends.FriendPresenter;
 import com.kerry.gogobasketball.home.HomeContract;
@@ -235,8 +236,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
 //    @Override
-//    public void updateMyInfo2FireBase() {
-//        mWaiting4JoinSlavePresenter.updateMyInfo2FireBase();
+//    public void updateRoomInfo2FireBase() {
+//        mWaiting4JoinSlavePresenter.updateRoomInfo2FireBase();
 //    }
 
     @Override
@@ -245,13 +246,13 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo) {
-        mWaiting4JoinMasterPresenter.getRoomInfoFromWant2Create(waitingRoomInfo);
+    public void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo) {
+        mWaiting4JoinMasterPresenter.getRoomInfoFromWant2Create(waitingRoomInfo, hostSeatInfo);
     }
 
     @Override
-    public void openWaitingJoin(WaitingRoomInfo waitingRoomInfo) {
-        mMainView.openWait4JoinUi(waitingRoomInfo);
+    public void openWaitingJoin(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo) {
+        mMainView.openWait4JoinUi(waitingRoomInfo, hostSeatInfo);
     }
 
     /**

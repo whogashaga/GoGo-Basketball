@@ -3,6 +3,7 @@ package com.kerry.gogobasketball.waiting4join.master;
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
+import com.kerry.gogobasketball.data.WaitingRoomSeats;
 
 public interface Waiting4JoinMasterContract {
 
@@ -14,7 +15,7 @@ public interface Waiting4JoinMasterContract {
 
         boolean isActive();
 
-        void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo);
+        void getRoomInfoFromPresenterMaster(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats);
 
     }
 
@@ -34,6 +35,6 @@ public interface Waiting4JoinMasterContract {
 
         void finishWaiting4JoinUi();
 
-        void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo);
+        void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatsInfo);
     }
 }

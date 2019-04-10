@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.kerry.gogobasketball.FirestoreHelper;
 import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
@@ -22,7 +23,6 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     private final Want2CreateRoomContract.View mWant2CreateRoomView;
 
     private WaitingRoomInfo mWaitingRoomInfo;
-
 
 
     public Want2CreateRoomPresenter(@NonNull Want2CreateRoomContract.View want2CreateRoomView) {
@@ -51,50 +51,71 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     @Override
     public void updateWaitingRoomInfo2FireBase() {
 
-        // 都是 hardcode 的，屆時要帶入 user info
-        WaitingRoomSeats waitingRoomSeats = new WaitingRoomSeats();
-        waitingRoomSeats.setAvatar("https://graph.facebook.com/2177302648995421/picture?type=large");
-        waitingRoomSeats.setPosition("c");
-        waitingRoomSeats.setSort(0);
-        waitingRoomSeats.setGender("male");
-        waitingRoomSeats.setSeatAvailable(false);
-        waitingRoomSeats.setId(GoGoBasketball.getAppContext().getString(R.string.id_player4));
+        //  set Host Player Info (hardcode，屆時要帶入 user info)
+        WaitingRoomSeats hostSeatInfo = new WaitingRoomSeats();
+        hostSeatInfo.setAvatar("https://graph.facebook.com/2177302648995421/picture?type=large");
+        hostSeatInfo.setPosition("pg");
+        hostSeatInfo.setSort(0);
+        hostSeatInfo.setGender("male");
+        hostSeatInfo.setSeatAvailable(false);
+        hostSeatInfo.setId(GoGoBasketball.getAppContext().getString(R.string.id_player4));
 
-        ArrayList<WaitingRoomSeats> waitingSeatList = new ArrayList<>();
-        waitingSeatList.add(waitingRoomSeats);
-
+        // set Room Info
         WaitingRoomInfo waitingRoomInfo = new WaitingRoomInfo();
         waitingRoomInfo.setJustice(mWaitingRoomInfo.getJustice());
         waitingRoomInfo.setCourtLocation(mWaitingRoomInfo.getCourtLocation());
         waitingRoomInfo.setRoomName(mWaitingRoomInfo.getRoomName());
-        waitingRoomInfo.setHostName(waitingRoomSeats.getId());
+        waitingRoomInfo.setHostName(hostSeatInfo.getId());
         waitingRoomInfo.setPlayerAmount(1);
         waitingRoomInfo.setRefereeAmount(0);
-        waitingRoomInfo.setWaitingPlayersList(waitingSeatList);
 
-        // for open waiting4join view
-        mWant2CreateRoomView.getRoomInfoFromPresenter(waitingRoomInfo);
+        // for open waiting4join bind view
+        mWant2CreateRoomView.getRoomInfoFromPresenter(waitingRoomInfo, hostSeatInfo);
 
         // Add a new document with a generated ID
-        FirestoreHelper.getFirestore().collection(Constants.WAITING_ROOM)
-                .document(mWaitingRoomInfo.getRoomName())
-                .set(waitingRoomInfo)
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .add(waitingRoomInfo)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d("Kerry", "Room Doc ID: " + documentReference.getId());
+                        updateUserInfo2FireBase(hostSeatInfo, documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Kerry", "Error adding document", e);
+                    }
+                });
+
+    }
+
+    public void updateUserInfo2FireBase(WaitingRoomSeats hostPlayer, String roomDocId) {
+
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(roomDocId)
+                .collection("seats")
+                .document(hostPlayer.getId())
+                .set(hostPlayer)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d("Kerry", "創建 waiting room 成功！!");
+                        Log.d("Kerry", "等待中 - set seats info ！!");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Log.w("Kerry", "Error adding document", e);
             }
+
         });
-
-
     }
 
     /* ------------------------------------------------------------------------------------------ */
+    /* implement in MainPresenter */
 
     @Override
     public void result(int requestCode, int resultCode) {
@@ -112,12 +133,12 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     }
 
     @Override
-    public void openWaitingJoin(WaitingRoomInfo waitingRoomInfo) {
+    public void finishWant2CreateRoomUi() {
 
     }
 
     @Override
-    public void finishWant2CreateRoomUi() {
+    public void openWaitingJoin(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo) {
 
     }
 

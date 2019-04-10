@@ -10,10 +10,10 @@ public class WaitingRoomInfo {
     private boolean mJustice;
     private int mPlayers;
     private int mReferee;
-    private ArrayList<WaitingRoomSeats> mWaitingDerPlayersList;
+//    private ArrayList<WaitingRoomSeats> mWaitingDerPlayersList;
 
     public WaitingRoomInfo() {
-        mWaitingDerPlayersList = new ArrayList<>();
+//        mWaitingDerPlayersList = new ArrayList<>();
         mRoomName = "";
         mCourtLocation = "";
         mJustice = true;
@@ -70,13 +70,13 @@ public class WaitingRoomInfo {
         this.mReferee = referee;
     }
 
-    public ArrayList<WaitingRoomSeats> getWaitingPlayersList() {
-        return mWaitingDerPlayersList;
-    }
-
-    public void setWaitingPlayersList(ArrayList<WaitingRoomSeats> waitingDerPlayersList) {
-        this.mWaitingDerPlayersList = waitingDerPlayersList;
-    }
+//    public ArrayList<WaitingRoomSeats> getWaitingPlayersList() {
+//        return mWaitingDerPlayersList;
+//    }
+//
+//    public void setWaitingPlayersList(ArrayList<WaitingRoomSeats> waitingDerPlayersList) {
+//        this.mWaitingDerPlayersList = waitingDerPlayersList;
+//    }
 
     public int getTotalPlayerAmount() {
         return mPlayers + mReferee;

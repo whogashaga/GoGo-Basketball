@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
+import com.kerry.gogobasketball.data.WaitingRoomSeats;
 
 import java.util.ArrayList;
 
@@ -45,10 +46,12 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     private Spinner mSpinnerCourts;
     private ArrayList<String> mCourtsList;
     private WaitingRoomInfo mWaitingRoomInfo;
+    private WaitingRoomSeats mHostSeatInfo;
 
     public Want2CreateRoomFragment() {
         // Requires empty public constructor
         mWaitingRoomInfo = new WaitingRoomInfo();
+        mHostSeatInfo = new WaitingRoomSeats();
     }
 
     public static Want2CreateRoomFragment newInstance() {
@@ -134,7 +137,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         switch (v.getId()) {
             case R.id.btn_want2create_build_confirm:
                 mPresenter.updateWaitingRoomInfo2FireBase();
-                mPresenter.openWaitingJoin(mWaitingRoomInfo);
+                mPresenter.openWaitingJoin(mWaitingRoomInfo, mHostSeatInfo);
                 break;
             case R.id.btn_want2create_build_cancel:
                 mPresenter.finishWant2CreateRoomUi();
@@ -148,8 +151,9 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     }
 
     @Override
-    public void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo) {
+    public void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats) {
         mWaitingRoomInfo = waitingRoomInfo;
+        mHostSeatInfo = waitingRoomSeats;
     }
 
     @Override
@@ -160,14 +164,14 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
                 mTextRefereeWarning.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.blue_facebook));
                 mPresenter.getRefereeOnOffFromRadioGroup(true);
                 if (mEditorRoomName.getText().length() != 0) {
-                    setBtnCreateConfirmCliclable(true);
+                    setBtnCreateConfirmClickable(true);
                 }
                 break;
             case R.id.radios_referee_no:
                 mTextRefereeWarning.setText("暫不支援非裁判模式～");
                 mTextRefereeWarning.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.red_FF001F));
                 mPresenter.getRefereeOnOffFromRadioGroup(false);
-                setBtnCreateConfirmCliclable(false);
+                setBtnCreateConfirmClickable(false);
                 break;
             default:
                 break;
@@ -190,13 +194,13 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
                 if (!"".equals(s.toString()) && s.length() < 11) {
                     mPresenter.onRoomNameEditTextChange(s);
                     mEditorRoomName.setFocusable(true);
-                    setBtnCreateConfirmCliclable(true);
+                    setBtnCreateConfirmClickable(true);
                     if (s.length() == 10) {
                         Toast.makeText(GoGoBasketball.getAppContext(), "最多10個字", Toast.LENGTH_SHORT).show();
                     }
                 } else if (s.length() == 0) {
                     Toast.makeText(GoGoBasketball.getAppContext(), "請輸入房名", Toast.LENGTH_SHORT).show();
-                    setBtnCreateConfirmCliclable(false);
+                    setBtnCreateConfirmClickable(false);
                 } else {
                     Log.d("Kerry", "no this kind of situation!");
                 }
@@ -225,7 +229,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         return false;
     }
 
-    public void setBtnCreateConfirmCliclable(boolean clickable) {
+    public void setBtnCreateConfirmClickable(boolean clickable) {
 
         if (clickable) {
             mBtnCreateConfirm.setClickable(true);

@@ -5,9 +5,11 @@ public class Constants {
 
     public static final String TAG = "Kerry";
 
-    public static final String WAITING_PLAYERS_LIST = "waitingPlayersList";
+//    public static final String WAITING_PLAYERS_LIST = "waitingPlayersList";
 
     public static final String WAITING_ROOM = "waiting_room";
+
+    public static final String WAITING_SEATS = "waiting_seats";
 
 
 }

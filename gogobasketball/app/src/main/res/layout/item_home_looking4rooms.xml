@@ -49,14 +49,12 @@
         app:layout_constraintStart_toEndOf="@+id/image_item_location_pic"
         app:layout_constraintTop_toTopOf="@+id/image_item_location_pic" />
 
-
     <ImageView
         android:id="@+id/image_item_host_pic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/image_item_location_pic"
-        app:layout_constraintStart_toStartOf="@+id/image_item_location_pic"
+        app:layout_constraintStart_toStartOf="@+id/image_item_room_pic"
         app:layout_constraintTop_toBottomOf="@+id/image_item_location_pic"
         app:srcCompat="@drawable/image_effect_host_name" />
 
@@ -66,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Host Name"
+        android:text="location"
         app:layout_constraintBottom_toBottomOf="@+id/image_item_host_pic"
         app:layout_constraintStart_toEndOf="@+id/image_item_host_pic"
         app:layout_constraintTop_toTopOf="@+id/image_item_host_pic" />
@@ -88,7 +86,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
         android:text="0"
         app:layout_constraintBottom_toBottomOf="@+id/image_item_player_pic"
         app:layout_constraintStart_toEndOf="@+id/image_item_player_pic"

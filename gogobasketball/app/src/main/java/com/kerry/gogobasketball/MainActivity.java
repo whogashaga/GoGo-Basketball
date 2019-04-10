@@ -72,7 +72,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 //        addPlayingGamers();
 
 //        createWaitingRoom();
-//        addWaitingDerPlayers();
+        addWaitingDerPlayers();
 
 //        postCustomObject();
 //        getCustomObject();
@@ -108,7 +108,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
         WaitingRoomInfo waitingRoomInfo = new WaitingRoomInfo();
         waitingRoomInfo.setRoomName("bbb");
-        waitingRoomInfo.setWaitingPlayersList(list);
 
         mBtnCreateUser = findViewById(R.id.main_layout_create_user);
         mBtnCreateUser.setVisibility(View.VISIBLE);
@@ -146,8 +145,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 WaitingRoomInfo waitingRoomInfo = documentSnapshot.toObject(WaitingRoomInfo.class);
-                Log.w("Kerry", "waitingRoomInfo1 seat2 id = " + waitingRoomInfo.getWaitingPlayersList().get(0).getId());
-
             }
         });
 
@@ -287,22 +284,27 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         String waitingRoomDocId = "打架啦";
         String roomName = waitingRoomDocId;
         String location = "甲骨文球場";
-        String justice = "yes";
+        String hostName = "LetterGer";
+        boolean justice = true;
         int players = 1;
         int referee = 0;
+        int totalGamers = players + referee;
 
         mBtnCreateUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Map<String, Object> playingRoom = new HashMap<>();
-                playingRoom.put("room_name", roomName);
-                playingRoom.put("location", location);
+                playingRoom.put("roomName", roomName);
+                playingRoom.put("courtLocation", location);
+                playingRoom.put("hostName",hostName);
                 playingRoom.put("justice", justice);
-                playingRoom.put("players", players);
-                playingRoom.put("referee", referee);
+                playingRoom.put("playerAmount", players);
+                playingRoom.put("refereeAmount", referee);
+                playingRoom.put("totalPlayerAmount", totalGamers);
 
                 // Add a new document with a generated ID
-                mDb.collection("waiting_room")
+                mDb.collection(Constants.WAITING_ROOM)
                         .document(waitingRoomDocId)
                         .set(playingRoom)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -325,15 +327,15 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         mBtnCreateUser = findViewById(R.id.main_layout_create_user);
         mBtnCreateUser.setVisibility(View.VISIBLE);
 
-        String roomDocId = "今天不回家";
-        String playerDocId = "player2";
+        String roomDocId = "打架啦";
+        String playerDocId = GoGoBasketball.getAppContext().getString(R.string.id_player5);
 
-        boolean available = false;
         String avatar = "https://graph.facebook.com/2177302648995421/picture?type=large";
         String gender = "male";
         String playerId = playerDocId;
         String position = "pf";
-        int sort = 2;
+        int sort = 0;
+        boolean available = false;
 
         mBtnCreateUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -564,8 +566,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
-    public void openWait4JoinUi(WaitingRoomInfo waitingRoomInfo) {
-        mMainMvpController.findOrCreateWaiting4JoinView(waitingRoomInfo);
+    public void openWait4JoinUi(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo) {
+        mMainMvpController.findOrCreateWaiting4JoinView(waitingRoomInfo, hostSeatInfo);
     }
 
     @Override

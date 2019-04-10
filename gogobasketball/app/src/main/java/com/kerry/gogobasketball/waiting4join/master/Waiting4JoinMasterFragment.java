@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.ProfileAvatarOutlineProvider;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
+import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.util.ImageManager;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -43,6 +44,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     private Button mBtnSeatP1, mBtnInfoP1, mBtnAddFriendP1;
 
     private WaitingRoomInfo mWaitingRoomInfo;
+    private WaitingRoomSeats mHostSeatInfo;
 
     public Waiting4JoinMasterFragment() {
         mWaitingRoomInfo = new WaitingRoomInfo();
@@ -77,9 +79,10 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     }
 
     @Override
-    public void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo) {
+    public void getRoomInfoFromPresenterMaster(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats) {
+        // for setting host info
         mWaitingRoomInfo = waitingRoomInfo;
-
+        mHostSeatInfo = waitingRoomSeats;
     }
 
     @Nullable
@@ -111,37 +114,37 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         return mRoot;
     }
 
-    public void setUserInfo2TheSeat(WaitingRoomInfo waitingRoomInfo, int seatNumber) {
+    public void setUserHost2TheSeat(WaitingRoomSeats seatPlayerInfo, int sort) {
 
         // set avatar
-        ImageManager.getInstance().setImageByUrl(mAvatarP1, waitingRoomInfo.getWaitingPlayersList().get(0).getAvatar());
+        ImageManager.getInstance().setImageByUrl(mAvatarP1, seatPlayerInfo.getAvatar());
 
         // set Gender
-        if (waitingRoomInfo.getWaitingPlayersList().get(seatNumber).getGender().equals("male")) {
+        if (mHostSeatInfo.getGender().equals("male")) {
             mGenderP1.setImageResource(R.drawable.ic_male);
         } else {
             mGenderP1.setImageResource(R.drawable.ic_female);
         }
 
         // set Position image
-        setPositionImage(waitingRoomInfo, mPositionP1, seatNumber);
+        setPositionImage(seatPlayerInfo, mPositionP1);
 
         // set id
-        mTextIdP1.setText(waitingRoomInfo.getWaitingPlayersList().get(seatNumber).getId());
+        mTextIdP1.setText(seatPlayerInfo.getId());
 
     }
 
-    public void setPositionImage(WaitingRoomInfo waitingRoomInfo,ImageView imageView, int sort) {
+    public void setPositionImage(WaitingRoomSeats waitPlayerInfo,ImageView imageView) {
 
-        if (waitingRoomInfo.getWaitingPlayersList().get(sort).getPosition().equals("pg")) {
+        if (waitPlayerInfo.getPosition().equals("pg")) {
             imageView.setImageResource(R.drawable.ic_position_pg);
-        } else if (waitingRoomInfo.getWaitingPlayersList().get(sort).getPosition().equals("sg")) {
+        } else if (waitPlayerInfo.getPosition().equals("sg")) {
             imageView.setImageResource(R.drawable.ic_position_sg);
-        } else if (waitingRoomInfo.getWaitingPlayersList().get(sort).getPosition().equals("sf")) {
+        } else if (waitPlayerInfo.getPosition().equals("sf")) {
             imageView.setImageResource(R.drawable.ic_position_sf);
-        } else if (waitingRoomInfo.getWaitingPlayersList().get(sort).getPosition().equals("pf")) {
+        } else if (waitPlayerInfo.getPosition().equals("pf")) {
             imageView.setImageResource(R.drawable.ic_position_pf);
-        } else if (waitingRoomInfo.getWaitingPlayersList().get(sort).getPosition().equals("c")) {
+        } else if (waitPlayerInfo.getPosition().equals("c")) {
             imageView.setImageResource(R.drawable.ic_position_center);
         } else {
             Log.d("Kerry", "It's not gonna happen!");
@@ -188,7 +191,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setUserInfo2TheSeat(mWaitingRoomInfo,0);
+        setUserHost2TheSeat(mHostSeatInfo,0);
 
     }
 
