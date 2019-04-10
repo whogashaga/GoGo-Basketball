@@ -34,5 +34,8 @@ public interface Waiting4JoinSlaveContract {
 //        void updateRoomInfo2FireBase();
 
         void getHostNameFromLooking4Room(WaitingRoomInfo waitingRoomInfo);
+
+        void deleteSeatInfoWhenLeaveRoom();
     }
+
 }

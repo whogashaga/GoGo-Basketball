@@ -132,6 +132,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void onDestroy() {
         super.onDestroy();
         mPresenter.showToolbarAndBottomNavigation();
+        mPresenter.deleteSeatInfoWhenLeaveRoom();
     }
 
     @Override

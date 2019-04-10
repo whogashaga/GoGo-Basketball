@@ -246,6 +246,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
+    public void deleteSeatInfoWhenLeaveRoom() {
+        mWaiting4JoinSlavePresenter.deleteSeatInfoWhenLeaveRoom();
+    }
+
+    @Override
     public void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo) {
         mWaiting4JoinMasterPresenter.getRoomInfoFromWant2Create(waitingRoomInfo, hostSeatInfo);
     }

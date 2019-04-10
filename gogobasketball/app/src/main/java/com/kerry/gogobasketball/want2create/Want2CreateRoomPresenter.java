@@ -58,7 +58,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
         hostSeatInfo.setSort(0);
         hostSeatInfo.setGender("male");
         hostSeatInfo.setSeatAvailable(false);
-        hostSeatInfo.setId(GoGoBasketball.getAppContext().getString(R.string.id_player4));
+        hostSeatInfo.setId(GoGoBasketball.getAppContext().getString(R.string.id_player1));
 
         // set Room Info
         WaitingRoomInfo waitingRoomInfo = new WaitingRoomInfo();
@@ -97,8 +97,8 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .document(roomDocId)
-                .collection("seats")
-                .document(hostPlayer.getId())
+                .collection(Constants.WAITING_SEATS)
+                .document(String.valueOf(hostPlayer.getSort()))
                 .set(hostPlayer)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

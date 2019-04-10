@@ -23,13 +23,17 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     private final Waiting4JoinSlaveContract.View mWaiting4JoineView;
 
     private WaitingRoomInfo mWaitingRoomInfo;
-    private String mDocId;
+    private WaitingRoomSeats mJoinerInfo;
+
+    private String mRoomDocId;
+    private String mSortDocId;
 
     public Waiting4JoinSlavePresenter(@NonNull Waiting4JoinSlaveContract.View waiting4JoinView) {
         mWaiting4JoineView = checkNotNull(waiting4JoinView, "Waiting4JoinView cannot be null!");
         mWaiting4JoineView.setPresenter(this);
         mWaitingRoomInfo = new WaitingRoomInfo();
-        mDocId = "";
+        mJoinerInfo = new WaitingRoomSeats();
+        mRoomDocId = "";
     }
 
     @Override
@@ -52,9 +56,9 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                mDocId = document.getId();
-//                                Log.w("Kerry", "Doc id = " + mDocId);
-                                changeRoomPlayerAmount(document.getId());
+                                mRoomDocId = document.getId();
+//                                Log.w("Kerry", "Doc id = " + mRoomDocId);
+                                changeRoomPlayerAmountWhenJoin(document.getId());
                             }
                         } else {
                             Log.w("Kerry", "Error getting documents.", task.getException());
@@ -63,7 +67,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 });
     }
 
-    private void changeRoomPlayerAmount(String roomId) {
+    private void changeRoomPlayerAmountWhenJoin(String roomId) {
         if (mWaitingRoomInfo.getPlayerAmount() < 6) {
             mWaitingRoomInfo.setPlayerAmount(mWaitingRoomInfo.getPlayerAmount() + 1);
             setJoinerInfo(mWaitingRoomInfo.getTotalPlayerAmount(), roomId);
@@ -72,7 +76,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
             mWaitingRoomInfo.setRefereeAmount(1);
             setJoinerInfo(mWaitingRoomInfo.getTotalPlayerAmount(), roomId);
         } else {
-            Log.d(Constants.TAG,"Slave Join Room Error !");
+            Log.d(Constants.TAG, "Slave Join Room Error !");
         }
     }
 
@@ -82,29 +86,32 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
         // 都是 hardcode 的，屆時要帶入 user info
         WaitingRoomSeats joinerSeatInfo = new WaitingRoomSeats();
         joinerSeatInfo.setAvatar("https://graph.facebook.com/2177302648995421/picture?type=large");
-        joinerSeatInfo.setPosition("sg");
-        joinerSeatInfo.setSort(currentPlayerAmount);
-        joinerSeatInfo.setGender("female");
+        joinerSeatInfo.setPosition("c");
+        joinerSeatInfo.setSort(currentPlayerAmount - 1);
+        joinerSeatInfo.setGender("male");
         joinerSeatInfo.setSeatAvailable(false);
-        joinerSeatInfo.setId(GoGoBasketball.getAppContext().getString(R.string.id_player6));
+        joinerSeatInfo.setId(GoGoBasketball.getAppContext().getString(R.string.id_player2));
 
-        updateRoomInfo2FireBase(roomId, mWaitingRoomInfo, joinerSeatInfo);
+        // for leaving room delete doc
+        mJoinerInfo = joinerSeatInfo;
 
         mWaiting4JoineView.getRoomInfoFromPresenter(mWaitingRoomInfo);
+
+        updateRoomInfoWhenJoin(mWaitingRoomInfo);
+
     }
 
-    private void updateRoomInfo2FireBase(String roomId, WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats joinerInfo) {
-
+    private void updateRoomInfoWhenJoin(WaitingRoomInfo waitingRoomInfo) {
 
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
-                .document(roomId)
+                .document(mRoomDocId)
                 .set(waitingRoomInfo)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d("Kerry", "加入，並改變房間人數");
-                        updateJoinerInfo2FireBase(joinerInfo, roomId);
+                        updateJoinerInfo2FireBase(mJoinerInfo, mRoomDocId);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -116,16 +123,71 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
     private void updateJoinerInfo2FireBase(WaitingRoomSeats joinerInfo, String roomId) {
 
+        mSortDocId = String.valueOf(joinerInfo.getSort());
+
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .document(roomId)
                 .collection(Constants.WAITING_SEATS)
-                .document(joinerInfo.getId())
+                .document(String.valueOf(joinerInfo.getSort()))
                 .set(joinerInfo)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d("Kerry", "加入，並改變座位資訊！");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w("Kerry", "Error adding document", e);
+            }
+        });
+    }
+
+    /* ------------------------------------------------------------------------------------------ */
+
+    @Override
+    public void deleteSeatInfoWhenLeaveRoom() {
+
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .collection(Constants.WAITING_SEATS)
+                .document(mSortDocId)
+                .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                changeRoomPlayerAmountWhenLeave();
+            }
+        });
+    }
+
+    private void changeRoomPlayerAmountWhenLeave() {
+
+        if (mJoinerInfo.getSort() == 0 || mJoinerInfo.getSort() == 1
+                || mJoinerInfo.getSort() == 2
+                || mJoinerInfo.getSort() == 3
+                || mJoinerInfo.getSort() == 4
+                || mJoinerInfo.getSort() == 5
+                || mJoinerInfo.getSort() == 6) {
+            mWaitingRoomInfo.setPlayerAmount(mWaitingRoomInfo.getPlayerAmount() - 1);
+            updateRoomInfoWhenLeave(mWaitingRoomInfo);
+        } else {
+            mWaitingRoomInfo.setRefereeAmount(0);
+            updateRoomInfoWhenLeave(mWaitingRoomInfo);
+        }
+    }
+
+    private void updateRoomInfoWhenLeave(WaitingRoomInfo waitingRoomInfo) {
+
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .set(waitingRoomInfo)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Kerry", "離開，刪除資料");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
