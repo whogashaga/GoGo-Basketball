@@ -251,13 +251,18 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo) {
-        mWaiting4JoinMasterPresenter.getRoomInfoFromWant2Create(waitingRoomInfo, hostSeatInfo);
+    public void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId) {
+        mWaiting4JoinMasterPresenter.getRoomInfoFromWant2Create(waitingRoomInfo, hostSeatInfo, roomDocId);
     }
 
     @Override
-    public void openWaitingJoin(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo) {
-        mMainView.openWait4JoinUi(waitingRoomInfo, hostSeatInfo);
+    public void deleteRoomWhenLeaveRoom() {
+        mWaiting4JoinMasterPresenter.deleteRoomWhenLeaveRoom();
+    }
+
+    @Override
+    public void openWaitingJoin(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId) {
+        mMainView.openWait4JoinUi(waitingRoomInfo, hostSeatInfo, roomDocId);
     }
 
     /**
@@ -275,8 +280,13 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void updateWaitingRoomInfo2FireBase() {
-        mWant2CreateRoomPresenter.updateWaitingRoomInfo2FireBase();
+    public void updateRoomInfo2FireStore() {
+        mWant2CreateRoomPresenter.updateRoomInfo2FireStore();
+    }
+
+    @Override
+    public void updateUserInfo2FireBase(WaitingRoomSeats hostPlayer, String roomDocId) {
+        mWant2CreateRoomPresenter.updateUserInfo2FireBase(hostPlayer, roomDocId);
     }
 
     @Override

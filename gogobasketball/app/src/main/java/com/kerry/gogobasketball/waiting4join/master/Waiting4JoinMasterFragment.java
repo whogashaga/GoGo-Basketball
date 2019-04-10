@@ -147,7 +147,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         } else if (waitPlayerInfo.getPosition().equals("c")) {
             imageView.setImageResource(R.drawable.ic_position_center);
         } else {
-            Log.d("Kerry", "It's not gonna happen!");
+            Log.e("Kerry", "Set Position Error!!");
         }
     }
 
@@ -199,6 +199,12 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     public void onPause() {
         super.onPause();
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.deleteRoomWhenLeaveRoom();
     }
 
     @Override

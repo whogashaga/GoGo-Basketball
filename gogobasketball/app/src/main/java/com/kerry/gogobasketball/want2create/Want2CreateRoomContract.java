@@ -9,7 +9,7 @@ public interface Want2CreateRoomContract {
 
     interface View extends BaseView<Presenter> {
 
-        void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats);
+        void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats, String roomDocId);
 
         boolean needReferee();
 
@@ -25,17 +25,20 @@ public interface Want2CreateRoomContract {
 
         void showToolbarAndBottomNavigation();
 
-        void updateWaitingRoomInfo2FireBase();
+        void updateRoomInfo2FireStore();
+
+        void updateUserInfo2FireBase(WaitingRoomSeats hostPlayer, String roomDocId);
 
         void getCourtLocationFromSpinner(String courtLocation);
 
         void getRefereeOnOffFromRadioGroup(boolean needReferee);
 
-        void openWaitingJoin(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo);
+        void openWaitingJoin(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId);
 
         void finishWant2CreateRoomUi();
 
         void onRoomNameEditTextChange(CharSequence charSequence);
+
 
     }
 }

@@ -188,12 +188,12 @@ public class MainMvpController {
     /**
      * Waiting4Join View
      */
-    void findOrCreateWaiting4JoinView(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatsInfo) {
+    void findOrCreateWaiting4JoinView(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatsInfo, String roomDocId) {
 
         Waiting4JoinMasterFragment waiting4JoinFragment = createWaiting4JoinFragment();
 
         mWaiting4JoinMasterPresenter = new Waiting4JoinMasterPresenter(waiting4JoinFragment);
-        mWaiting4JoinMasterPresenter.getRoomInfoFromWant2Create(waitingRoomInfo, hostSeatsInfo);
+        mWaiting4JoinMasterPresenter.getRoomInfoFromWant2Create(waitingRoomInfo, hostSeatsInfo,roomDocId);
 
         mMainPresenter.setWaiting4JoinPresenter(mWaiting4JoinMasterPresenter);
         waiting4JoinFragment.setPresenter(mMainPresenter);

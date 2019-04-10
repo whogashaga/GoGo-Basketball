@@ -47,11 +47,13 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     private ArrayList<String> mCourtsList;
     private WaitingRoomInfo mWaitingRoomInfo;
     private WaitingRoomSeats mHostSeatInfo;
+    private String mRoomDocId;
 
     public Want2CreateRoomFragment() {
         // Requires empty public constructor
         mWaitingRoomInfo = new WaitingRoomInfo();
         mHostSeatInfo = new WaitingRoomSeats();
+        mRoomDocId = "";
     }
 
     public static Want2CreateRoomFragment newInstance() {
@@ -136,8 +138,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_want2create_build_confirm:
-                mPresenter.updateWaitingRoomInfo2FireBase();
-                mPresenter.openWaitingJoin(mWaitingRoomInfo, mHostSeatInfo);
+                mPresenter.updateRoomInfo2FireStore();
                 break;
             case R.id.btn_want2create_build_cancel:
                 mPresenter.finishWant2CreateRoomUi();
@@ -151,9 +152,12 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     }
 
     @Override
-    public void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats) {
+    public void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats, String roomDocId) {
         mWaitingRoomInfo = waitingRoomInfo;
         mHostSeatInfo = waitingRoomSeats;
+        mRoomDocId = roomDocId;
+        mPresenter.openWaitingJoin(waitingRoomInfo, waitingRoomSeats, roomDocId);
+        mPresenter.updateUserInfo2FireBase(waitingRoomSeats, roomDocId);
     }
 
     @Override
@@ -217,6 +221,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     public void onDestroy() {
         super.onDestroy();
         mPresenter.showToolbarAndBottomNavigation();
+
     }
 
     @Override

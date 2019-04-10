@@ -24,12 +24,14 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
 
     private WaitingRoomInfo mWaitingRoomInfo;
 
+    private String mRoomDocId;
 
     public Want2CreateRoomPresenter(@NonNull Want2CreateRoomContract.View want2CreateRoomView) {
         mWant2CreateRoomView = checkNotNull(want2CreateRoomView, "Want2CreateRoomView cannot be null!");
         mWant2CreateRoomView.setPresenter(this);
 
         mWaitingRoomInfo = new WaitingRoomInfo();
+        mRoomDocId = "";
     }
 
     @Override
@@ -49,7 +51,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     }
 
     @Override
-    public void updateWaitingRoomInfo2FireBase() {
+    public void updateRoomInfo2FireStore() {
 
         //  set Host Player Info (hardcode，屆時要帶入 user info)
         WaitingRoomSeats hostSeatInfo = new WaitingRoomSeats();
@@ -69,18 +71,15 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
         waitingRoomInfo.setPlayerAmount(1);
         waitingRoomInfo.setRefereeAmount(0);
 
-        // for open waiting4join bind view
-        mWant2CreateRoomView.getRoomInfoFromPresenter(waitingRoomInfo, hostSeatInfo);
-
-        // Add a new document with a generated ID
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .add(waitingRoomInfo)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        Log.d("Kerry", "Room Doc ID: " + documentReference.getId());
-                        updateUserInfo2FireBase(hostSeatInfo, documentReference.getId());
+                        mRoomDocId = documentReference.getId();
+                        // for open waiting4join bind view
+                        mWant2CreateRoomView.getRoomInfoFromPresenter(waitingRoomInfo, hostSeatInfo, documentReference.getId());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -92,6 +91,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
 
     }
 
+    @Override
     public void updateUserInfo2FireBase(WaitingRoomSeats hostPlayer, String roomDocId) {
 
         FirestoreHelper.getFirestore()
@@ -118,6 +118,11 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     /* implement in MainPresenter */
 
     @Override
+    public void openWaitingJoin(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId) {
+
+    }
+
+    @Override
     public void result(int requestCode, int resultCode) {
 
     }
@@ -137,10 +142,6 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
 
     }
 
-    @Override
-    public void openWaitingJoin(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo) {
-
-    }
 
     @Override
     public void start() {

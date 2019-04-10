@@ -31,7 +31,7 @@ public interface MainContract {
 
 //        void openDetailUi(Product product);
 
-        void openWait4JoinUi(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo);
+        void openWait4JoinUi(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId);
 
         void openGamePlayingOfRefereeUi();
 

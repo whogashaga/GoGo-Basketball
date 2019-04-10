@@ -35,6 +35,8 @@ public interface Waiting4JoinMasterContract {
 
         void finishWaiting4JoinUi();
 
-        void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatsInfo);
+        void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatsInfo, String roomDocId);
+
+        void deleteRoomWhenLeaveRoom();
     }
 }
