@@ -3,16 +3,19 @@ package com.kerry.gogobasketball.waiting4join.slave;
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
+import com.kerry.gogobasketball.data.WaitingRoomSeats;
+
+import java.util.ArrayList;
 
 public interface Waiting4JoinSlaveContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showPlayingGameSlaveUi();
+        void showWaiting4JoinSlaveUi(ArrayList<WaitingRoomSeats> newSeatsList);
 
         boolean isActive();
 
-        void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo);
+        void showRoomName(WaitingRoomInfo waitingRoomInfo);
     }
 
     interface Presenter extends BasePresenter {

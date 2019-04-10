@@ -57,7 +57,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
         WaitingRoomSeats hostSeatInfo = new WaitingRoomSeats();
         hostSeatInfo.setAvatar("https://graph.facebook.com/2177302648995421/picture?type=large");
         hostSeatInfo.setPosition("pg");
-        hostSeatInfo.setSort(0);
+        hostSeatInfo.setSort(1);
         hostSeatInfo.setGender("male");
         hostSeatInfo.setSeatAvailable(false);
         hostSeatInfo.setId(GoGoBasketball.getAppContext().getString(R.string.id_player1));
@@ -80,6 +80,8 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
                         mRoomDocId = documentReference.getId();
                         // for open waiting4join bind view
                         mWant2CreateRoomView.getRoomInfoFromPresenter(waitingRoomInfo, hostSeatInfo, documentReference.getId());
+
+                        Log.d("Kerry", "Master創建房間 ！!");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -103,7 +105,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d("Kerry", "等待中 - set seats info ！!");
+                        Log.d("Kerry", "Master進入房間 ！!");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override

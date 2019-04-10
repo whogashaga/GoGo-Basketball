@@ -31,13 +31,11 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
 //        mWaitingRoomInfo = waitingRoomInfo;
         mWaiting4JoineView.getRoomInfoFromPresenterMaster(waitingRoomInfo, hostSeatsInfo);
         mRoomDocId = roomDocId;
-        Log.e("Kerry", "waiting4join id = " + mRoomDocId);
+//        Log.e("Kerry", "waiting4join id = " + mRoomDocId);
     }
 
     @Override
     public void deleteRoomWhenLeaveRoom() {
-
-        Log.w(Constants.TAG,"deleteRoomWhenLeaveRoom!");
 
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)

@@ -77,7 +77,7 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
 
     }
 
-    public void determineOpenWaiting4Join(WaitingRoomInfo waitingRoomInfo) {
+    private void determineOpenWaiting4Join(WaitingRoomInfo waitingRoomInfo) {
 
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)

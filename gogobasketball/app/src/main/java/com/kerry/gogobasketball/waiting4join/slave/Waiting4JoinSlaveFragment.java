@@ -20,7 +20,9 @@ import android.widget.TextView;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.ProfileAvatarOutlineProvider;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
-import com.kerry.gogobasketball.util.ImageManager;
+import com.kerry.gogobasketball.data.WaitingRoomSeats;
+
+import java.util.ArrayList;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -34,6 +36,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     private RadioButton mRadioTimerOff;
     private ImageButton mBtnBackStack;
     private Button mBtnCancel;
+    private TextView mTextRoomName;
     private WaitingRoomInfo mWaitingRoomInfoForFirstTime;
 
     private ImageView mAvatarP1, mGenderP1, mPositionP1;
@@ -72,6 +75,8 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mRoot = inflater.inflate(R.layout.fragment_waiting4join_slave, container, false);
         mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
+        mTextRoomName = mRoot.findViewById(R.id.text_slave_waiting4join_room_name);
+
         mBtnBackStack = mRoot.findViewById(R.id.btn_slave_waiting4join_back_arrow);
         mBtnBackStack.setOnClickListener(this);
         mBtnCancel = mRoot.findViewById(R.id.btn_slave_waiting4join_cancel);
@@ -89,13 +94,17 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mGenderP1 = mRoot.findViewById(R.id.slave_waiting_team_a_player1_gender);
         mPositionP1 = mRoot.findViewById(R.id.slave_waiting_team_a_player1_position);
         mTextIdP1 = mRoot.findViewById(R.id.slave_waiting_team_a_player1_id);
+        mTextIdP1 = mRoot.findViewById(R.id.slave_waiting_team_a_player1_id);
+        mBtnSeatP1 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player1_change_seat);
+        mBtnInfoP1 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player1_info);
+        mBtnAddFriendP1 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player1_add);
 
         return mRoot;
     }
 
     @Override
-    public void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo) {
-        mWaitingRoomInfoForFirstTime = waitingRoomInfo;
+    public void showRoomName(WaitingRoomInfo waitingRoomInfo) {
+        mTextRoomName.setText(waitingRoomInfo.getRoomName());
     }
 
 
@@ -136,7 +145,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     }
 
     @Override
-    public void showPlayingGameSlaveUi() {
+    public void showWaiting4JoinSlaveUi(ArrayList<WaitingRoomSeats> newSeatsList) {
 
     }
 
