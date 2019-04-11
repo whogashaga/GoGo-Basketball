@@ -284,8 +284,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void changeMasterToSeatP1() {
-        mWaiting4JoinMasterPresenter.changeMasterToSeatP1();
+    public void changeMaster2NewSeat(int newSort) {
+        mWaiting4JoinMasterPresenter.changeMaster2NewSeat(newSort);
     }
 
     /**

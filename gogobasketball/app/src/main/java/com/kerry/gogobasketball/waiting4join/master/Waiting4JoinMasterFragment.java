@@ -228,7 +228,32 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
                 }
                 break;
             case R.id.btn_waiting_team_a_player1_change_seat:
-                mPresenter.changeMasterToSeatP1();
+                mPresenter.changeMaster2NewSeat(1);
+                break;
+            case R.id.btn_waiting_team_a_player2_change_seat:
+                Log.d("Kerry","onClick seat2");
+                mPresenter.changeMaster2NewSeat(2);
+                break;
+            case R.id.btn_waiting_team_a_player3_change_seat:
+                Log.d("Kerry","onClick seat3");
+                mPresenter.changeMaster2NewSeat(3);
+                break;
+            case R.id.btn_waiting_team_b_player1_change_seat:
+                Log.d("Kerry","onClick seat4");
+                mPresenter.changeMaster2NewSeat(4);
+                break;
+            case R.id.btn_waiting_team_b_player2_change_seat:
+                Log.d("Kerry","onClick seat5");
+                mPresenter.changeMaster2NewSeat(5);
+                break;
+            case R.id.btn_waiting_team_b_player3_change_seat:
+                Log.d("Kerry","onClick seat6");
+                mPresenter.changeMaster2NewSeat(6);
+                break;
+            case R.id.btn_waiting_referee_change_seat:
+                Log.d("Kerry","onClick seat7");
+                mPresenter.changeMaster2NewSeat(7);
+                break;
             default:
                 break;
         }
@@ -297,9 +322,9 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
 
         // set btn change seat
         if (seatPlayerInfo.isSeatAvailable()) {
-            btnChangeSeat.setVisibility(View.GONE);
-        } else {
             btnChangeSeat.setVisibility(View.VISIBLE);
+        } else {
+            btnChangeSeat.setVisibility(View.GONE);
         }
 
     }

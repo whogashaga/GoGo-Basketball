@@ -38,6 +38,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     private String mRoomDocId;
     private ArrayList<WaitingRoomSeats> mSeatsInfoList;
     private ArrayList<WaitingRoomSeats> mListForChangeSeat;
+    private int mCurrentSort;
 
     public Waiting4JoinMasterPresenter(@NonNull Waiting4JoinMasterContract.View waiting4JoinView) {
         mWaiting4JoinMasterView = checkNotNull(waiting4JoinView, "Waiting4JoinView cannot be null!");
@@ -46,6 +47,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
         mRoomDocId = "";
         mSeatsInfoList = new ArrayList<>();
         mListForChangeSeat = new ArrayList<>();
+        mCurrentSort = -1;
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -55,27 +57,105 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
 
         mWaitingRoomInfo = waitingRoomInfo;
         mHostSeatInfo = hostSeatsInfo;
+        mCurrentSort = hostSeatsInfo.getSort();
         mWaiting4JoinMasterView.getRoomInfoFromPresenter(waitingRoomInfo);
         mRoomDocId = roomDocId;
 
-        setSnapshotListerMaster(roomDocId);
+        setRoomSnapshotListerMaster(roomDocId);
+        setSeatSnapshotListerMaster(roomDocId);
     }
 
     @Override
-    public void changeMasterToSeatP1() {
-        if (mListForChangeSeat.get(0).isSeatAvailable()) {
-            updateSortForChangeSeat(1);
+    public void changeMaster2NewSeat(int newSort) {
+        if (mListForChangeSeat.get(newSort - 1).isSeatAvailable()) {
+            Log.w("Kerry", "onClick changeMaster2NewSeat");
+            findCurrentSeatDocId(newSort);
+        } else {
+            Log.d("Kerry", "changeMaster2NewSeat Error!!");
         }
     }
 
-    private void updateSortForChangeSeat(int sort) {
+    private void findCurrentSeatDocId(int newSort) {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .collection(Constants.WAITING_SEATS)
+                .whereEqualTo("sort", mCurrentSort)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                Log.d("Kerry", "seat doc id = " +document.getId());
+                                // 只有一筆，跑 for 沒關係
+                                updateSortForChangeSeat(document.getId(), newSort);
+                            }
+                        } else {
+                            Log.w("Kerry", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+    }
+
+    private void updateSortForChangeSeat(String seatDocId, int newSort) {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .collection(Constants.WAITING_SEATS)
+                .document(seatDocId)
+                .update(Constants.SORT, newSort)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        mCurrentSort = newSort;
+                        Log.d(Constants.TAG, "DocumentSnapshot successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(Constants.TAG, "Error updating document", e);
+                    }
+                });
 
     }
 
     /* ------------------------------------------------------------------------------------------ */
     /* Listener */
 
-    private void setSnapshotListerMaster(String roomDocId) {
+    private void setSeatSnapshotListerMaster(String roomDocId) {
+        final DocumentReference docRef = FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .collection(Constants.WAITING_SEATS)
+                .document(mHostSeatInfo.getId());
+        Log.e("Kerry", "mRoomId = " + mRoomDocId);
+        Log.e("Kerry", "mSeatId = " + mHostSeatInfo.getId());
+        Log.e("Kerry", "setSeatSnapshotListerMaster !!");
+
+        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot snapshot,
+                                @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w(Constants.TAG, "Listen failed.", e);
+                    return;
+                }
+                if (snapshot != null && snapshot.exists()) {
+                    Log.w("Kerry", "Seat Current data: " + snapshot.getData());
+
+                    getNewSeatsInfo();
+
+                } else {
+                    Log.d(Constants.TAG, "Current data: null");
+                }
+            }
+        });
+    }
+
+
+    private void setRoomSnapshotListerMaster(String roomDocId) {
 
         final DocumentReference docRef = FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
@@ -90,13 +170,13 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                     return;
                 }
                 if (snapshot != null && snapshot.exists()) {
-                    Log.d(Constants.TAG, "Current data: " + snapshot.getData());
-                    Log.w("Kerry", "Current data: " + snapshot.getData());
+                    Log.d(Constants.TAG, "Room Current data: " + snapshot.getData());
+                    Log.w("Kerry", "Room Current data: " + snapshot.getData());
 
                     getNewSeatsInfo();
 
                 } else {
-                    Log.d(Constants.TAG, "Current data: null");
+                    Log.d(Constants.TAG, "Room Current data: null");
                 }
             }
         });
@@ -129,7 +209,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                                 emptySeatsList.add(mSeatsInfoList.get(j).getSort() - 1, mSeatsInfoList.get(j));
                             }
 
-                            Log.e("Kerry", "EmptyList size = " + emptySeatsList.size());
+//                            Log.e("Kerry", "EmptyList size = " + emptySeatsList.size());
 
                             mWaiting4JoinMasterView.showWaitingSeatsMasterUi(emptySeatsList);
 
@@ -187,7 +267,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
-                .document(String.valueOf(mHostSeatInfo.getSort()))
+                .document(mHostSeatInfo.getId())
                 .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {

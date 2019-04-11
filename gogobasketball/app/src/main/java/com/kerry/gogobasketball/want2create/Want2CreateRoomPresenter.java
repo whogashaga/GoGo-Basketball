@@ -101,7 +101,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
                 .collection(Constants.WAITING_ROOM)
                 .document(roomDocId)
                 .collection(Constants.WAITING_SEATS)
-                .document(String.valueOf(hostPlayer.getSort()))
+                .document(hostPlayer.getId())
                 .set(hostPlayer)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

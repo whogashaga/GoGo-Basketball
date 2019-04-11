@@ -43,6 +43,6 @@ public interface Waiting4JoinMasterContract {
 
         void showErrorToast(String message);
 
-        void changeMasterToSeatP1();
+        void changeMaster2NewSeat(int newSort);
     }
 }
