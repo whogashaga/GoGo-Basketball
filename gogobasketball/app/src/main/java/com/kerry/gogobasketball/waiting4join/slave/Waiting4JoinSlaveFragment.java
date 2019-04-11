@@ -30,6 +30,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinSlaveContract.View, View.OnClickListener {
 
     View mRoot;
+    private boolean mIsRoomExisted;
 
     private Waiting4JoinSlaveContract.Presenter mPresenter;
     private RadioGroup mRadioGroupTimer;
@@ -285,6 +286,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.hideToolbarAndBottomNavigation();
+        mIsRoomExisted = true;
 
         mGenderP1.setVisibility(View.INVISIBLE);
         mPositionP1.setVisibility(View.INVISIBLE);
@@ -312,7 +314,20 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void onDestroy() {
         super.onDestroy();
         mPresenter.showToolbarAndBottomNavigation();
-        mPresenter.deleteSeatsInfoWhenLeaveRoom();
+
+        if (mIsRoomExisted){
+            mPresenter.changeRoomPlayerAmountWhenLeave();
+            mPresenter.deleteSeatsInfoWhenLeaveRoom();
+            mPresenter.updateRoomInfoWhenLeave();
+        } else {
+            mPresenter.deleteSeatsInfoWhenLeaveRoom();
+        }
+
+    }
+
+    @Override
+    public void getRoomDocIsExisted(boolean isExisted) {
+        mIsRoomExisted = isExisted;
     }
 
     @Override

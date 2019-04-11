@@ -4,6 +4,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.Gravity;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -16,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.FirestoreHelper;
+import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.util.Constants;
@@ -29,6 +34,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     private final Waiting4JoinMasterContract.View mWaiting4JoinMasterView;
 
     private WaitingRoomInfo mWaitingRoomInfo;
+    private WaitingRoomSeats mHostSeatInfo;
     private String mRoomDocId;
     private ArrayList<WaitingRoomSeats> mSeatsInfoList;
 
@@ -46,8 +52,8 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     public void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatsInfo, String roomDocId) {
 
         mWaitingRoomInfo = waitingRoomInfo;
-
-        mWaiting4JoinMasterView.getRoomInfoWhenCreate(waitingRoomInfo, hostSeatsInfo);
+        mHostSeatInfo = hostSeatsInfo;
+        mWaiting4JoinMasterView.getRoomInfoFromPresenter(waitingRoomInfo);
         mRoomDocId = roomDocId;
 
         setSnapshotListerMaster(roomDocId);
@@ -109,6 +115,8 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                                 emptySeatsList.add(mSeatsInfoList.get(j).getSort() - 1, mSeatsInfoList.get(j));
                             }
 
+                            Log.e("Kerry", "EmptyList size = " + emptySeatsList.size());
+
                             mWaiting4JoinMasterView.showWaitingSeatsMasterUi(emptySeatsList);
 
                         } else {
@@ -119,6 +127,21 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
 
     }
 
+    private void getNewRoomInfo() {
+
+        DocumentReference docRef = FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId);
+
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                WaitingRoomInfo waitingRoomInfo = documentSnapshot.toObject(WaitingRoomInfo.class);
+                mWaiting4JoinMasterView.getRoomInfoFromPresenter(waitingRoomInfo);
+            }
+        });
+    }
+
     /* ------------------------------------------------------------------------------------------ */
 
     @Override
@@ -126,12 +149,12 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
-                .update(Constants.ROOM_STATUS,"close")
+                .update(Constants.ROOM_STATUS, "close")
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(Constants.TAG, "Room status 改為 close");
-                        deleteRoomDocWhenLeave();
+                        deleteHostInfoWhenLeave();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -140,6 +163,22 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                         Log.w(Constants.TAG, "Error updating document", e);
                     }
                 });
+    }
+
+    private void deleteHostInfoWhenLeave() {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .collection(Constants.WAITING_SEATS)
+                .document(String.valueOf(mHostSeatInfo.getSort()))
+                .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d(Constants.TAG, "刪除 Master Seat！");
+                deleteRoomDocWhenLeave();
+            }
+        });
+
     }
 
     private void deleteRoomDocWhenLeave() {
@@ -156,6 +195,17 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     }
 
     /* ------------------------------------------------------------------------------------------ */
+
+    @Override
+    public void showErrorToast(String message) {
+        Toast toast = Toast.makeText(GoGoBasketball.getAppContext(), "無效", Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        LinearLayout toastLayout = (LinearLayout) toast.getView();
+        TextView toastTV = (TextView) toastLayout.getChildAt(0);
+        toastTV.setTextSize(16);
+        toastTV.setText(message);
+        toast.show();
+    }
 
     @Override
     public void result(int requestCode, int resultCode) {

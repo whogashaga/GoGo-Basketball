@@ -15,7 +15,7 @@ public interface Waiting4JoinMasterContract {
 
         boolean isActive();
 
-        void getRoomInfoWhenCreate(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats);
+        void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo);
 
         void showWaitingSeatsMasterUi(ArrayList<WaitingRoomSeats> newSeatsList);
 
@@ -40,5 +40,7 @@ public interface Waiting4JoinMasterContract {
         void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatsInfo, String roomDocId);
 
         void updateRoomInfoWhenLeave();
+
+        void showErrorToast(String message);
     }
 }

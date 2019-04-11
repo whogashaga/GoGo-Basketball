@@ -239,10 +239,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mMainView.popBackStackUi();
     }
 
-//    @Override
-//    public void updateRoomInfo2FireBase() {
-//        mWaiting4JoinSlavePresenter.updateRoomInfo2FireBase();
-//    }
 
     @Override
     public void getHostNameFromLooking4Room(WaitingRoomInfo waitingRoomInfo) {
@@ -253,6 +249,18 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     public void deleteSeatsInfoWhenLeaveRoom() {
         mWaiting4JoinSlavePresenter.deleteSeatsInfoWhenLeaveRoom();
     }
+
+    @Override
+    public void changeRoomPlayerAmountWhenLeave() {
+        mWaiting4JoinSlavePresenter.changeRoomPlayerAmountWhenLeave();
+    }
+
+    @Override
+    public void checkRoomDocIsExisted() {
+        mWaiting4JoinSlavePresenter.checkRoomDocIsExisted();
+    }
+
+    /* ------------------------------------------------------------------------------------------ */
 
     @Override
     public void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId) {

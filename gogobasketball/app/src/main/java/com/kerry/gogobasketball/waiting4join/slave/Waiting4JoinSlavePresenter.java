@@ -141,7 +141,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
         mJoinerInfo.setSort(mIntJoinerSort);
         mJoinerInfo.setGender("female");
         mJoinerInfo.setSeatAvailable(false);
-        mJoinerInfo.setId(GoGoBasketball.getAppContext().getString(R.string.id_player4));
+        mJoinerInfo.setId(GoGoBasketball.getAppContext().getString(R.string.id_player6));
 
         // 把自己這筆加進去，for bind view
         mSeatsInfoList.add(mJoinerInfo);
@@ -218,7 +218,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
                 } else {
                     mWaiting4JoinView.closeWaitingSlaveUi();
-                    Toast.makeText(GoGoBasketball.getAppContext(),"房主落跑了...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(GoGoBasketball.getAppContext(), "房主落跑了...", Toast.LENGTH_SHORT).show();
                     Log.d(Constants.TAG, "Current data: null");
                 }
             }
@@ -244,7 +244,6 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                                 }
 
 
-
                                 ArrayList<WaitingRoomSeats> emptySeatsList = new ArrayList<>();
                                 for (int i = mSeatsInfoList.size(); i < 7; i++) {
                                     emptySeatsList.add(new WaitingRoomSeats());
@@ -254,10 +253,9 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                                     emptySeatsList.add(mSeatsInfoList.get(j).getSort() - 1, mSeatsInfoList.get(j));
                                 }
 
-
                                 mWaiting4JoinView.showWaitingSeatsSlaveUi(emptySeatsList);
 
-                            } else if (mWaitingRoomInfo.getStatus().equals("close")){
+                            } else if (mWaitingRoomInfo.getStatus().equals("close")) {
                                 mWaiting4JoinView.closeWaitingSlaveUi();
                             }
 
@@ -274,6 +272,35 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     /* delete when get out */
 
     @Override
+    public void checkRoomDocIsExisted() {
+
+        DocumentReference docRef = FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId);
+
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(Constants.TAG, "DocumentSnapshot data: " + document.getData());
+                        mWaiting4JoinView.getRoomDocIsExisted(true);
+                    } else {
+                        mWaiting4JoinView.getRoomDocIsExisted(false);
+                        Log.d(Constants.TAG, "No such document");
+                    }
+                } else {
+                    Log.d(Constants.TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+
+
+
+    }
+
+    @Override
     public void deleteSeatsInfoWhenLeaveRoom() {
 
         FirestoreHelper.getFirestore()
@@ -284,31 +311,33 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                changeRoomPlayerAmountWhenLeave();
+
             }
         });
     }
 
-    private void changeRoomPlayerAmountWhenLeave() {
+    @Override
+    public void changeRoomPlayerAmountWhenLeave() {
 
         if (mJoinerInfo.getSort() == 0 || mJoinerInfo.getSort() == 1
                 || mJoinerInfo.getSort() == 2 || mJoinerInfo.getSort() == 3
                 || mJoinerInfo.getSort() == 4 || mJoinerInfo.getSort() == 5
                 || mJoinerInfo.getSort() == 6) {
             mWaitingRoomInfo.setPlayerAmount(mWaitingRoomInfo.getPlayerAmount() - 1);
-            updateRoomInfoWhenLeave(mWaitingRoomInfo);
+            updateRoomInfoWhenLeave();
         } else {
             mWaitingRoomInfo.setRefereeAmount(0);
-            updateRoomInfoWhenLeave(mWaitingRoomInfo);
+            updateRoomInfoWhenLeave();
         }
     }
 
-    private void updateRoomInfoWhenLeave(WaitingRoomInfo waitingRoomInfo) {
+    @Override
+    public void updateRoomInfoWhenLeave() {
 
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
-                .set(waitingRoomInfo)
+                .set(mWaitingRoomInfo)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

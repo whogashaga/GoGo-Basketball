@@ -18,6 +18,8 @@ public interface Waiting4JoinSlaveContract {
         void showWaitingSeatsSlaveUi(ArrayList<WaitingRoomSeats> newSeatsList);
 
         void closeWaitingSlaveUi();
+
+        void getRoomDocIsExisted(boolean isExisted);
     }
 
     interface Presenter extends BasePresenter {
@@ -41,6 +43,12 @@ public interface Waiting4JoinSlaveContract {
         void getHostNameFromLooking4Room(WaitingRoomInfo waitingRoomInfo);
 
         void deleteSeatsInfoWhenLeaveRoom();
+
+        void updateRoomInfoWhenLeave();
+
+        void changeRoomPlayerAmountWhenLeave();
+
+        void checkRoomDocIsExisted();
     }
 
 }

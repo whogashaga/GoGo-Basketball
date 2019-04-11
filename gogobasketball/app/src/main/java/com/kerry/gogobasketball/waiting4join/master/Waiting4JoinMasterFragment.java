@@ -7,16 +7,20 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.ProfileAvatarOutlineProvider;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
@@ -106,10 +110,9 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     }
 
     @Override
-    public void getRoomInfoWhenCreate(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats) {
+    public void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo) {
         // for setting host info
         mWaitingRoomInfo = waitingRoomInfo;
-        mHostSeatInfo = waitingRoomSeats;
     }
 
     @Nullable
@@ -286,7 +289,12 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
                 mPresenter.finishWaiting4JoinUi();
                 break;
             case R.id.btn_waiting4join_start:
-                mPresenter.openGamePlayingOfReferee();
+
+                if (mWaitingRoomInfo.getTotalPlayerAmount() == 7) {
+                    mPresenter.openGamePlayingOfReferee();
+                } else {
+                    mPresenter.showErrorToast("人數不足\n無法開始!");
+                }
                 break;
             default:
                 break;
@@ -355,6 +363,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     public boolean isActive() {
         return false;
     }
+
 
 
 }
