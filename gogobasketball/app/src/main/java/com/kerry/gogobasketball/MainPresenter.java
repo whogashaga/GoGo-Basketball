@@ -283,6 +283,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mMainView.openWait4JoinUi(waitingRoomInfo, hostSeatInfo, roomDocId);
     }
 
+    @Override
+    public void changeMasterToSeatP1() {
+        mWaiting4JoinMasterPresenter.changeMasterToSeatP1();
+    }
+
     /**
      * Open Want2CreateRoom
      */
@@ -454,6 +459,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         toastTV.setText(message);
         toast.show();
     }
+
+
 
 
 }

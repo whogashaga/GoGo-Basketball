@@ -119,10 +119,12 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                             }
 
                             // 若已有 sort ，自動往後補
-                            while (existedSortList.contains(String.valueOf(mIntJoinerSort))) {
+                            while (mSeatsInfoList.get(mIntJoinerSort - 1).getSort() == mIntJoinerSort) {
                                 mIntJoinerSort++;
-//                                Log.w("Kerry", "mIntJoinerSort = " + mIntJoinerSort);
                             }
+//                            while (existedSortList.contains(String.valueOf(mIntJoinerSort))) {
+//                                mIntJoinerSort++;
+//                            }
 
                             setJoinerInfo();
 

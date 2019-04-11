@@ -37,6 +37,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     private WaitingRoomSeats mHostSeatInfo;
     private String mRoomDocId;
     private ArrayList<WaitingRoomSeats> mSeatsInfoList;
+    private ArrayList<WaitingRoomSeats> mListForChangeSeat;
 
     public Waiting4JoinMasterPresenter(@NonNull Waiting4JoinMasterContract.View waiting4JoinView) {
         mWaiting4JoinMasterView = checkNotNull(waiting4JoinView, "Waiting4JoinView cannot be null!");
@@ -44,6 +45,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
         mWaitingRoomInfo = new WaitingRoomInfo();
         mRoomDocId = "";
         mSeatsInfoList = new ArrayList<>();
+        mListForChangeSeat = new ArrayList<>();
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -57,6 +59,17 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
         mRoomDocId = roomDocId;
 
         setSnapshotListerMaster(roomDocId);
+    }
+
+    @Override
+    public void changeMasterToSeatP1() {
+        if (mListForChangeSeat.get(0).isSeatAvailable()) {
+            updateSortForChangeSeat(1);
+        }
+    }
+
+    private void updateSortForChangeSeat(int sort) {
+
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -100,6 +113,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             mSeatsInfoList.clear();
+                            mListForChangeSeat.clear();
 
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 WaitingRoomSeats newSeatsInfo = document.toObject(WaitingRoomSeats.class);
@@ -118,6 +132,9 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                             Log.e("Kerry", "EmptyList size = " + emptySeatsList.size());
 
                             mWaiting4JoinMasterView.showWaitingSeatsMasterUi(emptySeatsList);
+
+                            // for change seat use
+                            mListForChangeSeat.addAll(emptySeatsList);
 
                         } else {
                             Log.w(Constants.TAG, "Master getNewSeatsInfo Error!!", task.getException());

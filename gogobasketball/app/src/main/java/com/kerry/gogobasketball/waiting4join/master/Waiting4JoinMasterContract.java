@@ -42,5 +42,7 @@ public interface Waiting4JoinMasterContract {
         void updateRoomInfoWhenLeaveMaster();
 
         void showErrorToast(String message);
+
+        void changeMasterToSeatP1();
     }
 }
