@@ -39,7 +39,7 @@ public interface Waiting4JoinMasterContract {
 
         void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatsInfo, String roomDocId);
 
-        void updateRoomInfoWhenLeave();
+        void updateRoomInfoWhenLeaveMaster();
 
         void showErrorToast(String message);
     }

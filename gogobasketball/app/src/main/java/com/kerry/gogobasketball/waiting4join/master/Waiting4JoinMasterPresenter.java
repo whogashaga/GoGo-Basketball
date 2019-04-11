@@ -145,7 +145,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     /* ------------------------------------------------------------------------------------------ */
 
     @Override
-    public void updateRoomInfoWhenLeave() {
+    public void updateRoomInfoWhenLeaveMaster() {
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)

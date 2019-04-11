@@ -17,9 +17,8 @@ public interface Waiting4JoinSlaveContract {
 
         void showWaitingSeatsSlaveUi(ArrayList<WaitingRoomSeats> newSeatsList);
 
-        void closeWaitingSlaveUi();
+        void closeWaitingSlaveUi(boolean isRoomExisted);
 
-        void getRoomDocIsExisted(boolean isExisted);
     }
 
     interface Presenter extends BasePresenter {
@@ -44,11 +43,11 @@ public interface Waiting4JoinSlaveContract {
 
         void deleteSeatsInfoWhenLeaveRoom();
 
-        void updateRoomInfoWhenLeave();
+        void updateRoomInfoWhenLeaveSlave();
 
         void changeRoomPlayerAmountWhenLeave();
 
-        void checkRoomDocIsExisted();
+//        void checkRoomDocIsExisted();
     }
 
 }

@@ -314,11 +314,12 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void onDestroy() {
         super.onDestroy();
         mPresenter.showToolbarAndBottomNavigation();
+        Log.e("Kerry","is room existed = " + mIsRoomExisted);
 
         if (mIsRoomExisted){
             mPresenter.changeRoomPlayerAmountWhenLeave();
             mPresenter.deleteSeatsInfoWhenLeaveRoom();
-            mPresenter.updateRoomInfoWhenLeave();
+            mPresenter.updateRoomInfoWhenLeaveSlave();
         } else {
             mPresenter.deleteSeatsInfoWhenLeaveRoom();
         }
@@ -326,12 +327,8 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     }
 
     @Override
-    public void getRoomDocIsExisted(boolean isExisted) {
+    public void closeWaitingSlaveUi(boolean isExisted) {
         mIsRoomExisted = isExisted;
-    }
-
-    @Override
-    public void closeWaitingSlaveUi() {
         mPresenter.finishWaiting4JoinUi();
     }
 

@@ -217,7 +217,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                     getNewSeatsInfo();
 
                 } else {
-                    mWaiting4JoinView.closeWaitingSlaveUi();
+                    mWaiting4JoinView.closeWaitingSlaveUi(false);
                     Toast.makeText(GoGoBasketball.getAppContext(), "房主落跑了...", Toast.LENGTH_SHORT).show();
                     Log.d(Constants.TAG, "Current data: null");
                 }
@@ -256,7 +256,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                                 mWaiting4JoinView.showWaitingSeatsSlaveUi(emptySeatsList);
 
                             } else if (mWaitingRoomInfo.getStatus().equals("close")) {
-                                mWaiting4JoinView.closeWaitingSlaveUi();
+                                mWaiting4JoinView.closeWaitingSlaveUi(false);
                             }
 
 
@@ -271,34 +271,30 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     /* ------------------------------------------------------------------------------------------ */
     /* delete when get out */
 
-    @Override
-    public void checkRoomDocIsExisted() {
-
-        DocumentReference docRef = FirestoreHelper.getFirestore()
-                .collection(Constants.WAITING_ROOM)
-                .document(mRoomDocId);
-
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d(Constants.TAG, "DocumentSnapshot data: " + document.getData());
-                        mWaiting4JoinView.getRoomDocIsExisted(true);
-                    } else {
-                        mWaiting4JoinView.getRoomDocIsExisted(false);
-                        Log.d(Constants.TAG, "No such document");
-                    }
-                } else {
-                    Log.d(Constants.TAG, "get failed with ", task.getException());
-                }
-            }
-        });
-
-
-
-    }
+//    @Override
+//    public void checkRoomDocIsExisted() {
+//
+//        DocumentReference docRef = FirestoreHelper.getFirestore()
+//                .collection(Constants.WAITING_ROOM)
+//                .document(mRoomDocId);
+//
+//        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    DocumentSnapshot document = task.getResult();
+//                    if (document.exists()) {
+//                        Log.d(Constants.TAG, "DocumentSnapshot data: " + document.getData());
+//                    } else {
+//                        Log.d(Constants.TAG, "No such document");
+//                    }
+//                } else {
+//                    Log.d(Constants.TAG, "get failed with ", task.getException());
+//                }
+//            }
+//        });
+//
+//    }
 
     @Override
     public void deleteSeatsInfoWhenLeaveRoom() {
@@ -324,15 +320,13 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 || mJoinerInfo.getSort() == 4 || mJoinerInfo.getSort() == 5
                 || mJoinerInfo.getSort() == 6) {
             mWaitingRoomInfo.setPlayerAmount(mWaitingRoomInfo.getPlayerAmount() - 1);
-            updateRoomInfoWhenLeave();
         } else {
             mWaitingRoomInfo.setRefereeAmount(0);
-            updateRoomInfoWhenLeave();
         }
     }
 
     @Override
-    public void updateRoomInfoWhenLeave() {
+    public void updateRoomInfoWhenLeaveSlave() {
 
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)

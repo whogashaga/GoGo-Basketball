@@ -223,6 +223,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     /* ------------------------------------------------------------------------------------------ */
+    /* Waiting Slave */
 
     @Override
     public void openGamePlayingOfReferee() {
@@ -239,7 +240,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mMainView.popBackStackUi();
     }
 
-
     @Override
     public void getHostNameFromLooking4Room(WaitingRoomInfo waitingRoomInfo) {
         mWaiting4JoinSlavePresenter.getHostNameFromLooking4Room(waitingRoomInfo);
@@ -255,12 +255,18 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mWaiting4JoinSlavePresenter.changeRoomPlayerAmountWhenLeave();
     }
 
+//    @Override
+//    public void checkRoomDocIsExisted() {
+//        mWaiting4JoinSlavePresenter.checkRoomDocIsExisted();
+//    }
+
     @Override
-    public void checkRoomDocIsExisted() {
-        mWaiting4JoinSlavePresenter.checkRoomDocIsExisted();
+    public void updateRoomInfoWhenLeaveSlave() {
+        mWaiting4JoinSlavePresenter.updateRoomInfoWhenLeaveSlave();
     }
 
     /* ------------------------------------------------------------------------------------------ */
+    /* Waiting Master */
 
     @Override
     public void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId) {
@@ -268,8 +274,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void updateRoomInfoWhenLeave() {
-        mWaiting4JoinMasterPresenter.updateRoomInfoWhenLeave();
+    public void updateRoomInfoWhenLeaveMaster() {
+        mWaiting4JoinMasterPresenter.updateRoomInfoWhenLeaveMaster();
     }
 
     @Override
