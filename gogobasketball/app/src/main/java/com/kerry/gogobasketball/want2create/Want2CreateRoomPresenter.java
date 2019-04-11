@@ -70,6 +70,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
         waitingRoomInfo.setHostName(hostSeatInfo.getId());
         waitingRoomInfo.setPlayerAmount(1);
         waitingRoomInfo.setRefereeAmount(0);
+        waitingRoomInfo.setStatus(mWaitingRoomInfo.getStatus());
 
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)

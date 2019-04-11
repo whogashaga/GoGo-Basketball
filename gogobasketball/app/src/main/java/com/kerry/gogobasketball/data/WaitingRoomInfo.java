@@ -1,7 +1,5 @@
 package com.kerry.gogobasketball.data;
 
-import java.util.ArrayList;
-
 public class WaitingRoomInfo {
 
     private String mHostName;
@@ -10,6 +8,7 @@ public class WaitingRoomInfo {
     private boolean mJustice;
     private int mPlayers;
     private int mReferee;
+    private String mStatus;
 //    private ArrayList<WaitingRoomSeats> mWaitingDerPlayersList;
 
     public WaitingRoomInfo() {
@@ -20,6 +19,15 @@ public class WaitingRoomInfo {
         mPlayers = 0;
         mReferee = 0;
         mHostName = "";
+        mStatus = "waiting";
+    }
+
+    public String getStatus() {
+        return mStatus;
+    }
+
+    public void setStatus(String status) {
+        this.mStatus = status;
     }
 
     public String getHostName() {

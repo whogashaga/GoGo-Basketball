@@ -21,6 +21,7 @@ import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.util.Constants;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Nullable;
 
@@ -115,11 +116,12 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
                                 WaitingRoomSeats seatInfo = document.toObject(WaitingRoomSeats.class);
                                 mSeatsInfoList.add(seatInfo);
-
                             }
+
+                            // 若已有 sort ，自動往後補
                             while (existedSortList.contains(String.valueOf(mIntJoinerSort))) {
                                 mIntJoinerSort++;
-                                Log.w("Kerry", "mIntJoinerSort = " + mIntJoinerSort);
+//                                Log.w("Kerry", "mIntJoinerSort = " + mIntJoinerSort);
                             }
 
                             setJoinerInfo();
@@ -139,12 +141,12 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
         mJoinerInfo.setSort(mIntJoinerSort);
         mJoinerInfo.setGender("male");
         mJoinerInfo.setSeatAvailable(false);
-        mJoinerInfo.setId(GoGoBasketball.getAppContext().getString(R.string.id_player5));
+        mJoinerInfo.setId(GoGoBasketball.getAppContext().getString(R.string.id_player1));
 
         // 把自己這筆加進去，for bind view
         mSeatsInfoList.add(mJoinerInfo);
         mWaiting4JoinView.showRoomName(mWaitingRoomInfo);
-        mWaiting4JoinView.showWaiting4JoinSlaveUi(mSeatsInfoList);
+//        mWaiting4JoinView.showWaiting4JoinSlaveUi(mSeatsInfoList);
 
         updateRoomInfoWhenJoin(mWaitingRoomInfo);
 
@@ -233,13 +235,25 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            mSeatsInfoList.clear();
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                WaitingRoomSeats newSeatsInfo = document.toObject(WaitingRoomSeats.class);
-                                mSeatsInfoList.add(newSeatsInfo);
+                                WaitingRoomSeats newSeatInfo = document.toObject(WaitingRoomSeats.class);
+                                mSeatsInfoList.add(newSeatInfo);
                             }
-                            Log.d("Kerry", "boolean = " + mSeatsInfoList.size());
+                            Log.w("Kerry", "mSeatsInfoList size = " + mSeatsInfoList.size());
 
-                            mWaiting4JoinView.showWaiting4JoinSlaveUi(mSeatsInfoList);
+                            ArrayList<WaitingRoomSeats> emptySeatsList = new ArrayList<>();
+                            for (int i = mSeatsInfoList.size(); i < 8; i++) {
+                                emptySeatsList.add(new WaitingRoomSeats());
+                                Log.e("Kerry", "emptySeatsList before = " + emptySeatsList.size());
+                            }
+
+                            for (int j = 0; j < mSeatsInfoList.size(); j++) {
+                                emptySeatsList.add(mSeatsInfoList.get(j).getSort() - 1, mSeatsInfoList.get(j));
+                            }
+                            Log.d("Kerry", "emptySeatsList after = " + emptySeatsList.size());
+
+                            mWaiting4JoinView.showWaiting4JoinSlaveUi(emptySeatsList);
 
                         } else {
                             Log.w("Kerry", "Error getting documents.", task.getException());
@@ -271,10 +285,8 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     private void changeRoomPlayerAmountWhenLeave() {
 
         if (mJoinerInfo.getSort() == 0 || mJoinerInfo.getSort() == 1
-                || mJoinerInfo.getSort() == 2
-                || mJoinerInfo.getSort() == 3
-                || mJoinerInfo.getSort() == 4
-                || mJoinerInfo.getSort() == 5
+                || mJoinerInfo.getSort() == 2 || mJoinerInfo.getSort() == 3
+                || mJoinerInfo.getSort() == 4 || mJoinerInfo.getSort() == 5
                 || mJoinerInfo.getSort() == 6) {
             mWaitingRoomInfo.setPlayerAmount(mWaitingRoomInfo.getPlayerAmount() - 1);
             updateRoomInfoWhenLeave(mWaitingRoomInfo);

@@ -15,7 +15,7 @@ public class WaitingRoomSeats {
         mPosition = "";
         mGender = "";
         mSort = -1;
-        mSeatAvailable = false;
+        mSeatAvailable = true;
     }
 
     public int getSort() {

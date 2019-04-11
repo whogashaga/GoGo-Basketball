@@ -11,11 +11,11 @@ public interface Waiting4JoinSlaveContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showWaiting4JoinSlaveUi(ArrayList<WaitingRoomSeats> newSeatsList);
-
         boolean isActive();
 
         void showRoomName(WaitingRoomInfo waitingRoomInfo);
+
+        void showWaiting4JoinSlaveUi(ArrayList<WaitingRoomSeats> newSeatsList);
     }
 
     interface Presenter extends BasePresenter {

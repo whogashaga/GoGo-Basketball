@@ -1,4 +1,4 @@
-package com.kerry.gogobasketball.playing_referee;
+package com.kerry.gogobasketball.playing.referee;
 
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;

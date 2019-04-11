@@ -5,17 +5,19 @@ import com.kerry.gogobasketball.BaseView;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 
+import java.util.ArrayList;
+
 public interface Waiting4JoinMasterContract {
 
     interface View extends BaseView<Presenter> {
-
-        void showPlayingGameUi();
 
         boolean needTimer();
 
         boolean isActive();
 
-        void getRoomInfoFromPresenterMaster(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats);
+        void getRoomInfoWhenCreate(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats);
+
+        void showWaitingSeatsUi(ArrayList<WaitingRoomSeats> newSeatsList);
 
     }
 

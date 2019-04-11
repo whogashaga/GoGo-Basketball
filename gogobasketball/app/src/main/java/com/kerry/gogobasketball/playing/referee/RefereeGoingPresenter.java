@@ -1,4 +1,4 @@
-package com.kerry.gogobasketball.playing_referee;
+package com.kerry.gogobasketball.playing.referee;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
