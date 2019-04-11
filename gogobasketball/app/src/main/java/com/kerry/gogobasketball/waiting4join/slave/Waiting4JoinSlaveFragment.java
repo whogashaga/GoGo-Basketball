@@ -188,24 +188,22 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     @Override
     public void showWaiting4JoinSlaveUi(ArrayList<WaitingRoomSeats> newSeatsList) {
         for (int i = 0; i < 7; i++) {
-            if (newSeatsList.get(i).getSort() != -1) {
-                if (newSeatsList.get(i).getSort() == 1) {
-                    setUserSeatInfo(newSeatsList.get(i), 1, mAvatarP1, mGenderP1, mPositionP1, mTextIdP1);
-                } else if (newSeatsList.get(i).getSort() == 2) {
-                    setUserSeatInfo(newSeatsList.get(i), 2, mAvatarP2, mGenderP2, mPositionP2, mTextIdP2);
-                } else if (newSeatsList.get(i).getSort() == 3) {
-                    setUserSeatInfo(newSeatsList.get(i), 3, mAvatarP3, mGenderP3, mPositionP3, mTextIdP3);
-                } else if (newSeatsList.get(i).getSort() == 4) {
-                    setUserSeatInfo(newSeatsList.get(i), 4, mAvatarP4, mGenderP4, mPositionP4, mTextIdP4);
-                } else if (newSeatsList.get(i).getSort() == 5) {
-                    setUserSeatInfo(newSeatsList.get(i), 5, mAvatarP5, mGenderP5, mPositionP5, mTextIdP5);
-                } else if (newSeatsList.get(i).getSort() == 6) {
-                    setUserSeatInfo(newSeatsList.get(i), 6, mAvatarP6, mGenderP6, mPositionP6, mTextIdP6);
-                } else if (newSeatsList.get(i).getSort() == 7) {
-                    setUserSeatInfo(newSeatsList.get(i), 7, mAvatarP7, mGenderP7, mPositionP7, mTextIdP7);
-                }
+            if (i == 0) {
+                setUserSeatInfo(newSeatsList.get(i), 1, mAvatarP1, mGenderP1, mPositionP1, mTextIdP1);
+            } else if (i == 1) {
+                setUserSeatInfo(newSeatsList.get(i), 2, mAvatarP2, mGenderP2, mPositionP2, mTextIdP2);
+            } else if (i == 2) {
+                setUserSeatInfo(newSeatsList.get(i), 3, mAvatarP3, mGenderP3, mPositionP3, mTextIdP3);
+            } else if (i == 3) {
+                setUserSeatInfo(newSeatsList.get(i), 4, mAvatarP4, mGenderP4, mPositionP4, mTextIdP4);
+            } else if (i == 4) {
+                setUserSeatInfo(newSeatsList.get(i), 5, mAvatarP5, mGenderP5, mPositionP5, mTextIdP5);
+            } else if (i == 5) {
+                setUserSeatInfo(newSeatsList.get(i), 6, mAvatarP6, mGenderP6, mPositionP6, mTextIdP6);
+            } else if (i == 6) {
+                setUserSeatInfo(newSeatsList.get(i), 7, mAvatarP7, mGenderP7, mPositionP7, mTextIdP7);
             } else {
-
+                Log.d("Kerry","showWaiting4JoinSlaveUi Error!!");
             }
         }
     }
@@ -214,20 +212,38 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
                                  ImageView avatar, ImageView gender,
                                  ImageView position, TextView id) {
         // set avatar
-        ImageManager.getInstance().setImageByUrl(avatar, seatPlayerInfo.getAvatar());
+        if (seatPlayerInfo.getAvatar().equals("")) {
+            avatar.setImageResource(R.drawable.ic_user_avatar);
+        } else {
+            ImageManager.getInstance().setImageByUrl(avatar, seatPlayerInfo.getAvatar());
+        }
 
         // set Gender
-        if (seatPlayerInfo.getGender().equals("male")) {
-            gender.setImageResource(R.drawable.ic_male);
+        if (seatPlayerInfo.getGender().equals("")) {
+            gender.setVisibility(View.GONE);
         } else {
-            gender.setImageResource(R.drawable.ic_female);
+            gender.setVisibility(View.VISIBLE);
+            if (seatPlayerInfo.getGender().equals("male")) {
+                gender.setImageResource(R.drawable.ic_male);
+            } else {
+                gender.setImageResource(R.drawable.ic_female);
+            }
         }
 
         // set Position image
-        setPositionImage(seatPlayerInfo, position);
+        if (seatPlayerInfo.getPosition().equals("")) {
+            position.setVisibility(View.GONE);
+        } else {
+            position.setVisibility(View.VISIBLE);
+            setPositionImage(seatPlayerInfo, position);
+        }
 
         // set id
-        id.setText(seatPlayerInfo.getId());
+        if (seatPlayerInfo.getId().equals("")) {
+            id.setText("Player" + String.valueOf(sort));
+        } else {
+            id.setText(seatPlayerInfo.getId());
+        }
 
     }
 
@@ -270,7 +286,20 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         super.onViewCreated(view, savedInstanceState);
         mPresenter.hideToolbarAndBottomNavigation();
 
-
+        mGenderP1.setVisibility(View.GONE);
+        mPositionP1.setVisibility(View.GONE);
+        mGenderP2.setVisibility(View.GONE);
+        mPositionP2.setVisibility(View.GONE);
+        mGenderP3.setVisibility(View.GONE);
+        mPositionP3.setVisibility(View.GONE);
+        mGenderP4.setVisibility(View.GONE);
+        mPositionP4.setVisibility(View.GONE);
+        mGenderP5.setVisibility(View.GONE);
+        mPositionP5.setVisibility(View.GONE);
+        mGenderP6.setVisibility(View.GONE);
+        mPositionP6.setVisibility(View.GONE);
+        mGenderP7.setVisibility(View.GONE);
+        mPositionP7.setVisibility(View.GONE);
     }
 
     @Override

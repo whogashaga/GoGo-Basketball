@@ -9,6 +9,7 @@ public class WaitingRoomInfo {
     private int mPlayers;
     private int mReferee;
     private String mStatus;
+
 //    private ArrayList<WaitingRoomSeats> mWaitingDerPlayersList;
 
     public WaitingRoomInfo() {

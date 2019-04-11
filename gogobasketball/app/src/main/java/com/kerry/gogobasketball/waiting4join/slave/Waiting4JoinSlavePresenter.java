@@ -141,7 +141,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
         mJoinerInfo.setSort(mIntJoinerSort);
         mJoinerInfo.setGender("male");
         mJoinerInfo.setSeatAvailable(false);
-        mJoinerInfo.setId(GoGoBasketball.getAppContext().getString(R.string.id_player1));
+        mJoinerInfo.setId(GoGoBasketball.getAppContext().getString(R.string.id_player6));
 
         // 把自己這筆加進去，for bind view
         mSeatsInfoList.add(mJoinerInfo);
@@ -240,18 +240,15 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                                 WaitingRoomSeats newSeatInfo = document.toObject(WaitingRoomSeats.class);
                                 mSeatsInfoList.add(newSeatInfo);
                             }
-                            Log.w("Kerry", "mSeatsInfoList size = " + mSeatsInfoList.size());
 
                             ArrayList<WaitingRoomSeats> emptySeatsList = new ArrayList<>();
                             for (int i = mSeatsInfoList.size(); i < 8; i++) {
                                 emptySeatsList.add(new WaitingRoomSeats());
-                                Log.e("Kerry", "emptySeatsList before = " + emptySeatsList.size());
                             }
 
                             for (int j = 0; j < mSeatsInfoList.size(); j++) {
                                 emptySeatsList.add(mSeatsInfoList.get(j).getSort() - 1, mSeatsInfoList.get(j));
                             }
-                            Log.d("Kerry", "emptySeatsList after = " + emptySeatsList.size());
 
                             mWaiting4JoinView.showWaiting4JoinSlaveUi(emptySeatsList);
 
