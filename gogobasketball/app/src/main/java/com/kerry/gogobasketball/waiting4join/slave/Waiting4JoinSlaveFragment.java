@@ -186,7 +186,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     }
 
     @Override
-    public void showWaiting4JoinSlaveUi(ArrayList<WaitingRoomSeats> newSeatsList) {
+    public void showWaitingSeatsSlaveUi(ArrayList<WaitingRoomSeats> newSeatsList) {
         for (int i = 0; i < 7; i++) {
             if (i == 0) {
                 setUserSeatInfo(newSeatsList.get(i), 1, mAvatarP1, mGenderP1, mPositionP1, mTextIdP1);
@@ -203,7 +203,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
             } else if (i == 6) {
                 setUserSeatInfo(newSeatsList.get(i), 7, mAvatarP7, mGenderP7, mPositionP7, mTextIdP7);
             } else {
-                Log.d("Kerry","showWaiting4JoinSlaveUi Error!!");
+                Log.d("Kerry","showWaitingSeatsSlaveUi Error!!");
             }
         }
     }
@@ -286,20 +286,20 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         super.onViewCreated(view, savedInstanceState);
         mPresenter.hideToolbarAndBottomNavigation();
 
-        mGenderP1.setVisibility(View.GONE);
-        mPositionP1.setVisibility(View.GONE);
-        mGenderP2.setVisibility(View.GONE);
-        mPositionP2.setVisibility(View.GONE);
-        mGenderP3.setVisibility(View.GONE);
-        mPositionP3.setVisibility(View.GONE);
-        mGenderP4.setVisibility(View.GONE);
-        mPositionP4.setVisibility(View.GONE);
-        mGenderP5.setVisibility(View.GONE);
-        mPositionP5.setVisibility(View.GONE);
-        mGenderP6.setVisibility(View.GONE);
-        mPositionP6.setVisibility(View.GONE);
-        mGenderP7.setVisibility(View.GONE);
-        mPositionP7.setVisibility(View.GONE);
+        mGenderP1.setVisibility(View.INVISIBLE);
+        mPositionP1.setVisibility(View.INVISIBLE);
+        mGenderP2.setVisibility(View.INVISIBLE);
+        mPositionP2.setVisibility(View.INVISIBLE);
+        mGenderP3.setVisibility(View.INVISIBLE);
+        mPositionP3.setVisibility(View.INVISIBLE);
+        mGenderP4.setVisibility(View.INVISIBLE);
+        mPositionP4.setVisibility(View.INVISIBLE);
+        mGenderP5.setVisibility(View.INVISIBLE);
+        mPositionP5.setVisibility(View.INVISIBLE);
+        mGenderP6.setVisibility(View.INVISIBLE);
+        mPositionP6.setVisibility(View.INVISIBLE);
+        mGenderP7.setVisibility(View.INVISIBLE);
+        mPositionP7.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -312,7 +312,12 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void onDestroy() {
         super.onDestroy();
         mPresenter.showToolbarAndBottomNavigation();
-        mPresenter.deleteSeatInfoWhenLeaveRoom();
+        mPresenter.deleteSeatsInfoWhenLeaveRoom();
+    }
+
+    @Override
+    public void closeWaitingSlaveUi() {
+        mPresenter.finishWaiting4JoinUi();
     }
 
     @Override

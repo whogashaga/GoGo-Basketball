@@ -2,6 +2,7 @@ package com.kerry.gogobasketball.waiting4join.slave;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -21,7 +22,6 @@ import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.util.Constants;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.Nullable;
 
@@ -139,15 +139,13 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
         mJoinerInfo.setAvatar("https://graph.facebook.com/2177302648995421/picture?type=large");
         mJoinerInfo.setPosition("sf");
         mJoinerInfo.setSort(mIntJoinerSort);
-        mJoinerInfo.setGender("male");
+        mJoinerInfo.setGender("female");
         mJoinerInfo.setSeatAvailable(false);
-        mJoinerInfo.setId(GoGoBasketball.getAppContext().getString(R.string.id_player6));
+        mJoinerInfo.setId(GoGoBasketball.getAppContext().getString(R.string.id_player4));
 
         // 把自己這筆加進去，for bind view
         mSeatsInfoList.add(mJoinerInfo);
         mWaiting4JoinView.showRoomName(mWaitingRoomInfo);
-//        mWaiting4JoinView.showWaiting4JoinSlaveUi(mSeatsInfoList);
-
         updateRoomInfoWhenJoin(mWaitingRoomInfo);
 
     }
@@ -219,6 +217,8 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                     getNewSeatsInfo();
 
                 } else {
+                    mWaiting4JoinView.closeWaitingSlaveUi();
+                    Toast.makeText(GoGoBasketball.getAppContext(),"房主落跑了...", Toast.LENGTH_SHORT).show();
                     Log.d(Constants.TAG, "Current data: null");
                 }
             }
@@ -235,22 +235,32 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            mSeatsInfoList.clear();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                WaitingRoomSeats newSeatInfo = document.toObject(WaitingRoomSeats.class);
-                                mSeatsInfoList.add(newSeatInfo);
+                            if (mWaitingRoomInfo.getStatus().equals("waiting")) {
+
+                                mSeatsInfoList.clear();
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    WaitingRoomSeats newSeatInfo = document.toObject(WaitingRoomSeats.class);
+                                    mSeatsInfoList.add(newSeatInfo);
+                                }
+
+
+
+                                ArrayList<WaitingRoomSeats> emptySeatsList = new ArrayList<>();
+                                for (int i = mSeatsInfoList.size(); i < 7; i++) {
+                                    emptySeatsList.add(new WaitingRoomSeats());
+                                }
+
+                                for (int j = 0; j < mSeatsInfoList.size(); j++) {
+                                    emptySeatsList.add(mSeatsInfoList.get(j).getSort() - 1, mSeatsInfoList.get(j));
+                                }
+
+
+                                mWaiting4JoinView.showWaitingSeatsSlaveUi(emptySeatsList);
+
+                            } else if (mWaitingRoomInfo.getStatus().equals("close")){
+                                mWaiting4JoinView.closeWaitingSlaveUi();
                             }
 
-                            ArrayList<WaitingRoomSeats> emptySeatsList = new ArrayList<>();
-                            for (int i = mSeatsInfoList.size(); i < 8; i++) {
-                                emptySeatsList.add(new WaitingRoomSeats());
-                            }
-
-                            for (int j = 0; j < mSeatsInfoList.size(); j++) {
-                                emptySeatsList.add(mSeatsInfoList.get(j).getSort() - 1, mSeatsInfoList.get(j));
-                            }
-
-                            mWaiting4JoinView.showWaiting4JoinSlaveUi(emptySeatsList);
 
                         } else {
                             Log.w("Kerry", "Error getting documents.", task.getException());
@@ -264,7 +274,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     /* delete when get out */
 
     @Override
-    public void deleteSeatInfoWhenLeaveRoom() {
+    public void deleteSeatsInfoWhenLeaveRoom() {
 
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)

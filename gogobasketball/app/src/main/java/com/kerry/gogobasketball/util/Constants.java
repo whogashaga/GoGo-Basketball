@@ -11,5 +11,7 @@ public class Constants {
 
     public static final String WAITING_SEATS = "waiting_seats";
 
+    public static final String ROOM_STATUS = "status";
+
 
 }

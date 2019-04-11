@@ -15,7 +15,9 @@ public interface Waiting4JoinSlaveContract {
 
         void showRoomName(WaitingRoomInfo waitingRoomInfo);
 
-        void showWaiting4JoinSlaveUi(ArrayList<WaitingRoomSeats> newSeatsList);
+        void showWaitingSeatsSlaveUi(ArrayList<WaitingRoomSeats> newSeatsList);
+
+        void closeWaitingSlaveUi();
     }
 
     interface Presenter extends BasePresenter {
@@ -38,7 +40,7 @@ public interface Waiting4JoinSlaveContract {
 
         void getHostNameFromLooking4Room(WaitingRoomInfo waitingRoomInfo);
 
-        void deleteSeatInfoWhenLeaveRoom();
+        void deleteSeatsInfoWhenLeaveRoom();
     }
 
 }

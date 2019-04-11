@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -49,17 +50,17 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
         mWaiting4JoinMasterView.getRoomInfoWhenCreate(waitingRoomInfo, hostSeatsInfo);
         mRoomDocId = roomDocId;
 
-        setSnapshotListerMaster();
+        setSnapshotListerMaster(roomDocId);
     }
 
     /* ------------------------------------------------------------------------------------------ */
     /* Listener */
 
-    private void setSnapshotListerMaster() {
+    private void setSnapshotListerMaster(String roomDocId) {
 
         final DocumentReference docRef = FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
-                .document(mRoomDocId);
+                .document(roomDocId);
 
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
@@ -71,6 +72,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                 }
                 if (snapshot != null && snapshot.exists()) {
                     Log.d(Constants.TAG, "Current data: " + snapshot.getData());
+                    Log.w("Kerry", "Current data: " + snapshot.getData());
 
                     getNewSeatsInfo();
 
@@ -91,16 +93,26 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            mSeatsInfoList.clear();
+
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 WaitingRoomSeats newSeatsInfo = document.toObject(WaitingRoomSeats.class);
                                 mSeatsInfoList.add(newSeatsInfo);
                             }
-                            Log.d("Kerry", "boolean = " + mSeatsInfoList.size());
 
-                            mWaiting4JoinMasterView.showWaitingSeatsUi(mSeatsInfoList);
+                            ArrayList<WaitingRoomSeats> emptySeatsList = new ArrayList<>();
+                            for (int i = mSeatsInfoList.size(); i < 7; i++) {
+                                emptySeatsList.add(new WaitingRoomSeats());
+                            }
+
+                            for (int j = 0; j < mSeatsInfoList.size(); j++) {
+                                emptySeatsList.add(mSeatsInfoList.get(j).getSort() - 1, mSeatsInfoList.get(j));
+                            }
+
+                            mWaiting4JoinMasterView.showWaitingSeatsMasterUi(emptySeatsList);
 
                         } else {
-                            Log.w("Kerry", "Error getting documents.", task.getException());
+                            Log.w(Constants.TAG, "Master getNewSeatsInfo Error!!", task.getException());
                         }
                     }
                 });
@@ -110,7 +122,27 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     /* ------------------------------------------------------------------------------------------ */
 
     @Override
-    public void deleteRoomWhenLeaveRoom() {
+    public void updateRoomInfoWhenLeave() {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .update(Constants.ROOM_STATUS,"close")
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(Constants.TAG, "Room status 改為 close");
+                        deleteRoomDocWhenLeave();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(Constants.TAG, "Error updating document", e);
+                    }
+                });
+    }
+
+    private void deleteRoomDocWhenLeave() {
 
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
@@ -118,7 +150,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                 .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Log.d(Constants.TAG,"還是不要創房好了！");
+                Log.d(Constants.TAG, "還是不要創房好了！");
             }
         });
     }

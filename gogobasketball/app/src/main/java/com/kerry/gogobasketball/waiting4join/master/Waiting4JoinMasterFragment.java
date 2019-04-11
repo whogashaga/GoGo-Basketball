@@ -110,8 +110,6 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         // for setting host info
         mWaitingRoomInfo = waitingRoomInfo;
         mHostSeatInfo = waitingRoomSeats;
-
-        mRoomName.setText(waitingRoomInfo.getRoomName());
     }
 
     @Nullable
@@ -120,7 +118,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mRoot = inflater.inflate(R.layout.fragment_waiting4join_master, container, false);
         mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
-        mRoomName = mRoot.findViewById(R.id.text_slave_waiting4join_room_name);
+        mRoomName = mRoot.findViewById(R.id.text_waiting4join_room_name);
         mBtnBackStack = mRoot.findViewById(R.id.btn_waiting4join_back_arrow);
         mBtnBackStack.setOnClickListener(this);
         mBtnCancel = mRoot.findViewById(R.id.btn_waiting4join_cancel);
@@ -199,22 +197,25 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     }
 
     @Override
-    public void showWaitingSeatsUi(ArrayList<WaitingRoomSeats> newSeatsList) {
-        for (int i = 0; i < newSeatsList.size(); i++) {
-            if (newSeatsList.get(i).getSort() == 1) {
+    public void showWaitingSeatsMasterUi(ArrayList<WaitingRoomSeats> newSeatsList) {
+
+        for (int i = 0; i < 7; i++) {
+            if (i == 0) {
                 setUserSeatInfo(newSeatsList.get(i), 1, mAvatarP1, mGenderP1, mPositionP1, mTextIdP1);
-            } else if (newSeatsList.get(i).getSort() == 2) {
+            } else if (i == 1) {
                 setUserSeatInfo(newSeatsList.get(i), 2, mAvatarP2, mGenderP2, mPositionP2, mTextIdP2);
-            } else if (newSeatsList.get(i).getSort() == 3) {
+            } else if (i == 2) {
                 setUserSeatInfo(newSeatsList.get(i), 3, mAvatarP3, mGenderP3, mPositionP3, mTextIdP3);
-            } else if (newSeatsList.get(i).getSort() == 4) {
+            } else if (i == 3) {
                 setUserSeatInfo(newSeatsList.get(i), 4, mAvatarP4, mGenderP4, mPositionP4, mTextIdP4);
-            } else if (newSeatsList.get(i).getSort() == 5) {
+            } else if (i == 4) {
                 setUserSeatInfo(newSeatsList.get(i), 5, mAvatarP5, mGenderP5, mPositionP5, mTextIdP5);
-            } else if (newSeatsList.get(i).getSort() == 6) {
+            } else if (i == 5) {
                 setUserSeatInfo(newSeatsList.get(i), 6, mAvatarP6, mGenderP6, mPositionP6, mTextIdP6);
-            } else if (newSeatsList.get(i).getSort() == 7) {
+            } else if (i == 6) {
                 setUserSeatInfo(newSeatsList.get(i), 7, mAvatarP7, mGenderP7, mPositionP7, mTextIdP7);
+            } else {
+                Log.d("Kerry","showWaitingSeatsSlaveUi Error!!");
             }
         }
     }
@@ -223,20 +224,38 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
                                  ImageView avatar, ImageView gender,
                                  ImageView position, TextView id) {
         // set avatar
-        ImageManager.getInstance().setImageByUrl(avatar, seatPlayerInfo.getAvatar());
+        if (seatPlayerInfo.getAvatar().equals("")) {
+            avatar.setImageResource(R.drawable.ic_user_avatar);
+        } else {
+            ImageManager.getInstance().setImageByUrl(avatar, seatPlayerInfo.getAvatar());
+        }
 
         // set Gender
-        if (seatPlayerInfo.getGender().equals("male")) {
-            gender.setImageResource(R.drawable.ic_male);
+        if (seatPlayerInfo.getGender().equals("")) {
+            gender.setVisibility(View.GONE);
         } else {
-            gender.setImageResource(R.drawable.ic_female);
+            gender.setVisibility(View.VISIBLE);
+            if (seatPlayerInfo.getGender().equals("male")) {
+                gender.setImageResource(R.drawable.ic_male);
+            } else {
+                gender.setImageResource(R.drawable.ic_female);
+            }
         }
 
         // set Position image
-        setPositionImage(seatPlayerInfo, position);
+        if (seatPlayerInfo.getPosition().equals("")) {
+            position.setVisibility(View.GONE);
+        } else {
+            position.setVisibility(View.VISIBLE);
+            setPositionImage(seatPlayerInfo, position);
+        }
 
         // set id
-        id.setText(seatPlayerInfo.getId());
+        if (seatPlayerInfo.getId().equals("")) {
+            id.setText("玩家" + String.valueOf(sort));
+        } else {
+            id.setText(seatPlayerInfo.getId());
+        }
 
     }
 
@@ -297,6 +316,22 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mRoomName.setText(mWaitingRoomInfo.getRoomName());
+
+        mGenderP1.setVisibility(View.INVISIBLE);
+        mPositionP1.setVisibility(View.INVISIBLE);
+        mGenderP2.setVisibility(View.INVISIBLE);
+        mPositionP2.setVisibility(View.INVISIBLE);
+        mGenderP3.setVisibility(View.INVISIBLE);
+        mPositionP3.setVisibility(View.INVISIBLE);
+        mGenderP4.setVisibility(View.INVISIBLE);
+        mPositionP4.setVisibility(View.INVISIBLE);
+        mGenderP5.setVisibility(View.INVISIBLE);
+        mPositionP5.setVisibility(View.INVISIBLE);
+        mGenderP6.setVisibility(View.INVISIBLE);
+        mPositionP6.setVisibility(View.INVISIBLE);
+        mGenderP7.setVisibility(View.INVISIBLE);
+        mPositionP7.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -308,7 +343,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mPresenter.deleteRoomWhenLeaveRoom();
+        mPresenter.updateRoomInfoWhenLeave();
     }
 
     @Override

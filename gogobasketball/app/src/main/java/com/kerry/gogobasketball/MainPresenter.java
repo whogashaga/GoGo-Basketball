@@ -250,8 +250,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void deleteSeatInfoWhenLeaveRoom() {
-        mWaiting4JoinSlavePresenter.deleteSeatInfoWhenLeaveRoom();
+    public void deleteSeatsInfoWhenLeaveRoom() {
+        mWaiting4JoinSlavePresenter.deleteSeatsInfoWhenLeaveRoom();
     }
 
     @Override
@@ -260,8 +260,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void deleteRoomWhenLeaveRoom() {
-        mWaiting4JoinMasterPresenter.deleteRoomWhenLeaveRoom();
+    public void updateRoomInfoWhenLeave() {
+        mWaiting4JoinMasterPresenter.updateRoomInfoWhenLeave();
     }
 
     @Override
