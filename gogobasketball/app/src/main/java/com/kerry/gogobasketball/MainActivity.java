@@ -29,6 +29,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.kerry.gogobasketball.data.RecordOfPlayer;
+import com.kerry.gogobasketball.data.RecordOfReferee;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
@@ -67,16 +69,13 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         init();
 
 //        createUserInfo();
+        setUserRecord();
 
 //        createGamingRoom();
 //        addPlayingGamers();
 
-//        createWaitingRoom();
-//        addWaitingDerPlayers();
-
 //        postCustomObject();
 //        getCustomObject();
-
 
 
     }
@@ -92,22 +91,16 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         setDrawerLayout();
     }
 
-    public void postCustomObject() {
+    public void setUserRecord() {
 
-        WaitingRoomSeats waitingRoomSeats = new WaitingRoomSeats();
-        waitingRoomSeats.setSort(1);
-        waitingRoomSeats.setId("123");
+        int number = 500;
 
-        WaitingRoomSeats waitingRoomSeats2 = new WaitingRoomSeats();
-        waitingRoomSeats2.setSort(2);
-        waitingRoomSeats2.setId("456");
-
-        ArrayList<WaitingRoomSeats> list = new ArrayList<>();
-        list.add(waitingRoomSeats);
-        list.add(waitingRoomSeats2);
-
-        WaitingRoomInfo waitingRoomInfo = new WaitingRoomInfo();
-        waitingRoomInfo.setRoomName("bbb");
+        RecordOfPlayer player = new RecordOfPlayer();
+        player.setGames(number);
+        player.setWinning(number);
+        player.setScore(number);
+        player.setRebound(number);
+        player.setFoul(number);
 
         mBtnCreateUser = findViewById(R.id.main_layout_create_user);
         mBtnCreateUser.setVisibility(View.VISIBLE);
@@ -116,14 +109,19 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
             @Override
             public void onClick(View v) {
 
+                String id = "User7";
+
                 // Add a new document with a generated ID
-                mDb.collection("custom_obj")
-                        .document("waitingRoomInfo1")
-                        .set(waitingRoomInfo)
+                mDb.collection(Constants.USERS)
+                        .document(id)
+                        .collection(Constants.RECORDS)
+                        .document(Constants.PLAYER)
+                        .set(player)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Log.d("Kerry", "等待中 - player info ！!");
+                                Log.d("Kerry", "新增球員數據！!");
+                                setUserReferee(id, number);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -132,6 +130,34 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
                     }
 
                 });
+            }
+        });
+    }
+
+    public void setUserReferee(String id, int number) {
+
+        RecordOfReferee referee = new RecordOfReferee();
+        referee.setJustices(number);
+        referee.setRating(number);
+
+        mBtnCreateUser = findViewById(R.id.main_layout_create_user);
+        mBtnCreateUser.setVisibility(View.VISIBLE);
+
+        // Add a new document with a generated ID
+        mDb.collection(Constants.USERS)
+                .document(id)
+                .collection(Constants.RECORDS)
+                .document(Constants.REFEREE)
+                .set(referee)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Kerry", "新增裁判數據！!");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w("Kerry", "Error adding document", e);
             }
         });
     }
@@ -155,16 +181,16 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         mBtnCreateUser.setVisibility(View.VISIBLE);
 
         String mAvatar = "https://graph.facebook.com/2177302648995421/picture?type=large";
-        String mDocId = "User7";
-        String mName = "User7";
+        String mDocId = "User2";
+        String mName = mDocId;
         String mEmail = "kjkj@kamil";
         String mGender = "female";
-        String mId = "Londa";
+        String mId = "wowowowow";
         String mPosition = "pf";
         ArrayList<String> mSkills = new ArrayList<>();
 
-        mSkills.add("drive");
-        mSkills.add("ride");
+        mSkills.add("cry");
+        mSkills.add("laugh");
 
         final DocumentReference docRef = mDb.collection("users").document(mDocId);
 
@@ -277,98 +303,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         });
     }
 
-    public void createWaitingRoom() {
-        mBtnCreateUser = findViewById(R.id.main_layout_create_user);
-        mBtnCreateUser.setVisibility(View.VISIBLE);
-
-        String waitingRoomDocId = "打架啦";
-        String roomName = waitingRoomDocId;
-        String location = "甲骨文球場";
-        String hostName = "LetterGer";
-        boolean justice = true;
-        int players = 1;
-        int referee = 0;
-        int totalGamers = players + referee;
-
-        mBtnCreateUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Map<String, Object> playingRoom = new HashMap<>();
-                playingRoom.put("roomName", roomName);
-                playingRoom.put("courtLocation", location);
-                playingRoom.put("hostName",hostName);
-                playingRoom.put("justice", justice);
-                playingRoom.put("playerAmount", players);
-                playingRoom.put("refereeAmount", referee);
-                playingRoom.put("totalPlayerAmount", totalGamers);
-
-                // Add a new document with a generated ID
-                mDb.collection(Constants.WAITING_ROOM)
-                        .document(waitingRoomDocId)
-                        .set(playingRoom)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d("Kerry", "等待中 - room info ！");
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("Kerry", "Error adding document", e);
-                    }
-
-                });
-            }
-        });
-    }
-
-    public void addWaitingDerPlayers() {
-        mBtnCreateUser = findViewById(R.id.main_layout_create_user);
-        mBtnCreateUser.setVisibility(View.VISIBLE);
-
-        String roomDocId = "打架啦";
-        String playerDocId = GoGoBasketball.getAppContext().getString(R.string.id_player5);
-
-        String avatar = "https://graph.facebook.com/2177302648995421/picture?type=large";
-        String gender = "male";
-        String playerId = playerDocId;
-        String position = "pf";
-        int sort = 0;
-        boolean available = false;
-
-        mBtnCreateUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Map<String, Object> gamers = new HashMap<>();
-                gamers.put("available", available);
-                gamers.put("avatar", avatar);
-                gamers.put("gender", gender);
-                gamers.put("playerId", playerId);
-                gamers.put("position", position);
-                gamers.put("sort", sort);
-
-                // Add a new document with a generated ID
-                mDb.collection("waiting_room")
-                        .document(roomDocId)
-                        .collection("seats")
-                        .document(playerDocId)
-                        .set(gamers)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d("Kerry", "等待中 - player info ！!");
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("Kerry", "Error adding document", e);
-                    }
-
-                });
-            }
-        });
-    }
 
     /**
      * Let toolbar to extend to status bar.

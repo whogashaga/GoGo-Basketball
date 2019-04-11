@@ -30,7 +30,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinSlaveContract.View, View.OnClickListener {
 
     View mRoot;
-    private boolean mIsRoomExisted;
+//    private boolean mIsRoomExisted;
 
     private Waiting4JoinSlaveContract.Presenter mPresenter;
     private RadioGroup mRadioGroupTimer;
@@ -272,10 +272,10 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_slave_waiting4join_back_arrow:
-                mPresenter.finishWaiting4JoinUi();
+                closeWaitingSlaveUi(true);
                 break;
             case R.id.btn_slave_waiting4join_cancel:
-                mPresenter.finishWaiting4JoinUi();
+                closeWaitingSlaveUi(true);
                 break;
             default:
                 break;
@@ -286,7 +286,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.hideToolbarAndBottomNavigation();
-        mIsRoomExisted = true;
+//        mIsRoomExisted = true;
 
         mGenderP1.setVisibility(View.INVISIBLE);
         mPositionP1.setVisibility(View.INVISIBLE);
@@ -314,22 +314,21 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void onDestroy() {
         super.onDestroy();
         mPresenter.showToolbarAndBottomNavigation();
-        Log.e("Kerry","is room existed = " + mIsRoomExisted);
 
-        if (mIsRoomExisted){
+    }
+
+    @Override
+    public void closeWaitingSlaveUi(boolean isExisted) {
+//        mIsRoomExisted = isExisted;
+        mPresenter.finishWaiting4JoinUi();
+        Log.e("Kerry","is room existed = " + isExisted);
+        if (isExisted){
             mPresenter.changeRoomPlayerAmountWhenLeave();
             mPresenter.deleteSeatsInfoWhenLeaveRoom();
             mPresenter.updateRoomInfoWhenLeaveSlave();
         } else {
             mPresenter.deleteSeatsInfoWhenLeaveRoom();
         }
-
-    }
-
-    @Override
-    public void closeWaitingSlaveUi(boolean isExisted) {
-        mIsRoomExisted = isExisted;
-        mPresenter.finishWaiting4JoinUi();
     }
 
     @Override

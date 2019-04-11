@@ -279,9 +279,11 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_waiting4join_back_arrow:
+                mPresenter.updateRoomInfoWhenLeaveMaster();
                 mPresenter.finishWaiting4JoinUi();
                 break;
             case R.id.btn_waiting4join_cancel:
+                mPresenter.updateRoomInfoWhenLeaveMaster();
                 mPresenter.finishWaiting4JoinUi();
                 break;
             case R.id.btn_waiting4join_start:
@@ -347,7 +349,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mPresenter.updateRoomInfoWhenLeaveMaster();
+
     }
 
     @Override

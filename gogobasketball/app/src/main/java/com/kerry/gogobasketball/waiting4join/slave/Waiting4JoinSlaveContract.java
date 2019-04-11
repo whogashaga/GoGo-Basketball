@@ -19,6 +19,7 @@ public interface Waiting4JoinSlaveContract {
 
         void closeWaitingSlaveUi(boolean isRoomExisted);
 
+
     }
 
     interface Presenter extends BasePresenter {

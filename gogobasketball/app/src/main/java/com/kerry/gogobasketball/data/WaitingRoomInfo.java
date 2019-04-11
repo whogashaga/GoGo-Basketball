@@ -10,10 +10,7 @@ public class WaitingRoomInfo {
     private int mReferee;
     private String mStatus;
 
-//    private ArrayList<WaitingRoomSeats> mWaitingDerPlayersList;
-
     public WaitingRoomInfo() {
-//        mWaitingDerPlayersList = new ArrayList<>();
         mRoomName = "";
         mCourtLocation = "";
         mJustice = true;
@@ -78,14 +75,6 @@ public class WaitingRoomInfo {
     public void setRefereeAmount(int referee) {
         this.mReferee = referee;
     }
-
-//    public ArrayList<WaitingRoomSeats> getWaitingPlayersList() {
-//        return mWaitingDerPlayersList;
-//    }
-//
-//    public void setWaitingPlayersList(ArrayList<WaitingRoomSeats> waitingDerPlayersList) {
-//        this.mWaitingDerPlayersList = waitingDerPlayersList;
-//    }
 
     public int getTotalPlayerAmount() {
         return mPlayers + mReferee;

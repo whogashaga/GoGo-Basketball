@@ -2,16 +2,14 @@ package com.kerry.gogobasketball.data;
 
 import java.util.ArrayList;
 
-public class PlayingRoomInfo {
+public class GamingRoomInfo {
 
     private String mLocation;
     private String mRoomName;
-    private ArrayList<PlayingDerGamers> mPlayingDerGamersList;
 
-    public PlayingRoomInfo() {
+    public GamingRoomInfo() {
         mLocation = "";
         mRoomName = "";
-        mPlayingDerGamersList = new ArrayList<>();
     }
 
     public String getLocation() {
@@ -28,14 +26,6 @@ public class PlayingRoomInfo {
 
     public void setRoomName(String roomName) {
         this.mRoomName = roomName;
-    }
-
-    public ArrayList<PlayingDerGamers> getPlayingDerGamersList() {
-        return mPlayingDerGamersList;
-    }
-
-    public void setPlayingDerGamersList(ArrayList<PlayingDerGamers> playingDerGamersList) {
-        this.mPlayingDerGamersList = playingDerGamersList;
     }
 
 }

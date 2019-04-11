@@ -1,6 +1,6 @@
 package com.kerry.gogobasketball.data;
 
-public class PlayingDerGamers {
+public class GamingPlayer {
 
     private String mId;
     private int mScore;
@@ -8,7 +8,7 @@ public class PlayingDerGamers {
     private int mRebound;
     private boolean mIsWinning;
 
-    public PlayingDerGamers(){
+    public GamingPlayer(){
         mId = "";
         mScore = 0;
         mRebound = 0;

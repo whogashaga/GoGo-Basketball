@@ -217,7 +217,9 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                     getNewSeatsInfo();
 
                 } else {
+
                     mWaiting4JoinView.closeWaitingSlaveUi(false);
+
                     Toast.makeText(GoGoBasketball.getAppContext(), "房主落跑了...", Toast.LENGTH_SHORT).show();
                     Log.d(Constants.TAG, "Current data: null");
                 }
@@ -236,13 +238,11 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             if (mWaitingRoomInfo.getStatus().equals("waiting")) {
-
                                 mSeatsInfoList.clear();
                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                     WaitingRoomSeats newSeatInfo = document.toObject(WaitingRoomSeats.class);
                                     mSeatsInfoList.add(newSeatInfo);
                                 }
-
 
                                 ArrayList<WaitingRoomSeats> emptySeatsList = new ArrayList<>();
                                 for (int i = mSeatsInfoList.size(); i < 7; i++) {
@@ -259,7 +259,6 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                                 mWaiting4JoinView.closeWaitingSlaveUi(false);
                             }
 
-
                         } else {
                             Log.w("Kerry", "Error getting documents.", task.getException());
                         }
@@ -270,31 +269,6 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
     /* ------------------------------------------------------------------------------------------ */
     /* delete when get out */
-
-//    @Override
-//    public void checkRoomDocIsExisted() {
-//
-//        DocumentReference docRef = FirestoreHelper.getFirestore()
-//                .collection(Constants.WAITING_ROOM)
-//                .document(mRoomDocId);
-//
-//        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    DocumentSnapshot document = task.getResult();
-//                    if (document.exists()) {
-//                        Log.d(Constants.TAG, "DocumentSnapshot data: " + document.getData());
-//                    } else {
-//                        Log.d(Constants.TAG, "No such document");
-//                    }
-//                } else {
-//                    Log.d(Constants.TAG, "get failed with ", task.getException());
-//                }
-//            }
-//        });
-//
-//    }
 
     @Override
     public void deleteSeatsInfoWhenLeaveRoom() {
