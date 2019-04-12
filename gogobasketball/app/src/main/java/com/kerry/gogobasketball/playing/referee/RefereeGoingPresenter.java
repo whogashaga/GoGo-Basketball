@@ -8,8 +8,8 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
 
     private final RefereeGoingContract.View mGamePlayingView;
 
-    public RefereeGoingPresenter(@NonNull RefereeGoingContract.View waiting4JoinView) {
-        mGamePlayingView = checkNotNull(waiting4JoinView, "GamePlayingView cannot be null!");
+    public RefereeGoingPresenter(@NonNull RefereeGoingContract.View refereeGoingView) {
+        mGamePlayingView = checkNotNull(refereeGoingView, "GamePlayingView cannot be null!");
         mGamePlayingView.setPresenter(this);
     }
 
@@ -44,7 +44,12 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
     }
 
     @Override
-    public void showGameResultUi() {
+    public void showGameResult() {
+
+    }
+
+    @Override
+    public void forced2FinishGaming() {
 
     }
 

@@ -104,7 +104,9 @@ public interface RefereeGoingContract {
 
         void forced2FinishPlayingUi();
 
-        void showGameResultUi();
+        void showGameResult();
+
+        void forced2FinishGaming();
 
         void fireStoreScorePlusP1();
 

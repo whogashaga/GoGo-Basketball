@@ -21,4 +21,10 @@ public class Constants {
 
     public static final String SORT = "sort";
 
+    public static final String CLOSED = "closed";
+
+    public static final String TOTAL_GAMERS_AMOUNT = "totalPlayerAmount";
+
+
+
 }

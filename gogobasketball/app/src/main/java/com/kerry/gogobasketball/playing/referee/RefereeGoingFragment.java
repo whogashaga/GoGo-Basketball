@@ -19,7 +19,9 @@ import com.kerry.gogobasketball.R;
 
 public class RefereeGoingFragment extends Fragment implements RefereeGoingContract.View, View.OnClickListener {
 
+    private RefereeGoingContract.Presenter mPresenter;
     View mRoot;
+
     private Button mBtnP1ScorePlus, mBtnP1ScoreMinus;
     private Button mBtnP1ReboundPlus, mBtnP1ReboundMinus;
     private Button mBtnP1FoulPlus, mBtnP1FoulMinus;
@@ -59,8 +61,6 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     private TextView mTeamScoreA, mTeamScoreB;
     private int mIntScoreA;
     private int mIntScoreB;
-
-    private RefereeGoingContract.Presenter mPresenter;
 
     public RefereeGoingFragment() {
         mIntScoreP1 = 0;

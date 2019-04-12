@@ -22,6 +22,8 @@ import com.kerry.gogobasketball.home.item.Looking4RoomPresenter;
 import com.kerry.gogobasketball.home.map.CourtsMapContract;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapPresenter;
+import com.kerry.gogobasketball.playing.player.PlayerGoingContract;
+import com.kerry.gogobasketball.playing.player.PlayerGoingPresenter;
 import com.kerry.gogobasketball.playing.referee.RefereeGoingContract;
 import com.kerry.gogobasketball.playing.referee.RefereeGoingPresenter;
 import com.kerry.gogobasketball.profile.ProfileContract;
@@ -39,7 +41,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         Looking4RoomContract.Presenter, CourtsMapContract.Presenter, ProfileContract.Presenter,
         FriendContract.Presenter, RankContract.Presenter, Want2CreateRoomContract.Presenter,
         Waiting4JoinMasterContract.Presenter, Waiting4JoinSlaveContract.Presenter,
-        RefereeGoingContract.Presenter {
+        RefereeGoingContract.Presenter, PlayerGoingContract.Presenter {
 
     private FirebaseFirestore mDb;
     private MainContract.View mMainView;
@@ -55,7 +57,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private Want2CreateRoomPresenter mWant2CreateRoomPresenter;
     private Waiting4JoinMasterPresenter mWaiting4JoinMasterPresenter;
     private Waiting4JoinSlavePresenter mWaiting4JoinSlavePresenter;
-    private RefereeGoingPresenter mPlayingOfRefereePresenter;
+    private RefereeGoingPresenter mRefereeGoingPresenter;
+    private PlayerGoingPresenter mPlayerGoingPresenter;
 
 //    public MainPresenter(
 //            @NonNull StylishRepository stylishRepository,
@@ -106,8 +109,12 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mWaiting4JoinSlavePresenter = checkNotNull(waiting4JoinSlavePresenter);
     }
 
-    void setGamePlayingOfRefereePresenter(RefereeGoingPresenter playingOfRefereePresenter) {
-        mPlayingOfRefereePresenter = checkNotNull(playingOfRefereePresenter);
+    void setRefereeGoingPresenter(RefereeGoingPresenter playingOfRefereePresenter) {
+        mRefereeGoingPresenter = checkNotNull(playingOfRefereePresenter);
+    }
+
+    void setPlayerGoingPresenter(PlayerGoingPresenter playerGoingPresenter) {
+        mPlayerGoingPresenter = checkNotNull(playerGoingPresenter);
     }
 
     @Override
@@ -176,7 +183,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     /**
-     * Open Wait4Join
+     * Open GameResult
      */
 
     @Override
@@ -185,7 +192,12 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void showGameResultUi() {
+    public void showGameResult() {
+
+    }
+
+    @Override
+    public void forced2FinishGaming() {
 
     }
 
@@ -194,36 +206,36 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void fireStoreScorePlusP1() {
-        mPlayingOfRefereePresenter.fireStoreScorePlusP1();
+        mRefereeGoingPresenter.fireStoreScorePlusP1();
     }
 
     @Override
     public void fireStoreScoreMinusP1() {
-        mPlayingOfRefereePresenter.fireStoreScoreMinusP1();
+        mRefereeGoingPresenter.fireStoreScoreMinusP1();
     }
 
     @Override
     public void fireStoreReboundPlusP1() {
-        mPlayingOfRefereePresenter.fireStoreReboundPlusP1();
+        mRefereeGoingPresenter.fireStoreReboundPlusP1();
     }
 
     @Override
     public void fireStoreReboundMinusP1() {
-        mPlayingOfRefereePresenter.fireStoreReboundMinusP1();
+        mRefereeGoingPresenter.fireStoreReboundMinusP1();
     }
 
     @Override
     public void fireStoreFoulPlusP1() {
-        mPlayingOfRefereePresenter.fireStoreFoulPlusP1();
+        mRefereeGoingPresenter.fireStoreFoulPlusP1();
     }
 
     @Override
     public void fireStoreFoulMinusP1() {
-        mPlayingOfRefereePresenter.fireStoreFoulMinusP1();
+        mRefereeGoingPresenter.fireStoreFoulMinusP1();
     }
 
     /* ------------------------------------------------------------------------------------------ */
-    /* Waiting Slave */
+    /* General in both master & slave */
 
     @Override
     public void openGamePlayingOfReferee() {
@@ -231,14 +243,17 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void openGamePlayingOfSlave() {
-//        mMainView.openGamePlayingOfSlaveUi();
+    public void openGamePlayingOfPlayer() {
+        mMainView.openGamePlayingOfPlayerUi();
     }
 
     @Override
     public void finishWaiting4JoinUi() {
         mMainView.popBackStackUi();
     }
+
+    /* ------------------------------------------------------------------------------------------ */
+    /* Waiting Slave */
 
     @Override
     public void getHostNameFromLooking4Room(WaitingRoomInfo waitingRoomInfo) {
@@ -251,23 +266,18 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void changeRoomPlayerAmountWhenLeave() {
-        mWaiting4JoinSlavePresenter.changeRoomPlayerAmountWhenLeave();
-    }
-
-    @Override
     public void changeSlave2NewSeat(int newSort) {
         mWaiting4JoinSlavePresenter.changeSlave2NewSeat(newSort);
     }
 
-//    @Override
-//    public void checkRoomDocIsExisted() {
-//        mWaiting4JoinSlavePresenter.checkRoomDocIsExisted();
-//    }
+    @Override
+    public void checkTotalPlayerAmountSlave() {
+
+    }
 
     @Override
-    public void updateRoomInfoWhenLeaveSlave() {
-        mWaiting4JoinSlavePresenter.updateRoomInfoWhenLeaveSlave();
+    public void deleteRoomDocSlave() {
+
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -279,11 +289,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void updateRoomInfoWhenLeaveMaster() {
-        mWaiting4JoinMasterPresenter.updateRoomInfoWhenLeaveMaster();
-    }
-
-    @Override
     public void openWaitingJoin(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId) {
         mMainView.openWait4JoinUi(waitingRoomInfo, hostSeatInfo, roomDocId);
     }
@@ -291,6 +296,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void changeMaster2NewSeat(int newSort) {
         mWaiting4JoinMasterPresenter.changeMaster2NewSeat(newSort);
+    }
+
+    @Override
+    public void deleteHostInfoWhenLeave() {
+        mWaiting4JoinMasterPresenter.deleteHostInfoWhenLeave();
     }
 
     /**

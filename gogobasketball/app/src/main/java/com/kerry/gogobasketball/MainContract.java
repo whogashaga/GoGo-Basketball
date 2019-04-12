@@ -35,6 +35,8 @@ public interface MainContract {
 
         void openGamePlayingOfRefereeUi();
 
+        void openGamePlayingOfPlayerUi();
+
         void popBackStackUi();
 
 //        void finishPaymentUi();

@@ -35,14 +35,18 @@ public interface Waiting4JoinMasterContract {
 
         void openGamePlayingOfReferee();
 
+        void openGamePlayingOfPlayer();
+
         void finishWaiting4JoinUi();
 
         void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatsInfo, String roomDocId);
 
-        void updateRoomInfoWhenLeaveMaster();
-
         void showErrorToast(String message);
 
         void changeMaster2NewSeat(int newSort);
+
+        void deleteHostInfoWhenLeave();
+
     }
+
 }

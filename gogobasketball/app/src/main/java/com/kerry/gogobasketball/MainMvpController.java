@@ -17,6 +17,8 @@ import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
 import com.kerry.gogobasketball.home.item.Looking4RoomPresenter;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapPresenter;
+import com.kerry.gogobasketball.playing.player.PlayerGoingFragment;
+import com.kerry.gogobasketball.playing.player.PlayerGoingPresenter;
 import com.kerry.gogobasketball.playing.referee.RefereeGoingFragment;
 import com.kerry.gogobasketball.playing.referee.RefereeGoingPresenter;
 import com.kerry.gogobasketball.profile.ProfileFragment;
@@ -47,14 +49,15 @@ public class MainMvpController {
     private Want2CreateRoomPresenter mWant2CreateRoomPresenter;
     private Waiting4JoinMasterPresenter mWaiting4JoinMasterPresenter;
     private Waiting4JoinSlavePresenter mWaiting4JoinSlavePresenter;
-    private RefereeGoingPresenter mGamePlayingPresenterOfRefereePresenter;
+    private RefereeGoingPresenter mRefereeGoingPresenter;
+    private PlayerGoingPresenter mPlayerGoingPresenter;
 
     private Looking4RoomPresenter mLooking4RoomPresenter;
     private CourtsMapPresenter mCourtsMapPresenter;
 
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({
-            HOME, FRIEND, RANK, PROFILE, WANT2CREATEROOM, WAITING4JOIN, PLAYINGOFREFEREE
+            HOME, FRIEND, RANK, PROFILE, WANT2CREATEROOM, WAITING4JOIN, GOING4REFEREE, GOING4PLAYER
     })
     public @interface FragmentType {
     }
@@ -65,7 +68,8 @@ public class MainMvpController {
     static final String PROFILE = "PROFILE";
     static final String WANT2CREATEROOM = "WANT2CREATEROOM";
     static final String WAITING4JOIN = "WAITING4JOIN";
-    static final String PLAYINGOFREFEREE = "PLAYINGOFREFEREE";
+    static final String GOING4REFEREE = "GOING4REFEREE";
+    static final String GOING4PLAYER = "GOING4PLAYER";
 
 
     @Retention(RetentionPolicy.SOURCE)
@@ -216,14 +220,27 @@ public class MainMvpController {
     /**
      * GamePlayingOfReferee View
      */
-    void findOrCreateGamePlayingOfRefereeView() {
+    void findOrCreateRefereeGoingView() {
 
-        RefereeGoingFragment gamePlayingOfRefereeFragment = createGamePlayingOfRefereeFragment();
+        RefereeGoingFragment gamePlayingOfRefereeFragment = createRefereeGoingFragment();
 
-        mGamePlayingPresenterOfRefereePresenter = new RefereeGoingPresenter(gamePlayingOfRefereeFragment);
+        mRefereeGoingPresenter = new RefereeGoingPresenter(gamePlayingOfRefereeFragment);
 
-        mMainPresenter.setGamePlayingOfRefereePresenter(mGamePlayingPresenterOfRefereePresenter);
+        mMainPresenter.setRefereeGoingPresenter(mRefereeGoingPresenter);
         gamePlayingOfRefereeFragment.setPresenter(mMainPresenter);
+    }
+
+    /**
+     * GamePlayingOfPlayer View
+     */
+    void findOrCreatePlayerGoingView() {
+
+        PlayerGoingFragment playerGoingFragment = createPlayerGoingFragment();
+
+        mPlayerGoingPresenter = new PlayerGoingPresenter(playerGoingFragment);
+
+        mMainPresenter.setPlayerGoingPresenter(mPlayerGoingPresenter);
+        playerGoingFragment.setPresenter(mMainPresenter);
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -403,19 +420,36 @@ public class MainMvpController {
     }
 
     /**
-     * GamePlayingOfReferee Fragment
+     * RefereeGoing Fragment
      *
      * @return RefereeGoingFragment
      */
     @NonNull
-    private RefereeGoingFragment createGamePlayingOfRefereeFragment() {
+    private RefereeGoingFragment createRefereeGoingFragment() {
 
         RefereeGoingFragment gamePlayingFragmentOfReferee = RefereeGoingFragment.newInstance();
 
         ActivityUtils.addFragmentByTag(
-                getFragmentManager(), gamePlayingFragmentOfReferee, PLAYINGOFREFEREE);
+                getFragmentManager(), gamePlayingFragmentOfReferee, GOING4REFEREE);
 
         return gamePlayingFragmentOfReferee;
+    }
+
+
+    /**
+     * PlayerGoing Fragment
+     *
+     * @return PlayerGoingFragment
+     */
+    @NonNull
+    private PlayerGoingFragment createPlayerGoingFragment() {
+
+        PlayerGoingFragment gamePlayingFragmentOfPlayer = PlayerGoingFragment.newInstance();
+
+        ActivityUtils.addFragmentByTag(
+                getFragmentManager(), gamePlayingFragmentOfPlayer, GOING4PLAYER);
+
+        return gamePlayingFragmentOfPlayer;
     }
 
     /* ------------------------------------------------------------------------------------------ */

@@ -286,10 +286,10 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_slave_waiting4join_back_arrow:
-                closeWaitingSlaveUi(true);
+                mPresenter.finishWaiting4JoinUi();
                 break;
             case R.id.btn_slave_waiting4join_cancel:
-                closeWaitingSlaveUi(true);
+                mPresenter.finishWaiting4JoinUi();
                 break;
             case R.id.btn_slave_waiting_team_a_player1_change_seat:
                 Log.d("Kerry", "Joiner onClick seat1");
@@ -328,7 +328,6 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.hideToolbarAndBottomNavigation();
-//        mIsRoomExisted = true;
 
         mGenderP1.setVisibility(View.INVISIBLE);
         mPositionP1.setVisibility(View.INVISIBLE);
@@ -357,22 +356,14 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void onDestroy() {
         super.onDestroy();
         mPresenter.showToolbarAndBottomNavigation();
-
+        mPresenter.deleteSeatsInfoWhenLeaveRoom();
     }
 
     @Override
-    public void closeWaitingSlaveUi(boolean isExisted) {
-//        mIsRoomExisted = isExisted;
+    public void closeWaitingSlaveUi() {
         mPresenter.finishWaiting4JoinUi();
-        Log.e("Kerry", "is room existed = " + isExisted);
-        if (isExisted) {
-            mPresenter.changeRoomPlayerAmountWhenLeave();
-            mPresenter.deleteSeatsInfoWhenLeaveRoom();
-            mPresenter.updateRoomInfoWhenLeaveSlave();
-        } else {
-            mPresenter.deleteSeatsInfoWhenLeaveRoom();
-        }
     }
+
 
     @Override
     public boolean isActive() {

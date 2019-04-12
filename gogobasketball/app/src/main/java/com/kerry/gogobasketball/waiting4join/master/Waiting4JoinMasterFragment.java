@@ -213,16 +213,16 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_waiting4join_back_arrow:
-                mPresenter.updateRoomInfoWhenLeaveMaster();
                 mPresenter.finishWaiting4JoinUi();
                 break;
             case R.id.btn_waiting4join_cancel:
-                mPresenter.updateRoomInfoWhenLeaveMaster();
                 mPresenter.finishWaiting4JoinUi();
                 break;
             case R.id.btn_waiting4join_start:
                 if (mWaitingRoomInfo.getTotalPlayerAmount() == 7) {
+
                     mPresenter.openGamePlayingOfReferee();
+
                 } else {
                     mPresenter.showErrorToast("人數不足\n無法開始!");
                 }
@@ -397,7 +397,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     @Override
     public void onDestroy() {
         super.onDestroy();
-
+        mPresenter.deleteHostInfoWhenLeave();
     }
 
     @Override

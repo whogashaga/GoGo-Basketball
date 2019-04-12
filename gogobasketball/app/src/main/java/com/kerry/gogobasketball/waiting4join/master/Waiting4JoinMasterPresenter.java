@@ -236,18 +236,89 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     }
 
     /* ------------------------------------------------------------------------------------------ */
+    /* delete 流程 */
 
     @Override
-    public void updateRoomInfoWhenLeaveMaster() {
+    public void deleteHostInfoWhenLeave() {
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
-                .update(Constants.ROOM_STATUS, "close")
+                .collection(Constants.WAITING_SEATS)
+                .document(mHostSeatInfo.getId())
+                .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d(Constants.TAG, "刪除 Master Seat！");
+                checkTotalPlayerAmountMaster();
+            }
+        });
+    }
+
+    private void checkTotalPlayerAmountMaster() {
+        DocumentReference docRef =
+                FirestoreHelper.getFirestore()
+                        .collection(Constants.WAITING_ROOM)
+                        .document(mRoomDocId);
+
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                WaitingRoomInfo waitingRoomInfo = documentSnapshot.toObject(WaitingRoomInfo.class);
+
+                if (waitingRoomInfo.getTotalPlayerAmount() == 0) {
+                    deleteRoomDocWhenLeave();
+                    Log.d(Constants.TAG, "Master 最後一個離開！");
+                } else {
+                    changeRoomPlayerAmountWhenLeaveMaster();
+                    Log.d(Constants.TAG, "Master 是跳狗！");
+                }
+            }
+        });
+    }
+
+    private void changeRoomPlayerAmountWhenLeaveMaster() {
+
+        if (mCurrentSort == 0 || mCurrentSort == 1 || mCurrentSort == 2 || mCurrentSort == 3
+                || mCurrentSort == 4 || mCurrentSort == 5 || mCurrentSort == 6) {
+            mWaitingRoomInfo.setPlayerAmount(mWaitingRoomInfo.getPlayerAmount() - 1);
+            updatePlayerAmountWhenLeaveMaster();
+        } else {
+            mWaitingRoomInfo.setRefereeAmount(0);
+            updatePlayerAmountWhenLeaveMaster();
+        }
+    }
+
+    private void updatePlayerAmountWhenLeaveMaster() {
+
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .set(mWaitingRoomInfo)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        updateStatus2Closed();
+                        Log.d("Kerry", "Master 跳狗，更新人數！");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w("Kerry", "Error adding document", e);
+            }
+        });
+    }
+
+
+    private void updateStatus2Closed() {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .update(Constants.ROOM_STATUS, Constants.CLOSED)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(Constants.TAG, "Room status 改為 close");
-                        deleteHostInfoWhenLeave();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -258,22 +329,6 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                 });
     }
 
-    private void deleteHostInfoWhenLeave() {
-        FirestoreHelper.getFirestore()
-                .collection(Constants.WAITING_ROOM)
-                .document(mRoomDocId)
-                .collection(Constants.WAITING_SEATS)
-                .document(mHostSeatInfo.getId())
-                .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Log.d(Constants.TAG, "刪除 Master Seat！");
-                deleteRoomDocWhenLeave();
-            }
-        });
-
-    }
-
     private void deleteRoomDocWhenLeave() {
 
         FirestoreHelper.getFirestore()
@@ -282,7 +337,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                 .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Log.d(Constants.TAG, "還是不要創房好了！");
+                Log.d(Constants.TAG, "delete 房間 doc！");
             }
         });
     }
@@ -327,6 +382,11 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
 
     @Override
     public void openGamePlayingOfReferee() {
+
+    }
+
+    @Override
+    public void openGamePlayingOfPlayer() {
 
     }
 
