@@ -188,7 +188,8 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d("Kerry", "Slave 加入，並改變座位資訊！");
-                        setSnapshotListerSlave();
+                        setRoomSnapshotListerSlave();
+                        setSeatSnapshotListerSlave(joinerInfo.getId());
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -260,7 +261,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     /* ------------------------------------------------------------------------------------------ */
     /* Listener */
 
-    private void setSeatSnapshotListerMaster(String roomDocId) {
+    private void setSeatSnapshotListerSlave(String roomDocId) {
         final DocumentReference docRef = FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
@@ -287,7 +288,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
         });
     }
 
-    private void setSnapshotListerSlave() {
+    private void setRoomSnapshotListerSlave() {
 
         final DocumentReference docRef = FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)

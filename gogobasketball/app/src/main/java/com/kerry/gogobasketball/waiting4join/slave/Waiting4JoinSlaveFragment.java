@@ -197,19 +197,19 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void showWaitingSeatsSlaveUi(ArrayList<WaitingRoomSeats> newSeatsList) {
         for (int i = 0; i < 7; i++) {
             if (i == 0) {
-                setUserSeatInfo(newSeatsList.get(i), 1, mAvatarP1, mGenderP1, mPositionP1, mTextIdP1);
+                setUserSeatInfo(newSeatsList.get(i), 1, mAvatarP1, mGenderP1, mPositionP1, mTextIdP1, mBtnSeatP1);
             } else if (i == 1) {
-                setUserSeatInfo(newSeatsList.get(i), 2, mAvatarP2, mGenderP2, mPositionP2, mTextIdP2);
+                setUserSeatInfo(newSeatsList.get(i), 2, mAvatarP2, mGenderP2, mPositionP2, mTextIdP2, mBtnSeatP2);
             } else if (i == 2) {
-                setUserSeatInfo(newSeatsList.get(i), 3, mAvatarP3, mGenderP3, mPositionP3, mTextIdP3);
+                setUserSeatInfo(newSeatsList.get(i), 3, mAvatarP3, mGenderP3, mPositionP3, mTextIdP3, mBtnSeatP3);
             } else if (i == 3) {
-                setUserSeatInfo(newSeatsList.get(i), 4, mAvatarP4, mGenderP4, mPositionP4, mTextIdP4);
+                setUserSeatInfo(newSeatsList.get(i), 4, mAvatarP4, mGenderP4, mPositionP4, mTextIdP4, mBtnSeatP4);
             } else if (i == 4) {
-                setUserSeatInfo(newSeatsList.get(i), 5, mAvatarP5, mGenderP5, mPositionP5, mTextIdP5);
+                setUserSeatInfo(newSeatsList.get(i), 5, mAvatarP5, mGenderP5, mPositionP5, mTextIdP5, mBtnSeatP5);
             } else if (i == 5) {
-                setUserSeatInfo(newSeatsList.get(i), 6, mAvatarP6, mGenderP6, mPositionP6, mTextIdP6);
+                setUserSeatInfo(newSeatsList.get(i), 6, mAvatarP6, mGenderP6, mPositionP6, mTextIdP6, mBtnSeatP6);
             } else if (i == 6) {
-                setUserSeatInfo(newSeatsList.get(i), 7, mAvatarP7, mGenderP7, mPositionP7, mTextIdP7);
+                setUserSeatInfo(newSeatsList.get(i), 7, mAvatarP7, mGenderP7, mPositionP7, mTextIdP7, mBtnSeatP7);
             } else {
                 Log.d("Kerry", "showWaitingSeatsSlaveUi Error!!");
             }
@@ -218,7 +218,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
 
     private void setUserSeatInfo(WaitingRoomSeats seatPlayerInfo, int sort,
                                  ImageView avatar, ImageView gender,
-                                 ImageView position, TextView id) {
+                                 ImageView position, TextView id, Button btnChangeSeat) {
         // set avatar
         if (seatPlayerInfo.getAvatar().equals("")) {
             avatar.setImageResource(R.drawable.ic_user_avatar);
@@ -251,6 +251,13 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
             id.setText("Player" + String.valueOf(sort));
         } else {
             id.setText(seatPlayerInfo.getId());
+        }
+
+        // set btn change seat
+        if (seatPlayerInfo.isSeatAvailable()) {
+            btnChangeSeat.setVisibility(View.VISIBLE);
+        } else {
+            btnChangeSeat.setVisibility(View.GONE);
         }
 
     }
