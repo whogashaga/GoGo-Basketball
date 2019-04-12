@@ -17,7 +17,11 @@ public interface Waiting4JoinSlaveContract {
 
         void showWaitingSeatsSlaveUi(ArrayList<WaitingRoomSeats> newSeatsList);
 
-        void closeWaitingSlaveUi();
+        void closeSlaveUiBecauseMasterOutFirst();
+
+        void openPlayerGamingUi();
+
+        void openRefereeGamingUi();
     }
 
     interface Presenter extends BasePresenter {
@@ -28,17 +32,13 @@ public interface Waiting4JoinSlaveContract {
 
         void showToolbarAndBottomNavigation();
 
-        void loadPlayersInfoFromFirebase();
-
-        void loadRefereeInfoFromFirebase();
+        void showErrorToast(String message, boolean isShort);
 
         void openGamePlayingOfReferee();
 
         void openGamePlayingOfPlayer();
 
         void finishWaiting4JoinUi();
-
-//        void updateRoomInfo2FireBase();
 
         void getHostNameFromLooking4Room(WaitingRoomInfo waitingRoomInfo);
 

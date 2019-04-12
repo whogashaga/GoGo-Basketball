@@ -14,7 +14,6 @@ public class GoGoBasketball extends Application {
     public void onCreate() {
         super.onCreate();
         mContext = this;
-//        mStylishSQLiteHelper = null;
     }
 
     public static Context getAppContext() {

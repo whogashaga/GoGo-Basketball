@@ -71,10 +71,13 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     private Button mBtnSeatP7, mBtnInfoP7, mBtnAddFriendP7;
 
     private WaitingRoomInfo mWaitingRoomInfo;
-    private WaitingRoomSeats mHostSeatInfo;
+    private int mCurrentGamerAmount;
+    private int mNowMasterSort;
 
     public Waiting4JoinMasterFragment() {
         mWaitingRoomInfo = new WaitingRoomInfo();
+        mCurrentGamerAmount = -1;
+        mNowMasterSort = -1;
     }
 
     public static Waiting4JoinMasterFragment newInstance() {
@@ -219,45 +222,55 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
                 mPresenter.finishWaiting4JoinUi();
                 break;
             case R.id.btn_waiting4join_start:
-                if (mWaitingRoomInfo.getTotalPlayerAmount() == 7) {
-
-                    mPresenter.openGamePlayingOfReferee();
+                if (mCurrentGamerAmount == 7) {
+                    if (mNowMasterSort == 7) {
+                        mPresenter.openGamePlayingOfReferee();
+                        mPresenter.updateRoomStatus2Gaming();
+                    } else {
+                        mPresenter.openGamePlayingOfPlayer();
+                    }
 
                 } else {
-                    mPresenter.showErrorToast("人數不足\n無法開始!");
+                    mPresenter.showErrorToast("人數不足\n無法開始!", true);
                 }
                 break;
             case R.id.btn_waiting_team_a_player1_change_seat:
-                Log.d("Kerry","onClick seat1");
+                Log.d("Kerry", "onClick seat1");
                 mPresenter.changeMaster2NewSeat(1);
                 break;
             case R.id.btn_waiting_team_a_player2_change_seat:
-                Log.d("Kerry","onClick seat2");
+                Log.d("Kerry", "onClick seat2");
                 mPresenter.changeMaster2NewSeat(2);
                 break;
             case R.id.btn_waiting_team_a_player3_change_seat:
-                Log.d("Kerry","onClick seat3");
+                Log.d("Kerry", "onClick seat3");
                 mPresenter.changeMaster2NewSeat(3);
                 break;
             case R.id.btn_waiting_team_b_player1_change_seat:
-                Log.d("Kerry","onClick seat4");
+                Log.d("Kerry", "onClick seat4");
                 mPresenter.changeMaster2NewSeat(4);
                 break;
             case R.id.btn_waiting_team_b_player2_change_seat:
-                Log.d("Kerry","onClick seat5");
+                Log.d("Kerry", "onClick seat5");
                 mPresenter.changeMaster2NewSeat(5);
                 break;
             case R.id.btn_waiting_team_b_player3_change_seat:
-                Log.d("Kerry","onClick seat6");
+                Log.d("Kerry", "onClick seat6");
                 mPresenter.changeMaster2NewSeat(6);
                 break;
             case R.id.btn_waiting_referee_change_seat:
-                Log.d("Kerry","onClick seat7");
+                Log.d("Kerry", "onClick seat7");
                 mPresenter.changeMaster2NewSeat(7);
                 break;
             default:
                 break;
         }
+    }
+
+    @Override
+    public void getNewPlayerAmount(int newPlayerAmount, int nowMasterSort) {
+        mCurrentGamerAmount = newPlayerAmount;
+        mNowMasterSort = nowMasterSort;
     }
 
     @Override
@@ -279,7 +292,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
             } else if (i == 6) {
                 setUserSeatInfo(newSeatsList.get(i), 7, mAvatarP7, mGenderP7, mPositionP7, mTextIdP7, mBtnSeatP7);
             } else {
-                Log.d("Kerry","showWaitingSeatsSlaveUi Error!!");
+                Log.d("Kerry", "showWaitingSeatsSlaveUi Error!!");
             }
         }
     }
@@ -330,7 +343,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
 
     }
 
-    public void setPositionImage(WaitingRoomSeats waitPlayerInfo,ImageView imageView) {
+    public void setPositionImage(WaitingRoomSeats waitPlayerInfo, ImageView imageView) {
 
         if (waitPlayerInfo.getPosition().equals("pg")) {
             imageView.setImageResource(R.drawable.ic_position_pg);
@@ -409,7 +422,5 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     public boolean isActive() {
         return false;
     }
-
-
 
 }

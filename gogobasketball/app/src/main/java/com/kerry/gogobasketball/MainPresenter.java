@@ -303,6 +303,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mWaiting4JoinMasterPresenter.deleteHostInfoWhenLeave();
     }
 
+    @Override
+    public void updateRoomStatus2Gaming() {
+        mWaiting4JoinMasterPresenter.updateRoomStatus2Gaming();
+    }
+
     /**
      * Open Want2CreateRoom
      */
@@ -465,8 +470,15 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void showErrorToast(String message) {
-        Toast toast = Toast.makeText(GoGoBasketball.getAppContext(), "無效", Toast.LENGTH_SHORT);
+    public void showErrorToast(String message, boolean isShort) {
+        Toast toast;
+
+        if (isShort){
+            toast = Toast.makeText(GoGoBasketball.getAppContext(), "無效", Toast.LENGTH_SHORT);
+        } else {
+            toast = Toast.makeText(GoGoBasketball.getAppContext(), "無效", Toast.LENGTH_LONG);
+        }
+
         toast.setGravity(Gravity.CENTER, 0, 0);
         LinearLayout toastLayout = (LinearLayout) toast.getView();
         TextView toastTV = (TextView) toastLayout.getChildAt(0);

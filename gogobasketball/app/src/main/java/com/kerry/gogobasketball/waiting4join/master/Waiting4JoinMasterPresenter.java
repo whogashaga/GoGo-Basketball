@@ -4,10 +4,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.view.Gravity;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -20,7 +16,6 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.FirestoreHelper;
-import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.util.Constants;
@@ -65,10 +60,12 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
         setSeatSnapshotListerMaster(roomDocId);
     }
 
+    /* ------------------------------------------------------------------------------------------ */
+    /* change seat */
+
     @Override
     public void changeMaster2NewSeat(int newSort) {
         if (mListForChangeSeat.get(newSort - 1).isSeatAvailable()) {
-            Log.w("Kerry", "onClick changeMaster2NewSeat");
             findCurrentSeatDocId(newSort);
         } else {
             Log.d("Kerry", "changeMaster2NewSeat Error!!");
@@ -87,9 +84,8 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-//                                Log.d("Kerry", "seat doc id = " +document.getId());
                                 // 只有一筆，跑 for 沒關係
-                                updateSortForChangeSeat(document.getId(), newSort);
+                                queryExistedSort(document.getId(),newSort);
                             }
                         } else {
                             Log.w("Kerry", "Error getting documents.", task.getException());
@@ -98,7 +94,37 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                 });
     }
 
-    private void updateSortForChangeSeat(String seatDocId, int newSort) {
+
+    private void queryExistedSort(String seatDocIdForUpdate, int newSort) {
+
+        ArrayList<Integer> existedSortList = new ArrayList<>();
+
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .collection(Constants.WAITING_SEATS)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                WaitingRoomSeats seatInfo = document.toObject(WaitingRoomSeats.class);
+                                existedSortList.add(seatInfo.getSort());
+                            }
+                            Log.d("Kerry", "Master existedSortList = " + existedSortList.get(0));
+                            updateSortForChangeSeatMaster(seatDocIdForUpdate, newSort);
+                            changeRoomPlayerAmountAfterChangeSeatMaster(existedSortList, newSort);
+
+                        } else {
+                            Log.w("Kerry", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+    }
+
+
+    private void updateSortForChangeSeatMaster(String seatDocId, int newSort) {
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
@@ -118,7 +144,45 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                         Log.w(Constants.TAG, "Error updating document", e);
                     }
                 });
+    }
 
+
+    private void changeRoomPlayerAmountAfterChangeSeatMaster(ArrayList<Integer> existedSortList, int newSort) {
+
+        if (newSort == 7) {
+            mWaitingRoomInfo.setPlayerAmount(mWaitingRoomInfo.getPlayerAmount() - 1);
+            mWaitingRoomInfo.setRefereeAmount(1);
+        } else {
+
+            if (existedSortList.contains(7)) {
+//                Log.d("Kerry", "ArrayList 包含 7 ");
+                mWaitingRoomInfo.setPlayerAmount(mWaitingRoomInfo.getPlayerAmount() + 1);
+                mWaitingRoomInfo.setRefereeAmount(mWaitingRoomInfo.getRefereeAmount() - 1);
+            } else {
+                Log.d(Constants.TAG, "球員間換位，數字不變！");
+            }
+
+        }
+
+        updateRoomInfoAfterChangeSeatMaster();
+    }
+
+    private void updateRoomInfoAfterChangeSeatMaster() {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .set(mWaitingRoomInfo)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(Constants.TAG, "Master 換位，updateRoomInfoAfterChangeSeatMaster！");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w("Kerry", "Error adding document", e);
+            }
+        });
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -140,7 +204,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                     return;
                 }
                 if (snapshot != null && snapshot.exists()) {
-                    Log.w("Kerry", "Seat Current data: " + snapshot.getData());
+//                    Log.w("Kerry", "Master Seat Current data: " + snapshot.getData());
 
                     getNewSeatsInfo();
 
@@ -167,8 +231,12 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                     return;
                 }
                 if (snapshot != null && snapshot.exists()) {
-                    Log.d(Constants.TAG, "Room Current data: " + snapshot.getData());
-                    Log.w("Kerry", "Room Current data: " + snapshot.getData());
+                    Log.d(Constants.TAG, "Master Room Current data: " + snapshot.getData());
+                    WaitingRoomInfo newRoomInfo = snapshot.toObject(WaitingRoomInfo.class);
+                    mWaitingRoomInfo = newRoomInfo;
+
+                    // 為了跳轉 gaming 畫面，需傳入現在總人數和房主 sort
+                    mWaiting4JoinMasterView.getNewPlayerAmount(newRoomInfo.getTotalPlayerAmount(), mCurrentSort);
 
                     getNewSeatsInfo();
 
@@ -299,7 +367,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                     @Override
                     public void onSuccess(Void aVoid) {
                         updateStatus2Closed();
-                        Log.d("Kerry", "Master 跳狗，更新人數！");
+                        Log.d(Constants.TAG, "Master 跳狗，更新人數！");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -319,6 +387,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(Constants.TAG, "Room status 改為 close");
+                        deleteRoomDocWhenLeave();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -343,16 +412,33 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     }
 
     /* ------------------------------------------------------------------------------------------ */
+    /* Start game ! */
 
     @Override
-    public void showErrorToast(String message) {
-        Toast toast = Toast.makeText(GoGoBasketball.getAppContext(), "無效", Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        LinearLayout toastLayout = (LinearLayout) toast.getView();
-        TextView toastTV = (TextView) toastLayout.getChildAt(0);
-        toastTV.setTextSize(16);
-        toastTV.setText(message);
-        toast.show();
+    public void updateRoomStatus2Gaming() {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .update(Constants.ROOM_STATUS, Constants.GAMING)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(Constants.TAG, "Room status 改為 gaming");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(Constants.TAG, "Error updating document", e);
+                    }
+                });
+    }
+
+    /* ------------------------------------------------------------------------------------------ */
+
+    @Override
+    public void showErrorToast(String message, boolean isShort) {
+
     }
 
     @Override
@@ -367,16 +453,6 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
 
     @Override
     public void showToolbarAndBottomNavigation() {
-
-    }
-
-    @Override
-    public void loadPlayersInfoFromFirebase() {
-
-    }
-
-    @Override
-    public void loadRefereeInfoFromFirebase() {
 
     }
 

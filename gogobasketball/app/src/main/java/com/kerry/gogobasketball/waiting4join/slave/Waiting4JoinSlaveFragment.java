@@ -360,8 +360,19 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     }
 
     @Override
-    public void closeWaitingSlaveUi() {
+    public void closeSlaveUiBecauseMasterOutFirst() {
+        mPresenter.showErrorToast("房主落跑...", false);
         mPresenter.finishWaiting4JoinUi();
+    }
+
+    @Override
+    public void openPlayerGamingUi() {
+        mPresenter.openGamePlayingOfPlayer();
+    }
+
+    @Override
+    public void openRefereeGamingUi() {
+        mPresenter.openGamePlayingOfReferee();
     }
 
 

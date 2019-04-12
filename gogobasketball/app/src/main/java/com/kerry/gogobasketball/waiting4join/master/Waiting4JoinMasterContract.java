@@ -15,6 +15,8 @@ public interface Waiting4JoinMasterContract {
 
         boolean isActive();
 
+        void getNewPlayerAmount(int newPlayerAmount, int nowMasterSort);
+
         void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo);
 
         void showWaitingSeatsMasterUi(ArrayList<WaitingRoomSeats> newSeatsList);
@@ -29,10 +31,6 @@ public interface Waiting4JoinMasterContract {
 
         void showToolbarAndBottomNavigation();
 
-        void loadPlayersInfoFromFirebase();
-
-        void loadRefereeInfoFromFirebase();
-
         void openGamePlayingOfReferee();
 
         void openGamePlayingOfPlayer();
@@ -41,11 +39,16 @@ public interface Waiting4JoinMasterContract {
 
         void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatsInfo, String roomDocId);
 
-        void showErrorToast(String message);
+        void showErrorToast(String message, boolean isShort);
 
         void changeMaster2NewSeat(int newSort);
 
+//        void changeRoomPlayerAmountAfterChangeSeatMaster();
+
         void deleteHostInfoWhenLeave();
+
+        void updateRoomStatus2Gaming();
+
 
     }
 

@@ -4,26 +4,22 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.view.View;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.kerry.gogobasketball.FirestoreHelper;
-import com.kerry.gogobasketball.GoGoBasketball;
-import com.kerry.gogobasketball.R;
+import com.kerry.gogobasketball.RandomString;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.util.Constants;
 
-import java.util.ArrayList;
+import java.security.SecureRandom;
 
 public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Presenter {
 
     private final Want2CreateRoomContract.View mWant2CreateRoomView;
-
     private WaitingRoomInfo mWaitingRoomInfo;
-
     private String mRoomDocId;
 
     public Want2CreateRoomPresenter(@NonNull Want2CreateRoomContract.View want2CreateRoomView) {
@@ -60,7 +56,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
         hostSeatInfo.setSort(1);
         hostSeatInfo.setGender("male");
         hostSeatInfo.setSeatAvailable(false);
-        hostSeatInfo.setId(GoGoBasketball.getAppContext().getString(R.string.id_player1));
+        hostSeatInfo.setId(RandomString.getRandom(5));
 
         // set Room Info
         WaitingRoomInfo waitingRoomInfo = new WaitingRoomInfo();
