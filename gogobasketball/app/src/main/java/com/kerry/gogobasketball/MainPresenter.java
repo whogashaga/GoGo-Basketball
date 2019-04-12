@@ -255,6 +255,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mWaiting4JoinSlavePresenter.changeRoomPlayerAmountWhenLeave();
     }
 
+    @Override
+    public void changeSlave2NewSeat(int newSort) {
+        mWaiting4JoinSlavePresenter.changeSlave2NewSeat(newSort);
+    }
+
 //    @Override
 //    public void checkRoomDocIsExisted() {
 //        mWaiting4JoinSlavePresenter.checkRoomDocIsExisted();

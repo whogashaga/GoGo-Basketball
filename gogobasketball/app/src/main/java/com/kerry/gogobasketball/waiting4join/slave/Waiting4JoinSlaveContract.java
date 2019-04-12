@@ -48,6 +48,8 @@ public interface Waiting4JoinSlaveContract {
 
         void changeRoomPlayerAmountWhenLeave();
 
+        void changeSlave2NewSeat(int newSort);
+
 //        void checkRoomDocIsExisted();
     }
 

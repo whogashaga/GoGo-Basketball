@@ -228,6 +228,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
                 }
                 break;
             case R.id.btn_waiting_team_a_player1_change_seat:
+                Log.d("Kerry","onClick seat1");
                 mPresenter.changeMaster2NewSeat(1);
                 break;
             case R.id.btn_waiting_team_a_player2_change_seat:

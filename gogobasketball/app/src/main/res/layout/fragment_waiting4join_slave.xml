@@ -72,32 +72,31 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:background="@drawable/btn_ripple_waiting4join"
             android:drawableTop="@drawable/button_effect_change_seats"
             android:text="@string/change_seat"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_a_player1_info"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_team_a_player1_info"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/slave_waiting_team_a_player1_avatar" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_slave_waiting_team_a_player1_info"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_info_player"
             android:text="@string/person_info"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_a_player1_change_seat"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_team_a_player1_add"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_team_a_player1_change_seat"
-            app:layout_constraintTop_toTopOf="@+id/btn_slave_waiting_team_a_player1_change_seat" />
+            app:layout_constraintTop_toBottomOf="@+id/slave_waiting_team_a_player1_avatar" />
 
         <Button
             android:id="@+id/btn_slave_waiting_team_a_player1_add"
@@ -107,11 +106,10 @@
             android:background="@null"
             android:drawableTop="@drawable/button_effect_add_user"
             android:text="@string/add_user"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_a_player1_change_seat"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_a_player1_info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_team_a_player1_info"
-            app:layout_constraintTop_toTopOf="@+id/btn_slave_waiting_team_a_player1_change_seat" />
+            app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_team_a_player1_info" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -174,32 +172,31 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_change_seats"
             android:text="@string/change_seat"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_a_player2_info"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_team_a_player2_info"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/slave_waiting_team_a_player2_avatar" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_slave_waiting_team_a_player2_info"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_info_player"
             android:text="@string/person_info"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_a_player2_change_seat"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_team_a_player2_add"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_team_a_player2_change_seat"
-            app:layout_constraintTop_toTopOf="@+id/btn_slave_waiting_team_a_player2_change_seat" />
+            app:layout_constraintTop_toBottomOf="@+id/slave_waiting_team_a_player2_avatar" />
 
         <Button
             android:id="@+id/btn_slave_waiting_team_a_player2_add"
@@ -209,11 +206,10 @@
             android:background="@null"
             android:drawableTop="@drawable/button_effect_add_user"
             android:text="@string/add_user"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_a_player2_change_seat"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_a_player2_info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_team_a_player2_info"
-            app:layout_constraintTop_toTopOf="@+id/btn_slave_waiting_team_a_player2_change_seat" />
+            app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_team_a_player2_info" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -276,32 +272,31 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_change_seats"
             android:text="@string/change_seat"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_a_player3_info"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_team_a_player3_info"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/slave_waiting_team_a_player3_avatar" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_slave_waiting_team_a_player3_info"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_info_player"
             android:text="@string/person_info"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_a_player3_change_seat"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_team_a_player3_add"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_team_a_player3_change_seat"
-            app:layout_constraintTop_toTopOf="@+id/btn_slave_waiting_team_a_player3_change_seat" />
+            app:layout_constraintTop_toBottomOf="@+id/slave_waiting_team_a_player3_avatar" />
 
         <Button
             android:id="@+id/btn_slave_waiting_team_a_player3_add"
@@ -311,11 +306,10 @@
             android:background="@null"
             android:drawableTop="@drawable/button_effect_add_user"
             android:text="@string/add_user"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_a_player3_change_seat"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_a_player3_info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_team_a_player3_info"
-            app:layout_constraintTop_toTopOf="@+id/btn_slave_waiting_team_a_player3_change_seat" />
+            app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_team_a_player3_info" />
 
 
     </android.support.constraint.ConstraintLayout>
@@ -381,32 +375,31 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_change_seats"
             android:text="@string/change_seat"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_b_player1_info"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_team_b_player1_info"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/slave_waiting_team_b_player1_avatar" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_slave_waiting_team_b_player1_info"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_info_player"
             android:text="@string/person_info"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_b_player1_change_seat"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_team_b_player1_add"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_team_b_player1_change_seat"
-            app:layout_constraintTop_toTopOf="@+id/btn_slave_waiting_team_b_player1_change_seat" />
+            app:layout_constraintTop_toBottomOf="@+id/slave_waiting_team_b_player1_avatar" />
 
         <Button
             android:id="@+id/btn_slave_waiting_team_b_player1_add"
@@ -416,11 +409,10 @@
             android:background="@null"
             android:drawableTop="@drawable/button_effect_add_user"
             android:text="@string/add_user"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_b_player1_change_seat"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_b_player1_info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_team_b_player1_info"
-            app:layout_constraintTop_toTopOf="@+id/btn_slave_waiting_team_b_player1_change_seat" />
+            app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_team_b_player1_info" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -481,46 +473,45 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_change_seats"
             android:text="@string/change_seat"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_b_player2_info"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_team_b_player2_info"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/slave_waiting_team_b_player2_avatar" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_slave_waiting_team_b_player2_info"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_info_player"
             android:text="@string/person_info"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_b_player2_change_seat"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_team_b_player2_add"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_team_b_player2_change_seat"
-            app:layout_constraintTop_toTopOf="@+id/btn_slave_waiting_team_b_player2_change_seat" />
+            app:layout_constraintTop_toBottomOf="@+id/slave_waiting_team_b_player2_avatar" />
 
         <Button
             android:id="@+id/btn_slave_waiting_team_b_player2_add"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_add_user"
             android:text="@string/add_user"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_b_player2_change_seat"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_b_player2_info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_team_b_player2_info"
-            app:layout_constraintTop_toTopOf="@+id/btn_slave_waiting_team_b_player2_change_seat" />
+            app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_team_b_player2_info" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -582,32 +573,31 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_change_seats"
             android:text="@string/change_seat"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_b_player3_info"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_team_b_player3_info"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/slave_waiting_team_b_player3_avatar" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_slave_waiting_team_b_player3_info"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_info_player"
             android:text="@string/person_info"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_b_player3_change_seat"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_team_b_player3_add"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_team_b_player3_change_seat"
-            app:layout_constraintTop_toTopOf="@+id/btn_slave_waiting_team_b_player3_change_seat" />
+            app:layout_constraintTop_toBottomOf="@+id/slave_waiting_team_b_player3_avatar" />
 
         <Button
             android:id="@+id/btn_slave_waiting_team_b_player3_add"
@@ -617,11 +607,10 @@
             android:background="@null"
             android:drawableTop="@drawable/button_effect_add_user"
             android:text="@string/add_user"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_b_player3_change_seat"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_team_b_player3_info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_team_b_player3_info"
-            app:layout_constraintTop_toTopOf="@+id/btn_slave_waiting_team_b_player3_change_seat" />
+            app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_team_b_player3_info" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -688,32 +677,31 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_change_seats"
             android:text="@string/change_seat"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_referee_info"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_referee_info"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/slave_waiting_referee_avatar" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_slave_waiting_referee_info"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_info_referee"
             android:text="@string/person_info"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_referee_change_seat"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_slave_waiting_referee_add"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_referee_change_seat"
-            app:layout_constraintTop_toTopOf="@+id/btn_slave_waiting_referee_change_seat" />
+            app:layout_constraintTop_toBottomOf="@+id/slave_waiting_referee_avatar" />
 
         <Button
             android:id="@+id/btn_slave_waiting_referee_add"
@@ -723,11 +711,10 @@
             android:background="@null"
             android:drawableTop="@drawable/button_effect_add_user"
             android:text="@string/add_user"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_referee_change_seat"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_slave_waiting_referee_info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_referee_info"
-            app:layout_constraintTop_toTopOf="@+id/btn_slave_waiting_referee_change_seat" />
+            app:layout_constraintStart_toEndOf="@+id/btn_slave_waiting_referee_info" />
 
     </android.support.constraint.ConstraintLayout>
 

@@ -44,6 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="4dp"
         android:text=":"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/text_gaming_current_score_team_a"
@@ -60,10 +61,10 @@
         android:fontFamily="@font/audiowide"
         android:text="0"
         android:textColor="@color/blue_voyage"
-        app:layout_constraintBottom_toBottomOf="@+id/text_gaming_current_score_separation"
+        app:layout_constraintBottom_toBottomOf="@+id/text_gaming_current_score_team_a"
         app:layout_constraintEnd_toEndOf="@+id/text_gaming_current_score"
         app:layout_constraintStart_toEndOf="@+id/text_gaming_current_score_separation"
-        app:layout_constraintTop_toTopOf="@+id/text_gaming_current_score_separation" />
+        app:layout_constraintTop_toTopOf="@+id/text_gaming_current_score_team_a" />
 
     <TextView
         android:id="@+id/text_gaming_current_time_title"

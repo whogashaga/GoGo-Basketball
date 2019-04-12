@@ -130,9 +130,6 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
                 .document(mHostSeatInfo.getId());
-        Log.e("Kerry", "mRoomId = " + mRoomDocId);
-        Log.e("Kerry", "mSeatId = " + mHostSeatInfo.getId());
-        Log.e("Kerry", "setSeatSnapshotListerMaster !!");
 
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
@@ -201,12 +198,11 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                             }
 
                             ArrayList<WaitingRoomSeats> emptySeatsList = new ArrayList<>();
-                            for (int i = mSeatsInfoList.size(); i < 7; i++) {
+                            for (int i = 0; i < 7; i++) {
                                 emptySeatsList.add(new WaitingRoomSeats());
                             }
-
                             for (int j = 0; j < mSeatsInfoList.size(); j++) {
-                                emptySeatsList.add(mSeatsInfoList.get(j).getSort() - 1, mSeatsInfoList.get(j));
+                                emptySeatsList.set(mSeatsInfoList.get(j).getSort() - 1, mSeatsInfoList.get(j));
                             }
 
 //                            Log.e("Kerry", "EmptyList size = " + emptySeatsList.size());

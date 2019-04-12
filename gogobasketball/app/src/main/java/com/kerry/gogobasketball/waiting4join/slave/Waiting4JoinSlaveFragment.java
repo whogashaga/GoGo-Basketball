@@ -121,6 +121,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mPositionP1 = mRoot.findViewById(R.id.slave_waiting_team_a_player1_position);
         mTextIdP1 = mRoot.findViewById(R.id.slave_waiting_team_a_player1_id);
         mBtnSeatP1 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player1_change_seat);
+        mBtnSeatP1.setOnClickListener(this);
         mBtnInfoP1 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player1_info);
         mBtnAddFriendP1 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player1_add);
 
@@ -130,6 +131,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mPositionP2 = mRoot.findViewById(R.id.slave_waiting_team_a_player2_position);
         mTextIdP2 = mRoot.findViewById(R.id.slave_waiting_team_a_player2_id);
         mBtnSeatP2 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player2_change_seat);
+        mBtnSeatP2.setOnClickListener(this);
         mBtnInfoP2 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player2_info);
         mBtnAddFriendP2 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player2_add);
 
@@ -139,6 +141,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mPositionP3 = mRoot.findViewById(R.id.slave_waiting_team_a_player3_position);
         mTextIdP3 = mRoot.findViewById(R.id.slave_waiting_team_a_player3_id);
         mBtnSeatP3 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player3_change_seat);
+        mBtnSeatP3.setOnClickListener(this);
         mBtnInfoP3 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player3_info);
         mBtnAddFriendP3 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player3_add);
 
@@ -148,6 +151,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mPositionP4 = mRoot.findViewById(R.id.slave_waiting_team_b_player1_position);
         mTextIdP4 = mRoot.findViewById(R.id.slave_waiting_team_b_player1_id);
         mBtnSeatP4 = mRoot.findViewById(R.id.btn_slave_waiting_team_b_player1_change_seat);
+        mBtnSeatP4.setOnClickListener(this);
         mBtnInfoP4 = mRoot.findViewById(R.id.btn_slave_waiting_team_b_player1_info);
         mBtnAddFriendP4 = mRoot.findViewById(R.id.btn_slave_waiting_team_b_player1_add);
 
@@ -157,6 +161,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mPositionP5 = mRoot.findViewById(R.id.slave_waiting_team_b_player2_position);
         mTextIdP5 = mRoot.findViewById(R.id.slave_waiting_team_b_player2_id);
         mBtnSeatP5 = mRoot.findViewById(R.id.btn_slave_waiting_team_b_player2_change_seat);
+        mBtnSeatP5.setOnClickListener(this);
         mBtnInfoP5 = mRoot.findViewById(R.id.btn_slave_waiting_team_b_player2_info);
         mBtnAddFriendP5 = mRoot.findViewById(R.id.btn_slave_waiting_team_b_player2_add);
 
@@ -166,6 +171,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mPositionP6 = mRoot.findViewById(R.id.slave_waiting_team_b_player3_position);
         mTextIdP6 = mRoot.findViewById(R.id.slave_waiting_team_b_player3_id);
         mBtnSeatP6 = mRoot.findViewById(R.id.btn_slave_waiting_team_b_player3_change_seat);
+        mBtnSeatP6.setOnClickListener(this);
         mBtnInfoP6 = mRoot.findViewById(R.id.btn_slave_waiting_team_b_player3_info);
         mBtnAddFriendP6 = mRoot.findViewById(R.id.btn_slave_waiting_team_b_player3_add);
 
@@ -175,6 +181,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mPositionP7 = mRoot.findViewById(R.id.slave_waiting_referee_position);
         mTextIdP7 = mRoot.findViewById(R.id.slave_waiting_referee_id);
         mBtnSeatP7 = mRoot.findViewById(R.id.btn_slave_waiting_referee_change_seat);
+        mBtnSeatP7.setOnClickListener(this);
         mBtnInfoP7 = mRoot.findViewById(R.id.btn_slave_waiting_referee_info);
         mBtnAddFriendP7 = mRoot.findViewById(R.id.btn_slave_waiting_referee_add);
 
@@ -204,7 +211,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
             } else if (i == 6) {
                 setUserSeatInfo(newSeatsList.get(i), 7, mAvatarP7, mGenderP7, mPositionP7, mTextIdP7);
             } else {
-                Log.d("Kerry","showWaitingSeatsSlaveUi Error!!");
+                Log.d("Kerry", "showWaitingSeatsSlaveUi Error!!");
             }
         }
     }
@@ -277,6 +284,34 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
             case R.id.btn_slave_waiting4join_cancel:
                 closeWaitingSlaveUi(true);
                 break;
+            case R.id.btn_slave_waiting_team_a_player1_change_seat:
+                Log.d("Kerry", "Joiner onClick seat1");
+                mPresenter.changeSlave2NewSeat(1);
+                break;
+            case R.id.btn_slave_waiting_team_a_player2_change_seat:
+                Log.d("Kerry", "Joiner onClick seat2");
+                mPresenter.changeSlave2NewSeat(2);
+                break;
+            case R.id.btn_slave_waiting_team_a_player3_change_seat:
+                Log.d("Kerry", "Joiner onClick seat3");
+                mPresenter.changeSlave2NewSeat(3);
+                break;
+            case R.id.btn_slave_waiting_team_b_player1_change_seat:
+                Log.d("Kerry", "Joiner onClick seat4");
+                mPresenter.changeSlave2NewSeat(4);
+                break;
+            case R.id.btn_slave_waiting_team_b_player2_change_seat:
+                Log.d("Kerry", "Joiner onClick seat5");
+                mPresenter.changeSlave2NewSeat(5);
+                break;
+            case R.id.btn_slave_waiting_team_b_player3_change_seat:
+                Log.d("Kerry", "Joiner onClick seat6");
+                mPresenter.changeSlave2NewSeat(6);
+                break;
+            case R.id.btn_slave_waiting_referee_change_seat:
+                Log.d("Kerry", "Joiner onClick seat7");
+                mPresenter.changeSlave2NewSeat(7);
+                break;
             default:
                 break;
         }
@@ -302,6 +337,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mPositionP6.setVisibility(View.INVISIBLE);
         mGenderP7.setVisibility(View.INVISIBLE);
         mPositionP7.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
@@ -321,8 +357,8 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void closeWaitingSlaveUi(boolean isExisted) {
 //        mIsRoomExisted = isExisted;
         mPresenter.finishWaiting4JoinUi();
-        Log.e("Kerry","is room existed = " + isExisted);
-        if (isExisted){
+        Log.e("Kerry", "is room existed = " + isExisted);
+        if (isExisted) {
             mPresenter.changeRoomPlayerAmountWhenLeave();
             mPresenter.deleteSeatsInfoWhenLeaveRoom();
             mPresenter.updateRoomInfoWhenLeaveSlave();

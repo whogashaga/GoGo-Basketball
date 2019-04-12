@@ -32,11 +32,12 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     private final Waiting4JoinSlaveContract.View mWaiting4JoinView;
 
     private ArrayList<WaitingRoomSeats> mSeatsInfoList;
+    private ArrayList<WaitingRoomSeats> mListForChangeSeat;
     private WaitingRoomInfo mWaitingRoomInfo;
     private WaitingRoomSeats mJoinerInfo;
 
     private String mRoomDocId;
-    private String mSortDocId;
+    private String mSeatDocId;
     private int mIntJoinerSort;
 
 
@@ -48,6 +49,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
         mRoomDocId = "";
         mIntJoinerSort = 1;
         mSeatsInfoList = new ArrayList<>();
+        mListForChangeSeat = new ArrayList<>();
     }
 
 
@@ -174,13 +176,13 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
     private void updateJoinerInfo2FireBase(WaitingRoomSeats joinerInfo, String roomId) {
 
-        mSortDocId = String.valueOf(joinerInfo.getSort());
+        mSeatDocId = joinerInfo.getId();
 
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .document(roomId)
                 .collection(Constants.WAITING_SEATS)
-                .document(String.valueOf(joinerInfo.getSort()))
+                .document(joinerInfo.getId())
                 .set(joinerInfo)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -197,7 +199,93 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     }
 
     /* ------------------------------------------------------------------------------------------ */
+    /* change seat method */
+
+    @Override
+    public void changeSlave2NewSeat(int newSort) {
+        if (mListForChangeSeat.get(newSort - 1).isSeatAvailable()) {
+            Log.w("Kerry", "onClick changeMaster2NewSeat");
+            findCurrentSeatDocId(newSort);
+        } else {
+            Log.d("Kerry", "changeMaster2NewSeat Error!!");
+        }
+    }
+
+    private void findCurrentSeatDocId(int newSort) {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .collection(Constants.WAITING_SEATS)
+                .whereEqualTo("sort", mIntJoinerSort)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                Log.d("Kerry", "seat doc id = " +document.getId());
+                                // 只有一筆，跑 for 沒關係
+                                updateSortForChangeSeat(document.getId(), newSort);
+                            }
+                        } else {
+                            Log.w("Kerry", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+    }
+
+    private void updateSortForChangeSeat(String seatDocId, int newSort) {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .collection(Constants.WAITING_SEATS)
+                .document(seatDocId)
+                .update(Constants.SORT, newSort)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        mIntJoinerSort = newSort;
+                        Log.d(Constants.TAG, "DocumentSnapshot successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(Constants.TAG, "Error updating document", e);
+                    }
+                });
+
+    }
+
+    /* ------------------------------------------------------------------------------------------ */
     /* Listener */
+
+    private void setSeatSnapshotListerMaster(String roomDocId) {
+        final DocumentReference docRef = FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .collection(Constants.WAITING_SEATS)
+                .document(mJoinerInfo.getId());
+
+        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot snapshot,
+                                @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w(Constants.TAG, "Listen failed.", e);
+                    return;
+                }
+                if (snapshot != null && snapshot.exists()) {
+                    Log.w("Kerry", "Seat Current data: " + snapshot.getData());
+
+                    getNewSeatsInfo();
+
+                } else {
+                    Log.d(Constants.TAG, "Current data: null");
+                }
+            }
+        });
+    }
 
     private void setSnapshotListerSlave() {
 
@@ -241,21 +329,25 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                         if (task.isSuccessful()) {
                             if (mWaitingRoomInfo.getStatus().equals("waiting")) {
                                 mSeatsInfoList.clear();
+                                mListForChangeSeat.clear();
                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                     WaitingRoomSeats newSeatInfo = document.toObject(WaitingRoomSeats.class);
                                     mSeatsInfoList.add(newSeatInfo);
                                 }
 
+                                // 先給七個空的，已存在球員再 replace 掉空的
                                 ArrayList<WaitingRoomSeats> emptySeatsList = new ArrayList<>();
-                                for (int i = mSeatsInfoList.size(); i < 7; i++) {
+                                for (int i = 0; i < 7; i++) {
                                     emptySeatsList.add(new WaitingRoomSeats());
                                 }
-
                                 for (int j = 0; j < mSeatsInfoList.size(); j++) {
-                                    emptySeatsList.add(mSeatsInfoList.get(j).getSort() - 1, mSeatsInfoList.get(j));
+                                    emptySeatsList.set(mSeatsInfoList.get(j).getSort() - 1, mSeatsInfoList.get(j));
                                 }
 
                                 mWaiting4JoinView.showWaitingSeatsSlaveUi(emptySeatsList);
+
+                                // for change seat use
+                                mListForChangeSeat.addAll(emptySeatsList);
 
                             } else if (mWaitingRoomInfo.getStatus().equals("close")) {
                                 mWaiting4JoinView.closeWaitingSlaveUi(false);
@@ -266,7 +358,6 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                         }
                     }
                 });
-
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -279,7 +370,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
-                .document(mSortDocId)
+                .document(mSeatDocId)
                 .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
