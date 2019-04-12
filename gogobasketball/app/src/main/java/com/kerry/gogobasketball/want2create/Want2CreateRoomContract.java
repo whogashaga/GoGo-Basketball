@@ -21,6 +21,8 @@ public interface Want2CreateRoomContract {
 
         void result(int requestCode, int resultCode);
 
+        void showErrorToast(String message, boolean isShort);
+
         void hideToolbarAndBottomNavigation();
 
         void showToolbarAndBottomNavigation();

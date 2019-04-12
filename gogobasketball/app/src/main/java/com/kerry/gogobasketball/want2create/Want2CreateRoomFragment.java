@@ -186,7 +186,6 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.hideToolbarAndBottomNavigation();
-
         mEditorRoomName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -200,10 +199,10 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
                     mEditorRoomName.setFocusable(true);
                     setBtnCreateConfirmClickable(true);
                     if (s.length() == 10) {
-                        Toast.makeText(GoGoBasketball.getAppContext(), "最多10個字", Toast.LENGTH_SHORT).show();
+                        mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.at_most_10_word), true);
                     }
                 } else if (s.length() == 0) {
-                    Toast.makeText(GoGoBasketball.getAppContext(), "請輸入房名", Toast.LENGTH_SHORT).show();
+                    mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.edit_room_name), true);
                     setBtnCreateConfirmClickable(false);
                 } else {
                     Log.d("Kerry", "no this kind of situation!");
@@ -221,7 +220,6 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     public void onDestroy() {
         super.onDestroy();
         mPresenter.showToolbarAndBottomNavigation();
-
     }
 
     @Override

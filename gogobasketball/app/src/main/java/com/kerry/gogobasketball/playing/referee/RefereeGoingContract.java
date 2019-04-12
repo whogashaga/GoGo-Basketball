@@ -94,6 +94,8 @@ public interface RefereeGoingContract {
 
         void result(int requestCode, int resultCode);
 
+        void setBackKeyDisable(boolean isBackKeyDisable);
+
         void hideToolbarAndBottomNavigation();
 
         void showToolbarAndBottomNavigation();

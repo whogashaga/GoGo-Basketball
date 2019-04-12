@@ -40,22 +40,6 @@ public class PlayerGoingFragment extends Fragment implements PlayerGoingContract
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         mPresenter.result(requestCode, resultCode);
     }
@@ -67,6 +51,30 @@ public class PlayerGoingFragment extends Fragment implements PlayerGoingContract
 
         return mRoot;
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mPresenter.setBackKeyDisable(true);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.setBackKeyDisable(false);
+    }
+
 
     @Override
     public void showPlayingGameUi() {

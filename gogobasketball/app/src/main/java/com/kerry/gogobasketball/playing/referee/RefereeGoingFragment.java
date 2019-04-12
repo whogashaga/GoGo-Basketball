@@ -297,6 +297,7 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mPresenter.setBackKeyDisable(true);
 
         mBtnP1ScorePlus.setOnClickListener(this);
         mBtnP1ScoreMinus.setOnClickListener(this);

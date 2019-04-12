@@ -54,6 +54,11 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
     }
 
     @Override
+    public void setBackKeyDisable(boolean isBackKeyDisable) {
+
+    }
+
+    @Override
     public void start() {
 
     }

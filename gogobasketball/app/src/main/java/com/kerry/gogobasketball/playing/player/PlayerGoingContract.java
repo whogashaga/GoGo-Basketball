@@ -30,5 +30,6 @@ public interface PlayerGoingContract {
 
         void forced2FinishGaming();
 
+        void setBackKeyDisable(boolean isBackKeyDisable);
     }
 }

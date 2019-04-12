@@ -60,6 +60,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private RefereeGoingPresenter mRefereeGoingPresenter;
     private PlayerGoingPresenter mPlayerGoingPresenter;
 
+    private static boolean mIsBackKeyDisable;
+
 //    public MainPresenter(
 //            @NonNull StylishRepository stylishRepository,
 //            @NonNull MainContract.View mainView) {
@@ -323,6 +325,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
+    public void setBackKeyDisable(boolean isBackKeyDisable) {
+        mIsBackKeyDisable = isBackKeyDisable;
+    }
+
+    @Override
     public void updateRoomInfo2FireStore() {
         mWant2CreateRoomPresenter.updateRoomInfo2FireStore();
     }
@@ -487,7 +494,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         toast.show();
     }
 
-
-
-
+    @Override
+    public boolean disableBackKey() {
+        return mIsBackKeyDisable;
+    }
 }

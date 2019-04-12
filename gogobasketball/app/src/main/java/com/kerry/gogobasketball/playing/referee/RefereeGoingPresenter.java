@@ -19,6 +19,11 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
     }
 
     @Override
+    public void setBackKeyDisable(boolean isBackKeyDisable) {
+
+    }
+
+    @Override
     public void hideToolbarAndBottomNavigation() {
 
     }

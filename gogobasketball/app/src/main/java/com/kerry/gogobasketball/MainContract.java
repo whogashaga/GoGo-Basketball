@@ -121,5 +121,8 @@ public interface MainContract {
 
         void onClickDrawerAvatar();
 
+        boolean disableBackKey();
+
+        void showErrorToast(String message, boolean isShort);
     }
 }

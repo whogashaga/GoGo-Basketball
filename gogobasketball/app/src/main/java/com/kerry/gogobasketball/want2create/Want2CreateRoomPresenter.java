@@ -127,6 +127,11 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     }
 
     @Override
+    public void showErrorToast(String message, boolean isShort) {
+
+    }
+
+    @Override
     public void hideToolbarAndBottomNavigation() {
 
     }
@@ -141,9 +146,9 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
 
     }
 
-
     @Override
     public void start() {
 
     }
+
 }

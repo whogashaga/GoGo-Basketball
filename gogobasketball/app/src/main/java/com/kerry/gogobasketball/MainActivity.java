@@ -599,6 +599,14 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
     }
 
+    @Override
+    public void onBackPressed() {
+        if (mPresenter.disableBackKey()) {
+            mPresenter.showErrorToast("比賽尚未結束\n請勿離場！！", true);
+        } else {
+            super.onBackPressed();
+        }
+    }
 
 }
 
