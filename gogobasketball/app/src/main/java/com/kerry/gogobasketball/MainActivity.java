@@ -22,9 +22,13 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.api.LogDescriptor;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.kerry.gogobasketball.data.GamingPlayer;
+import com.kerry.gogobasketball.data.GamingReferee;
+import com.kerry.gogobasketball.data.GamingRoomInfo;
 import com.kerry.gogobasketball.data.RecordOfPlayer;
 import com.kerry.gogobasketball.data.RecordOfReferee;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
@@ -87,6 +91,39 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         setDrawerLayout();
     }
 
+    public void postCustomObject() {
+
+        GamingRoomInfo gamingRoomInfo = new GamingRoomInfo();
+        gamingRoomInfo.setRoomName("今天不回家");
+        gamingRoomInfo.setPlayer1(new GamingPlayer());
+        gamingRoomInfo.setReferee(new GamingReferee());
+
+        mBtnCreateUser = findViewById(R.id.main_layout_create_user);
+        mBtnCreateUser.setVisibility(View.VISIBLE);
+        mBtnCreateUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirestoreHelper.getFirestore()
+                        .collection(Constants.GAMING_ROOM)
+                        .add(gamingRoomInfo)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Log.d("Kerry", "gaming room id : " + documentReference.getId());
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w("Kerry", "Error adding document", e);
+                            }
+                        });
+            }
+        });
+
+
+    }
+
     public void setUserRecord() {
 
         int number = 500;
@@ -98,8 +135,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         player.setRebound(number);
         player.setFoul(number);
 
-        mBtnCreateUser = findViewById(R.id.main_layout_create_user);
         mBtnCreateUser.setVisibility(View.VISIBLE);
+        mBtnCreateUser = findViewById(R.id.main_layout_create_user);
 
         mBtnCreateUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -501,13 +538,13 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
-    public void openGamePlayingOfRefereeUi() {
-        mMainMvpController.findOrCreateRefereeGoingView();
+    public void openGamePlayingOfRefereeUi(String hostName) {
+        mMainMvpController.findOrCreateRefereeGoingView(hostName);
     }
 
     @Override
-    public void openGamePlayingOfPlayerUi() {
-        mMainMvpController.findOrCreatePlayerGoingView();
+    public void openGamePlayingOfPlayerUi(String hostName) {
+        mMainMvpController.findOrCreatePlayerGoingView(hostName);
     }
 
     @Override

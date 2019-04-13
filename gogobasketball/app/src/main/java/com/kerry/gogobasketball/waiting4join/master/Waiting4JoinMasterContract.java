@@ -2,6 +2,7 @@ package com.kerry.gogobasketball.waiting4join.master;
 
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
+import com.kerry.gogobasketball.data.GamingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 
@@ -21,6 +22,8 @@ public interface Waiting4JoinMasterContract {
 
         void showWaitingSeatsMasterUi(ArrayList<WaitingRoomSeats> newSeatsList);
 
+        void getGamingRoomInfoFromPresenter4GamingFragment(GamingRoomInfo gamingRoomInfo);
+
     }
 
     interface Presenter extends BasePresenter {
@@ -31,9 +34,9 @@ public interface Waiting4JoinMasterContract {
 
         void showToolbarAndBottomNavigation();
 
-        void openGamePlayingOfReferee();
+        void openGamePlayingOfReferee(String hostName);
 
-        void openGamePlayingOfPlayer();
+        void openGamePlayingOfPlayer(String hostName);
 
         void finishWaiting4JoinUi();
 
@@ -47,9 +50,9 @@ public interface Waiting4JoinMasterContract {
 
         void deleteHostInfoWhenLeave();
 
-        void updateRoomStatus2Gaming();
+        void updateRoomStatus2Gaming(GamingRoomInfo gamingRoomInfo);
 
-
+        void initializeGamingRoomInfo();
     }
 
 }

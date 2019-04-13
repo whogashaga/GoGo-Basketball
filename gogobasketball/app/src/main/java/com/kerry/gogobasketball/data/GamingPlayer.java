@@ -1,27 +1,17 @@
 package com.kerry.gogobasketball.data;
 
-public class GamingPlayer {
+public class GamingPlayer extends WaitingRoomSeats {
 
-    private String mId;
     private int mScore;
     private int mFoul;
     private int mRebound;
     private boolean mIsWinning;
 
     public GamingPlayer(){
-        mId = "";
         mScore = 0;
         mRebound = 0;
         mFoul = 0;
         mIsWinning = false;
-    }
-
-    public String getId() {
-        return mId;
-    }
-
-    public void setId(String id) {
-        this.mId = id;
     }
 
     public int getScore() {

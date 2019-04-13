@@ -25,29 +25,19 @@ public interface MainContract {
 
         void openLoginUi(int loginFrom);
 
-//        void openAdd2CartUi(Product product);
-
         void openCheckOutSuccessUi();
-
-//        void openDetailUi(Product product);
 
         void openWait4JoinUi(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId);
 
-        void openGamePlayingOfRefereeUi();
+        void openGamePlayingOfRefereeUi(String hostName);
 
-        void openGamePlayingOfPlayerUi();
+        void openGamePlayingOfPlayerUi(String hostName);
 
         void popBackStackUi();
-
-//        void finishPaymentUi();
 
         Looking4RoomFragment findHomeView();
 
         CourtsMapFragment findMapView();
-
-//        CatalogItemFragment findAccessoriesView();
-
-//        void switchProfileUiInitiative();
 
 //        void showMessageDialogUi(@MessageDialog.MessageType int type);
 

@@ -81,7 +81,7 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
 
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
-                .whereEqualTo("hostName", waitingRoomInfo.getHostName())
+                .whereEqualTo(Constants.HOST_NAME, waitingRoomInfo.getHostName())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

@@ -1,23 +1,35 @@
 package com.kerry.gogobasketball.data;
 
-import java.util.ArrayList;
-
 public class GamingRoomInfo {
 
-    private String mLocation;
+    private String mHostName;
     private String mRoomName;
+    private GamingPlayer mPlayer1;
+    private GamingPlayer mPlayer2;
+    private GamingPlayer mPlayer3;
+    private GamingPlayer mPlayer4;
+    private GamingPlayer mPlayer5;
+    private GamingPlayer mPlayer6;
+    private GamingReferee mReferee;
 
     public GamingRoomInfo() {
-        mLocation = "";
+        mHostName = "";
         mRoomName = "";
+        mPlayer1 = new GamingPlayer();
+        mPlayer2 = new GamingPlayer();
+        mPlayer3 = new GamingPlayer();
+        mPlayer4 = new GamingPlayer();
+        mPlayer5 = new GamingPlayer();
+        mPlayer6 = new GamingPlayer();
+        mReferee = new GamingReferee();
     }
 
-    public String getLocation() {
-        return mLocation;
+    public String getHostName() {
+        return mHostName;
     }
 
-    public void setLocation(String location) {
-        this.mLocation = location;
+    public void setHostName(String hostName) {
+        this.mHostName = hostName;
     }
 
     public String getRoomName() {
@@ -28,4 +40,59 @@ public class GamingRoomInfo {
         this.mRoomName = roomName;
     }
 
+    public GamingPlayer getPlayer1() {
+        return mPlayer1;
+    }
+
+    public void setPlayer1(GamingPlayer player1) {
+        this.mPlayer1 = player1;
+    }
+
+    public GamingPlayer getPlayer2() {
+        return mPlayer2;
+    }
+
+    public void setPlayer2(GamingPlayer mPlayer2) {
+        this.mPlayer2 = mPlayer2;
+    }
+
+    public GamingPlayer getPlayer3() {
+        return mPlayer3;
+    }
+
+    public void setPlayer3(GamingPlayer mPlayer3) {
+        this.mPlayer3 = mPlayer3;
+    }
+
+    public GamingPlayer getPlayer4() {
+        return mPlayer4;
+    }
+
+    public void setPlayer4(GamingPlayer mPlayer4) {
+        this.mPlayer4 = mPlayer4;
+    }
+
+    public GamingPlayer getPlayer5() {
+        return mPlayer5;
+    }
+
+    public void setPlayer5(GamingPlayer mPlayer5) {
+        this.mPlayer5 = mPlayer5;
+    }
+
+    public GamingPlayer getPlayer6() {
+        return mPlayer6;
+    }
+
+    public void setPlayer6(GamingPlayer mPlayer6) {
+        this.mPlayer6 = mPlayer6;
+    }
+
+    public GamingReferee getReferee() {
+        return mReferee;
+    }
+
+    public void setReferee(GamingReferee referee) {
+        this.mReferee = referee;
+    }
 }

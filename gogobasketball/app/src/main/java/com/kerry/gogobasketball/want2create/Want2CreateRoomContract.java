@@ -9,7 +9,7 @@ public interface Want2CreateRoomContract {
 
     interface View extends BaseView<Presenter> {
 
-        void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats, String roomDocId);
+        void getRoomInfoFromPresenter4NextFragment(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats, String roomDocId);
 
         boolean needReferee();
 

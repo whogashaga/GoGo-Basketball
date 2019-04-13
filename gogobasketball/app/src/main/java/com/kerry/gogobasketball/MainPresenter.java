@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.kerry.gogobasketball.data.GamingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.friends.FriendContract;
@@ -175,19 +176,31 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
      */
 
     @Override
-    public void loadPlayersInfoFromFirebase() {
-
-    }
-
-    @Override
     public void loadRefereeInfoFromFirebase() {
 
     }
 
     /**
+     * Open Gaming Referee
+     */
+    @Override
+    public void getHostNameFromWaitingJoin(String hostName) {
+        mRefereeGoingPresenter.getHostNameFromWaitingJoin(hostName);
+    }
+
+    @Override
+    public void getGamingRoomFromFireStore(String hostName) {
+        mRefereeGoingPresenter.getGamingRoomFromFireStore(hostName);
+    }
+
+    @Override
+    public void loadPlayersInfoFromFirebase() {
+        mRefereeGoingPresenter.loadRefereeInfoFromFirebase();
+    }
+
+    /**
      * Open GameResult
      */
-
     @Override
     public void forced2FinishPlayingUi() {
 
@@ -240,13 +253,13 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     /* General in both master & slave */
 
     @Override
-    public void openGamePlayingOfReferee() {
-        mMainView.openGamePlayingOfRefereeUi();
+    public void openGamePlayingOfReferee(String hostName) {
+        mMainView.openGamePlayingOfRefereeUi(hostName);
     }
 
     @Override
-    public void openGamePlayingOfPlayer() {
-        mMainView.openGamePlayingOfPlayerUi();
+    public void openGamePlayingOfPlayer(String hostName) {
+        mMainView.openGamePlayingOfPlayerUi(hostName);
     }
 
     @Override
@@ -306,8 +319,13 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void updateRoomStatus2Gaming() {
-        mWaiting4JoinMasterPresenter.updateRoomStatus2Gaming();
+    public void updateRoomStatus2Gaming(GamingRoomInfo gamingRoomInfo) {
+        mWaiting4JoinMasterPresenter.updateRoomStatus2Gaming(gamingRoomInfo);
+    }
+
+    @Override
+    public void initializeGamingRoomInfo() {
+        mWaiting4JoinMasterPresenter.initializeGamingRoomInfo();
     }
 
     /**

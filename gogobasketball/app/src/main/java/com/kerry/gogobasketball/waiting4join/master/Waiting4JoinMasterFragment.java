@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.SeatAvatarOutlineProvider;
+import com.kerry.gogobasketball.data.GamingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.util.Constants;
@@ -113,6 +114,15 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     public void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo) {
         // for setting host info
         mWaitingRoomInfo = waitingRoomInfo;
+    }
+
+    @Override
+    public void getGamingRoomInfoFromPresenter4GamingFragment(GamingRoomInfo gamingRoomInfo) {
+        if (mNowMasterSort == 7) {
+            mPresenter.openGamePlayingOfReferee(gamingRoomInfo.getHostName());
+        } else {
+            mPresenter.openGamePlayingOfPlayer(gamingRoomInfo.getHostName());
+        }
     }
 
     @Nullable
@@ -224,13 +234,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
                 break;
             case R.id.btn_waiting4join_start:
                 if (mCurrentGamerAmount == 7) {
-                    if (mNowMasterSort == 7) {
-                        mPresenter.openGamePlayingOfReferee();
-                        mPresenter.updateRoomStatus2Gaming();
-                    } else {
-                        mPresenter.openGamePlayingOfPlayer();
-                    }
-
+                    mPresenter.initializeGamingRoomInfo();
                 } else {
                     mPresenter.showErrorToast("人數不足\n無法開始!", true);
                 }

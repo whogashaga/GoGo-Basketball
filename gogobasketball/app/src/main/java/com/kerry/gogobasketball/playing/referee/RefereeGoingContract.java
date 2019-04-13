@@ -2,12 +2,15 @@ package com.kerry.gogobasketball.playing.referee;
 
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
+import com.kerry.gogobasketball.data.GamingRoomInfo;
 
 public interface RefereeGoingContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showPlayingGameUi();
+        void showPlayingGameUi(GamingRoomInfo gamingRoomInfo);
+
+        void getHostNameFromPresenter(String hostName);
 
         boolean isActive();
 
@@ -100,7 +103,9 @@ public interface RefereeGoingContract {
 
         void showToolbarAndBottomNavigation();
 
-        void loadPlayersInfoFromFirebase();
+        void getHostNameFromWaitingJoin(String hostName);
+
+        void getGamingRoomFromFireStore(String hostName);
 
         void loadRefereeInfoFromFirebase();
 

@@ -7,7 +7,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.api.LogDescriptor;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -64,7 +63,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
-                .whereEqualTo("hostName", mWaitingRoomInfo.getHostName())
+                .whereEqualTo(Constants.HOST_NAME, mWaitingRoomInfo.getHostName())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -369,9 +368,9 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                         mWaiting4JoinView.closeSlaveUiBecauseMasterOutFirst();
                     } else if (newRoomInfo.getStatus().equals(Constants.GAMING)) {
                         if (mIntJoinerSort == 7) {
-                            mWaiting4JoinView.openRefereeGamingUi();
+                            mWaiting4JoinView.openRefereeGamingUi(mWaitingRoomInfo.getHostName());
                         } else {
-                            mWaiting4JoinView.openPlayerGamingUi();
+                            mWaiting4JoinView.openPlayerGamingUi(mWaitingRoomInfo.getHostName());
                         }
                     }
 
@@ -533,12 +532,12 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     }
 
     @Override
-    public void openGamePlayingOfReferee() {
+    public void openGamePlayingOfReferee(String hostName) {
 
     }
 
     @Override
-    public void openGamePlayingOfPlayer() {
+    public void openGamePlayingOfPlayer(String hostName) {
 
     }
 

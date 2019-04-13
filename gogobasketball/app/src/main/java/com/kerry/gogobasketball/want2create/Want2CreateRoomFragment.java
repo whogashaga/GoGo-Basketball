@@ -152,7 +152,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     }
 
     @Override
-    public void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats, String roomDocId) {
+    public void getRoomInfoFromPresenter4NextFragment(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats, String roomDocId) {
         mWaitingRoomInfo = waitingRoomInfo;
         mHostSeatInfo = waitingRoomSeats;
         mRoomDocId = roomDocId;

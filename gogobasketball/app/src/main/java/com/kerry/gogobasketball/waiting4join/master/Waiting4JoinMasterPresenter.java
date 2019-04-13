@@ -16,6 +16,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.FirestoreHelper;
+import com.kerry.gogobasketball.data.GamingPlayer;
+import com.kerry.gogobasketball.data.GamingReferee;
+import com.kerry.gogobasketball.data.GamingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.util.Constants;
@@ -85,7 +88,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 // 只有一筆，跑 for 沒關係
-                                queryExistedSort(document.getId(),newSort);
+                                queryExistedSort(document.getId(), newSort);
                             }
                         } else {
                             Log.w("Kerry", "Error getting documents.", task.getException());
@@ -415,7 +418,39 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     /* Start game ! */
 
     @Override
-    public void updateRoomStatus2Gaming() {
+    public void initializeGamingRoomInfo() {
+
+        GamingRoomInfo gamingRoomInfo = new GamingRoomInfo();
+        gamingRoomInfo.setHostName(mWaitingRoomInfo.getHostName());
+        gamingRoomInfo.setRoomName(mWaitingRoomInfo.getRoomName());
+        gamingRoomInfo.setPlayer1(setGamingPlayerInfo(1));
+        gamingRoomInfo.setPlayer2(setGamingPlayerInfo(2));
+        gamingRoomInfo.setPlayer3(setGamingPlayerInfo(3));
+        gamingRoomInfo.setPlayer4(setGamingPlayerInfo(4));
+        gamingRoomInfo.setPlayer5(setGamingPlayerInfo(5));
+        gamingRoomInfo.setPlayer6(setGamingPlayerInfo(6));
+        gamingRoomInfo.setReferee(setGamingRefereeInfo());
+
+        FirestoreHelper.getFirestore()
+                .collection(Constants.GAMING_ROOM)
+                .add(gamingRoomInfo)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d("Kerry", "initializeGamingRoomInfo : " + documentReference.getId());
+                        updateRoomStatus2Gaming(gamingRoomInfo);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Kerry", "Error adding document", e);
+                    }
+                });
+    }
+
+    @Override
+    public void updateRoomStatus2Gaming(GamingRoomInfo gamingRoomInfo) {
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
@@ -424,6 +459,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(Constants.TAG, "Room status 改為 gaming!!");
+                        mWaiting4JoinMasterView.getGamingRoomInfoFromPresenter4GamingFragment(gamingRoomInfo);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -432,6 +468,32 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                         Log.w(Constants.TAG, "Error updating document", e);
                     }
                 });
+    }
+
+    private GamingPlayer setGamingPlayerInfo(int sort) {
+
+        GamingPlayer gamingPlayer = new GamingPlayer();
+        gamingPlayer.setAvatar(mListForChangeSeat.get(sort - 1).getAvatar());
+        gamingPlayer.setId(mListForChangeSeat.get(sort - 1).getId());
+        gamingPlayer.setGender(mListForChangeSeat.get(sort - 1).getGender());
+        gamingPlayer.setPosition(mListForChangeSeat.get(sort - 1).getPosition());
+        gamingPlayer.setSort(sort);
+        gamingPlayer.setSeatAvailable(false);
+
+        return gamingPlayer;
+    }
+
+    private GamingReferee setGamingRefereeInfo() {
+
+        GamingReferee gamingReferee = new GamingReferee();
+        gamingReferee.setAvatar(mListForChangeSeat.get(6).getAvatar());
+        gamingReferee.setId(mListForChangeSeat.get(6).getId());
+        gamingReferee.setGender(mListForChangeSeat.get(6).getGender());
+        gamingReferee.setPosition(mListForChangeSeat.get(6).getPosition());
+        gamingReferee.setSort(7);
+        gamingReferee.setSeatAvailable(false);
+
+        return gamingReferee;
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -457,12 +519,12 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     }
 
     @Override
-    public void openGamePlayingOfReferee() {
+    public void openGamePlayingOfReferee(String hostName) {
 
     }
 
     @Override
-    public void openGamePlayingOfPlayer() {
+    public void openGamePlayingOfPlayer(String hostName) {
 
     }
 

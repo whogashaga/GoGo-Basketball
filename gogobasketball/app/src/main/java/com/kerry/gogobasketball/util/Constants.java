@@ -27,6 +27,10 @@ public class Constants {
 
     public static final String GAMING = "gaming";
 
+    public static final String GAMING_ROOM = "gaming_room";
+
+    public static final String HOST_NAME = "hostName";
+
     public static final String TOTAL_GAMERS_AMOUNT = "totalPlayerAmount";
 
 

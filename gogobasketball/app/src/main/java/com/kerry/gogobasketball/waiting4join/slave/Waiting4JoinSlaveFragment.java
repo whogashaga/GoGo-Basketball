@@ -367,13 +367,13 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     }
 
     @Override
-    public void openPlayerGamingUi() {
-        mPresenter.openGamePlayingOfPlayer();
+    public void openPlayerGamingUi(String hostName) {
+        mPresenter.openGamePlayingOfPlayer(hostName);
     }
 
     @Override
-    public void openRefereeGamingUi() {
-        mPresenter.openGamePlayingOfReferee();
+    public void openRefereeGamingUi(String hostName) {
+        mPresenter.openGamePlayingOfReferee(hostName);
     }
 
 

@@ -19,9 +19,9 @@ public interface Waiting4JoinSlaveContract {
 
         void closeSlaveUiBecauseMasterOutFirst();
 
-        void openPlayerGamingUi();
+        void openPlayerGamingUi(String hostName);
 
-        void openRefereeGamingUi();
+        void openRefereeGamingUi(String hostName);
     }
 
     interface Presenter extends BasePresenter {
@@ -34,9 +34,9 @@ public interface Waiting4JoinSlaveContract {
 
         void showErrorToast(String message, boolean isShort);
 
-        void openGamePlayingOfReferee();
+        void openGamePlayingOfReferee(String hostName);
 
-        void openGamePlayingOfPlayer();
+        void openGamePlayingOfPlayer(String hostName);
 
         void finishWaiting4JoinUi();
 

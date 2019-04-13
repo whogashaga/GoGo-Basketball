@@ -220,11 +220,12 @@ public class MainMvpController {
     /**
      * GamePlayingOfReferee View
      */
-    void findOrCreateRefereeGoingView() {
+    void findOrCreateRefereeGoingView(String hostName) {
 
         RefereeGoingFragment gamePlayingOfRefereeFragment = createRefereeGoingFragment();
 
         mRefereeGoingPresenter = new RefereeGoingPresenter(gamePlayingOfRefereeFragment);
+        mRefereeGoingPresenter.getHostNameFromWaitingJoin(hostName);
 
         mMainPresenter.setRefereeGoingPresenter(mRefereeGoingPresenter);
         gamePlayingOfRefereeFragment.setPresenter(mMainPresenter);
@@ -233,7 +234,7 @@ public class MainMvpController {
     /**
      * GamePlayingOfPlayer View
      */
-    void findOrCreatePlayerGoingView() {
+    void findOrCreatePlayerGoingView(String hostName) {
 
         PlayerGoingFragment playerGoingFragment = createPlayerGoingFragment();
 

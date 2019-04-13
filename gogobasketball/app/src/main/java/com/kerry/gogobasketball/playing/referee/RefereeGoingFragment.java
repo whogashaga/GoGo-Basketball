@@ -13,9 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kerry.gogobasketball.R;
+import com.kerry.gogobasketball.component.SeatAvatarOutlineProvider;
+import com.kerry.gogobasketball.data.GamingPlayer;
+import com.kerry.gogobasketball.data.GamingRoomInfo;
+import com.kerry.gogobasketball.util.ImageManager;
 
 public class RefereeGoingFragment extends Fragment implements RefereeGoingContract.View, View.OnClickListener {
 
@@ -25,42 +30,56 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     private Button mBtnP1ScorePlus, mBtnP1ScoreMinus;
     private Button mBtnP1ReboundPlus, mBtnP1ReboundMinus;
     private Button mBtnP1FoulPlus, mBtnP1FoulMinus;
-    private TextView mTextP1Score, mTextP1Rebound, mTextP1Foul;
     private int mIntScoreP1, mIntReboundP1, mIntFoulP1;
+    private TextView mTextP1Score, mTextP1Rebound, mTextP1Foul;
+    private ImageView mAvatarP1, mGenderP1, mPositionP1;
+    private TextView mTextIdP1;
 
     private Button mBtnP2ScorePlus, mBtnP2ScoreMinus;
     private Button mBtnP2ReboundPlus, mBtnP2ReboundMinus;
     private Button mBtnP2FoulPlus, mBtnP2FoulMinus;
     private TextView mTextP2Score, mTextP2Rebound, mTextP2Foul;
     private int mIntScoreP2, mIntReboundP2, mIntFoulP2;
+    private ImageView mAvatarP2, mGenderP2, mPositionP2;
+    private TextView mTextIdP2;
 
     private Button mBtnP3ScorePlus, mBtnP3ScoreMinus;
     private Button mBtnP3ReboundPlus, mBtnP3ReboundMinus;
     private Button mBtnP3FoulPlus, mBtnP3FoulMinus;
     private TextView mTextP3Score, mTextP3Rebound, mTextP3Foul;
     private int mIntScoreP3, mIntReboundP3, mIntFoulP3;
+    private ImageView mAvatarP3, mGenderP3, mPositionP3;
+    private TextView mTextIdP3;
 
     private Button mBtnP4ScorePlus, mBtnP4ScoreMinus;
     private Button mBtnP4ReboundPlus, mBtnP4ReboundMinus;
     private Button mBtnP4FoulPlus, mBtnP4FoulMinus;
     private TextView mTextP4Score, mTextP4Rebound, mTextP4Foul;
     private int mIntScoreP4, mIntReboundP4, mIntFoulP4;
+    private ImageView mAvatarP4, mGenderP4, mPositionP4;
+    private TextView mTextIdP4;
 
     private Button mBtnP5ScorePlus, mBtnP5ScoreMinus;
     private Button mBtnP5ReboundPlus, mBtnP5ReboundMinus;
     private Button mBtnP5FoulPlus, mBtnP5FoulMinus;
     private TextView mTextP5Score, mTextP5Rebound, mTextP5Foul;
     private int mIntScoreP5, mIntReboundP5, mIntFoulP5;
+    private ImageView mAvatarP5, mGenderP5, mPositionP5;
+    private TextView mTextIdP5;
 
     private Button mBtnP6ScorePlus, mBtnP6ScoreMinus;
     private Button mBtnP6ReboundPlus, mBtnP6ReboundMinus;
     private Button mBtnP6FoulPlus, mBtnP6FoulMinus;
     private TextView mTextP6Score, mTextP6Rebound, mTextP6Foul;
     private int mIntScoreP6, mIntReboundP6, mIntFoulP6;
+    private ImageView mAvatarP6, mGenderP6, mPositionP6;
+    private TextView mTextIdP6;
 
     private TextView mTeamScoreA, mTeamScoreB;
     private int mIntScoreA;
     private int mIntScoreB;
+
+    private GamingRoomInfo mGamingRoomInfo;
 
     public RefereeGoingFragment() {
         mIntScoreP1 = 0;
@@ -81,6 +100,7 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
         mIntFoulP4 = 0;
         mIntFoulP5 = 0;
         mIntFoulP6 = 0;
+        mGamingRoomInfo = new GamingRoomInfo();
     }
 
     public static RefereeGoingFragment newInstance() {
@@ -95,7 +115,6 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -120,6 +139,12 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
         mTextP1Score = mRoot.findViewById(R.id.text_playing_team_a_player1_point);
         mTextP1Rebound = mRoot.findViewById(R.id.text_playing_team_a_player1_rebound);
         mTextP1Foul = mRoot.findViewById(R.id.text_playing_team_a_player1_foul);
+        mAvatarP1 = mRoot.findViewById(R.id.playing_team_a_player1_avatar);
+        mAvatarP1.setOutlineProvider(new SeatAvatarOutlineProvider());
+        mGenderP1 = mRoot.findViewById(R.id.playing_team_a_player1_gender);
+        mPositionP1 = mRoot.findViewById(R.id.playing_team_a_player1_position);
+        mTextIdP1 = mRoot.findViewById(R.id.playing_team_a_player1_id);
+
 
         mBtnP2ScorePlus = mRoot.findViewById(R.id.btn_playing_team_a_player2_point_plus);
         mBtnP2ScoreMinus = mRoot.findViewById(R.id.btn_playing_team_a_player2_point_minus);
@@ -130,6 +155,11 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
         mTextP2Score = mRoot.findViewById(R.id.text_playing_team_a_player2_point);
         mTextP2Rebound = mRoot.findViewById(R.id.text_playing_team_a_player2_rebound);
         mTextP2Foul = mRoot.findViewById(R.id.text_playing_team_a_player2_foul);
+        mAvatarP2 = mRoot.findViewById(R.id.playing_team_a_player2_avatar);
+        mAvatarP2.setOutlineProvider(new SeatAvatarOutlineProvider());
+        mGenderP2 = mRoot.findViewById(R.id.playing_team_a_player2_gender);
+        mPositionP2 = mRoot.findViewById(R.id.playing_team_a_player2_position);
+        mTextIdP2 = mRoot.findViewById(R.id.playing_team_a_player2_id);
 
         mBtnP3ScorePlus = mRoot.findViewById(R.id.btn_playing_team_a_player3_point_plus);
         mBtnP3ScoreMinus = mRoot.findViewById(R.id.btn_playing_team_a_player3_point_minus);
@@ -140,6 +170,11 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
         mTextP3Score = mRoot.findViewById(R.id.text_playing_team_a_player3_point);
         mTextP3Rebound = mRoot.findViewById(R.id.text_playing_team_a_player3_rebound);
         mTextP3Foul = mRoot.findViewById(R.id.text_playing_team_a_player3_foul);
+        mAvatarP3 = mRoot.findViewById(R.id.playing_team_a_player3_avatar);
+        mAvatarP3.setOutlineProvider(new SeatAvatarOutlineProvider());
+        mGenderP3 = mRoot.findViewById(R.id.playing_team_a_player3_gender);
+        mPositionP3 = mRoot.findViewById(R.id.playing_team_a_player3_position);
+        mTextIdP3 = mRoot.findViewById(R.id.playing_team_a_player3_id);
 
         mBtnP4ScorePlus = mRoot.findViewById(R.id.btn_playing_team_b_player1_point_plus);
         mBtnP4ScoreMinus = mRoot.findViewById(R.id.btn_playing_team_b_player1_point_minus);
@@ -150,6 +185,11 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
         mTextP4Score = mRoot.findViewById(R.id.text_playing_team_b_player1_point);
         mTextP4Rebound = mRoot.findViewById(R.id.text_playing_team_b_player1_rebound);
         mTextP4Foul = mRoot.findViewById(R.id.text_playing_team_b_player1_foul);
+        mAvatarP4 = mRoot.findViewById(R.id.playing_team_b_player1_avatar);
+        mAvatarP4.setOutlineProvider(new SeatAvatarOutlineProvider());
+        mGenderP4 = mRoot.findViewById(R.id.playing_team_b_player1_gender);
+        mPositionP4 = mRoot.findViewById(R.id.playing_team_b_player1_position);
+        mTextIdP4 = mRoot.findViewById(R.id.playing_team_b_player1_id);
 
         mBtnP5ScorePlus = mRoot.findViewById(R.id.btn_playing_team_b_player2_point_plus);
         mBtnP5ScoreMinus = mRoot.findViewById(R.id.btn_playing_team_b_player2_point_minus);
@@ -160,6 +200,11 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
         mTextP5Score = mRoot.findViewById(R.id.text_playing_team_b_player2_point);
         mTextP5Rebound = mRoot.findViewById(R.id.text_playing_team_b_player2_rebound);
         mTextP5Foul = mRoot.findViewById(R.id.text_playing_team_b_player2_foul);
+        mAvatarP5 = mRoot.findViewById(R.id.playing_team_b_player2_avatar);
+        mAvatarP5.setOutlineProvider(new SeatAvatarOutlineProvider());
+        mGenderP5 = mRoot.findViewById(R.id.playing_team_b_player2_gender);
+        mPositionP5 = mRoot.findViewById(R.id.playing_team_b_player2_position);
+        mTextIdP5 = mRoot.findViewById(R.id.playing_team_b_player2_id);
 
         mBtnP6ScorePlus = mRoot.findViewById(R.id.btn_playing_team_b_player3_point_plus);
         mBtnP6ScoreMinus = mRoot.findViewById(R.id.btn_playing_team_b_player3_point_minus);
@@ -170,6 +215,11 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
         mTextP6Score = mRoot.findViewById(R.id.text_playing_team_b_player3_point);
         mTextP6Rebound = mRoot.findViewById(R.id.text_playing_team_b_player3_rebound);
         mTextP6Foul = mRoot.findViewById(R.id.text_playing_team_b_player3_foul);
+        mAvatarP6 = mRoot.findViewById(R.id.playing_team_b_player3_avatar);
+        mAvatarP6.setOutlineProvider(new SeatAvatarOutlineProvider());
+        mGenderP6 = mRoot.findViewById(R.id.playing_team_b_player3_gender);
+        mPositionP6 = mRoot.findViewById(R.id.playing_team_b_player3_position);
+        mTextIdP6 = mRoot.findViewById(R.id.playing_team_b_player3_id);
 
         mTeamScoreA = mRoot.findViewById(R.id.text_gaming_current_score_team_a);
         mTeamScoreB = mRoot.findViewById(R.id.text_gaming_current_score_team_b);
@@ -343,6 +393,11 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     }
 
     @Override
+    public void getHostNameFromPresenter(String hostName) {
+        mPresenter.getGamingRoomFromFireStore(hostName);
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
     }
@@ -353,8 +408,49 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     }
 
     @Override
-    public void showPlayingGameUi() {
+    public void showPlayingGameUi(GamingRoomInfo gamingRoomInfo) {
+        mGamingRoomInfo = gamingRoomInfo;
+        setPlayerInfo(gamingRoomInfo.getPlayer1(),mAvatarP1,mGenderP1,mPositionP1,mTextIdP1);
+        setPlayerInfo(gamingRoomInfo.getPlayer2(),mAvatarP2,mGenderP2,mPositionP2,mTextIdP2);
+        setPlayerInfo(gamingRoomInfo.getPlayer3(),mAvatarP3,mGenderP3,mPositionP3,mTextIdP3);
+        setPlayerInfo(gamingRoomInfo.getPlayer4(),mAvatarP4,mGenderP4,mPositionP4,mTextIdP4);
+        setPlayerInfo(gamingRoomInfo.getPlayer5(),mAvatarP5,mGenderP5,mPositionP5,mTextIdP5);
+        setPlayerInfo(gamingRoomInfo.getPlayer6(),mAvatarP6,mGenderP6,mPositionP6,mTextIdP6);
+    }
 
+    private void setPlayerInfo(GamingPlayer gamingPlayer, ImageView avatar,
+                               ImageView gender, ImageView position, TextView textId) {
+        ImageManager.getInstance().setImageByUrl(avatar, gamingPlayer.getAvatar());
+        setGenderImage(gender, gamingPlayer.getGender());
+        setPositionImage(position, gamingPlayer.getPosition());
+        textId.setText(gamingPlayer.getId());
+    }
+
+    private void setGenderImage(ImageView genderImage, String genderStr) {
+
+        if (genderStr.equals("male")) {
+            genderImage.setImageResource(R.drawable.ic_male);
+        } else {
+            genderImage.setImageResource(R.drawable.ic_female);
+        }
+    }
+
+    private void setPositionImage(ImageView imageView, String positionStr) {
+        if (positionStr.equals("pg")) {
+            imageView.setImageResource(R.drawable.ic_position_pg);
+        } else if (positionStr.equals("sg")) {
+            imageView.setImageResource(R.drawable.ic_position_sg);
+        } else if (positionStr.equals("sf")) {
+            imageView.setImageResource(R.drawable.ic_position_sf);
+        } else if (positionStr.equals("pf")) {
+            imageView.setImageResource(R.drawable.ic_position_pf);
+        } else if (positionStr.equals("c")) {
+            imageView.setImageResource(R.drawable.ic_position_center);
+        } else if (positionStr.equals("r")) {
+            imageView.setImageResource(R.drawable.ic_position_referee);
+        } else {
+            Log.e("Kerry", "Set Position Error!!");
+        }
     }
 
     @Override

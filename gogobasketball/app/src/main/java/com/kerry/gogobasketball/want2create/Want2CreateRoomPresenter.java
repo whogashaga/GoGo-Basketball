@@ -14,8 +14,6 @@ import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.util.Constants;
 
-import java.security.SecureRandom;
-
 public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Presenter {
 
     private final Want2CreateRoomContract.View mWant2CreateRoomView;
@@ -76,7 +74,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
                     public void onSuccess(DocumentReference documentReference) {
                         mRoomDocId = documentReference.getId();
                         // for open waiting4join bind view
-                        mWant2CreateRoomView.getRoomInfoFromPresenter(waitingRoomInfo, hostSeatInfo, documentReference.getId());
+                        mWant2CreateRoomView.getRoomInfoFromPresenter4NextFragment(waitingRoomInfo, hostSeatInfo, documentReference.getId());
 
                         Log.d("Kerry", "Master創建房間 ！!");
                     }
