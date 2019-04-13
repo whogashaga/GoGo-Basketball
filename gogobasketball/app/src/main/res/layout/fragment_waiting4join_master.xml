@@ -27,8 +27,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_a_player1_avatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-condensed-medium"
             android:gravity="left"
             android:text="Player1"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player1_avatar"
@@ -129,8 +130,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_a_player2_avatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -144,6 +145,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-condensed-medium"
             android:gravity="left"
             android:text="Player2"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player2_avatar"
@@ -229,8 +231,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_a_player3_avatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -244,6 +246,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-condensed-medium"
             android:gravity="left"
             android:text="Player3"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player3_avatar"
@@ -334,8 +337,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_b_player1_avatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -349,6 +352,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-condensed-medium"
             android:gravity="left"
             android:text="Player4"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player1_avatar"
@@ -432,8 +436,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_b_player2_avatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -447,6 +451,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-condensed-medium"
             android:gravity="left"
             android:text="Player5"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player2_avatar"
@@ -532,8 +537,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_b_player3_avatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -547,6 +552,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-condensed-medium"
             android:gravity="left"
             android:text="Player6"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player3_avatar"
@@ -636,8 +642,8 @@
 
         <ImageView
             android:id="@+id/waiting_referee_avatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -651,6 +657,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-condensed-medium"
             android:gravity="left"
             android:text="Referee"
             app:layout_constraintStart_toEndOf="@+id/waiting_referee_avatar"
@@ -727,7 +734,7 @@
 
     <ImageButton
         android:id="@+id/btn_waiting4join_back_arrow"
-        android:layout_width="60dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
@@ -741,7 +748,6 @@
         android:id="@+id/btn_waiting4join_message"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:background="@null"
         android:src="@drawable/button_effect_chat"
@@ -868,11 +874,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:fontFamily="@font/piedra"
+        android:gravity="center"
         android:text="Room Name"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_waiting4join_message"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/waiting_team_a_player2_seat"
         app:layout_constraintEnd_toStartOf="@+id/btn_waiting4join_message"
         app:layout_constraintStart_toEndOf="@+id/btn_waiting4join_back_arrow"
-        app:layout_constraintTop_toTopOf="@+id/btn_waiting4join_message" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

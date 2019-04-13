@@ -5,7 +5,7 @@
     android:id="@+id/layout_playing_referee"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black_3f3a3a"
+    android:background="@color/black_4B4545"
     android:orientation="horizontal">
 
 
@@ -113,10 +113,10 @@
 
         <ImageView
             android:id="@+id/playing_team_a_player1_avatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user_avatar" />
@@ -126,19 +126,19 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
             android:gravity="left"
             android:text="Player1"
             android:textColor="@color/white"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_avatar"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_avatar" />
 
         <ImageView
             android:id="@+id/playing_team_a_player1_gender"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_avatar"
             app:layout_constraintStart_toStartOf="@+id/playing_team_a_player1_id"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player1_id"
             app:srcCompat="@drawable/ic_female" />
@@ -159,7 +159,7 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="得分"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player1_rebound_title"
@@ -171,11 +171,10 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="籃板"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player1_foul_title"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/playing_team_a_player1_point_title"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player1_point_title" />
 
         <TextView
@@ -183,19 +182,18 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="犯規"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/playing_team_a_player1_rebound_title"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player1_rebound_title" />
 
         <Button
             android:id="@+id/btn_playing_team_a_player1_point_minus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_point_title"
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player1_point"
@@ -205,9 +203,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_a_player1_point_plus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_effect_plus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_point_title"
@@ -232,9 +230,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_a_player1_rebound_minus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_rebound_title"
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player1_rebound"
@@ -244,9 +242,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_a_player1_rebound_plus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_effect_plus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_rebound_title"
@@ -271,9 +269,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_a_player1_foul_minus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_foul_title"
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player1_foul"
@@ -283,9 +281,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_a_player1_foul_plus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_effect_plus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player1_foul_title"
@@ -324,10 +322,10 @@
 
         <ImageView
             android:id="@+id/playing_team_a_player2_avatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user_avatar" />
@@ -337,22 +335,22 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
             android:gravity="left"
             android:text="Player2"
             android:textColor="@color/white"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_avatar"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_avatar" />
 
         <ImageView
             android:id="@+id/playing_team_a_player2_gender"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_avatar"
             app:layout_constraintStart_toStartOf="@+id/playing_team_a_player2_id"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player2_id"
-            app:srcCompat="@drawable/ic_male" />
+            app:srcCompat="@drawable/ic_female" />
 
         <ImageView
             android:id="@+id/playing_team_a_player2_position"
@@ -363,14 +361,14 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_gender"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_gender"
             app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_gender"
-            app:srcCompat="@drawable/ic_position_pf" />
+            app:srcCompat="@drawable/ic_position_sf" />
 
         <TextView
             android:id="@+id/playing_team_a_player2_point_title"
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="得分"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player2_rebound_title"
@@ -382,11 +380,10 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="籃板"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player2_foul_title"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/playing_team_a_player2_point_title"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player2_point_title" />
 
         <TextView
@@ -394,19 +391,18 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="犯規"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/playing_team_a_player2_rebound_title"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player2_rebound_title" />
 
         <Button
             android:id="@+id/btn_playing_team_a_player2_point_minus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_point_title"
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player2_point"
@@ -416,9 +412,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_a_player2_point_plus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_effect_plus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_point_title"
@@ -443,9 +439,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_a_player2_rebound_minus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_rebound_title"
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player2_rebound"
@@ -455,9 +451,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_a_player2_rebound_plus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_effect_plus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_rebound_title"
@@ -482,9 +478,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_a_player2_foul_minus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_foul_title"
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player2_foul"
@@ -494,9 +490,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_a_player2_foul_plus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_effect_plus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player2_foul_title"
@@ -535,10 +531,10 @@
 
         <ImageView
             android:id="@+id/playing_team_a_player3_avatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user_avatar" />
@@ -548,22 +544,22 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
             android:gravity="left"
             android:text="Player3"
             android:textColor="@color/white"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player3_avatar"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player3_avatar" />
 
         <ImageView
             android:id="@+id/playing_team_a_player3_gender"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player3_avatar"
             app:layout_constraintStart_toStartOf="@+id/playing_team_a_player3_id"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player3_id"
-            app:srcCompat="@drawable/ic_male" />
+            app:srcCompat="@drawable/ic_female" />
 
         <ImageView
             android:id="@+id/playing_team_a_player3_position"
@@ -574,14 +570,14 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player3_gender"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player3_gender"
             app:layout_constraintTop_toTopOf="@+id/playing_team_a_player3_gender"
-            app:srcCompat="@drawable/ic_position_sg" />
+            app:srcCompat="@drawable/ic_position_sf" />
 
         <TextView
             android:id="@+id/playing_team_a_player3_point_title"
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="得分"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player3_rebound_title"
@@ -593,11 +589,10 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="籃板"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player3_foul_title"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/playing_team_a_player3_point_title"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player3_point_title" />
 
         <TextView
@@ -605,19 +600,18 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="犯規"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/playing_team_a_player3_rebound_title"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player3_rebound_title" />
 
         <Button
             android:id="@+id/btn_playing_team_a_player3_point_minus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player3_point_title"
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player3_point"
@@ -627,9 +621,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_a_player3_point_plus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_effect_plus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player3_point_title"
@@ -654,9 +648,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_a_player3_rebound_minus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player3_rebound_title"
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player3_rebound"
@@ -666,9 +660,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_a_player3_rebound_plus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_effect_plus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player3_rebound_title"
@@ -693,9 +687,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_a_player3_foul_minus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player3_foul_title"
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player3_foul"
@@ -705,9 +699,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_a_player3_foul_plus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_effect_plus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_a_player3_foul_title"
@@ -747,10 +741,10 @@
 
         <ImageView
             android:id="@+id/playing_team_b_player1_avatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user_avatar" />
@@ -760,22 +754,22 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
             android:gravity="left"
             android:text="Player4"
             android:textColor="@color/white"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player1_avatar"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/playing_team_b_player1_avatar" />
 
         <ImageView
             android:id="@+id/playing_team_b_player1_gender"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player1_avatar"
             app:layout_constraintStart_toStartOf="@+id/playing_team_b_player1_id"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_b_player1_id"
-            app:srcCompat="@drawable/ic_male" />
+            app:srcCompat="@drawable/ic_female" />
 
         <ImageView
             android:id="@+id/playing_team_b_player1_position"
@@ -786,14 +780,14 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player1_gender"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player1_gender"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player1_gender"
-            app:srcCompat="@drawable/ic_position_pf" />
+            app:srcCompat="@drawable/ic_position_sf" />
 
         <TextView
             android:id="@+id/playing_team_b_player1_point_title"
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="得分"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_b_player1_rebound_title"
@@ -805,11 +799,10 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="籃板"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_b_player1_foul_title"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/playing_team_b_player1_point_title"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_b_player1_point_title" />
 
         <TextView
@@ -817,19 +810,18 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="犯規"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/playing_team_b_player1_rebound_title"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_b_player1_rebound_title" />
 
         <Button
             android:id="@+id/btn_playing_team_b_player1_point_minus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player1_point_title"
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player1_point"
@@ -839,9 +831,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_b_player1_point_plus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_effect_plus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player1_point_title"
@@ -866,9 +858,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_b_player1_rebound_minus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player1_rebound_title"
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player1_rebound"
@@ -878,9 +870,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_b_player1_rebound_plus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_effect_plus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player1_rebound_title"
@@ -905,9 +897,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_b_player1_foul_minus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player1_foul_title"
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player1_foul"
@@ -917,9 +909,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_b_player1_foul_plus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_effect_plus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player1_foul_title"
@@ -956,10 +948,10 @@
 
         <ImageView
             android:id="@+id/playing_team_b_player2_avatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user_avatar" />
@@ -969,22 +961,22 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
             android:gravity="left"
-            android:text="Player5"
+            android:text="Player3"
             android:textColor="@color/white"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player2_avatar"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/playing_team_b_player2_avatar" />
 
         <ImageView
             android:id="@+id/playing_team_b_player2_gender"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player2_avatar"
             app:layout_constraintStart_toStartOf="@+id/playing_team_b_player2_id"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_b_player2_id"
-            app:srcCompat="@drawable/ic_male" />
+            app:srcCompat="@drawable/ic_female" />
 
         <ImageView
             android:id="@+id/playing_team_b_player2_position"
@@ -995,14 +987,14 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player2_gender"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player2_gender"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player2_gender"
-            app:srcCompat="@drawable/ic_position_pf" />
+            app:srcCompat="@drawable/ic_position_sf" />
 
         <TextView
             android:id="@+id/playing_team_b_player2_point_title"
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="得分"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_b_player2_rebound_title"
@@ -1014,11 +1006,10 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="籃板"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_b_player2_foul_title"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/playing_team_b_player2_point_title"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_b_player2_point_title" />
 
         <TextView
@@ -1026,19 +1017,18 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="犯規"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/playing_team_b_player2_rebound_title"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_b_player2_rebound_title" />
 
         <Button
             android:id="@+id/btn_playing_team_b_player2_point_minus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player2_point_title"
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player2_point"
@@ -1048,9 +1038,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_b_player2_point_plus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_effect_plus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player2_point_title"
@@ -1075,9 +1065,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_b_player2_rebound_minus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player2_rebound_title"
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player2_rebound"
@@ -1087,9 +1077,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_b_player2_rebound_plus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_effect_plus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player2_rebound_title"
@@ -1114,9 +1104,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_b_player2_foul_minus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player2_foul_title"
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player2_foul"
@@ -1126,9 +1116,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_b_player2_foul_plus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_effect_plus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player2_foul_title"
@@ -1165,10 +1155,10 @@
 
         <ImageView
             android:id="@+id/playing_team_b_player3_avatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user_avatar" />
@@ -1178,22 +1168,22 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
             android:gravity="left"
-            android:text="Player6"
+            android:text="Player3"
             android:textColor="@color/white"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player3_avatar"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/playing_team_b_player3_avatar" />
 
         <ImageView
             android:id="@+id/playing_team_b_player3_gender"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player3_avatar"
             app:layout_constraintStart_toStartOf="@+id/playing_team_b_player3_id"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_b_player3_id"
-            app:srcCompat="@drawable/ic_male" />
+            app:srcCompat="@drawable/ic_female" />
 
         <ImageView
             android:id="@+id/playing_team_b_player3_position"
@@ -1204,14 +1194,14 @@
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player3_gender"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player3_gender"
             app:layout_constraintTop_toTopOf="@+id/playing_team_b_player3_gender"
-            app:srcCompat="@drawable/ic_position_pf" />
+            app:srcCompat="@drawable/ic_position_sf" />
 
         <TextView
             android:id="@+id/playing_team_b_player3_point_title"
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="得分"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_b_player3_rebound_title"
@@ -1223,11 +1213,10 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="籃板"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_b_player3_foul_title"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/playing_team_b_player3_point_title"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_b_player3_point_title" />
 
         <TextView
@@ -1235,19 +1224,18 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="犯規"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/playing_team_b_player3_rebound_title"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_b_player3_rebound_title" />
 
         <Button
             android:id="@+id/btn_playing_team_b_player3_point_minus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player3_point_title"
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player3_point"
@@ -1257,9 +1245,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_b_player3_point_plus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_effect_plus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player3_point_title"
@@ -1284,9 +1272,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_b_player3_rebound_minus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player3_rebound_title"
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player3_rebound"
@@ -1296,9 +1284,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_b_player3_rebound_plus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_effect_plus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player3_rebound_title"
@@ -1323,9 +1311,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_b_player3_foul_minus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/button_effect_minus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player3_foul_title"
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player3_foul"
@@ -1335,9 +1323,9 @@
 
         <Button
             android:id="@+id/btn_playing_team_b_player3_foul_plus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_effect_plus"
             app:layout_constraintBottom_toBottomOf="@+id/playing_team_b_player3_foul_title"
@@ -1367,7 +1355,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="強制結束"
+        android:background="@drawable/button_effect_stop"
+        android:text=""
         app:layout_constraintBottom_toTopOf="@+id/btn_gaming_game_over"
         app:layout_constraintEnd_toEndOf="@+id/btn_gaming_game_over"
         app:layout_constraintStart_toStartOf="@+id/btn_gaming_game_over" />
@@ -1378,8 +1367,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="24dp"
-        android:text="比賽結束"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button_effect_game_over"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/team_b_player3_seat" />

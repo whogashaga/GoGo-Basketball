@@ -18,9 +18,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.kerry.gogobasketball.R;
-import com.kerry.gogobasketball.component.ProfileAvatarOutlineProvider;
+import com.kerry.gogobasketball.component.SeatAvatarOutlineProvider;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
+import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.ImageManager;
 
 import java.util.ArrayList;
@@ -116,7 +117,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
 //        mRadioGroupTimer.setOnCheckedChangeListener(this);
 
         mAvatarP1 = mRoot.findViewById(R.id.slave_waiting_team_a_player1_avatar);
-        mAvatarP1.setOutlineProvider(new ProfileAvatarOutlineProvider());
+        mAvatarP1.setOutlineProvider(new SeatAvatarOutlineProvider());
         mGenderP1 = mRoot.findViewById(R.id.slave_waiting_team_a_player1_gender);
         mPositionP1 = mRoot.findViewById(R.id.slave_waiting_team_a_player1_position);
         mTextIdP1 = mRoot.findViewById(R.id.slave_waiting_team_a_player1_id);
@@ -126,7 +127,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mBtnAddFriendP1 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player1_add);
 
         mAvatarP2 = mRoot.findViewById(R.id.slave_waiting_team_a_player2_avatar);
-        mAvatarP2.setOutlineProvider(new ProfileAvatarOutlineProvider());
+        mAvatarP2.setOutlineProvider(new SeatAvatarOutlineProvider());
         mGenderP2 = mRoot.findViewById(R.id.slave_waiting_team_a_player2_gender);
         mPositionP2 = mRoot.findViewById(R.id.slave_waiting_team_a_player2_position);
         mTextIdP2 = mRoot.findViewById(R.id.slave_waiting_team_a_player2_id);
@@ -136,7 +137,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mBtnAddFriendP2 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player2_add);
 
         mAvatarP3 = mRoot.findViewById(R.id.slave_waiting_team_a_player3_avatar);
-        mAvatarP3.setOutlineProvider(new ProfileAvatarOutlineProvider());
+        mAvatarP3.setOutlineProvider(new SeatAvatarOutlineProvider());
         mGenderP3 = mRoot.findViewById(R.id.slave_waiting_team_a_player3_gender);
         mPositionP3 = mRoot.findViewById(R.id.slave_waiting_team_a_player3_position);
         mTextIdP3 = mRoot.findViewById(R.id.slave_waiting_team_a_player3_id);
@@ -146,7 +147,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mBtnAddFriendP3 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player3_add);
 
         mAvatarP4 = mRoot.findViewById(R.id.slave_waiting_team_b_player1_avatar);
-        mAvatarP4.setOutlineProvider(new ProfileAvatarOutlineProvider());
+        mAvatarP4.setOutlineProvider(new SeatAvatarOutlineProvider());
         mGenderP4 = mRoot.findViewById(R.id.slave_waiting_team_b_player1_gender);
         mPositionP4 = mRoot.findViewById(R.id.slave_waiting_team_b_player1_position);
         mTextIdP4 = mRoot.findViewById(R.id.slave_waiting_team_b_player1_id);
@@ -156,7 +157,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mBtnAddFriendP4 = mRoot.findViewById(R.id.btn_slave_waiting_team_b_player1_add);
 
         mAvatarP5 = mRoot.findViewById(R.id.slave_waiting_team_b_player2_avatar);
-        mAvatarP5.setOutlineProvider(new ProfileAvatarOutlineProvider());
+        mAvatarP5.setOutlineProvider(new SeatAvatarOutlineProvider());
         mGenderP5 = mRoot.findViewById(R.id.slave_waiting_team_b_player2_gender);
         mPositionP5 = mRoot.findViewById(R.id.slave_waiting_team_b_player2_position);
         mTextIdP5 = mRoot.findViewById(R.id.slave_waiting_team_b_player2_id);
@@ -166,7 +167,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mBtnAddFriendP5 = mRoot.findViewById(R.id.btn_slave_waiting_team_b_player2_add);
 
         mAvatarP6 = mRoot.findViewById(R.id.slave_waiting_team_b_player3_avatar);
-        mAvatarP6.setOutlineProvider(new ProfileAvatarOutlineProvider());
+        mAvatarP6.setOutlineProvider(new SeatAvatarOutlineProvider());
         mGenderP6 = mRoot.findViewById(R.id.slave_waiting_team_b_player3_gender);
         mPositionP6 = mRoot.findViewById(R.id.slave_waiting_team_b_player3_position);
         mTextIdP6 = mRoot.findViewById(R.id.slave_waiting_team_b_player3_id);
@@ -176,7 +177,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mBtnAddFriendP6 = mRoot.findViewById(R.id.btn_slave_waiting_team_b_player3_add);
 
         mAvatarP7 = mRoot.findViewById(R.id.slave_waiting_referee_avatar);
-        mAvatarP7.setOutlineProvider(new ProfileAvatarOutlineProvider());
+        mAvatarP7.setOutlineProvider(new SeatAvatarOutlineProvider());
         mGenderP7 = mRoot.findViewById(R.id.slave_waiting_referee_gender);
         mPositionP7 = mRoot.findViewById(R.id.slave_waiting_referee_position);
         mTextIdP7 = mRoot.findViewById(R.id.slave_waiting_referee_id);
@@ -292,31 +293,31 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
                 mPresenter.finishWaiting4JoinUi();
                 break;
             case R.id.btn_slave_waiting_team_a_player1_change_seat:
-                Log.d("Kerry", "Joiner onClick seat1");
+                Log.d(Constants.TAG, "Joiner onClick seat1");
                 mPresenter.changeSlave2NewSeat(1);
                 break;
             case R.id.btn_slave_waiting_team_a_player2_change_seat:
-                Log.d("Kerry", "Joiner onClick seat2");
+                Log.d(Constants.TAG, "Joiner onClick seat2");
                 mPresenter.changeSlave2NewSeat(2);
                 break;
             case R.id.btn_slave_waiting_team_a_player3_change_seat:
-                Log.d("Kerry", "Joiner onClick seat3");
+                Log.d(Constants.TAG, "Joiner onClick seat3");
                 mPresenter.changeSlave2NewSeat(3);
                 break;
             case R.id.btn_slave_waiting_team_b_player1_change_seat:
-                Log.d("Kerry", "Joiner onClick seat4");
+                Log.d(Constants.TAG, "Joiner onClick seat4");
                 mPresenter.changeSlave2NewSeat(4);
                 break;
             case R.id.btn_slave_waiting_team_b_player2_change_seat:
-                Log.d("Kerry", "Joiner onClick seat5");
+                Log.d(Constants.TAG, "Joiner onClick seat5");
                 mPresenter.changeSlave2NewSeat(5);
                 break;
             case R.id.btn_slave_waiting_team_b_player3_change_seat:
-                Log.d("Kerry", "Joiner onClick seat6");
+                Log.d(Constants.TAG, "Joiner onClick seat6");
                 mPresenter.changeSlave2NewSeat(6);
                 break;
             case R.id.btn_slave_waiting_referee_change_seat:
-                Log.d("Kerry", "Joiner onClick seat7");
+                Log.d(Constants.TAG, "Joiner onClick seat7");
                 mPresenter.changeSlave2NewSeat(7);
                 break;
             default:

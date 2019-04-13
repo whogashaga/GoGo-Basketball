@@ -21,6 +21,8 @@ public class Constants {
 
     public static final String SORT = "sort";
 
+    public static final String WAITING = "waiting";
+
     public static final String CLOSED = "closed";
 
     public static final String GAMING = "gaming";

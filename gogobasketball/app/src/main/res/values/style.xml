@@ -54,7 +54,7 @@
     </style>
 
     <style name="ProfileTitle">
-        <item name="android:fontFamily">@font/noto_sans</item>
+        <item name="android:fontFamily">@font/architects_daughter</item>
         <item name="android:maxLines">1</item>
         <item name="android:textColor">@color/gray_646464</item>
         <item name="android:textSize">16sp</item>
@@ -63,7 +63,7 @@
     </style>
 
     <style name="Waiting4JoinUserId">
-        <item name="android:fontFamily">@font/noto_sans</item>
+        <item name="android:fontFamily">@font/architects_daughter</item>
         <item name="android:maxLines">1</item>
         <item name="android:textColor">@color/gray_646464</item>
         <item name="android:textSize">16sp</item>
@@ -95,7 +95,7 @@
     <style name="PlayingRecordContent">
         <item name="android:fontFamily">@font/audiowide</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:letterSpacing">0.1</item>
     </style>
 
@@ -114,7 +114,7 @@
     </style>
 
     <style name="Waiting4JoinRoomName">
-        <item name="android:fontFamily">@font/noto_sans</item>
+        <item name="android:fontFamily">@font/architects_daughter</item>
         <item name="android:letterSpacing">0.1</item>
         <item name="android:textColor">@color/black_3f3a3a</item>
         <item name="android:textSize">20sp</item>

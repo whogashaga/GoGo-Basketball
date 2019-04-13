@@ -423,7 +423,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(Constants.TAG, "Room status 改為 gaming");
+                        Log.d(Constants.TAG, "Room status 改為 gaming!!");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

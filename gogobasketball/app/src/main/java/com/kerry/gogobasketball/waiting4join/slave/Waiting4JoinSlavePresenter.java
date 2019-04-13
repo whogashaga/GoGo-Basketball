@@ -367,7 +367,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
                     if (newRoomInfo.getStatus().equals(Constants.CLOSED)) {
                         mWaiting4JoinView.closeSlaveUiBecauseMasterOutFirst();
-                    } else if (newRoomInfo.getStatus().equals(Constants.GAMING)){
+                    } else if (newRoomInfo.getStatus().equals(Constants.GAMING)) {
                         if (mIntJoinerSort == 7) {
                             mWaiting4JoinView.openRefereeGamingUi();
                         } else {
