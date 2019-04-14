@@ -364,11 +364,11 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                     WaitingRoomInfo newRoomInfo = snapshot.toObject(WaitingRoomInfo.class);
                     mWaitingRoomInfo = newRoomInfo;
 
-                    if (newRoomInfo.getStatus().equals(Constants.CLOSED)) {
+                    if (newRoomInfo.getStatus().equals(Constants.STATUS_CLOSED)) {
 
                         mWaiting4JoinView.closeSlaveUiBecauseMasterOutFirst();
 
-                    } else if (newRoomInfo.getStatus().equals(Constants.GAMING)) {
+                    } else if (newRoomInfo.getStatus().equals(Constants.STATUS_GAMING)) {
 
                         queryCurrentSort();
                     }

@@ -233,11 +233,12 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
                 mPresenter.finishWaiting4JoinUi();
                 break;
             case R.id.btn_waiting4join_start:
-                if (mCurrentGamerAmount == 7) {
-                    mPresenter.initializeGamingRoomInfo();
-                } else {
-                    mPresenter.showErrorToast("人數不足\n無法開始!", true);
-                }
+                mPresenter.initializeGamingRoomInfo();
+//                if (mCurrentGamerAmount == 7) {
+//                    mPresenter.initializeGamingRoomInfo();
+//                } else {
+//                    mPresenter.showErrorToast("人數不足\n無法開始!", true);
+//                }
                 break;
             case R.id.btn_waiting_team_a_player1_change_seat:
                 Log.d(Constants.TAG, "onClick seat1");

@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -23,25 +24,27 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
 
     private GamingRoomInfo mGamingRoomInfo;
     private String mHostName;
+    private String mRoomDocId;
 
     public RefereeGoingPresenter(@NonNull RefereeGoingContract.View refereeGoingView) {
         mGamePlayingView = checkNotNull(refereeGoingView, "GamePlayingView cannot be null!");
         mGamePlayingView.setPresenter(this);
         mHostName = "";
+        mRoomDocId = "";
         mGamingRoomInfo = new GamingRoomInfo();
     }
 
     @Override
     public void getHostNameFromWaitingJoin(String hostName) {
         this.mHostName = hostName;
-        Log.w("Kerry", "getHostNameFromWaitingJoin hostName : " + hostName );
+        Log.w("Kerry", "getHostNameFromWaitingJoin hostName : " + hostName);
 
         mGamePlayingView.getHostNameFromPresenter(hostName);
     }
 
     @Override
     public void getGamingRoomFromFireStore(String hostName) {
-        Log.e("Kerry", "getGamingRoomFromFireStore hostName = " + hostName );
+        Log.e("Kerry", "getGamingRoomFromFireStore hostName = " + hostName);
         FirestoreHelper.getFirestore()
                 .collection(Constants.GAMING_ROOM)
                 .whereEqualTo(Constants.HOST_NAME, hostName)
@@ -51,6 +54,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                mRoomDocId = document.getId();
                                 GamingRoomInfo gamingRoomInfo = document.toObject(GamingRoomInfo.class);
                                 mGamePlayingView.showPlayingGameUi(gamingRoomInfo);
 //                                Log.w("Kerry", "gaming room id = " + document.getId() + " => " + document.getData());
@@ -63,6 +67,34 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
     }
 
     /* ------------------------------------------------------------------------------------------ */
+    /* Game Over */
+
+    @Override
+    public void updateGameResultOfPlayer(GamingRoomInfo gamingRoomInfo) {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.GAMING_ROOM)
+                .document(mRoomDocId)
+                .set(gamingRoomInfo)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(Constants.TAG, "Referee 將每人戰績上傳!");
+                        mGamePlayingView.openGameResultRefereeUi(gamingRoomInfo.getHostName());
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w("Kerry", "Error adding document", e);
+            }
+        });
+    }
+
+    /* ------------------------------------------------------------------------------------------ */
+
+    @Override
+    public void openGameResultReferee(String hostName) {
+
+    }
 
     @Override
     public void loadRefereeInfoFromFirebase() {
@@ -71,11 +103,6 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
 
     @Override
     public void forced2FinishPlayingUi() {
-
-    }
-
-    @Override
-    public void showGameResult() {
 
     }
 
@@ -138,4 +165,10 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
     public void showToolbarAndBottomNavigation() {
 
     }
+
+    @Override
+    public void showErrorToast(String message, boolean isShort) {
+
+    }
+
 }

@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@null"
     tools:context="com.kerry.gogobasketball.profile.ProfileFragment">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/layout_profile_header"
         android:layout_width="0dp"
         android:layout_height="@dimen/height_profile_header"
-        android:background="@color/black_3f3a3a"
+        android:background="#e03a3a3a"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

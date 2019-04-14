@@ -4,6 +4,8 @@ public class GamingRoomInfo {
 
     private String mHostName;
     private String mRoomName;
+    private String mStatus;
+    private String mWinner;
     private GamingPlayer mPlayer1;
     private GamingPlayer mPlayer2;
     private GamingPlayer mPlayer3;
@@ -15,6 +17,8 @@ public class GamingRoomInfo {
     public GamingRoomInfo() {
         mHostName = "";
         mRoomName = "";
+        mStatus = "";
+        mWinner = "";
         mPlayer1 = new GamingPlayer();
         mPlayer2 = new GamingPlayer();
         mPlayer3 = new GamingPlayer();
@@ -22,6 +26,30 @@ public class GamingRoomInfo {
         mPlayer5 = new GamingPlayer();
         mPlayer6 = new GamingPlayer();
         mReferee = new GamingReferee();
+    }
+
+    public String getWinner() {
+        return mWinner;
+    }
+
+    public void setWinner(String winner) {
+        this.mWinner = winner;
+    }
+
+    public int getScoreA() {
+        return mPlayer1.getScore() + mPlayer2.getScore() + mPlayer3.getScore();
+    }
+
+    public int getScoreB() {
+        return mPlayer4.getScore() + mPlayer5.getScore() + mPlayer6.getScore();
+    }
+
+    public String getStatus() {
+        return mStatus;
+    }
+
+    public void setStatus(String status) {
+        this.mStatus = status;
     }
 
     public String getHostName() {

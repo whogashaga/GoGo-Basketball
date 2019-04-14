@@ -33,6 +33,8 @@ public interface MainContract {
 
         void openGamePlayingOfPlayerUi(String hostName);
 
+        void openRefereeResultUi(String hostName);
+
         void popBackStackUi();
 
         Looking4RoomFragment findHomeView();

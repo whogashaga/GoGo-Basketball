@@ -385,7 +385,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
-                .update(Constants.ROOM_STATUS, Constants.CLOSED)
+                .update(Constants.ROOM_STATUS, Constants.STATUS_CLOSED)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -423,6 +423,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
         GamingRoomInfo gamingRoomInfo = new GamingRoomInfo();
         gamingRoomInfo.setHostName(mWaitingRoomInfo.getHostName());
         gamingRoomInfo.setRoomName(mWaitingRoomInfo.getRoomName());
+        gamingRoomInfo.setStatus(Constants.STATUS_GAMING);
         gamingRoomInfo.setPlayer1(setGamingPlayerInfo(1));
         gamingRoomInfo.setPlayer2(setGamingPlayerInfo(2));
         gamingRoomInfo.setPlayer3(setGamingPlayerInfo(3));
@@ -454,7 +455,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
-                .update(Constants.ROOM_STATUS, Constants.GAMING)
+                .update(Constants.ROOM_STATUS, Constants.STATUS_GAMING)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

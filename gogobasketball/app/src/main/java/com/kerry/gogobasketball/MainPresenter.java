@@ -31,6 +31,8 @@ import com.kerry.gogobasketball.profile.ProfileContract;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
 import com.kerry.gogobasketball.rank.RankContract;
 import com.kerry.gogobasketball.rank.RankPresenter;
+import com.kerry.gogobasketball.result.referee.RefereeResultContract;
+import com.kerry.gogobasketball.result.referee.RefereeResultPresenter;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterContract;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterPresenter;
 import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlaveContract;
@@ -42,7 +44,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         Looking4RoomContract.Presenter, CourtsMapContract.Presenter, ProfileContract.Presenter,
         FriendContract.Presenter, RankContract.Presenter, Want2CreateRoomContract.Presenter,
         Waiting4JoinMasterContract.Presenter, Waiting4JoinSlaveContract.Presenter,
-        RefereeGoingContract.Presenter, PlayerGoingContract.Presenter {
+        RefereeGoingContract.Presenter, PlayerGoingContract.Presenter, RefereeResultContract.Presenter {
 
     private FirebaseFirestore mDb;
     private MainContract.View mMainView;
@@ -60,6 +62,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private Waiting4JoinSlavePresenter mWaiting4JoinSlavePresenter;
     private RefereeGoingPresenter mRefereeGoingPresenter;
     private PlayerGoingPresenter mPlayerGoingPresenter;
+
+    private RefereeResultPresenter mRefereeResultPresenter;
 
     private static boolean mIsBackKeyDisable;
 
@@ -118,6 +122,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     void setPlayerGoingPresenter(PlayerGoingPresenter playerGoingPresenter) {
         mPlayerGoingPresenter = checkNotNull(playerGoingPresenter);
+    }
+
+    void setRefereeResultPresenter(RefereeResultPresenter refereeResultPresenter) {
+        mRefereeResultPresenter = checkNotNull(refereeResultPresenter);
     }
 
     @Override
@@ -201,18 +209,46 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     /**
      * Open GameResult
      */
+
+    @Override
+    public void getHostNameFromRefereeGoing(String hostName) {
+        mRefereeResultPresenter.getHostNameFromRefereeGoing(hostName);
+    }
+
+    @Override
+    public void getRoomInfoFromFireStore(String hostName) {
+        mRefereeResultPresenter.getRoomInfoFromFireStore(hostName);
+    }
+
     @Override
     public void forced2FinishPlayingUi() {
 
     }
 
     @Override
-    public void showGameResult() {
+    public void openGameResultSlave() {
 
     }
 
     @Override
+    public void updateGameResultOfPlayer(GamingRoomInfo gamingRoomInfo) {
+        mRefereeGoingPresenter.updateGameResultOfPlayer(gamingRoomInfo);
+    }
+
+    @Override
+    public void openGameResultReferee(String hostName) {
+        mMainView.openRefereeResultUi(hostName);
+    }
+
+
+
+    @Override
     public void forced2FinishGaming() {
+
+    }
+
+    @Override
+    public void finishResultResultUi() {
 
     }
 

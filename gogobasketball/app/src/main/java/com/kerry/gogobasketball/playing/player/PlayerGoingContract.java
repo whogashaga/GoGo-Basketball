@@ -26,7 +26,7 @@ public interface PlayerGoingContract {
 
         void forced2FinishPlayingUi();
 
-        void showGameResult();
+        void openGameResultSlave();
 
         void forced2FinishGaming();
 

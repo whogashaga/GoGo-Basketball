@@ -5,7 +5,8 @@
     android:id="@+id/fragment_waiting4join_master"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="#e0ffffff">
 
     /* ------------------------------------------------------------------------------------------ */
     /* Team A */
@@ -17,7 +18,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/outline_team_a_seat"
+        android:background="@drawable/outline_team_a_waiting_seat"
         app:layout_constraintBottom_toTopOf="@+id/waiting_team_b_player1_seat"
         app:layout_constraintEnd_toStartOf="@+id/waiting_team_a_player2_seat"
         app:layout_constraintHorizontal_bias="0.5"
@@ -129,7 +130,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:background="@drawable/outline_team_a_seat"
+        android:background="@drawable/outline_team_a_waiting_seat"
         app:layout_constraintBottom_toBottomOf="@+id/waiting_team_a_player1_seat"
         app:layout_constraintEnd_toStartOf="@+id/waiting_team_a_player3_seat"
         app:layout_constraintHorizontal_bias="0.5"
@@ -238,7 +239,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:background="@drawable/outline_team_a_seat"
+        android:background="@drawable/outline_team_a_waiting_seat"
         app:layout_constraintBottom_toBottomOf="@+id/waiting_team_a_player2_seat"
         app:layout_constraintEnd_toStartOf="@+id/waiting_referee_seat"
         app:layout_constraintHorizontal_bias="0.5"
@@ -353,7 +354,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/outline_team_b_seat"
+        android:background="@drawable/outline_team_b_waiting_seat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/waiting_team_a_player1_seat"
         app:layout_constraintStart_toStartOf="@+id/waiting_team_a_player1_seat"
@@ -460,7 +461,7 @@
         android:id="@+id/waiting_team_b_player2_seat"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/outline_team_b_seat"
+        android:background="@drawable/outline_team_b_waiting_seat"
         app:layout_constraintBottom_toBottomOf="@+id/waiting_team_b_player1_seat"
         app:layout_constraintEnd_toEndOf="@+id/waiting_team_a_player2_seat"
         app:layout_constraintStart_toStartOf="@+id/waiting_team_a_player2_seat"
@@ -569,7 +570,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
 
-        android:background="@drawable/outline_team_b_seat"
+        android:background="@drawable/outline_team_b_waiting_seat"
         app:layout_constraintBottom_toBottomOf="@+id/waiting_team_b_player2_seat"
         app:layout_constraintEnd_toEndOf="@+id/waiting_team_a_player3_seat"
         app:layout_constraintStart_toStartOf="@+id/waiting_team_a_player3_seat"

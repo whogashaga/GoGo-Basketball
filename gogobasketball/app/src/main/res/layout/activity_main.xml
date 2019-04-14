@@ -5,7 +5,7 @@
     android:id="@+id/layout_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@drawable/home_sea">
 
     <!-- Layout to contain contents of main body of screen (drawer will slide over this) -->
 
@@ -29,7 +29,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_toolbar"
-            android:background="@color/white"
+            android:background="#e0ffffff"
             android:elevation="@dimen/elevation_all"
             app:layout_constraintTop_toTopOf="parent"
             android:theme="@style/AppTheme.AppBarOverlay"
@@ -79,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_bottom_navigation_main"
             android:layout_alignParentBottom="true"
-            android:background="@color/white"
+            android:background="#e0ffffff"
             android:elevation="@dimen/elevation_all"
             app:itemIconTint="@drawable/bottom_nav_item_selector"
             app:labelVisibilityMode="unlabeled"

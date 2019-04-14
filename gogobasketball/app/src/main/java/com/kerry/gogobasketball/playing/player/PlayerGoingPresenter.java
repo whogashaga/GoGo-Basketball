@@ -44,7 +44,7 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
     }
 
     @Override
-    public void showGameResult() {
+    public void openGameResultSlave() {
 
     }
 

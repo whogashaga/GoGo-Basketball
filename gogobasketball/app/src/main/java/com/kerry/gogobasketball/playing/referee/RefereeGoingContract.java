@@ -12,8 +12,9 @@ public interface RefereeGoingContract {
 
         void getHostNameFromPresenter(String hostName);
 
-        boolean isActive();
+        void openGameResultRefereeUi(String hostName);
 
+        boolean isActive();
 
         void increaseScoreP1();
 
@@ -103,6 +104,8 @@ public interface RefereeGoingContract {
 
         void showToolbarAndBottomNavigation();
 
+        void showErrorToast(String message, boolean isShort);
+
         void getHostNameFromWaitingJoin(String hostName);
 
         void getGamingRoomFromFireStore(String hostName);
@@ -111,7 +114,9 @@ public interface RefereeGoingContract {
 
         void forced2FinishPlayingUi();
 
-        void showGameResult();
+        void updateGameResultOfPlayer(GamingRoomInfo gamingRoomInfo);
+
+        void openGameResultReferee(String hostName);
 
         void forced2FinishGaming();
 

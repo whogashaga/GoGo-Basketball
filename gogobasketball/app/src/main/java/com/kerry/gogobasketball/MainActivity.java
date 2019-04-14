@@ -548,6 +548,11 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
+    public void openRefereeResultUi(String hostName) {
+        mMainMvpController.findOrCreateRefereeResultView(hostName);
+    }
+
+    @Override
     public void openLoginUi(int loginFrom) {
 
     }

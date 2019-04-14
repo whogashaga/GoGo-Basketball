@@ -25,6 +25,8 @@ import com.kerry.gogobasketball.profile.ProfileFragment;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
 import com.kerry.gogobasketball.rank.RankFragment;
 import com.kerry.gogobasketball.rank.RankPresenter;
+import com.kerry.gogobasketball.result.referee.RefereeResultFragment;
+import com.kerry.gogobasketball.result.referee.RefereeResultPresenter;
 import com.kerry.gogobasketball.util.ActivityUtils;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterFragment;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterPresenter;
@@ -52,12 +54,14 @@ public class MainMvpController {
     private RefereeGoingPresenter mRefereeGoingPresenter;
     private PlayerGoingPresenter mPlayerGoingPresenter;
 
+    private RefereeResultPresenter mRefereeResultPresenter;
+
     private Looking4RoomPresenter mLooking4RoomPresenter;
     private CourtsMapPresenter mCourtsMapPresenter;
 
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({
-            HOME, FRIEND, RANK, PROFILE, WANT2CREATEROOM, WAITING4JOIN, GOING4REFEREE, GOING4PLAYER
+            HOME, FRIEND, RANK, PROFILE, WANT2CREATEROOM, WAITING4JOIN, GOING4REFEREE, GOING4PLAYER, RESULT4REFEREE
     })
     public @interface FragmentType {
     }
@@ -70,6 +74,7 @@ public class MainMvpController {
     static final String WAITING4JOIN = "WAITING4JOIN";
     static final String GOING4REFEREE = "GOING4REFEREE";
     static final String GOING4PLAYER = "GOING4PLAYER";
+    static final String RESULT4REFEREE = "RESULT4REFEREE";
 
 
     @Retention(RetentionPolicy.SOURCE)
@@ -242,6 +247,20 @@ public class MainMvpController {
 
         mMainPresenter.setPlayerGoingPresenter(mPlayerGoingPresenter);
         playerGoingFragment.setPresenter(mMainPresenter);
+    }
+
+    /**
+     * RefereeResult View
+     */
+    void findOrCreateRefereeResultView(String hostName) {
+
+        RefereeResultFragment refereeResultFragment = createRefereeResultFragment();
+
+        mRefereeResultPresenter = new RefereeResultPresenter(refereeResultFragment);
+        mRefereeResultPresenter.getHostNameFromRefereeGoing(hostName);
+
+        mMainPresenter.setRefereeResultPresenter(mRefereeResultPresenter);
+        refereeResultFragment.setPresenter(mMainPresenter);
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -451,6 +470,22 @@ public class MainMvpController {
                 getFragmentManager(), gamePlayingFragmentOfPlayer, GOING4PLAYER);
 
         return gamePlayingFragmentOfPlayer;
+    }
+
+    /**
+     * PlayerGoing Fragment
+     *
+     * @return PlayerGoingFragment
+     */
+    @NonNull
+    private RefereeResultFragment createRefereeResultFragment() {
+
+        RefereeResultFragment refereeResultFragment = RefereeResultFragment.newInstance();
+
+        ActivityUtils.addFragmentByTag(
+                getFragmentManager(), refereeResultFragment, RESULT4REFEREE);
+
+        return refereeResultFragment;
     }
 
     /* ------------------------------------------------------------------------------------------ */

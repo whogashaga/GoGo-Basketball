@@ -20,6 +20,7 @@ import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.SeatAvatarOutlineProvider;
 import com.kerry.gogobasketball.data.GamingPlayer;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
+import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.ImageManager;
 
 public class RefereeGoingFragment extends Fragment implements RefereeGoingContract.View, View.OnClickListener {
@@ -78,6 +79,7 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     private TextView mTeamScoreA, mTeamScoreB;
     private int mIntScoreA;
     private int mIntScoreB;
+    private Button mBtnGameOver;
 
     private GamingRoomInfo mGamingRoomInfo;
 
@@ -144,7 +146,6 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
         mGenderP1 = mRoot.findViewById(R.id.playing_team_a_player1_gender);
         mPositionP1 = mRoot.findViewById(R.id.playing_team_a_player1_position);
         mTextIdP1 = mRoot.findViewById(R.id.playing_team_a_player1_id);
-
 
         mBtnP2ScorePlus = mRoot.findViewById(R.id.btn_playing_team_a_player2_point_plus);
         mBtnP2ScoreMinus = mRoot.findViewById(R.id.btn_playing_team_a_player2_point_minus);
@@ -223,6 +224,9 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
 
         mTeamScoreA = mRoot.findViewById(R.id.text_gaming_current_score_team_a);
         mTeamScoreB = mRoot.findViewById(R.id.text_gaming_current_score_team_b);
+
+        mBtnGameOver = mRoot.findViewById(R.id.btn_gaming_game_over);
+        mBtnGameOver.setOnClickListener(this);
 
         return mRoot;
     }
@@ -339,9 +343,54 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
             case R.id.btn_playing_team_b_player3_foul_minus:
                 decreaseFoulP6();
                 break;
+            case R.id.btn_gaming_game_over:
+                if (mIntScoreA == mIntScoreB){
+                    mPresenter.showErrorToast("沒有平手的啦！",true);
+                } else {
+                    mPresenter.updateGameResultOfPlayer(setFinalResult(mGamingRoomInfo));
+                }
+//                mPresenter.openGameResultReferee(mGamingRoomInfo.getHostName());
+                break;
             default:
                 break;
         }
+    }
+
+    private GamingRoomInfo setFinalResult(GamingRoomInfo gamingRoomInfo) {
+
+        gamingRoomInfo.getPlayer1().setScore(mIntScoreP1);
+        gamingRoomInfo.getPlayer1().setRebound(mIntReboundP1);
+        gamingRoomInfo.getPlayer1().setFoul(mIntFoulP1);
+
+        gamingRoomInfo.getPlayer2().setScore(mIntScoreP2);
+        gamingRoomInfo.getPlayer2().setRebound(mIntReboundP2);
+        gamingRoomInfo.getPlayer2().setFoul(mIntFoulP2);
+
+        gamingRoomInfo.getPlayer3().setScore(mIntScoreP3);
+        gamingRoomInfo.getPlayer3().setRebound(mIntReboundP3);
+        gamingRoomInfo.getPlayer3().setFoul(mIntFoulP3);
+
+        gamingRoomInfo.getPlayer4().setScore(mIntScoreP4);
+        gamingRoomInfo.getPlayer4().setRebound(mIntReboundP4);
+        gamingRoomInfo.getPlayer4().setFoul(mIntFoulP4);
+
+        gamingRoomInfo.getPlayer5().setScore(mIntScoreP5);
+        gamingRoomInfo.getPlayer5().setRebound(mIntReboundP5);
+        gamingRoomInfo.getPlayer5().setFoul(mIntFoulP5);
+
+        gamingRoomInfo.getPlayer6().setScore(mIntScoreP6);
+        gamingRoomInfo.getPlayer6().setRebound(mIntReboundP6);
+        gamingRoomInfo.getPlayer6().setFoul(mIntFoulP6);
+
+        if (mIntScoreA > mIntScoreB) {
+            gamingRoomInfo.setWinner("a");
+        } else {
+            gamingRoomInfo.setWinner("b");
+        }
+
+        gamingRoomInfo.setStatus(Constants.STATUS_OVER);
+
+        return gamingRoomInfo;
     }
 
     @Override
@@ -398,6 +447,11 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     }
 
     @Override
+    public void openGameResultRefereeUi(String hostName) {
+        mPresenter.openGameResultReferee(hostName);
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
     }
@@ -410,12 +464,12 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     @Override
     public void showPlayingGameUi(GamingRoomInfo gamingRoomInfo) {
         mGamingRoomInfo = gamingRoomInfo;
-        setPlayerInfo(gamingRoomInfo.getPlayer1(),mAvatarP1,mGenderP1,mPositionP1,mTextIdP1);
-        setPlayerInfo(gamingRoomInfo.getPlayer2(),mAvatarP2,mGenderP2,mPositionP2,mTextIdP2);
-        setPlayerInfo(gamingRoomInfo.getPlayer3(),mAvatarP3,mGenderP3,mPositionP3,mTextIdP3);
-        setPlayerInfo(gamingRoomInfo.getPlayer4(),mAvatarP4,mGenderP4,mPositionP4,mTextIdP4);
-        setPlayerInfo(gamingRoomInfo.getPlayer5(),mAvatarP5,mGenderP5,mPositionP5,mTextIdP5);
-        setPlayerInfo(gamingRoomInfo.getPlayer6(),mAvatarP6,mGenderP6,mPositionP6,mTextIdP6);
+        setPlayerInfo(gamingRoomInfo.getPlayer1(), mAvatarP1, mGenderP1, mPositionP1, mTextIdP1);
+        setPlayerInfo(gamingRoomInfo.getPlayer2(), mAvatarP2, mGenderP2, mPositionP2, mTextIdP2);
+        setPlayerInfo(gamingRoomInfo.getPlayer3(), mAvatarP3, mGenderP3, mPositionP3, mTextIdP3);
+        setPlayerInfo(gamingRoomInfo.getPlayer4(), mAvatarP4, mGenderP4, mPositionP4, mTextIdP4);
+        setPlayerInfo(gamingRoomInfo.getPlayer5(), mAvatarP5, mGenderP5, mPositionP5, mTextIdP5);
+        setPlayerInfo(gamingRoomInfo.getPlayer6(), mAvatarP6, mGenderP6, mPositionP6, mTextIdP6);
     }
 
     private void setPlayerInfo(GamingPlayer gamingPlayer, ImageView avatar,
