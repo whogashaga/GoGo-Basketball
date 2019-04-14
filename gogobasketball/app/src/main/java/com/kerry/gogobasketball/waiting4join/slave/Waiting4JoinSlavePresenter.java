@@ -365,13 +365,12 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                     mWaitingRoomInfo = newRoomInfo;
 
                     if (newRoomInfo.getStatus().equals(Constants.CLOSED)) {
+
                         mWaiting4JoinView.closeSlaveUiBecauseMasterOutFirst();
+
                     } else if (newRoomInfo.getStatus().equals(Constants.GAMING)) {
-                        if (mIntJoinerSort == 7) {
-                            mWaiting4JoinView.openRefereeGamingUi(mWaitingRoomInfo.getHostName());
-                        } else {
-                            mWaiting4JoinView.openPlayerGamingUi(mWaitingRoomInfo.getHostName());
-                        }
+
+                        queryCurrentSort();
                     }
 
                     getNewSeatsInfo();
@@ -381,6 +380,27 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 }
             }
         });
+    }
+
+    private void queryCurrentSort() {
+        DocumentReference docRef = FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .collection(Constants.WAITING_SEATS)
+                .document(mSeatDocId);
+
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                WaitingRoomSeats currentSeat = documentSnapshot.toObject(WaitingRoomSeats.class);
+                if (currentSeat.getSort() == 7) {
+                    mWaiting4JoinView.openRefereeGamingUi(mWaitingRoomInfo.getHostName());
+                } else {
+                    mWaiting4JoinView.openPlayerGamingUi(mWaitingRoomInfo.getHostName());
+                }
+            }
+        });
+
     }
 
     private void getNewSeatsInfo() {
@@ -393,7 +413,6 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-
                             mSeatsInfoList.clear();
                             mListForChangeSeat.clear();
                             for (QueryDocumentSnapshot document : task.getResult()) {

@@ -76,13 +76,13 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
                         // for open waiting4join bind view
                         mWant2CreateRoomView.getRoomInfoFromPresenter4NextFragment(waitingRoomInfo, hostSeatInfo, documentReference.getId());
 
-                        Log.d("Kerry", "Master創建房間 ！!");
+                        Log.d(Constants.TAG, "Master創建房間 ！!");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w("Kerry", "Error adding document", e);
+                        Log.e("Kerry", "Error adding document", e);
                     }
                 });
 
@@ -100,12 +100,12 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d("Kerry", "Master進入房間 ！!");
+                        Log.d(Constants.TAG, "Master進入房間 ！!");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.w("Kerry", "Error adding document", e);
+                Log.e("Kerry", "Error adding document", e);
             }
 
         });

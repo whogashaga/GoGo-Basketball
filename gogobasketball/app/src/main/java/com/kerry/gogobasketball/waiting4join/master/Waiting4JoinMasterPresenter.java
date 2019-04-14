@@ -115,7 +115,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                                 WaitingRoomSeats seatInfo = document.toObject(WaitingRoomSeats.class);
                                 existedSortList.add(seatInfo.getSort());
                             }
-                            Log.d("Kerry", "Master existedSortList = " + existedSortList.get(0));
+//                            Log.d("Kerry", "Master existedSortList = " + existedSortList.get(0));
                             updateSortForChangeSeatMaster(seatDocIdForUpdate, newSort);
                             changeRoomPlayerAmountAfterChangeSeatMaster(existedSortList, newSort);
 
@@ -460,6 +460,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                     public void onSuccess(Void aVoid) {
                         Log.d(Constants.TAG, "Room status 改為 gaming!!");
                         mWaiting4JoinMasterView.getGamingRoomInfoFromPresenter4GamingFragment(gamingRoomInfo);
+                        deleteHostInfoWhenLeave();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

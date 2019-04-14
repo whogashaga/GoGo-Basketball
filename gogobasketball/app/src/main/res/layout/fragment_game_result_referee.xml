@@ -1,9 +1,566 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/text_referee_going_title_start"
+        style="@style/ResultBigTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:paddingEnd="16dp"
+        android:text="Red"
+        android:textColor="@color/red_d0021b"
+        app:layout_constraintEnd_toStartOf="@+id/text_referee_going_title_end"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_referee_going_title_end"
+        style="@style/ResultBigTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Team Victory"
+        app:layout_constraintBottom_toBottomOf="@+id/text_referee_going_title_start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_referee_going_title_start"
+        app:layout_constraintTop_toTopOf="@+id/text_referee_going_title_start" />
+
+    <Button
+        android:id="@+id/btn_result_referee_back_lobby"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="返回大廳"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result_referee_team_a_player3_avatar" />
+
+    <TextView
+        android:id="@+id/text_result_referee_score_team_a"
+        style="@style/ResultBigTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/audiowide"
+        android:text="0"
+        android:textColor="@color/red_d0021b"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toStartOf="@+id/text_result_referee_score_separation"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_referee_going_title_start" />
+
+    <TextView
+        android:id="@+id/text_result_referee_score_separation"
+        style="@style/ResultBigTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="2dp"
+        android:text=":"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_result_referee_score_team_a"
+        app:layout_constraintEnd_toStartOf="@+id/text_result_referee_score_team_b"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_result_referee_score_team_a"
+        app:layout_constraintTop_toTopOf="@+id/text_result_referee_score_team_a" />
+
+    <TextView
+        android:id="@+id/text_result_referee_score_team_b"
+        style="@style/ResultBigTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/audiowide"
+        android:text="0"
+        android:textColor="@color/blue_voyage"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_result_referee_score_team_a"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_result_referee_score_separation"
+        app:layout_constraintTop_toTopOf="@+id/text_result_referee_score_team_a" />
+
+    <TextView
+        android:id="@+id/text_result_referee_team_a_score_title"
+        style="@style/ResultSmallTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="得分"
+        app:layout_constraintEnd_toStartOf="@+id/text_result_referee_team_a_rebound_title"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/result_referee_team_a_player1_id"
+        app:layout_constraintTop_toBottomOf="@+id/text_result_referee_score_team_a" />
+
+    <TextView
+        android:id="@+id/text_result_referee_team_a_rebound_title"
+        style="@style/ResultSmallTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:text="籃板"
+        app:layout_constraintBottom_toBottomOf="@+id/text_result_referee_team_a_score_title"
+        app:layout_constraintEnd_toStartOf="@+id/text_result_referee_team_a_foul_title"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_result_referee_team_a_score_title"
+        app:layout_constraintTop_toTopOf="@+id/text_result_referee_team_a_score_title" />
+
+    <TextView
+        android:id="@+id/text_result_referee_team_a_foul_title"
+        style="@style/ResultSmallTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="犯規"
+        app:layout_constraintBottom_toBottomOf="@+id/text_result_referee_team_a_rebound_title"
+        app:layout_constraintEnd_toStartOf="@+id/text_result_referee_score_separation"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_result_referee_team_a_rebound_title"
+        app:layout_constraintTop_toTopOf="@+id/text_result_referee_team_a_rebound_title" />
+
+
+    <ImageView
+        android:id="@+id/result_referee_team_a_player1_avatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="18dp"
+        app:layout_constraintEnd_toStartOf="@+id/result_referee_team_a_player1_id"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_result_referee_team_a_score_title"
+        app:srcCompat="@drawable/ic_user_avatar" />
+
+    <TextView
+        android:id="@+id/result_referee_team_a_player1_id"
+        style="@style/ResultPlayerId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="left"
+        android:maxLines="1"
+        android:paddingStart="8dp"
+        android:text="Antetokounmpo"
+        android:textColor="@color/black_3f3a3a"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_a_player1_avatar"
+        app:layout_constraintEnd_toStartOf="@+id/text_result_referee_team_a_score_title"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/result_referee_team_a_player1_avatar"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_a_player1_avatar" />
+
+    <TextView
+        android:id="@+id/text_result_referee_score_team_a_player1"
+        style="@style/ResultPlayerRecords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_a_player1_id"
+        app:layout_constraintEnd_toEndOf="@+id/text_result_referee_team_a_score_title"
+        app:layout_constraintStart_toStartOf="@+id/text_result_referee_team_a_score_title"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_a_player1_id" />
+
+    <TextView
+        android:id="@+id/text_result_referee_rebound_team_a_player1"
+        style="@style/ResultPlayerRecords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_a_player1_id"
+        app:layout_constraintEnd_toEndOf="@+id/text_result_referee_team_a_rebound_title"
+        app:layout_constraintStart_toStartOf="@+id/text_result_referee_team_a_rebound_title"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_a_player1_id" />
+
+    <TextView
+        android:id="@+id/text_result_referee_foul_team_a_player1"
+        style="@style/ResultPlayerRecords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_a_player1_id"
+        app:layout_constraintEnd_toEndOf="@+id/text_result_referee_team_a_foul_title"
+        app:layout_constraintStart_toStartOf="@+id/text_result_referee_team_a_foul_title"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_a_player1_id" />
+
+
+    <ImageView
+        android:id="@+id/result_referee_team_a_player2_avatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/result_referee_team_a_player1_avatar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="@+id/result_referee_team_a_player1_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/result_referee_team_a_player1_avatar"
+        app:srcCompat="@drawable/ic_user_avatar" />
+
+    <TextView
+        android:id="@+id/result_referee_team_a_player2_id"
+        style="@style/ResultPlayerId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="left"
+        android:maxLines="1"
+        android:paddingStart="8dp"
+        android:text="player2"
+        android:textColor="@color/black_3f3a3a"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_a_player2_avatar"
+        app:layout_constraintEnd_toEndOf="@+id/result_referee_team_a_player1_id"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/result_referee_team_a_player1_id"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_a_player2_avatar" />
+
+    <TextView
+        android:id="@+id/text_result_referee_score_team_a_player2"
+        style="@style/ResultPlayerRecords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_a_player2_id"
+        app:layout_constraintEnd_toEndOf="@+id/text_result_referee_team_a_score_title"
+        app:layout_constraintStart_toStartOf="@+id/text_result_referee_team_a_score_title"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_a_player2_id" />
+
+    <TextView
+        android:id="@+id/text_result_referee_rebound_team_a_player2"
+        style="@style/ResultPlayerRecords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_a_player2_id"
+        app:layout_constraintEnd_toEndOf="@+id/text_result_referee_team_a_rebound_title"
+        app:layout_constraintStart_toStartOf="@+id/text_result_referee_team_a_rebound_title"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_a_player2_id" />
+
+    <TextView
+        android:id="@+id/text_result_referee_foul_team_a_player2"
+        style="@style/ResultPlayerRecords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_a_player2_id"
+        app:layout_constraintEnd_toEndOf="@+id/text_result_referee_foul_team_a_player1"
+        app:layout_constraintStart_toStartOf="@+id/text_result_referee_foul_team_a_player1"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_a_player2_id" />
+
+    <ImageView
+        android:id="@+id/result_referee_team_a_player3_avatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/result_referee_team_a_player1_avatar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="@+id/result_referee_team_a_player1_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/result_referee_team_a_player2_avatar"
+        app:srcCompat="@drawable/ic_user_avatar" />
+
+    <TextView
+        android:id="@+id/result_referee_team_a_player3_id"
+        style="@style/ResultPlayerId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="left"
+        android:maxLines="1"
+        android:paddingStart="8dp"
+        android:text="player3"
+        android:textColor="@color/black_3f3a3a"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_a_player3_avatar"
+        app:layout_constraintEnd_toEndOf="@+id/result_referee_team_a_player1_id"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/result_referee_team_a_player1_id"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_a_player3_avatar" />
+
+    <TextView
+        android:id="@+id/text_result_referee_score_team_a_player3"
+        style="@style/ResultPlayerRecords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_a_player3_id"
+        app:layout_constraintEnd_toEndOf="@+id/text_result_referee_team_a_score_title"
+        app:layout_constraintStart_toStartOf="@+id/text_result_referee_team_a_score_title"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_a_player3_id" />
+
+    <TextView
+        android:id="@+id/text_result_referee_rebound_team_a_player3"
+        style="@style/ResultPlayerRecords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_a_player3_id"
+        app:layout_constraintEnd_toEndOf="@+id/text_result_referee_team_a_rebound_title"
+        app:layout_constraintStart_toStartOf="@+id/text_result_referee_team_a_rebound_title"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_a_player3_id" />
+
+    <TextView
+        android:id="@+id/text_result_referee_foul_team_a_player3"
+        style="@style/ResultPlayerRecords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_a_player3_id"
+        app:layout_constraintEnd_toEndOf="@+id/text_result_referee_foul_team_a_player1"
+        app:layout_constraintStart_toStartOf="@+id/text_result_referee_foul_team_a_player1"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_a_player3_id" />
+
+    /* ------------------------------------------------------------------------------------------ */
+    /* Team B */
+
+    <TextView
+        android:id="@+id/text_result_referee_team_b_score_title"
+        style="@style/ResultSmallTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="得分"
+        app:layout_constraintEnd_toStartOf="@+id/text_result_referee_team_b_rebound_title"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/result_referee_team_b_player1_id"
+        app:layout_constraintTop_toBottomOf="@+id/text_result_referee_score_team_b" />
+
+    <TextView
+        android:id="@+id/text_result_referee_team_b_rebound_title"
+        style="@style/ResultSmallTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:text="籃板"
+        app:layout_constraintBottom_toBottomOf="@+id/text_result_referee_team_b_score_title"
+        app:layout_constraintEnd_toStartOf="@+id/text_result_referee_team_b_foul_title"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_result_referee_team_b_score_title"
+        app:layout_constraintTop_toTopOf="@+id/text_result_referee_team_b_score_title" />
+
+    <TextView
+        android:id="@+id/text_result_referee_team_b_foul_title"
+        style="@style/ResultSmallTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="犯規"
+        app:layout_constraintBottom_toBottomOf="@+id/text_result_referee_team_b_rebound_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_result_referee_team_b_rebound_title"
+        app:layout_constraintTop_toTopOf="@+id/text_result_referee_team_b_rebound_title" />
+
+
+    <ImageView
+        android:id="@+id/result_referee_team_b_player1_avatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/result_referee_team_b_player1_id"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toEndOf="@+id/text_result_referee_score_separation"
+        app:layout_constraintTop_toBottomOf="@+id/text_result_referee_team_b_score_title"
+        app:srcCompat="@drawable/ic_user_avatar" />
+
+    <TextView
+        android:id="@+id/result_referee_team_b_player1_id"
+        style="@style/ResultPlayerId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="left"
+        android:maxLines="1"
+        android:paddingStart="8dp"
+        android:text="Antetokounmpo"
+        android:textColor="@color/black_3f3a3a"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_b_player1_avatar"
+        app:layout_constraintEnd_toStartOf="@+id/text_result_referee_team_b_score_title"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/result_referee_team_b_player1_avatar"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_b_player1_avatar"
+        app:layout_constraintVertical_bias="0.413" />
+
+    <TextView
+        android:id="@+id/text_result_referee_score_team_b_player1"
+        style="@style/ResultPlayerRecords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_b_player1_id"
+        app:layout_constraintEnd_toEndOf="@+id/text_result_referee_team_b_score_title"
+        app:layout_constraintStart_toStartOf="@+id/text_result_referee_team_b_score_title"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_b_player1_id" />
+
+    <TextView
+        android:id="@+id/text_result_referee_rebound_team_b_player1"
+        style="@style/ResultPlayerRecords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_b_player1_id"
+        app:layout_constraintEnd_toEndOf="@+id/text_result_referee_team_b_rebound_title"
+        app:layout_constraintStart_toStartOf="@+id/text_result_referee_team_b_rebound_title"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_b_player1_id" />
+
+    <TextView
+        android:id="@+id/text_result_referee_foul_team_b_player1"
+        style="@style/ResultPlayerRecords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_b_player1_id"
+        app:layout_constraintEnd_toEndOf="@+id/text_result_referee_team_b_foul_title"
+        app:layout_constraintStart_toStartOf="@+id/text_result_referee_team_b_foul_title"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_b_player1_id" />
+
+
+
+
+    <ImageView
+        android:id="@+id/result_referee_team_b_player2_avatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/result_referee_team_b_player1_avatar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="@+id/result_referee_team_b_player1_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/result_referee_team_b_player1_avatar"
+        app:srcCompat="@drawable/ic_user_avatar" />
+
+    <TextView
+        android:id="@+id/result_referee_team_b_player2_id"
+        style="@style/ResultPlayerId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="left"
+        android:paddingStart="8dp"
+        android:maxLines="1"
+        android:text="player5"
+        android:textColor="@color/black_3f3a3a"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_b_player2_avatar"
+        app:layout_constraintEnd_toEndOf="@+id/result_referee_team_b_player1_id"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/result_referee_team_b_player1_id"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_b_player2_avatar" />
+
+    <TextView
+        android:id="@+id/text_result_referee_score_team_b_player2"
+        style="@style/ResultPlayerRecords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_b_player2_id"
+        app:layout_constraintEnd_toEndOf="@+id/text_result_referee_team_b_score_title"
+        app:layout_constraintStart_toStartOf="@+id/text_result_referee_team_b_score_title"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_b_player2_id" />
+
+    <TextView
+        android:id="@+id/text_result_referee_rebound_team_b_player2"
+        style="@style/ResultPlayerRecords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_b_player2_id"
+        app:layout_constraintEnd_toEndOf="@+id/text_result_referee_team_b_rebound_title"
+        app:layout_constraintStart_toStartOf="@+id/text_result_referee_team_b_rebound_title"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_b_player2_id" />
+
+    <TextView
+        android:id="@+id/text_result_referee_foul_team_b_player2"
+        style="@style/ResultPlayerRecords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_b_player2_id"
+        app:layout_constraintEnd_toEndOf="@+id/text_result_referee_foul_team_b_player1"
+        app:layout_constraintStart_toStartOf="@+id/text_result_referee_foul_team_b_player1"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_b_player2_id" />
+
+    <ImageView
+        android:id="@+id/result_referee_team_b_player3_avatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/result_referee_team_b_player1_avatar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="@+id/result_referee_team_b_player1_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/result_referee_team_b_player2_avatar"
+        app:srcCompat="@drawable/ic_user_avatar" />
+
+    <TextView
+        android:id="@+id/result_referee_team_b_player3_id"
+        style="@style/ResultPlayerId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="left"
+        android:paddingStart="8dp"
+        android:maxLines="1"
+        android:text="player6"
+        android:textColor="@color/black_3f3a3a"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_b_player3_avatar"
+        app:layout_constraintEnd_toEndOf="@+id/result_referee_team_b_player1_id"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/result_referee_team_b_player1_id"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_b_player3_avatar" />
+
+    <TextView
+        android:id="@+id/text_result_referee_score_team_b_player3"
+        style="@style/ResultPlayerRecords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_b_player3_id"
+        app:layout_constraintEnd_toEndOf="@+id/text_result_referee_team_b_score_title"
+        app:layout_constraintStart_toStartOf="@+id/text_result_referee_team_b_score_title"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_b_player3_id" />
+
+    <TextView
+        android:id="@+id/text_result_referee_rebound_team_b_player3"
+        style="@style/ResultPlayerRecords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_b_player3_id"
+        app:layout_constraintEnd_toEndOf="@+id/text_result_referee_team_b_rebound_title"
+        app:layout_constraintStart_toStartOf="@+id/text_result_referee_team_b_rebound_title"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_b_player3_id" />
+
+    <TextView
+        android:id="@+id/text_result_referee_foul_team_b_player3"
+        style="@style/ResultPlayerRecords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/result_referee_team_b_player3_id"
+        app:layout_constraintEnd_toEndOf="@+id/text_result_referee_foul_team_b_player1"
+        app:layout_constraintStart_toStartOf="@+id/text_result_referee_foul_team_b_player1"
+        app:layout_constraintTop_toTopOf="@+id/result_referee_team_b_player3_id" />
 
 
 
