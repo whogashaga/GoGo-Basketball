@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_toolbar"
+        android:background="@drawable/border_want2create_room_topbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/text_want2create_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/stalinist_one"
+            android:gravity="center"
+            android:letterSpacing="0.15"
+            android:text="創建角色"
+            android:textColor="@color/black_3f3a3a"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/text_create_user_id_title"
+        style="@style/Want2CreateRoomTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="角色名稱 :"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <TextView
+        android:id="@+id/text_create_user_gender_title"
+        style="@style/Want2CreateRoomTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="性別 :"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_create_user_id_title" />
+
+    <TextView
+        android:id="@+id/text_create_user_position_title"
+        style="@style/Want2CreateRoomTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="位置 :"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_create_user_gender_title" />
+
+    <EditText
+        android:id="@+id/edit_want2create_room_name_content"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_payment_editor"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/edit_room_name"
+        android:imeOptions="actionNext"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:singleLine="true"
+        android:textColor="@color/black_3f3a3a"
+        android:textColorHint="@color/gray_646464"
+        android:theme="@style/PaymentColorTheme"
+        app:layout_constraintBottom_toBottomOf="@+id/text_create_user_id_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text_create_user_id_title"
+        app:layout_constraintTop_toTopOf="@+id/text_create_user_id_title" />
+
+    <RadioGroup
+        android:id="@+id/radios_create_user_gender_selector"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/outline_radio_btn_referee"
+        android:checkedButton="@+id/radios_referee_yes"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/text_create_user_gender_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text_create_user_gender_title"
+        app:layout_constraintTop_toTopOf="@+id/text_create_user_gender_title">
+
+        <RadioButton
+            android:id="@+id/radios_referee_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/radio_background_referee_mode"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/gender_male"
+            android:textColor="@color/black_3f3a3a"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/radios_referee_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/radio_background_referee_mode"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/gender_female"
+            android:textColor="@color/black_3f3a3a"
+            android:textSize="18sp" />
+    </RadioGroup>
+
+    <Spinner
+        android:id="@+id/spinner_courts_selector"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_payment_editor"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:prompt="@string/select_position"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="@+id/text_create_user_position_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text_create_user_position_title"
+        app:layout_constraintTop_toTopOf="@+id/text_create_user_position_title" />
+
+    <Button
+        android:id="@+id/btn_create_user_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="創建"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_create_user_cancel"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_courts_selector" />
+
+    <Button
+        android:id="@+id/btn_create_user_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="取消"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_create_user_confirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_create_user_confirm"
+        app:layout_constraintTop_toTopOf="@+id/btn_create_user_confirm" />
+
+
+</android.support.constraint.ConstraintLayout>

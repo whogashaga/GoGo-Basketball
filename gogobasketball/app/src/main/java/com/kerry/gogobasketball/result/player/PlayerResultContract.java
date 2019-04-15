@@ -31,6 +31,10 @@ public interface PlayerResultContract {
 
         void getRoomInfoFromFireStorePlayer(String hostName, int nowSort);
 
+        void setActivityBackgroundLandScape();
+
+        void setActivityBackgroundPortrait();
+
 
     }
 

@@ -17,6 +17,8 @@ import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
 import com.kerry.gogobasketball.home.item.Looking4RoomPresenter;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapPresenter;
+import com.kerry.gogobasketball.login.LoginFragment;
+import com.kerry.gogobasketball.login.LoginPresenter;
 import com.kerry.gogobasketball.playing.player.PlayerGoingFragment;
 import com.kerry.gogobasketball.playing.player.PlayerGoingPresenter;
 import com.kerry.gogobasketball.playing.referee.RefereeGoingFragment;
@@ -46,6 +48,7 @@ public class MainMvpController {
     private MainPresenter mMainPresenter;
 
     private HomePresenter mHomePresenter;
+    private LoginPresenter mLoginPresenter;
     private FriendPresenter mFriendPresenter;
     private RankPresenter mRankPresenter;
     private ProfilePresenter mProfilePresenter;
@@ -64,7 +67,7 @@ public class MainMvpController {
 
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({
-            HOME, FRIEND, RANK, PROFILE, WANT2CREATEROOM, WAITING4JOIN, GOING4REFEREE, GOING4PLAYER, RESULT4REFEREE, RESULT4PLAYER
+            HOME, FRIEND, RANK, PROFILE, WANT2CREATEROOM, WAITING4JOIN, GOING4REFEREE, GOING4PLAYER, RESULT4REFEREE, RESULT4PLAYER, LOGIN
     })
     public @interface FragmentType {
     }
@@ -79,6 +82,7 @@ public class MainMvpController {
     static final String GOING4PLAYER = "GOING4PLAYER";
     static final String RESULT4REFEREE = "RESULT4REFEREE";
     static final String RESULT4PLAYER = "RESULT4PLAYER";
+    static final String LOGIN = "LOGIN";
 
 
     @Retention(RetentionPolicy.SOURCE)
@@ -107,6 +111,20 @@ public class MainMvpController {
             mHomePresenter = new HomePresenter(homeFragment);
             mMainPresenter.setHomePresenter(mHomePresenter);
             homeFragment.setPresenter(mMainPresenter);
+        }
+    }
+
+    /**
+     * Login Fragment View
+     */
+    void findOrCreateLoginView() {
+
+        LoginFragment loginFragment = findOrCreateLoginFragment();
+
+        if (mLoginPresenter == null) {
+            mLoginPresenter = new LoginPresenter(loginFragment);
+            mMainPresenter.setLoginPresenter(mLoginPresenter);
+            loginFragment.setPresenter(mMainPresenter);
         }
     }
 
@@ -304,6 +322,27 @@ public class MainMvpController {
                 getFragmentManager(), homeFragment, HOME);
 
         return homeFragment;
+    }
+
+    /**
+     * Login Fragment
+     *
+     * @return HomeFragment
+     */
+    @NonNull
+    private LoginFragment findOrCreateLoginFragment() {
+
+        LoginFragment loginFragment =
+                (LoginFragment) getFragmentManager().findFragmentByTag(LOGIN);
+        if (loginFragment == null) {
+            // Create the fragment
+            loginFragment = LoginFragment.newInstance();
+        }
+
+        ActivityUtils.showOrAddFragmentByTag(
+                getFragmentManager(), loginFragment, LOGIN);
+
+        return loginFragment;
     }
 
     /**

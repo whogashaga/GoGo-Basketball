@@ -23,7 +23,7 @@ public interface MainContract {
 
         void openWaiting4JoinSlaveUi(WaitingRoomInfo waitingRoomInfo);
 
-        void openLoginUi(int loginFrom);
+        void openLoginUi();
 
         void openCheckOutSuccessUi();
 
@@ -43,7 +43,7 @@ public interface MainContract {
 
         CourtsMapFragment findMapView();
 
-//        void showMessageDialogUi(@MessageDialog.MessageType int type);
+        void showMessageDialogUi(@MessageDialog.MessageType int type);
 
         void showToastUi(String message);
 
@@ -103,9 +103,9 @@ public interface MainContract {
 
         void updateToolbar(String title);
 
-        void onLoginSuccess(int loginFrom);
+        void onLoginSuccess();
 
-        void showLoginDialog(int loginFrom);
+        void showLoginFragment();
 
         void showCheckOutSuccessDialog();
 

@@ -35,6 +35,7 @@ import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 import com.kerry.gogobasketball.util.Constants;
+import com.kerry.gogobasketball.util.UserManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,6 +50,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private BottomNavigationView mBottomNavigation;
+    private MessageDialog mMessageDialog;
     private Toolbar mToolbar;
     private TextView mToolbarTitle;
     private ImageView mToolbarLogo;
@@ -77,14 +79,18 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 //        postCustomObject();
 //        getCustomObject();
 
-
     }
 
     private void init() {
         setContentView(R.layout.activity_main);
 
         mMainMvpController = MainMvpController.create(this);
-        mPresenter.openHome();
+
+        if (!UserManager.getInstance().isLoggedIn()){
+            mPresenter.openHome();
+        } else {
+            mPresenter.showLoginFragment();
+        }
 
         setToolbar();
         setBottomNavigation();
@@ -558,8 +564,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
-    public void openLoginUi(int loginFrom) {
-
+    public void openLoginUi() {
+        mMainMvpController.findOrCreateLoginView();
     }
 
     @Override
@@ -582,6 +588,21 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     @Override
     public CourtsMapFragment findMapView() {
         return mMainMvpController.findOrCreateMapView();
+    }
+
+    @Override
+    public void showMessageDialogUi(int type) {
+        if (mMessageDialog == null) {
+
+            mMessageDialog = new MessageDialog();
+            mMessageDialog.setMessage(type);
+            mMessageDialog.show(getSupportFragmentManager(), "");
+
+        } else if (!mMessageDialog.isAdded()) {
+
+            mMessageDialog.setMessage(type);
+            mMessageDialog.show(getSupportFragmentManager(), "");
+        }
     }
 
     @Override

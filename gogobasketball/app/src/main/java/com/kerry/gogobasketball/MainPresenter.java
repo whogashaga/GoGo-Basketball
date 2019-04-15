@@ -23,6 +23,8 @@ import com.kerry.gogobasketball.home.item.Looking4RoomPresenter;
 import com.kerry.gogobasketball.home.map.CourtsMapContract;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapPresenter;
+import com.kerry.gogobasketball.login.LoginContract;
+import com.kerry.gogobasketball.login.LoginPresenter;
 import com.kerry.gogobasketball.playing.player.PlayerGoingContract;
 import com.kerry.gogobasketball.playing.player.PlayerGoingPresenter;
 import com.kerry.gogobasketball.playing.referee.RefereeGoingContract;
@@ -47,12 +49,13 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         FriendContract.Presenter, RankContract.Presenter, Want2CreateRoomContract.Presenter,
         Waiting4JoinMasterContract.Presenter, Waiting4JoinSlaveContract.Presenter,
         RefereeGoingContract.Presenter, PlayerGoingContract.Presenter,
-        RefereeResultContract.Presenter, PlayerResultContract.Presenter {
+        RefereeResultContract.Presenter, PlayerResultContract.Presenter, LoginContract.Presenter {
 
     private FirebaseFirestore mDb;
     private MainContract.View mMainView;
 
     private HomePresenter mHomePresenter;
+    private LoginPresenter mLoginPresenter;
     private FriendPresenter mFriendPresenter;
     private RankPresenter mRankPresenter;
     private ProfilePresenter mProfilePresenter;
@@ -86,6 +89,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     void setHomePresenter(HomePresenter homePresenter) {
         mHomePresenter = checkNotNull(homePresenter);
+    }
+
+    void setLoginPresenter(LoginPresenter loginPresenter) {
+        mLoginPresenter = checkNotNull(loginPresenter);
     }
 
     void setFriendPresenter(FriendPresenter friendPresenter) {
@@ -461,13 +468,13 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void onLoginSuccess(int loginFrom) {
+    public void onLoginSuccess() {
 
     }
 
     @Override
-    public void showLoginDialog(int loginFrom) {
-
+    public void showLoginFragment() {
+        mMainView.openLoginUi();
     }
 
     @Override
@@ -482,7 +489,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void showLoginSuccessDialog() {
-
+        mMainView.showMessageDialogUi(MessageDialog.LOGIN_SUCCESS);
     }
 
     @Override

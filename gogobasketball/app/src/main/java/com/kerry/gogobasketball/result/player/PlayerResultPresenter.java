@@ -56,6 +56,16 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
     }
 
     @Override
+    public void setActivityBackgroundLandScape() {
+
+    }
+
+    @Override
+    public void setActivityBackgroundPortrait() {
+
+    }
+
+    @Override
     public void result(int requestCode, int resultCode) {
 
     }

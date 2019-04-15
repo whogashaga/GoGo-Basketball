@@ -58,6 +58,16 @@ public class RefereeResultPresenter implements RefereeResultContract.Presenter {
     }
 
     @Override
+    public void setActivityBackgroundLandScape() {
+
+    }
+
+    @Override
+    public void setActivityBackgroundPortrait() {
+
+    }
+
+    @Override
     public void result(int requestCode, int resultCode) {
 
     }

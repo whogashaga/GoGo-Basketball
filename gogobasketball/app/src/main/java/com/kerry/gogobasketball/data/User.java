@@ -1,23 +1,33 @@
 package com.kerry.gogobasketball.data;
 
-public class UserInfo {
+public class User {
 
     private String mAvatar;
     private String mId;
     private String mPosition;
     private String mGender;
-    private String mEmail;
+    private String mFacebookId;
+    private String mName;
     private RecordOfPlayer mPlayerRecord;
     private RecordOfReferee mRefereeRecord;
 
-    public UserInfo(){
+    public User(){
         mAvatar = "";
         mId = "";
+        mName = "";
         mPosition = "";
         mGender = "";
-        mEmail = "";
+        mFacebookId = "";
         mPlayerRecord = new RecordOfPlayer();
         mRefereeRecord = new RecordOfReferee();
+    }
+
+    public String getName() {
+        return mName;
+    }
+
+    public void setName(String mName) {
+        this.mName = mName;
     }
 
     public String getAvatar() {
@@ -52,12 +62,12 @@ public class UserInfo {
         this.mGender = gender;
     }
 
-    public String getEmail() {
-        return mEmail;
+    public String getFacebookId() {
+        return mFacebookId;
     }
 
-    public void setEmail(String email) {
-        this.mEmail = email;
+    public void setFacebookId(String facebookId) {
+        this.mFacebookId = facebookId;
     }
 
     public RecordOfPlayer getPlayerRecord() {

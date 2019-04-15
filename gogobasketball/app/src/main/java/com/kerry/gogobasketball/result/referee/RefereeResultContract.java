@@ -33,5 +33,9 @@ public interface RefereeResultContract {
 
         void getRoomInfoFromFireStore(String hostName);
 
+        void setActivityBackgroundLandScape();
+
+        void setActivityBackgroundPortrait();
+
     }
 }
