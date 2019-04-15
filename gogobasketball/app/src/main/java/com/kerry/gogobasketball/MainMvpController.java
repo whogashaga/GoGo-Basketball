@@ -25,6 +25,8 @@ import com.kerry.gogobasketball.profile.ProfileFragment;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
 import com.kerry.gogobasketball.rank.RankFragment;
 import com.kerry.gogobasketball.rank.RankPresenter;
+import com.kerry.gogobasketball.result.player.PlayerResultFragment;
+import com.kerry.gogobasketball.result.player.PlayerResultPresenter;
 import com.kerry.gogobasketball.result.referee.RefereeResultFragment;
 import com.kerry.gogobasketball.result.referee.RefereeResultPresenter;
 import com.kerry.gogobasketball.util.ActivityUtils;
@@ -55,13 +57,14 @@ public class MainMvpController {
     private PlayerGoingPresenter mPlayerGoingPresenter;
 
     private RefereeResultPresenter mRefereeResultPresenter;
+    private PlayerResultPresenter mPlayerResultPresenter;
 
     private Looking4RoomPresenter mLooking4RoomPresenter;
     private CourtsMapPresenter mCourtsMapPresenter;
 
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({
-            HOME, FRIEND, RANK, PROFILE, WANT2CREATEROOM, WAITING4JOIN, GOING4REFEREE, GOING4PLAYER, RESULT4REFEREE
+            HOME, FRIEND, RANK, PROFILE, WANT2CREATEROOM, WAITING4JOIN, GOING4REFEREE, GOING4PLAYER, RESULT4REFEREE, RESULT4PLAYER
     })
     public @interface FragmentType {
     }
@@ -75,6 +78,7 @@ public class MainMvpController {
     static final String GOING4REFEREE = "GOING4REFEREE";
     static final String GOING4PLAYER = "GOING4PLAYER";
     static final String RESULT4REFEREE = "RESULT4REFEREE";
+    static final String RESULT4PLAYER = "RESULT4PLAYER";
 
 
     @Retention(RetentionPolicy.SOURCE)
@@ -202,7 +206,7 @@ public class MainMvpController {
         Waiting4JoinMasterFragment waiting4JoinFragment = createWaiting4JoinFragment();
 
         mWaiting4JoinMasterPresenter = new Waiting4JoinMasterPresenter(waiting4JoinFragment);
-        mWaiting4JoinMasterPresenter.getRoomInfoFromWant2Create(waitingRoomInfo, hostSeatsInfo,roomDocId);
+        mWaiting4JoinMasterPresenter.getRoomInfoFromWant2Create(waitingRoomInfo, hostSeatsInfo, roomDocId);
 
         mMainPresenter.setWaiting4JoinPresenter(mWaiting4JoinMasterPresenter);
         waiting4JoinFragment.setPresenter(mMainPresenter);
@@ -239,11 +243,12 @@ public class MainMvpController {
     /**
      * GamePlayingOfPlayer View
      */
-    void findOrCreatePlayerGoingView(String hostName) {
+    void findOrCreatePlayerGoingView(String hostName, int nowSort) {
 
         PlayerGoingFragment playerGoingFragment = createPlayerGoingFragment();
 
         mPlayerGoingPresenter = new PlayerGoingPresenter(playerGoingFragment);
+        mPlayerGoingPresenter.getHostNameFromWaitingJoinSlave(hostName, nowSort);
 
         mMainPresenter.setPlayerGoingPresenter(mPlayerGoingPresenter);
         playerGoingFragment.setPresenter(mMainPresenter);
@@ -261,6 +266,20 @@ public class MainMvpController {
 
         mMainPresenter.setRefereeResultPresenter(mRefereeResultPresenter);
         refereeResultFragment.setPresenter(mMainPresenter);
+    }
+
+    /**
+     * PlayerResult View
+     */
+    void findOrCreatePlayerResultView(String hostName, int nowSort) {
+
+        PlayerResultFragment playerResultFragment = createPlayerResultFragment();
+
+        mPlayerResultPresenter = new PlayerResultPresenter(playerResultFragment);
+        mPlayerResultPresenter.getHostNameFromPlayerGoing(hostName, nowSort);
+
+        mMainPresenter.setPlayerResultPresenter(mPlayerResultPresenter);
+        playerResultFragment.setPresenter(mMainPresenter);
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -473,9 +492,9 @@ public class MainMvpController {
     }
 
     /**
-     * PlayerGoing Fragment
+     * RefereeResult Fragment
      *
-     * @return PlayerGoingFragment
+     * @return RefereeResultFragment
      */
     @NonNull
     private RefereeResultFragment createRefereeResultFragment() {
@@ -486,6 +505,22 @@ public class MainMvpController {
                 getFragmentManager(), refereeResultFragment, RESULT4REFEREE);
 
         return refereeResultFragment;
+    }
+
+    /**
+     * PlayerResult Fragment
+     *
+     * @return PlayerResultFragment
+     */
+    @NonNull
+    private PlayerResultFragment createPlayerResultFragment() {
+
+        PlayerResultFragment playerResultFragment = PlayerResultFragment.newInstance();
+
+        ActivityUtils.addFragmentByTag(
+                getFragmentManager(), playerResultFragment, RESULT4PLAYER);
+
+        return playerResultFragment;
     }
 
     /* ------------------------------------------------------------------------------------------ */

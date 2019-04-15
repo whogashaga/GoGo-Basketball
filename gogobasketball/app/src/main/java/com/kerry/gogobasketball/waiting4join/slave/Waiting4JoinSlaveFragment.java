@@ -101,6 +101,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         mRoot = inflater.inflate(R.layout.fragment_waiting4join_slave, container, false);
         mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        mRoot.getBackground().setAlpha(200);
 
         mTextRoomName = mRoot.findViewById(R.id.text_slave_waiting4join_room_name);
 
@@ -328,7 +329,9 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mPresenter.setBackKeyDisable(true);
         mPresenter.hideToolbarAndBottomNavigation();
+        mPresenter.setActivityBackgroundLandScape();
 
         mGenderP1.setVisibility(View.INVISIBLE);
         mPositionP1.setVisibility(View.INVISIBLE);
@@ -356,6 +359,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     @Override
     public void onDestroy() {
         super.onDestroy();
+        mPresenter.setBackKeyDisable(false);
         mPresenter.showToolbarAndBottomNavigation();
         mPresenter.deleteSeatsInfoWhenLeaveRoom();
     }
@@ -367,8 +371,8 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     }
 
     @Override
-    public void openPlayerGamingUi(String hostName) {
-        mPresenter.openGamePlayingOfPlayer(hostName);
+    public void openPlayerGamingUi(String hostName, int nowSort) {
+        mPresenter.openGamePlayingOfPlayer(hostName, nowSort);
     }
 
     @Override

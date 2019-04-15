@@ -31,9 +31,11 @@ public interface MainContract {
 
         void openGamePlayingOfRefereeUi(String hostName);
 
-        void openGamePlayingOfPlayerUi(String hostName);
+        void openGamePlayingOfPlayerUi(String hostName, int nowSort);
 
         void openRefereeResultUi(String hostName);
+
+        void openPlayerResultUi(String hostName, int nowSort);
 
         void popBackStackUi();
 
@@ -60,6 +62,10 @@ public interface MainContract {
         void closeDrawerUi();
 
         void showDrawerUserUi();
+
+        void showActivityBackgroundWhenLandScape();
+
+        void showActivityBackgroundWhenPortrait();
 
     }
 

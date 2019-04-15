@@ -72,6 +72,9 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     private TextView mTextIdP7;
     private Button mBtnSeatP7, mBtnInfoP7, mBtnAddFriendP7;
 
+    private View mSeatP1, mSeatP2, mSeatP3;
+    private View mSeatP4, mSeatP5, mSeatP6, mSeatP7;
+
     private WaitingRoomInfo mWaitingRoomInfo;
     private int mCurrentGamerAmount;
     private int mNowMasterSort;
@@ -121,7 +124,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         if (mNowMasterSort == 7) {
             mPresenter.openGamePlayingOfReferee(gamingRoomInfo.getHostName());
         } else {
-            mPresenter.openGamePlayingOfPlayer(gamingRoomInfo.getHostName());
+            mPresenter.openGamePlayingOfPlayer(gamingRoomInfo.getHostName(), mNowMasterSort);
         }
     }
 
@@ -130,6 +133,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         mRoot = inflater.inflate(R.layout.fragment_waiting4join_master, container, false);
         mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        mRoot.getBackground().setAlpha(200);
 
         mRoomName = mRoot.findViewById(R.id.text_waiting4join_room_name);
         mBtnBackStack = mRoot.findViewById(R.id.btn_waiting4join_back_arrow);
@@ -153,6 +157,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mTextIdP1 = mRoot.findViewById(R.id.waiting_team_a_player1_id);
         mBtnSeatP1 = mRoot.findViewById(R.id.btn_waiting_team_a_player1_change_seat);
         mBtnSeatP1.setOnClickListener(this);
+        mSeatP1 = mRoot.findViewById(R.id.waiting_team_a_player1_seat);
+        mSeatP1.getBackground().setAlpha(230);
 
         mAvatarP2 = mRoot.findViewById(R.id.waiting_team_a_player2_avatar);
         mAvatarP2.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -164,6 +170,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mBtnAddFriendP2 = mRoot.findViewById(R.id.btn_waiting_team_a_player2_add);
         mBtnSeatP2 = mRoot.findViewById(R.id.btn_waiting_team_a_player2_change_seat);
         mBtnSeatP2.setOnClickListener(this);
+        mSeatP2 = mRoot.findViewById(R.id.waiting_team_a_player2_seat);
+        mSeatP2.getBackground().setAlpha(230);
 
         mAvatarP3 = mRoot.findViewById(R.id.waiting_team_a_player3_avatar);
         mAvatarP3.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -175,6 +183,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mBtnAddFriendP3 = mRoot.findViewById(R.id.btn_waiting_team_a_player3_add);
         mBtnSeatP3 = mRoot.findViewById(R.id.btn_waiting_team_a_player3_change_seat);
         mBtnSeatP3.setOnClickListener(this);
+        mSeatP3 = mRoot.findViewById(R.id.waiting_team_a_player3_seat);
+        mSeatP3.getBackground().setAlpha(230);
 
         mAvatarP4 = mRoot.findViewById(R.id.waiting_team_b_player1_avatar);
         mAvatarP4.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -186,6 +196,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mBtnAddFriendP4 = mRoot.findViewById(R.id.btn_waiting_team_b_player1_add);
         mBtnSeatP4 = mRoot.findViewById(R.id.btn_waiting_team_b_player1_change_seat);
         mBtnSeatP4.setOnClickListener(this);
+        mSeatP4 = mRoot.findViewById(R.id.waiting_team_b_player1_seat);
+        mSeatP4.getBackground().setAlpha(230);
 
         mAvatarP5 = mRoot.findViewById(R.id.waiting_team_b_player2_avatar);
         mAvatarP5.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -197,6 +209,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mBtnAddFriendP5 = mRoot.findViewById(R.id.btn_waiting_team_b_player2_add);
         mBtnSeatP5 = mRoot.findViewById(R.id.btn_waiting_team_b_player2_change_seat);
         mBtnSeatP5.setOnClickListener(this);
+        mSeatP5 = mRoot.findViewById(R.id.waiting_team_b_player2_seat);
+        mSeatP5.getBackground().setAlpha(230);
 
         mAvatarP6 = mRoot.findViewById(R.id.waiting_team_b_player3_avatar);
         mAvatarP6.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -208,6 +222,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mBtnAddFriendP6 = mRoot.findViewById(R.id.btn_waiting_team_b_player3_add);
         mBtnSeatP6 = mRoot.findViewById(R.id.btn_waiting_team_b_player3_change_seat);
         mBtnSeatP6.setOnClickListener(this);
+        mSeatP6 = mRoot.findViewById(R.id.waiting_team_b_player3_seat);
+        mSeatP6.getBackground().setAlpha(230);
 
         mAvatarP7 = mRoot.findViewById(R.id.waiting_referee_avatar);
         mAvatarP7.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -219,6 +235,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mBtnAddFriendP7 = mRoot.findViewById(R.id.btn_waiting_referee_add);
         mBtnSeatP7 = mRoot.findViewById(R.id.btn_waiting_referee_change_seat);
         mBtnSeatP7.setOnClickListener(this);
+        mSeatP7 = mRoot.findViewById(R.id.waiting_referee_seat);
+        mSeatP7.getBackground().setAlpha(230);
 
         return mRoot;
     }
@@ -389,6 +407,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mPresenter.setBackKeyDisable(true);
+        mPresenter.setActivityBackgroundLandScape();
         mRoomName.setText(mWaitingRoomInfo.getRoomName());
 
         mGenderP1.setVisibility(View.INVISIBLE);
@@ -417,6 +437,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     public void onDestroy() {
         super.onDestroy();
         mPresenter.deleteHostInfoWhenLeave();
+        mPresenter.setBackKeyDisable(false);
     }
 
     @Override

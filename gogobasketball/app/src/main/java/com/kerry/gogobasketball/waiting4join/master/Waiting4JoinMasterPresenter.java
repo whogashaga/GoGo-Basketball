@@ -511,6 +511,21 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     }
 
     @Override
+    public void setBackKeyDisable(boolean isBackKeyDisable) {
+
+    }
+
+    @Override
+    public void setActivityBackgroundLandScape() {
+
+    }
+
+    @Override
+    public void setActivityBackgroundPortrait() {
+
+    }
+
+    @Override
     public void hideToolbarAndBottomNavigation() {
 
     }
@@ -526,7 +541,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     }
 
     @Override
-    public void openGamePlayingOfPlayer(String hostName) {
+    public void openGamePlayingOfPlayer(String hostName, int nowSort) {
 
     }
 

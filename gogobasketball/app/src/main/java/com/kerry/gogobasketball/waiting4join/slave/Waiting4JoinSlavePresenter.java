@@ -396,7 +396,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 if (currentSeat.getSort() == 7) {
                     mWaiting4JoinView.openRefereeGamingUi(mWaitingRoomInfo.getHostName());
                 } else {
-                    mWaiting4JoinView.openPlayerGamingUi(mWaitingRoomInfo.getHostName());
+                    mWaiting4JoinView.openPlayerGamingUi(mWaitingRoomInfo.getHostName(), currentSeat.getSort());
                 }
             }
         });
@@ -531,7 +531,22 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     /* ------------------------------------------------------------------------------------------ */
 
     @Override
+    public void setActivityBackgroundLandScape() {
+
+    }
+
+    @Override
+    public void setActivityBackgroundPortrait() {
+
+    }
+
+    @Override
     public void result(int requestCode, int resultCode) {
+
+    }
+
+    @Override
+    public void setBackKeyDisable(boolean isBackKeyDisable) {
 
     }
 
@@ -556,7 +571,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     }
 
     @Override
-    public void openGamePlayingOfPlayer(String hostName) {
+    public void openGamePlayingOfPlayer(String hostName, int nowSort) {
 
     }
 

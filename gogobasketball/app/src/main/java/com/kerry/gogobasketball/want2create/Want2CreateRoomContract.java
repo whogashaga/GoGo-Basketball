@@ -41,6 +41,9 @@ public interface Want2CreateRoomContract {
 
         void onRoomNameEditTextChange(CharSequence charSequence);
 
+        void setActivityBackgroundLandScape();
+
+        void setActivityBackgroundPortrait();
 
     }
 }

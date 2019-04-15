@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.api.LogDescriptor;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -44,6 +43,7 @@ import java.util.Map;
 public class MainActivity extends BaseActivity implements MainContract.View, NavigationView.OnNavigationItemSelectedListener {
 
     private Button mBtnCreateUser;
+    private View mView;
     FirebaseFirestore mDb = FirebaseFirestore.getInstance();
 
     private DrawerLayout mDrawerLayout;
@@ -65,8 +65,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         init();
+        mView = this.findViewById(R.id.layout_main);
 
 //        createUserInfo();
 //        setUserRecord();
@@ -543,13 +543,18 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
-    public void openGamePlayingOfPlayerUi(String hostName) {
-        mMainMvpController.findOrCreatePlayerGoingView(hostName);
+    public void openGamePlayingOfPlayerUi(String hostName, int nowSort) {
+        mMainMvpController.findOrCreatePlayerGoingView(hostName, nowSort);
     }
 
     @Override
     public void openRefereeResultUi(String hostName) {
         mMainMvpController.findOrCreateRefereeResultView(hostName);
+    }
+
+    @Override
+    public void openPlayerResultUi(String hostName, int nowSort) {
+        mMainMvpController.findOrCreatePlayerResultView(hostName, nowSort);
     }
 
     @Override
@@ -644,11 +649,22 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     @Override
     public void onBackPressed() {
         if (mPresenter.disableBackKey()) {
-            mPresenter.showErrorToast("比賽尚未結束\n請勿離場！！", true);
+//            mPresenter.showErrorToast("比賽尚未結束\n請勿離場！！", true);
         } else {
             super.onBackPressed();
         }
     }
+
+    @Override
+    public void showActivityBackgroundWhenLandScape() {
+        mView.setBackgroundResource(R.drawable.street);
+    }
+
+    @Override
+    public void showActivityBackgroundWhenPortrait() {
+        mView.setBackgroundResource(R.drawable.home_sea);
+    }
+
 
 }
 

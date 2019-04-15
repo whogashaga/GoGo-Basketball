@@ -31,6 +31,8 @@ import com.kerry.gogobasketball.profile.ProfileContract;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
 import com.kerry.gogobasketball.rank.RankContract;
 import com.kerry.gogobasketball.rank.RankPresenter;
+import com.kerry.gogobasketball.result.player.PlayerResultContract;
+import com.kerry.gogobasketball.result.player.PlayerResultPresenter;
 import com.kerry.gogobasketball.result.referee.RefereeResultContract;
 import com.kerry.gogobasketball.result.referee.RefereeResultPresenter;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterContract;
@@ -44,7 +46,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         Looking4RoomContract.Presenter, CourtsMapContract.Presenter, ProfileContract.Presenter,
         FriendContract.Presenter, RankContract.Presenter, Want2CreateRoomContract.Presenter,
         Waiting4JoinMasterContract.Presenter, Waiting4JoinSlaveContract.Presenter,
-        RefereeGoingContract.Presenter, PlayerGoingContract.Presenter, RefereeResultContract.Presenter {
+        RefereeGoingContract.Presenter, PlayerGoingContract.Presenter,
+        RefereeResultContract.Presenter, PlayerResultContract.Presenter {
 
     private FirebaseFirestore mDb;
     private MainContract.View mMainView;
@@ -64,6 +67,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private PlayerGoingPresenter mPlayerGoingPresenter;
 
     private RefereeResultPresenter mRefereeResultPresenter;
+    private PlayerResultPresenter mPlayerResultPresenter;
 
     private static boolean mIsBackKeyDisable;
 
@@ -126,6 +130,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     void setRefereeResultPresenter(RefereeResultPresenter refereeResultPresenter) {
         mRefereeResultPresenter = checkNotNull(refereeResultPresenter);
+    }
+
+    void setPlayerResultPresenter(PlayerResultPresenter playerResultPresenter) {
+        mPlayerResultPresenter = checkNotNull(playerResultPresenter);
     }
 
     @Override
@@ -226,13 +234,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void openGameResultSlave() {
-
-    }
-
-    @Override
-    public void updateGameResultOfPlayer(GamingRoomInfo gamingRoomInfo) {
-        mRefereeGoingPresenter.updateGameResultOfPlayer(gamingRoomInfo);
+    public void openGameResultPlayer(String hostName, int nowSort) {
+        mMainView.openPlayerResultUi(hostName, nowSort);
     }
 
     @Override
@@ -240,7 +243,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mMainView.openRefereeResultUi(hostName);
     }
 
-
+    @Override
+    public void updateGameResultOfPlayer(GamingRoomInfo gamingRoomInfo) {
+        mRefereeGoingPresenter.updateGameResultOfPlayer(gamingRoomInfo);
+    }
 
     @Override
     public void forced2FinishGaming() {
@@ -250,6 +256,19 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void finishResultResultUi() {
 
+    }
+
+    /* ------------------------------------------------------------------------------------------ */
+    /* Player Result */
+
+    @Override
+    public void getHostNameFromPlayerGoing(String hostName, int nowSort) {
+        mPlayerResultPresenter.getHostNameFromPlayerGoing(hostName, nowSort);
+    }
+
+    @Override
+    public void getRoomInfoFromFireStorePlayer(String hostName, int nowSort) {
+        mPlayerResultPresenter.getRoomInfoFromFireStorePlayer(hostName, nowSort);
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -294,12 +313,13 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void openGamePlayingOfPlayer(String hostName) {
-        mMainView.openGamePlayingOfPlayerUi(hostName);
+    public void openGamePlayingOfPlayer(String hostName, int nowSort) {
+        mMainView.openGamePlayingOfPlayerUi(hostName, nowSort);
     }
 
     @Override
     public void finishWaiting4JoinUi() {
+        mMainView.showActivityBackgroundWhenPortrait();
         mMainView.popBackStackUi();
     }
 
@@ -384,6 +404,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
+    public void getHostNameFromWaitingJoinSlave(String hostName, int nowSort) {
+        mPlayerGoingPresenter.getHostNameFromWaitingJoinSlave(hostName, nowSort);
+    }
+
+    @Override
     public void updateRoomInfo2FireStore() {
         mWant2CreateRoomPresenter.updateRoomInfo2FireStore();
     }
@@ -404,6 +429,16 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     /* ------------------------------------------------------------------------------------------ */
+
+    @Override
+    public void setActivityBackgroundLandScape() {
+        mMainView.showActivityBackgroundWhenLandScape();
+    }
+
+    @Override
+    public void setActivityBackgroundPortrait() {
+        mMainView.showActivityBackgroundWhenPortrait();
+    }
 
     @Override
     public void hideBottomNavigation() {

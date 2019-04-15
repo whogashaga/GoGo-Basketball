@@ -68,6 +68,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     @Override
     public void onResume() {
         super.onResume();
+        mPresenter.setActivityBackgroundPortrait();
     }
 
     @Override

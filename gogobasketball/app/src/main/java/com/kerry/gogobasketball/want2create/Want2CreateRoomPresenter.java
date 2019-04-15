@@ -145,6 +145,16 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     }
 
     @Override
+    public void setActivityBackgroundLandScape() {
+
+    }
+
+    @Override
+    public void setActivityBackgroundPortrait() {
+
+    }
+
+    @Override
     public void start() {
 
     }

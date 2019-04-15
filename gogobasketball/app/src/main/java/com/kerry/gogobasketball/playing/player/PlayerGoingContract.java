@@ -8,6 +8,8 @@ public interface PlayerGoingContract {
 
         void showPlayingGameUi();
 
+        void openGameResultPlayerUi(String hostName, int nowSort);
+
         boolean isActive();
 
     }
@@ -26,10 +28,12 @@ public interface PlayerGoingContract {
 
         void forced2FinishPlayingUi();
 
-        void openGameResultSlave();
+        void openGameResultPlayer(String hostName, int nowSort);
 
         void forced2FinishGaming();
 
         void setBackKeyDisable(boolean isBackKeyDisable);
+
+        void getHostNameFromWaitingJoinSlave(String hostName, int nowSort);
     }
 }

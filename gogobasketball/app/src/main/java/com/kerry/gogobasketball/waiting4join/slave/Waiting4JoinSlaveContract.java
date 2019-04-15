@@ -19,7 +19,7 @@ public interface Waiting4JoinSlaveContract {
 
         void closeSlaveUiBecauseMasterOutFirst();
 
-        void openPlayerGamingUi(String hostName);
+        void openPlayerGamingUi(String hostName, int nowSort);
 
         void openRefereeGamingUi(String hostName);
     }
@@ -27,6 +27,8 @@ public interface Waiting4JoinSlaveContract {
     interface Presenter extends BasePresenter {
 
         void result(int requestCode, int resultCode);
+
+        void setBackKeyDisable(boolean isBackKeyDisable);
 
         void hideToolbarAndBottomNavigation();
 
@@ -36,7 +38,7 @@ public interface Waiting4JoinSlaveContract {
 
         void openGamePlayingOfReferee(String hostName);
 
-        void openGamePlayingOfPlayer(String hostName);
+        void openGamePlayingOfPlayer(String hostName, int nowSort);
 
         void finishWaiting4JoinUi();
 
@@ -49,6 +51,10 @@ public interface Waiting4JoinSlaveContract {
         void checkTotalPlayerAmountSlave();
 
         void deleteRoomDocSlave();
+
+        void setActivityBackgroundLandScape();
+
+        void setActivityBackgroundPortrait();
     }
 
 }
