@@ -116,7 +116,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user_avatar" />
@@ -124,28 +124,28 @@
         <TextView
             android:id="@+id/playing_team_a_player1_id"
             style="@style/PlayingRecordTitle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
-            android:layout_width="0dp"
-            android:maxLines="1"
             android:fontFamily="sans-serif-condensed-medium"
             android:gravity="center_horizontal"
-            android:text="Antetokounmpo"
+            android:maxLines="1"
+            android:text="Player1"
+            android:layout_marginTop="8dp"
             android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player1_gender"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_avatar"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_avatar" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/playing_team_a_player1_gender"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player1_position"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player1_point_title"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_avatar"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player1_id"
             app:srcCompat="@drawable/ic_female" />
@@ -167,8 +167,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
             android:text="得分"
+            app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player1_rebound_title"
             app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_a_player1_point_minus"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -179,7 +179,6 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="籃板"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player1_foul_title"
             app:layout_constraintStart_toStartOf="@+id/playing_team_a_player1_point_title"
@@ -190,10 +189,10 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="犯規"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/playing_team_a_player1_rebound_title"
             app:layout_constraintStart_toStartOf="@+id/playing_team_a_player1_rebound_title"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player1_rebound_title" />
 
@@ -206,15 +205,16 @@
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player1_point"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player1_point_title"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_point_title" />
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player1_point_title"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/btn_playing_team_a_player1_point_plus"
             android:layout_width="26dp"
             android:layout_height="26dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/button_effect_plus"
-            app:layout_constraintBottom_toBottomOf="@+id/text_playing_team_a_player1_point"
+            app:layout_constraintBottom_toTopOf="@+id/text_playing_team_a_player1_rebound"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/text_playing_team_a_player1_point"
@@ -324,7 +324,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user_avatar" />
@@ -333,27 +333,27 @@
             android:id="@+id/playing_team_a_player2_id"
             style="@style/PlayingRecordTitle"
             android:layout_width="0dp"
-            android:maxLines="1"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:gravity="center_horizontal"
-            android:text="我有一個夢在"
+            android:maxLines="1"
+            android:text="Player2"
+            android:layout_marginTop="8dp"
             android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player2_gender"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_avatar"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_avatar" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/playing_team_a_player2_gender"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/playing_team_a_player2_position"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player2_point_title"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_avatar"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player2_id"
             app:srcCompat="@drawable/ic_female" />
@@ -375,7 +375,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
             android:text="得分"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player2_rebound_title"
             app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_a_player2_point_minus"
@@ -388,7 +387,6 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="籃板"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player2_foul_title"
             app:layout_constraintStart_toStartOf="@+id/playing_team_a_player2_point_title"
@@ -399,10 +397,10 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="犯規"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/playing_team_a_player2_rebound_title"
             app:layout_constraintStart_toStartOf="@+id/playing_team_a_player2_rebound_title"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player2_rebound_title" />
 
@@ -415,7 +413,8 @@
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player2_point"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player2_point_title"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_point_title" />
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player2_point_title"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/btn_playing_team_a_player2_point_plus"
@@ -533,7 +532,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user_avatar" />
@@ -542,24 +541,27 @@
             android:id="@+id/playing_team_a_player3_id"
             style="@style/PlayingRecordTitle"
             android:layout_width="0dp"
-            android:maxLines="1"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
+            android:fontFamily="sans-serif-condensed-medium"
             android:gravity="center_horizontal"
+            android:maxLines="1"
             android:text="Player3"
+            android:layout_marginTop="8dp"
             android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player3_gender"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player3_avatar"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player3_avatar" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/playing_team_a_player3_gender"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="sans-serif-condensed-medium"
+            app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player3_point_title"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player3_avatar"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player3_id"
             app:srcCompat="@drawable/ic_female" />
@@ -581,7 +583,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
             android:text="得分"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player3_rebound_title"
             app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_a_player3_point_minus"
@@ -594,7 +595,6 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="籃板"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_a_player3_foul_title"
             app:layout_constraintStart_toStartOf="@+id/playing_team_a_player3_point_title"
@@ -605,10 +605,10 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="犯規"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/playing_team_a_player3_rebound_title"
             app:layout_constraintStart_toStartOf="@+id/playing_team_a_player3_rebound_title"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_a_player3_rebound_title" />
 
@@ -621,7 +621,8 @@
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_a_player3_point"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_a_player3_point_title"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player3_point_title" />
+            app:layout_constraintTop_toTopOf="@+id/playing_team_a_player3_point_title"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/btn_playing_team_a_player3_point_plus"
@@ -740,7 +741,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user_avatar" />
@@ -749,24 +750,27 @@
             android:id="@+id/playing_team_b_player1_id"
             style="@style/PlayingRecordTitle"
             android:layout_width="0dp"
-            android:maxLines="1"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:gravity="center_horizontal"
+            android:maxLines="1"
             android:text="Player4"
+            android:layout_marginTop="8dp"
             android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/playing_team_b_player1_gender"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player1_avatar"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_b_player1_avatar" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/playing_team_b_player1_gender"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/playing_team_b_player1_point_title"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player1_avatar"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_b_player1_id"
             app:srcCompat="@drawable/ic_female" />
@@ -788,7 +792,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
             android:text="得分"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_b_player1_rebound_title"
             app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_b_player1_point_minus"
@@ -801,7 +804,6 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="籃板"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_b_player1_foul_title"
             app:layout_constraintStart_toStartOf="@+id/playing_team_b_player1_point_title"
@@ -812,10 +814,10 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="犯規"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/playing_team_b_player1_rebound_title"
             app:layout_constraintStart_toStartOf="@+id/playing_team_b_player1_rebound_title"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_b_player1_rebound_title" />
 
@@ -828,7 +830,8 @@
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player1_point"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player1_point_title"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_b_player1_point_title" />
+            app:layout_constraintTop_toTopOf="@+id/playing_team_b_player1_point_title"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/btn_playing_team_b_player1_point_plus"
@@ -944,7 +947,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user_avatar" />
@@ -953,24 +956,27 @@
             android:id="@+id/playing_team_b_player2_id"
             style="@style/PlayingRecordTitle"
             android:layout_width="0dp"
-            android:maxLines="1"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:gravity="center_horizontal"
+            android:maxLines="1"
             android:text="Player5"
+            android:layout_marginTop="8dp"
             android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/playing_team_b_player2_gender"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player2_avatar"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_b_player2_avatar" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/playing_team_b_player2_gender"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/playing_team_b_player2_point_title"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player2_avatar"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_b_player2_id"
             app:srcCompat="@drawable/ic_female" />
@@ -992,7 +998,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
             android:text="得分"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_b_player2_rebound_title"
             app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_b_player2_point_minus"
@@ -1005,7 +1010,6 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="籃板"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_b_player2_foul_title"
             app:layout_constraintStart_toStartOf="@+id/playing_team_b_player2_point_title"
@@ -1016,10 +1020,10 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="犯規"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/playing_team_b_player2_rebound_title"
             app:layout_constraintStart_toStartOf="@+id/playing_team_b_player2_rebound_title"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_b_player2_rebound_title" />
 
@@ -1032,7 +1036,8 @@
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player2_point"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player2_point_title"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_b_player2_point_title" />
+            app:layout_constraintTop_toTopOf="@+id/playing_team_b_player2_point_title"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/btn_playing_team_b_player2_point_plus"
@@ -1148,7 +1153,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user_avatar" />
@@ -1157,24 +1162,27 @@
             android:id="@+id/playing_team_b_player3_id"
             style="@style/PlayingRecordTitle"
             android:layout_width="0dp"
-            android:maxLines="1"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:gravity="center_horizontal"
+            android:maxLines="1"
             android:text="Player6"
+            android:layout_marginTop="8dp"
             android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/playing_team_b_player3_gender"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player3_avatar"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_b_player3_avatar" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/playing_team_b_player3_gender"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/playing_team_b_player3_point_title"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player3_avatar"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_b_player3_id"
             app:srcCompat="@drawable/ic_female" />
@@ -1196,7 +1204,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
             android:text="得分"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_b_player3_rebound_title"
             app:layout_constraintEnd_toStartOf="@+id/btn_playing_team_b_player3_point_minus"
@@ -1209,7 +1216,6 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="籃板"
             app:layout_constraintBottom_toTopOf="@+id/playing_team_b_player3_foul_title"
             app:layout_constraintStart_toStartOf="@+id/playing_team_b_player3_point_title"
@@ -1220,10 +1226,10 @@
             style="@style/PlayingRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="犯規"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/playing_team_b_player3_rebound_title"
             app:layout_constraintStart_toStartOf="@+id/playing_team_b_player3_rebound_title"
             app:layout_constraintTop_toBottomOf="@+id/playing_team_b_player3_rebound_title" />
 
@@ -1236,7 +1242,8 @@
             app:layout_constraintEnd_toStartOf="@+id/text_playing_team_b_player3_point"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/playing_team_b_player3_point_title"
-            app:layout_constraintTop_toTopOf="@+id/playing_team_b_player3_point_title" />
+            app:layout_constraintTop_toTopOf="@+id/playing_team_b_player3_point_title"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/btn_playing_team_b_player3_point_plus"
@@ -1341,12 +1348,13 @@
         android:id="@+id/btn_game_shut_down_forced"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/button_effect_stop"
         android:text=""
         app:layout_constraintBottom_toTopOf="@+id/btn_gaming_game_over"
         app:layout_constraintEnd_toEndOf="@+id/btn_gaming_game_over"
-        app:layout_constraintStart_toStartOf="@+id/btn_gaming_game_over" />
+        app:layout_constraintStart_toStartOf="@+id/btn_gaming_game_over"
+        app:layout_constraintTop_toBottomOf="@+id/text_gaming_current_score_team_a" />
 
     <Button
         android:id="@+id/btn_gaming_game_over"

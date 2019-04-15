@@ -366,7 +366,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
 
     @Override
     public void closeSlaveUiBecauseMasterOutFirst() {
-        mPresenter.showErrorToast("房主落跑...", false);
+//        mPresenter.showErrorToast("房主落跑...", false);
         mPresenter.finishWaiting4JoinUi();
     }
 

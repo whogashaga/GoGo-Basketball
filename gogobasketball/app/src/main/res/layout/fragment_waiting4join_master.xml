@@ -47,7 +47,9 @@
             android:fontFamily="sans-serif-condensed-medium"
             android:gravity="left"
             android:text="Player1"
+            app:layout_constraintBottom_toTopOf="@+id/waiting_team_a_player1_gender"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player1_avatar"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,6 +59,8 @@
             android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_waiting_team_a_player1_info"
             app:layout_constraintEnd_toStartOf="@+id/waiting_team_a_player1_position"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player1_avatar"
@@ -97,9 +101,8 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_info_player"
             android:text="@string/person_info"
@@ -107,7 +110,7 @@
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_a_player1_add"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_a_player1_change_seat"
-            app:layout_constraintTop_toBottomOf="@+id/waiting_team_a_player1_avatar" />
+            app:layout_constraintTop_toBottomOf="@+id/waiting_team_a_player1_gender" />
 
         <Button
             android:id="@+id/btn_waiting_team_a_player1_add"
@@ -381,7 +384,9 @@
             android:fontFamily="sans-serif-condensed-medium"
             android:gravity="left"
             android:text="Player4"
+            app:layout_constraintBottom_toTopOf="@+id/waiting_team_b_player1_gender"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player1_avatar"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -391,6 +396,8 @@
             android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_waiting_team_b_player1_info"
             app:layout_constraintEnd_toStartOf="@+id/waiting_team_b_player1_position"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player1_avatar"
@@ -430,9 +437,8 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_info_player"
             android:text="@string/person_info"
@@ -440,7 +446,7 @@
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_b_player1_add"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_b_player1_change_seat"
-            app:layout_constraintTop_toBottomOf="@+id/waiting_team_b_player1_avatar" />
+            app:layout_constraintTop_toBottomOf="@+id/waiting_team_b_player1_gender" />
 
         <Button
             android:id="@+id/btn_waiting_team_b_player1_add"
@@ -488,7 +494,9 @@
             android:fontFamily="sans-serif-condensed-medium"
             android:gravity="left"
             android:text="Player5"
+            app:layout_constraintBottom_toTopOf="@+id/waiting_team_b_player2_gender"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player2_avatar"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -498,6 +506,8 @@
             android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_waiting_team_b_player2_info"
             app:layout_constraintEnd_toStartOf="@+id/waiting_team_b_player2_position"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player2_avatar"
@@ -537,9 +547,8 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_info_player"
             android:text="@string/person_info"
@@ -547,7 +556,7 @@
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_b_player2_add"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_b_player2_change_seat"
-            app:layout_constraintTop_toBottomOf="@+id/waiting_team_b_player2_avatar" />
+            app:layout_constraintTop_toBottomOf="@+id/waiting_team_b_player2_gender" />
 
         <Button
             android:id="@+id/btn_waiting_team_b_player2_add"
@@ -597,7 +606,9 @@
             android:fontFamily="sans-serif-condensed-medium"
             android:gravity="left"
             android:text="Player6"
+            app:layout_constraintBottom_toTopOf="@+id/waiting_team_b_player3_gender"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player3_avatar"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -607,6 +618,8 @@
             android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_waiting_team_b_player3_info"
             app:layout_constraintEnd_toStartOf="@+id/waiting_team_b_player3_position"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_b_player3_avatar"
@@ -646,9 +659,8 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_info_player"
             android:text="@string/person_info"
@@ -656,7 +668,7 @@
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_b_player3_add"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_b_player3_change_seat"
-            app:layout_constraintTop_toBottomOf="@+id/waiting_team_b_player3_avatar" />
+            app:layout_constraintTop_toBottomOf="@+id/waiting_team_b_player3_gender" />
 
         <Button
             android:id="@+id/btn_waiting_team_b_player3_add"
@@ -705,12 +717,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="12dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:gravity="left"
             android:text="Referee"
+            app:layout_constraintBottom_toTopOf="@+id/waiting_referee_gender"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/waiting_referee_avatar"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -720,6 +734,8 @@
             android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_waiting_referee_info"
             app:layout_constraintEnd_toStartOf="@+id/waiting_referee_position"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread"
@@ -760,9 +776,8 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_info_referee"
             android:text="@string/person_info"
@@ -770,7 +785,7 @@
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_referee_add"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_waiting_referee_change_seat"
-            app:layout_constraintTop_toBottomOf="@+id/waiting_referee_avatar" />
+            app:layout_constraintTop_toBottomOf="@+id/waiting_referee_gender" />
 
         <Button
             android:id="@+id/btn_waiting_referee_add"
@@ -932,7 +947,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:fontFamily="@font/piedra"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-condensed-medium"
         android:gravity="center"
         android:text="Room Name"
         android:textAlignment="center"
