@@ -30,7 +30,6 @@ import java.util.Arrays;
 
 public class UserManager {
 
-//    private final GoGoRepository mGoGoRepository;
     private User mUser;
     private CallbackManager mFbCallbackManager;
     private long mLastChallengeTime;
@@ -42,7 +41,8 @@ public class UserManager {
     }
 
     private UserManager() {
-//        mGoGoRepository = GoGoRepository.getInstance();
+        mFbCallbackManager = CallbackManager.Factory.create();
+        mUser = new User();
     }
 
     public static UserManager getInstance() {
@@ -56,7 +56,7 @@ public class UserManager {
      */
     public void loginGoGoBasketballByFacebook(Context context, final LoadCallback loadCallback) {
 
-        mFbCallbackManager = CallbackManager.Factory.create();
+//        mFbCallbackManager = CallbackManager.Factory.create();
         LoginManager.getInstance().registerCallback(mFbCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
@@ -98,8 +98,34 @@ public class UserManager {
 
     }
 
-    private void loginGoGoBasketball(LoginResult loginResult, LoadCallback loadCallback) {
+    private void handleFacebookAccessToken(AccessToken token) {
+        Log.d("Kerry", "handleFacebookAccessToken:" + token);
 
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithCredential:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            Toast.makeText(FacebookLoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
+
+                        // ...
+                    }
+                });
+    }
+
+    private void loginGoGoBasketball(LoginResult loginResult, LoadCallback loadCallback) {
+        Log.e("Kerry", "loginGoGoBasketball Token = " + loginResult.getAccessToken().getToken());
         GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
                 new GraphRequest.GraphJSONObjectCallback(){
                     @Override
@@ -112,6 +138,7 @@ public class UserManager {
                             mUser.setFacebookId(loginResult.getAccessToken().getUserId());
                             updateUser2FireStore();
 
+                            Log.e("Kerry", "");
                         } catch (JSONException e) {
                             Log.e("Kerry", "unexpected JSON exception", e);
                         }
@@ -166,11 +193,6 @@ public class UserManager {
         }
     }
 
-//    public String getUserInfo() {
-//        return mGoGoRepository.getUserInformation(getUser().getEmail());
-//    }
-
-
     public User getUser() {
         return mUser;
     }
@@ -181,7 +203,7 @@ public class UserManager {
 
     public boolean isLoggedIn() {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        return accessToken != null;
+        return !(accessToken == null || accessToken.getPermissions().isEmpty());
     }
 
     public boolean hasUserInfo() {

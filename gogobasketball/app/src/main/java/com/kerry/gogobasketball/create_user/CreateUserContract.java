@@ -1,13 +1,13 @@
-package com.kerry.gogobasketball.login;
+package com.kerry.gogobasketball.create_user;
 
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
 
-public interface LoginContract {
+public interface CreateUserContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showLoginUi();
+        void showCreateUserUi();
 
         boolean isActive();
 
@@ -21,13 +21,7 @@ public interface LoginContract {
 
         void showToolbarAndBottomNavigation();
 
-        void loadProfileUserData();
-
-        void checkProfileUserData();
-
-        void showLoginSuccessDialog();
-
-        void onLoginSuccess();
+        void showCreateSuccessDialog();
 
     }
 }

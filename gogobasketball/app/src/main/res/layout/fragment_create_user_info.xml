@@ -134,7 +134,7 @@
     </RadioGroup>
 
     <Spinner
-        android:id="@+id/spinner_courts_selector"
+        android:id="@+id/spinner_create_user_position_selector"
         android:layout_width="0dp"
         android:layout_height="@dimen/height_payment_editor"
         android:layout_marginStart="16dp"
@@ -158,7 +158,7 @@
         app:layout_constraintEnd_toStartOf="@+id/btn_create_user_cancel"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_courts_selector" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_create_user_position_selector" />
 
     <Button
         android:id="@+id/btn_create_user_cancel"

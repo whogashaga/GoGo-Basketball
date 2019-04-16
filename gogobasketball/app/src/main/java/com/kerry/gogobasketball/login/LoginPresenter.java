@@ -19,6 +19,16 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     @Override
+    public void hideToolbarAndBottomNavigation() {
+
+    }
+
+    @Override
+    public void showToolbarAndBottomNavigation() {
+
+    }
+
+    @Override
     public void loadProfileUserData() {
 
     }

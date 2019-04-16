@@ -2,6 +2,7 @@ package com.kerry.gogobasketball;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
@@ -64,6 +65,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
     private MainContract.Presenter mPresenter;
 
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +89,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
         mMainMvpController = MainMvpController.create(this);
 
-        if (!UserManager.getInstance().isLoggedIn()){
+        if (UserManager.getInstance().isLoggedIn()){
             mPresenter.openHome();
         } else {
             mPresenter.showLoginFragment();
@@ -95,6 +98,12 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         setToolbar();
         setBottomNavigation();
         setDrawerLayout();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UserManager.getInstance().getFbCallbackManager().onActivityResult(requestCode, resultCode, data);
     }
 
     public void postCustomObject() {
