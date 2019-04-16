@@ -2,6 +2,8 @@ package com.kerry.gogobasketball.data;
 
 public class User {
 
+    private boolean mIsLoggedIn;
+//    private boolean mIsUserExisted;
     private String mAvatar;
     private String mId;
     private String mPosition;
@@ -12,6 +14,8 @@ public class User {
     private RecordOfReferee mRefereeRecord;
 
     public User(){
+        mIsLoggedIn = false;
+//        mIsUserExisted = false;
         mAvatar = "";
         mId = "";
         mName = "";
@@ -21,6 +25,22 @@ public class User {
         mPlayerRecord = new RecordOfPlayer();
         mRefereeRecord = new RecordOfReferee();
     }
+
+    public boolean isLoggedIn() {
+        return mIsLoggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        mIsLoggedIn = loggedIn;
+    }
+
+//    public boolean isUserExisted() {
+//        return mIsUserExisted;
+//    }
+//
+//    public void setUserExisted(boolean loggedIn) {
+//        mIsUserExisted = loggedIn;
+//    }
 
     public String getName() {
         return mName;

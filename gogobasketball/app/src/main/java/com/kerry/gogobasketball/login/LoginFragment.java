@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.kerry.gogobasketball.R;
+import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.util.UserManager;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -48,6 +49,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         mPresenter.result(requestCode, resultCode);
+        UserManager.getInstance().getFbCallbackManager().onActivityResult(requestCode, resultCode, data);
     }
 
     @Nullable
@@ -79,11 +81,11 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
 
                 UserManager.getInstance().loginGoGoBasketballByFacebook(getActivity(), new UserManager.LoadCallback() {
                     @Override
-                    public void onSuccess() {
-
+                    public void onSuccess(User user) {
+                        Log.d("Kerry","LoginFragment loginGoGoBasketballByFacebook onSuccess!");
                         if (mPresenter != null) {
                             mPresenter.showLoginSuccessDialog();
-                            mPresenter.onLoginSuccess();
+                            mPresenter.onLoginSuccess(user.getFacebookId());
                         }
                     }
 

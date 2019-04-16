@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:text="性別 :"
+        android:text="選擇性別 :"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_create_user_id_title" />
 
@@ -63,19 +63,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:text="位置 :"
+        android:text="選擇位置 :"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_create_user_gender_title" />
 
     <EditText
-        android:id="@+id/edit_want2create_room_name_content"
+        android:id="@+id/edit_create_user_id"
         android:layout_width="0dp"
         android:layout_height="@dimen/height_payment_editor"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        android:hint="@string/edit_room_name"
+        android:layout_marginEnd="24dp"
+        android:hint="@string/edit_user_id"
         android:imeOptions="actionNext"
-        android:maxLength="10"
+        android:maxLength="6"
         android:maxLines="1"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
@@ -92,18 +92,17 @@
         android:id="@+id/radios_create_user_gender_selector"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/outline_radio_btn_referee"
-        android:checkedButton="@+id/radios_referee_yes"
+        android:checkedButton="@+id/radios_create_male"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/text_create_user_gender_title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/text_create_user_gender_title"
+        app:layout_constraintStart_toStartOf="@+id/edit_create_user_id"
         app:layout_constraintTop_toTopOf="@+id/text_create_user_gender_title">
 
         <RadioButton
-            android:id="@+id/radios_referee_yes"
+            android:id="@+id/radios_create_male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
@@ -118,7 +117,7 @@
             android:textSize="18sp" />
 
         <RadioButton
-            android:id="@+id/radios_referee_no"
+            android:id="@+id/radios_create_female"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
@@ -137,13 +136,14 @@
         android:id="@+id/spinner_create_user_position_selector"
         android:layout_width="0dp"
         android:layout_height="@dimen/height_payment_editor"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="#e0ffffff"
+        android:paddingStart="16dp"
         android:prompt="@string/select_position"
         android:spinnerMode="dialog"
         app:layout_constraintBottom_toBottomOf="@+id/text_create_user_position_title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/text_create_user_position_title"
+        app:layout_constraintStart_toStartOf="@+id/radios_create_user_gender_selector"
         app:layout_constraintTop_toTopOf="@+id/text_create_user_position_title" />
 
     <Button

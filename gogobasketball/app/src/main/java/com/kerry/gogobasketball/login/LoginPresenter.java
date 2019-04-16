@@ -2,6 +2,8 @@ package com.kerry.gogobasketball.login;
 
 import android.support.annotation.NonNull;
 
+import com.kerry.gogobasketball.data.User;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class LoginPresenter implements LoginContract.Presenter {
@@ -44,7 +46,7 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     @Override
-    public void onLoginSuccess() {
+    public void onLoginSuccess(String userDocId) {
 
     }
 

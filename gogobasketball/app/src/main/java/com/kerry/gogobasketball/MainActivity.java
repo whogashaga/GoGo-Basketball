@@ -2,6 +2,7 @@ package com.kerry.gogobasketball;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -31,6 +33,7 @@ import com.kerry.gogobasketball.data.GamingReferee;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
 import com.kerry.gogobasketball.data.RecordOfPlayer;
 import com.kerry.gogobasketball.data.RecordOfReferee;
+import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
@@ -38,6 +41,12 @@ import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.UserManager;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -65,8 +74,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
     private MainContract.Presenter mPresenter;
 
-    private FirebaseAuth mAuth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,15 +93,22 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
     private void init() {
         setContentView(R.layout.activity_main);
-
         mMainMvpController = MainMvpController.create(this);
 
-        if (UserManager.getInstance().isLoggedIn()){
-            mPresenter.openHome();
+        if (UserManager.getInstance().isLoggedIn()) {
+            UserManager.getInstance().checkHasUserBeenCreated(getFacebookIdString(Constants.FACEBOOK_ID),new UserManager.CheckUserCallback() {
+                @Override
+                public void haveCreated(String userDocId) {
+                    mPresenter.openHome();
+                }
+                @Override
+                public void haveNotCreated(String userDocId) {
+                    mPresenter.showCreateUserFragment(userDocId);
+                }
+            });
         } else {
             mPresenter.showLoginFragment();
         }
-
         setToolbar();
         setBottomNavigation();
         setDrawerLayout();
@@ -135,8 +149,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
                         });
             }
         });
-
-
     }
 
     public void setUserRecord() {
@@ -573,6 +585,11 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
+    public void openCreateUserUi(String userDocId) {
+        mMainMvpController.findOrCreateCreateUserView(userDocId);
+    }
+
+    @Override
     public void openLoginUi() {
         mMainMvpController.findOrCreateLoginView();
     }
@@ -695,6 +712,39 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         mView.setBackgroundResource(R.drawable.home_sea);
     }
 
+    public void saveFacebookIdFile(String jsonString) {
+        File file = new File(getFilesDir(), Constants.FACEBOOK_ID);
+        String fileContents = jsonString;
+        FileOutputStream outputStream;
 
+        try {
+            outputStream = openFileOutput(Constants.FACEBOOK_ID, Context.MODE_PRIVATE);
+            outputStream.write(fileContents.getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getFacebookIdString(String fileName) {
+
+        StringBuilder text = new StringBuilder();
+        try {
+
+            FileInputStream fIS = getApplicationContext().openFileInput(fileName);
+            InputStreamReader isr = new InputStreamReader(fIS, "UTF-8");
+            BufferedReader br = new BufferedReader(isr);
+
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                text.append(line + '\n');
+            }
+            br.close();
+        } catch (IOException e) {
+            Log.e("Error!", "Error occured while reading text file from Internal Storage!");
+        }
+        return text.toString();
+    }
 }
 

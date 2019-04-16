@@ -2,6 +2,7 @@ package com.kerry.gogobasketball.login;
 
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
+import com.kerry.gogobasketball.data.User;
 
 public interface LoginContract {
 
@@ -27,7 +28,7 @@ public interface LoginContract {
 
         void showLoginSuccessDialog();
 
-        void onLoginSuccess();
+        void onLoginSuccess(String userDocId);
 
     }
 }

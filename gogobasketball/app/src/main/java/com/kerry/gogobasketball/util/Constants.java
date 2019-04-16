@@ -4,6 +4,8 @@ public class Constants {
 
     public static final String TAG = "GoGoBasketball_TAG";
 
+    public static final String FACEBOOK_ID = "facebook_id";
+
     // User Manager
     public static final String USER_DATA = "user_data";
     public static final String USER_TOKEN = "user_token";

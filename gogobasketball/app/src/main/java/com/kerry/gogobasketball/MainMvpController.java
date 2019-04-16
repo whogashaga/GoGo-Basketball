@@ -7,6 +7,10 @@ import android.support.annotation.StringDef;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 
+import com.kerry.gogobasketball.create_user.CreateUserContract;
+import com.kerry.gogobasketball.create_user.CreateUserFragment;
+import com.kerry.gogobasketball.create_user.CreateUserPresenter;
+import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.friends.FriendFragment;
@@ -62,12 +66,14 @@ public class MainMvpController {
     private RefereeResultPresenter mRefereeResultPresenter;
     private PlayerResultPresenter mPlayerResultPresenter;
 
+    private CreateUserPresenter mCreateUserPresenter;
+
     private Looking4RoomPresenter mLooking4RoomPresenter;
     private CourtsMapPresenter mCourtsMapPresenter;
 
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({
-            HOME, FRIEND, RANK, PROFILE, WANT2CREATEROOM, WAITING4JOIN, GOING4REFEREE, GOING4PLAYER, RESULT4REFEREE, RESULT4PLAYER, LOGIN
+            HOME, FRIEND, RANK, PROFILE, WANT2CREATEROOM, WAITING4JOIN, GOING4REFEREE, GOING4PLAYER, RESULT4REFEREE, RESULT4PLAYER, LOGIN, CREATE1USER
     })
     public @interface FragmentType {
     }
@@ -83,6 +89,7 @@ public class MainMvpController {
     static final String RESULT4REFEREE = "RESULT4REFEREE";
     static final String RESULT4PLAYER = "RESULT4PLAYER";
     static final String LOGIN = "LOGIN";
+    static final String CREATE1USER = "CREATE1USER";
 
 
     @Retention(RetentionPolicy.SOURCE)
@@ -300,6 +307,21 @@ public class MainMvpController {
         playerResultFragment.setPresenter(mMainPresenter);
     }
 
+
+    /**
+     *  CreateUser View
+     */
+    void findOrCreateCreateUserView(String userDocId) {
+
+        CreateUserFragment createUserFragment = createCreateUserFragment();
+
+        mCreateUserPresenter = new CreateUserPresenter(createUserFragment);
+        mCreateUserPresenter.getUserIniInfoFromLogin(userDocId);
+
+        mMainPresenter.setCreateUserPresenter(mCreateUserPresenter);
+        createUserFragment.setPresenter(mMainPresenter);
+    }
+
     /* ------------------------------------------------------------------------------------------ */
 
 
@@ -322,27 +344,6 @@ public class MainMvpController {
                 getFragmentManager(), homeFragment, HOME);
 
         return homeFragment;
-    }
-
-    /**
-     * Login Fragment
-     *
-     * @return HomeFragment
-     */
-    @NonNull
-    private LoginFragment findOrCreateLoginFragment() {
-
-        LoginFragment loginFragment =
-                (LoginFragment) getFragmentManager().findFragmentByTag(LOGIN);
-        if (loginFragment == null) {
-            // Create the fragment
-            loginFragment = LoginFragment.newInstance();
-        }
-
-        ActivityUtils.showOrAddFragmentByTag(
-                getFragmentManager(), loginFragment, LOGIN);
-
-        return loginFragment;
     }
 
     /**
@@ -560,6 +561,38 @@ public class MainMvpController {
                 getFragmentManager(), playerResultFragment, RESULT4PLAYER);
 
         return playerResultFragment;
+    }
+
+    /**
+     * Login Fragment
+     *
+     * @return HomeFragment
+     */
+    @NonNull
+    private LoginFragment findOrCreateLoginFragment() {
+
+        LoginFragment loginFragment = LoginFragment.newInstance();
+
+        ActivityUtils.addFragmentByTag(
+                getFragmentManager(), loginFragment, LOGIN);
+
+        return loginFragment;
+    }
+
+    /**
+     * CreateUser Fragment
+     *
+     * @return CreateUserFragment
+     */
+    @NonNull
+    private CreateUserFragment createCreateUserFragment() {
+
+        CreateUserFragment createUserFragment = CreateUserFragment.newInstance();
+
+        ActivityUtils.addFragmentByTagStateLoss(
+                getFragmentManager(), createUserFragment, CREATE1USER);
+
+        return createUserFragment;
     }
 
     /* ------------------------------------------------------------------------------------------ */

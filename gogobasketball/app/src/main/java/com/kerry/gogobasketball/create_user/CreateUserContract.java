@@ -2,12 +2,13 @@ package com.kerry.gogobasketball.create_user;
 
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
+import com.kerry.gogobasketball.data.User;
 
 public interface CreateUserContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showCreateUserUi();
+        void openHomeUi();
 
         boolean isActive();
 
@@ -23,5 +24,18 @@ public interface CreateUserContract {
 
         void showCreateSuccessDialog();
 
+        void showErrorToast(String message, boolean isShort);
+
+        void getUserIniInfoFromLogin(String userDocId);
+
+        void getPositionFromSpinner(String position);
+
+        void checkIfUserIdExisted();
+
+        void onUerIdEditTextChange(CharSequence charSequence);
+
+        void getGenderFromRadioGroup(String gender);
+
+        void openHome();
     }
 }

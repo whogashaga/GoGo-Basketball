@@ -73,4 +73,27 @@ public class ActivityUtils {
 
         transaction.commit();
     }
+
+    public static void addFragmentByTagStateLoss(@NonNull FragmentManager fragmentManager,
+                                        @NonNull Fragment fragment,
+                                        @MainMvpController.FragmentType String fragmentTag) {
+        checkNotNull(fragmentManager);
+
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.fragment_no_change,R.anim.fragment_out_from_right_side);
+
+        for (Fragment element : fragmentManager.getFragments()) {
+            if (!element.isHidden()) {
+                transaction.hide(element);
+                break;
+            }
+        }
+
+        if (fragment.isAdded()) {
+            transaction.show(fragment);
+        } else {
+            transaction.add(R.id.layout_main_container, fragment, fragmentTag);
+        }
+        transaction.commitAllowingStateLoss();
+    }
 }

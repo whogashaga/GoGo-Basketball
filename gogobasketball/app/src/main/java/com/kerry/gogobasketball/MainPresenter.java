@@ -4,12 +4,19 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.kerry.gogobasketball.create_user.CreateUserContract;
+import com.kerry.gogobasketball.create_user.CreateUserPresenter;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
@@ -37,6 +44,7 @@ import com.kerry.gogobasketball.result.player.PlayerResultContract;
 import com.kerry.gogobasketball.result.player.PlayerResultPresenter;
 import com.kerry.gogobasketball.result.referee.RefereeResultContract;
 import com.kerry.gogobasketball.result.referee.RefereeResultPresenter;
+import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterContract;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterPresenter;
 import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlaveContract;
@@ -49,16 +57,19 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         FriendContract.Presenter, RankContract.Presenter, Want2CreateRoomContract.Presenter,
         Waiting4JoinMasterContract.Presenter, Waiting4JoinSlaveContract.Presenter,
         RefereeGoingContract.Presenter, PlayerGoingContract.Presenter,
-        RefereeResultContract.Presenter, PlayerResultContract.Presenter, LoginContract.Presenter {
+        RefereeResultContract.Presenter, PlayerResultContract.Presenter,
+        LoginContract.Presenter, CreateUserContract.Presenter {
 
     private FirebaseFirestore mDb;
     private MainContract.View mMainView;
 
     private HomePresenter mHomePresenter;
-    private LoginPresenter mLoginPresenter;
     private FriendPresenter mFriendPresenter;
     private RankPresenter mRankPresenter;
     private ProfilePresenter mProfilePresenter;
+
+    private LoginPresenter mLoginPresenter;
+    private CreateUserPresenter mCreateUserPresenter;
 
     private Looking4RoomPresenter mLooking4RoomPresenter;
     private CourtsMapPresenter mCourtsMapPresenter;
@@ -143,6 +154,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mPlayerResultPresenter = checkNotNull(playerResultPresenter);
     }
 
+    void setCreateUserPresenter(CreateUserPresenter createUserPresenter) {
+        mCreateUserPresenter = checkNotNull(createUserPresenter);
+    }
+
     @Override
     public void result(int requestCode, int resultCode) {
 
@@ -192,6 +207,39 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     public void showToolbarAndBottomNavigation() {
         mMainView.showToolbarUi();
         mMainView.showBottomNavigationUi();
+    }
+
+    /**
+     * Open CreateUserFragment
+     */
+    @Override
+    public void showCreateSuccessDialog() {
+
+    }
+
+    @Override
+    public void getUserIniInfoFromLogin(String userDocId) {
+        mCreateUserPresenter.getUserIniInfoFromLogin(userDocId);
+    }
+
+    @Override
+    public void getPositionFromSpinner(String position) {
+        mCreateUserPresenter.getPositionFromSpinner(position);
+    }
+
+    @Override
+    public void checkIfUserIdExisted() {
+        mCreateUserPresenter.checkIfUserIdExisted();
+    }
+
+    @Override
+    public void onUerIdEditTextChange(CharSequence charSequence) {
+        mCreateUserPresenter.onUerIdEditTextChange(charSequence);
+    }
+
+    @Override
+    public void getGenderFromRadioGroup(String gender) {
+        mCreateUserPresenter.getGenderFromRadioGroup(gender);
     }
 
     /**
@@ -478,6 +526,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
+    public void showCreateUserFragment(String userDocId) {
+        mMainView.openCreateUserUi(userDocId);
+    }
+
+    @Override
     public void showCheckOutSuccessDialog() {
 
     }
@@ -490,6 +543,35 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void showLoginSuccessDialog() {
         mMainView.showMessageDialogUi(MessageDialog.LOGIN_SUCCESS);
+    }
+
+    @Override
+    public void onLoginSuccess(String userDocId) {
+        checkIfUserCreated(userDocId);
+    }
+
+    private void checkIfUserCreated(String userDocId) {
+        DocumentReference docIdRef = FirestoreHelper.getFirestore()
+                .collection(Constants.USERS)
+                .document(userDocId);
+        docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(Constants.TAG, "Document exists!");
+                        mMainView.openHomeUi();
+                    } else {
+                        Log.d(Constants.TAG, "Document does not exist!");
+                        mMainView.openCreateUserUi(userDocId);
+                    }
+                } else {
+                    Log.d(Constants.TAG, "Failed with: ", task.getException());
+                }
+            }
+        });
+
     }
 
     @Override
@@ -576,7 +658,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     public void showErrorToast(String message, boolean isShort) {
         Toast toast;
 
-        if (isShort){
+        if (isShort) {
             toast = Toast.makeText(GoGoBasketball.getAppContext(), "無效", Toast.LENGTH_SHORT);
         } else {
             toast = Toast.makeText(GoGoBasketball.getAppContext(), "無效", Toast.LENGTH_LONG);

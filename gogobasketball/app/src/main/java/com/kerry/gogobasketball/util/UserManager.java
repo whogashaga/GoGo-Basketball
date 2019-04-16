@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -15,11 +16,16 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.kerry.gogobasketball.FirestoreHelper;
 import com.kerry.gogobasketball.GoGoBasketball;
+import com.kerry.gogobasketball.MainActivity;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.data.User;
 
@@ -28,6 +34,7 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 
+
 public class UserManager {
 
     private User mUser;
@@ -35,14 +42,19 @@ public class UserManager {
     private long mLastChallengeTime;
     private int mChallengeCount;
     private static final int CHALLENGE_LIMIT = 23;
+    private String mFbUserId;
+
+    private FirebaseAuth mAuth;
 
     private static class UserManagerHolder {
         private static final UserManager INSTANCE = new UserManager();
     }
 
     private UserManager() {
-        mFbCallbackManager = CallbackManager.Factory.create();
+//        mFbCallbackManager = CallbackManager.Factory.create();
         mUser = new User();
+        mAuth = FirebaseAuth.getInstance();
+        mFbUserId = "";
     }
 
     public static UserManager getInstance() {
@@ -51,28 +63,30 @@ public class UserManager {
 
     /**
      * Login GoGoBasketball by Facebook: Step 1. Register FB Login Callback
+     *
      * @param context
      * @param loadCallback
      */
     public void loginGoGoBasketballByFacebook(Context context, final LoadCallback loadCallback) {
 
-//        mFbCallbackManager = CallbackManager.Factory.create();
+        mFbCallbackManager = CallbackManager.Factory.create();
         LoginManager.getInstance().registerCallback(mFbCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
 
-                loginFacebook(context);
+                mFbUserId = loginResult.getAccessToken().getUserId();
                 Log.d("Kerry", "FB Login Success");
                 Log.i("Kerry", "loginResult.getAccessToken().getToken() = " + loginResult.getAccessToken().getToken());
                 Log.i("Kerry", "loginResult.getAccessToken().getUserId() = " + loginResult.getAccessToken().getUserId());
                 Log.i("Kerry", "loginResult.getAccessToken().getApplicationId() = " + loginResult.getAccessToken().getApplicationId());
 
+                ((MainActivity) context).saveFacebookIdFile(loginResult.getAccessToken().getUserId());
+//                handleFacebookAccessToken(loginResult.getAccessToken(), loginResult, loadCallback);
                 loginGoGoBasketball(loginResult, loadCallback);
             }
 
             @Override
             public void onCancel() {
-
                 Log.d("Kerry", "FB Login Cancel");
                 loadCallback.onFail("FB Login Cancel");
             }
@@ -91,43 +105,14 @@ public class UserManager {
      * Login GoGoBasketball by Facebook: Step 2. Login Facebook
      */
     private void loginFacebook(Context context) {
-
         LoginManager.getInstance().logInWithReadPermissions(
                 (Activity) context, Arrays.asList("email"));
-
-
-    }
-
-    private void handleFacebookAccessToken(AccessToken token) {
-        Log.d("Kerry", "handleFacebookAccessToken:" + token);
-
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(FacebookLoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-
-                        // ...
-                    }
-                });
     }
 
     private void loginGoGoBasketball(LoginResult loginResult, LoadCallback loadCallback) {
         Log.e("Kerry", "loginGoGoBasketball Token = " + loginResult.getAccessToken().getToken());
         GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
-                new GraphRequest.GraphJSONObjectCallback(){
+                new GraphRequest.GraphJSONObjectCallback() {
                     @Override
                     public void onCompleted(JSONObject object, GraphResponse response) {
                         try {
@@ -136,8 +121,8 @@ public class UserManager {
                             mUser.setName(name);
                             mUser.setAvatar(profileImage);
                             mUser.setFacebookId(loginResult.getAccessToken().getUserId());
-                            updateUser2FireStore();
-
+                            mUser.setLoggedIn(true);
+                            loadCallback.onSuccess(mUser);
                             Log.e("Kerry", "");
                         } catch (JSONException e) {
                             Log.e("Kerry", "unexpected JSON exception", e);
@@ -151,24 +136,25 @@ public class UserManager {
 
     }
 
-    private void updateUser2FireStore() {
+    private void updateUser2FireStore(LoadCallback loadCallback) {
         FirestoreHelper.getFirestore()
                 .collection(Constants.USERS)
-                .add(mUser)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                .document(mFbUserId)
+                .set(mUser)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("Kerry", "gaming room id : " + documentReference.getId());
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Kerry", "User登入後資料上傳!");
+                        loadCallback.onSuccess(mUser);
                     }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("Kerry", "Error adding document", e);
-                    }
-                });
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w("Kerry", "Error adding document", e);
+                loadCallback.onFail("User 資料上傳失敗！");
+            }
+        });
     }
-
 
     public void clearUserLogin() {
         setUser(null);
@@ -193,6 +179,32 @@ public class UserManager {
         }
     }
 
+    public void checkHasUserBeenCreated(String userDocId, CheckUserCallback checkUserCallback) {
+        Log.d("Kerry", "checkHasUserBeenCreated fb id = " + mUser.getFacebookId());
+        DocumentReference docIdRef = FirestoreHelper.getFirestore()
+                .collection(Constants.USERS)
+                .document(userDocId);
+        docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(Constants.TAG, "User document already exists!");
+                        checkUserCallback.haveCreated(userDocId);
+                    } else {
+                        Log.d(Constants.TAG, "User document does not exist!");
+                        checkUserCallback.haveNotCreated(userDocId);
+                    }
+                } else {
+                    Log.d(Constants.TAG, "Failed with: ", task.getException());
+                }
+            }
+        });
+
+
+    }
+
     public User getUser() {
         return mUser;
     }
@@ -203,7 +215,7 @@ public class UserManager {
 
     public boolean isLoggedIn() {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        return !(accessToken == null || accessToken.getPermissions().isEmpty());
+        return accessToken != null;
     }
 
     public boolean hasUserInfo() {
@@ -216,10 +228,18 @@ public class UserManager {
 
     public interface LoadCallback {
 
-        void onSuccess();
+        void onSuccess(User user);
 
         void onFail(String errorMessage);
 
         void onInvalidToken(String errorMessage);
+    }
+
+    public interface CheckUserCallback {
+
+        void haveCreated(String userDocId);
+
+        void haveNotCreated(String userDocId);
+
     }
 }

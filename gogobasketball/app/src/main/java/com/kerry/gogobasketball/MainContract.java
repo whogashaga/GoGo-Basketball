@@ -2,6 +2,7 @@ package com.kerry.gogobasketball;
 
 import android.content.Intent;
 
+import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
@@ -36,6 +37,8 @@ public interface MainContract {
         void openRefereeResultUi(String hostName);
 
         void openPlayerResultUi(String hostName, int nowSort);
+
+        void openCreateUserUi(String userDocId);
 
         void popBackStackUi();
 
@@ -106,6 +109,8 @@ public interface MainContract {
         void onLoginSuccess();
 
         void showLoginFragment();
+
+        void showCreateUserFragment(String userDocId);
 
         void showCheckOutSuccessDialog();
 
