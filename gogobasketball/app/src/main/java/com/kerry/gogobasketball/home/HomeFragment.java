@@ -51,6 +51,14 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mPresenter.result(requestCode, resultCode);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.showToolbarAndBottomNavigation();
+//        mTabLayout.setupWithViewPager(mViewPager);
+//        mViewPager.setAdapter(mHomeAdapter);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

@@ -574,7 +574,38 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void onLoginSuccess(User user) {
-        updateUser2FireStore(user);
+//        updateUser2FireStore(user);
+        checkIfUserCreatedAfterLogin(user);
+    }
+
+    private void checkIfUserCreatedAfterLogin(User user) {
+
+        DocumentReference docRef = FirestoreHelper.getFirestore()
+                .collection(Constants.USERS)
+                .document(user.getFacebookId());
+
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d("Kerry", "DocumentSnapshot data: " + document.getData());
+                        User userInfo = document.toObject(User.class);
+                        if (userInfo.getId().equals("")) {
+                            mMainView.openCreateUserUi(user.getFacebookId());
+                        } else {
+                            mMainView.openHomeUi();
+                        }
+                    } else {
+                        updateUser2FireStore(user);
+                        Log.d("Kerry", "No such document");
+                    }
+                } else {
+                    Log.d("Kerry", "get failed with ", task.getException());
+                }
+            }
+        });
     }
 
     private void updateUser2FireStore(User user) {
@@ -586,7 +617,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d("Kerry", "User登入後資料上傳!");
-                        checkIfUserCreated(user.getFacebookId());
+                        mMainView.openCreateUserUi(user.getFacebookId());
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -602,13 +633,14 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         checkIfUserCreated(userFbDocId);
     }
 
+
     private void checkIfUserCreated(String userDocId) {
 
         Log.d("Kerry", "checkIfUserCreate doc id = "+ userDocId);
 
         DocumentReference docRef = FirestoreHelper.getFirestore()
                 .collection(Constants.USERS)
-                .document(userDocId);
+                .document(userDocId.trim());
 
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -622,8 +654,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                             mMainView.openCreateUserUi(userDocId);
                         } else {
                             mMainView.openHomeUi();
+//                            mMainView.findHomeView();
                         }
                     } else {
+
                         Log.d("Kerry", "No such document");
                     }
                 } else {
