@@ -60,8 +60,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
         mRoomDocId = roomDocId;
 
         setRoomSnapshotListerMaster(roomDocId);
-        setSeatSnapshotListerMaster(roomDocId);
-        setAllSnapshotListerSlave();
+        setAllSeatSnapshotListerSlave();
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -195,7 +194,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     /* ------------------------------------------------------------------------------------------ */
     /* Listener */
 
-    private void setAllSnapshotListerSlave() {
+    private void setAllSeatSnapshotListerSlave() {
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
@@ -213,34 +212,6 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                 });
 
     }
-
-    private void setSeatSnapshotListerMaster(String roomDocId) {
-        final DocumentReference docRef = FirestoreHelper.getFirestore()
-                .collection(Constants.WAITING_ROOM)
-                .document(mRoomDocId)
-                .collection(Constants.WAITING_SEATS)
-                .document(mHostSeatInfo.getId());
-
-        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot snapshot,
-                                @Nullable FirebaseFirestoreException e) {
-                if (e != null) {
-                    Log.w(Constants.TAG, "Listen failed.", e);
-                    return;
-                }
-                if (snapshot != null && snapshot.exists()) {
-//                    Log.w("Kerry", "Master Seat Current data: " + snapshot.getData());
-
-                    getNewSeatsInfo();
-
-                } else {
-                    Log.d(Constants.TAG, "Current data: null");
-                }
-            }
-        });
-    }
-
 
     private void setRoomSnapshotListerMaster(String roomDocId) {
 

@@ -206,7 +206,6 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                     public void onSuccess(Void aVoid) {
                         Log.d(Constants.TAG, "Slave 加入，並改變座位資訊！");
                         setRoomSnapshotListerSlave();
-                        setSeatSnapshotListerSlave(joinerInfo.getId());
                         setAllSnapshotListerSlave();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -356,33 +355,6 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                     }
                 });
 
-    }
-
-    private void setSeatSnapshotListerSlave(String roomDocId) {
-        final DocumentReference docRef = FirestoreHelper.getFirestore()
-                .collection(Constants.WAITING_ROOM)
-                .document(mRoomDocId)
-                .collection(Constants.WAITING_SEATS)
-                .document(mJoinerInfo.getId());
-
-        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot snapshot,
-                                @Nullable FirebaseFirestoreException e) {
-                if (e != null) {
-                    Log.w(Constants.TAG, "Listen failed.", e);
-                    return;
-                }
-                if (snapshot != null && snapshot.exists()) {
-                    Log.w(Constants.TAG, "Slave Seat Current data: " + snapshot.getData());
-
-                    getNewSeatsInfo();
-
-                } else {
-                    Log.d(Constants.TAG, "Current data: null");
-                }
-            }
-        });
     }
 
     private void setRoomSnapshotListerSlave() {
