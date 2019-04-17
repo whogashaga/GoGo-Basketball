@@ -84,9 +84,15 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mPresenter.getProfileUserData(getActivity());
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
-
+        mPresenter.hideToolbarAndBottomNavigation();
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
@@ -244,8 +250,13 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         if (seatPlayerInfo.getPosition().equals("")) {
             position.setVisibility(View.INVISIBLE);
         } else {
-            position.setVisibility(View.VISIBLE);
-            setPositionImage(seatPlayerInfo, position);
+            if (sort == 7) {
+                position.setVisibility(View.VISIBLE);
+                mPositionP7.setImageResource(R.drawable.ic_position_referee);
+            } else {
+                position.setVisibility(View.VISIBLE);
+                setPositionImage(seatPlayerInfo, position);
+            }
         }
 
         // set id
@@ -266,20 +277,20 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
 
     public void setPositionImage(WaitingRoomSeats waitPlayerInfo, ImageView imageView) {
 
-        if (waitPlayerInfo.getPosition().equals("pg")) {
+        if (waitPlayerInfo.getPosition().equals(Constants.POSITION_PG)) {
             imageView.setImageResource(R.drawable.ic_position_pg);
-        } else if (waitPlayerInfo.getPosition().equals("sg")) {
+        } else if (waitPlayerInfo.getPosition().equals(Constants.POSITION_SG)) {
             imageView.setImageResource(R.drawable.ic_position_sg);
-        } else if (waitPlayerInfo.getPosition().equals("sf")) {
+        } else if (waitPlayerInfo.getPosition().equals(Constants.POSITION_SF)) {
             imageView.setImageResource(R.drawable.ic_position_sf);
-        } else if (waitPlayerInfo.getPosition().equals("pf")) {
+        } else if (waitPlayerInfo.getPosition().equals(Constants.POSITION_PF)) {
             imageView.setImageResource(R.drawable.ic_position_pf);
-        } else if (waitPlayerInfo.getPosition().equals("c")) {
+        } else if (waitPlayerInfo.getPosition().equals(Constants.POSITION_CENTER)) {
             imageView.setImageResource(R.drawable.ic_position_center);
         } else if (waitPlayerInfo.getPosition().equals("r")) {
             imageView.setImageResource(R.drawable.ic_position_referee);
         } else {
-            Log.e("Kerry", "Set Position Error!!");
+            Log.e(Constants.TAG, "Set Position Error!!");
         }
     }
 

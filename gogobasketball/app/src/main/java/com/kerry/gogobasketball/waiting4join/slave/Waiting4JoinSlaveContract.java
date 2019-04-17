@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.waiting4join.slave;
 
+import android.app.Activity;
+
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
@@ -55,6 +57,8 @@ public interface Waiting4JoinSlaveContract {
         void setActivityBackgroundLandScape();
 
         void setActivityBackgroundPortrait();
+
+        void getProfileUserData(Activity activity);
     }
 
 }

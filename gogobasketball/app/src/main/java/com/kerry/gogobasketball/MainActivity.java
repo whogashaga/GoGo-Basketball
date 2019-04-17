@@ -730,7 +730,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
             String line;
 
             while ((line = br.readLine()) != null) {
-                text.append(line + '\n');
+                text.append(line);
             }
             br.close();
         } catch (IOException e) {

@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.want2create;
 
+import android.app.Activity;
+
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
@@ -45,5 +47,6 @@ public interface Want2CreateRoomContract {
 
         void setActivityBackgroundPortrait();
 
+        void loadProfileUserData(Activity activity);
     }
 }

@@ -31,4 +31,11 @@ public class Constants {
 
     public static final String TOTAL_GAMERS_AMOUNT = "totalPlayerAmount";
 
+    // position
+    public static final String POSITION_CENTER = "c";
+    public static final String POSITION_PF = "pf";
+    public static final String POSITION_SF = "sf";
+    public static final String POSITION_SG = "sg";
+    public static final String POSITION_PG = "pg";
+
 }

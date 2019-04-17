@@ -61,6 +61,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
 
         setRoomSnapshotListerMaster(roomDocId);
         setSeatSnapshotListerMaster(roomDocId);
+        setAllSnapshotListerSlave();
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -156,11 +157,14 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
             mWaitingRoomInfo.setPlayerAmount(mWaitingRoomInfo.getPlayerAmount() - 1);
             mWaitingRoomInfo.setRefereeAmount(1);
         } else {
-
+            // ArrayList 包含 7
             if (existedSortList.contains(7)) {
-//                Log.d("Kerry", "ArrayList 包含 7 ");
-                mWaitingRoomInfo.setPlayerAmount(mWaitingRoomInfo.getPlayerAmount() + 1);
-                mWaitingRoomInfo.setRefereeAmount(mWaitingRoomInfo.getRefereeAmount() - 1);
+                if (mCurrentSort == 7) {
+                    mWaitingRoomInfo.setPlayerAmount(mWaitingRoomInfo.getPlayerAmount() + 1);
+                    mWaitingRoomInfo.setRefereeAmount(mWaitingRoomInfo.getRefereeAmount() - 1);
+                } else {
+                    Log.d(Constants.TAG, "球員間換位，數字不變！");
+                }
             } else {
                 Log.d(Constants.TAG, "球員間換位，數字不變！");
             }
@@ -190,6 +194,25 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
 
     /* ------------------------------------------------------------------------------------------ */
     /* Listener */
+
+    private void setAllSnapshotListerSlave() {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .collection(Constants.WAITING_SEATS)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value,
+                                        @Nullable FirebaseFirestoreException e) {
+                        if (e != null) {
+                            Log.w("Kerry", "Listen failed.", e);
+                            return;
+                        }
+                        getNewSeatsInfo();
+                    }
+                });
+
+    }
 
     private void setSeatSnapshotListerMaster(String roomDocId) {
         final DocumentReference docRef = FirestoreHelper.getFirestore()
@@ -335,14 +358,15 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
 
-                WaitingRoomInfo waitingRoomInfo = documentSnapshot.toObject(WaitingRoomInfo.class);
-
-                if (waitingRoomInfo.getTotalPlayerAmount() == 0) {
-                    deleteRoomDocWhenLeave();
-                    Log.d(Constants.TAG, "Master 最後一個離開！");
-                } else {
-                    changeRoomPlayerAmountWhenLeaveMaster();
-                    Log.d(Constants.TAG, "Master 是跳狗！");
+                if (documentSnapshot.exists()) {
+                    WaitingRoomInfo waitingRoomInfo = documentSnapshot.toObject(WaitingRoomInfo.class);
+                    if (waitingRoomInfo.getTotalPlayerAmount() == 0) {
+                        deleteRoomDocWhenLeave();
+                        Log.d(Constants.TAG, "Master 最後一個離開！");
+                    } else {
+                        changeRoomPlayerAmountWhenLeaveMaster();
+                        Log.d(Constants.TAG, "Master 是跳狗！");
+                    }
                 }
             }
         });

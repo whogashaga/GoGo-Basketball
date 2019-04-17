@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.FirestoreHelper;
@@ -37,12 +38,8 @@ import java.util.Arrays;
 
 public class UserManager {
 
-    private User mUser;
+    private static User mUser;
     private CallbackManager mFbCallbackManager;
-    private long mLastChallengeTime;
-    private int mChallengeCount;
-    private static final int CHALLENGE_LIMIT = 23;
-    private String mFbUserId;
 
     private static class UserManagerHolder {
         private static final UserManager INSTANCE = new UserManager();
@@ -51,7 +48,6 @@ public class UserManager {
     private UserManager() {
 //        mFbCallbackManager = CallbackManager.Factory.create();
         mUser = new User();
-        mFbUserId = "";
     }
 
     public static UserManager getInstance() {
@@ -71,7 +67,6 @@ public class UserManager {
             @Override
             public void onSuccess(LoginResult loginResult) {
 
-                mFbUserId = loginResult.getAccessToken().getUserId();
                 Log.d("Kerry", "FB Login Success");
                 Log.i("Kerry", "loginResult.getAccessToken().getToken() = " + loginResult.getAccessToken().getToken());
                 Log.i("Kerry", "loginResult.getAccessToken().getUserId() = " + loginResult.getAccessToken().getUserId());
@@ -113,7 +108,7 @@ public class UserManager {
                         try {
                             String name = object.getString("name");
                             long facebookId = object.getLong("id");
-                            String profileImage = "https://graph.facebook.com/" + String.valueOf(facebookId) + "/picture?type=large&width=small";
+                            String profileImage = "https://graph.facebook.com/" + String.valueOf(facebookId) + "/picture?type=small";
                             mUser.setName(name);
                             mUser.setAvatar(profileImage);
                             mUser.setFacebookId(String.valueOf(facebookId));
@@ -134,27 +129,38 @@ public class UserManager {
 
     }
 
-    public void challenge() {
-        if (System.currentTimeMillis() - mLastChallengeTime > 5000) {
-            mLastChallengeTime = System.currentTimeMillis();
-            mChallengeCount = 0;
-        } else {
-            if (mChallengeCount == CHALLENGE_LIMIT) {
-                clearUserLogin();
-                Toast.makeText(GoGoBasketball.getAppContext(),
-                        GoGoBasketball.getAppContext().getString(R.string.profile_default_information),
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                mChallengeCount++;
-            }
-        }
-    }
-
     public void clearUserLogin() {
         setUser(null);
         GoGoBasketball.getAppContext().getSharedPreferences(Constants.USERS, Context.MODE_PRIVATE).edit()
                 .remove(Constants.USER_TOKEN)
                 .apply();
+    }
+
+    public void getUserProfile(Activity activity, LoadCallback loadCallback) {
+
+        DocumentReference docRef = FirebaseFirestore.getInstance()
+                .collection(Constants.USERS)
+                .document(((MainActivity) activity).getFacebookIdString(Constants.FACEBOOK_ID_FILE));
+
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d("Kerry", "DocumentSnapshot data: " + document.getData());
+                        User userInfo = document.toObject(User.class);
+                        loadCallback.onSuccess(userInfo);
+                    } else {
+                        Log.d("Kerry", "No such document");
+                        loadCallback.onFail("No such document!");
+                    }
+                } else {
+                    Log.d("Kerry", "get failed with ", task.getException());
+                }
+            }
+        }).addOnFailureListener(e -> Log.d("Kerry", " getUserProfile Error !!"));
+
     }
 
     public User getUser() {

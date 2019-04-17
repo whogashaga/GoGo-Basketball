@@ -60,15 +60,15 @@ public class CreateUserPresenter implements CreateUserContract.Presenter {
     @Override
     public void getPositionFromSpinner(String position) {
         if (position.equals(GoGoBasketball.getAppContext().getString(R.string.position_center))) {
-            mUser.setPosition("center");
+            mUser.setPosition(Constants.POSITION_CENTER);
         } else if (position.equals(GoGoBasketball.getAppContext().getString(R.string.position_pf))) {
-            mUser.setPosition("pf");
+            mUser.setPosition(Constants.POSITION_PF);
         } else if (position.equals(GoGoBasketball.getAppContext().getString(R.string.position_sf))) {
-            mUser.setPosition("sf");
+            mUser.setPosition(Constants.POSITION_SF);
         } else if (position.equals(GoGoBasketball.getAppContext().getString(R.string.position_pg))) {
-            mUser.setPosition("pg");
+            mUser.setPosition(Constants.POSITION_PG);
         } else if (position.equals(GoGoBasketball.getAppContext().getString(R.string.position_sg))) {
-            mUser.setPosition("sg");
+            mUser.setPosition(Constants.POSITION_SG);
         } else {
             Log.d(Constants.TAG, "CreateUser Fragment getPositionFromSpinner Error!! ");
         }

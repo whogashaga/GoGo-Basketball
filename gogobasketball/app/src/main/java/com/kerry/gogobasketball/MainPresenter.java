@@ -397,6 +397,17 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     /* ------------------------------------------------------------------------------------------ */
     /* Waiting Slave */
 
+
+    @Override
+    public void openWaiting4JoinSlave(WaitingRoomInfo waitingRoomInfo) {
+        mMainView.openWaiting4JoinSlaveUi(waitingRoomInfo);
+    }
+
+    @Override
+    public void getProfileUserData(Activity activity) {
+        mWaiting4JoinSlavePresenter.getProfileUserData(activity);
+    }
+
     @Override
     public void getHostNameFromLooking4Room(WaitingRoomInfo waitingRoomInfo) {
         mWaiting4JoinSlavePresenter.getHostNameFromLooking4Room(waitingRoomInfo);
@@ -460,6 +471,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
      */
 
     @Override
+    public void openWant2CreateRoom() {
+        mMainView.openWant2CreateRoomUi();
+    }
+
+    @Override
     public void finishWant2CreateRoomUi() {
         mMainView.popBackStackUi();
     }
@@ -502,6 +518,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void getRefereeOnOffFromRadioGroup(boolean justice) {
         mWant2CreateRoomPresenter.getRefereeOnOffFromRadioGroup(justice);
+    }
+
+    @Override
+    public void loadProfileUserData(Activity activity) {
+        mWant2CreateRoomPresenter.loadProfileUserData(activity);
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -640,7 +661,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
         DocumentReference docRef = FirestoreHelper.getFirestore()
                 .collection(Constants.USERS)
-                .document(userDocId.trim());
+                .document(userDocId);
 
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -648,13 +669,12 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        Log.d("Kerry", "DocumentSnapshot data: " + document.getData());
+                        Log.d("Kerry", "checkIfUserCreated DocumentSnapshot data: " + document.getData());
                         User userInfo = document.toObject(User.class);
                         if (userInfo.getId().equals("")) {
                             mMainView.openCreateUserUi(userDocId);
                         } else {
                             mMainView.openHomeUi();
-//                            mMainView.findHomeView();
                         }
                     } else {
 
@@ -735,17 +755,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void onHomeItemScrollToBottom(String itemType) {
 
-    }
-
-    @Override
-    public void openWant2CreateRoom() {
-        mMainView.openWant2CreateRoomUi();
-    }
-
-
-    @Override
-    public void openWaiting4JoinSlave(WaitingRoomInfo waitingRoomInfo) {
-        mMainView.openWaiting4JoinSlaveUi(waitingRoomInfo);
     }
 
     @Override

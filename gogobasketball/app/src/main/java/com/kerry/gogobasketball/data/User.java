@@ -1,5 +1,8 @@
 package com.kerry.gogobasketball.data;
 
+import com.kerry.gogobasketball.GoGoBasketball;
+import com.kerry.gogobasketball.R;
+
 public class User {
 
     private String mAvatar;
@@ -14,7 +17,7 @@ public class User {
     public User() {
         mAvatar = "";
         mId = "";
-        mPosition = "";
+        mPosition = GoGoBasketball.getAppContext().getString(R.string.position_center);
         mGender = "male";
         mFacebookId = "";
         mName = "";

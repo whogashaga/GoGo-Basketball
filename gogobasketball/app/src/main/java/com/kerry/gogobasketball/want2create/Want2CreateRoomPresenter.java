@@ -2,6 +2,7 @@ package com.kerry.gogobasketball.want2create;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -10,15 +11,18 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.kerry.gogobasketball.FirestoreHelper;
 import com.kerry.gogobasketball.RandomString;
+import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.util.Constants;
+import com.kerry.gogobasketball.util.UserManager;
 
 public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Presenter {
 
     private final Want2CreateRoomContract.View mWant2CreateRoomView;
     private WaitingRoomInfo mWaitingRoomInfo;
     private String mRoomDocId;
+    private User mUser;
 
     public Want2CreateRoomPresenter(@NonNull Want2CreateRoomContract.View want2CreateRoomView) {
         mWant2CreateRoomView = checkNotNull(want2CreateRoomView, "Want2CreateRoomView cannot be null!");
@@ -26,6 +30,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
 
         mWaitingRoomInfo = new WaitingRoomInfo();
         mRoomDocId = "";
+        mUser = new User();
     }
 
     @Override
@@ -49,12 +54,12 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
 
         //  set Host Player Info (hardcode，屆時要帶入 user info)
         WaitingRoomSeats hostSeatInfo = new WaitingRoomSeats();
-        hostSeatInfo.setAvatar("https://graph.facebook.com/2177302648995421/picture?type=large");
-        hostSeatInfo.setPosition("pg");
+        hostSeatInfo.setAvatar(mUser.getAvatar());
+        hostSeatInfo.setPosition(mUser.getPosition());
         hostSeatInfo.setSort(1);
-        hostSeatInfo.setGender("male");
+        hostSeatInfo.setGender(mUser.getGender());
         hostSeatInfo.setSeatAvailable(false);
-        hostSeatInfo.setId(RandomString.getRandom(5));
+        hostSeatInfo.setId(mUser.getId());
 
         // set Room Info
         WaitingRoomInfo waitingRoomInfo = new WaitingRoomInfo();
@@ -69,22 +74,13 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .add(waitingRoomInfo)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        mRoomDocId = documentReference.getId();
-                        // for open waiting4join bind view
-                        mWant2CreateRoomView.getRoomInfoFromPresenter4NextFragment(waitingRoomInfo, hostSeatInfo, documentReference.getId());
-
-                        Log.d(Constants.TAG, "Master創建房間 ！!");
-                    }
+                .addOnSuccessListener(documentReference -> {
+                    mRoomDocId = documentReference.getId();
+                    // for open waiting4join bind view
+                    mWant2CreateRoomView.getRoomInfoFromPresenter4NextFragment(waitingRoomInfo, hostSeatInfo, documentReference.getId());
+                    Log.d(Constants.TAG, "Master創建房間 ！!");
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.e("Kerry", "Error adding document", e);
-                    }
-                });
+                .addOnFailureListener(e -> Log.e("Kerry", "Error adding document", e));
 
     }
 
@@ -105,9 +101,29 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.e("Kerry", "Error adding document", e);
+                Log.e(Constants.TAG, "Error adding document", e);
             }
 
+        });
+    }
+
+    @Override
+    public void loadProfileUserData(Activity activity) {
+        UserManager.getInstance().getUserProfile(activity, new UserManager.LoadCallback() {
+            @Override
+            public void onSuccess(User user) {
+                mUser = user;
+            }
+
+            @Override
+            public void onFail(String errorMessage) {
+
+            }
+
+            @Override
+            public void onInvalidToken(String errorMessage) {
+
+            }
         });
     }
 

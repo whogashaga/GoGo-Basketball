@@ -346,6 +346,9 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         // set Position image
         if (seatPlayerInfo.getPosition().equals("")) {
             position.setVisibility(View.INVISIBLE);
+        } else if (sort == 7) {
+            position.setVisibility(View.VISIBLE);
+            mPositionP7.setImageResource(R.drawable.ic_position_referee);
         } else {
             position.setVisibility(View.VISIBLE);
             setPositionImage(seatPlayerInfo, position);
@@ -369,15 +372,15 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
 
     public void setPositionImage(WaitingRoomSeats waitPlayerInfo, ImageView imageView) {
 
-        if (waitPlayerInfo.getPosition().equals("pg")) {
+        if (waitPlayerInfo.getPosition().equals(Constants.POSITION_PG)) {
             imageView.setImageResource(R.drawable.ic_position_pg);
-        } else if (waitPlayerInfo.getPosition().equals("sg")) {
+        } else if (waitPlayerInfo.getPosition().equals(Constants.POSITION_SG)) {
             imageView.setImageResource(R.drawable.ic_position_sg);
-        } else if (waitPlayerInfo.getPosition().equals("sf")) {
+        } else if (waitPlayerInfo.getPosition().equals(Constants.POSITION_SF)) {
             imageView.setImageResource(R.drawable.ic_position_sf);
-        } else if (waitPlayerInfo.getPosition().equals("pf")) {
+        } else if (waitPlayerInfo.getPosition().equals(Constants.POSITION_PF)) {
             imageView.setImageResource(R.drawable.ic_position_pf);
-        } else if (waitPlayerInfo.getPosition().equals("c")) {
+        } else if (waitPlayerInfo.getPosition().equals(Constants.POSITION_CENTER)) {
             imageView.setImageResource(R.drawable.ic_position_center);
         } else {
             Log.e("Kerry", "Set Position Image Error!!");
