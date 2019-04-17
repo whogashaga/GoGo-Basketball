@@ -20,5 +20,9 @@ public interface HomeContract {
 
         CourtsMapFragment findMapView();
 
+        void hideToolbarAndBottomNavigation();
+
+        void showToolbarAndBottomNavigation();
+
     }
 }

@@ -147,8 +147,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
 
         mSpinnerMinuteSelector = mRoot.findViewById(R.id.spinner_timer_selector);
         mTextMinute = mRoot.findViewById(R.id.text_timer_minutes);
-        mSpinnerMinuteSelector.setVisibility(View.GONE);
-        mTextMinute.setVisibility(View.GONE);
+        mSpinnerMinuteSelector.setVisibility(View.INVISIBLE);
+        mTextMinute.setVisibility(View.INVISIBLE);
 
         mAvatarP1 = mRoot.findViewById(R.id.waiting_team_a_player1_avatar);
         mAvatarP1.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -333,7 +333,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
 
         // set Gender
         if (seatPlayerInfo.getGender().equals("")) {
-            gender.setVisibility(View.GONE);
+            gender.setVisibility(View.INVISIBLE);
         } else {
             gender.setVisibility(View.VISIBLE);
             if (seatPlayerInfo.getGender().equals("male")) {
@@ -345,7 +345,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
 
         // set Position image
         if (seatPlayerInfo.getPosition().equals("")) {
-            position.setVisibility(View.GONE);
+            position.setVisibility(View.INVISIBLE);
         } else {
             position.setVisibility(View.VISIBLE);
             setPositionImage(seatPlayerInfo, position);
@@ -394,8 +394,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
                 mBtnStartGame.setClickable(false);
                 break;
             case R.id.radios_timer_no:
-                mSpinnerMinuteSelector.setVisibility(View.GONE);
-                mTextMinute.setVisibility(View.GONE);
+                mSpinnerMinuteSelector.setVisibility(View.INVISIBLE);
+                mTextMinute.setVisibility(View.INVISIBLE);
                 mBtnStartGame.setBackgroundResource(R.drawable.button_effect_start);
                 mBtnStartGame.setClickable(true);
                 break;

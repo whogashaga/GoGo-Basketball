@@ -19,11 +19,12 @@ public class MessageDialog extends AppCompatDialogFragment {
 
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({
-            LOGIN_SUCCESS, LOGIN_FAIL
+            LOGIN_SUCCESS, LOGIN_FAIL, CREATE_USER_SUCCESS
     })
     public @interface MessageType {}
     public static final int LOGIN_SUCCESS   = 0x11;
     public static final int LOGIN_FAIL      = 0x12;
+    public static final int CREATE_USER_SUCCESS      = 0x13;
 
     private int mIconRes;
     private String mMessage;
@@ -46,6 +47,10 @@ public class MessageDialog extends AppCompatDialogFragment {
             case LOGIN_SUCCESS:
                 mIconRes = R.drawable.ic_success;
                 mMessage = GoGoBasketball.getAppContext().getString(R.string.login_success);
+                break;
+            case CREATE_USER_SUCCESS:
+                mIconRes = R.drawable.ic_success;
+                mMessage = GoGoBasketball.getAppContext().getString(R.string.create_user_success);
                 break;
             default:
 

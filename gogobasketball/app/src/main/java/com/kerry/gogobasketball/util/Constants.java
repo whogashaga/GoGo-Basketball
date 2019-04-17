@@ -4,10 +4,10 @@ public class Constants {
 
     public static final String TAG = "GoGoBasketball_TAG";
 
-    public static final String FACEBOOK_ID = "facebook_id";
+    public static final String FACEBOOK_ID_FILE = "facebook_id";
+    public static final String FACEBOOK_ID = "facebookId";
 
     // User Manager
-    public static final String USER_DATA = "user_data";
     public static final String USER_TOKEN = "user_token";
 
     public static final String WAITING_SEATS = "waiting_seats";

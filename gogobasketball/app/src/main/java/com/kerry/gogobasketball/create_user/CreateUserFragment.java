@@ -91,7 +91,7 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
         switch (v.getId()) {
             case R.id.btn_create_user_confirm:
                 Log.e("Kerry", "btn_create_user_confirm onClick ! ");
-                mPresenter.checkIfUserIdExisted();
+                mPresenter.createUserClickConfirm();
                 break;
             default:
         }
@@ -129,7 +129,7 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.hideToolbarAndBottomNavigation();
-
+        setBtnCreateConfirmClickable(true);
         mEditUserId.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -139,14 +139,16 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!"".equals(s.toString()) && s.length() < 7) {
-                    mPresenter.onUerIdEditTextChange(s);
+                    mPresenter.onUserIdEditTextChange(s);
+                    setBtnCreateConfirmClickable(true);
                     Log.e("Kerry", "fragment onTextChanged : " + s.toString());
                     mEditUserId.setFocusable(true);
-                    if (s.length() == 6) {
-                        mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.at_most_6_word), true);
+                    if (s.length() == 8) {
+                        mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.at_most_8_word), true);
                     }
                 } else if (s.length() == 0) {
                     mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.edit_user_id), true);
+                    setBtnCreateConfirmClickable(false);
                 } else {
                     Log.d("Kerry", "no this kind of situation!");
                 }
@@ -160,8 +162,28 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
     }
 
     @Override
-    public void openHomeUi() {
-        mPresenter.openHome();
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.showToolbarAndBottomNavigation();
+    }
+
+    private void setBtnCreateConfirmClickable(boolean clickable) {
+
+        if (clickable) {
+            mBtnCreateUserConfirm.setClickable(true);
+            mBtnCreateUserConfirm.setBackgroundResource(R.drawable.btn_black_ripple);
+        } else {
+            mBtnCreateUserConfirm.setClickable(false);
+            mBtnCreateUserConfirm.setBackgroundResource(R.drawable.btn_gray_ripple);
+        }
+    }
+
+    @Override
+    public void showCreateUserSuccessUi() {
+        if (mPresenter != null) {
+            mPresenter.showCreateUserSuccessDialog();
+            mPresenter.onCreateUserSuccess();
+        }
     }
 
     @Override
@@ -174,9 +196,11 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
         switch (checkedId) {
             case R.id.radios_create_male:
                 mPresenter.getGenderFromRadioGroup(MALE);
+                Log.d("Kerry", "radio male = " + MALE);
                 break;
             case R.id.radios_create_female:
                 mPresenter.getGenderFromRadioGroup(FEMALE);
+                Log.d("Kerry", "radio male = " + FEMALE);
                 break;
             default:
                 break;

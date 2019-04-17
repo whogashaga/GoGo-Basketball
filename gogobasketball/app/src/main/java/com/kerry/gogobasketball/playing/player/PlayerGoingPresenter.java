@@ -137,6 +137,11 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
     }
 
     @Override
+    public void setGamingNowMessage(boolean isGamingNow) {
+
+    }
+
+    @Override
     public void start() {
 
     }

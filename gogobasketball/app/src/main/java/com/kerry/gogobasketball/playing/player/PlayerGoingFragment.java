@@ -62,6 +62,7 @@ public class PlayerGoingFragment extends Fragment implements PlayerGoingContract
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.setBackKeyDisable(true);
+        mPresenter.setGamingNowMessage(true);
     }
 
     @Override
@@ -73,6 +74,7 @@ public class PlayerGoingFragment extends Fragment implements PlayerGoingContract
     public void onDestroy() {
         super.onDestroy();
         mPresenter.setBackKeyDisable(false);
+        mPresenter.setGamingNowMessage(false);
     }
 
 

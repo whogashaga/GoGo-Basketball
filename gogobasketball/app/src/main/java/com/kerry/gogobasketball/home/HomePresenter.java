@@ -30,6 +30,16 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     @Override
+    public void hideToolbarAndBottomNavigation() {
+
+    }
+
+    @Override
+    public void showToolbarAndBottomNavigation() {
+
+    }
+
+    @Override
     public void start() {
 
     }

@@ -157,6 +157,11 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
     }
 
     @Override
+    public void setGamingNowMessage(boolean isGamingNow) {
+
+    }
+
+    @Override
     public void hideToolbarAndBottomNavigation() {
 
     }

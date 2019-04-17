@@ -66,7 +66,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        mPresenter.showToolbarAndBottomNavigation();
         mTabLayout.setupWithViewPager(mViewPager);
         mViewPager.setAdapter(mHomeAdapter);
 //        mViewPager.addOnPageChangeListener(

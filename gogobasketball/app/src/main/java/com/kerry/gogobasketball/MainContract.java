@@ -110,8 +110,6 @@ public interface MainContract {
 
         void showLoginFragment();
 
-        void showCreateUserFragment(String userDocId);
-
         void showCheckOutSuccessDialog();
 
         void showRatingRefereeSuccessDialog();
@@ -126,6 +124,10 @@ public interface MainContract {
 
         boolean disableBackKey();
 
+        boolean isGamingNow();
+
         void showErrorToast(String message, boolean isShort);
+
+        void onLoginSuccessBeforeOpenApp(String userDocId);
     }
 }

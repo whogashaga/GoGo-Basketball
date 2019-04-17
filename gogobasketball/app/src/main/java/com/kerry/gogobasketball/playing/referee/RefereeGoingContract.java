@@ -100,6 +100,8 @@ public interface RefereeGoingContract {
 
         void setBackKeyDisable(boolean isBackKeyDisable);
 
+        void setGamingNowMessage(boolean isGamingNow);
+
         void hideToolbarAndBottomNavigation();
 
         void showToolbarAndBottomNavigation();

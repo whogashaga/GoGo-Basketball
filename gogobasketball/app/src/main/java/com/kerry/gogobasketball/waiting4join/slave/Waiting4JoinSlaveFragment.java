@@ -230,7 +230,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
 
         // set Gender
         if (seatPlayerInfo.getGender().equals("")) {
-            gender.setVisibility(View.GONE);
+            gender.setVisibility(View.INVISIBLE);
         } else {
             gender.setVisibility(View.VISIBLE);
             if (seatPlayerInfo.getGender().equals("male")) {
@@ -242,7 +242,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
 
         // set Position image
         if (seatPlayerInfo.getPosition().equals("")) {
-            position.setVisibility(View.GONE);
+            position.setVisibility(View.INVISIBLE);
         } else {
             position.setVisibility(View.VISIBLE);
             setPositionImage(seatPlayerInfo, position);

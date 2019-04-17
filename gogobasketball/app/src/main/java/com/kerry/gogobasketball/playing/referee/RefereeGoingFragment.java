@@ -397,6 +397,7 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.setBackKeyDisable(true);
+        mPresenter.setGamingNowMessage(true);
 
         mBtnP1ScorePlus.setOnClickListener(this);
         mBtnP1ScoreMinus.setOnClickListener(this);
@@ -439,6 +440,12 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
         mBtnP6ReboundMinus.setOnClickListener(this);
         mBtnP6FoulPlus.setOnClickListener(this);
         mBtnP6FoulMinus.setOnClickListener(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.setGamingNowMessage(false);
     }
 
     @Override

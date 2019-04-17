@@ -69,6 +69,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            Log.d("Kerry", "doc size : " + task.getResult().size());
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 // 只有一筆，跑 for 沒關係
                                 mRoomDocId = document.getId();

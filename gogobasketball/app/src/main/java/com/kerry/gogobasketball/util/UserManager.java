@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -20,9 +19,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.FirestoreHelper;
 import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.MainActivity;
@@ -44,8 +44,6 @@ public class UserManager {
     private static final int CHALLENGE_LIMIT = 23;
     private String mFbUserId;
 
-    private FirebaseAuth mAuth;
-
     private static class UserManagerHolder {
         private static final UserManager INSTANCE = new UserManager();
     }
@@ -53,7 +51,6 @@ public class UserManager {
     private UserManager() {
 //        mFbCallbackManager = CallbackManager.Factory.create();
         mUser = new User();
-        mAuth = FirebaseAuth.getInstance();
         mFbUserId = "";
     }
 
@@ -80,9 +77,7 @@ public class UserManager {
                 Log.i("Kerry", "loginResult.getAccessToken().getUserId() = " + loginResult.getAccessToken().getUserId());
                 Log.i("Kerry", "loginResult.getAccessToken().getApplicationId() = " + loginResult.getAccessToken().getApplicationId());
 
-                ((MainActivity) context).saveFacebookIdFile(loginResult.getAccessToken().getUserId());
-//                handleFacebookAccessToken(loginResult.getAccessToken(), loginResult, loadCallback);
-                loginGoGoBasketball(loginResult, loadCallback);
+                loginGoGoBasketball(context, loginResult, loadCallback);
             }
 
             @Override
@@ -109,7 +104,7 @@ public class UserManager {
                 (Activity) context, Arrays.asList("email"));
     }
 
-    private void loginGoGoBasketball(LoginResult loginResult, LoadCallback loadCallback) {
+    private void loginGoGoBasketball(Context context, LoginResult loginResult, LoadCallback loadCallback) {
         Log.e("Kerry", "loginGoGoBasketball Token = " + loginResult.getAccessToken().getToken());
         GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
                 new GraphRequest.GraphJSONObjectCallback() {
@@ -117,13 +112,16 @@ public class UserManager {
                     public void onCompleted(JSONObject object, GraphResponse response) {
                         try {
                             String name = object.getString("name");
-                            String profileImage = "https://graph.facebook.com/" + loginResult.getAccessToken().getUserId() + "/picture?type=large&width=small";
+                            long facebookId = object.getLong("id");
+                            String profileImage = "https://graph.facebook.com/" + String.valueOf(facebookId) + "/picture?type=large&width=small";
                             mUser.setName(name);
                             mUser.setAvatar(profileImage);
-                            mUser.setFacebookId(loginResult.getAccessToken().getUserId());
-                            mUser.setLoggedIn(true);
+                            mUser.setFacebookId(String.valueOf(facebookId));
                             loadCallback.onSuccess(mUser);
-                            Log.e("Kerry", "");
+
+                            ((MainActivity) context).saveFacebookIdFile(String.valueOf(facebookId));
+//                            updateUser2FireStore(mUser, loadCallback);
+
                         } catch (JSONException e) {
                             Log.e("Kerry", "unexpected JSON exception", e);
                         }
@@ -134,33 +132,6 @@ public class UserManager {
         request.setParameters(parameters);
         request.executeAsync();
 
-    }
-
-    private void updateUser2FireStore(LoadCallback loadCallback) {
-        FirestoreHelper.getFirestore()
-                .collection(Constants.USERS)
-                .document(mFbUserId)
-                .set(mUser)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("Kerry", "User登入後資料上傳!");
-                        loadCallback.onSuccess(mUser);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w("Kerry", "Error adding document", e);
-                loadCallback.onFail("User 資料上傳失敗！");
-            }
-        });
-    }
-
-    public void clearUserLogin() {
-        setUser(null);
-        GoGoBasketball.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE).edit()
-                .remove(Constants.USER_TOKEN)
-                .apply();
     }
 
     public void challenge() {
@@ -179,30 +150,11 @@ public class UserManager {
         }
     }
 
-    public void checkHasUserBeenCreated(String userDocId, CheckUserCallback checkUserCallback) {
-        Log.d("Kerry", "checkHasUserBeenCreated fb id = " + mUser.getFacebookId());
-        DocumentReference docIdRef = FirestoreHelper.getFirestore()
-                .collection(Constants.USERS)
-                .document(userDocId);
-        docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d(Constants.TAG, "User document already exists!");
-                        checkUserCallback.haveCreated(userDocId);
-                    } else {
-                        Log.d(Constants.TAG, "User document does not exist!");
-                        checkUserCallback.haveNotCreated(userDocId);
-                    }
-                } else {
-                    Log.d(Constants.TAG, "Failed with: ", task.getException());
-                }
-            }
-        });
-
-
+    public void clearUserLogin() {
+        setUser(null);
+        GoGoBasketball.getAppContext().getSharedPreferences(Constants.USERS, Context.MODE_PRIVATE).edit()
+                .remove(Constants.USER_TOKEN)
+                .apply();
     }
 
     public User getUser() {
@@ -237,9 +189,9 @@ public class UserManager {
 
     public interface CheckUserCallback {
 
-        void haveCreated(String userDocId);
+        void haveCreated(User user);
 
-        void haveNotCreated(String userDocId);
+        void haveNotCreated(User user);
 
     }
 }

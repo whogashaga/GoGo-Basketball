@@ -34,6 +34,8 @@ public interface PlayerGoingContract {
 
         void setBackKeyDisable(boolean isBackKeyDisable);
 
+        void setGamingNowMessage(boolean isGamingNow);
+
         void getHostNameFromWaitingJoinSlave(String hostName, int nowSort);
     }
 }

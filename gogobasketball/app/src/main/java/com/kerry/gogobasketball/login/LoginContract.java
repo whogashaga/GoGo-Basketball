@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.login;
 
+import android.app.Activity;
+
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
 import com.kerry.gogobasketball.data.User;
@@ -8,7 +10,7 @@ public interface LoginContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showLoginUi();
+        void showLoginSuccessUi(User user);
 
         boolean isActive();
 
@@ -24,11 +26,11 @@ public interface LoginContract {
 
         void loadProfileUserData();
 
-        void checkProfileUserData();
+        void loginFbOnClick(Activity activity);
 
         void showLoginSuccessDialog();
 
-        void onLoginSuccess(String userDocId);
+        void onLoginSuccess(User user);
 
     }
 }

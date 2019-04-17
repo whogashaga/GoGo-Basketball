@@ -2,6 +2,7 @@ package com.kerry.gogobasketball;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -11,13 +12,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.create_user.CreateUserContract;
 import com.kerry.gogobasketball.create_user.CreateUserPresenter;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
+import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.friends.FriendContract;
@@ -52,6 +60,8 @@ import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlavePresenter;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomContract;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomPresenter;
 
+import javax.annotation.Nullable;
+
 public class MainPresenter implements MainContract.Presenter, HomeContract.Presenter,
         Looking4RoomContract.Presenter, CourtsMapContract.Presenter, ProfileContract.Presenter,
         FriendContract.Presenter, RankContract.Presenter, Want2CreateRoomContract.Presenter,
@@ -84,6 +94,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private PlayerResultPresenter mPlayerResultPresenter;
 
     private static boolean mIsBackKeyDisable;
+    private static boolean mIsGamingNow;
 
 //    public MainPresenter(
 //            @NonNull StylishRepository stylishRepository,
@@ -218,8 +229,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void getUserIniInfoFromLogin(String userDocId) {
-        mCreateUserPresenter.getUserIniInfoFromLogin(userDocId);
+    public void getUserIniInfoFromLogin(String userFbId) {
+        mCreateUserPresenter.getUserIniInfoFromLogin(userFbId);
     }
 
     @Override
@@ -228,18 +239,23 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void checkIfUserIdExisted() {
-        mCreateUserPresenter.checkIfUserIdExisted();
-    }
-
-    @Override
-    public void onUerIdEditTextChange(CharSequence charSequence) {
-        mCreateUserPresenter.onUerIdEditTextChange(charSequence);
+    public void onUserIdEditTextChange(CharSequence charSequence) {
+        mCreateUserPresenter.onUserIdEditTextChange(charSequence);
     }
 
     @Override
     public void getGenderFromRadioGroup(String gender) {
         mCreateUserPresenter.getGenderFromRadioGroup(gender);
+    }
+
+    @Override
+    public void createUserClickConfirm() {
+        mCreateUserPresenter.createUserClickConfirm();
+    }
+
+    @Override
+    public void onCreateUserSuccess() {
+        mMainView.openHomeUi();
     }
 
     /**
@@ -459,6 +475,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
+    public void setGamingNowMessage(boolean isGamingNow) {
+        mIsGamingNow = isGamingNow;
+    }
+
+    @Override
     public void getHostNameFromWaitingJoinSlave(String hostName, int nowSort) {
         mPlayerGoingPresenter.getHostNameFromWaitingJoinSlave(hostName, nowSort);
     }
@@ -526,11 +547,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void showCreateUserFragment(String userDocId) {
-        mMainView.openCreateUserUi(userDocId);
-    }
-
-    @Override
     public void showCheckOutSuccessDialog() {
 
     }
@@ -546,36 +562,80 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void onLoginSuccess(String userDocId) {
-        checkIfUserCreated(userDocId);
+    public void showCreateUserSuccessDialog() {
+        mMainView.showMessageDialogUi(MessageDialog.CREATE_USER_SUCCESS);
+    }
+
+    // from login fragment
+    @Override
+    public void loginFbOnClick(Activity activity) {
+        mLoginPresenter.loginFbOnClick(activity);
+    }
+
+    @Override
+    public void onLoginSuccess(User user) {
+        updateUser2FireStore(user);
+    }
+
+    private void updateUser2FireStore(User user) {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.USERS)
+                .document(user.getFacebookId())
+                .set(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Kerry", "User登入後資料上傳!");
+                        checkIfUserCreated(user.getFacebookId());
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w("Kerry", "Error adding document", e);
+            }
+        });
+    }
+
+    // from MainActivity because already login but haven't create user data
+    @Override
+    public void onLoginSuccessBeforeOpenApp(String userFbDocId) {
+        checkIfUserCreated(userFbDocId);
     }
 
     private void checkIfUserCreated(String userDocId) {
-        DocumentReference docIdRef = FirestoreHelper.getFirestore()
+
+        Log.d("Kerry", "checkIfUserCreate doc id = "+ userDocId);
+
+        DocumentReference docRef = FirestoreHelper.getFirestore()
                 .collection(Constants.USERS)
                 .document(userDocId);
-        docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        Log.d(Constants.TAG, "Document exists!");
-                        mMainView.openHomeUi();
+                        Log.d("Kerry", "DocumentSnapshot data: " + document.getData());
+                        User userInfo = document.toObject(User.class);
+                        if (userInfo.getId().equals("")) {
+                            mMainView.openCreateUserUi(userDocId);
+                        } else {
+                            mMainView.openHomeUi();
+                        }
                     } else {
-                        Log.d(Constants.TAG, "Document does not exist!");
-                        mMainView.openCreateUserUi(userDocId);
+                        Log.d("Kerry", "No such document");
                     }
                 } else {
-                    Log.d(Constants.TAG, "Failed with: ", task.getException());
+                    Log.d("Kerry", "get failed with ", task.getException());
                 }
             }
         });
-
     }
 
     @Override
     public void showToast(String message) {
+
 
     }
 
@@ -675,5 +735,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public boolean disableBackKey() {
         return mIsBackKeyDisable;
+    }
+
+    @Override
+    public boolean isGamingNow() {
+        return mIsGamingNow;
     }
 }

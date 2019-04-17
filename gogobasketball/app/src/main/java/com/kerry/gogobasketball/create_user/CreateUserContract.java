@@ -8,7 +8,7 @@ public interface CreateUserContract {
 
     interface View extends BaseView<Presenter> {
 
-        void openHomeUi();
+        void showCreateUserSuccessUi();
 
         boolean isActive();
 
@@ -26,16 +26,18 @@ public interface CreateUserContract {
 
         void showErrorToast(String message, boolean isShort);
 
-        void getUserIniInfoFromLogin(String userDocId);
+        void getUserIniInfoFromLogin(String userFbId);
 
         void getPositionFromSpinner(String position);
 
-        void checkIfUserIdExisted();
-
-        void onUerIdEditTextChange(CharSequence charSequence);
+        void onUserIdEditTextChange(CharSequence charSequence);
 
         void getGenderFromRadioGroup(String gender);
 
-        void openHome();
+        void createUserClickConfirm();
+
+        void showCreateUserSuccessDialog();
+
+        void onCreateUserSuccess();
     }
 }

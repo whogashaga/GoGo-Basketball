@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,27 +77,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_facebook_login:
-
-                UserManager.getInstance().loginGoGoBasketballByFacebook(getActivity(), new UserManager.LoadCallback() {
-                    @Override
-                    public void onSuccess(User user) {
-                        Log.d("Kerry","LoginFragment loginGoGoBasketballByFacebook onSuccess!");
-                        if (mPresenter != null) {
-                            mPresenter.showLoginSuccessDialog();
-                            mPresenter.onLoginSuccess(user.getFacebookId());
-                        }
-                    }
-
-                    @Override
-                    public void onFail(String errorMessage) {
-                        Log.d("Kerry","LoginFragment loginGoGoBasketballByFacebook Fail!");
-                    }
-
-                    @Override
-                    public void onInvalidToken(String errorMessage) {
-                        Log.d("Kerry","LoginFragment Token 過期!");
-                    }
-                });
+                mPresenter.loginFbOnClick(getActivity());
                 break;
             default:
                 break;
@@ -106,8 +85,11 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     }
 
     @Override
-    public void showLoginUi() {
-
+    public void showLoginSuccessUi(User user) {
+        if (mPresenter != null) {
+            mPresenter.showLoginSuccessDialog();
+            mPresenter.onLoginSuccess(user);
+        }
     }
 
     @Override

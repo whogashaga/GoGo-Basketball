@@ -24,7 +24,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -89,23 +88,16 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 //        postCustomObject();
 //        getCustomObject();
 
+
     }
 
     private void init() {
         setContentView(R.layout.activity_main);
         mMainMvpController = MainMvpController.create(this);
 
+//        mPresenter.openHome();
         if (UserManager.getInstance().isLoggedIn()) {
-            UserManager.getInstance().checkHasUserBeenCreated(getFacebookIdString(Constants.FACEBOOK_ID),new UserManager.CheckUserCallback() {
-                @Override
-                public void haveCreated(String userDocId) {
-                    mPresenter.openHome();
-                }
-                @Override
-                public void haveNotCreated(String userDocId) {
-                    mPresenter.showCreateUserFragment(userDocId);
-                }
-            });
+            mPresenter.onLoginSuccessBeforeOpenApp(getFacebookIdString(Constants.FACEBOOK_ID_FILE));
         } else {
             mPresenter.showLoginFragment();
         }
@@ -252,7 +244,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         mSkills.add("cry");
         mSkills.add("laugh");
 
-        final DocumentReference docRef = mDb.collection("users").document(mDocId);
+//        final DocumentReference docRef = mDb.collection("users").document(mDocId);
 
         mBtnCreateUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -267,7 +259,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
                 user.put("skills", mSkills);
 
                 // Add a new document with a generated ID
-                mDb.collection("users")
+                mDb.collection(Constants.USERS)
                         .document(mDocId)
                         .set(user)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -585,8 +577,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
-    public void openCreateUserUi(String userDocId) {
-        mMainMvpController.findOrCreateCreateUserView(userDocId);
+    public void openCreateUserUi(String userFbId) {
+        mMainMvpController.findOrCreateCreateUserView(userFbId);
     }
 
     @Override
@@ -695,8 +687,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
     @Override
     public void onBackPressed() {
-        if (mPresenter.disableBackKey()) {
-//            mPresenter.showErrorToast("比賽尚未結束\n請勿離場！！", true);
+        if (mPresenter.disableBackKey() && mPresenter.isGamingNow()) {
+            mPresenter.showErrorToast("比賽尚未結束\n請勿離場！！", true);
         } else {
             super.onBackPressed();
         }
@@ -712,13 +704,13 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         mView.setBackgroundResource(R.drawable.home_sea);
     }
 
-    public void saveFacebookIdFile(String jsonString) {
-        File file = new File(getFilesDir(), Constants.FACEBOOK_ID);
-        String fileContents = jsonString;
+    public void saveFacebookIdFile(String facebookIdString) {
+        File file = new File(getFilesDir(), Constants.FACEBOOK_ID_FILE);
+        String fileContents = facebookIdString;
         FileOutputStream outputStream;
 
         try {
-            outputStream = openFileOutput(Constants.FACEBOOK_ID, Context.MODE_PRIVATE);
+            outputStream = openFileOutput(Constants.FACEBOOK_ID_FILE, Context.MODE_PRIVATE);
             outputStream.write(fileContents.getBytes());
             outputStream.close();
         } catch (Exception e) {

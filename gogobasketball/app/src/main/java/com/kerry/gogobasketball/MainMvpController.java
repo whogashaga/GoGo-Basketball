@@ -311,12 +311,12 @@ public class MainMvpController {
     /**
      *  CreateUser View
      */
-    void findOrCreateCreateUserView(String userDocId) {
+    void findOrCreateCreateUserView(String userFbId) {
 
         CreateUserFragment createUserFragment = createCreateUserFragment();
 
         mCreateUserPresenter = new CreateUserPresenter(createUserFragment);
-        mCreateUserPresenter.getUserIniInfoFromLogin(userDocId);
+        mCreateUserPresenter.getUserIniInfoFromLogin(userFbId);
 
         mMainPresenter.setCreateUserPresenter(mCreateUserPresenter);
         createUserFragment.setPresenter(mMainPresenter);

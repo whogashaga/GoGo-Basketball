@@ -1,8 +1,11 @@
 package com.kerry.gogobasketball.login;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.kerry.gogobasketball.data.User;
+import com.kerry.gogobasketball.util.UserManager;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -13,6 +16,27 @@ public class LoginPresenter implements LoginContract.Presenter {
     public LoginPresenter(@NonNull LoginContract.View profileView) {
         mLoginView = checkNotNull(profileView, "LoginView cannot be null!");
         mLoginView.setPresenter(this);
+    }
+
+    @Override
+    public void loginFbOnClick(Activity activity) {
+        UserManager.getInstance().loginGoGoBasketballByFacebook(activity, new UserManager.LoadCallback() {
+            @Override
+            public void onSuccess(User user) {
+                Log.d("Kerry","LoginFragment loginGoGoBasketballByFacebook onSuccess!" + user.getFacebookId());
+                mLoginView.showLoginSuccessUi(user);
+            }
+
+            @Override
+            public void onFail(String errorMessage) {
+                Log.d("Kerry","LoginFragment loginGoGoBasketballByFacebook Fail!");
+            }
+
+            @Override
+            public void onInvalidToken(String errorMessage) {
+                Log.d("Kerry","LoginFragment Token 過期!");
+            }
+        });
     }
 
     @Override
@@ -36,17 +60,12 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     @Override
-    public void checkProfileUserData() {
-
-    }
-
-    @Override
     public void showLoginSuccessDialog() {
 
     }
 
     @Override
-    public void onLoginSuccess(String userDocId) {
+    public void onLoginSuccess(User userDocId) {
 
     }
 
