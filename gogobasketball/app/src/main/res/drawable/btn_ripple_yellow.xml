@@ -4,7 +4,7 @@
 
     <item>
         <!--基本顏色-->
-        <color android:color="@color/gray_f0f0f0" />
+        <color android:color="@color/gray_cccccc" />
         <corners android:radius="20dip" />
         <scale android:scaleWidth="1.0" />
         <scale android:scaleHeight="1.0" />

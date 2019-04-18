@@ -50,9 +50,11 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
     private Button mBtnCommentReferee;
     private Button mBtnBack2Lobby;
     private String mHostName;
+    private String mRefereeName;
 
     public PlayerResultFragment() {
         mHostName = "";
+        mRefereeName = "";
     }
 
     public static PlayerResultFragment newInstance() {
@@ -145,7 +147,7 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_result_player_rating_referee:
-                mPresenter.openCommentReferee(mHostName);
+                mPresenter.openCommentReferee(mRefereeName);
                 break;
             case R.id.btn_result_player_back_lobby:
                 mPresenter.openHome();
@@ -178,6 +180,7 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
         mTextScoreA.setText(String.valueOf(gamingRoomInfo.getScoreA()));
         mTextScoreB.setText(String.valueOf(gamingRoomInfo.getScoreB()));
 
+        mRefereeName = gamingRoomInfo.getReferee().getId();
     }
 
     private void setPlayerInfo(GamingPlayer gamingPlayer, ImageView avatar, TextView textId,

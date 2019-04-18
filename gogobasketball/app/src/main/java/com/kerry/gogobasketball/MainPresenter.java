@@ -17,11 +17,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.create_user.CreateUserContract;
 import com.kerry.gogobasketball.create_user.CreateUserPresenter;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
@@ -61,8 +57,6 @@ import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlaveContract;
 import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlavePresenter;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomContract;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomPresenter;
-
-import javax.annotation.Nullable;
 
 public class MainPresenter implements MainContract.Presenter, HomeContract.Presenter,
         Looking4RoomContract.Presenter, CourtsMapContract.Presenter, ProfileContract.Presenter,
@@ -193,8 +187,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void openCommentReferee(String hostName) {
-        mMainView.openCommentRefereeUi(hostName);
+    public void openCommentReferee(String refereeName) {
+        mMainView.openCommentRefereeUi(refereeName);
     }
 
     @Override
@@ -367,8 +361,18 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void getHostNameFromResult(String hostName) {
-        mCommentRefereePresenter.getHostNameFromResult(hostName);
+    public void getRefereeNameFromResult(String hostName) {
+        mCommentRefereePresenter.getRefereeNameFromResult(hostName);
+    }
+
+    @Override
+    public void onWheelViewChanged(int rating) {
+        mCommentRefereePresenter.onWheelViewChanged(rating);
+    }
+
+    @Override
+    public void queryRefereeUserDocId() {
+        mCommentRefereePresenter.queryRefereeUserDocId();
     }
 
     /* ------------------------------------------------------------------------------------------ */

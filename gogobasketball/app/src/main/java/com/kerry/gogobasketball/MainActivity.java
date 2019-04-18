@@ -577,8 +577,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
-    public void openCommentRefereeUi(String hostName) {
-        mMainMvpController.findOrCreateCommentRefereeView(hostName);
+    public void openCommentRefereeUi(String refereeName) {
+        mMainMvpController.findOrCreateCommentRefereeView(refereeName);
     }
 
     @Override

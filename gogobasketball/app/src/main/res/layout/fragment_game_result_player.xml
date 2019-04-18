@@ -17,7 +17,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:fontFamily="@font/trade_winds"
         android:text="Victory"
         android:textSize="26sp"
         android:textStyle="bold"

@@ -29,7 +29,11 @@ public interface CommentRefereeContract {
 
         void updateAfterSendOutComment();
 
-        void getHostNameFromResult(String hostName);
+        void getRefereeNameFromResult(String hostName);
+
+        void onWheelViewChanged(int rating);
+
+        void queryRefereeUserDocId();
 
     }
 }

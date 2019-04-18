@@ -7,10 +7,8 @@ import android.support.annotation.StringDef;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 
-import com.kerry.gogobasketball.create_user.CreateUserContract;
 import com.kerry.gogobasketball.create_user.CreateUserFragment;
 import com.kerry.gogobasketball.create_user.CreateUserPresenter;
-import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.friends.FriendFragment;
@@ -33,7 +31,6 @@ import com.kerry.gogobasketball.rank.RankFragment;
 import com.kerry.gogobasketball.rank.RankPresenter;
 import com.kerry.gogobasketball.result.player.PlayerResultFragment;
 import com.kerry.gogobasketball.result.player.PlayerResultPresenter;
-import com.kerry.gogobasketball.result.player.comment.CommentRefereeContract;
 import com.kerry.gogobasketball.result.player.comment.CommentRefereeDialog;
 import com.kerry.gogobasketball.result.player.comment.CommentRefereePresenter;
 import com.kerry.gogobasketball.result.referee.RefereeResultFragment;
@@ -330,7 +327,7 @@ public class MainMvpController {
     /**
      * CommentRefereeDialog View
      */
-    void findOrCreateCommentRefereeView(String hostName) {
+    void findOrCreateCommentRefereeView(String refereeName) {
 
         CommentRefereeDialog dialog =
                 (CommentRefereeDialog) getFragmentManager().findFragmentByTag(Constants.COMMENT);
@@ -340,7 +337,7 @@ public class MainMvpController {
             dialog = new CommentRefereeDialog();
             mCommentRefereePresenter = new CommentRefereePresenter(dialog);
             mMainPresenter.setCommentRefereePresenter(mCommentRefereePresenter);
-            mCommentRefereePresenter.getHostNameFromResult(hostName);
+            mCommentRefereePresenter.getRefereeNameFromResult(refereeName);
             dialog.setPresenter(mMainPresenter);
             dialog.show(getFragmentManager(), Constants.COMMENT);
 

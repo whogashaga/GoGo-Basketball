@@ -37,7 +37,7 @@ public interface PlayerResultContract {
 
         void openHome();
 
-        void openCommentReferee(String hostName);
+        void openCommentReferee(String refereeName);
 
     }
 

@@ -38,7 +38,7 @@ public interface MainContract {
 
         void openPlayerResultUi(String hostName, int nowSort);
 
-        void openCommentRefereeUi(String hostName);
+        void openCommentRefereeUi(String refereeName);
 
         void openCreateUserUi(String userDocId);
 
