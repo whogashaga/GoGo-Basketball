@@ -13,7 +13,7 @@ public interface Looking4RoomContract {
 
         void showRoomsUi();
 
-        void getWaitingRoomListFromPresenter(ArrayList<WaitingRoomInfo> roomInfoList);
+        void showWaitingRoomListUi(ArrayList<WaitingRoomInfo> roomInfoList);
 
 //        boolean hasNextPaging();
 
@@ -38,5 +38,9 @@ public interface Looking4RoomContract {
         void openWaiting4JoinSlave(WaitingRoomInfo waitingRoomInfo);
 
         void showErrorToast(String message, boolean isShort);
+
+        void setRoomListSnapshotListerSlave();
+
+        void openCommentReferee(String hostName);
     }
 }

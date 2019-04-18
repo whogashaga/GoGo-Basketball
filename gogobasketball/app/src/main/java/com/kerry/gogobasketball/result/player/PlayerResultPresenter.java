@@ -66,6 +66,16 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
     }
 
     @Override
+    public void openHome() {
+
+    }
+
+    @Override
+    public void openCommentReferee(String hostName) {
+
+    }
+
+    @Override
     public void result(int requestCode, int resultCode) {
 
     }

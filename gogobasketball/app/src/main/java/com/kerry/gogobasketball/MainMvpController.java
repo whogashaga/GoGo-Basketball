@@ -33,9 +33,13 @@ import com.kerry.gogobasketball.rank.RankFragment;
 import com.kerry.gogobasketball.rank.RankPresenter;
 import com.kerry.gogobasketball.result.player.PlayerResultFragment;
 import com.kerry.gogobasketball.result.player.PlayerResultPresenter;
+import com.kerry.gogobasketball.result.player.comment.CommentRefereeContract;
+import com.kerry.gogobasketball.result.player.comment.CommentRefereeDialog;
+import com.kerry.gogobasketball.result.player.comment.CommentRefereePresenter;
 import com.kerry.gogobasketball.result.referee.RefereeResultFragment;
 import com.kerry.gogobasketball.result.referee.RefereeResultPresenter;
 import com.kerry.gogobasketball.util.ActivityUtils;
+import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterFragment;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterPresenter;
 import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlaveFragment;
@@ -65,6 +69,7 @@ public class MainMvpController {
 
     private RefereeResultPresenter mRefereeResultPresenter;
     private PlayerResultPresenter mPlayerResultPresenter;
+    private CommentRefereePresenter mCommentRefereePresenter;
 
     private CreateUserPresenter mCreateUserPresenter;
 
@@ -320,6 +325,29 @@ public class MainMvpController {
 
         mMainPresenter.setCreateUserPresenter(mCreateUserPresenter);
         createUserFragment.setPresenter(mMainPresenter);
+    }
+
+    /**
+     * CommentRefereeDialog View
+     */
+    void findOrCreateCommentRefereeView(String hostName) {
+
+        CommentRefereeDialog dialog =
+                (CommentRefereeDialog) getFragmentManager().findFragmentByTag(Constants.COMMENT);
+
+        if (dialog == null) {
+
+            dialog = new CommentRefereeDialog();
+            mCommentRefereePresenter = new CommentRefereePresenter(dialog);
+            mMainPresenter.setCommentRefereePresenter(mCommentRefereePresenter);
+            mCommentRefereePresenter.getHostNameFromResult(hostName);
+            dialog.setPresenter(mMainPresenter);
+            dialog.show(getFragmentManager(), Constants.COMMENT);
+
+        } else if (!dialog.isAdded()) {
+//            mWant2CommentPresenter.setAdd2CartProductData(product);
+            dialog.show(getFragmentManager(), Constants.COMMENT);
+        }
     }
 
     /* ------------------------------------------------------------------------------------------ */

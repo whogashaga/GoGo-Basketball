@@ -38,4 +38,7 @@ public class Constants {
     public static final String POSITION_SG = "sg";
     public static final String POSITION_PG = "pg";
 
+
+    public static final String COMMENT = "COMMENT";
+
 }

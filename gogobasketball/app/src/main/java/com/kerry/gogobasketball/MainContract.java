@@ -38,6 +38,8 @@ public interface MainContract {
 
         void openPlayerResultUi(String hostName, int nowSort);
 
+        void openCommentRefereeUi(String hostName);
+
         void openCreateUserUi(String userDocId);
 
         void popBackStackUi();

@@ -115,6 +115,7 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
     }
 
     public void updateData(ArrayList<WaitingRoomInfo> roomInfoList) {
+        mWaitingRoomList.clear();
         mWaitingRoomList.addAll(roomInfoList);
         notifyDataSetChanged();
     }

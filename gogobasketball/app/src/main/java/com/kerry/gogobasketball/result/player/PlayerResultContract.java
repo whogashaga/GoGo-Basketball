@@ -35,6 +35,9 @@ public interface PlayerResultContract {
 
         void setActivityBackgroundPortrait();
 
+        void openHome();
+
+        void openCommentReferee(String hostName);
 
     }
 

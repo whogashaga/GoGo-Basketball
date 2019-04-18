@@ -50,6 +50,8 @@ import com.kerry.gogobasketball.rank.RankContract;
 import com.kerry.gogobasketball.rank.RankPresenter;
 import com.kerry.gogobasketball.result.player.PlayerResultContract;
 import com.kerry.gogobasketball.result.player.PlayerResultPresenter;
+import com.kerry.gogobasketball.result.player.comment.CommentRefereeContract;
+import com.kerry.gogobasketball.result.player.comment.CommentRefereePresenter;
 import com.kerry.gogobasketball.result.referee.RefereeResultContract;
 import com.kerry.gogobasketball.result.referee.RefereeResultPresenter;
 import com.kerry.gogobasketball.util.Constants;
@@ -68,7 +70,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         Waiting4JoinMasterContract.Presenter, Waiting4JoinSlaveContract.Presenter,
         RefereeGoingContract.Presenter, PlayerGoingContract.Presenter,
         RefereeResultContract.Presenter, PlayerResultContract.Presenter,
-        LoginContract.Presenter, CreateUserContract.Presenter {
+        LoginContract.Presenter, CreateUserContract.Presenter,
+        CommentRefereeContract.Presenter {
 
     private FirebaseFirestore mDb;
     private MainContract.View mMainView;
@@ -92,6 +95,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     private RefereeResultPresenter mRefereeResultPresenter;
     private PlayerResultPresenter mPlayerResultPresenter;
+    private CommentRefereePresenter mCommentRefereePresenter;
 
     private static boolean mIsBackKeyDisable;
     private static boolean mIsGamingNow;
@@ -169,6 +173,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mCreateUserPresenter = checkNotNull(createUserPresenter);
     }
 
+    void setCommentRefereePresenter(CommentRefereePresenter commentPresenter) {
+        mCommentRefereePresenter = checkNotNull(commentPresenter);
+    }
+
     @Override
     public void result(int requestCode, int resultCode) {
 
@@ -182,6 +190,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void openHome() {
         mMainView.openHomeUi();
+    }
+
+    @Override
+    public void openCommentReferee(String hostName) {
+        mMainView.openCommentRefereeUi(hostName);
     }
 
     @Override
@@ -327,6 +340,35 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void finishResultResultUi() {
 
+    }
+
+    /**
+     *  open CommentReferee
+     */
+
+    @Override
+    public void getComment() {
+
+    }
+
+    @Override
+    public void sendOutComment() {
+
+    }
+
+    @Override
+    public void showSendCommentSuccessDialog() {
+
+    }
+
+    @Override
+    public void updateAfterSendOutComment() {
+
+    }
+
+    @Override
+    public void getHostNameFromResult(String hostName) {
+        mCommentRefereePresenter.getHostNameFromResult(hostName);
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -740,6 +782,12 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void loadExistedRoomsData4RecyclerView() {
         mLooking4RoomPresenter.loadExistedRoomsData4RecyclerView();
+    }
+
+
+    @Override
+    public void setRoomListSnapshotListerSlave() {
+        mLooking4RoomPresenter.setRoomListSnapshotListerSlave();
     }
 
     @Override

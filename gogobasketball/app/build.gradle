@@ -35,5 +35,7 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
     implementation 'com.google.firebase:firebase-core:16.0.6'
     implementation 'com.google.firebase:firebase-firestore:18.2.0'
+    implementation 'biz.borealis.numberpicker:NumberPicker:1.0.1'
+    implementation 'cn.aigestudio.wheelpicker:WheelPicker:1.1.2'
 }
 apply plugin: 'com.google.gms.google-services'

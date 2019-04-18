@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,7 +22,7 @@ import com.kerry.gogobasketball.util.ImageManager;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class PlayerResultFragment extends Fragment implements PlayerResultContract.View {
+public class PlayerResultFragment extends Fragment implements PlayerResultContract.View, View.OnClickListener {
 
     private PlayerResultContract.Presenter mPresenter;
     View mRoot;
@@ -46,8 +47,12 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
     private TextView mTextIdP6;
     private TextView mTextP6Score, mTextP6Rebound, mTextP6Foul;
 
-    public PlayerResultFragment() {
+    private Button mBtnCommentReferee;
+    private Button mBtnBack2Lobby;
+    private String mHostName;
 
+    public PlayerResultFragment() {
+        mHostName = "";
     }
 
     public static PlayerResultFragment newInstance() {
@@ -73,6 +78,7 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
 
     @Override
     public void getHostNameFromPresenter(String hostName, int nowSort) {
+        mHostName = hostName;
         mPresenter.getRoomInfoFromFireStorePlayer(hostName, nowSort);
     }
 
@@ -127,7 +133,24 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
         mTextScoreA = mRoot.findViewById(R.id.text_result_player_score_team_a);
         mTextScoreB = mRoot.findViewById(R.id.text_result_player_score_team_b);
 
+        mBtnCommentReferee = mRoot.findViewById(R.id.btn_result_player_rating_referee);
+        mBtnCommentReferee.setOnClickListener(this);
+        mBtnBack2Lobby = mRoot.findViewById(R.id.btn_result_player_back_lobby);
+        mBtnBack2Lobby.setOnClickListener(this);
+
         return mRoot;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_result_player_rating_referee:
+                mPresenter.openCommentReferee(mHostName);
+                break;
+            case R.id.btn_result_player_back_lobby:
+                mPresenter.openHome();
+                break;
+        }
     }
 
     @Override
@@ -140,13 +163,13 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
         setPlayerInfo(gamingRoomInfo.getPlayer6(), mAvatarP6, mTextIdP6, mTextP6Score, mTextP6Rebound, mTextP6Foul);
 
         if (nowSort == 1 || nowSort == 2 || nowSort == 3) {
-            if(gamingRoomInfo.getWinner().equals("a")){
+            if (gamingRoomInfo.getWinner().equals("a")) {
                 mTextWinning.setText("! VICTORY !");
             } else {
                 mTextWinning.setText("! LOSE !");
             }
         } else {
-            if(gamingRoomInfo.getWinner().equals("b")){
+            if (gamingRoomInfo.getWinner().equals("b")) {
                 mTextWinning.setText("! VICTORY !");
             } else {
                 mTextWinning.setText("! LOSE !");
@@ -177,6 +200,5 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
     public boolean isActive() {
         return false;
     }
-
 
 }

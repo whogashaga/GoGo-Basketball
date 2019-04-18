@@ -6,22 +6,16 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.FirestoreHelper;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
-import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.util.Constants;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.Nullable;
 
@@ -34,12 +28,13 @@ public class Looking4RoomPresenter implements Looking4RoomContract.Presenter {
         mLookingForRoomView = checkNotNull(lookingForRoomView, "Looking4RoomView cannot be null!");
         mLookingForRoomView.setPresenter(this);
         mWaitingRoomInfoList = new ArrayList<>();
+
     }
 
 
     @Override
     public void loadExistedRoomsData4RecyclerView() {
-
+        mWaitingRoomInfoList.clear();
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .get()
@@ -51,10 +46,33 @@ public class Looking4RoomPresenter implements Looking4RoomContract.Presenter {
                                 WaitingRoomInfo waitingRoomInfo = document.toObject(WaitingRoomInfo.class);
                                 mWaitingRoomInfoList.add(waitingRoomInfo);
                             }
-                            mLookingForRoomView.getWaitingRoomListFromPresenter(mWaitingRoomInfoList);
+                            mLookingForRoomView.showWaitingRoomListUi(mWaitingRoomInfoList);
                         }
                     }
                 });
+    }
+
+    @Override
+    public void setRoomListSnapshotListerSlave() {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value,
+                                        @Nullable FirebaseFirestoreException e) {
+                        if (e != null) {
+                            Log.w("Kerry", "Listen failed.", e);
+                            return;
+                        }
+                        loadExistedRoomsData4RecyclerView();
+                    }
+                });
+
+    }
+
+    @Override
+    public void openCommentReferee(String hostName) {
+
     }
 
     @Override

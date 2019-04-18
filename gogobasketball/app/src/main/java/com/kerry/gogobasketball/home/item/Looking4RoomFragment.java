@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.kerry.gogobasketball.MainMvpController;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.GridSpacingItemDecoration;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
@@ -28,6 +27,7 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
 
     private ArrayList<WaitingRoomInfo> mRoomInfoList;
     private Button mBtnBuildRoom;
+    private Button mRandom;
 
     public Looking4RoomFragment() {
         mRoomInfoList = new ArrayList<>();
@@ -43,7 +43,8 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
     }
 
     @Override
-    public void getWaitingRoomListFromPresenter(ArrayList<WaitingRoomInfo> roomInfoList) {
+    public void showWaitingRoomListUi(ArrayList<WaitingRoomInfo> roomInfoList) {
+        mRoomInfoList.clear();
         mRoomInfoList.addAll(roomInfoList);
         mLooking4RoomAdapter.updateData(mRoomInfoList);
 //        Log.d("Kerry","list size in fragment = " + mRoomInfoList.size());
@@ -56,6 +57,9 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
 
         mBtnBuildRoom = root.findViewById(R.id.btn_home_rooms_build);
         mBtnBuildRoom.setOnClickListener(this);
+
+        mRandom = root.findViewById(R.id.btn_home_rooms_random);
+        mRandom.setOnClickListener(this);
 
         mLooking4RoomAdapter = new Looking4RoomAdapter(mPresenter);
         RecyclerView recyclerView = root.findViewById(R.id.recycler_home_child_room);
@@ -72,6 +76,9 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
             case R.id.btn_home_rooms_build:
                 mPresenter.openWant2CreateRoom();
                 break;
+            case R.id.btn_home_rooms_random:
+                mPresenter.openCommentReferee("你好嗎");
+                break;
             default:
                 break;
         }
@@ -82,8 +89,7 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.loadExistedRoomsData4RecyclerView();
-
-
+//        mPresenter.setRoomListSnapshotListerSlave();
     }
 
     @Override

@@ -173,7 +173,7 @@
         <item name="android:windowBackground">@color/translucent_80</item>
     </style>
 
-    <style name="Add2CartDialog">
+    <style name="CommentRefereeDialog">
         <item name="android:windowEnterAnimation">@null</item>
         <item name="android:windowExitAnimation">@null</item>
         <item name="android:windowBackground">@color/translucent_40</item>
