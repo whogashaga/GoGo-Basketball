@@ -456,7 +456,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                     public void onSuccess(Void aVoid) {
                         Log.d(Constants.TAG, "Room status 改為 gaming!!");
                         mWaiting4JoinMasterView.getGamingRoomInfoFromPresenter4GamingFragment(gamingRoomInfo);
-                        deleteHostInfoWhenLeave();
+//                        deleteHostInfoWhenLeave();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

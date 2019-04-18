@@ -100,6 +100,7 @@ public class CommentRefereeDialog extends DialogFragment implements CommentRefer
     @Override
     public void finishCommentUi() {
         dismiss();
+        mPresenter.showBack2LobbyButtonPlayerResult();
     }
 
     @Override

@@ -12,6 +12,8 @@ public interface PlayerResultContract {
 
         void getHostNameFromPresenter(String hostName, int nowSort);
 
+        void showLobbyButton();
+
         boolean isActive();
     }
 
@@ -22,8 +24,6 @@ public interface PlayerResultContract {
         void hideToolbarAndBottomNavigation();
 
         void showToolbarAndBottomNavigation();
-
-        void finishResultResultUi();
 
         void setBackKeyDisable(boolean isBackKeyDisable);
 
@@ -38,6 +38,8 @@ public interface PlayerResultContract {
         void openHome();
 
         void openCommentReferee(String refereeName);
+
+        void setBack2LobbyVisible();
 
     }
 

@@ -21,19 +21,15 @@ public interface CommentRefereeContract {
 
         void result(int requestCode, int resultCode);
 
-        void getComment();
-
-        void sendOutComment();
-
         void showSendCommentSuccessDialog();
-
-        void updateAfterSendOutComment();
 
         void getRefereeNameFromResult(String hostName);
 
         void onWheelViewChanged(int rating);
 
         void queryRefereeUserDocId();
+
+        void showBack2LobbyButtonPlayerResult();
 
     }
 }

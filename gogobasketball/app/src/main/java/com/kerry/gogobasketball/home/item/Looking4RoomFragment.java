@@ -77,12 +77,12 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
                 mPresenter.openWant2CreateRoom();
                 break;
             case R.id.btn_home_rooms_random:
-                mPresenter.openCommentReferee("你好嗎");
+//                mPresenter.openCommentReferee("你好嗎");
+                mPresenter.openGameResultPlayer("D11wQ", 2);
                 break;
             default:
                 break;
         }
-
     }
 
     @Override

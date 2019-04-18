@@ -31,13 +31,14 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
     }
 
     @Override
-    public void getHostNameFromPlayerGoing(String hostName, int nowSort) {
+    public void getHostNameFromPlayerGoing(String hostName, int currentSort) {
         mHostName = hostName;
-        mGameResultView.getHostNameFromPresenter(hostName, nowSort);
+        mGameResultView.getHostNameFromPresenter(hostName, currentSort);
     }
 
     @Override
-    public void getRoomInfoFromFireStorePlayer(String hostName, int nowSort) {
+    public void getRoomInfoFromFireStorePlayer(String hostName, int currentSort) {
+
         FirestoreHelper.getFirestore()
                 .collection(Constants.GAMING_ROOM)
                 .whereEqualTo(Constants.HOST_NAME, hostName)
@@ -49,8 +50,9 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 mRoomDocId = document.getId();
                                 GamingRoomInfo gamingRoomInfo = document.toObject(GamingRoomInfo.class);
-                                mGameResultView.showResultPlayerUi(gamingRoomInfo, nowSort);
-                                getPlayerRecordFromRoom(gamingRoomInfo, nowSort);
+                                mGameResultView.showResultPlayerUi(gamingRoomInfo, currentSort);
+                                Log.w("Kerry", "gamingRoomInfo = " + gamingRoomInfo.toString());
+                                getPlayerRecordFromRoom(gamingRoomInfo, currentSort);
                             }
                         } else {
                             Log.w("Kerry", "Error getting documents.", task.getException());
@@ -59,27 +61,29 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
                 });
     }
 
-    private void getPlayerRecordFromRoom(GamingRoomInfo gamingRoomInfo, int nowSort) {
-        if (nowSort == 1) {
-            getUserDocId(gamingRoomInfo.getPlayer1(), gamingRoomInfo.getWinner(), nowSort);
-        } else if (nowSort == 2) {
-            getUserDocId(gamingRoomInfo.getPlayer2(), gamingRoomInfo.getWinner(), nowSort);
-        } else if (nowSort == 3) {
-            getUserDocId(gamingRoomInfo.getPlayer3(), gamingRoomInfo.getWinner(), nowSort);
-        } else if (nowSort == 4) {
-            getUserDocId(gamingRoomInfo.getPlayer4(), gamingRoomInfo.getWinner(), nowSort);
-        } else if (nowSort == 5) {
-            getUserDocId(gamingRoomInfo.getPlayer5(), gamingRoomInfo.getWinner(), nowSort);
-        } else if (nowSort == 6) {
-            getUserDocId(gamingRoomInfo.getPlayer6(), gamingRoomInfo.getWinner(), nowSort);
+    private void getPlayerRecordFromRoom(GamingRoomInfo gamingRoomInfo, int currentSort) {
+
+        if (currentSort == 1) {
+            getUserDocId(gamingRoomInfo.getPlayer1(), gamingRoomInfo.getWinner(), currentSort);
+        } else if (currentSort == 2) {
+            getUserDocId(gamingRoomInfo.getPlayer2(), gamingRoomInfo.getWinner(), currentSort);
+        } else if (currentSort == 3) {
+            getUserDocId(gamingRoomInfo.getPlayer3(), gamingRoomInfo.getWinner(), currentSort);
+        } else if (currentSort == 4) {
+            getUserDocId(gamingRoomInfo.getPlayer4(), gamingRoomInfo.getWinner(), currentSort);
+        } else if (currentSort == 5) {
+            getUserDocId(gamingRoomInfo.getPlayer5(), gamingRoomInfo.getWinner(), currentSort);
+        } else if (currentSort == 6) {
+            getUserDocId(gamingRoomInfo.getPlayer6(), gamingRoomInfo.getWinner(), currentSort);
         } else {
             Log.d(Constants.TAG, "PlayerResultPresenter getPlayerRecordFromRoom Error !");
         }
     }
 
-    private void getUserDocId(GamingPlayer gamingPlayer, String winner, int nowSort) {
+    private void getUserDocId(GamingPlayer gamingPlayer, String winner, int currentSort) {
+
         FirestoreHelper.getFirestore()
-                .collection(Constants.WAITING_ROOM)
+                .collection(Constants.USERS)
                 .whereEqualTo("id", gamingPlayer.getId())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -89,7 +93,8 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 // 只有一筆，跑 for 沒關係
                                 User user = document.toObject(User.class);
-                                setRecords2User(user, gamingPlayer, winner, nowSort);
+                                Log.e("Kerry", "document.toObject(User.class) ID = " + user.getId());
+                                setRecords2User(user, gamingPlayer, winner, currentSort);
                             }
                         } else {
                             Log.w("Kerry", "Error getting documents.", task.getException());
@@ -100,13 +105,15 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
         });
     }
 
-    private void setRecords2User(User user, GamingPlayer gamingPlayer, String winner, int nowSort) {
+    private void setRecords2User(User user, GamingPlayer gamingPlayer, String winner, int currentSort) {
+
+        Log.d("Kerry", "setRecords2User @ ");
         user.getPlayerRecord().setGames(user.getPlayerRecord().getGames() + 1);
         user.getPlayerRecord().setScore(user.getPlayerRecord().getScore() + gamingPlayer.getScore());
         user.getPlayerRecord().setRebound(user.getPlayerRecord().getRebound() + gamingPlayer.getRebound());
         user.getPlayerRecord().setFoul(user.getPlayerRecord().getFoul() + gamingPlayer.getFoul());
 
-        if (nowSort == 1 || nowSort == 2 || nowSort == 3) {
+        if (currentSort == 1 || currentSort == 2 || currentSort == 3) {
             if (winner.equals("a")) {
                 user.getPlayerRecord().setWinning(user.getPlayerRecord().getWinning() + 1);
             } else {
@@ -124,6 +131,7 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
     }
 
     private void updatePersonalRecord2User(User user) {
+        Log.d("Kerry", "updatePersonalRecord2User @ ");
         FirestoreHelper.getFirestore()
                 .collection(Constants.USERS)
                 .document(user.getFacebookId())
@@ -141,6 +149,12 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
 
         });
     }
+
+    @Override
+    public void setBack2LobbyVisible() {
+        mGameResultView.showLobbyButton();
+    }
+
 
     @Override
     public void setActivityBackgroundLandScape() {
@@ -174,11 +188,6 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
 
     @Override
     public void showToolbarAndBottomNavigation() {
-
-    }
-
-    @Override
-    public void finishResultResultUi() {
 
     }
 

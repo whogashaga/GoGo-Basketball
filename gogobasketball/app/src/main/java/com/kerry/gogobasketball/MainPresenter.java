@@ -192,6 +192,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
+    public void setBack2LobbyVisible() {
+        mPlayerResultPresenter.setBack2LobbyVisible();
+    }
+
+    @Override
     public void openFriend() {
         mMainView.openFriendsUi();
     }
@@ -341,23 +346,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
      */
 
     @Override
-    public void getComment() {
-
-    }
-
-    @Override
-    public void sendOutComment() {
-
-    }
-
-    @Override
     public void showSendCommentSuccessDialog() {
-
-    }
-
-    @Override
-    public void updateAfterSendOutComment() {
-
+        mMainView.showMessageDialogUi(MessageDialog.SEND_COMMENT_SUCCESS);
     }
 
     @Override
@@ -373,6 +363,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void queryRefereeUserDocId() {
         mCommentRefereePresenter.queryRefereeUserDocId();
+    }
+
+    @Override
+    public void showBack2LobbyButtonPlayerResult() {
+        mPlayerResultPresenter.setBack2LobbyVisible();
     }
 
     /* ------------------------------------------------------------------------------------------ */

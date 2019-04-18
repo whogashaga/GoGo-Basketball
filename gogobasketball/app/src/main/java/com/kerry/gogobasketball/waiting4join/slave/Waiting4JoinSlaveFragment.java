@@ -300,9 +300,11 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         switch (v.getId()) {
             case R.id.btn_slave_waiting4join_back_arrow:
                 mPresenter.finishWaiting4JoinUi();
+                mPresenter.showToolbarAndBottomNavigation();
                 break;
             case R.id.btn_slave_waiting4join_cancel:
                 mPresenter.finishWaiting4JoinUi();
+                mPresenter.showToolbarAndBottomNavigation();
                 break;
             case R.id.btn_slave_waiting_team_a_player1_change_seat:
                 Log.d(Constants.TAG, "Joiner onClick seat1");
@@ -371,7 +373,6 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void onDestroy() {
         super.onDestroy();
         mPresenter.setBackKeyDisable(false);
-        mPresenter.showToolbarAndBottomNavigation();
         mPresenter.deleteSeatsInfoWhenLeaveRoom();
     }
 

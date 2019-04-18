@@ -89,27 +89,17 @@ public class CommentRefereePresenter implements CommentRefereeContract.Presenter
     }
 
     @Override
+    public void showBack2LobbyButtonPlayerResult() {
+
+    }
+
+    @Override
     public void result(int requestCode, int resultCode) {
 
     }
 
     @Override
-    public void getComment() {
-
-    }
-
-    @Override
-    public void sendOutComment() {
-
-    }
-
-    @Override
     public void showSendCommentSuccessDialog() {
-
-    }
-
-    @Override
-    public void updateAfterSendOutComment() {
 
     }
 

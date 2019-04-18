@@ -35,6 +35,7 @@ public class PlayerGoingFragment extends Fragment implements PlayerGoingContract
     @Override
     public void onResume() {
         super.onResume();
+        mPresenter.hideToolbarAndBottomNavigation();
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }

@@ -151,8 +151,17 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
                 break;
             case R.id.btn_result_player_back_lobby:
                 mPresenter.openHome();
+                getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                mPresenter.showToolbarAndBottomNavigation();
+                mPresenter.setBackKeyDisable(false);
                 break;
         }
+    }
+
+    @Override
+    public void showLobbyButton() {
+        mBtnCommentReferee.setVisibility(View.GONE);
+        mBtnBack2Lobby.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -166,15 +175,15 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
 
         if (nowSort == 1 || nowSort == 2 || nowSort == 3) {
             if (gamingRoomInfo.getWinner().equals("a")) {
-                mTextWinning.setText("! VICTORY !");
+                mTextWinning.setText("< VICTORY >");
             } else {
-                mTextWinning.setText("! LOSE !");
+                mTextWinning.setText("< LOSE >");
             }
         } else {
             if (gamingRoomInfo.getWinner().equals("b")) {
-                mTextWinning.setText("! VICTORY !");
+                mTextWinning.setText("< VICTORY >");
             } else {
-                mTextWinning.setText("! LOSE !");
+                mTextWinning.setText("< LOSE >");
             }
         }
         mTextScoreA.setText(String.valueOf(gamingRoomInfo.getScoreA()));
@@ -196,7 +205,13 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mPresenter.hideToolbarAndBottomNavigation();
         mPresenter.setBackKeyDisable(true);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
     @Override

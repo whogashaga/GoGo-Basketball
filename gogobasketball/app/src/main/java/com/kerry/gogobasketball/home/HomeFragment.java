@@ -3,6 +3,7 @@ package com.kerry.gogobasketball.home;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -54,7 +55,6 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.showToolbarAndBottomNavigation();
 //        mTabLayout.setupWithViewPager(mViewPager);
 //        mViewPager.setAdapter(mHomeAdapter);
     }

@@ -22,11 +22,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.data.GamingPlayer;
 import com.kerry.gogobasketball.data.GamingReferee;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
@@ -88,6 +93,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 //        postCustomObject();
 //        getCustomObject();
 
+//        sortTestDoc();
 
     }
 
@@ -110,6 +116,33 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         UserManager.getInstance().getFbCallbackManager().onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void sortTestDoc() {
+
+        mBtnCreateUser = findViewById(R.id.main_layout_create_user);
+        mBtnCreateUser.setVisibility(View.VISIBLE);
+
+        mBtnCreateUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirestoreHelper.getFirestore()
+                        .collection("test")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        Log.w("Kerry", document.getId() + " => " + document.getData());
+                                    }
+                                } else {
+                                    Log.w("Kerry", "Error getting documents.", task.getException());
+                                }
+                            }
+                        });
+            }
+        });
     }
 
     public void postCustomObject() {
@@ -694,6 +727,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     public void onBackPressed() {
         if (mPresenter.disableBackKey() && mPresenter.isGamingNow()) {
             mPresenter.showErrorToast("比賽尚未結束\n請勿離場！！", true);
+        } else if (mPresenter.disableBackKey()) {
+            // do nothing
         } else {
             super.onBackPressed();
         }
