@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
@@ -21,6 +22,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -95,6 +97,9 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         AppEventsLogger.activateApp(this);
         init();
         mView = this.findViewById(R.id.layout_main);
+        mView.setBackgroundResource(R.drawable.anim_layout_background);
+        AnimationDrawable drawable = (AnimationDrawable) mView.getBackground();
+        drawable.start();
 
 //        createUserInfo();
 //        setUserRecord();
@@ -705,7 +710,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
             mToolbarLogo.setVisibility(View.VISIBLE);
 
         } else {
-
             if (title.equals(getString(R.string.payment))) {
                 mActionBarDrawerToggle.setDrawerIndicatorEnabled(false);
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
