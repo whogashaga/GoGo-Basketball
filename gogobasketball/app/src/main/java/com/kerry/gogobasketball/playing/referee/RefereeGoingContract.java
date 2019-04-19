@@ -14,6 +14,10 @@ public interface RefereeGoingContract {
 
         void openGameResultRefereeUi(String hostName);
 
+        void setScorePlusClickableTeamA(boolean clickable);
+
+        void setScorePlusClickableTeamB(boolean clickable);
+
         boolean isActive();
 
         void increaseScoreP1();

@@ -30,8 +30,10 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.core.OrderBy;
 import com.kerry.gogobasketball.data.GamingPlayer;
 import com.kerry.gogobasketball.data.GamingReferee;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
@@ -127,18 +129,18 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
             @Override
             public void onClick(View v) {
                 FirestoreHelper.getFirestore()
-                        .collection("test")
+                        .collection(Constants.USERS)
+                        .orderBy("playerRecord.foul")
                         .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        Log.w("Kerry", document.getId() + " => " + document.getData());
-                                    }
-                                } else {
-                                    Log.w("Kerry", "Error getting documents.", task.getException());
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    User user = document.toObject(User.class);
+                                    Log.w("Kerry", "foul = " + user.getPlayerRecord().getFoul());
+//                                        Log.w("Kerry", document.getId() + " => " + document.getData());
                                 }
+                            } else {
+                                Log.w("Kerry", "Error getting documents.", task.getException());
                             }
                         });
             }

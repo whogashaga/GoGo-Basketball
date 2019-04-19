@@ -519,6 +519,7 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
         return false;
     }
 
+
     public int getIntScoreA() {
         mIntScoreA = mIntScoreP1 + mIntScoreP2 + mIntScoreP3;
         return mIntScoreA;
@@ -529,12 +530,14 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
         return mIntScoreB;
     }
 
+    @Override
     public void setScorePlusClickableTeamA(boolean clickable) {
         mBtnP1ScorePlus.setClickable(clickable);
         mBtnP2ScorePlus.setClickable(clickable);
         mBtnP3ScorePlus.setClickable(clickable);
     }
 
+    @Override
     public void setScorePlusClickableTeamB(boolean clickable) {
         mBtnP4ScorePlus.setClickable(clickable);
         mBtnP5ScorePlus.setClickable(clickable);
