@@ -153,6 +153,7 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
                 mPresenter.openHome();
                 getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 mPresenter.showToolbarAndBottomNavigation();
+                mPresenter.setActivityBackgroundPortrait();
                 mPresenter.setBackKeyDisable(false);
                 break;
         }

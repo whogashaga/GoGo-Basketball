@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -48,11 +50,30 @@ public class RefereeResultPresenter implements RefereeResultContract.Presenter {
                                 mRoomDocId = document.getId();
                                 GamingRoomInfo gamingRoomInfo = document.toObject(GamingRoomInfo.class);
                                 mGameResultView.showResultRefereeUi(gamingRoomInfo);
-//                                Log.w("Kerry", "gaming room id = " + document.getId() + " => " + document.getData());
                             }
                         } else {
                             Log.w("Kerry", "Error getting documents.", task.getException());
                         }
+                    }
+                });
+    }
+
+    @Override
+    public void deleteGamingRoom() {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.GAMING_ROOM)
+                .document(mRoomDocId)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(Constants.TAG, "刪除 gaming room document!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(Constants.TAG, "deleteGamingRoom Error !", e);
                     }
                 });
     }
@@ -79,6 +100,11 @@ public class RefereeResultPresenter implements RefereeResultContract.Presenter {
 
     @Override
     public void showToolbarAndBottomNavigation() {
+
+    }
+
+    @Override
+    public void openHome() {
 
     }
 

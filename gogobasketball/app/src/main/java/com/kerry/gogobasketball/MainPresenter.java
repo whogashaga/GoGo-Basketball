@@ -332,6 +332,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
+    public void checkWhichTeamWon() {
+        mRefereeGoingPresenter.checkWhichTeamWon();
+    }
+
+    @Override
     public void forced2FinishGaming() {
 
     }
@@ -342,7 +347,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     /**
-     *  open CommentReferee
+     * open CommentReferee
      */
 
     @Override
@@ -387,33 +392,183 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     /* adjust player's records - PlayingFragment */
 
     @Override
-    public void fireStoreScorePlusP1() {
-        mRefereeGoingPresenter.fireStoreScorePlusP1();
+    public void increaseScoreP1() {
+        mRefereeGoingPresenter.increaseScoreP1();
     }
 
     @Override
-    public void fireStoreScoreMinusP1() {
-        mRefereeGoingPresenter.fireStoreScoreMinusP1();
+    public void decreaseScoreP1() {
+        mRefereeGoingPresenter.decreaseScoreP1();
     }
 
     @Override
-    public void fireStoreReboundPlusP1() {
-        mRefereeGoingPresenter.fireStoreReboundPlusP1();
+    public void increaseReboundP1() {
+        mRefereeGoingPresenter.increaseReboundP1();
     }
 
     @Override
-    public void fireStoreReboundMinusP1() {
-        mRefereeGoingPresenter.fireStoreReboundMinusP1();
+    public void decreaseReboundP1() {
+        mRefereeGoingPresenter.decreaseReboundP1();
     }
 
     @Override
-    public void fireStoreFoulPlusP1() {
-        mRefereeGoingPresenter.fireStoreFoulPlusP1();
+    public void increaseFoulP1() {
+        mRefereeGoingPresenter.increaseFoulP1();
     }
 
     @Override
-    public void fireStoreFoulMinusP1() {
-        mRefereeGoingPresenter.fireStoreFoulMinusP1();
+    public void decreaseFoulP1() {
+        mRefereeGoingPresenter.decreaseFoulP1();
+    }
+
+    @Override
+    public void increaseScoreP2() {
+        mRefereeGoingPresenter.increaseScoreP2();
+    }
+
+    @Override
+    public void decreaseScoreP2() {
+        mRefereeGoingPresenter.decreaseScoreP2();
+    }
+
+    @Override
+    public void increaseReboundP2() {
+        mRefereeGoingPresenter.increaseReboundP2();
+    }
+
+    @Override
+    public void decreaseReboundP2() {
+        mRefereeGoingPresenter.decreaseReboundP2();
+    }
+
+    @Override
+    public void increaseFoulP2() {
+        mRefereeGoingPresenter.increaseFoulP2();
+    }
+
+    @Override
+    public void decreaseFoulP2() {
+        mRefereeGoingPresenter.decreaseFoulP2();
+    }
+
+    @Override
+    public void increaseScoreP3() {
+        mRefereeGoingPresenter.increaseScoreP3();
+    }
+
+    @Override
+    public void decreaseScoreP3() {
+        mRefereeGoingPresenter.decreaseScoreP3();
+    }
+
+    @Override
+    public void increaseReboundP3() {
+        mRefereeGoingPresenter.increaseReboundP3();
+    }
+
+    @Override
+    public void decreaseReboundP3() {
+        mRefereeGoingPresenter.decreaseReboundP3();
+    }
+
+    @Override
+    public void increaseFoulP3() {
+        mRefereeGoingPresenter.increaseFoulP3();
+    }
+
+    @Override
+    public void decreaseFoulP3() {
+        mRefereeGoingPresenter.decreaseFoulP3();
+    }
+
+    @Override
+    public void increaseScoreP4() {
+        mRefereeGoingPresenter.increaseScoreP4();
+    }
+
+    @Override
+    public void decreaseScoreP4() {
+        mRefereeGoingPresenter.decreaseScoreP4();
+    }
+
+    @Override
+    public void increaseReboundP4() {
+        mRefereeGoingPresenter.increaseReboundP4();
+    }
+
+    @Override
+    public void decreaseReboundP4() {
+        mRefereeGoingPresenter.decreaseReboundP4();
+    }
+
+    @Override
+    public void increaseFoulP4() {
+        mRefereeGoingPresenter.increaseFoulP4();
+    }
+
+    @Override
+    public void decreaseFoulP4() {
+        mRefereeGoingPresenter.decreaseFoulP4();
+    }
+
+    @Override
+    public void increaseScoreP5() {
+        mRefereeGoingPresenter.increaseScoreP5();
+    }
+
+    @Override
+    public void decreaseScoreP5() {
+        mRefereeGoingPresenter.decreaseScoreP5();
+    }
+
+    @Override
+    public void increaseReboundP5() {
+        mRefereeGoingPresenter.increaseReboundP5();
+    }
+
+    @Override
+    public void decreaseReboundP5() {
+        mRefereeGoingPresenter.decreaseReboundP5();
+    }
+
+    @Override
+    public void increaseFoulP5() {
+        mRefereeGoingPresenter.increaseFoulP5();
+    }
+
+    @Override
+    public void decreaseFoulP5() {
+        mRefereeGoingPresenter.decreaseFoulP5();
+    }
+
+    @Override
+    public void increaseScoreP6() {
+        mRefereeGoingPresenter.increaseScoreP6();
+    }
+
+    @Override
+    public void decreaseScoreP6() {
+        mRefereeGoingPresenter.decreaseScoreP6();
+    }
+
+    @Override
+    public void increaseReboundP6() {
+        mRefereeGoingPresenter.increaseReboundP6();
+    }
+
+    @Override
+    public void decreaseReboundP6() {
+        mRefereeGoingPresenter.decreaseReboundP6();
+    }
+
+    @Override
+    public void increaseFoulP6() {
+        mRefereeGoingPresenter.increaseFoulP6();
+    }
+
+    @Override
+    public void decreaseFoulP6() {
+        mRefereeGoingPresenter.decreaseFoulP6();
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -447,6 +602,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void getProfileUserData(Activity activity) {
         mWaiting4JoinSlavePresenter.getProfileUserData(activity);
+    }
+
+    @Override
+    public void removeListenerSlave() {
+        mWaiting4JoinSlavePresenter.removeListenerSlave();
     }
 
     @Override
@@ -579,6 +739,16 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
+    public void removeListenerMaster() {
+        mWaiting4JoinMasterPresenter.removeListenerMaster();
+    }
+
+    @Override
+    public void deleteGamingRoom() {
+        mRefereeResultPresenter.deleteGamingRoom();
+    }
+
+    @Override
     public void hideBottomNavigation() {
 
     }
@@ -698,7 +868,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     private void checkIfUserCreated(String userDocId) {
 
-        Log.d("Kerry", "checkIfUserCreate doc id = "+ userDocId);
+        Log.d("Kerry", "checkIfUserCreate doc id = " + userDocId);
 
         DocumentReference docRef = FirestoreHelper.getFirestore()
                 .collection(Constants.USERS)

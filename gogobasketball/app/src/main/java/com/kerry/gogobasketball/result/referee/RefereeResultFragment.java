@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,10 +21,11 @@ import com.kerry.gogobasketball.util.ImageManager;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class RefereeResultFragment extends Fragment implements RefereeResultContract.View {
+public class RefereeResultFragment extends Fragment implements RefereeResultContract.View, View.OnClickListener {
 
     private RefereeResultContract.Presenter mPresenter;
     View mRoot;
+    private Button mBtnBackLobby;
 
     private TextView mTextWinner, mTextScoreA, mTextScoreB;
     private ImageView mAvatarP1;
@@ -122,8 +124,23 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
         mTextWinner = mRoot.findViewById(R.id.text_referee_going_title_start);
         mTextScoreA = mRoot.findViewById(R.id.text_result_referee_score_team_a);
         mTextScoreB = mRoot.findViewById(R.id.text_result_referee_score_team_b);
+        mBtnBackLobby = mRoot.findViewById(R.id.btn_result_referee_back_lobby);
+        mBtnBackLobby.setOnClickListener(this);
 
         return mRoot;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_result_referee_back_lobby:
+                mPresenter.deleteGamingRoom();
+                getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                mPresenter.openHome();
+                mPresenter.showToolbarAndBottomNavigation();
+                mPresenter.setActivityBackgroundPortrait();
+                break;
+        }
     }
 
     @Override
@@ -183,4 +200,5 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
     public boolean isActive() {
         return false;
     }
+
 }

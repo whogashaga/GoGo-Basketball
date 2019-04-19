@@ -84,24 +84,6 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     private GamingRoomInfo mGamingRoomInfo;
 
     public RefereeGoingFragment() {
-        mIntScoreP1 = 0;
-        mIntScoreP2 = 0;
-        mIntScoreP3 = 0;
-        mIntScoreP4 = 0;
-        mIntScoreP5 = 0;
-        mIntScoreP6 = 0;
-        mIntReboundP1 = 0;
-        mIntReboundP2 = 0;
-        mIntReboundP3 = 0;
-        mIntReboundP4 = 0;
-        mIntReboundP5 = 0;
-        mIntReboundP6 = 0;
-        mIntFoulP1 = 0;
-        mIntFoulP2 = 0;
-        mIntFoulP3 = 0;
-        mIntFoulP4 = 0;
-        mIntFoulP5 = 0;
-        mIntFoulP6 = 0;
         mGamingRoomInfo = new GamingRoomInfo();
     }
 
@@ -235,121 +217,115 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_playing_team_a_player1_point_plus:
-                increaseScoreP1();
+                mPresenter.increaseScoreP1();
                 break;
             case R.id.btn_playing_team_a_player1_point_minus:
-                decreaseScoreP1();
+                mPresenter.decreaseScoreP1();
                 break;
             case R.id.btn_playing_team_a_player1_rebound_plus:
-                increaseReboundP1();
+                mPresenter.increaseReboundP1();
                 break;
             case R.id.btn_playing_team_a_player1_rebound_minus:
-                decreaseReboundP1();
+                mPresenter.decreaseReboundP1();
                 break;
             case R.id.btn_playing_team_a_player1_foul_plus:
-                increaseFoulP1();
+                mPresenter.increaseFoulP1();
                 break;
             case R.id.btn_playing_team_a_player1_foul_minus:
-                decreaseFoulP1();
+                mPresenter.decreaseFoulP1();
                 break;
             case R.id.btn_playing_team_a_player2_point_plus:
-                increaseScoreP2();
+                mPresenter.increaseScoreP2();
                 break;
             case R.id.btn_playing_team_a_player2_point_minus:
-                decreaseScoreP2();
+                mPresenter.decreaseScoreP2();
                 break;
             case R.id.btn_playing_team_a_player2_rebound_plus:
-                increaseReboundP2();
+                mPresenter.increaseReboundP2();
                 break;
             case R.id.btn_playing_team_a_player2_rebound_minus:
-                decreaseReboundP2();
+                mPresenter.decreaseReboundP2();
                 break;
             case R.id.btn_playing_team_a_player2_foul_plus:
-                increaseFoulP2();
+                mPresenter.increaseFoulP2();
                 break;
             case R.id.btn_playing_team_a_player2_foul_minus:
-                decreaseFoulP2();
+                mPresenter.decreaseFoulP2();
                 break;
             case R.id.btn_playing_team_a_player3_point_plus:
-                increaseScoreP3();
+                mPresenter.increaseScoreP3();
                 break;
             case R.id.btn_playing_team_a_player3_point_minus:
-                decreaseScoreP3();
+                mPresenter.decreaseScoreP3();
                 break;
             case R.id.btn_playing_team_a_player3_rebound_plus:
-                increaseReboundP3();
+                mPresenter.increaseReboundP3();
                 break;
             case R.id.btn_playing_team_a_player3_rebound_minus:
-                decreaseReboundP3();
+                mPresenter.decreaseReboundP3();
                 break;
             case R.id.btn_playing_team_a_player3_foul_plus:
-                increaseFoulP3();
+                mPresenter.increaseFoulP3();
                 break;
             case R.id.btn_playing_team_a_player3_foul_minus:
-                decreaseFoulP3();
+                mPresenter.decreaseFoulP3();
                 break;
-
             case R.id.btn_playing_team_b_player1_point_plus:
-                increaseScoreP4();
+                mPresenter.increaseScoreP4();
                 break;
             case R.id.btn_playing_team_b_player1_point_minus:
-                decreaseScoreP4();
+                mPresenter.decreaseScoreP4();
                 break;
             case R.id.btn_playing_team_b_player1_rebound_plus:
-                increaseReboundP4();
+                mPresenter.increaseReboundP4();
                 break;
             case R.id.btn_playing_team_b_player1_rebound_minus:
-                decreaseReboundP4();
+                mPresenter.decreaseReboundP4();
                 break;
             case R.id.btn_playing_team_b_player1_foul_plus:
-                increaseFoulP4();
+                mPresenter.increaseFoulP4();
                 break;
             case R.id.btn_playing_team_b_player1_foul_minus:
-                decreaseFoulP4();
+                mPresenter.decreaseFoulP4();
                 break;
             case R.id.btn_playing_team_b_player2_point_plus:
-                increaseScoreP5();
+                mPresenter.increaseScoreP5();
                 break;
             case R.id.btn_playing_team_b_player2_point_minus:
-                decreaseScoreP5();
+                mPresenter.decreaseScoreP5();
                 break;
             case R.id.btn_playing_team_b_player2_rebound_plus:
-                increaseReboundP5();
+                mPresenter.increaseReboundP5();
                 break;
             case R.id.btn_playing_team_b_player2_rebound_minus:
-                decreaseReboundP5();
+                mPresenter.decreaseReboundP5();
                 break;
             case R.id.btn_playing_team_b_player2_foul_plus:
-                increaseFoulP5();
+                mPresenter.increaseFoulP5();
                 break;
             case R.id.btn_playing_team_b_player2_foul_minus:
-                decreaseFoulP5();
+                mPresenter.decreaseFoulP5();
                 break;
             case R.id.btn_playing_team_b_player3_point_plus:
-                increaseScoreP6();
+                mPresenter.increaseScoreP6();
                 break;
             case R.id.btn_playing_team_b_player3_point_minus:
-                decreaseScoreP6();
+                mPresenter.decreaseScoreP6();
                 break;
             case R.id.btn_playing_team_b_player3_rebound_plus:
-                increaseReboundP6();
+                mPresenter.increaseReboundP6();
                 break;
             case R.id.btn_playing_team_b_player3_rebound_minus:
-                decreaseReboundP6();
+                mPresenter.decreaseReboundP6();
                 break;
             case R.id.btn_playing_team_b_player3_foul_plus:
-                increaseFoulP6();
+                mPresenter.increaseFoulP6();
                 break;
             case R.id.btn_playing_team_b_player3_foul_minus:
-                decreaseFoulP6();
+                mPresenter.decreaseFoulP6();
                 break;
             case R.id.btn_gaming_game_over:
-                if (mIntScoreA == mIntScoreB){
-                    mPresenter.showErrorToast("沒有平手的啦！",true);
-                } else {
-                    mPresenter.updateGameResultOfPlayer(setFinalResult(mGamingRoomInfo));
-                }
-//                mPresenter.openGameResultReferee(mGamingRoomInfo.getHostName());
+                mPresenter.checkWhichTeamWon();
                 break;
             default:
                 break;
@@ -445,7 +421,6 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mPresenter.setGamingNowMessage(false);
     }
 
     @Override
@@ -456,6 +431,11 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     @Override
     public void openGameResultRefereeUi(String hostName) {
         mPresenter.openGameResultReferee(hostName);
+    }
+
+    @Override
+    public void setGamingNow(boolean isGamingNow) {
+        mPresenter.setGamingNowMessage(isGamingNow);
     }
 
     @Override
@@ -497,37 +477,19 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     }
 
     private void setPositionImage(ImageView imageView, String positionStr) {
-        if (positionStr.equals("pg")) {
+        if (positionStr.equals(Constants.POSITION_PG)) {
             imageView.setImageResource(R.drawable.ic_position_pg);
-        } else if (positionStr.equals("sg")) {
+        } else if (positionStr.equals(Constants.POSITION_SG)) {
             imageView.setImageResource(R.drawable.ic_position_sg);
-        } else if (positionStr.equals("sf")) {
+        } else if (positionStr.equals(Constants.POSITION_SF)) {
             imageView.setImageResource(R.drawable.ic_position_sf);
-        } else if (positionStr.equals("pf")) {
+        } else if (positionStr.equals(Constants.POSITION_PF)) {
             imageView.setImageResource(R.drawable.ic_position_pf);
-        } else if (positionStr.equals("c")) {
+        } else if (positionStr.equals(Constants.POSITION_CENTER)) {
             imageView.setImageResource(R.drawable.ic_position_center);
-        } else if (positionStr.equals("r")) {
-            imageView.setImageResource(R.drawable.ic_position_referee);
         } else {
             Log.e("Kerry", "Set Position Error!!");
         }
-    }
-
-    @Override
-    public boolean isActive() {
-        return false;
-    }
-
-
-    public int getIntScoreA() {
-        mIntScoreA = mIntScoreP1 + mIntScoreP2 + mIntScoreP3;
-        return mIntScoreA;
-    }
-
-    public int getIntScoreB() {
-        mIntScoreB = mIntScoreP4 + mIntScoreP5 + mIntScoreP6;
-        return mIntScoreB;
     }
 
     @Override
@@ -544,454 +506,285 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
         mBtnP6ScorePlus.setClickable(clickable);
     }
 
+    @Override
+    public void setTextScoreTeamA(String textScoreTeamA) {
+        mIntScoreA = Integer.valueOf(textScoreTeamA);
+        mTeamScoreA.setText(textScoreTeamA);
+    }
+
+    @Override
+    public void setTextScoreTeamB(String textScoreTeamB) {
+        mIntScoreB = Integer.valueOf(textScoreTeamB);
+        mTeamScoreB.setText(textScoreTeamB);
+    }
+
     /* ------------------------------------------------------------------------------------------ */
+
     /* Player1 */
 
     @Override
-    public void increaseScoreP1() {
-        if (getIntScoreA() == 6) {
-            setScorePlusClickableTeamA(false);
-        } else if (mIntScoreP1 < 6 && getIntScoreA() < 6) {
-            mIntScoreP1 += 1;
-            mTextP1Score.setText(String.valueOf(mIntScoreP1));
-            mTeamScoreA.setText(String.valueOf(getIntScoreA()));
-            mBtnP1ScoreMinus.setClickable(true);
-        } else {
-
-        }
+    public void setTextScoreP1(String textScoreViewP1) {
+        mTextP1Score.setText(textScoreViewP1);
     }
 
     @Override
-    public void decreaseScoreP1() {
-        if (mIntScoreP1 == 0) {
-            mBtnP1ScoreMinus.setClickable(false);
-        } else if (0 < getIntScoreA() && getIntScoreA() < 7) {
-            mIntScoreP1 -= 1;
-            mTextP1Score.setText(String.valueOf(mIntScoreP1));
-            mTeamScoreA.setText(String.valueOf(getIntScoreA()));
-            setScorePlusClickableTeamA(true);
-        } else {
-            Log.d("Kerry", "P1 Score error !");
-        }
+    public void setBtnClickableScoreMinusP1(boolean clickable) {
+        mBtnP1ScoreMinus.setClickable(clickable);
     }
 
     @Override
-    public void increaseReboundP1() {
-        if (mIntReboundP1 < 20) {
-            mIntReboundP1 += 1;
-            mTextP1Rebound.setText(String.valueOf(mIntReboundP1));
-            mBtnP1ReboundMinus.setClickable(true);
-        } else {
-            mBtnP1ReboundPlus.setClickable(false);
-        }
+    public void setTextReboundP1(String textReboundP1) {
+        mTextP1Rebound.setText(textReboundP1);
     }
 
     @Override
-    public void decreaseReboundP1() {
-        if (0 < mIntReboundP1 && mIntReboundP1 < 21) {
-            mIntReboundP1 -= 1;
-            mTextP1Rebound.setText(String.valueOf(mIntReboundP1));
-            mBtnP1ReboundPlus.setClickable(true);
-        } else {
-            mBtnP1ReboundMinus.setClickable(false);
-        }
+    public void setBtnClickableReboundPlusP1(boolean clickable) {
+        mBtnP1ReboundPlus.setClickable(clickable);
     }
 
     @Override
-    public void increaseFoulP1() {
-        if (mIntFoulP1 < 10) {
-            mIntFoulP1 += 1;
-            mTextP1Foul.setText(String.valueOf(mIntFoulP1));
-            mBtnP1FoulMinus.setClickable(true);
-        } else {
-            mBtnP1FoulPlus.setClickable(false);
-        }
+    public void setBtnClickableReboundMinusP1(boolean clickable) {
+        mBtnP1ReboundMinus.setClickable(clickable);
     }
 
     @Override
-    public void decreaseFoulP1() {
-        if (0 < mIntFoulP1 && mIntFoulP1 < 11) {
-            mIntFoulP1 -= 1;
-            mTextP1Foul.setText(String.valueOf(mIntFoulP1));
-            mBtnP1FoulPlus.setClickable(true);
-        } else {
-            mBtnP1FoulMinus.setClickable(false);
-        }
+    public void setTextFoulP1(String textFoulP1) {
+        mTextP1Foul.setText(textFoulP1);
     }
 
+    @Override
+    public void setBtnClickableFoulPlusP1(boolean clickable) {
+        mBtnP1FoulPlus.setClickable(clickable);
+    }
+
+    @Override
+    public void setBtnClickableFoulMinusP1(boolean clickable) {
+        mBtnP1FoulMinus.setClickable(clickable);
+    }
 
     /* ------------------------------------------------------------------------------------------ */
     /* Player2 */
 
     @Override
-    public void increaseScoreP2() {
-        if (getIntScoreA() == 6) {
-            setScorePlusClickableTeamA(false);
-        } else if (mIntScoreP2 < 6 && getIntScoreA() < 6) {
-            mIntScoreP2 += 1;
-            mTextP2Score.setText(String.valueOf(mIntScoreP2));
-            mTeamScoreA.setText(String.valueOf(getIntScoreA()));
-            mBtnP2ScoreMinus.setClickable(true);
-        } else {
-
-        }
+    public void setTextScoreP2(String textScoreViewP2) {
+        mTextP2Score.setText(textScoreViewP2);
     }
 
     @Override
-    public void decreaseScoreP2() {
-        if (mIntScoreP2 == 0) {
-            mBtnP2ScoreMinus.setClickable(false);
-        } else if (0 < getIntScoreA() && getIntScoreA() < 7) {
-            mIntScoreP2 -= 1;
-            mTextP2Score.setText(String.valueOf(mIntScoreP2));
-            mTeamScoreA.setText(String.valueOf(getIntScoreA()));
-            setScorePlusClickableTeamA(true);
-        } else {
-            Log.d("Kerry", "P2 Score error !");
-        }
+    public void setBtnClickableScoreMinusP2(boolean clickable) {
+        mBtnP2ScoreMinus.setClickable(clickable);
     }
 
     @Override
-    public void increaseReboundP2() {
-        if (mIntReboundP2 < 20) {
-            mIntReboundP2 += 1;
-            mTextP2Rebound.setText(String.valueOf(mIntReboundP2));
-            mBtnP2ReboundMinus.setClickable(true);
-        } else {
-            mBtnP2ReboundPlus.setClickable(false);
-        }
+    public void setTextReboundP2(String textReboundP2) {
+        mTextP2Rebound.setText(textReboundP2);
     }
 
     @Override
-    public void decreaseReboundP2() {
-        if (0 < mIntReboundP2 && mIntReboundP2 < 21) {
-            mIntReboundP2 -= 1;
-            mTextP2Rebound.setText(String.valueOf(mIntReboundP2));
-            mBtnP2ReboundPlus.setClickable(true);
-        } else {
-            mBtnP2ReboundMinus.setClickable(false);
-        }
+    public void setBtnClickableReboundPlusP2(boolean clickable) {
+        mBtnP2ReboundPlus.setClickable(clickable);
     }
 
     @Override
-    public void increaseFoulP2() {
-        if (mIntFoulP2 < 10) {
-            mIntFoulP2 += 1;
-            mTextP2Foul.setText(String.valueOf(mIntFoulP2));
-            mBtnP2FoulMinus.setClickable(true);
-        } else {
-            mBtnP2FoulPlus.setClickable(false);
-        }
+    public void setBtnClickableReboundMinusP2(boolean clickable) {
+        mBtnP2ReboundMinus.setClickable(clickable);
     }
 
     @Override
-    public void decreaseFoulP2() {
-        if (0 < mIntFoulP2 && mIntFoulP2 < 11) {
-            mIntFoulP2 -= 1;
-            mTextP2Foul.setText(String.valueOf(mIntFoulP2));
-            mBtnP2FoulPlus.setClickable(true);
-        } else {
-            mBtnP2FoulMinus.setClickable(false);
-        }
+    public void setTextFoulP2(String textFoulP2) {
+        mTextP2Foul.setText(textFoulP2);
+    }
+
+    @Override
+    public void setBtnClickableFoulPlusP2(boolean clickable) {
+        mBtnP2FoulPlus.setClickable(clickable);
+    }
+
+    @Override
+    public void setBtnClickableFoulMinusP2(boolean clickable) {
+        mBtnP2FoulMinus.setClickable(clickable);
     }
 
     /* ------------------------------------------------------------------------------------------ */
     /* Player3 */
 
     @Override
-    public void increaseScoreP3() {
-        if (getIntScoreA() == 6) {
-            setScorePlusClickableTeamA(false);
-        } else if (mIntScoreP3 < 6 && getIntScoreA() < 6) {
-            mIntScoreP3 += 1;
-            mTextP3Score.setText(String.valueOf(mIntScoreP3));
-            mTeamScoreA.setText(String.valueOf(getIntScoreA()));
-            mBtnP3ScoreMinus.setClickable(true);
-        } else {
-
-        }
+    public void setTextScoreP3(String textScoreViewP3) {
+        mTextP3Score.setText(textScoreViewP3);
     }
 
     @Override
-    public void decreaseScoreP3() {
-        if (mIntScoreP3 == 0) {
-            mBtnP3ScoreMinus.setClickable(false);
-        } else if (0 < getIntScoreA() && getIntScoreA() < 7) {
-            mIntScoreP3 -= 1;
-            mTextP3Score.setText(String.valueOf(mIntScoreP3));
-            mTeamScoreA.setText(String.valueOf(getIntScoreA()));
-            setScorePlusClickableTeamA(true);
-        } else {
-            Log.d("Kerry", "P3 Score error !");
-        }
+    public void setBtnClickableScoreMinusP3(boolean clickable) {
+        mBtnP3ScoreMinus.setClickable(clickable);
     }
 
     @Override
-    public void increaseReboundP3() {
-        if (mIntReboundP3 < 20) {
-            mIntReboundP3 += 1;
-            mTextP3Rebound.setText(String.valueOf(mIntReboundP3));
-            mBtnP3ReboundMinus.setClickable(true);
-        } else {
-            mBtnP3ReboundPlus.setClickable(false);
-        }
+    public void setTextReboundP3(String textReboundP3) {
+        mTextP3Rebound.setText(textReboundP3);
     }
 
     @Override
-    public void decreaseReboundP3() {
-        if (0 < mIntReboundP3 && mIntReboundP3 < 21) {
-            mIntReboundP3 -= 1;
-            mTextP3Rebound.setText(String.valueOf(mIntReboundP3));
-            mBtnP3ReboundPlus.setClickable(true);
-        } else {
-            mBtnP3ReboundMinus.setClickable(false);
-        }
+    public void setBtnClickableReboundPlusP3(boolean clickable) {
+        mBtnP3ReboundPlus.setClickable(clickable);
     }
 
     @Override
-    public void increaseFoulP3() {
-        if (mIntFoulP3 < 10) {
-            mIntFoulP3 += 1;
-            mTextP3Foul.setText(String.valueOf(mIntFoulP3));
-            mBtnP3FoulMinus.setClickable(true);
-        } else {
-            mBtnP3FoulPlus.setClickable(false);
-        }
+    public void setBtnClickableReboundMinusP3(boolean clickable) {
+        mBtnP3ReboundMinus.setClickable(clickable);
     }
 
     @Override
-    public void decreaseFoulP3() {
-        if (0 < mIntFoulP3 && mIntFoulP3 < 11) {
-            mIntFoulP3 -= 1;
-            mTextP3Foul.setText(String.valueOf(mIntFoulP3));
-            mBtnP3FoulPlus.setClickable(true);
-        } else {
-            mBtnP3FoulMinus.setClickable(false);
-        }
+    public void setTextFoulP3(String textFoulP3) {
+        mTextP3Foul.setText(textFoulP3);
+    }
+
+    @Override
+    public void setBtnClickableFoulPlusP3(boolean clickable) {
+        mBtnP3FoulPlus.setClickable(clickable);
+    }
+
+    @Override
+    public void setBtnClickableFoulMinusP3(boolean clickable) {
+        mBtnP3FoulMinus.setClickable(clickable);
     }
 
     /* ------------------------------------------------------------------------------------------ */
     /* Player4 */
 
     @Override
-    public void increaseScoreP4() {
-        if (getIntScoreB() == 6) {
-            setScorePlusClickableTeamB(false);
-        } else if (mIntScoreP4 < 6 && getIntScoreB() < 6) {
-            mIntScoreP4 += 1;
-            mTextP4Score.setText(String.valueOf(mIntScoreP4));
-            mTeamScoreB.setText(String.valueOf(getIntScoreB()));
-            mBtnP4ScoreMinus.setClickable(true);
-        } else {
-
-        }
+    public void setTextScoreP4(String textScoreViewP4) {
+        mTextP4Score.setText(textScoreViewP4);
     }
 
     @Override
-    public void decreaseScoreP4() {
-        if (mIntScoreP4 == 0) {
-            mBtnP4ScoreMinus.setClickable(false);
-        } else if (0 < getIntScoreB() && getIntScoreB() < 7) {
-            mIntScoreP4 -= 1;
-            mTextP4Score.setText(String.valueOf(mIntScoreP4));
-            mTeamScoreB.setText(String.valueOf(getIntScoreB()));
-            setScorePlusClickableTeamB(true);
-        } else {
-            Log.d("Kerry", "P4 Score error !");
-        }
+    public void setBtnClickableScoreMinusP4(boolean clickable) {
+        mBtnP4ScoreMinus.setClickable(clickable);
     }
 
     @Override
-    public void increaseReboundP4() {
-        if (mIntReboundP4 < 20) {
-            mIntReboundP4 += 1;
-            mTextP4Rebound.setText(String.valueOf(mIntReboundP4));
-            mBtnP4ReboundMinus.setClickable(true);
-        } else {
-            mBtnP4ReboundPlus.setClickable(false);
-        }
+    public void setTextReboundP4(String textReboundP4) {
+        mTextP4Rebound.setText(textReboundP4);
     }
 
     @Override
-    public void decreaseReboundP4() {
-        if (0 < mIntReboundP4 && mIntReboundP4 < 21) {
-            mIntReboundP4 -= 1;
-            mTextP4Rebound.setText(String.valueOf(mIntReboundP4));
-            mBtnP4ReboundPlus.setClickable(true);
-        } else {
-            mBtnP4ReboundMinus.setClickable(false);
-        }
+    public void setBtnClickableReboundPlusP4(boolean clickable) {
+        mBtnP4ReboundPlus.setClickable(clickable);
     }
 
     @Override
-    public void increaseFoulP4() {
-        if (mIntFoulP4 < 10) {
-            mIntFoulP4 += 1;
-            mTextP4Foul.setText(String.valueOf(mIntFoulP4));
-            mBtnP4FoulMinus.setClickable(true);
-        } else {
-            mBtnP4FoulPlus.setClickable(false);
-        }
+    public void setBtnClickableReboundMinusP4(boolean clickable) {
+        mBtnP4ReboundMinus.setClickable(clickable);
     }
 
     @Override
-    public void decreaseFoulP4() {
-        if (0 < mIntFoulP4 && mIntFoulP4 < 11) {
-            mIntFoulP4 -= 1;
-            mTextP4Foul.setText(String.valueOf(mIntFoulP4));
-            mBtnP4FoulPlus.setClickable(true);
-        } else {
-            mBtnP4FoulMinus.setClickable(false);
-        }
+    public void setTextFoulP4(String textFoulP4) {
+        mTextP4Foul.setText(textFoulP4);
+    }
+
+    @Override
+    public void setBtnClickableFoulPlusP4(boolean clickable) {
+        mBtnP4FoulPlus.setClickable(clickable);
+    }
+
+    @Override
+    public void setBtnClickableFoulMinusP4(boolean clickable) {
+        mBtnP4FoulMinus.setClickable(clickable);
     }
 
     /* ------------------------------------------------------------------------------------------ */
     /* Player5 */
 
     @Override
-    public void increaseScoreP5() {
-        if (getIntScoreB() == 6) {
-            setScorePlusClickableTeamB(false);
-        } else if (mIntScoreP5 < 6 && getIntScoreB() < 6) {
-            mIntScoreP5 += 1;
-            mTextP5Score.setText(String.valueOf(mIntScoreP5));
-            mTeamScoreB.setText(String.valueOf(getIntScoreB()));
-            mBtnP5ScoreMinus.setClickable(true);
-        } else {
-
-        }
+    public void setTextScoreP5(String textScoreViewP5) {
+        mTextP5Score.setText(textScoreViewP5);
     }
 
     @Override
-    public void decreaseScoreP5() {
-        if (mIntScoreP5 == 0) {
-            mBtnP5ScoreMinus.setClickable(false);
-        } else if (0 < getIntScoreB() && getIntScoreB() < 7) {
-            mIntScoreP5 -= 1;
-            mTextP5Score.setText(String.valueOf(mIntScoreP5));
-            mTeamScoreB.setText(String.valueOf(getIntScoreB()));
-            setScorePlusClickableTeamB(true);
-        } else {
-            Log.d("Kerry", "P5 Score error !");
-        }
+    public void setBtnClickableScoreMinusP5(boolean clickable) {
+        mBtnP5ScoreMinus.setClickable(clickable);
     }
 
     @Override
-    public void increaseReboundP5() {
-        if (mIntReboundP5 < 20) {
-            mIntReboundP5 += 1;
-            mTextP5Rebound.setText(String.valueOf(mIntReboundP5));
-            mBtnP5ReboundMinus.setClickable(true);
-        } else {
-            mBtnP5ReboundPlus.setClickable(false);
-        }
+    public void setTextReboundP5(String textReboundP5) {
+        mTextP5Rebound.setText(textReboundP5);
     }
 
     @Override
-    public void decreaseReboundP5() {
-        if (0 < mIntReboundP5 && mIntReboundP5 < 21) {
-            mIntReboundP5 -= 1;
-            mTextP5Rebound.setText(String.valueOf(mIntReboundP5));
-            mBtnP5ReboundPlus.setClickable(true);
-        } else {
-            mBtnP5ReboundMinus.setClickable(false);
-        }
+    public void setBtnClickableReboundPlusP5(boolean clickable) {
+        mBtnP5ReboundPlus.setClickable(clickable);
     }
 
     @Override
-    public void increaseFoulP5() {
-        if (mIntFoulP5 < 10) {
-            mIntFoulP5 += 1;
-            mTextP5Foul.setText(String.valueOf(mIntFoulP5));
-            mBtnP5FoulMinus.setClickable(true);
-        } else {
-            mBtnP5FoulPlus.setClickable(false);
-        }
+    public void setBtnClickableReboundMinusP5(boolean clickable) {
+        mBtnP5ReboundMinus.setClickable(clickable);
     }
 
     @Override
-    public void decreaseFoulP5() {
-        if (0 < mIntFoulP5 && mIntFoulP5 < 11) {
-            mIntFoulP5 -= 1;
-            mTextP5Foul.setText(String.valueOf(mIntFoulP5));
-            mBtnP5FoulPlus.setClickable(true);
-        } else {
-            mBtnP5FoulMinus.setClickable(false);
-        }
+    public void setTextFoulP5(String textFoulP5) {
+        mTextP5Foul.setText(textFoulP5);
+    }
+
+    @Override
+    public void setBtnClickableFoulPlusP5(boolean clickable) {
+        mBtnP5FoulPlus.setClickable(clickable);
+    }
+
+    @Override
+    public void setBtnClickableFoulMinusP5(boolean clickable) {
+        mBtnP5FoulMinus.setClickable(clickable);
     }
 
     /* ------------------------------------------------------------------------------------------ */
     /* Player6 */
 
     @Override
-    public void increaseScoreP6() {
-        if (getIntScoreB() == 6) {
-            setScorePlusClickableTeamB(false);
-        } else if (mIntScoreP6 < 6 && getIntScoreB() < 6) {
-            mIntScoreP6 += 1;
-            mTextP6Score.setText(String.valueOf(mIntScoreP6));
-            mTeamScoreB.setText(String.valueOf(getIntScoreB()));
-            mBtnP6ScoreMinus.setClickable(true);
-        } else {
-
-        }
+    public void setTextScoreP6(String textScoreViewP6) {
+        mTextP6Score.setText(textScoreViewP6);
     }
 
     @Override
-    public void decreaseScoreP6() {
-        if (mIntScoreP6 == 0) {
-            mBtnP6ScoreMinus.setClickable(false);
-        } else if (0 < getIntScoreB() && getIntScoreB() < 7) {
-            mIntScoreP6 -= 1;
-            mTextP6Score.setText(String.valueOf(mIntScoreP6));
-            mTeamScoreB.setText(String.valueOf(getIntScoreB()));
-            setScorePlusClickableTeamB(true);
-        } else {
-            Log.d("Kerry", "P6 Score error !");
-        }
+    public void setBtnClickableScoreMinusP6(boolean clickable) {
+        mBtnP6ScoreMinus.setClickable(clickable);
     }
 
     @Override
-    public void increaseReboundP6() {
-        if (mIntReboundP6 < 20) {
-            mIntReboundP6 += 1;
-            mTextP6Rebound.setText(String.valueOf(mIntReboundP6));
-            mBtnP6ReboundMinus.setClickable(true);
-        } else {
-            mBtnP6ReboundPlus.setClickable(false);
-        }
+    public void setTextReboundP6(String textReboundP6) {
+        mTextP6Rebound.setText(textReboundP6);
     }
 
     @Override
-    public void decreaseReboundP6() {
-        if (0 < mIntReboundP6 && mIntReboundP6 < 21) {
-            mIntReboundP6 -= 1;
-            mTextP6Rebound.setText(String.valueOf(mIntReboundP6));
-            mBtnP6ReboundPlus.setClickable(true);
-        } else {
-            mBtnP6ReboundMinus.setClickable(false);
-        }
+    public void setBtnClickableReboundPlusP6(boolean clickable) {
+        mBtnP6ReboundPlus.setClickable(clickable);
     }
 
     @Override
-    public void increaseFoulP6() {
-        if (mIntFoulP6 < 10) {
-            mIntFoulP6 += 1;
-            mTextP6Foul.setText(String.valueOf(mIntFoulP6));
-            mBtnP6FoulMinus.setClickable(true);
-        } else {
-            mBtnP6FoulPlus.setClickable(false);
-        }
+    public void setBtnClickableReboundMinusP6(boolean clickable) {
+        mBtnP6ReboundMinus.setClickable(clickable);
     }
 
     @Override
-    public void decreaseFoulP6() {
-        if (0 < mIntFoulP6 && mIntFoulP6 < 11) {
-            mIntFoulP6 -= 1;
-            mTextP6Foul.setText(String.valueOf(mIntFoulP6));
-            mBtnP6FoulPlus.setClickable(true);
-        } else {
-            mBtnP6FoulMinus.setClickable(false);
-        }
+    public void setTextFoulP6(String textFoulP6) {
+        mTextP6Foul.setText(textFoulP6);
+    }
+
+    @Override
+    public void setBtnClickableFoulPlusP6(boolean clickable) {
+        mBtnP6FoulPlus.setClickable(clickable);
+    }
+
+    @Override
+    public void setBtnClickableFoulMinusP6(boolean clickable) {
+        mBtnP6FoulMinus.setClickable(clickable);
+    }
+
+
+    @Override
+    public boolean isActive() {
+        return false;
+    }
+
+    @Override
+    public void showErrorToast(String message, boolean isShort) {
+        mPresenter.showErrorToast(message, isShort);
     }
 }

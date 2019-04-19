@@ -123,8 +123,10 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     public void getGamingRoomInfoFromPresenter4GamingFragment(GamingRoomInfo gamingRoomInfo) {
         if (mNowMasterSort == 7) {
             mPresenter.openGamePlayingOfReferee(gamingRoomInfo.getHostName());
+            mPresenter.deleteHostInfoWhenLeave();
         } else {
             mPresenter.openGamePlayingOfPlayer(gamingRoomInfo.getHostName(), mNowMasterSort);
+            mPresenter.deleteHostInfoWhenLeave();
         }
     }
 
@@ -246,9 +248,11 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         switch (v.getId()) {
             case R.id.btn_waiting4join_back_arrow:
                 mPresenter.finishWaiting4JoinUi();
+                getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 break;
             case R.id.btn_waiting4join_cancel:
                 mPresenter.finishWaiting4JoinUi();
+                getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 break;
             case R.id.btn_waiting4join_start:
                 mPresenter.initializeGamingRoomInfo();
@@ -433,7 +437,6 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     @Override
     public void onPause() {
         super.onPause();
-        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     @Override
@@ -441,6 +444,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         super.onDestroy();
         mPresenter.deleteHostInfoWhenLeave();
         mPresenter.setBackKeyDisable(false);
+        mPresenter.removeListenerMaster();
     }
 
     @Override

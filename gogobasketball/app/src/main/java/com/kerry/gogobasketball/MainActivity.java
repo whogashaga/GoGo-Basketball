@@ -4,6 +4,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
@@ -13,6 +16,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +26,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -53,6 +59,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -83,6 +91,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
         init();
         mView = this.findViewById(R.id.layout_main);
 
@@ -102,7 +112,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     private void init() {
         setContentView(R.layout.activity_main);
         mMainMvpController = MainMvpController.create(this);
-
 //        mPresenter.openHome();
         if (UserManager.getInstance().isLoggedIn()) {
             mPresenter.onLoginSuccessBeforeOpenApp(getFacebookIdString(Constants.FACEBOOK_ID_FILE));

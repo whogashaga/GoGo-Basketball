@@ -59,6 +59,8 @@ public interface Waiting4JoinMasterContract {
         void setActivityBackgroundLandScape();
 
         void setActivityBackgroundPortrait();
+
+        void removeListenerMaster();
     }
 
 }

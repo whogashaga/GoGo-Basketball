@@ -25,6 +25,8 @@ public interface RefereeResultContract {
 
         void showToolbarAndBottomNavigation();
 
+        void openHome();
+
         void finishResultResultUi();
 
         void setBackKeyDisable(boolean isBackKeyDisable);
@@ -36,6 +38,8 @@ public interface RefereeResultContract {
         void setActivityBackgroundLandScape();
 
         void setActivityBackgroundPortrait();
+
+        void deleteGamingRoom();
 
     }
 }

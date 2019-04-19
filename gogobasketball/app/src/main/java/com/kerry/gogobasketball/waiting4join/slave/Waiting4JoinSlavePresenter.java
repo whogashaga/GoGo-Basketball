@@ -12,6 +12,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.FirestoreHelper;
@@ -42,6 +44,8 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     private String mRoomDocId;
     private String mSeatDocId;
     private int mIntJoinerSort;
+    private ListenerRegistration mAllSeatsListenerRegistration;
+    private ListenerRegistration mRoomListenerRegistration;
 
     public Waiting4JoinSlavePresenter(@NonNull Waiting4JoinSlaveContract.View waiting4JoinView) {
         mWaiting4JoinView = checkNotNull(waiting4JoinView, "Waiting4JoinView cannot be null!");
@@ -88,21 +92,18 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 .collection(Constants.WAITING_ROOM)
                 .whereEqualTo(Constants.HOST_NAME, mWaitingRoomInfo.getHostName())
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            Log.d("Kerry", "doc size : " + task.getResult().size());
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                // 只有一筆，跑 for 沒關係
-                                mRoomDocId = document.getId();
-                                changeRoomPlayerAmountWhenJoin(document.getId());
-                            }
-                        } else {
-                            Log.w("Kerry", "Error getting documents.", task.getException());
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Log.d("Kerry", "doc size : " + task.getResult().size());
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            // 只有一筆，跑 for 沒關係
+                            mRoomDocId = document.getId();
+                            changeRoomPlayerAmountWhenJoin(document.getId());
                         }
+                    } else {
+                        Log.w(Constants.TAG, "Error getting documents.", task.getException());
                     }
-                });
+                }).addOnFailureListener(e -> Log.w(Constants.TAG, "queryExistedSort Error", e));
     }
 
     private void changeRoomPlayerAmountWhenJoin(String roomId) {
@@ -128,30 +129,25 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            ArrayList<Integer> existedSortList = new ArrayList<>();
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        ArrayList<Integer> existedSortList = new ArrayList<>();
 
-                            for (QueryDocumentSnapshot document : task.getResult()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
 
-                                WaitingRoomSeats seatInfo = document.toObject(WaitingRoomSeats.class);
-                                mSeatsInfoList.add(seatInfo);
-                                existedSortList.add(seatInfo.getSort());
-                            }
-                            // 若已有 sort ，自動往後補
-                            while (existedSortList.contains(mIntJoinerSort)) {
-                                mIntJoinerSort++;
-                            }
-
-                            setJoinerInfo();
-
-                        } else {
-                            Log.w("Kerry", "Error getting documents.", task.getException());
+                            WaitingRoomSeats seatInfo = document.toObject(WaitingRoomSeats.class);
+                            mSeatsInfoList.add(seatInfo);
+                            existedSortList.add(seatInfo.getSort());
                         }
+                        // 若已有 sort ，自動往後補
+                        while (existedSortList.contains(mIntJoinerSort)) {
+                            mIntJoinerSort++;
+                        }
+                        setJoinerInfo();
+                    } else {
+                        Log.w("Kerry", "Error getting documents.", task.getException());
                     }
-                });
+                }).addOnFailureListener(e -> Log.w(Constants.TAG, "queryExistedSort Error", e));
     }
 
     private void setJoinerInfo() {
@@ -177,18 +173,10 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .set(waitingRoomInfo)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(Constants.TAG, "Slave 加入，並改變房間人數");
-                        updateJoinerInfo2FireBase(mJoinerInfo, mRoomDocId);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w("Kerry", "Error adding document", e);
-            }
-        });
+                .addOnSuccessListener(aVoid -> {
+                    Log.d(Constants.TAG, "Slave 加入，並改變房間人數");
+                    updateJoinerInfo2FireBase(mJoinerInfo, mRoomDocId);
+                }).addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
     }
 
     private void updateJoinerInfo2FireBase(WaitingRoomSeats joinerInfo, String roomId) {
@@ -201,19 +189,11 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 .collection(Constants.WAITING_SEATS)
                 .document(joinerInfo.getId())
                 .set(joinerInfo)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(Constants.TAG, "Slave 加入，並改變座位資訊！");
-                        setRoomSnapshotListerSlave();
-                        setAllSnapshotListerSlave();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w("Kerry", "Error adding document", e);
-            }
-        });
+                .addOnSuccessListener(aVoid -> {
+                    Log.d(Constants.TAG, "Slave 加入，並改變座位資訊！");
+                    setRoomSnapshotListerSlave();
+                    setAllSnapshotListerSlave();
+                }).addOnFailureListener(e -> Log.w("Kerry", "Error adding document", e));
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -247,7 +227,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                             Log.w("Kerry", "Error getting documents.", task.getException());
                         }
                     }
-                });
+                }).addOnFailureListener(e -> Log.w(Constants.TAG, "findCurrentSeatDocId Error", e));
     }
 
     private void queryExistedSortForChangeSeatSlave(String seatDocIdForUpdate, int newSort) {
@@ -259,24 +239,22 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                WaitingRoomSeats seatInfo = document.toObject(WaitingRoomSeats.class);
-                                mExistedSortList.add(seatInfo.getSort());
-                            }
-                            Log.w("Kerry", "onComplete: " + mExistedSortList.size());
-
-                            updateSortForChangeSeatSlave(seatDocIdForUpdate, newSort);
-                            changeRoomPlayerAmountAfterChangeSeatSlave(mExistedSortList, newSort);
-
-                        } else {
-                            Log.w("Kerry", "Error getting documents.", task.getException());
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            WaitingRoomSeats seatInfo = document.toObject(WaitingRoomSeats.class);
+                            mExistedSortList.add(seatInfo.getSort());
                         }
+                        Log.w("Kerry", "onComplete: " + mExistedSortList.size());
+
+                        updateSortForChangeSeatSlave(seatDocIdForUpdate, newSort);
+                        changeRoomPlayerAmountAfterChangeSeatSlave(mExistedSortList, newSort);
+
+                    } else {
+                        Log.w("Kerry", "Error getting documents.", task.getException());
                     }
-                });
+                })
+                .addOnFailureListener(e -> Log.w(Constants.TAG, "Error updating document", e));
     }
 
     private void updateSortForChangeSeatSlave(String seatDocId, int newSort) {
@@ -286,14 +264,11 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 .collection(Constants.WAITING_SEATS)
                 .document(seatDocId)
                 .update(Constants.SORT, newSort)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        mIntJoinerSort = newSort;
-                        Log.d(Constants.TAG, "DocumentSnapshot successfully updated!");
-                    }
+                .addOnSuccessListener(aVoid -> {
+                    mIntJoinerSort = newSort;
+                    Log.d(Constants.TAG, "DocumentSnapshot successfully updated!");
                 })
-                .addOnFailureListener(e -> Log.w(Constants.TAG, "Error updating document", e));
+                .addOnFailureListener(e -> Log.w(Constants.TAG, "updateSortForChangeSeatSlave Error", e));
     }
 
     private void changeRoomPlayerAmountAfterChangeSeatSlave(ArrayList<Integer> existedSortList, int newSort) {
@@ -322,76 +297,65 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .set(mWaitingRoomInfo)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(Constants.TAG, "Slave 換位，updateRoomInfoAfterChangeSeatSlave！");
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w("Kerry", "Error adding document", e);
-            }
-        });
+                .addOnSuccessListener(aVoid -> Log.d(Constants.TAG, "Slave 換位，updateRoomInfoAfterChangeSeatSlave！"))
+                .addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
     }
 
     /* ------------------------------------------------------------------------------------------ */
     /* Listener */
 
     private void setAllSnapshotListerSlave() {
-        FirestoreHelper.getFirestore()
+        Query query = FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
-                .collection(Constants.WAITING_SEATS)
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value,
-                                        @Nullable FirebaseFirestoreException e) {
-                        if (e != null) {
-                            Log.w("Kerry", "Listen failed.", e);
-                            return;
-                        }
-                        getNewSeatsInfo();
-                    }
-                });
+                .collection(Constants.WAITING_SEATS);
+
+        mAllSeatsListenerRegistration = query.addSnapshotListener((value, e) -> {
+            if (e != null) {
+                Log.w("Kerry", "Listen failed.", e);
+                return;
+            }
+            getNewSeatsInfo();
+        });
 
     }
 
     private void setRoomSnapshotListerSlave() {
 
-        final DocumentReference docRef = FirestoreHelper.getFirestore()
+        DocumentReference docRef = FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId);
 
-        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot snapshot,
-                                @Nullable FirebaseFirestoreException e) {
-                if (e != null) {
-                    Log.w(Constants.TAG, "Listen failed.", e);
-                    return;
+        mRoomListenerRegistration = docRef.addSnapshotListener((snapshot, e) -> {
+            if (e != null) {
+                Log.w(Constants.TAG, "Listen failed.", e);
+                return;
+            }
+            if (snapshot != null && snapshot.exists()) {
+                Log.d(Constants.TAG, "Slave Room Current data: " + snapshot.getData());
+                WaitingRoomInfo newRoomInfo = snapshot.toObject(WaitingRoomInfo.class);
+                mWaitingRoomInfo = newRoomInfo;
+
+                if (newRoomInfo.getStatus().equals(Constants.STATUS_CLOSED)) {
+
+                    mWaiting4JoinView.closeSlaveUiBecauseMasterOutFirst();
+
+                } else if (newRoomInfo.getStatus().equals(Constants.STATUS_GAMING)) {
+                    queryCurrentSort();
                 }
-                if (snapshot != null && snapshot.exists()) {
-                    Log.d(Constants.TAG, "Slave Room Current data: " + snapshot.getData());
-                    WaitingRoomInfo newRoomInfo = snapshot.toObject(WaitingRoomInfo.class);
-                    mWaitingRoomInfo = newRoomInfo;
 
-                    if (newRoomInfo.getStatus().equals(Constants.STATUS_CLOSED)) {
+                getNewSeatsInfo();
 
-                        mWaiting4JoinView.closeSlaveUiBecauseMasterOutFirst();
-
-                    } else if (newRoomInfo.getStatus().equals(Constants.STATUS_GAMING)) {
-
-                        queryCurrentSort();
-                    }
-
-                    getNewSeatsInfo();
-
-                } else {
-                    Log.d(Constants.TAG, "Current data: null");
-                }
+            } else {
+                Log.d(Constants.TAG, "Current data: null");
             }
         });
+    }
+
+    @Override
+    public void removeListenerSlave() {
+        mRoomListenerRegistration.remove();
+        mAllSeatsListenerRegistration.remove();
     }
 
     private void queryCurrentSort() {
@@ -401,17 +365,18 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 .collection(Constants.WAITING_SEATS)
                 .document(mSeatDocId);
 
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                WaitingRoomSeats currentSeat = documentSnapshot.toObject(WaitingRoomSeats.class);
-                if (currentSeat.getSort() == 7) {
-                    mWaiting4JoinView.openRefereeGamingUi(mWaitingRoomInfo.getHostName());
-                } else {
-                    mWaiting4JoinView.openPlayerGamingUi(mWaitingRoomInfo.getHostName(), currentSeat.getSort());
-                }
+        docRef.get().addOnSuccessListener(documentSnapshot -> {
+            WaitingRoomSeats currentSeat = documentSnapshot.toObject(WaitingRoomSeats.class);
+            Log.w("Kerry", "queryCurrentSort @!!");
+            if (currentSeat.getSort() == 7) {
+                mWaiting4JoinView.openRefereeGamingUi(mWaitingRoomInfo.getHostName());
+                removeListenerSlave();
+            } else {
+                mWaiting4JoinView.openPlayerGamingUi(mWaitingRoomInfo.getHostName(), currentSeat.getSort());
+                removeListenerSlave();
             }
-        });
+        })
+                .addOnFailureListener(e -> Log.d(Constants.TAG, "Slave queryCurrentSort Error！"));
 
     }
 
@@ -421,36 +386,33 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            mSeatsInfoList.clear();
-                            mListForChangeSeat.clear();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                WaitingRoomSeats newSeatInfo = document.toObject(WaitingRoomSeats.class);
-                                mSeatsInfoList.add(newSeatInfo);
-                            }
-
-                            // 先給七個空的，已存在球員再 replace 空 obj 的位置
-                            ArrayList<WaitingRoomSeats> emptySeatsList = new ArrayList<>();
-                            for (int i = 0; i < 7; i++) {
-                                emptySeatsList.add(new WaitingRoomSeats());
-                            }
-                            for (int j = 0; j < mSeatsInfoList.size(); j++) {
-                                emptySeatsList.set(mSeatsInfoList.get(j).getSort() - 1, mSeatsInfoList.get(j));
-                            }
-
-                            mWaiting4JoinView.showWaitingSeatsSlaveUi(emptySeatsList);
-
-                            // for change seat use
-                            mListForChangeSeat.addAll(emptySeatsList);
-
-                        } else {
-                            Log.w("Kerry", "Error getting documents.", task.getException());
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        mSeatsInfoList.clear();
+                        mListForChangeSeat.clear();
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            WaitingRoomSeats newSeatInfo = document.toObject(WaitingRoomSeats.class);
+                            mSeatsInfoList.add(newSeatInfo);
                         }
+
+                        // 先給七個空的，已存在球員再 replace 空 obj 的位置
+                        ArrayList<WaitingRoomSeats> emptySeatsList = new ArrayList<>();
+                        for (int i = 0; i < 7; i++) {
+                            emptySeatsList.add(new WaitingRoomSeats());
+                        }
+                        for (int j = 0; j < mSeatsInfoList.size(); j++) {
+                            emptySeatsList.set(mSeatsInfoList.get(j).getSort() - 1, mSeatsInfoList.get(j));
+                        }
+
+                        mWaiting4JoinView.showWaitingSeatsSlaveUi(emptySeatsList);
+
+                        // for change seat use
+                        mListForChangeSeat.addAll(emptySeatsList);
+
+                    } else {
+                        Log.w("Kerry", "Error getting documents.", task.getException());
                     }
-                });
+                }).addOnFailureListener(e -> Log.d(Constants.TAG, "Slave getNewSeatsInfo Error！"));
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -464,12 +426,8 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
                 .document(mSeatDocId)
-                .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                checkTotalPlayerAmountSlave();
-            }
-        });
+                .delete().addOnSuccessListener(aVoid -> checkTotalPlayerAmountSlave())
+                .addOnFailureListener(e -> Log.d(Constants.TAG, "deleteSeatsInfoWhenLeaveRoom Error！"));
     }
 
     @Override
@@ -479,20 +437,18 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                         .collection(Constants.WAITING_ROOM)
                         .document(mRoomDocId);
 
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()) {
-                    WaitingRoomInfo waitingRoomInfo = documentSnapshot.toObject(WaitingRoomInfo.class);
+        docRef.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                WaitingRoomInfo waitingRoomInfo = documentSnapshot.toObject(WaitingRoomInfo.class);
 
-                    if (waitingRoomInfo.getTotalPlayerAmount() == 0) {
-                        deleteRoomDocSlave();
-                    } else {
-                        changeRoomPlayerAmountWhenLeaveSlave();
-                    }
+                if (waitingRoomInfo.getTotalPlayerAmount() == 1) {
+                    deleteRoomDocSlave();
+                } else {
+                    changeRoomPlayerAmountWhenLeaveSlave();
                 }
             }
-        });
+        }).addOnFailureListener(e -> Log.d(Constants.TAG, "checkTotalPlayerAmountSlave Error！"));
+
 
     }
 
@@ -516,17 +472,8 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .set(mWaitingRoomInfo)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(Constants.TAG, "Slave 離開，刪除資料");
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w("Kerry", "Error adding document", e);
-            }
-        });
+                .addOnSuccessListener(aVoid -> Log.d(Constants.TAG, "Slave 離開，刪除資料"))
+                .addOnFailureListener(e -> Log.w("Kerry", "Error adding document", e));
     }
 
     @Override
@@ -534,12 +481,8 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
-                .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Log.d(Constants.TAG, "只剩一個 slave 最後離去！");
-            }
-        });
+                .delete().addOnSuccessListener(aVoid -> Log.d(Constants.TAG, "只剩一個 slave 最後離去！"))
+                .addOnFailureListener(e -> Log.d(Constants.TAG, "沒房間可刪除！"));
     }
 
     /* ------------------------------------------------------------------------------------------ */

@@ -96,7 +96,8 @@ public class UserManager {
      */
     private void loginFacebook(Context context) {
         LoginManager.getInstance().logInWithReadPermissions(
-                (Activity) context, Arrays.asList("email"));
+                (Activity) context, Arrays.asList("public_profile",
+                        "user_friends", "email"));
     }
 
     private void loginGoGoBasketball(Context context, LoginResult loginResult, LoadCallback loadCallback) {

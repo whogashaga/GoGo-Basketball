@@ -301,10 +301,12 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
             case R.id.btn_slave_waiting4join_back_arrow:
                 mPresenter.finishWaiting4JoinUi();
                 mPresenter.showToolbarAndBottomNavigation();
+                mPresenter.deleteSeatsInfoWhenLeaveRoom();
                 break;
             case R.id.btn_slave_waiting4join_cancel:
                 mPresenter.finishWaiting4JoinUi();
                 mPresenter.showToolbarAndBottomNavigation();
+                mPresenter.deleteSeatsInfoWhenLeaveRoom();
                 break;
             case R.id.btn_slave_waiting_team_a_player1_change_seat:
                 Log.d(Constants.TAG, "Joiner onClick seat1");
@@ -373,22 +375,26 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void onDestroy() {
         super.onDestroy();
         mPresenter.setBackKeyDisable(false);
-        mPresenter.deleteSeatsInfoWhenLeaveRoom();
+        mPresenter.removeListenerSlave();
+//        mPresenter.deleteSeatsInfoWhenLeaveRoom();
     }
 
     @Override
     public void closeSlaveUiBecauseMasterOutFirst() {
-//        mPresenter.showErrorToast("房主落跑...", false);
+        mPresenter.showErrorToast("房主落跑...", false);
+        mPresenter.deleteSeatsInfoWhenLeaveRoom();
         mPresenter.finishWaiting4JoinUi();
     }
 
     @Override
     public void openPlayerGamingUi(String hostName, int nowSort) {
+        mPresenter.deleteSeatsInfoWhenLeaveRoom();
         mPresenter.openGamePlayingOfPlayer(hostName, nowSort);
     }
 
     @Override
     public void openRefereeGamingUi(String hostName) {
+        mPresenter.deleteSeatsInfoWhenLeaveRoom();
         mPresenter.openGamePlayingOfReferee(hostName);
     }
 
