@@ -93,8 +93,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        AppEventsLogger.activateApp(this);
         init();
         mView = this.findViewById(R.id.layout_main);
         mView.setBackgroundResource(R.drawable.anim_layout_background);
