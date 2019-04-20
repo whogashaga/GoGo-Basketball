@@ -754,7 +754,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
     @Override
     public void showActivityBackgroundWhenPortrait() {
-        mView.setBackgroundResource(R.drawable.anim_layout_background);
+        mView.setBackgroundResource(R.drawable.anim_login_background);
     }
 
     public void saveFacebookIdFile(String facebookIdString) {

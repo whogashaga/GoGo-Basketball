@@ -37,6 +37,7 @@ public class Looking4RoomPresenter implements Looking4RoomContract.Presenter {
         mWaitingRoomInfoList.clear();
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
+                .orderBy("totalPlayerAmount")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

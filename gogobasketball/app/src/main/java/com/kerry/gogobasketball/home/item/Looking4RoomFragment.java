@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.GridSpacingItemDecoration;
@@ -20,10 +22,12 @@ import com.kerry.gogobasketball.data.WaitingRoomInfo;
 
 import java.util.ArrayList;
 
-public class Looking4RoomFragment extends Fragment implements Looking4RoomContract.View, View.OnClickListener {
+public class Looking4RoomFragment extends Fragment implements Looking4RoomContract.View,
+        View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private Looking4RoomContract.Presenter mPresenter;
     private Looking4RoomAdapter mLooking4RoomAdapter;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     private ArrayList<WaitingRoomInfo> mRoomInfoList;
     private Button mBtnBuildRoom;
@@ -61,6 +65,14 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
         mRandom = root.findViewById(R.id.btn_home_rooms_random);
         mRandom.setOnClickListener(this);
 
+        // SwipeRefreshLayout
+        mSwipeRefreshLayout = root.findViewById(R.id.swipe_container);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+
         mLooking4RoomAdapter = new Looking4RoomAdapter(mPresenter);
         RecyclerView recyclerView = root.findViewById(R.id.recycler_home_child_room);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -89,7 +101,13 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.loadExistedRoomsData4RecyclerView();
-//        mPresenter.setRoomListSnapshotListerSlave();
+    }
+
+
+    @Override
+    public void onRefresh() {
+        mSwipeRefreshLayout.setRefreshing(false);
+        mPresenter.loadExistedRoomsData4RecyclerView();
     }
 
     @Override
@@ -102,5 +120,4 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         mPresenter.result(requestCode, resultCode);
     }
-
 }
