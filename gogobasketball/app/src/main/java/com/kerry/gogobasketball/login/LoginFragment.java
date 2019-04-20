@@ -1,6 +1,7 @@
 package com.kerry.gogobasketball.login;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,7 +20,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class LoginFragment extends Fragment implements LoginContract.View, View.OnClickListener {
 
     private LoginContract.Presenter mPresenter;
-
+    private View mLayout;
     private Button mBtnLogin;
 
     public LoginFragment() {
@@ -55,6 +56,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_login, container, false);
+        mLayout = root.findViewById(R.id.layout_login);
         mBtnLogin = root.findViewById(R.id.btn_facebook_login);
         mBtnLogin.setOnClickListener(this);
 
@@ -64,6 +66,9 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+//        mLayout.setBackgroundResource(R.drawable.anim_login_background);
+//        AnimationDrawable drawable = (AnimationDrawable) mLayout.getBackground();
+//        drawable.start();
         mPresenter.hideToolbarAndBottomNavigation();
     }
 

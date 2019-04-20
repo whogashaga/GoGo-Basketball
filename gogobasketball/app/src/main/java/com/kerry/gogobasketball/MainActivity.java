@@ -95,7 +95,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         super.onCreate(savedInstanceState);
         init();
         mView = this.findViewById(R.id.layout_main);
-        mView.setBackgroundResource(R.drawable.anim_layout_background);
+        mView.setBackgroundResource(R.drawable.anim_login_background);
         AnimationDrawable drawable = (AnimationDrawable) mView.getBackground();
         drawable.start();
 
@@ -754,7 +754,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
     @Override
     public void showActivityBackgroundWhenPortrait() {
-        mView.setBackgroundResource(R.drawable.home_sea);
+        mView.setBackgroundResource(R.drawable.anim_layout_background);
     }
 
     public void saveFacebookIdFile(String facebookIdString) {
