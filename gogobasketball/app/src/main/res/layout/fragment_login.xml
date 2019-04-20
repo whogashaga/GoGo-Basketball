@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_logo"
+    android:background="@drawable/login_backup"
     android:id="@+id/layout_login">
 
 
@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="55dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/button_effect_login"
         android:fontFamily="@font/noto_sans"
         android:letterSpacing="0.15"

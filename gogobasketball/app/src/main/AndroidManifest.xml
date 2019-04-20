@@ -24,6 +24,11 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".LogoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan">
+        </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
