@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -136,9 +137,11 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
             case R.id.btn_result_referee_back_lobby:
                 mPresenter.deleteGamingRoom();
                 getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                mPresenter.setBackKeyDisable(false);
                 mPresenter.openHome();
                 mPresenter.showToolbarAndBottomNavigation();
                 mPresenter.setActivityBackgroundPortrait();
+                onDestroy();
                 break;
         }
     }
@@ -189,6 +192,7 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.d("Kerry", "Referee Result onDestroy: ");
     }
 
     @Override

@@ -74,7 +74,6 @@ public class PlayerGoingFragment extends Fragment implements PlayerGoingContract
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mPresenter.setBackKeyDisable(false);
         mPresenter.setGamingNowMessage(false);
     }
 
@@ -87,6 +86,7 @@ public class PlayerGoingFragment extends Fragment implements PlayerGoingContract
     @Override
     public void openGameResultPlayerUi(String hostName, int nowSort) {
         mPresenter.openGameResultPlayer(hostName, nowSort);
+        onDestroy();
     }
 
     @Override

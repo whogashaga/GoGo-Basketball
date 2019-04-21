@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.StringDef;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 
 import com.kerry.gogobasketball.create_user.CreateUserFragment;
 import com.kerry.gogobasketball.create_user.CreateUserPresenter;
@@ -226,7 +227,7 @@ public class MainMvpController {
     }
 
     /**
-     * Waiting4Join View
+     * Waiting4JoinMaster View
      */
     void findOrCreateWaiting4JoinView(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatsInfo, String roomDocId) {
 
@@ -285,7 +286,7 @@ public class MainMvpController {
      * RefereeResult View
      */
     void findOrCreateRefereeResultView(String hostName) {
-
+        Log.i("Kerry", "getHostNameFromRefereeGoing MVP Controller Referee hostName = " + hostName);
         RefereeResultFragment refereeResultFragment = createRefereeResultFragment();
 
         mRefereeResultPresenter = new RefereeResultPresenter(refereeResultFragment);
@@ -533,7 +534,7 @@ public class MainMvpController {
 
         RefereeGoingFragment gamePlayingFragmentOfReferee = RefereeGoingFragment.newInstance();
 
-        ActivityUtils.addFragmentByTag(
+        ActivityUtils.showOrAddFragmentByTag(
                 getFragmentManager(), gamePlayingFragmentOfReferee, GOING4REFEREE);
 
         return gamePlayingFragmentOfReferee;
@@ -550,7 +551,7 @@ public class MainMvpController {
 
         PlayerGoingFragment gamePlayingFragmentOfPlayer = PlayerGoingFragment.newInstance();
 
-        ActivityUtils.addFragmentByTag(
+        ActivityUtils.showOrAddFragmentByTag(
                 getFragmentManager(), gamePlayingFragmentOfPlayer, GOING4PLAYER);
 
         return gamePlayingFragmentOfPlayer;
@@ -566,7 +567,7 @@ public class MainMvpController {
 
         RefereeResultFragment refereeResultFragment = RefereeResultFragment.newInstance();
 
-        ActivityUtils.addFragmentByTag(
+        ActivityUtils.showOrAddFragmentByTag(
                 getFragmentManager(), refereeResultFragment, RESULT4REFEREE);
 
         return refereeResultFragment;
@@ -582,7 +583,7 @@ public class MainMvpController {
 
         PlayerResultFragment playerResultFragment = PlayerResultFragment.newInstance();
 
-        ActivityUtils.addFragmentByTag(
+        ActivityUtils.showOrAddFragmentByTag(
                 getFragmentManager(), playerResultFragment, RESULT4PLAYER);
 
         return playerResultFragment;

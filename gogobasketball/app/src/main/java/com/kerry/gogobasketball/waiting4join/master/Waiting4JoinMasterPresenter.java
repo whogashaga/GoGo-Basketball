@@ -200,7 +200,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                 .collection(Constants.WAITING_ROOM)
                 .document(roomDocId);
 
-        mAllSeatsListenerRegistration = docRef.addSnapshotListener((snapshot, e) -> {
+        mRoomListenerRegistration = docRef.addSnapshotListener((snapshot, e) -> {
             if (e != null) {
                 Log.w(Constants.TAG, "Listen failed.", e);
                 return;

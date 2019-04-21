@@ -155,6 +155,7 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
                 mPresenter.showToolbarAndBottomNavigation();
                 mPresenter.setActivityBackgroundPortrait();
                 mPresenter.setBackKeyDisable(false);
+                onDestroy();
                 break;
         }
     }

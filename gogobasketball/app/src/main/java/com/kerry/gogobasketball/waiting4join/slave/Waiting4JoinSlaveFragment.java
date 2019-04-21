@@ -375,7 +375,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void onDestroy() {
         super.onDestroy();
         mPresenter.setBackKeyDisable(false);
-        mPresenter.removeListenerSlave();
+//        mPresenter.removeListenerSlave();
 //        mPresenter.deleteSeatsInfoWhenLeaveRoom();
     }
 
@@ -390,12 +390,14 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void openPlayerGamingUi(String hostName, int nowSort) {
         mPresenter.deleteSeatsInfoWhenLeaveRoom();
         mPresenter.openGamePlayingOfPlayer(hostName, nowSort);
+        onDestroy();
     }
 
     @Override
     public void openRefereeGamingUi(String hostName) {
         mPresenter.deleteSeatsInfoWhenLeaveRoom();
         mPresenter.openGamePlayingOfReferee(hostName);
+        onDestroy();
     }
 
 

@@ -64,7 +64,8 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
 
     @Override
     public void getHostNameFromWaitingJoin(String hostName) {
-        this.mHostName = hostName;
+        mHostName = hostName;
+        mGamingRoomInfo.setHostName(hostName);
         Log.w("Kerry", "getHostNameFromWaitingJoin hostName : " + hostName);
 
         mGamePlayingView.getHostNameFromPresenter(hostName);
@@ -72,7 +73,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
 
     @Override
     public void getGamingRoomFromFireStore(String hostName) {
-        Log.e("Kerry", "getGamingRoomFromFireStore hostName = " + hostName);
+        Log.d("Kerry", "getGamingRoomFromFireStore hostName = " + hostName);
         FirestoreHelper.getFirestore()
                 .collection(Constants.GAMING_ROOM)
                 .whereEqualTo(Constants.HOST_NAME, hostName)
@@ -121,6 +122,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
                     public void onSuccess(Void aVoid) {
                         Log.d(Constants.TAG, "Referee 將每人戰績上傳!");
                         mGamePlayingView.setGamingNow(false);
+                        Log.d(Constants.TAG, "Referee Going gamingRoomInfo.getHostName() = ");
                         mGamePlayingView.openGameResultRefereeUi(gamingRoomInfo.getHostName());
                     }
                 }).addOnFailureListener(new OnFailureListener() {

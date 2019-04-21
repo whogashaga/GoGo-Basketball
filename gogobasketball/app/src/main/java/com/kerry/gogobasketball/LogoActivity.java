@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 public class LogoActivity extends BaseActivity {
 
-    private int mTotalDuration = 4000;
+    private int mTotalDuration = 3900;
     private View mView;
     private ImageView mImageLogo;
 

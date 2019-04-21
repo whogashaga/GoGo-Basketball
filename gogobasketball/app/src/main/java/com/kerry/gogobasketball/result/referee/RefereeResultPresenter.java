@@ -31,13 +31,14 @@ public class RefereeResultPresenter implements RefereeResultContract.Presenter {
 
     @Override
     public void getHostNameFromRefereeGoing(String hostName) {
+        Log.w("Kerry", "getHostNameFromRefereeGoing Result Referee hostName = " + hostName);
         mHostName = hostName;
         mGameResultView.getHostNameFromPresenter(hostName);
     }
 
     @Override
     public void getRoomInfoFromFireStore(String hostName) {
-        Log.e("Kerry", "getGamingRoomFromFireStore hostName = " + hostName);
+        Log.e("Kerry", "getRoomFromFireStore hostName = " + hostName);
         FirestoreHelper.getFirestore()
                 .collection(Constants.GAMING_ROOM)
                 .whereEqualTo(Constants.HOST_NAME, hostName)

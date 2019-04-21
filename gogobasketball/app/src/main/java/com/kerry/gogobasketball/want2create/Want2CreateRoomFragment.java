@@ -210,7 +210,6 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
                         mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.at_most_10_word), true);
                     }
                 } else if (s.length() == 0) {
-                    mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.edit_room_name), true);
                     setBtnCreateConfirmClickable(false);
                 } else {
                     Log.d("Kerry", "no this kind of situation!");
@@ -219,7 +218,8 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                if (s.length() == 0)
+                mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.edit_room_name), true);
             }
         });
     }
