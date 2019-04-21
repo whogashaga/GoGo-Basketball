@@ -2,6 +2,7 @@ package com.kerry.gogobasketball.playing.referee;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -15,8 +16,10 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.FirestoreHelper;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
+import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.util.Constants;
+import com.kerry.gogobasketball.util.UserManager;
 
 public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
 
@@ -65,9 +68,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
     @Override
     public void getHostNameFromWaitingJoin(String hostName) {
         mHostName = hostName;
-        mGamingRoomInfo.setHostName(hostName);
-        Log.w("Kerry", "getHostNameFromWaitingJoin hostName : " + hostName);
-
+//        mGamingRoomInfo.setHostName(hostName);
         mGamePlayingView.getHostNameFromPresenter(hostName);
     }
 
@@ -85,6 +86,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 mRoomDocId = document.getId();
                                 GamingRoomInfo gamingRoomInfo = document.toObject(GamingRoomInfo.class);
+                                mGamingRoomInfo = gamingRoomInfo;
                                 mGamePlayingView.showPlayingGameUi(gamingRoomInfo);
 //                                Log.w("Kerry", "gaming room id = " + document.getId() + " => " + document.getData());
                             }
@@ -131,6 +133,41 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
                 Log.w("Kerry", "Error adding document", e);
             }
         });
+    }
+
+    @Override
+    public void getRefereeUserData(Activity activity) {
+        UserManager.getInstance().getUserProfile(activity, new UserManager.LoadCallback() {
+            @Override
+            public void onSuccess(User user) {
+                plusOneJustice(user);
+            }
+
+            @Override
+            public void onFail(String errorMessage) {
+
+            }
+
+            @Override
+            public void onInvalidToken(String errorMessage) {
+
+            }
+        });
+    }
+
+    private void plusOneJustice(User user) {
+        user.getRefereeRecord().setJustices(user.getRefereeRecord().getJustices() + 1);
+        updateRefereeJustice(user);
+    }
+
+    private void updateRefereeJustice(User user) {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.USERS)
+                .document(user.getFacebookId())
+                .set(user)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d("Kerry", "執法場次加一 ！!");
+                }).addOnFailureListener(e -> Log.e(Constants.TAG, "執法 Error adding document", e));
     }
 
     private GamingRoomInfo setFinalResult(GamingRoomInfo gamingRoomInfo) {

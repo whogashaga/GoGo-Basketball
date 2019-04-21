@@ -87,9 +87,9 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         startActivity(new Intent(this, LogoActivity.class));
         init();
         mView = this.findViewById(R.id.layout_main);
-        mView.setBackgroundResource(R.drawable.anim_layout_home);
-        AnimationDrawable drawable = (AnimationDrawable) mView.getBackground();
-        drawable.start();
+        mView.setBackgroundResource(R.drawable.wheel_dunk_28);
+//        AnimationDrawable drawable = (AnimationDrawable) mView.getBackground();
+//        drawable.start();
 
 //        createUserInfo();
 //        setUserRecord();
@@ -747,9 +747,9 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
     @Override
     public void showActivityBackgroundWhenPortrait() {
-        mView.setBackgroundResource(R.drawable.anim_layout_home);
-        AnimationDrawable drawable = (AnimationDrawable) mView.getBackground();
-        drawable.start();
+        mView.setBackgroundResource(R.drawable.wheel_dunk_28);
+//        AnimationDrawable drawable = (AnimationDrawable) mView.getBackground();
+//        drawable.start();
 
     }
 

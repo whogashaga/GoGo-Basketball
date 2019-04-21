@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.playing.referee;
 
+import android.app.Activity;
+
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
@@ -235,6 +237,8 @@ public interface RefereeGoingContract {
         void updateGameResultOfPlayer(GamingRoomInfo gamingRoomInfo);
 
         void openGameResultReferee(String hostName);
+
+        void getRefereeUserData(Activity activity);
 
         void forced2FinishGaming();
 

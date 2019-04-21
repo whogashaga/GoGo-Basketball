@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/anim_layout_one_hand_dunk">
+    android:layout_height="match_parent">
 
     <!-- Layout to contain contents of main body of screen (drawer will slide over this) -->
 

@@ -431,6 +431,7 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     @Override
     public void openGameResultRefereeUi(String hostName) {
         mPresenter.openGameResultReferee(hostName);
+        mPresenter.getRefereeUserData(getActivity());
         onDestroy();
     }
 

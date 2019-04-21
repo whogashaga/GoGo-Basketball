@@ -56,7 +56,6 @@ public class CommentRefereeDialog extends DialogFragment implements CommentRefer
         wheelCenter = view.findViewById(R.id.wheel_comment_referee);
         mBtnSendOut = view.findViewById(R.id.btn_comment_send_out);
         mBtnSendOut.setOnClickListener(this);
-//        Util.setTouchDelegate(view.findViewById(R.id.button_want2comment_close));
 
         return view;
     }
@@ -100,6 +99,7 @@ public class CommentRefereeDialog extends DialogFragment implements CommentRefer
     @Override
     public void finishCommentUi() {
         dismiss();
+        mPresenter.showSendCommentSuccessDialog();
         mPresenter.showBack2LobbyButtonPlayerResult();
     }
 
@@ -107,16 +107,4 @@ public class CommentRefereeDialog extends DialogFragment implements CommentRefer
     public void setDialogTitle(String refereeName) {
 
     }
-
-    @Override
-    public void setSendOutEnable() {
-
-    }
-
-    @Override
-    public void showLoginUi() {
-
-    }
-
-
 }

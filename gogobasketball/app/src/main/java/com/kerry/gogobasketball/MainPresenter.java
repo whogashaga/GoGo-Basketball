@@ -327,6 +327,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
+    public void getRefereeUserData(Activity activity) {
+        mRefereeGoingPresenter.getRefereeUserData(activity);
+    }
+
+    @Override
     public void updateGameResultOfPlayer(GamingRoomInfo gamingRoomInfo) {
         mRefereeGoingPresenter.updateGameResultOfPlayer(gamingRoomInfo);
     }

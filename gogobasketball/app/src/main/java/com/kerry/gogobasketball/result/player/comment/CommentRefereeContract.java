@@ -9,11 +9,7 @@ public interface CommentRefereeContract {
 
         void setDialogTitle(String hostName);
 
-        void setSendOutEnable();
-
         void finishCommentUi();
-
-        void showLoginUi();
 
     }
 

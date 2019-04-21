@@ -32,8 +32,8 @@ public class CommentRefereePresenter implements CommentRefereeContract.Presenter
 
     @Override
     public void getRefereeNameFromResult(String refereeName) {
-        mRefereeName = "堅強我";
-//        mRefereeName = refereeName;
+        Log.i("Kerry", "getRefereeNameFromResult refereeName : " + refereeName);
+        mRefereeName = refereeName;
     }
 
     @Override
@@ -72,19 +72,10 @@ public class CommentRefereePresenter implements CommentRefereeContract.Presenter
                 .collection(Constants.USERS)
                 .document(user.getFacebookId())
                 .set(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(Constants.TAG, "上傳評價完成 ！!");
-                        mCommentRefereeView.finishCommentUi();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e(Constants.TAG, "評價失敗 Error adding document", e);
-            }
-
-        });
+                .addOnSuccessListener(aVoid -> {
+                    Log.d(Constants.TAG, "上傳評價完成 ！!");
+                    mCommentRefereeView.finishCommentUi();
+                }).addOnFailureListener(e -> Log.e(Constants.TAG, "評價失敗 Error adding document", e));
 
     }
 
