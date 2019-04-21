@@ -2,6 +2,8 @@ package com.kerry.gogobasketball.rank;
 
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
+import com.kerry.gogobasketball.rank.player.RankPlayerFragment;
+import com.kerry.gogobasketball.rank.referee.RankRefereeFragment;
 
 public interface RankContract {
 
@@ -17,5 +19,12 @@ public interface RankContract {
 
         void result(int requestCode, int resultCode);
 
+        void hideToolbarAndBottomNavigation();
+
+        void showToolbarAndBottomNavigation();
+
+        RankPlayerFragment findPlayerRankView();
+
+        RankRefereeFragment findRefereeRankView();
     }
 }

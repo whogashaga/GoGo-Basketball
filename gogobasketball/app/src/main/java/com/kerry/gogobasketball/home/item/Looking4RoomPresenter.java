@@ -72,16 +72,6 @@ public class Looking4RoomPresenter implements Looking4RoomContract.Presenter {
     }
 
     @Override
-    public void openCommentReferee(String hostName) {
-
-    }
-
-    @Override
-    public void openGameResultPlayer(String hostName, int nowSort) {
-
-    }
-
-    @Override
     public void result(int requestCode, int resultCode) {
 
     }

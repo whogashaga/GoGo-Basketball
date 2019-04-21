@@ -44,6 +44,12 @@ import com.kerry.gogobasketball.profile.ProfileContract;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
 import com.kerry.gogobasketball.rank.RankContract;
 import com.kerry.gogobasketball.rank.RankPresenter;
+import com.kerry.gogobasketball.rank.player.RankPlayerContract;
+import com.kerry.gogobasketball.rank.player.RankPlayerFragment;
+import com.kerry.gogobasketball.rank.player.RankPlayerPresenter;
+import com.kerry.gogobasketball.rank.referee.RankRefereeContract;
+import com.kerry.gogobasketball.rank.referee.RankRefereeFragment;
+import com.kerry.gogobasketball.rank.referee.RankRefereePresenter;
 import com.kerry.gogobasketball.result.player.PlayerResultContract;
 import com.kerry.gogobasketball.result.player.PlayerResultPresenter;
 import com.kerry.gogobasketball.result.player.comment.CommentRefereeContract;
@@ -65,7 +71,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         RefereeGoingContract.Presenter, PlayerGoingContract.Presenter,
         RefereeResultContract.Presenter, PlayerResultContract.Presenter,
         LoginContract.Presenter, CreateUserContract.Presenter,
-        CommentRefereeContract.Presenter {
+        CommentRefereeContract.Presenter, RankRefereeContract.Presenter,
+        RankPlayerContract.Presenter {
 
     private FirebaseFirestore mDb;
     private MainContract.View mMainView;
@@ -80,6 +87,9 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     private Looking4RoomPresenter mLooking4RoomPresenter;
     private CourtsMapPresenter mCourtsMapPresenter;
+
+    private RankRefereePresenter mRankRefereePresenter;
+    private RankPlayerPresenter mRankPlayerPresenter;
 
     private Want2CreateRoomPresenter mWant2CreateRoomPresenter;
     private Waiting4JoinMasterPresenter mWaiting4JoinMasterPresenter;
@@ -133,6 +143,14 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     void setCourtsMapPresenter(CourtsMapPresenter courtsMapPresenter) {
         mCourtsMapPresenter = checkNotNull(courtsMapPresenter);
+    }
+
+    void setRankPlayerPresenter(RankPlayerPresenter rankRefereePresenter) {
+        mRankPlayerPresenter = checkNotNull(rankRefereePresenter);
+    }
+
+    void setRankRefereePresenter(RankRefereePresenter rankRefereePresenter) {
+        mRankRefereePresenter = checkNotNull(rankRefereePresenter);
     }
 
     void setWant2CreateRoomPresenter(Want2CreateRoomPresenter want2CreateRoomPresenter) {
@@ -935,6 +953,19 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void checkProfileUserData() {
 
+    }
+
+    /* ------------------------------------------------------------------------------------------ */
+    /* Home View Pager Use Only */
+
+    @Override
+    public RankPlayerFragment findPlayerRankView() {
+        return mMainView.findRankPlayerView();
+    }
+
+    @Override
+    public RankRefereeFragment findRefereeRankView() {
+        return mMainView.findRankRefereeView();
     }
 
     /* ------------------------------------------------------------------------------------------ */

@@ -25,7 +25,9 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
 
-    public HomeFragment(){}
+    public HomeFragment(){
+
+    }
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -55,8 +57,6 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @Override
     public void onResume() {
         super.onResume();
-//        mTabLayout.setupWithViewPager(mViewPager);
-//        mViewPager.setAdapter(mHomeAdapter);
     }
 
     @Nullable

@@ -30,6 +30,10 @@ import com.kerry.gogobasketball.profile.ProfileFragment;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
 import com.kerry.gogobasketball.rank.RankFragment;
 import com.kerry.gogobasketball.rank.RankPresenter;
+import com.kerry.gogobasketball.rank.player.RankPlayerFragment;
+import com.kerry.gogobasketball.rank.player.RankPlayerPresenter;
+import com.kerry.gogobasketball.rank.referee.RankRefereeFragment;
+import com.kerry.gogobasketball.rank.referee.RankRefereePresenter;
 import com.kerry.gogobasketball.result.player.PlayerResultFragment;
 import com.kerry.gogobasketball.result.player.PlayerResultPresenter;
 import com.kerry.gogobasketball.result.player.comment.CommentRefereeDialog;
@@ -74,6 +78,9 @@ public class MainMvpController {
     private Looking4RoomPresenter mLooking4RoomPresenter;
     private CourtsMapPresenter mCourtsMapPresenter;
 
+    private RankRefereePresenter mRankRefereePresenter;
+    private RankPlayerPresenter mRankPlayerPresenter;
+
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({
             HOME, FRIEND, RANK, PROFILE, WANT2CREATEROOM, WAITING4JOIN, GOING4REFEREE, GOING4PLAYER, RESULT4REFEREE, RESULT4PLAYER, LOGIN, CREATE1USER
@@ -97,13 +104,16 @@ public class MainMvpController {
 
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({
-            ROOMS, MAP
+            ROOMS, MAP, PLAYER, REFEREE
     })
-    public @interface HomeItem {
-    }
-
+    public @interface HomeItem { }
     public static final String ROOMS = "ROOMS";
     public static final String MAP = "MAP";
+
+    public @interface RankItem { }
+    public static final String PLAYER = "PLAYER";
+    public static final String REFEREE = "REFEREE";
+
 
     private MainMvpController(@NonNull FragmentActivity activity) {
         mActivity = activity;
@@ -184,7 +194,7 @@ public class MainMvpController {
     /**
      * LookingForRooms View
      *
-     * @return CatalogItemFragment: Rooms Fragment
+     * @return HomeItemFragment: Rooms Fragment
      */
     Looking4RoomFragment findOrCreateLookingForRoomView() {
 
@@ -198,9 +208,9 @@ public class MainMvpController {
     }
 
     /**
-     * LookingForRooms View
+     * MAP View
      *
-     * @return CatalogItemFragment: Rooms Fragment
+     * @return HomeItemFragment: Map Fragment
      */
     CourtsMapFragment findOrCreateMapView() {
 
@@ -209,6 +219,38 @@ public class MainMvpController {
         mCourtsMapPresenter = new CourtsMapPresenter(fragment);
         fragment.setPresenter(mMainPresenter);
         mMainPresenter.setCourtsMapPresenter(mCourtsMapPresenter);
+
+        return fragment;
+    }
+
+    /**
+     * RankPlayer View
+     *
+     * @return RankItemFragment: RankPlayer Fragment
+     */
+    RankPlayerFragment findOrCreateRankPlayerView() {
+
+        RankPlayerFragment fragment = findOrCreateRankPlayerItemFragment(PLAYER);
+
+        mRankPlayerPresenter = new RankPlayerPresenter(fragment);
+        fragment.setPresenter(mMainPresenter);
+        mMainPresenter.setRankPlayerPresenter(mRankPlayerPresenter);
+
+        return fragment;
+    }
+
+    /**
+     * RankReferee View
+     *
+     * @return RankItemFragment: RankReferee Fragment
+     */
+    RankRefereeFragment findOrCreateRankRefereeView() {
+
+        RankRefereeFragment fragment = findOrCreateRankRefereeItemFragment(REFEREE);
+
+        mRankRefereePresenter = new RankRefereePresenter(fragment);
+        fragment.setPresenter(mMainPresenter);
+        mMainPresenter.setRankRefereePresenter(mRankRefereePresenter);
 
         return fragment;
     }
@@ -471,6 +513,46 @@ public class MainMvpController {
         if (fragment == null) {
             // Create the fragment
             fragment = CourtsMapFragment.newInstance();
+        }
+
+        return fragment;
+    }
+
+    /**
+     * Home Item Fragment: Player
+     *
+     * @param itemType: @RankItem
+     * @return RankPlayerFragment
+     */
+    @NonNull
+    private RankPlayerFragment findOrCreateRankPlayerItemFragment(@RankItem String itemType) {
+
+        RankPlayerFragment fragment =
+                (RankPlayerFragment) (getFragmentManager().findFragmentByTag(RANK))
+                        .getChildFragmentManager().findFragmentByTag(itemType);
+        if (fragment == null) {
+            // Create the fragment
+            fragment = RankPlayerFragment.newInstance();
+        }
+
+        return fragment;
+    }
+
+    /**
+     * Home Item Fragment: Referee
+     *
+     * @param itemType: @RankItem
+     * @return RankRefereeFragment
+     */
+    @NonNull
+    private RankRefereeFragment findOrCreateRankRefereeItemFragment(@RankItem String itemType) {
+
+        RankRefereeFragment fragment =
+                (RankRefereeFragment) (getFragmentManager().findFragmentByTag(RANK))
+                        .getChildFragmentManager().findFragmentByTag(itemType);
+        if (fragment == null) {
+            // Create the fragment
+            fragment = RankRefereeFragment.newInstance();
         }
 
         return fragment;

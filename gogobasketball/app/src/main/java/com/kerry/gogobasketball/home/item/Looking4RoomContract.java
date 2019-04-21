@@ -41,8 +41,5 @@ public interface Looking4RoomContract {
 
         void setRoomListSnapshotListerSlave();
 
-        void openCommentReferee(String hostName);
-
-        void openGameResultPlayer(String hostName, int nowSort);
     }
 }

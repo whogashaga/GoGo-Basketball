@@ -7,6 +7,8 @@ import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
+import com.kerry.gogobasketball.rank.player.RankPlayerFragment;
+import com.kerry.gogobasketball.rank.referee.RankRefereeFragment;
 
 public interface MainContract {
 
@@ -47,6 +49,10 @@ public interface MainContract {
         Looking4RoomFragment findHomeView();
 
         CourtsMapFragment findMapView();
+
+        RankPlayerFragment findRankPlayerView();
+
+        RankRefereeFragment findRankRefereeView();
 
         void showMessageDialogUi(@MessageDialog.MessageType int type);
 
