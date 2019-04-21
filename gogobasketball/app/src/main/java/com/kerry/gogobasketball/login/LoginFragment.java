@@ -66,7 +66,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        mLayout.setBackgroundResource(R.drawable.anim_login_background);
+//        mLayout.setBackgroundResource(R.drawable.anim_layout_home);
 //        AnimationDrawable drawable = (AnimationDrawable) mLayout.getBackground();
 //        drawable.start();
         mPresenter.hideToolbarAndBottomNavigation();
