@@ -99,7 +99,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         mBtnCreateConfirm = root.findViewById(R.id.btn_want2create_build_confirm);
         mBtnCreateConfirm.setOnClickListener(this);
         mBtnCreateConfirm.setClickable(false);
-        mBtnCreateConfirm.setBackgroundResource(R.drawable.btn_gray_ripple);
+        mBtnCreateConfirm.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.white));
 
         mBtnCreateCancel = root.findViewById(R.id.btn_want2create_build_cancel);
         mBtnCreateCancel.setOnClickListener(this);
@@ -179,7 +179,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
                 }
                 break;
             case R.id.radios_referee_no:
-                mTextRefereeWarning.setText("暫不支援非裁判模式～");
+                mTextRefereeWarning.setText("目前只支援裁判模式～");
                 mTextRefereeWarning.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.red_FF001F));
                 mPresenter.getRefereeOnOffFromRadioGroup(false);
                 setBtnCreateConfirmClickable(false);
@@ -246,10 +246,12 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
 
         if (clickable) {
             mBtnCreateConfirm.setClickable(true);
-            mBtnCreateConfirm.setBackgroundResource(R.drawable.btn_black_ripple);
+            mBtnCreateConfirm.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.black_3f3a3a));
+//            mBtnCreateConfirm.setBackgroundResource(R.drawable.btn_effect_custom);
         } else {
             mBtnCreateConfirm.setClickable(false);
-            mBtnCreateConfirm.setBackgroundResource(R.drawable.btn_gray_ripple);
+            mBtnCreateConfirm.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.white));
+//            mBtnCreateConfirm.setBackgroundResource(R.drawable.btn_gray_ripple);
         }
     }
 
@@ -257,7 +259,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         InputFilter filter = new InputFilter() {
             @Override
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-                if (source.equals(" ") || source.toString().contentEquals("\n")) {
+                if (source.equals(" ")) {
                     return "";
                 } else {
                     return null;

@@ -38,6 +38,7 @@
 
     <Button
         android:id="@+id/btn_result_referee_back_lobby"
+        android:background="@drawable/btn_effect_custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

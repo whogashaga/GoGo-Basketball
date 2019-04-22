@@ -935,7 +935,7 @@
         android:layout_marginStart="8sp"
         android:text="@string/text_minutes"
         android:textColor="@color/black_3f3a3a"
-        android:textSize="18sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/spinner_timer_selector"
         app:layout_constraintStart_toEndOf="@+id/spinner_timer_selector"
         app:layout_constraintTop_toTopOf="@+id/spinner_timer_selector" />

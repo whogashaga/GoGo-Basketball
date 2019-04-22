@@ -41,6 +41,8 @@
     <color name="bottom_navigation_item_normal">@color/gray_999999</color>
     <color name="bottom_navigation_item_selected">@color/black_3f3a3a</color>
 
+
+    <color name="green_378500">#378500</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
@@ -50,7 +52,7 @@
     <color name="blue_voyage">#33a4cc</color>
 
     <!-- Want2CreateRoom Referee on not -->
-    <color name="referee_yes">#00E1FF</color>
+    <color name="referee_yes">#e0FFDA00</color>
     <color name="referee_no">#888888</color>
 
     <!-- transparent -->
