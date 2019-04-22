@@ -137,6 +137,13 @@
         <item name="android:letterSpacing">0.1</item>
     </style>
 
+    <style name="RankUserId">
+        <item name="android:fontFamily">@font/noto_sans</item>
+        <item name="android:textColor">@color/black_3f3a3a</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+
     <style name="Want2CreateRoomTitle">
         <item name="android:fontFamily">@font/noto_sans</item>
         <item name="android:letterSpacing">0.15</item>

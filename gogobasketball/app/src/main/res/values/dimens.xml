@@ -76,4 +76,7 @@
     <!-- LookingForRoom -->
     <dimen name="space_look4room_grid">12dp</dimen>
 
+    <!-- Rank Adapter -->
+    <dimen name="space_rank_grid">8dp</dimen>
+
 </resources>

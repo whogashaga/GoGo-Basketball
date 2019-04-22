@@ -40,8 +40,6 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
 
     private Want2CreateRoomContract.Presenter mPresenter;
     private RadioGroup mRadioGroup;
-    private RadioButton mRadioRefereeYes;
-    private RadioButton mRadioRefereeNo;
     private TextView mTextRefereeWarning;
     private Button mBtnCreateConfirm;
     private Button mBtnCreateCancel;
