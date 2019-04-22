@@ -110,6 +110,6 @@
     </item>
     <item
         android:drawable="@drawable/wheel_dunk_28"
-        android:duration="2000">
+        android:duration="3000">
     </item>
 </animation-list>
