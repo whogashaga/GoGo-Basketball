@@ -421,6 +421,7 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.d("Kerry", "Referee Going fragment onDestroy !!");
     }
 
     @Override
@@ -432,7 +433,6 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     public void openGameResultRefereeUi(String hostName) {
         mPresenter.openGameResultReferee(hostName);
         mPresenter.getRefereeUserData(getActivity());
-        onDestroy();
     }
 
     @Override
@@ -490,7 +490,7 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
         } else if (positionStr.equals(Constants.POSITION_CENTER)) {
             imageView.setImageResource(R.drawable.ic_position_center);
         } else {
-            Log.e("Kerry", "Set Position Error!!");
+            Log.e(Constants.TAG, "Set Position Error!!");
         }
     }
 

@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.kerry.gogobasketball.data.User;
+import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.UserManager;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -23,18 +24,18 @@ public class LoginPresenter implements LoginContract.Presenter {
         UserManager.getInstance().loginGoGoBasketballByFacebook(activity, new UserManager.LoadCallback() {
             @Override
             public void onSuccess(User user) {
-                Log.d("Kerry","LoginFragment loginGoGoBasketballByFacebook onSuccess!" + user.getFacebookId());
+                Log.d(Constants.TAG,"LoginFragment loginGoGoBasketballByFacebook onSuccess!" + user.getFacebookId());
                 mLoginView.showLoginSuccessUi(user);
             }
 
             @Override
             public void onFail(String errorMessage) {
-                Log.d("Kerry","LoginFragment loginGoGoBasketballByFacebook Fail!");
+                Log.d(Constants.TAG,"LoginFragment loginGoGoBasketballByFacebook Fail!");
             }
 
             @Override
             public void onInvalidToken(String errorMessage) {
-                Log.d("Kerry","LoginFragment Token 過期!");
+                Log.d(Constants.TAG,"LoginFragment Token 過期!");
             }
         });
     }

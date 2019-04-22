@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,6 +70,12 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mViewPager = root.findViewById(R.id.viewpager_home);
 
         return root;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("Kerry", "home fragment onDestroy !!");
     }
 
     @Override

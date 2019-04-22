@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.kerry.gogobasketball.component.SeatAvatarOutlineProvider;
 import com.kerry.gogobasketball.data.GamingPlayer;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
 import com.kerry.gogobasketball.playing.player.PlayerGoingFragment;
+import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.ImageManager;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -76,7 +78,7 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
     public void onResume() {
         super.onResume();
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
 
     @Override
@@ -87,7 +89,7 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         mRoot = inflater.inflate(R.layout.fragment_game_result_player, container, false);
-        mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         mRoot.getBackground().setAlpha(200);
 
         mAvatarP1 = mRoot.findViewById(R.id.result_player_team_a_player1_avatar);
@@ -148,16 +150,16 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_result_player_rating_referee:
-                Log.d("Kerry", "PlayerResult onClick Comment : " + mRefereeName);
+                Log.d(Constants.TAG, "PlayerResult onClick Comment : " + mRefereeName);
                 mPresenter.openCommentReferee(mRefereeName);
                 break;
             case R.id.btn_result_player_back_lobby:
                 mPresenter.openHome();
                 getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                getFragmentManager().popBackStack(0, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 mPresenter.showToolbarAndBottomNavigation();
                 mPresenter.setActivityBackgroundPortrait();
                 mPresenter.setBackKeyDisable(false);
-                onDestroy();
                 break;
         }
     }

@@ -45,7 +45,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
 
     @Override
     public void onRoomNameEditTextChange(CharSequence roomName) {
-//        Log.d("Kerry", "room name = " + roomName.length());
+//        Log.d(Constants.TAG, "room name = " + roomName.length());
         mWaitingRoomInfo.setRoomName(roomName.toString());
     }
 
@@ -80,7 +80,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
                     mWant2CreateRoomView.getRoomInfoFromPresenter4NextFragment(waitingRoomInfo, hostSeatInfo, documentReference.getId());
                     Log.d(Constants.TAG, "Master創建房間 ！!");
                 })
-                .addOnFailureListener(e -> Log.e("Kerry", "Error adding document", e));
+                .addOnFailureListener(e -> Log.e(Constants.TAG, "Error adding document", e));
 
     }
 

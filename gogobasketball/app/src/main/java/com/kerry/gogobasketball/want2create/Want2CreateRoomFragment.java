@@ -29,6 +29,7 @@ import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
+import com.kerry.gogobasketball.util.Constants;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -129,7 +130,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         mSpinnerCourts.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                Log.e("Kerry", "now selected = " + parent.getSelectedItem().toString());
+//                Log.e(Constants.TAG, "now selected = " + parent.getSelectedItem().toString());
                 mPresenter.getCourtLocationFromSpinner(parent.getSelectedItem().toString());
             }
 
@@ -212,7 +213,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
                 } else if (s.length() == 0) {
                     setBtnCreateConfirmClickable(false);
                 } else {
-                    Log.d("Kerry", "no this kind of situation!");
+                    Log.d(Constants.TAG, "no this kind of situation!");
                 }
             }
 
@@ -227,6 +228,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.d("Kerry", "Want2CreateRoom fragment onDestroy !!");
         mPresenter.showToolbarAndBottomNavigation();
     }
 

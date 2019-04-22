@@ -32,7 +32,7 @@ public class CommentRefereePresenter implements CommentRefereeContract.Presenter
 
     @Override
     public void getRefereeNameFromResult(String refereeName) {
-        Log.i("Kerry", "getRefereeNameFromResult refereeName : " + refereeName);
+        Log.i(Constants.TAG, "getRefereeNameFromResult refereeName : " + refereeName);
         mRefereeName = refereeName;
     }
 
@@ -56,7 +56,7 @@ public class CommentRefereePresenter implements CommentRefereeContract.Presenter
                                 setRefereeRating(user);
                             }
                         } else {
-                            Log.w("Kerry", "Error getting documents.", task.getException());
+                            Log.w(Constants.TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });

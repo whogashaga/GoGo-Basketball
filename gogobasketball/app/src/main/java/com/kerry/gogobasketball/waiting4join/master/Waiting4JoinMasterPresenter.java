@@ -75,7 +75,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
         if (mListForChangeSeat.get(newSort - 1).isSeatAvailable()) {
             findCurrentSeatDocId(newSort);
         } else {
-            Log.d("Kerry", "changeMaster2NewSeat Error!!");
+            Log.d(Constants.TAG, "changeMaster2NewSeat Error!!");
         }
     }
 
@@ -114,7 +114,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                             WaitingRoomSeats seatInfo = document.toObject(WaitingRoomSeats.class);
                             existedSortList.add(seatInfo.getSort());
                         }
-//                            Log.d("Kerry", "Master existedSortList = " + existedSortList.get(0));
+//                            Log.d(Constants.TAG, "Master existedSortList = " + existedSortList.get(0));
                         updateSortForChangeSeatMaster(seatDocIdForUpdate, newSort);
                         changeRoomPlayerAmountAfterChangeSeatMaster(existedSortList, newSort);
 
@@ -185,7 +185,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
             public void onEvent(@Nullable QuerySnapshot value,
                                 @Nullable FirebaseFirestoreException e) {
                 if (e != null) {
-                    Log.w("Kerry", "Listen failed.", e);
+                    Log.w(Constants.TAG, "Listen failed.", e);
                     return;
                 }
                 getNewSeatsInfo();
@@ -250,7 +250,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                             emptySeatsList.set(mSeatsInfoList.get(j).getSort() - 1, mSeatsInfoList.get(j));
                         }
 
-//                            Log.e("Kerry", "EmptyList size = " + emptySeatsList.size());
+//                            Log.e(Constants.TAG, "EmptyList size = " + emptySeatsList.size());
 
                         mWaiting4JoinMasterView.showWaitingSeatsMasterUi(emptySeatsList);
 
@@ -331,7 +331,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                         updateStatus2Closed();
                         Log.d(Constants.TAG, "Master 跳狗，更新人數！");
                     }
-                }).addOnFailureListener(e -> Log.w("Kerry", "Error adding document", e));
+                }).addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
     }
 
 
@@ -381,10 +381,10 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                 .collection(Constants.GAMING_ROOM)
                 .add(gamingRoomInfo)
                 .addOnSuccessListener(documentReference -> {
-                    Log.d("Kerry", "initializeGamingRoomInfo : " + documentReference.getId());
+                    Log.d(Constants.TAG, "initializeGamingRoomInfo : " + documentReference.getId());
                     updateRoomStatus2Gaming(gamingRoomInfo);
                 })
-                .addOnFailureListener(e -> Log.w("Kerry", "Error adding document", e));
+                .addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
     }
 
     @Override

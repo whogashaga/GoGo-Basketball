@@ -74,7 +74,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
 
     @Override
     public void getGamingRoomFromFireStore(String hostName) {
-        Log.d("Kerry", "getGamingRoomFromFireStore hostName = " + hostName);
+        Log.d(Constants.TAG, "getGamingRoomFromFireStore hostName = " + hostName);
         FirestoreHelper.getFirestore()
                 .collection(Constants.GAMING_ROOM)
                 .whereEqualTo(Constants.HOST_NAME, hostName)
@@ -88,10 +88,10 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
                                 GamingRoomInfo gamingRoomInfo = document.toObject(GamingRoomInfo.class);
                                 mGamingRoomInfo = gamingRoomInfo;
                                 mGamePlayingView.showPlayingGameUi(gamingRoomInfo);
-//                                Log.w("Kerry", "gaming room id = " + document.getId() + " => " + document.getData());
+//                                Log.w(Constants.TAG, "gaming room id = " + document.getId() + " => " + document.getData());
                             }
                         } else {
-                            Log.w("Kerry", "Error getting documents.", task.getException());
+                            Log.w(Constants.TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });
@@ -130,7 +130,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.w("Kerry", "Error adding document", e);
+                Log.w(Constants.TAG, "Error adding document", e);
             }
         });
     }
@@ -166,7 +166,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
                 .document(user.getFacebookId())
                 .set(user)
                 .addOnSuccessListener(aVoid -> {
-                    Log.d("Kerry", "執法場次加一 ！!");
+                    Log.d(Constants.TAG, "執法場次加一 ！!");
                 }).addOnFailureListener(e -> Log.e(Constants.TAG, "執法 Error adding document", e));
     }
 
@@ -246,7 +246,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
             mGamePlayingView.setTextScoreTeamA(String.valueOf(getIntScoreA()));
             mGamePlayingView.setScorePlusClickableTeamA(true);
         } else {
-            Log.d("Kerry", "P1 Score error !");
+            Log.d(Constants.TAG, "P1 Score error !");
         }
     }
 
@@ -323,7 +323,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
             mGamePlayingView.setTextScoreTeamA(String.valueOf(getIntScoreA()));
             mGamePlayingView.setScorePlusClickableTeamA(true);
         } else {
-            Log.d("Kerry", "P2 Score error !");
+            Log.d(Constants.TAG, "P2 Score error !");
         }
     }
 
@@ -400,7 +400,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
             mGamePlayingView.setTextScoreTeamA(String.valueOf(getIntScoreA()));
             mGamePlayingView.setScorePlusClickableTeamA(true);
         } else {
-            Log.d("Kerry", "P3 Score error !");
+            Log.d(Constants.TAG, "P3 Score error !");
         }
     }
 
@@ -477,7 +477,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
             mGamePlayingView.setTextScoreTeamB(String.valueOf(getIntScoreB()));
             mGamePlayingView.setScorePlusClickableTeamB(true);
         } else {
-            Log.d("Kerry", "P4 Score error !");
+            Log.d(Constants.TAG, "P4 Score error !");
         }
     }
 
@@ -554,7 +554,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
             mGamePlayingView.setTextScoreTeamB(String.valueOf(getIntScoreB()));
             mGamePlayingView.setScorePlusClickableTeamB(true);
         } else {
-            Log.d("Kerry", "P5 Score error !");
+            Log.d(Constants.TAG, "P5 Score error !");
         }
     }
 
@@ -631,7 +631,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
             mGamePlayingView.setTextScoreTeamB(String.valueOf(getIntScoreB()));
             mGamePlayingView.setScorePlusClickableTeamB(true);
         } else {
-            Log.d("Kerry", "P6 Score error !");
+            Log.d(Constants.TAG, "P6 Score error !");
         }
     }
 

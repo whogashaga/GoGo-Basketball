@@ -31,14 +31,14 @@ public class RefereeResultPresenter implements RefereeResultContract.Presenter {
 
     @Override
     public void getHostNameFromRefereeGoing(String hostName) {
-        Log.w("Kerry", "getHostNameFromRefereeGoing Result Referee hostName = " + hostName);
+        Log.w(Constants.TAG, "getHostNameFromRefereeGoing Result Referee hostName = " + hostName);
         mHostName = hostName;
         mGameResultView.getHostNameFromPresenter(hostName);
     }
 
     @Override
     public void getRoomInfoFromFireStore(String hostName) {
-        Log.e("Kerry", "getRoomFromFireStore hostName = " + hostName);
+        Log.e(Constants.TAG, "getRoomFromFireStore hostName = " + hostName);
         FirestoreHelper.getFirestore()
                 .collection(Constants.GAMING_ROOM)
                 .whereEqualTo(Constants.HOST_NAME, hostName)
@@ -53,7 +53,7 @@ public class RefereeResultPresenter implements RefereeResultContract.Presenter {
                                 mGameResultView.showResultRefereeUi(gamingRoomInfo);
                             }
                         } else {
-                            Log.w("Kerry", "Error getting documents.", task.getException());
+                            Log.w(Constants.TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });

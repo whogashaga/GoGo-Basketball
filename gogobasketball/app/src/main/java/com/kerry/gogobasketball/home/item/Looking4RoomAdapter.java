@@ -91,7 +91,7 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
                                 determinePlayerAmount(document.getId());
                             }
                         } else {
-                            Log.w("Kerry", "Error getting documents.", task.getException());
+                            Log.w(Constants.TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });

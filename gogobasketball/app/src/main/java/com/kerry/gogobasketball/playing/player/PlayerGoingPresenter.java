@@ -55,7 +55,7 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
 
                             }
                         } else {
-                            Log.w("Kerry", "Error getting documents.", task.getException());
+                            Log.w(Constants.TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });

@@ -328,7 +328,6 @@ public class MainMvpController {
      * RefereeResult View
      */
     void findOrCreateRefereeResultView(String hostName) {
-        Log.i("Kerry", "getHostNameFromRefereeGoing MVP Controller Referee hostName = " + hostName);
         RefereeResultFragment refereeResultFragment = createRefereeResultFragment();
 
         mRefereeResultPresenter = new RefereeResultPresenter(refereeResultFragment);

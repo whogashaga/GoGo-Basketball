@@ -124,11 +124,9 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         if (mNowMasterSort == 7) {
             mPresenter.openGamePlayingOfReferee(gamingRoomInfo.getHostName());
             mPresenter.deleteHostInfoWhenLeave();
-            onDestroy();
         } else {
             mPresenter.openGamePlayingOfPlayer(gamingRoomInfo.getHostName(), mNowMasterSort);
             mPresenter.deleteHostInfoWhenLeave();
-            onDestroy();
         }
     }
 
@@ -246,17 +244,24 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("Kerry", "Waiting4Join fragment onDestroy !!");
+        mPresenter.deleteHostInfoWhenLeave();
+        mPresenter.setBackKeyDisable(false);
+        mPresenter.removeListenerMaster();
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_waiting4join_back_arrow:
                 mPresenter.finishWaiting4JoinUi();
                 getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                onDestroy();
                 break;
             case R.id.btn_waiting4join_cancel:
                 mPresenter.finishWaiting4JoinUi();
                 getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                onDestroy();
                 break;
             case R.id.btn_waiting4join_start:
                 mPresenter.initializeGamingRoomInfo();
@@ -324,7 +329,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
             } else if (i == 6) {
                 setUserSeatInfo(newSeatsList.get(i), 7, mAvatarP7, mGenderP7, mPositionP7, mTextIdP7, mBtnSeatP7);
             } else {
-                Log.d("Kerry", "showWaitingSeatsSlaveUi Error!!");
+                Log.d(Constants.TAG, "showWaitingSeatsSlaveUi Error!!");
             }
         }
     }
@@ -391,7 +396,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         } else if (waitPlayerInfo.getPosition().equals(Constants.POSITION_CENTER)) {
             imageView.setImageResource(R.drawable.ic_position_center);
         } else {
-            Log.e("Kerry", "Set Position Image Error!!");
+            Log.e(Constants.TAG, "Set Position Image Error!!");
         }
     }
 
@@ -441,14 +446,6 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     @Override
     public void onPause() {
         super.onPause();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mPresenter.deleteHostInfoWhenLeave();
-        mPresenter.setBackKeyDisable(false);
-        mPresenter.removeListenerMaster();
     }
 
     @Override

@@ -219,7 +219,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
             } else if (i == 6) {
                 setUserSeatInfo(newSeatsList.get(i), 7, mAvatarP7, mGenderP7, mPositionP7, mTextIdP7, mBtnSeatP7);
             } else {
-                Log.d("Kerry", "showWaitingSeatsSlaveUi Error!!");
+                Log.d(Constants.TAG, "showWaitingSeatsSlaveUi Error!!");
             }
         }
     }
@@ -375,8 +375,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void onDestroy() {
         super.onDestroy();
         mPresenter.setBackKeyDisable(false);
-//        mPresenter.removeListenerSlave();
-//        mPresenter.deleteSeatsInfoWhenLeaveRoom();
+        mPresenter.deleteSeatsInfoWhenLeaveRoom();
     }
 
     @Override
@@ -390,14 +389,12 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void openPlayerGamingUi(String hostName, int nowSort) {
         mPresenter.deleteSeatsInfoWhenLeaveRoom();
         mPresenter.openGamePlayingOfPlayer(hostName, nowSort);
-        onDestroy();
     }
 
     @Override
     public void openRefereeGamingUi(String hostName) {
         mPresenter.deleteSeatsInfoWhenLeaveRoom();
         mPresenter.openGamePlayingOfReferee(hostName);
-        onDestroy();
     }
 
 

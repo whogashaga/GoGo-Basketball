@@ -62,7 +62,7 @@ public class Looking4RoomPresenter implements Looking4RoomContract.Presenter {
                     public void onEvent(@Nullable QuerySnapshot value,
                                         @Nullable FirebaseFirestoreException e) {
                         if (e != null) {
-                            Log.w("Kerry", "Listen failed.", e);
+                            Log.w(Constants.TAG, "Listen failed.", e);
                             return;
                         }
                         loadExistedRoomsData4RecyclerView();

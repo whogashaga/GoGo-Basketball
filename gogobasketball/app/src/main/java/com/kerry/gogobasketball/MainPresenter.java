@@ -845,7 +845,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        Log.d("Kerry", "DocumentSnapshot data: " + document.getData());
+                        Log.d(Constants.TAG, "DocumentSnapshot data: " + document.getData());
                         User userInfo = document.toObject(User.class);
                         if (userInfo.getId().equals("")) {
                             mMainView.openCreateUserUi(user.getFacebookId());
@@ -854,10 +854,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                         }
                     } else {
                         updateUser2FireStore(user);
-                        Log.d("Kerry", "No such document");
+                        Log.d(Constants.TAG, "No such document");
                     }
                 } else {
-                    Log.d("Kerry", "get failed with ", task.getException());
+                    Log.d(Constants.TAG, "get failed with ", task.getException());
                 }
             }
         });
@@ -871,13 +871,13 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d("Kerry", "User登入後資料上傳!");
+                        Log.d(Constants.TAG, "User登入後資料上傳!");
                         mMainView.openCreateUserUi(user.getFacebookId());
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.w("Kerry", "Error adding document", e);
+                Log.w(Constants.TAG, "Error adding document", e);
             }
         });
     }
@@ -891,7 +891,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     private void checkIfUserCreated(String userDocId) {
 
-        Log.d("Kerry", "checkIfUserCreate doc id = " + userDocId);
+        Log.d(Constants.TAG, "checkIfUserCreate doc id = " + userDocId);
 
         DocumentReference docRef = FirestoreHelper.getFirestore()
                 .collection(Constants.USERS)
@@ -903,7 +903,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        Log.d("Kerry", "checkIfUserCreated DocumentSnapshot data: " + document.getData());
+                        Log.d(Constants.TAG, "checkIfUserCreated DocumentSnapshot data: " + document.getData());
                         User userInfo = document.toObject(User.class);
                         if (userInfo.getId().equals("")) {
                             mMainView.openCreateUserUi(userDocId);
@@ -912,10 +912,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                         }
                     } else {
 
-                        Log.d("Kerry", "No such document");
+                        Log.d(Constants.TAG, "No such document");
                     }
                 } else {
-                    Log.d("Kerry", "get failed with ", task.getException());
+                    Log.d(Constants.TAG, "get failed with ", task.getException());
                 }
             }
         });

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.SeatAvatarOutlineProvider;
 import com.kerry.gogobasketball.data.GamingPlayer;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
+import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.ImageManager;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -72,12 +74,12 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
     public void onResume() {
         super.onResume();
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         mRoot = inflater.inflate(R.layout.fragment_game_result_referee, container, false);
-        mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         mRoot.getBackground().setAlpha(200);
 
         mAvatarP1 = mRoot.findViewById(R.id.result_referee_team_a_player1_avatar);
@@ -137,11 +139,10 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
             case R.id.btn_result_referee_back_lobby:
                 mPresenter.deleteGamingRoom();
                 getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                mPresenter.setBackKeyDisable(false);
-                mPresenter.openHome();
+                getFragmentManager().popBackStack(0, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 mPresenter.showToolbarAndBottomNavigation();
                 mPresenter.setActivityBackgroundPortrait();
-                onDestroy();
+                mPresenter.setBackKeyDisable(false);
                 break;
         }
     }
@@ -192,6 +193,7 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
     @Override
     public void onDestroy() {
         super.onDestroy();
+        mPresenter.deleteGamingRoom();
         Log.d("Kerry", "Referee Result onDestroy: ");
     }
 

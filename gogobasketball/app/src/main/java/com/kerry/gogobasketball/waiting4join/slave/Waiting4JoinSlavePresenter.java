@@ -94,7 +94,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        Log.d("Kerry", "doc size : " + task.getResult().size());
+                        Log.d(Constants.TAG, "doc size : " + task.getResult().size());
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             // 只有一筆，跑 for 沒關係
                             mRoomDocId = document.getId();
@@ -145,7 +145,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                         }
                         setJoinerInfo();
                     } else {
-                        Log.w("Kerry", "Error getting documents.", task.getException());
+                        Log.w(Constants.TAG, "Error getting documents.", task.getException());
                     }
                 }).addOnFailureListener(e -> Log.w(Constants.TAG, "queryExistedSort Error", e));
     }
@@ -193,7 +193,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                     Log.d(Constants.TAG, "Slave 加入，並改變座位資訊！");
                     setRoomSnapshotListerSlave();
                     setAllSnapshotListerSlave();
-                }).addOnFailureListener(e -> Log.w("Kerry", "Error adding document", e));
+                }).addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -204,7 +204,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
         if (mListForChangeSeat.get(newSort - 1).isSeatAvailable()) {
             findCurrentSeatDocId(newSort);
         } else {
-            Log.d("Kerry", "changeSlave2NewSeat Error!!");
+            Log.d(Constants.TAG, "changeSlave2NewSeat Error!!");
         }
     }
 
@@ -224,7 +224,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                                 queryExistedSortForChangeSeatSlave(document.getId(), newSort);
                             }
                         } else {
-                            Log.w("Kerry", "Error getting documents.", task.getException());
+                            Log.w(Constants.TAG, "Error getting documents.", task.getException());
                         }
                     }
                 }).addOnFailureListener(e -> Log.w(Constants.TAG, "findCurrentSeatDocId Error", e));
@@ -245,13 +245,13 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                             WaitingRoomSeats seatInfo = document.toObject(WaitingRoomSeats.class);
                             mExistedSortList.add(seatInfo.getSort());
                         }
-                        Log.w("Kerry", "onComplete: " + mExistedSortList.size());
+                        Log.w(Constants.TAG, "onComplete: " + mExistedSortList.size());
 
                         updateSortForChangeSeatSlave(seatDocIdForUpdate, newSort);
                         changeRoomPlayerAmountAfterChangeSeatSlave(mExistedSortList, newSort);
 
                     } else {
-                        Log.w("Kerry", "Error getting documents.", task.getException());
+                        Log.w(Constants.TAG, "Error getting documents.", task.getException());
                     }
                 })
                 .addOnFailureListener(e -> Log.w(Constants.TAG, "Error updating document", e));
@@ -312,7 +312,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
         mAllSeatsListenerRegistration = query.addSnapshotListener((value, e) -> {
             if (e != null) {
-                Log.w("Kerry", "Listen failed.", e);
+                Log.w(Constants.TAG, "Listen failed.", e);
                 return;
             }
             getNewSeatsInfo();
@@ -367,7 +367,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
         docRef.get().addOnSuccessListener(documentSnapshot -> {
             WaitingRoomSeats currentSeat = documentSnapshot.toObject(WaitingRoomSeats.class);
-            Log.w("Kerry", "queryCurrentSort @!!");
+            Log.w(Constants.TAG, "queryCurrentSort @!!");
             if (currentSeat.getSort() == 7) {
                 mWaiting4JoinView.openRefereeGamingUi(mWaitingRoomInfo.getHostName());
                 removeListenerSlave();
@@ -410,7 +410,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                         mListForChangeSeat.addAll(emptySeatsList);
 
                     } else {
-                        Log.w("Kerry", "Error getting documents.", task.getException());
+                        Log.w(Constants.TAG, "Error getting documents.", task.getException());
                     }
                 }).addOnFailureListener(e -> Log.d(Constants.TAG, "Slave getNewSeatsInfo Error！"));
     }
@@ -473,7 +473,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 .document(mRoomDocId)
                 .set(mWaitingRoomInfo)
                 .addOnSuccessListener(aVoid -> Log.d(Constants.TAG, "Slave 離開，刪除資料"))
-                .addOnFailureListener(e -> Log.w("Kerry", "Error adding document", e));
+                .addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
     }
 
     @Override

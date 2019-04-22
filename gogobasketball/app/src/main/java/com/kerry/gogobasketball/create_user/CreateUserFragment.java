@@ -22,6 +22,7 @@ import android.widget.Spinner;
 
 import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
+import com.kerry.gogobasketball.util.Constants;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -94,7 +95,7 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_create_user_confirm:
-                Log.e("Kerry", "btn_create_user_confirm onClick ! ");
+                Log.e(Constants.TAG, "btn_create_user_confirm onClick ! ");
                 mPresenter.createUserClickConfirm();
                 break;
             default:
@@ -118,7 +119,7 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
         mSpinnerPosition.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.e("Kerry", "now selected = " + parent.getSelectedItem().toString());
+                Log.e(Constants.TAG, "now selected = " + parent.getSelectedItem().toString());
                 mPresenter.getPositionFromSpinner(parent.getSelectedItem().toString());
             }
 
@@ -147,7 +148,7 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
                 if (!"".equals(s.toString()) && s.length() < 7) {
                     mPresenter.onUserIdEditTextChange(s);
                     setBtnCreateConfirmClickable(true);
-                    Log.e("Kerry", "fragment onTextChanged : " + s.toString());
+                    Log.e(Constants.TAG, "fragment onTextChanged : " + s.toString());
                     mEditUserId.setFocusable(true);
                     if (s.length() == 8) {
                         mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.at_most_8_word), true);
@@ -156,7 +157,7 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
                     mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.edit_user_id), true);
                     setBtnCreateConfirmClickable(false);
                 } else {
-                    Log.d("Kerry", "no this kind of situation!");
+                    Log.d(Constants.TAG, "no this kind of situation!");
                 }
             }
 
@@ -202,11 +203,11 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
         switch (checkedId) {
             case R.id.radios_create_male:
                 mPresenter.getGenderFromRadioGroup(MALE);
-                Log.d("Kerry", "radio male = " + MALE);
+                Log.d(Constants.TAG, "radio male = " + MALE);
                 break;
             case R.id.radios_create_female:
                 mPresenter.getGenderFromRadioGroup(FEMALE);
-                Log.d("Kerry", "radio male = " + FEMALE);
+                Log.d(Constants.TAG, "radio male = " + FEMALE);
                 break;
             default:
                 break;

@@ -67,24 +67,24 @@ public class UserManager {
             @Override
             public void onSuccess(LoginResult loginResult) {
 
-                Log.d("Kerry", "FB Login Success");
-                Log.i("Kerry", "loginResult.getAccessToken().getToken() = " + loginResult.getAccessToken().getToken());
-                Log.i("Kerry", "loginResult.getAccessToken().getUserId() = " + loginResult.getAccessToken().getUserId());
-                Log.i("Kerry", "loginResult.getAccessToken().getApplicationId() = " + loginResult.getAccessToken().getApplicationId());
+                Log.d(Constants.TAG, "FB Login Success");
+                Log.i(Constants.TAG, "loginResult.getAccessToken().getToken() = " + loginResult.getAccessToken().getToken());
+                Log.i(Constants.TAG, "loginResult.getAccessToken().getUserId() = " + loginResult.getAccessToken().getUserId());
+                Log.i(Constants.TAG, "loginResult.getAccessToken().getApplicationId() = " + loginResult.getAccessToken().getApplicationId());
 
                 loginGoGoBasketball(context, loginResult, loadCallback);
             }
 
             @Override
             public void onCancel() {
-                Log.d("Kerry", "FB Login Cancel");
+                Log.d(Constants.TAG, "FB Login Cancel");
                 loadCallback.onFail("FB Login Cancel");
             }
 
             @Override
             public void onError(FacebookException exception) {
 
-                Log.d("Kerry", "FB Login Error");
+                Log.d(Constants.TAG, "FB Login Error");
                 loadCallback.onFail("FB Login Error: " + exception.getMessage());
             }
         });
@@ -101,7 +101,7 @@ public class UserManager {
     }
 
     private void loginGoGoBasketball(Context context, LoginResult loginResult, LoadCallback loadCallback) {
-        Log.e("Kerry", "loginGoGoBasketball Token = " + loginResult.getAccessToken().getToken());
+        Log.e(Constants.TAG, "loginGoGoBasketball Token = " + loginResult.getAccessToken().getToken());
         GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
                 new GraphRequest.GraphJSONObjectCallback() {
                     @Override
@@ -119,7 +119,7 @@ public class UserManager {
 //                            updateUser2FireStore(mUser, loadCallback);
 
                         } catch (JSONException e) {
-                            Log.e("Kerry", "unexpected JSON exception", e);
+                            Log.e(Constants.TAG, "unexpected JSON exception", e);
                         }
                     }
                 });
@@ -149,18 +149,18 @@ public class UserManager {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        Log.d("Kerry", "DocumentSnapshot data: " + document.getData());
+                        Log.d(Constants.TAG, "DocumentSnapshot data: " + document.getData());
                         User userInfo = document.toObject(User.class);
                         loadCallback.onSuccess(userInfo);
                     } else {
-                        Log.d("Kerry", "No such document");
+                        Log.d(Constants.TAG, "No such document");
                         loadCallback.onFail("No such document!");
                     }
                 } else {
-                    Log.d("Kerry", "get failed with ", task.getException());
+                    Log.d(Constants.TAG, "get failed with ", task.getException());
                 }
             }
-        }).addOnFailureListener(e -> Log.d("Kerry", " getUserProfile Error !!"));
+        }).addOnFailureListener(e -> Log.d(Constants.TAG, " getUserProfile Error !!"));
 
     }
 

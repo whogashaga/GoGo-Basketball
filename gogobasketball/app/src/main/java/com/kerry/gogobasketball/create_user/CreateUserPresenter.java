@@ -54,7 +54,7 @@ public class CreateUserPresenter implements CreateUserContract.Presenter {
                    User user = snapshot.toObject(User.class);
                    mUser = user;
 
-                }).addOnFailureListener(e -> Log.d("Kerry", "no internet to create user ！"));
+                }).addOnFailureListener(e -> Log.d(Constants.TAG, "no internet to create user ！"));
     }
 
     @Override
@@ -82,7 +82,7 @@ public class CreateUserPresenter implements CreateUserContract.Presenter {
 
     @Override
     public void getGenderFromRadioGroup(String gender) {
-        Log.d("Kerry", "getGenderFromRadioGroup = " + gender);
+        Log.d(Constants.TAG, "getGenderFromRadioGroup = " + gender);
         mUser.setGender(gender);
     }
 

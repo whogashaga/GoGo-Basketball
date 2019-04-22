@@ -51,11 +51,11 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
                                 mRoomDocId = document.getId();
                                 GamingRoomInfo gamingRoomInfo = document.toObject(GamingRoomInfo.class);
                                 mGameResultView.showResultPlayerUi(gamingRoomInfo, currentSort);
-                                Log.w("Kerry", "gamingRoomInfo = " + gamingRoomInfo.toString());
+                                Log.w(Constants.TAG, "gamingRoomInfo = " + gamingRoomInfo.toString());
                                 getPlayerRecordFromRoom(gamingRoomInfo, currentSort);
                             }
                         } else {
-                            Log.w("Kerry", "Error getting documents.", task.getException());
+                            Log.w(Constants.TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });
@@ -93,11 +93,11 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 // 只有一筆，跑 for 沒關係
                                 User user = document.toObject(User.class);
-                                Log.e("Kerry", "document.toObject(User.class) ID = " + user.getId());
+                                Log.e(Constants.TAG, "document.toObject(User.class) ID = " + user.getId());
                                 setRecords2User(user, gamingPlayer, winner, currentSort);
                             }
                         } else {
-                            Log.w("Kerry", "Error getting documents.", task.getException());
+                            Log.w(Constants.TAG, "Error getting documents.", task.getException());
                         }
                     }
                 }).addOnFailureListener(e -> {
@@ -107,7 +107,7 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
 
     private void setRecords2User(User user, GamingPlayer gamingPlayer, String winner, int currentSort) {
 
-        Log.d("Kerry", "setRecords2User @ ");
+        Log.d(Constants.TAG, "setRecords2User @ ");
         user.getPlayerRecord().setGames(user.getPlayerRecord().getGames() + 1);
         user.getPlayerRecord().setScore(user.getPlayerRecord().getScore() + gamingPlayer.getScore());
         user.getPlayerRecord().setRebound(user.getPlayerRecord().getRebound() + gamingPlayer.getRebound());
@@ -117,13 +117,13 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
             if (winner.equals("a")) {
                 user.getPlayerRecord().setWinning(user.getPlayerRecord().getWinning() + 1);
             } else {
-                Log.d("Kerry", "You Lose !!");
+                Log.d(Constants.TAG, "You Lose !!");
             }
         } else {
             if (winner.equals("b")) {
                 user.getPlayerRecord().setWinning(user.getPlayerRecord().getWinning() + 1);
             } else {
-                Log.d("Kerry", "You Lose !!");
+                Log.d(Constants.TAG, "You Lose !!");
             }
         }
 
@@ -131,7 +131,7 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
     }
 
     private void updatePersonalRecord2User(User user) {
-        Log.d("Kerry", "updatePersonalRecord2User @ ");
+        Log.d(Constants.TAG, "updatePersonalRecord2User @ ");
         FirestoreHelper.getFirestore()
                 .collection(Constants.USERS)
                 .document(user.getFacebookId())

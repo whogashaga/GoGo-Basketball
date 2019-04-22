@@ -51,7 +51,7 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
         mRoomInfoList.clear();
         mRoomInfoList.addAll(roomInfoList);
         mLooking4RoomAdapter.updateData(mRoomInfoList);
-//        Log.d("Kerry","list size in fragment = " + mRoomInfoList.size());
+//        Log.d(Constants.TAG,"list size in fragment = " + mRoomInfoList.size());
     }
 
     @Nullable

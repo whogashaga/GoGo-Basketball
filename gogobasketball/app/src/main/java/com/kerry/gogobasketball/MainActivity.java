@@ -142,11 +142,11 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
                             if (task.isSuccessful()) {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                     User user = document.toObject(User.class);
-                                    Log.w("Kerry", "foul = " + user.getPlayerRecord().getFoul());
-//                                        Log.w("Kerry", document.getId() + " => " + document.getData());
+                                    Log.w(Constants.TAG, "foul = " + user.getPlayerRecord().getFoul());
+//                                        Log.w(Constants.TAG, document.getId() + " => " + document.getData());
                                 }
                             } else {
-                                Log.w("Kerry", "Error getting documents.", task.getException());
+                                Log.w(Constants.TAG, "Error getting documents.", task.getException());
                             }
                         });
             }
@@ -171,13 +171,13 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
-                                Log.d("Kerry", "gaming room id : " + documentReference.getId());
+                                Log.d(Constants.TAG, "gaming room id : " + documentReference.getId());
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Log.w("Kerry", "Error adding document", e);
+                                Log.w(Constants.TAG, "Error adding document", e);
                             }
                         });
             }
@@ -213,13 +213,13 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Log.d("Kerry", "新增球員數據！!");
+                                Log.d(Constants.TAG, "新增球員數據！!");
                                 setUserReferee(id, number);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w("Kerry", "Error adding document", e);
+                        Log.w(Constants.TAG, "Error adding document", e);
                     }
 
                 });
@@ -245,12 +245,12 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d("Kerry", "新增裁判數據！!");
+                        Log.d(Constants.TAG, "新增裁判數據！!");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.w("Kerry", "Error adding document", e);
+                Log.w(Constants.TAG, "Error adding document", e);
             }
         });
     }
@@ -306,12 +306,12 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Log.d("Kerry", "DocumentSnapshot successfully written!");
+                                Log.d(Constants.TAG, "DocumentSnapshot successfully written!");
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w("Kerry", "Error adding document", e);
+                        Log.w(Constants.TAG, "Error adding document", e);
                     }
 
                 });
@@ -341,12 +341,12 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Log.d("Kerry", "對戰開始 - room info ！");
+                                Log.d(Constants.TAG, "對戰開始 - room info ！");
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w("Kerry", "Error adding document", e);
+                        Log.w(Constants.TAG, "Error adding document", e);
                     }
 
                 });
@@ -383,12 +383,12 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Log.d("Kerry", "對戰開始 - player info ！!");
+                                Log.d(Constants.TAG, "對戰開始 - player info ！!");
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w("Kerry", "Error adding document", e);
+                        Log.w(Constants.TAG, "Error adding document", e);
                     }
 
                 });
@@ -609,7 +609,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
     @Override
     public void openRefereeResultUi(String hostName) {
-        Log.d("Kerry", "getHostNameFromRefereeGoing MainActivity hostName = " + hostName);
         mMainMvpController.findOrCreateRefereeResultView(hostName);
     }
 
