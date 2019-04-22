@@ -2,15 +2,20 @@ package com.kerry.gogobasketball.rank.player;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.SeatAvatarOutlineProvider;
 import com.kerry.gogobasketball.data.User;
+import com.kerry.gogobasketball.util.Constants;
+import com.kerry.gogobasketball.util.ImageManager;
 
 import java.util.ArrayList;
 
@@ -18,9 +23,12 @@ public class RankPlayerAdapter extends RecyclerView.Adapter {
 
     RankPlayerContract.Presenter mPresenter;
     private ArrayList<User> mUserList;
+    private String mRecordType;
 
     public RankPlayerAdapter(RankPlayerContract.Presenter presenter) {
         mPresenter = presenter;
+        mRecordType = "";
+        mUserList = new ArrayList<>();
     }
 
     @NonNull
@@ -31,21 +39,67 @@ public class RankPlayerAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+
         if (holder instanceof RankPlayerAdapter.RankPlayerViewHolder) {
 
-            bindView((RankPlayerAdapter.RankPlayerViewHolder) holder, new User());
+            bindView((RankPlayerAdapter.RankPlayerViewHolder) holder, mUserList.get(position), position);
         }
     }
 
-    private void bindView(RankPlayerViewHolder holder, User user) {
+    private void bindView(RankPlayerViewHolder holder, User user, int position) {
 
+        // set Rank
+        holder.getTextRank().setText(String.valueOf(position + 1));
+
+        // set Avatar
+        ImageManager.getInstance().setImageByUrl(holder.getAavatar(), user.getAvatar());
+
+        // set Id
+        holder.getTextUserId().setText(user.getId());
+
+        // set Gender
+        if (user.getGender().equals("male")) {
+            holder.getGender().setImageResource(R.drawable.ic_male);
+        } else {
+            holder.getGender().setImageResource(R.drawable.ic_female);
+        }
+
+        // set Position
+        setPositionImage(user, holder.getUserPosition());
+
+
+        Log.w("Kerry","mRecordType = " + mRecordType);
+        // set Record
+        if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_winning))) {
+            holder.getRecordContent().setText(String.valueOf(user.getPlayerRecord().getWinning()));
+        } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_score))) {
+            holder.getRecordContent().setText(String.valueOf(user.getPlayerRecord().getScore()));
+        } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_rebound))) {
+            holder.getRecordContent().setText(String.valueOf(user.getPlayerRecord().getRebound()));
+        } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_foul))) {
+            holder.getRecordContent().setText(String.valueOf(user.getPlayerRecord().getFoul()));
+        } else {
+            Log.d("Kerry", "Rank Player Adapter bindView Error !!");
+        }
 
     }
 
-    @Override
-    public int getItemCount() {
-        return 16;
+    public void setPositionImage(User user, ImageView imageView) {
+
+        if (user.getPosition().equals(Constants.POSITION_PG)) {
+            imageView.setImageResource(R.drawable.ic_position_pg);
+        } else if (user.getPosition().equals(Constants.POSITION_SG)) {
+            imageView.setImageResource(R.drawable.ic_position_sg);
+        } else if (user.getPosition().equals(Constants.POSITION_SF)) {
+            imageView.setImageResource(R.drawable.ic_position_sf);
+        } else if (user.getPosition().equals(Constants.POSITION_PF)) {
+            imageView.setImageResource(R.drawable.ic_position_pf);
+        } else if (user.getPosition().equals(Constants.POSITION_CENTER)) {
+            imageView.setImageResource(R.drawable.ic_position_center);
+        } else {
+            Log.e(Constants.TAG, "Set Position Image Error!!");
+        }
     }
 
     private class RankPlayerViewHolder extends RecyclerView.ViewHolder {
@@ -57,6 +111,7 @@ public class RankPlayerAdapter extends RecyclerView.Adapter {
         private ImageView mAavatar;
         private ImageView mGender;
         private ImageView mPosition;
+        private TextView mRecordContent;
 
         public RankPlayerViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,7 +123,12 @@ public class RankPlayerAdapter extends RecyclerView.Adapter {
             mAavatar.setOutlineProvider(new SeatAvatarOutlineProvider());
             mGender = itemView.findViewById(R.id.image_rank_player_gender);
             mPosition = itemView.findViewById(R.id.image_rank_player_position);
+            mRecordContent = itemView.findViewById(R.id.text_rank_player_number);
 
+        }
+
+        public TextView getRecordContent() {
+            return mRecordContent;
         }
 
         public View getLayout() {
@@ -94,5 +154,20 @@ public class RankPlayerAdapter extends RecyclerView.Adapter {
         public ImageView getUserPosition() {
             return mPosition;
         }
+    }
+
+    @Override
+    public int getItemCount() {
+        if (mUserList == null) {
+            return 0;
+        }
+        return mUserList.size();
+    }
+
+
+    public void updateData(ArrayList<User> arrayList, String recordType) {
+        mRecordType = recordType;
+        mUserList = arrayList;
+        notifyDataSetChanged();
     }
 }

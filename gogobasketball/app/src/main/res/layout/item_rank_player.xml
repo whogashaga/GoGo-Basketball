@@ -2,9 +2,9 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_item_rank_player"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/layout_item_rank_player"
     android:background="@drawable/outline_looking4room_normal">
 
 
@@ -12,14 +12,13 @@
         android:id="@+id/image_rank_player_avatar"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/text_rank_player_id"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/text_rank_player_ranking"
+        app:layout_constraintStart_toStartOf="@+id/rank_player_guideline_v1"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_nav_profile" />
 
     <TextView
@@ -27,37 +26,38 @@
         style="@style/PlayingBigTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:text="1"
         android:textColor="@color/black_3f3a3a"
         app:layout_constraintBottom_toBottomOf="@+id/image_rank_player_avatar"
-        app:layout_constraintEnd_toStartOf="@+id/image_rank_player_avatar"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toStartOf="@+id/rank_player_guideline_v1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/image_rank_player_avatar" />
+        app:layout_constraintTop_toTopOf="@+id/image_rank_player_avatar"
+        app:layout_constraintVertical_bias="0.533" />
 
     <TextView
-        style="@style/RankUserId"
         android:id="@+id/text_rank_player_id"
-        android:layout_width="wrap_content"
+        style="@style/RankUserId"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="left"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/image_rank_player_avatar"
-        app:layout_constraintEnd_toStartOf="@+id/image_rank_player_gender"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toStartOf="@+id/rank_player_guideline_v2"
         app:layout_constraintStart_toEndOf="@+id/image_rank_player_avatar"
         app:layout_constraintTop_toTopOf="@+id/image_rank_player_avatar" />
 
     <ImageView
         android:id="@+id/image_rank_player_gender"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_height="25dp"
         app:layout_constraintBottom_toBottomOf="@+id/text_rank_player_id"
-        app:layout_constraintEnd_toStartOf="@+id/image_rank_player_position"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/text_rank_player_id"
+        app:layout_constraintStart_toStartOf="@+id/rank_player_guideline_v2"
         app:layout_constraintTop_toTopOf="@+id/text_rank_player_id"
         app:srcCompat="@drawable/ic_female" />
 
@@ -66,25 +66,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/text_rank_player_id"
-        app:layout_constraintEnd_toStartOf="@+id/text_rank_player_number"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintBottom_toBottomOf="@+id/image_rank_player_gender"
         app:layout_constraintStart_toEndOf="@+id/image_rank_player_gender"
-        app:layout_constraintTop_toTopOf="@+id/text_rank_player_id"
+        app:layout_constraintTop_toTopOf="@+id/image_rank_player_gender"
         app:srcCompat="@drawable/ic_position_center" />
 
     <TextView
         android:id="@+id/text_rank_player_number"
         style="@style/RankUserId"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:gravity="center"
         android:text="999"
         app:layout_constraintBottom_toBottomOf="@+id/image_rank_player_position"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/image_rank_player_position"
         app:layout_constraintTop_toTopOf="@+id/image_rank_player_position" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/rank_player_guideline_v1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="53dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/rank_player_guideline_v2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="131dp" />
 
 </android.support.constraint.ConstraintLayout>

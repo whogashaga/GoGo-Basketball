@@ -1010,6 +1010,32 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     }
 
+    /* ------------------------------------------------------------------------------------------ */
+    /* LookingForRoom Presenter */
+
+    @Override
+    public void loadRankPlayerByWinning() {
+        mRankPlayerPresenter.loadRankPlayerByWinning();
+    }
+
+    @Override
+    public void loadRankPlayerByScore() {
+        mRankPlayerPresenter.loadRankPlayerByScore();
+    }
+
+    @Override
+    public void loadRankPlayerByRebound() {
+        mRankPlayerPresenter.loadRankPlayerByRebound();
+    }
+
+    @Override
+    public void loadRankPlayerByFoul() {
+        mRankPlayerPresenter.loadRankPlayerByFoul();
+    }
+
+    /* ------------------------------------------------------------------------------------------ */
+    /*  General Function */
+
     @Override
     public void showErrorToast(String message, boolean isShort) {
         Toast toast;

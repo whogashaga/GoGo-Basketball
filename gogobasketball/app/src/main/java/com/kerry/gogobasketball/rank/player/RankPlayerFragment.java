@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.GridSpacingItemDecoration;
+import com.kerry.gogobasketball.data.User;
 
 import java.util.ArrayList;
 
@@ -25,14 +26,16 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class RankPlayerFragment extends Fragment implements RankPlayerContract.View, SwipeRefreshLayout.OnRefreshListener {
 
     private RankPlayerContract.Presenter mPresenter;
+    private ArrayList<User> mUserList;
 
     private Spinner mSpinnerRankPlayer;
-    private ArrayList<String> mRankPlayerList;
+    private ArrayList<String> mPlayerRecordList;
     private RecyclerView mRecyclerView;
     private RankPlayerAdapter mRankPlayerAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
     public RankPlayerFragment() {
+        mUserList = new ArrayList<>();
     }
 
     public static RankPlayerFragment newInstance() {
@@ -54,12 +57,24 @@ public class RankPlayerFragment extends Fragment implements RankPlayerContract.V
         super.onResume();
     }
 
+    @Override
+    public void showRankPlayerUi(ArrayList<User> arrayList, String recordType) {
+        mUserList.clear();
+        mUserList.addAll(arrayList);
+        mRankPlayerAdapter.updateData(mUserList, recordType);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_rank_child_player, container, false);
 
         mSwipeRefreshLayout = root.findViewById(R.id.swipe_container_rank_player);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
 
         mRankPlayerAdapter = new RankPlayerAdapter(mPresenter);
         mRecyclerView = root.findViewById(R.id.recycler_rank_child_player);
@@ -74,14 +89,14 @@ public class RankPlayerFragment extends Fragment implements RankPlayerContract.V
     }
 
     public void setSpinnerRankPlayer() {
-        mRankPlayerList = new ArrayList<>();
-        mRankPlayerList.add(getString(R.string.rank_winning));
-        mRankPlayerList.add(getString(R.string.rank_score));
-        mRankPlayerList.add(getString(R.string.rank_rebound));
-        mRankPlayerList.add(getString(R.string.rank_foul));
+        mPlayerRecordList = new ArrayList<>();
+        mPlayerRecordList.add(getString(R.string.rank_winning));
+        mPlayerRecordList.add(getString(R.string.rank_score));
+        mPlayerRecordList.add(getString(R.string.rank_rebound));
+        mPlayerRecordList.add(getString(R.string.rank_foul));
 
-        String[] courtsArray = new String[mRankPlayerList.size()];
-        courtsArray = mRankPlayerList.toArray(courtsArray);
+        String[] courtsArray = new String[mPlayerRecordList.size()];
+        courtsArray = mPlayerRecordList.toArray(courtsArray);
 
         ArrayAdapter<String> courtsAdapter = new ArrayAdapter<>(GoGoBasketball.getAppContext(),
                 android.R.layout.simple_spinner_dropdown_item, courtsArray);
@@ -93,13 +108,13 @@ public class RankPlayerFragment extends Fragment implements RankPlayerContract.V
 //                mPresenter.getCourtLocationFromSpinner(parent.getSelectedItem().toString());
 
                 if (parent.getSelectedItem().toString().equals(getString(R.string.rank_winning))) {
-
+                    mPresenter.loadRankPlayerByWinning();
                 } else if (parent.getSelectedItem().toString().equals(getString(R.string.rank_score))) {
-
+                    mPresenter.loadRankPlayerByScore();
                 } else if (parent.getSelectedItem().toString().equals(getString(R.string.rank_rebound))) {
-
+                    mPresenter.loadRankPlayerByRebound();
                 } else if (parent.getSelectedItem().toString().equals(getString(R.string.rank_foul))) {
-
+                    mPresenter.loadRankPlayerByFoul();
                 } else {
                     Log.d("Kerry","setSpinnerRankPlayer Error !!");
                 }
@@ -120,11 +135,6 @@ public class RankPlayerFragment extends Fragment implements RankPlayerContract.V
     @Override
     public void onDestroy() {
         super.onDestroy();
-    }
-
-    @Override
-    public void showRankPlayerUi() {
-
     }
 
     @Override
