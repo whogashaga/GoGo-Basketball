@@ -261,7 +261,11 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
 
         // set id
         if (seatPlayerInfo.getId().equals("")) {
-            id.setText("Player" + String.valueOf(sort));
+            if(sort == 7){
+                id.setText("Referee");
+            } else {
+                id.setText("Player" + String.valueOf(sort));
+            }
         } else {
             id.setText(seatPlayerInfo.getId());
         }

@@ -71,6 +71,7 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
         holder.getLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                holder.getLayout().setClickable(false);
                 determineOpenWaiting4Join(waitingRoomInfo);
             }
         });

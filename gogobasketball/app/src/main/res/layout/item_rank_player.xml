@@ -12,8 +12,8 @@
         android:id="@+id/image_rank_player_avatar"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/rank_player_guideline_v1"
@@ -26,7 +26,7 @@
         style="@style/PlayingBigTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="12dp"
         android:layout_marginEnd="8dp"
         android:text="1"
         android:textColor="@color/black_3f3a3a"
@@ -41,9 +41,8 @@
         style="@style/RankUserId"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:gravity="left"
+        android:layout_marginStart="8dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:text="TextView"
@@ -65,9 +64,8 @@
         android:id="@+id/image_rank_player_position"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/image_rank_player_gender"
-        app:layout_constraintStart_toEndOf="@+id/image_rank_player_gender"
+        app:layout_constraintEnd_toStartOf="@+id/rank_player_guideline_v3"
         app:layout_constraintTop_toTopOf="@+id/image_rank_player_gender"
         app:srcCompat="@drawable/ic_position_center" />
 
@@ -80,7 +78,7 @@
         android:text="999"
         app:layout_constraintBottom_toBottomOf="@+id/image_rank_player_position"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/image_rank_player_position"
+        app:layout_constraintStart_toStartOf="@+id/rank_player_guideline_v3"
         app:layout_constraintTop_toTopOf="@+id/image_rank_player_position" />
 
     <android.support.constraint.Guideline
@@ -97,4 +95,10 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="131dp" />
 
+    <android.support.constraint.Guideline
+        android:id="@+id/rank_player_guideline_v3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="65dp" />
 </android.support.constraint.ConstraintLayout>

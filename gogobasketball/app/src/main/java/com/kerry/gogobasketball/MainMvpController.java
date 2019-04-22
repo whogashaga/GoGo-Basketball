@@ -574,7 +574,7 @@ public class MainMvpController {
     }
 
     /**
-     * Waiting4Join Fragment
+     * Waiting4JoinMaster Fragment
      *
      * @return Waiting4JoinMasterFragment
      */

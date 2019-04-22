@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
@@ -33,6 +34,7 @@ public class RankPlayerFragment extends Fragment implements RankPlayerContract.V
     private RecyclerView mRecyclerView;
     private RankPlayerAdapter mRankPlayerAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private TextView mRecordTitle;
 
     public RankPlayerFragment() {
         mUserList = new ArrayList<>();
@@ -75,6 +77,7 @@ public class RankPlayerFragment extends Fragment implements RankPlayerContract.V
                 android.R.color.holo_green_dark,
                 android.R.color.holo_orange_dark,
                 android.R.color.holo_blue_dark);
+        mRecordTitle = root.findViewById(R.id.text_child_player_record_title);
 
         mRankPlayerAdapter = new RankPlayerAdapter(mPresenter);
         mRecyclerView = root.findViewById(R.id.recycler_rank_child_player);
@@ -104,17 +107,19 @@ public class RankPlayerFragment extends Fragment implements RankPlayerContract.V
         mSpinnerRankPlayer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                Log.e(Constants.TAG, "now selected = " + parent.getSelectedItem().toString());
-//                mPresenter.getCourtLocationFromSpinner(parent.getSelectedItem().toString());
 
                 if (parent.getSelectedItem().toString().equals(getString(R.string.rank_winning))) {
                     mPresenter.loadRankPlayerByWinning();
+                    mRecordTitle.setText(getString(R.string.rank_winning));
                 } else if (parent.getSelectedItem().toString().equals(getString(R.string.rank_score))) {
                     mPresenter.loadRankPlayerByScore();
+                    mRecordTitle.setText(getString(R.string.rank_score));
                 } else if (parent.getSelectedItem().toString().equals(getString(R.string.rank_rebound))) {
+                    mRecordTitle.setText(getString(R.string.rank_rebound));
                     mPresenter.loadRankPlayerByRebound();
                 } else if (parent.getSelectedItem().toString().equals(getString(R.string.rank_foul))) {
                     mPresenter.loadRankPlayerByFoul();
+                    mRecordTitle.setText(getString(R.string.rank_foul));
                 } else {
                     Log.d("Kerry","setSpinnerRankPlayer Error !!");
                 }
