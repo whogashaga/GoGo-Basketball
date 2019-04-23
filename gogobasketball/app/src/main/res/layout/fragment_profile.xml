@@ -19,7 +19,7 @@
             android:id="@+id/image_profile_avatar"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/ic_nav_profile"
@@ -35,13 +35,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             android:fontFamily="@font/noto_sans"
             android:letterSpacing="0.05"
             android:maxLines="1"
             android:text="@string/profile_default_name"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/text_profile_Id"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -54,18 +55,19 @@
             android:id="@+id/text_profile_Id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/noto_sans"
             android:letterSpacing="0.05"
             android:maxLines="1"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/image_profile_gender"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/image_profile_avatar"
+            app:layout_constraintStart_toStartOf="@+id/text_profile_name"
             app:layout_constraintTop_toBottomOf="@+id/text_profile_name"
             tools:text="@string/profile_default_information" />
 
@@ -105,9 +107,9 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/layout_profile_record_header"
-        android:layout_width="307dp"
+        android:layout_width="271dp"
         android:layout_height="0dp"
-        android:background="@color/blue_BBF6FF"
+        android:background="#e0ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_profile_header"
@@ -125,6 +127,8 @@
             android:textColor="@color/black_3f3a3a"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/text_profile_total_games_title"
+            app:layout_constraintEnd_toStartOf="@+id/text_profile_win_rate_content"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="spread" />
@@ -221,7 +225,7 @@
             android:textColor="@color/black_3f3a3a"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/text_profile_total_justices_title"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/text_profile_player_record_title"
             app:layout_constraintTop_toBottomOf="@+id/text_profile_av_foul_title" />
 
         <TextView
@@ -230,12 +234,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="執法場次"
-            app:layout_constraintBottom_toTopOf="@+id/text_profile_rating_title"
+            app:layout_constraintBottom_toTopOf="@+id/text_profile_referee_rating_title"
             app:layout_constraintStart_toStartOf="@+id/text_profile_referee_record_title"
             app:layout_constraintTop_toBottomOf="@+id/text_profile_referee_record_title" />
 
         <TextView
-            android:id="@+id/text_profile_rating_title"
+            android:id="@+id/text_profile_referee_rating_title"
             style="@style/ProfileRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -247,12 +251,12 @@
 
         <TextView
             android:id="@+id/text_profile_total_games_content"
-            style="@style/ProfileRecordTitle"
+            style="@style/ProfileRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="888"
             app:layout_constraintBottom_toBottomOf="@+id/text_profile_total_games_title"
-            app:layout_constraintStart_toEndOf="@+id/text_profile_player_record_title"
+            app:layout_constraintStart_toStartOf="@+id/text_profile_win_rate_content"
             app:layout_constraintTop_toTopOf="@+id/text_profile_total_games_title" />
 
         <TextView
@@ -260,9 +264,12 @@
             style="@style/ProfileRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:text="666"
             app:layout_constraintBottom_toBottomOf="@+id/text_profile_win_rate_title"
-            app:layout_constraintStart_toStartOf="@+id/text_profile_total_games_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/text_profile_player_record_title"
             app:layout_constraintTop_toTopOf="@+id/text_profile_win_rate_title" />
 
         <TextView
@@ -340,14 +347,14 @@
             app:layout_constraintTop_toTopOf="@+id/text_profile_total_justices_title" />
 
         <TextView
-            android:id="@+id/text_profile_rating_content"
+            android:id="@+id/text_profile_referee_rating_content"
             style="@style/ProfileRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="555"
-            app:layout_constraintBottom_toBottomOf="@+id/text_profile_rating_title"
+            app:layout_constraintBottom_toBottomOf="@+id/text_profile_referee_rating_title"
             app:layout_constraintStart_toStartOf="@+id/text_profile_win_rate_content"
-            app:layout_constraintTop_toTopOf="@+id/text_profile_rating_title" />
+            app:layout_constraintTop_toTopOf="@+id/text_profile_referee_rating_title" />
 
     </android.support.constraint.ConstraintLayout>
 

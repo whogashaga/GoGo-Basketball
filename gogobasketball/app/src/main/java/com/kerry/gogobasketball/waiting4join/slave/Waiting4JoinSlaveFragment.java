@@ -86,7 +86,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter.getProfileUserData(getActivity());
+        mPresenter.getProfileUserDataSlave(getActivity());
     }
 
     @Override

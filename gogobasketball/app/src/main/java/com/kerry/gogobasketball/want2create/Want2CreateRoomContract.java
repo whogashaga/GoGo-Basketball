@@ -49,7 +49,7 @@ public interface Want2CreateRoomContract {
 
         void setActivityBackgroundPortrait();
 
-        void loadProfileUserData(Activity activity);
+        void loadProfileUserDataWant2Create(Activity activity);
 
         void setCreateBtnClickable();
     }

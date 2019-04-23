@@ -108,7 +108,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     }
 
     @Override
-    public void loadProfileUserData(Activity activity) {
+    public void loadProfileUserDataWant2Create(Activity activity) {
         UserManager.getInstance().getUserProfile(activity, new UserManager.LoadCallback() {
             @Override
             public void onSuccess(User user) {

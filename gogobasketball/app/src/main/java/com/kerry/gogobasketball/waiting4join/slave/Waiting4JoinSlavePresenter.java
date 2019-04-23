@@ -61,7 +61,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     }
 
     @Override
-    public void getProfileUserData(Activity activity) {
+    public void getProfileUserDataSlave(Activity activity) {
         UserManager.getInstance().getUserProfile(activity, new UserManager.LoadCallback() {
             @Override
             public void onSuccess(User user) {

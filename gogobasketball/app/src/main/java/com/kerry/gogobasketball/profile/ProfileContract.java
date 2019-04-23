@@ -1,13 +1,16 @@
 package com.kerry.gogobasketball.profile;
 
+import android.app.Activity;
+
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
+import com.kerry.gogobasketball.data.User;
 
 public interface ProfileContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showUserUi();
+        void showUserUi(User user);
 
         boolean isActive();
 
@@ -18,9 +21,7 @@ public interface ProfileContract {
 
         void result(int requestCode, int resultCode);
 
-        void loadProfileUserData();
-
-        void checkProfileUserData();
+        void loadProfileUserData(Activity activity);
 
     }
 }

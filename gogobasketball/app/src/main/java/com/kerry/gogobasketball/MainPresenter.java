@@ -251,6 +251,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mMainView.showBottomNavigationUi();
     }
 
+    @Override
+    public void loadProfileUserData() {
+
+    }
+
     /**
      * Open CreateUserFragment
      */
@@ -631,8 +636,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void getProfileUserData(Activity activity) {
-        mWaiting4JoinSlavePresenter.getProfileUserData(activity);
+    public void getProfileUserDataSlave(Activity activity) {
+        mWaiting4JoinSlavePresenter.getProfileUserDataSlave(activity);
     }
 
     @Override
@@ -745,8 +750,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void loadProfileUserData(Activity activity) {
-        mWant2CreateRoomPresenter.loadProfileUserData(activity);
+    public void loadProfileUserDataWant2Create(Activity activity) {
+        mWant2CreateRoomPresenter.loadProfileUserDataWant2Create(activity);
     }
 
     @Override
@@ -951,13 +956,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     /* Profile Presenter Use Only */
 
     @Override
-    public void loadProfileUserData() {
-
-    }
-
-    @Override
-    public void checkProfileUserData() {
-
+    public void loadProfileUserData(Activity activity) {
+        mProfilePresenter.loadProfileUserData(activity);
     }
 
     /* ------------------------------------------------------------------------------------------ */
