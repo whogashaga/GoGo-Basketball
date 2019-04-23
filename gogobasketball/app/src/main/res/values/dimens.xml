@@ -19,6 +19,7 @@
     <!-- Profile  -->
     <dimen name="height_profile_header">92dp</dimen>
     <dimen name="radius_seat_avatar">50dp</dimen>
+    <dimen name="radius_profile_avatar">100dp</dimen>
 
     <!-- Login Dialog -->
     <dimen name="height_login">202dp</dimen>

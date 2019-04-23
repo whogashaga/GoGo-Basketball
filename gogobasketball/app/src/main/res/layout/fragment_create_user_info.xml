@@ -149,7 +149,7 @@
 
     <Button
         android:id="@+id/btn_create_user_confirm"
-        style="@style/ProfileTitle"
+        style="@style/CreateUserBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -166,7 +166,7 @@
 
     <Button
         android:id="@+id/btn_create_user_cancel"
-        style="@style/ProfileTitle"
+        style="@style/CreateUserBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

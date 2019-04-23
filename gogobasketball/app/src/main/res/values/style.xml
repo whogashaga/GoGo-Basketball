@@ -54,7 +54,25 @@
     </style>
 
     <style name="ProfileTitle">
-        <item name="android:fontFamily">@font/architects_daughter</item>
+        <item name="android:fontFamily">@font/noto_sans</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">@color/gray_646464</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.15</item>
+    </style>
+
+    <style name="ProfileRecordTitle">
+        <item name="android:fontFamily">@font/noto_sans</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">@color/gray_646464</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:paddingStart">16dp</item>
+    </style>
+
+    <style name="CreateUserBtn">
+        <item name="android:fontFamily">@font/noto_sans</item>
         <item name="android:maxLines">1</item>
         <item name="android:textColor">@color/gray_646464</item>
         <item name="android:textSize">16sp</item>
@@ -63,7 +81,7 @@
     </style>
 
     <style name="Waiting4JoinUserId">
-        <item name="android:fontFamily">@font/architects_daughter</item>
+        <item name="android:fontFamily">@font/noto_sans</item>
         <item name="android:textColor">@color/black_3f3a3a</item>
         <item name="android:textSize">16sp</item>
         <item name="android:layout_width">0dp</item>
