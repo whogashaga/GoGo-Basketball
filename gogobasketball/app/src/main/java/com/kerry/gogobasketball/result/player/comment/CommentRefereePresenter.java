@@ -64,6 +64,13 @@ public class CommentRefereePresenter implements CommentRefereeContract.Presenter
 
     private void setRefereeRating(User user) {
         user.getRefereeRecord().setRating(user.getRefereeRecord().getRating() + mRating);
+        user.getRefereeRecord().setCommenter(user.getRefereeRecord().getCommenter() + 1);
+        setRefereeAvRating(user);
+    }
+
+    private void setRefereeAvRating(User user) {
+        float avRating = (float) user.getRefereeRecord().getRating() / user.getRefereeRecord().getCommenter();
+        user.getRefereeRecord().setAvRating(avRating);
         updateRefereeRating2FireStore(user);
     }
 
@@ -91,6 +98,11 @@ public class CommentRefereePresenter implements CommentRefereeContract.Presenter
 
     @Override
     public void showSendCommentSuccessDialog() {
+
+    }
+
+    @Override
+    public void showErrorToast(String message, boolean isShort) {
 
     }
 

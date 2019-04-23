@@ -104,6 +104,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     @Override
     public void onResume() {
         super.onResume();
+//        Log.d("Kerry", " Waiting4JoinMasterContract onResume: ");
 
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
@@ -141,8 +142,10 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mRoomName = mRoot.findViewById(R.id.text_waiting4join_room_name);
         mBtnBackStack = mRoot.findViewById(R.id.btn_waiting4join_back_arrow);
         mBtnBackStack.setOnClickListener(this);
+        mBtnBackStack.setClickable(false);
         mBtnCancel = mRoot.findViewById(R.id.btn_waiting4join_cancel);
         mBtnCancel.setOnClickListener(this);
+        mBtnCancel.setClickable(false);
         mRadioGroupTimer = mRoot.findViewById(R.id.radios_timer_selector);
         mRadioGroupTimer.setOnCheckedChangeListener(this);
         mBtnStartGame = mRoot.findViewById(R.id.btn_waiting4join_start);
@@ -247,7 +250,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d("Kerry", "Waiting4Join fragment onDestroy !!");
+//        Log.d("Kerry", "Waiting4Join fragment onDestroy !!");
         mPresenter.deleteHostInfoWhenLeave();
         mPresenter.setBackKeyDisable(false);
         mPresenter.removeListenerMaster();
@@ -259,10 +262,12 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
             case R.id.btn_waiting4join_back_arrow:
                 mPresenter.finishWaiting4JoinUi();
                 getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                mBtnBackStack.setClickable(false);
                 break;
             case R.id.btn_waiting4join_cancel:
                 mPresenter.finishWaiting4JoinUi();
                 getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                mBtnCancel.setClickable(false);
                 break;
             case R.id.btn_waiting4join_start:
                 mPresenter.initializeGamingRoomInfo();
@@ -271,6 +276,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
 //                } else {
 //                    mPresenter.showErrorToast("人數不足\n無法開始!", true);
 //                }
+                mBtnStartGame.setClickable(false);
                 break;
             case R.id.btn_waiting_team_a_player1_change_seat:
                 Log.d(Constants.TAG, "onClick seat1");
@@ -333,6 +339,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
                 Log.d(Constants.TAG, "showWaitingSeatsSlaveUi Error!!");
             }
         }
+        mBtnBackStack.setClickable(true);
+        mBtnCancel.setClickable(true);
     }
 
     private void setUserSeatInfo(WaitingRoomSeats seatPlayerInfo, int sort,

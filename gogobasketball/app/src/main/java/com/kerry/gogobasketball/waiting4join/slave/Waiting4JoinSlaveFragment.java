@@ -110,11 +110,12 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mRoot.getBackground().setAlpha(200);
 
         mTextRoomName = mRoot.findViewById(R.id.text_slave_waiting4join_room_name);
-
         mBtnBackStack = mRoot.findViewById(R.id.btn_slave_waiting4join_back_arrow);
+        mBtnBackStack.setClickable(false);
         mBtnBackStack.setOnClickListener(this);
         mBtnCancel = mRoot.findViewById(R.id.btn_slave_waiting4join_cancel);
         mBtnCancel.setOnClickListener(this);
+        mBtnCancel.setClickable(false);
 
         mRadioTimerOn = mRoot.findViewById(R.id.radio_slave_timer_yes);
         mRadioTimerOn.setClickable(false);
@@ -303,14 +304,18 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_slave_waiting4join_back_arrow:
-                mPresenter.finishWaiting4JoinUi();
+                mPresenter.removeListenerSlave();
+                mPresenter.finishWaiting4JoinSlaveUi();
+                getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 mPresenter.showToolbarAndBottomNavigation();
-                mPresenter.deleteSeatsInfoWhenLeaveRoom();
+                mBtnBackStack.setClickable(false);
                 break;
             case R.id.btn_slave_waiting4join_cancel:
-                mPresenter.finishWaiting4JoinUi();
+                mPresenter.removeListenerSlave();
+                mPresenter.finishWaiting4JoinSlaveUi();
+                getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 mPresenter.showToolbarAndBottomNavigation();
-                mPresenter.deleteSeatsInfoWhenLeaveRoom();
+                mBtnCancel.setClickable(false);
                 break;
             case R.id.btn_slave_waiting_team_a_player1_change_seat:
                 Log.d(Constants.TAG, "Joiner onClick seat1");
@@ -372,7 +377,6 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     @Override
     public void onPause() {
         super.onPause();
-        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     @Override
@@ -385,8 +389,9 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     @Override
     public void closeSlaveUiBecauseMasterOutFirst() {
         mPresenter.showErrorToast("房主落跑...", false);
-        mPresenter.deleteSeatsInfoWhenLeaveRoom();
-        mPresenter.finishWaiting4JoinUi();
+        mPresenter.finishWaiting4JoinSlaveUi();
+        mPresenter.showToolbarAndBottomNavigation();
+//        mPresenter.deleteSeatsInfoWhenLeaveRoom();
     }
 
     @Override
@@ -399,6 +404,12 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void openRefereeGamingUi(String hostName) {
         mPresenter.deleteSeatsInfoWhenLeaveRoom();
         mPresenter.openGamePlayingOfReferee(hostName);
+    }
+
+    @Override
+    public void setBackBtnClickable() {
+        mBtnCancel.setClickable(true);
+        mBtnBackStack.setClickable(true);
     }
 
 

@@ -41,6 +41,8 @@ public interface PlayerResultContract {
 
         void setBack2LobbyVisible();
 
+        void setCommentDone(boolean done);
+
     }
 
 }

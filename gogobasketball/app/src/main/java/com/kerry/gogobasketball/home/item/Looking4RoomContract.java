@@ -41,5 +41,7 @@ public interface Looking4RoomContract {
 
         void setRoomListSnapshotListerSlave();
 
+//        void openCommentReferee(String refereeName);
+
     }
 }

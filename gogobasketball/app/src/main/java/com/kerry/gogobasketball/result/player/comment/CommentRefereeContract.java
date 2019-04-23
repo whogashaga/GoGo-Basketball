@@ -19,6 +19,8 @@ public interface CommentRefereeContract {
 
         void showSendCommentSuccessDialog();
 
+        void showErrorToast(String message, boolean isShort);
+
         void getRefereeNameFromResult(String hostName);
 
         void onWheelViewChanged(int rating);

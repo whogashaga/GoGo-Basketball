@@ -10,6 +10,8 @@ public interface RefereeGoingContract {
 
     interface View extends BaseView<Presenter> {
 
+        void setBtnGameOverClickable(boolean clickable);
+
         void showPlayingGameUi(GamingRoomInfo gamingRoomInfo);
 
         void getHostNameFromPresenter(String hostName);

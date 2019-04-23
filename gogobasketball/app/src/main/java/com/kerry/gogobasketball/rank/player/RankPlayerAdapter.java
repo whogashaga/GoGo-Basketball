@@ -2,7 +2,6 @@ package com.kerry.gogobasketball.rank.player;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,15 +68,21 @@ public class RankPlayerAdapter extends RecyclerView.Adapter {
         setPositionImage(user, holder.getUserPosition());
 
 
-        Log.w("Kerry","mRecordType = " + mRecordType);
+//        Log.w("Kerry","mRecordType = " + mRecordType);
         // set Record
-        if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_winning))) {
+        if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_total_games))) {
+            holder.getRecordContent().setText(String.valueOf(user.getPlayerRecord().getGames()));
+
+        } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_total_winning))) {
             holder.getRecordContent().setText(String.valueOf(user.getPlayerRecord().getWinning()));
-        } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_score))) {
+
+        } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_total_score))) {
             holder.getRecordContent().setText(String.valueOf(user.getPlayerRecord().getScore()));
-        } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_rebound))) {
+
+        } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_total_rebound))) {
             holder.getRecordContent().setText(String.valueOf(user.getPlayerRecord().getRebound()));
-        } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_foul))) {
+
+        } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_total_foul))) {
             holder.getRecordContent().setText(String.valueOf(user.getPlayerRecord().getFoul()));
         } else {
             Log.d("Kerry", "Rank Player Adapter bindView Error !!");
@@ -108,7 +113,7 @@ public class RankPlayerAdapter extends RecyclerView.Adapter {
 
         private TextView mTextRank;
         private TextView mTextUserId;
-        private ImageView mAavatar;
+        private ImageView mAvatar;
         private ImageView mGender;
         private ImageView mPosition;
         private TextView mRecordContent;
@@ -119,8 +124,8 @@ public class RankPlayerAdapter extends RecyclerView.Adapter {
             mLayout = itemView.findViewById(R.id.layout_item_rank_player);
             mTextRank = itemView.findViewById(R.id.text_rank_player_ranking);
             mTextUserId = itemView.findViewById(R.id.text_rank_player_id);
-            mAavatar = itemView.findViewById(R.id.image_rank_player_avatar);
-            mAavatar.setOutlineProvider(new SeatAvatarOutlineProvider());
+            mAvatar = itemView.findViewById(R.id.image_rank_player_avatar);
+            mAvatar.setOutlineProvider(new SeatAvatarOutlineProvider());
             mGender = itemView.findViewById(R.id.image_rank_player_gender);
             mPosition = itemView.findViewById(R.id.image_rank_player_position);
             mRecordContent = itemView.findViewById(R.id.text_rank_player_number);
@@ -144,7 +149,7 @@ public class RankPlayerAdapter extends RecyclerView.Adapter {
         }
 
         public ImageView getAavatar() {
-            return mAavatar;
+            return mAvatar;
         }
 
         public ImageView getGender() {

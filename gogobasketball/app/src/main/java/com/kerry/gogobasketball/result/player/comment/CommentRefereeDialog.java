@@ -29,6 +29,7 @@ public class CommentRefereeDialog extends DialogFragment implements CommentRefer
     private View mLayoutDialog;
     private List<Integer> mRating;
     private Button mBtnSendOut;
+    private View mRoot;
 
     @Override
     public void setPresenter(CommentRefereeContract.Presenter presenter) {
@@ -42,22 +43,28 @@ public class CommentRefereeDialog extends DialogFragment implements CommentRefer
         setStyle(STYLE_NO_FRAME, R.style.CommentRefereeDialog);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.dialog_comment_picker, container, false);
+        mRoot = inflater.inflate(R.layout.dialog_comment_picker, container, false);
 //        view.setOnClickListener(this);
-        mLayout = view.findViewById(R.id.layout_want2comment);
+        mLayout = mRoot.findViewById(R.id.layout_want2comment);
         mLayout.setOnClickListener(this);
-        mLayoutDialog = view.findViewById(R.id.dialog_comment_referee);
+        mLayoutDialog = mRoot.findViewById(R.id.dialog_comment_referee);
         mLayoutDialog.setOnClickListener(this);
 
-        wheelCenter = view.findViewById(R.id.wheel_comment_referee);
-        mBtnSendOut = view.findViewById(R.id.btn_comment_send_out);
+        wheelCenter = mRoot.findViewById(R.id.wheel_comment_referee);
+        mBtnSendOut = mRoot.findViewById(R.id.btn_comment_send_out);
         mBtnSendOut.setOnClickListener(this);
 
-        return view;
+        return mRoot;
     }
 
     @Override
@@ -81,7 +88,7 @@ public class CommentRefereeDialog extends DialogFragment implements CommentRefer
             case R.id.wheel_comment_referee:
                 break;
         }
-        Toast.makeText(GoGoBasketball.getAppContext(), String.valueOf(data), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(GoGoBasketball.getAppContext(), String.valueOf(data), Toast.LENGTH_SHORT).show();
         mPresenter.onWheelViewChanged((Integer) data);
     }
 
@@ -98,6 +105,7 @@ public class CommentRefereeDialog extends DialogFragment implements CommentRefer
 
     @Override
     public void finishCommentUi() {
+//        mPresenter.showErrorToast("送出評論成功\n可以返回大廳",false);
         dismiss();
         mPresenter.showSendCommentSuccessDialog();
         mPresenter.showBack2LobbyButtonPlayerResult();

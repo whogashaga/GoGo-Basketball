@@ -108,6 +108,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
             if (mIntScoreA == mIntScoreB) {
                 mGamePlayingView.showErrorToast("沒有平手的啦！", true);
             } else {
+                mGamePlayingView.setBtnGameOverClickable(false);
                 updateGameResultOfPlayer(setFinalResult(mGamingRoomInfo));
             }
         }

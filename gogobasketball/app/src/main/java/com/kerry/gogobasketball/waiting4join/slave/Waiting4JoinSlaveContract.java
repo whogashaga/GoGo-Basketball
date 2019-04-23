@@ -24,6 +24,8 @@ public interface Waiting4JoinSlaveContract {
         void openPlayerGamingUi(String hostName, int nowSort);
 
         void openRefereeGamingUi(String hostName);
+
+        void setBackBtnClickable();
     }
 
     interface Presenter extends BasePresenter {
@@ -42,7 +44,7 @@ public interface Waiting4JoinSlaveContract {
 
         void openGamePlayingOfPlayer(String hostName, int nowSort);
 
-        void finishWaiting4JoinUi();
+        void finishWaiting4JoinSlaveUi();
 
         void getHostNameFromLooking4Room(WaitingRoomInfo waitingRoomInfo);
 

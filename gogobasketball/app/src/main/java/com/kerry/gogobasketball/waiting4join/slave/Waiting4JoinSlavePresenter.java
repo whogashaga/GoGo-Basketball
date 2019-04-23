@@ -191,6 +191,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 .set(joinerInfo)
                 .addOnSuccessListener(aVoid -> {
                     Log.d(Constants.TAG, "Slave 加入，並改變座位資訊！");
+                    mWaiting4JoinView.setBackBtnClickable();
                     setRoomSnapshotListerSlave();
                     setAllSnapshotListerSlave();
                 }).addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
@@ -533,7 +534,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     }
 
     @Override
-    public void finishWaiting4JoinUi() {
+    public void finishWaiting4JoinSlaveUi() {
 
     }
 

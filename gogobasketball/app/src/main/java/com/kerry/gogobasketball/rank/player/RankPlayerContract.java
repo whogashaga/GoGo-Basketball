@@ -20,6 +20,8 @@ public interface RankPlayerContract {
 
         void result(int requestCode, int resultCode);
 
+        void loadRankPlayerByGames();
+
         void loadRankPlayerByWinning();
 
         void loadRankPlayerByScore();

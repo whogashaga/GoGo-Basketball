@@ -138,6 +138,7 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
         switch (v.getId()){
             case R.id.btn_result_referee_back_lobby:
                 mPresenter.deleteGamingRoom();
+                mPresenter.openHome();
                 getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 getFragmentManager().popBackStack(0, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 mPresenter.showToolbarAndBottomNavigation();
@@ -194,7 +195,7 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
     public void onDestroy() {
         super.onDestroy();
         mPresenter.deleteGamingRoom();
-        Log.d("Kerry", "Referee Result onDestroy: ");
+//        Log.d("Kerry", "Referee Result onDestroy: ");
     }
 
     @Override

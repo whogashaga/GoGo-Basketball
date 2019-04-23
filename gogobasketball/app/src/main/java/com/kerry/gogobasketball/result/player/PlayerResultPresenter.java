@@ -126,6 +126,21 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
                 Log.d(Constants.TAG, "You Lose !!");
             }
         }
+        setAvRecord2User(user);
+    }
+
+    private void setAvRecord2User(User user) {
+        float winRate = (float) user.getPlayerRecord().getWinning() / user.getPlayerRecord().getGames();
+        user.getPlayerRecord().setAvWinRate(winRate);
+
+        float avScore = (float) user.getPlayerRecord().getScore() / user.getPlayerRecord().getGames();
+        user.getPlayerRecord().setAvScore(avScore);
+
+        float avRebound = (float) user.getPlayerRecord().getRebound() / user.getPlayerRecord().getGames();
+        user.getPlayerRecord().setAvRebound(avRebound);
+
+        float avFoul = (float) user.getPlayerRecord().getFoul() / user.getPlayerRecord().getGames();
+        user.getPlayerRecord().setAvFoul(avFoul);
 
         updatePersonalRecord2User(user);
     }
@@ -153,6 +168,11 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
     @Override
     public void setBack2LobbyVisible() {
         mGameResultView.showLobbyButton();
+    }
+
+    @Override
+    public void setCommentDone(boolean done) {
+
     }
 
 

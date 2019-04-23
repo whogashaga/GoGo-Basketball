@@ -13,6 +13,8 @@ public interface Want2CreateRoomContract {
 
         void getRoomInfoFromPresenter4NextFragment(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats, String roomDocId);
 
+        void setCreateRoomBtnClickable();
+
         boolean needReferee();
 
         boolean isActive();
@@ -48,5 +50,7 @@ public interface Want2CreateRoomContract {
         void setActivityBackgroundPortrait();
 
         void loadProfileUserData(Activity activity);
+
+        void setCreateBtnClickable();
     }
 }

@@ -89,6 +89,7 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
                 mPresenter.openWant2CreateRoom();
                 break;
             case R.id.btn_home_rooms_random:
+//                mPresenter.openCommentReferee("小澤又沐風");
                 break;
             default:
                 break;

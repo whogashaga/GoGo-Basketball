@@ -103,6 +103,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     private static boolean mIsBackKeyDisable;
     private static boolean mIsGamingNow;
+    private static boolean mAlreadyComment;
 
 //    public MainPresenter(
 //            @NonNull StylishRepository stylishRepository,
@@ -611,6 +612,13 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     public void finishWaiting4JoinUi() {
         mMainView.showActivityBackgroundWhenPortrait();
         mMainView.popBackStackUi();
+        mWant2CreateRoomPresenter.setCreateBtnClickable();
+    }
+
+    @Override
+    public void finishWaiting4JoinSlaveUi() {
+        mMainView.showActivityBackgroundWhenPortrait();
+        mMainView.popBackStackUi();
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -709,15 +717,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mWant2CreateRoomPresenter.onRoomNameEditTextChange(charSequence);
     }
 
-    @Override
-    public void setBackKeyDisable(boolean isBackKeyDisable) {
-        mIsBackKeyDisable = isBackKeyDisable;
-    }
 
-    @Override
-    public void setGamingNowMessage(boolean isGamingNow) {
-        mIsGamingNow = isGamingNow;
-    }
 
     @Override
     public void getHostNameFromWaitingJoinSlave(String hostName, int nowSort) {
@@ -747,6 +747,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void loadProfileUserData(Activity activity) {
         mWant2CreateRoomPresenter.loadProfileUserData(activity);
+    }
+
+    @Override
+    public void setCreateBtnClickable() {
+        mWant2CreateRoomPresenter.setCreateBtnClickable();
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -1033,6 +1038,21 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mRankPlayerPresenter.loadRankPlayerByFoul();
     }
 
+    @Override
+    public void loadRankPlayerByGames() {
+        mRankPlayerPresenter.loadRankPlayerByGames();
+    }
+
+    @Override
+    public void loadRankRefereeByJustices() {
+        mRankRefereePresenter.loadRankRefereeByJustices();
+    }
+
+    @Override
+    public void loadRankRefereeByRating() {
+        mRankRefereePresenter.loadRankRefereeByRating();
+    }
+
     /* ------------------------------------------------------------------------------------------ */
     /*  General Function */
 
@@ -1055,6 +1075,21 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
+    public void setBackKeyDisable(boolean isBackKeyDisable) {
+        mIsBackKeyDisable = isBackKeyDisable;
+    }
+
+    @Override
+    public void setGamingNowMessage(boolean isGamingNow) {
+        mIsGamingNow = isGamingNow;
+    }
+
+    @Override
+    public void setCommentDone(boolean done) {
+        mAlreadyComment = done;
+    }
+
+    @Override
     public boolean disableBackKey() {
         return mIsBackKeyDisable;
     }
@@ -1062,5 +1097,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public boolean isGamingNow() {
         return mIsGamingNow;
+    }
+
+    @Override
+    public boolean commentDone() {
+        return mAlreadyComment;
     }
 }

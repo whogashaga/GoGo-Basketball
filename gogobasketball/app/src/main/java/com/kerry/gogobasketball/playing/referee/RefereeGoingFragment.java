@@ -332,6 +332,8 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
         }
     }
 
+
+
     private GamingRoomInfo setFinalResult(GamingRoomInfo gamingRoomInfo) {
 
         gamingRoomInfo.getPlayer1().setScore(mIntScoreP1);
@@ -421,7 +423,7 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d("Kerry", "Referee Going fragment onDestroy !!");
+//        Log.d("Kerry", "Referee Going fragment onDestroy !!");
     }
 
     @Override
@@ -448,6 +450,11 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         mPresenter.result(requestCode, resultCode);
+    }
+
+    @Override
+    public void setBtnGameOverClickable(boolean clickable) {
+        mBtnGameOver.setClickable(clickable);
     }
 
     @Override

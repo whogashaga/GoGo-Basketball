@@ -51,6 +51,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     private WaitingRoomInfo mWaitingRoomInfo;
     private WaitingRoomSeats mHostSeatInfo;
     private String mRoomDocId;
+    private static final String TAG = "Want2CreateRoomFragment";
 
     public Want2CreateRoomFragment() {
         // Requires empty public constructor
@@ -72,6 +73,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     @Override
     public void onResume() {
         super.onResume();
+//        Log.d("Kerry", " Want2CreateRoom onResume: ");
         mPresenter.setActivityBackgroundPortrait();
     }
 
@@ -143,6 +145,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_want2create_build_confirm:
+                mBtnCreateConfirm.setClickable(false);
                 mPresenter.updateRoomInfo2FireStore();
                 break;
             case R.id.btn_want2create_build_cancel:
@@ -163,6 +166,11 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         mRoomDocId = roomDocId;
         mPresenter.openWaitingJoin(waitingRoomInfo, waitingRoomSeats, roomDocId);
         mPresenter.updateUserInfo2FireBase(waitingRoomSeats, roomDocId);
+    }
+
+    @Override
+    public void setCreateRoomBtnClickable() {
+        mBtnCreateConfirm.setClickable(true);
     }
 
     @Override
@@ -226,7 +234,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d("Kerry", "Want2CreateRoom fragment onDestroy !!");
+//        Log.d("Kerry", "Want2CreateRoom fragment onDestroy !!");
         mPresenter.showToolbarAndBottomNavigation();
     }
 

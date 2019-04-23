@@ -1,7 +1,6 @@
 package com.kerry.gogobasketball.result.player;
 
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,7 +18,6 @@ import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.SeatAvatarOutlineProvider;
 import com.kerry.gogobasketball.data.GamingPlayer;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
-import com.kerry.gogobasketball.playing.player.PlayerGoingFragment;
 import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.ImageManager;
 
@@ -154,19 +152,22 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
                 mPresenter.openCommentReferee(mRefereeName);
                 break;
             case R.id.btn_result_player_back_lobby:
+                mBtnBack2Lobby.setClickable(false);
                 mPresenter.openHome();
                 getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 getFragmentManager().popBackStack(0, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 mPresenter.showToolbarAndBottomNavigation();
                 mPresenter.setActivityBackgroundPortrait();
                 mPresenter.setBackKeyDisable(false);
+                onDestroy();
                 break;
         }
     }
 
     @Override
     public void showLobbyButton() {
-        mBtnCommentReferee.setVisibility(View.GONE);
+        mPresenter.setCommentDone(true);
+        mBtnCommentReferee.setVisibility(View.INVISIBLE);
         mBtnBack2Lobby.setVisibility(View.VISIBLE);
     }
 
@@ -213,6 +214,7 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
         super.onViewCreated(view, savedInstanceState);
         mPresenter.hideToolbarAndBottomNavigation();
         mPresenter.setBackKeyDisable(true);
+        mPresenter.setCommentDone(false);
     }
 
     @Override

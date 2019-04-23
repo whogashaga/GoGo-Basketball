@@ -134,6 +134,8 @@ public interface MainContract {
 
         boolean isGamingNow();
 
+        boolean commentDone();
+
         void showErrorToast(String message, boolean isShort);
 
         void onLoginSuccessBeforeOpenApp(String userDocId);

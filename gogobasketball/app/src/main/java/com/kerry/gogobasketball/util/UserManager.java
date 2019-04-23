@@ -109,7 +109,7 @@ public class UserManager {
                         try {
                             String name = object.getString("name");
                             long facebookId = object.getLong("id");
-                            String profileImage = "https://graph.facebook.com/" + String.valueOf(facebookId) + "/picture?type=small";
+                            String profileImage = "https://graph.facebook.com/" + String.valueOf(facebookId) + "/picture?type=large";
                             mUser.setName(name);
                             mUser.setAvatar(profileImage);
                             mUser.setFacebookId(String.valueOf(facebookId));

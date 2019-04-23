@@ -1,5 +1,6 @@
 package com.kerry.gogobasketball;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.IntDef;
@@ -54,6 +55,7 @@ public class MessageDialog extends AppCompatDialogFragment {
                 mMessage = GoGoBasketball.getAppContext().getString(R.string.create_user_success);
                 break;
             case SEND_COMMENT_SUCCESS:
+//                getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 mIconRes = R.drawable.ic_success;
                 mMessage = GoGoBasketball.getAppContext().getString(R.string.send_comment_success);
                 break;

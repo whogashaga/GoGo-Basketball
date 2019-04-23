@@ -93,35 +93,44 @@ public class RankPlayerFragment extends Fragment implements RankPlayerContract.V
 
     public void setSpinnerRankPlayer() {
         mPlayerRecordList = new ArrayList<>();
-        mPlayerRecordList.add(getString(R.string.rank_winning));
-        mPlayerRecordList.add(getString(R.string.rank_score));
-        mPlayerRecordList.add(getString(R.string.rank_rebound));
-        mPlayerRecordList.add(getString(R.string.rank_foul));
+        mPlayerRecordList.add(getString(R.string.rank_total_games));
+        mPlayerRecordList.add(getString(R.string.rank_total_winning));
+        mPlayerRecordList.add(getString(R.string.rank_total_score));
+        mPlayerRecordList.add(getString(R.string.rank_total_rebound));
+        mPlayerRecordList.add(getString(R.string.rank_total_foul));
 
-        String[] courtsArray = new String[mPlayerRecordList.size()];
-        courtsArray = mPlayerRecordList.toArray(courtsArray);
+        String[] recordArray = new String[mPlayerRecordList.size()];
+        recordArray = mPlayerRecordList.toArray(recordArray);
 
-        ArrayAdapter<String> courtsAdapter = new ArrayAdapter<>(GoGoBasketball.getAppContext(),
-                android.R.layout.simple_spinner_dropdown_item, courtsArray);
-        mSpinnerRankPlayer.setAdapter(courtsAdapter);
+        ArrayAdapter<String> recordsAdapter = new ArrayAdapter<>(GoGoBasketball.getAppContext(),
+                android.R.layout.simple_spinner_dropdown_item, recordArray);
+        mSpinnerRankPlayer.setAdapter(recordsAdapter);
         mSpinnerRankPlayer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                if (parent.getSelectedItem().toString().equals(getString(R.string.rank_winning))) {
+                if (parent.getSelectedItem().toString().equals(getString(R.string.rank_total_games))) {
+                    mPresenter.loadRankPlayerByGames();
+                    mRecordTitle.setText(getString(R.string.rank_total_games));
+
+                } else if (parent.getSelectedItem().toString().equals(getString(R.string.rank_total_winning))) {
                     mPresenter.loadRankPlayerByWinning();
-                    mRecordTitle.setText(getString(R.string.rank_winning));
-                } else if (parent.getSelectedItem().toString().equals(getString(R.string.rank_score))) {
+                    mRecordTitle.setText(getString(R.string.rank_total_winning));
+
+                } else if (parent.getSelectedItem().toString().equals(getString(R.string.rank_total_score))) {
                     mPresenter.loadRankPlayerByScore();
-                    mRecordTitle.setText(getString(R.string.rank_score));
-                } else if (parent.getSelectedItem().toString().equals(getString(R.string.rank_rebound))) {
-                    mRecordTitle.setText(getString(R.string.rank_rebound));
+                    mRecordTitle.setText(getString(R.string.rank_total_score));
+
+                } else if (parent.getSelectedItem().toString().equals(getString(R.string.rank_total_rebound))) {
+                    mRecordTitle.setText(getString(R.string.rank_total_rebound));
                     mPresenter.loadRankPlayerByRebound();
-                } else if (parent.getSelectedItem().toString().equals(getString(R.string.rank_foul))) {
+
+                } else if (parent.getSelectedItem().toString().equals(getString(R.string.rank_total_foul))) {
                     mPresenter.loadRankPlayerByFoul();
-                    mRecordTitle.setText(getString(R.string.rank_foul));
+                    mRecordTitle.setText(getString(R.string.rank_total_foul));
+
                 } else {
-                    Log.d("Kerry","setSpinnerRankPlayer Error !!");
+                    Log.d("Kerry", "setSpinnerRankPlayer Error !!");
                 }
             }
 

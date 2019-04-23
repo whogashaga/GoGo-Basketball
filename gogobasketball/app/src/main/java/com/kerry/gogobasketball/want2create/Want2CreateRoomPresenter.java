@@ -127,6 +127,11 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
         });
     }
 
+    @Override
+    public void setCreateBtnClickable() {
+        mWant2CreateRoomView.setCreateRoomBtnClickable();
+    }
+
     /* ------------------------------------------------------------------------------------------ */
     /* implement in MainPresenter */
 

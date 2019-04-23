@@ -2,18 +2,58 @@ package com.kerry.gogobasketball.data;
 
 public class RecordOfPlayer {
 
-
     private int mGames;
     private int mWinning;
     private int mScore;
     private int mRebound;
     private int mFoul;
+    private float mAvWinRate;
+    private float mAvScore;
+    private float mAvRebound;
+    private float mAvFoul;
 
-    public RecordOfPlayer(){
+
+    public RecordOfPlayer() {
         mGames = 0;
         mScore = 0;
         mRebound = 0;
         mFoul = 0;
+        mAvWinRate = 0;
+        mAvScore = 0;
+        mAvRebound = 0;
+        mAvFoul = 0;
+    }
+
+    public float getAvWinRate() {
+        return mAvWinRate;
+    }
+
+    public void setAvWinRate(float mAvWinRate) {
+        this.mAvWinRate = mAvWinRate;
+    }
+
+    public float getAvScore() {
+        return mAvScore;
+    }
+
+    public void setAvScore(float mAvScore) {
+        this.mAvScore = mAvScore;
+    }
+
+    public float getAvRebound() {
+        return mAvRebound;
+    }
+
+    public void setAvRebound(float mAvRebound) {
+        this.mAvRebound = mAvRebound;
+    }
+
+    public float getAvFoul() {
+        return mAvFoul;
+    }
+
+    public void setAvFoul(float mAvFoul) {
+        this.mAvFoul = mAvFoul;
     }
 
     public int getGames() {
