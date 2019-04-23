@@ -738,7 +738,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         if (mPresenter.disableBackKey() && mPresenter.isGamingNow()) {
             mPresenter.showErrorToast("比賽尚未結束\n請勿離場！！", true);
 
-        } else if (mPresenter.disableBackKey() && !mPresenter.commentDone()) {
+        } else if (mPresenter.disableBackKey() && mPresenter.have2Comment()) {
             mPresenter.showErrorToast("評論裁判後\n方可離場！！", true);
 
         } else if (mPresenter.disableBackKey()) {

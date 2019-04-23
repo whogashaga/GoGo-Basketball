@@ -16,6 +16,7 @@ import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.ImageManager;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class RankRefereeAdapter extends RecyclerView.Adapter {
@@ -66,14 +67,16 @@ public class RankRefereeAdapter extends RecyclerView.Adapter {
         // set Position
         setPositionImage(user, holder.getUserPosition());
 
-
-//        Log.w("Kerry","mRecordType = " + mRecordType);
         // set Record
+        DecimalFormat avDf = new DecimalFormat("0.00");
+
         if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_total_justices))) {
             holder.getRecordContent().setText(String.valueOf(user.getRefereeRecord().getJustices()));
 
         } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_total_rating))) {
-            holder.getRecordContent().setText(String.valueOf(user.getRefereeRecord().getRating()));
+            String avRating = avDf.format(user.getRefereeRecord().getAvRating());
+            holder.getRecordContent().setText(avRating);
+
         } else {
             Log.d("Kerry", "Rank Referee Adapter bindView Error !!");
         }

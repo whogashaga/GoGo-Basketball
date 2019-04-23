@@ -16,6 +16,7 @@ import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.ImageManager;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class RankPlayerAdapter extends RecyclerView.Adapter {
@@ -68,22 +69,28 @@ public class RankPlayerAdapter extends RecyclerView.Adapter {
         setPositionImage(user, holder.getUserPosition());
 
 
-//        Log.w("Kerry","mRecordType = " + mRecordType);
+
         // set Record
+        DecimalFormat avDf = new DecimalFormat("0.00");
+
         if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_total_games))) {
             holder.getRecordContent().setText(String.valueOf(user.getPlayerRecord().getGames()));
 
-        } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_total_winning))) {
-            holder.getRecordContent().setText(String.valueOf(user.getPlayerRecord().getWinning()));
+        } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_win_rate))) {
+            String winRateStr = avDf.format(user.getPlayerRecord().getAvWinRate() * 100);
+            holder.getRecordContent().setText(winRateStr + "%");
 
-        } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_total_score))) {
-            holder.getRecordContent().setText(String.valueOf(user.getPlayerRecord().getScore()));
+        } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_av_score))) {
+            String avScore = avDf.format(user.getPlayerRecord().getAvScore());
+            holder.getRecordContent().setText(avScore);
 
-        } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_total_rebound))) {
-            holder.getRecordContent().setText(String.valueOf(user.getPlayerRecord().getRebound()));
+        } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_av_rebound))) {
+            String avRebound = avDf.format(user.getPlayerRecord().getAvRebound());
+            holder.getRecordContent().setText(avRebound);
 
-        } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_total_foul))) {
-            holder.getRecordContent().setText(String.valueOf(user.getPlayerRecord().getFoul()));
+        } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_av_foul))) {
+            String avFoul = avDf.format(user.getPlayerRecord().getAvFoul());
+            holder.getRecordContent().setText(avFoul);
         } else {
             Log.d("Kerry", "Rank Player Adapter bindView Error !!");
         }

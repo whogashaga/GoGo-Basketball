@@ -1085,8 +1085,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void setCommentDone(boolean done) {
-        mAlreadyComment = done;
+    public void setHave2Comment(boolean have2) {
+        mAlreadyComment = have2;
     }
 
     @Override
@@ -1100,7 +1100,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public boolean commentDone() {
+    public boolean have2Comment() {
         return mAlreadyComment;
     }
 }

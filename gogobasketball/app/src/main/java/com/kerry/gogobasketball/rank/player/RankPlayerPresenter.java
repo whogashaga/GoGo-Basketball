@@ -49,7 +49,7 @@ public class RankPlayerPresenter implements RankPlayerContract.Presenter {
         mUserList.clear();
         FirestoreHelper.getFirestore()
                 .collection(Constants.USERS)
-                .orderBy("playerRecord.winning", Query.Direction.DESCENDING)
+                .orderBy("playerRecord.avWinRate", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -57,7 +57,7 @@ public class RankPlayerPresenter implements RankPlayerContract.Presenter {
                             User user = document.toObject(User.class);
                             mUserList.add(user);
                         }
-                        mRankPlayerView.showRankPlayerUi(mUserList, GoGoBasketball.getAppContext().getString(R.string.rank_total_winning));
+                        mRankPlayerView.showRankPlayerUi(mUserList, GoGoBasketball.getAppContext().getString(R.string.rank_win_rate));
                     }
                 }).addOnFailureListener(e -> Log.d(Constants.TAG, "loadRankPlayerByWinning Error ! "));
     }
@@ -67,7 +67,7 @@ public class RankPlayerPresenter implements RankPlayerContract.Presenter {
         mUserList.clear();
         FirestoreHelper.getFirestore()
                 .collection(Constants.USERS)
-                .orderBy("playerRecord.score", Query.Direction.DESCENDING)
+                .orderBy("playerRecord.avScore", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -75,7 +75,7 @@ public class RankPlayerPresenter implements RankPlayerContract.Presenter {
                             User user = document.toObject(User.class);
                             mUserList.add(user);
                         }
-                        mRankPlayerView.showRankPlayerUi(mUserList, GoGoBasketball.getAppContext().getString(R.string.rank_total_score));
+                        mRankPlayerView.showRankPlayerUi(mUserList, GoGoBasketball.getAppContext().getString(R.string.rank_av_score));
                     }
                 }).addOnFailureListener(e -> Log.d(Constants.TAG, "loadRankPlayerByScore Error ! "));
     }
@@ -85,7 +85,7 @@ public class RankPlayerPresenter implements RankPlayerContract.Presenter {
         mUserList.clear();
         FirestoreHelper.getFirestore()
                 .collection(Constants.USERS)
-                .orderBy("playerRecord.rebound", Query.Direction.DESCENDING)
+                .orderBy("playerRecord.avRebound", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -93,7 +93,7 @@ public class RankPlayerPresenter implements RankPlayerContract.Presenter {
                             User user = document.toObject(User.class);
                             mUserList.add(user);
                         }
-                        mRankPlayerView.showRankPlayerUi(mUserList,GoGoBasketball.getAppContext().getString(R.string.rank_total_rebound));
+                        mRankPlayerView.showRankPlayerUi(mUserList,GoGoBasketball.getAppContext().getString(R.string.rank_av_rebound));
                     }
                 }).addOnFailureListener(e -> Log.d(Constants.TAG, "loadRankPlayerByRebound Error ! "));
     }
@@ -103,7 +103,7 @@ public class RankPlayerPresenter implements RankPlayerContract.Presenter {
         mUserList.clear();
         FirestoreHelper.getFirestore()
                 .collection(Constants.USERS)
-                .orderBy("playerRecord.foul", Query.Direction.DESCENDING)
+                .orderBy("playerRecord.avFoul", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -111,7 +111,7 @@ public class RankPlayerPresenter implements RankPlayerContract.Presenter {
                             User user = document.toObject(User.class);
                             mUserList.add(user);
                         }
-                        mRankPlayerView.showRankPlayerUi(mUserList, GoGoBasketball.getAppContext().getString(R.string.rank_total_foul));
+                        mRankPlayerView.showRankPlayerUi(mUserList, GoGoBasketball.getAppContext().getString(R.string.rank_av_foul));
                     }
                 }).addOnFailureListener(e -> Log.d(Constants.TAG, "loadRankPlayerByFoul Error ! "));
     }

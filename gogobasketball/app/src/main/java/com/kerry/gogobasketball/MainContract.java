@@ -134,7 +134,7 @@ public interface MainContract {
 
         boolean isGamingNow();
 
-        boolean commentDone();
+        boolean have2Comment();
 
         void showErrorToast(String message, boolean isShort);
 

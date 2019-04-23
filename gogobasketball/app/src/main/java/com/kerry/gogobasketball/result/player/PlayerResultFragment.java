@@ -166,7 +166,7 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
 
     @Override
     public void showLobbyButton() {
-        mPresenter.setCommentDone(true);
+        mPresenter.setHave2Comment(false);
         mBtnCommentReferee.setVisibility(View.INVISIBLE);
         mBtnBack2Lobby.setVisibility(View.VISIBLE);
     }
@@ -214,7 +214,7 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
         super.onViewCreated(view, savedInstanceState);
         mPresenter.hideToolbarAndBottomNavigation();
         mPresenter.setBackKeyDisable(true);
-        mPresenter.setCommentDone(false);
+        mPresenter.setHave2Comment(true);
     }
 
     @Override

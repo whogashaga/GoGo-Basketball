@@ -171,7 +171,7 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
     }
 
     @Override
-    public void setCommentDone(boolean done) {
+    public void setHave2Comment(boolean have2) {
 
     }
 
