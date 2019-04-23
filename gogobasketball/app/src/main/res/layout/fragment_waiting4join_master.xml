@@ -46,7 +46,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player1_avatar"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <ImageView
             android:id="@+id/waiting_team_a_player1_gender"
@@ -54,7 +55,6 @@
             android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_waiting_team_a_player1_info"
             app:layout_constraintEnd_toStartOf="@+id/waiting_team_a_player1_position"
             app:layout_constraintHorizontal_bias="0.5"
@@ -97,6 +97,7 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
             android:background="@null"
@@ -107,7 +108,8 @@
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_a_player1_add"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_a_player1_change_seat"
-            app:layout_constraintTop_toBottomOf="@+id/waiting_team_a_player1_gender" />
+            app:layout_constraintTop_toBottomOf="@+id/waiting_team_a_player1_gender"
+            app:layout_constraintVertical_bias="0.897" />
 
         <Button
             android:id="@+id/btn_waiting_team_a_player1_add"
@@ -891,27 +893,29 @@
         android:id="@+id/spinner_timer_selector"
         android:layout_width="40dp"
         android:layout_height="30dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="12dp"
         android:background="@drawable/outline_minutes"
         android:entries="@array/timer_list"
         android:prompt="@string/select_time"
         android:spinnerMode="dialog"
-        app:layout_constraintBottom_toTopOf="@+id/btn_waiting4join_start"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/text_timer_minutes"
         app:layout_constraintStart_toStartOf="@+id/radios_timer_selector"
-        app:layout_constraintTop_toBottomOf="@+id/radios_timer_selector" />
+        app:layout_constraintTop_toTopOf="@+id/text_timer_minutes" />
 
     <TextView
         android:id="@+id/text_timer_minutes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8sp"
-        android:text="@string/text_minutes"
+        android:layout_marginEnd="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="@string/not_support_timer"
         android:textColor="@color/black_3f3a3a"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/spinner_timer_selector"
-        app:layout_constraintStart_toEndOf="@+id/spinner_timer_selector"
-        app:layout_constraintTop_toTopOf="@+id/spinner_timer_selector" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_waiting4join_start"
+        app:layout_constraintEnd_toEndOf="@+id/radios_timer_selector"
+        app:layout_constraintStart_toStartOf="@+id/radios_timer_selector"
+        app:layout_constraintTop_toBottomOf="@+id/radios_timer_selector" />
 
 
     <Button

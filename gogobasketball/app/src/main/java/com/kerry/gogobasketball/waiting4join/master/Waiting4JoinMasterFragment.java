@@ -417,13 +417,13 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
             case R.id.radios_timer_yes:
-                mSpinnerMinuteSelector.setVisibility(View.VISIBLE);
+//                mSpinnerMinuteSelector.setVisibility(View.VISIBLE);
                 mTextMinute.setVisibility(View.VISIBLE);
                 mBtnStartGame.setBackgroundResource(R.drawable.ic_start_unclick);
                 mBtnStartGame.setClickable(false);
                 break;
             case R.id.radios_timer_no:
-                mSpinnerMinuteSelector.setVisibility(View.INVISIBLE);
+//                mSpinnerMinuteSelector.setVisibility(View.INVISIBLE);
                 mTextMinute.setVisibility(View.INVISIBLE);
                 mBtnStartGame.setBackgroundResource(R.drawable.button_effect_start);
                 mBtnStartGame.setClickable(true);

@@ -24,12 +24,12 @@
 
         <com.aigestudio.wheelpicker.WheelPicker
             android:id="@+id/wheel_comment_referee"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
             android:background="@color/gray_f5f5f5"
+            aigestudio:layout_constraintEnd_toEndOf="@+id/btn_comment_send_out"
+            aigestudio:layout_constraintStart_toStartOf="@+id/btn_comment_send_out"
             aigestudio:wheel_atmospheric="true"
             aigestudio:wheel_curved="true"
             aigestudio:wheel_cyclic="true"
@@ -37,8 +37,6 @@
             aigestudio:wheel_item_text_color="#A7A7DB"
             aigestudio:wheel_item_text_size="24sp"
             aigestudio:wheel_selected_item_text_color="@color/black_3f3a3a"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_comment_title" />
 
         <TextView

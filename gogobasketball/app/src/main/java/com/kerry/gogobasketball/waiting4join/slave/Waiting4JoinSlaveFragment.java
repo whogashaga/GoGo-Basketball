@@ -391,6 +391,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mPresenter.showErrorToast("房主落跑...", false);
         mPresenter.finishWaiting4JoinSlaveUi();
         mPresenter.showToolbarAndBottomNavigation();
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 //        mPresenter.deleteSeatsInfoWhenLeaveRoom();
     }
 
