@@ -16,6 +16,7 @@ public class Constants {
     public static final String GAMING_ROOM = "gaming_room";
 
     public static final String USERS = "users";
+    public static final String USER_ID = "id";
     public static final String PLAYER = "player";
     public static final String REFEREE = "referee";
     public static final String RECORDS = "records";

@@ -19,9 +19,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.kerry.gogobasketball.GoGoBasketball;
+import com.kerry.gogobasketball.MainActivity;
 import com.kerry.gogobasketball.R;
+import com.kerry.gogobasketball.component.NameLengthFilter;
 import com.kerry.gogobasketball.util.Constants;
 
 import java.util.ArrayList;
@@ -30,7 +33,8 @@ import java.util.regex.Pattern;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class CreateUserFragment extends Fragment implements CreateUserContract.View, RadioGroup.OnCheckedChangeListener, View.OnClickListener {
+public class CreateUserFragment extends Fragment implements CreateUserContract.View,
+        RadioGroup.OnCheckedChangeListener, View.OnClickListener {
 
     private final String MALE = "male";
     private final String FEMALE = "female";
@@ -96,7 +100,9 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
         switch (v.getId()) {
             case R.id.btn_create_user_confirm:
                 Log.e(Constants.TAG, "btn_create_user_confirm onClick ! ");
-                mPresenter.createUserClickConfirm();
+//                mPresenter.createUserClickConfirm();
+                mPresenter.checkIfUserIdExists();
+                mBtnCreateUserConfirm.setClickable(false);
                 break;
             default:
         }
@@ -135,8 +141,7 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
         super.onViewCreated(view, savedInstanceState);
         mPresenter.hideToolbarAndBottomNavigation();
         setBtnCreateConfirmClickable(true);
-        setEditTextInputSpace(mEditUserId);
-        setEditTextInputSpeChat(mEditUserId);
+        mEditUserId.setFilters(new NameLengthFilter[]{new NameLengthFilter(12)});
         mEditUserId.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -145,14 +150,10 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!"".equals(s.toString()) && s.length() < 7) {
+                if (!"".equals(s.toString()) && s.length() < 12) {
                     mPresenter.onUserIdEditTextChange(s);
                     setBtnCreateConfirmClickable(true);
-                    Log.e(Constants.TAG, "fragment onTextChanged : " + s.toString());
-                    mEditUserId.setFocusable(true);
-                    if (s.length() == 8) {
-                        mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.at_most_8_word), true);
-                    }
+                    Log.e(Constants.TAG, "Create User Fragment onTextChanged : " + s.toString());
                 } else if (s.length() == 0) {
                     mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.edit_user_id), true);
                     setBtnCreateConfirmClickable(false);
@@ -194,11 +195,6 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
     }
 
     @Override
-    public boolean isActive() {
-        return false;
-    }
-
-    @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
             case R.id.radios_create_male:
@@ -237,12 +233,25 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
                 Matcher matcher = pattern.matcher(source.toString());
                 if (matcher.find()) {
                     return "";
+                } else if (source.equals(" ") || source.toString().contentEquals("\n")) {
+                    return "";
                 } else {
                     return null;
                 }
             }
         };
-        editText.setFilters(new InputFilter[]{filter});
+        editText.setFilters(new InputFilter[]{filter, new InputFilter.LengthFilter(6)});
+    }
+
+    @Override
+    public void showIdAlreadyExist() {
+        mBtnCreateUserConfirm.setClickable(true);
+        mPresenter.showErrorToast("此名稱已有人使用", true);
+    }
+
+    @Override
+    public boolean isActive() {
+        return false;
     }
 
 }

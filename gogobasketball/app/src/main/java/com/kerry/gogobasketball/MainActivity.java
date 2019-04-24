@@ -347,48 +347,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         });
     }
 
-    public void addPlayingGamers() {
-        mBtnCreateUser = findViewById(R.id.main_layout_create_user);
-        mBtnCreateUser.setVisibility(View.VISIBLE);
-
-        String roomDocId = "打架啦";
-        String gamerDocId = "gamer5";
-        String gamerId = gamerDocId;
-        int score = 0;
-        int rebound = 0;
-        int foul = 0;
-
-        mBtnCreateUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Map<String, Object> gamers = new HashMap<>();
-                gamers.put("id", gamerId);
-                gamers.put("score", score);
-                gamers.put("rebound", rebound);
-                gamers.put("foul", foul);
-
-                // Add a new document with a generated ID
-                mDb.collection("playing_room")
-                        .document(roomDocId)
-                        .collection("gamers")
-                        .document(gamerDocId)
-                        .set(gamers)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d(Constants.TAG, "對戰開始 - player info ！!");
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(Constants.TAG, "Error adding document", e);
-                    }
-
-                });
-            }
-        });
-    }
-
 
     /**
      * Let toolbar to extend to status bar.

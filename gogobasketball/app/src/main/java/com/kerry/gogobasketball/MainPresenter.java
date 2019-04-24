@@ -294,6 +294,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mMainView.openHomeUi();
     }
 
+    @Override
+    public void checkIfUserIdExists() {
+        mCreateUserPresenter.checkIfUserIdExists();
+    }
+
     /**
      * Open Wait4Join
      */

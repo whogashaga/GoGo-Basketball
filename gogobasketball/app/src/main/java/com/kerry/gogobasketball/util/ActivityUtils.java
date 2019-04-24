@@ -46,7 +46,7 @@ public class ActivityUtils {
             transaction.add(R.id.layout_main_container, fragment, fragmentTag);
         }
 
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
     }
 
     public static void addFragmentByTag(@NonNull FragmentManager fragmentManager,

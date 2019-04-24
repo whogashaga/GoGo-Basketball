@@ -43,7 +43,7 @@ public class RankRefereePresenter implements RankRefereeContract.Presenter {
                             mUserList.add(user);
                         }
                         mRankRefereeView.showRankRefereeUi(mUserList, GoGoBasketball.getAppContext().getString(R.string.rank_total_justices));
-                        Log.d("Kerry","mUserList size = "+mUserList.size());
+                        Log.d(Constants.TAG,"mUserList size = "+mUserList.size());
                     }
                 }).addOnFailureListener(e -> Log.d(Constants.TAG, "loadRankPlayerByGames Error ! "));
     }

@@ -10,7 +10,7 @@
         android:id="@+id/layout_profile_header"
         android:layout_width="0dp"
         android:layout_height="132dp"
-        android:background="#e03a3a3a"
+        android:background="#E0303030"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -107,9 +107,9 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/layout_profile_record_header"
-        android:layout_width="271dp"
+        android:layout_width="254dp"
         android:layout_height="0dp"
-        android:background="#e0ffffff"
+        android:background="#e0f5f5f5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_profile_header"
@@ -261,7 +261,7 @@
 
         <TextView
             android:id="@+id/text_profile_win_rate_content"
-            style="@style/ProfileRecordTitle"
+            style="@style/ProfileRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -274,7 +274,7 @@
 
         <TextView
             android:id="@+id/text_profile_total_score_content"
-            style="@style/ProfileRecordTitle"
+            style="@style/ProfileRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="777"
@@ -284,7 +284,7 @@
 
         <TextView
             android:id="@+id/text_profile_total_rebound_content"
-            style="@style/ProfileRecordTitle"
+            style="@style/ProfileRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="777"
@@ -295,7 +295,7 @@
 
         <TextView
             android:id="@+id/text_profile_total_foul_content"
-            style="@style/ProfileRecordTitle"
+            style="@style/ProfileRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="555"
@@ -306,7 +306,7 @@
 
         <TextView
             android:id="@+id/text_profile_av_score_content"
-            style="@style/ProfileRecordTitle"
+            style="@style/ProfileRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="444"
@@ -317,7 +317,7 @@
 
         <TextView
             android:id="@+id/text_profile_av_rebound_content"
-            style="@style/ProfileRecordTitle"
+            style="@style/ProfileRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="999"
@@ -328,7 +328,7 @@
 
         <TextView
             android:id="@+id/text_profile_av_foul_content"
-            style="@style/ProfileRecordTitle"
+            style="@style/ProfileRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="222"
@@ -338,7 +338,7 @@
 
         <TextView
             android:id="@+id/text_profile_total_justices_content"
-            style="@style/ProfileRecordTitle"
+            style="@style/ProfileRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="555"
@@ -348,7 +348,7 @@
 
         <TextView
             android:id="@+id/text_profile_referee_rating_content"
-            style="@style/ProfileRecordTitle"
+            style="@style/ProfileRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="555"
@@ -358,6 +358,77 @@
 
     </android.support.constraint.ConstraintLayout>
 
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layout_profile_btn_header"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#e0f5f5f5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/layout_profile_record_header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_profile_header"
+        app:layout_constraintVertical_bias="0.0">
 
+        <Button
+            android:id="@+id/btn_profile_change_id"
+            style="@style/ProfileBtnTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/btn_effect_custom"
+            android:text="變更 ID"
+            app:layout_constraintBottom_toTopOf="@+id/btn_profile_change_gender"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <Button
+            android:id="@+id/btn_profile_change_gender"
+            style="@style/ProfileBtnTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/btn_effect_custom"
+            android:text="變更性別"
+            app:layout_constraintBottom_toTopOf="@+id/btn_profile_change_position"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_profile_change_id" />
+
+        <Button
+            android:id="@+id/btn_profile_change_position"
+            style="@style/ProfileBtnTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/btn_effect_custom"
+            android:text="變更位置"
+            app:layout_constraintBottom_toTopOf="@+id/btn_profile_facebook_logout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_profile_change_gender" />
+
+
+        <Button
+            android:id="@+id/btn_profile_facebook_logout"
+            style="@style/ProfileBtnTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/btn_effect_custom"
+            android:text="登出"
+            app:layout_constraintEnd_toEndOf="@+id/btn_profile_change_id"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/btn_profile_change_id"
+            app:layout_constraintTop_toBottomOf="@+id/btn_profile_change_position" />
+
+
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

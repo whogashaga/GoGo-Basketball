@@ -45,7 +45,7 @@ public class CommentRefereePresenter implements CommentRefereeContract.Presenter
     public void queryRefereeUserDocId() {
         FirestoreHelper.getFirestore()
                 .collection(Constants.USERS)
-                .whereEqualTo("id", mRefereeName)
+                .whereEqualTo(Constants.USER_ID, mRefereeName)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

@@ -19,12 +19,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
+import com.kerry.gogobasketball.component.NameLengthFilter;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.util.Constants;
@@ -38,6 +40,8 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
 
     private Want2CreateRoomContract.Presenter mPresenter;
     private RadioGroup mRadioGroup;
+    private RadioButton mRadioBtnYes;
+    private RadioButton mRadioBtnNo;
     private TextView mTextRefereeWarning;
     private Button mBtnCreateConfirm;
     private Button mBtnCreateCancel;
@@ -93,6 +97,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         mTextRefereeWarning = root.findViewById(R.id.text_want2create_warning);
         mRadioGroup = root.findViewById(R.id.radios_referee_selector);
         mRadioGroup.setOnCheckedChangeListener(this);
+        mRadioBtnNo = root.findViewById(R.id.radios_referee_no);
 
         mBtnCreateConfirm = root.findViewById(R.id.btn_want2create_build_confirm);
         mBtnCreateConfirm.setOnClickListener(this);
@@ -144,7 +149,11 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         switch (v.getId()) {
             case R.id.btn_want2create_build_confirm:
                 mBtnCreateConfirm.setClickable(false);
-                mPresenter.updateRoomInfo2FireStore();
+                if (mRadioBtnNo.isChecked()) {
+                    mPresenter.showErrorToast("只支援裁判模式！", true);
+                } else {
+                    mPresenter.updateRoomInfo2FireStore();
+                }
                 break;
             case R.id.btn_want2create_build_cancel:
                 mPresenter.finishWant2CreateRoomUi();
@@ -197,8 +206,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.hideToolbarAndBottomNavigation();
-        setEditTextInputSpace(mEditorRoomName);
-        setEditTextInputSpeChat(mEditorRoomName);
+        setEditTextInputSpecialChar(mEditorRoomName);
         mEditorRoomName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -209,13 +217,17 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!"".equals(s.toString()) && s.length() < 11) {
                     mPresenter.onRoomNameEditTextChange(s);
-                    mEditorRoomName.setFocusable(true);
-                    setBtnCreateConfirmClickable(true);
-                    if (s.length() == 10) {
-                        mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.at_most_10_word), true);
+                    if (mRadioBtnNo.isChecked()) {
+                        // do nothing
+                    } else {
+                        setBtnCreateConfirmClickable(true);
+                        if (s.length() == 10) {
+                            mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.at_most_10_word), true);
+                        }
                     }
                 } else if (s.length() == 0) {
                     setBtnCreateConfirmClickable(false);
+                    mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.edit_room_name), true);
                 } else {
                     Log.d(Constants.TAG, "no this kind of situation!");
                 }
@@ -223,8 +235,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.length() == 0)
-                mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.edit_room_name), true);
+
             }
         });
     }
@@ -259,35 +270,25 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         }
     }
 
-    public static void setEditTextInputSpace(EditText editText) {
+    public static void setEditTextInputSpecialChar(EditText editText) {
         InputFilter filter = new InputFilter() {
-            @Override
-            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-                if (source.equals(" ")) {
-                    return "";
-                } else {
-                    return null;
-                }
-            }
-        };
-        editText.setFilters(new InputFilter[]{filter});
-    }
 
-    public static void setEditTextInputSpeChat(EditText editText) {
-        InputFilter filter = new InputFilter() {
             @Override
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+
                 String speChat = "[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]";
                 Pattern pattern = Pattern.compile(speChat);
                 Matcher matcher = pattern.matcher(source.toString());
                 if (matcher.find()) {
                     return "";
+                } else if (source.equals(" ") || source.toString().contentEquals("\n")) {
+                    return "";
                 } else {
                     return null;
                 }
             }
         };
-        editText.setFilters(new InputFilter[]{filter});
+        editText.setFilters(new InputFilter[]{filter, new InputFilter.LengthFilter(10)});
     }
 
 }

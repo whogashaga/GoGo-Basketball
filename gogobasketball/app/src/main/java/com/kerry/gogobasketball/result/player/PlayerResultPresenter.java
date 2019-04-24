@@ -84,7 +84,7 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
 
         FirestoreHelper.getFirestore()
                 .collection(Constants.USERS)
-                .whereEqualTo("id", gamingPlayer.getId())
+                .whereEqualTo(Constants.USER_ID, gamingPlayer.getId())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

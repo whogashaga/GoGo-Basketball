@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.FirestoreHelper;
 import com.kerry.gogobasketball.GoGoBasketball;
@@ -51,8 +52,8 @@ public class CreateUserPresenter implements CreateUserContract.Presenter {
                 .document(userFbId)
                 .get()
                 .addOnSuccessListener(snapshot -> {
-                   User user = snapshot.toObject(User.class);
-                   mUser = user;
+                    User user = snapshot.toObject(User.class);
+                    mUser = user;
 
                 }).addOnFailureListener(e -> Log.d(Constants.TAG, "no internet to create user ！"));
     }
@@ -76,14 +77,42 @@ public class CreateUserPresenter implements CreateUserContract.Presenter {
 
     @Override
     public void onUserIdEditTextChange(CharSequence charSequence) {
-        mUser.setId(charSequence.toString());
-        mId = charSequence.toString();
+        mUser.setId(charSequence.toString().trim());
+        mId = charSequence.toString().trim();
     }
 
     @Override
     public void getGenderFromRadioGroup(String gender) {
         Log.d(Constants.TAG, "getGenderFromRadioGroup = " + gender);
         mUser.setGender(gender);
+    }
+
+    @Override
+    public void checkIfUserIdExists() {
+        Log.w("Kerry", "mUser.getId() = " + mUser.getId());
+        FirestoreHelper.getFirestore()
+                .collection(Constants.USERS)
+                .whereEqualTo(Constants.USER_ID, mUser.getId())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        Log.d("Kerry", "checkIfUserIdExists task size = " + task.getResult().size());
+                        if (task.isSuccessful()) {
+                            if (task.getResult().size() == 0) {
+                                Log.d("Kerry", "此名稱可以使用");
+                                createUserClickConfirm();
+                            } else {
+                                Log.d("Kerry", "名稱已有人使用");
+                                mCreateUserView.showIdAlreadyExist();
+                            }
+                        } else {
+                            Log.w(Constants.TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                }).addOnFailureListener(e -> {
+            Log.w(Constants.TAG, "checkIfUserIdExists Error !");
+        });
     }
 
     @Override
@@ -140,20 +169,7 @@ public class CreateUserPresenter implements CreateUserContract.Presenter {
 
     @Override
     public void showErrorToast(String message, boolean isShort) {
-        Toast toast;
 
-        if (isShort) {
-            toast = Toast.makeText(GoGoBasketball.getAppContext(), "無效", Toast.LENGTH_SHORT);
-        } else {
-            toast = Toast.makeText(GoGoBasketball.getAppContext(), "無效", Toast.LENGTH_LONG);
-        }
-
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        LinearLayout toastLayout = (LinearLayout) toast.getView();
-        TextView toastTV = (TextView) toastLayout.getChildAt(0);
-        toastTV.setTextSize(16);
-        toastTV.setText(message);
-        toast.show();
     }
 
     @Override

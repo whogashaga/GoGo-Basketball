@@ -180,7 +180,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:text="@string/warning_rank_yes"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textColor="@color/blue_facebook"
         app:layout_constraintEnd_toEndOf="@+id/radios_referee_selector"
         app:layout_constraintStart_toStartOf="@+id/text_want2create_referee_title"

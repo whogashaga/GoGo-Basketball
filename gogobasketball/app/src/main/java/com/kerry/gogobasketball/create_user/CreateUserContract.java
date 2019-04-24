@@ -10,6 +10,8 @@ public interface CreateUserContract {
 
         void showCreateUserSuccessUi();
 
+        void showIdAlreadyExist();
+
         boolean isActive();
 
     }
@@ -39,5 +41,7 @@ public interface CreateUserContract {
         void showCreateUserSuccessDialog();
 
         void onCreateUserSuccess();
+
+        void checkIfUserIdExists();
     }
 }
