@@ -42,8 +42,11 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     private Button mBtnChangePosition;
     private Button mBtnLogout;
 
+    private String mCurrentGender;
+
     public ProfileFragment() {
         // Requires empty public constructor
+        mCurrentGender = "";
     }
 
     public static ProfileFragment newInstance() {
@@ -114,7 +117,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                 mPresenter.openChangeIdDialog();
                 break;
             case R.id.btn_profile_change_gender:
-                mPresenter.openChangeGender();
+                mPresenter.openChangeGender(mCurrentGender);
                 break;
             case R.id.btn_profile_change_position:
                 mPresenter.openChangePosition();
@@ -139,6 +142,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 
         // set Gender
         setGenderImage(user, mGender);
+        mCurrentGender = user.getGender();
 
         // set Position
         setPositionImage(user, mPosition);

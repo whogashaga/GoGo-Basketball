@@ -16,14 +16,14 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ChangePositionPresenter implements ChangePositionContract.Presenter {
 
-    private final ChangePositionContract.View mChangeIdView;
+    private final ChangePositionContract.View mChangePositionView;
     private String mNewPosition;
 
 
     public ChangePositionPresenter(@NonNull ChangePositionContract.View changePositionView) {
-        mChangeIdView = checkNotNull(changePositionView, "changePositionView cannot be null!");
-        mChangeIdView.setPresenter(this);
-        mNewPosition = "";
+        mChangePositionView = checkNotNull(changePositionView, "changePositionView cannot be null!");
+        mChangePositionView.setPresenter(this);
+        mNewPosition = "c";
     }
 
     @Override
@@ -54,9 +54,9 @@ public class ChangePositionPresenter implements ChangePositionContract.Presenter
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(Constants.TAG, "更換 ID 完成 ！!");
-                        mChangeIdView.showChangePositionSuccessUi();
-                        mChangeIdView.showNewProfileUi();
-                        mChangeIdView.finishChangePositionUi();
+                        mChangePositionView.showChangePositionSuccessUi();
+                        mChangePositionView.showNewProfileUi();
+                        mChangePositionView.finishChangePositionUi();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override

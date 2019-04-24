@@ -42,6 +42,8 @@ import com.kerry.gogobasketball.playing.referee.RefereeGoingContract;
 import com.kerry.gogobasketball.playing.referee.RefereeGoingPresenter;
 import com.kerry.gogobasketball.profile.ProfileContract;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
+import com.kerry.gogobasketball.profile.change_gender.ChangeGenderContract;
+import com.kerry.gogobasketball.profile.change_gender.ChangeGenderPresenter;
 import com.kerry.gogobasketball.profile.change_id.ChangeIdContract;
 import com.kerry.gogobasketball.profile.change_id.ChangeIdPresenter;
 import com.kerry.gogobasketball.profile.change_position.ChangePositionContract;
@@ -80,7 +82,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         LoginContract.Presenter, CreateUserContract.Presenter,
         CommentRefereeContract.Presenter, RankRefereeContract.Presenter,
         RankPlayerContract.Presenter, LogoutContract.Presenter, ChangeIdContract.Presenter
-        , ChangePositionContract.Presenter {
+        , ChangePositionContract.Presenter, ChangeGenderContract.Presenter {
 
     private FirebaseFirestore mDb;
     private MainContract.View mMainView;
@@ -112,6 +114,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private LogoutPresenter mLogoutPresenter;
     private ChangeIdPresenter mChangeIdPresenter;
     private ChangePositionPresenter mChangePositionPresenter;
+    private ChangeGenderPresenter mChangeGenderPresenter;
 
     private static boolean mIsBackKeyDisable;
     private static boolean mIsGamingNow;
@@ -212,6 +215,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     void setChangePositionPresenter(ChangePositionPresenter changePositionPresenter) {
         mChangePositionPresenter = checkNotNull(changePositionPresenter);
+    }
+
+    void setChangeGenderPresenter(ChangeGenderPresenter changeGenderPresenter) {
+        mChangeGenderPresenter = checkNotNull(changeGenderPresenter);
     }
 
     @Override
@@ -823,6 +830,16 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mChangePositionPresenter.updatePositionData(activity);
     }
 
+    @Override
+    public void getGenderFromRadios(String gender) {
+        mChangeGenderPresenter.getGenderFromRadios(gender);
+    }
+
+    @Override
+    public void compareOldNewGender(Activity activity) {
+        mChangeGenderPresenter.compareOldNewGender(activity);
+    }
+
     /* ------------------------------------------------------------------------------------------ */
 
     @Override
@@ -1028,6 +1045,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
+    public void getNowGenderFromProfile(String currentGender) {
+
+    }
+
+    @Override
     public void openLogoutDialog() {
         mMainView.openLogOutUi();
     }
@@ -1038,8 +1060,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void openChangeGender() {
-        mMainView.openChangeGenderUi();
+    public void openChangeGender(String currentGender) {
+        mMainView.openChangeGenderUi(currentGender);
     }
 
     @Override

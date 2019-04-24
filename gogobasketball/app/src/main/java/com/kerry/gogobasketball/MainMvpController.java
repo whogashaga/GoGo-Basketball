@@ -28,9 +28,10 @@ import com.kerry.gogobasketball.playing.referee.RefereeGoingFragment;
 import com.kerry.gogobasketball.playing.referee.RefereeGoingPresenter;
 import com.kerry.gogobasketball.profile.ProfileFragment;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
+import com.kerry.gogobasketball.profile.change_gender.ChangeGenderDialog;
+import com.kerry.gogobasketball.profile.change_gender.ChangeGenderPresenter;
 import com.kerry.gogobasketball.profile.change_id.ChangeIdDialog;
 import com.kerry.gogobasketball.profile.change_id.ChangeIdPresenter;
-import com.kerry.gogobasketball.profile.change_position.ChangePositionContract;
 import com.kerry.gogobasketball.profile.change_position.ChangePositionDialog;
 import com.kerry.gogobasketball.profile.change_position.ChangePositionPresenter;
 import com.kerry.gogobasketball.profile.logout.LogoutDialog;
@@ -80,8 +81,10 @@ public class MainMvpController {
     private PlayerResultPresenter mPlayerResultPresenter;
     private CommentRefereePresenter mCommentRefereePresenter;
     private LogoutPresenter mLogoutPresenter;
+
     private ChangeIdPresenter mChangeIdPresenter;
     private ChangePositionPresenter mChangePositionPresenter;
+    private ChangeGenderPresenter mChangeGenderPresenter;
 
     private CreateUserPresenter mCreateUserPresenter;
 
@@ -467,21 +470,22 @@ public class MainMvpController {
     /**
      * ChangeGender View
      */
-    void findOrCreateChangeGenderView() {
+    void findOrCreateChangeGenderView(String currentGender) {
 
-        ChangeIdDialog dialog =
-                (ChangeIdDialog) getFragmentManager().findFragmentByTag(Constants.CHANGE_ID);
+        ChangeGenderDialog dialog =
+                (ChangeGenderDialog) getFragmentManager().findFragmentByTag(Constants.CHANGE_GENDER);
 
         if (dialog == null) {
 
-            dialog = new ChangeIdDialog();
-            mChangeIdPresenter = new ChangeIdPresenter(dialog);
-            mMainPresenter.setChangeIdPresenter(mChangeIdPresenter);
+            dialog = new ChangeGenderDialog();
+            mChangeGenderPresenter = new ChangeGenderPresenter(dialog);
+            mMainPresenter.setChangeGenderPresenter(mChangeGenderPresenter);
             dialog.setPresenter(mMainPresenter);
-            dialog.show(getFragmentManager(), Constants.CHANGE_ID);
+            dialog.show(getFragmentManager(), Constants.CHANGE_GENDER);
+            mChangeGenderPresenter.getNowGenderFromProfile(currentGender);
 
         } else if (!dialog.isAdded()) {
-            dialog.show(getFragmentManager(), Constants.CHANGE_ID);
+            dialog.show(getFragmentManager(), Constants.CHANGE_GENDER);
         }
     }
 
@@ -506,7 +510,7 @@ public class MainMvpController {
 
         ActivityUtils.showOrAddFragmentByTag(
                 getFragmentManager(), homeFragment, HOME);
-        Log.d("Kerry", "return fragment !");
+
         return homeFragment;
     }
 

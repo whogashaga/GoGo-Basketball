@@ -91,7 +91,6 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
 
         mBtnCreateUserConfirm = root.findViewById(R.id.btn_create_user_confirm);
         mBtnCreateUserConfirm.setOnClickListener(this);
-
         return root;
     }
 
@@ -199,48 +198,15 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
         switch (checkedId) {
             case R.id.radios_create_male:
                 mPresenter.getGenderFromRadioGroup(MALE);
-                Log.d(Constants.TAG, "radio male = " + MALE);
+//                Log.d(Constants.TAG, "radio male = " + MALE);
                 break;
             case R.id.radios_create_female:
                 mPresenter.getGenderFromRadioGroup(FEMALE);
-                Log.d(Constants.TAG, "radio male = " + FEMALE);
+//                Log.d(Constants.TAG, "radio male = " + FEMALE);
                 break;
             default:
                 break;
         }
-    }
-
-    public static void setEditTextInputSpace(EditText editText) {
-        InputFilter filter = new InputFilter() {
-            @Override
-            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-                if (source.equals(" ") || source.toString().contentEquals("\n")) {
-                    return "";
-                } else {
-                    return null;
-                }
-            }
-        };
-        editText.setFilters(new InputFilter[]{filter});
-    }
-
-    public static void setEditTextInputSpeChat(EditText editText) {
-        InputFilter filter = new InputFilter() {
-            @Override
-            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-                String speChat = "[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]";
-                Pattern pattern = Pattern.compile(speChat);
-                Matcher matcher = pattern.matcher(source.toString());
-                if (matcher.find()) {
-                    return "";
-                } else if (source.equals(" ") || source.toString().contentEquals("\n")) {
-                    return "";
-                } else {
-                    return null;
-                }
-            }
-        };
-        editText.setFilters(new InputFilter[]{filter, new InputFilter.LengthFilter(6)});
     }
 
     @Override

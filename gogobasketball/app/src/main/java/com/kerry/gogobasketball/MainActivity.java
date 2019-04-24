@@ -595,8 +595,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
-    public void openChangeGenderUi() {
-        mMainMvpController.findOrCreateChangeGenderView();
+    public void openChangeGenderUi(String currentGender) {
+        mMainMvpController.findOrCreateChangeGenderView(currentGender);
     }
 
     @Override

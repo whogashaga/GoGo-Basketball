@@ -8,10 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.aigestudio.wheelpicker.WheelPicker;
-import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
 
 import java.util.ArrayList;
@@ -69,6 +67,7 @@ public class ChangePositionDialog extends DialogFragment implements ChangePositi
                 break;
             case R.id.btn_change_position_yes:
                 mPresenter.updatePositionData(getActivity());
+                mBtnConfirm.setClickable(false);
                 break;
             default:
                 dismiss();
@@ -95,7 +94,6 @@ public class ChangePositionDialog extends DialogFragment implements ChangePositi
         switch (picker.getId()) {
             case R.id.wheel_change_position:
                 mPresenter.getPositionFromWheel(String.valueOf(data));
-//                Toast.makeText(GoGoBasketball.getAppContext(), String.valueOf(data), Toast.LENGTH_SHORT).show();
                 break;
         }
     }

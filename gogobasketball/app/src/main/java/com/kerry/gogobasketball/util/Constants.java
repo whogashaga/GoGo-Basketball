@@ -40,11 +40,15 @@ public class Constants {
     public static final String POSITION_SF = "sf";
     public static final String POSITION_SG = "sg";
     public static final String POSITION_PG = "pg";
+    // Gender
+    public static final String GENDER_MALE = "male";
+    public static final String GENDER_FEMALE = "female";
 
 
     public static final String COMMENT = "COMMENT";
     public static final String LOGOUT = "LOGOUT";
     public static final String CHANGE_ID = "CHANGE_ID";
     public static final String CHANGE_POSITION = "CHANGE_POSITION";
+    public static final String CHANGE_GENDER = "CHANGE_GENDER";
 
 }

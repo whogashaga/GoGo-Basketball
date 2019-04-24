@@ -32,7 +32,7 @@ public interface MainContract {
 
         void openChangeIdUi();
 
-        void openChangeGenderUi();
+        void openChangeGenderUi(String currentGender);
 
         void openChangePositionUi();
 

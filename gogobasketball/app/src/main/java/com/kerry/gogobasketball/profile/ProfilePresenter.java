@@ -57,7 +57,7 @@ public class ProfilePresenter implements ProfileContract.Presenter {
     }
 
     @Override
-    public void openChangeGender() {
+    public void openChangeGender(String currentGender) {
 
     }
 

@@ -64,11 +64,11 @@ public class ChangeIdDialog extends DialogFragment implements ChangeIdContract.V
                 // do nothing
                 break;
             case R.id.btn_change_id_yes:
-
                 if(mChar.length() == 0){
                     mPresenter.showErrorToast("名稱不留白 !", true);
                 } else {
                     mPresenter.checkIfUserNewIdExists(getActivity());
+                    mBtnConfirm.setClickable(false);
                 }
                 break;
             default:
@@ -115,6 +115,7 @@ public class ChangeIdDialog extends DialogFragment implements ChangeIdContract.V
     @Override
     public void showIdAlreadyExist() {
         mPresenter.showErrorToast("此名稱已有人使用", true);
+        mBtnConfirm.setClickable(true);
     }
 
     @Override
