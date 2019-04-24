@@ -35,9 +35,11 @@ public class RankPlayerFragment extends Fragment implements RankPlayerContract.V
     private RankPlayerAdapter mRankPlayerAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private TextView mRecordTitle;
+    private String mNowSpinnerItem;
 
     public RankPlayerFragment() {
         mUserList = new ArrayList<>();
+        mNowSpinnerItem = "";
     }
 
     public static RankPlayerFragment newInstance() {
@@ -112,22 +114,27 @@ public class RankPlayerFragment extends Fragment implements RankPlayerContract.V
                 if (parent.getSelectedItem().toString().equals(getString(R.string.rank_total_games))) {
                     mPresenter.loadRankPlayerByGames();
                     mRecordTitle.setText(getString(R.string.rank_total_games));
+                    mNowSpinnerItem = getString(R.string.rank_total_games);
 
                 } else if (parent.getSelectedItem().toString().equals(getString(R.string.rank_win_rate))) {
-                    mPresenter.loadRankPlayerByWinning();
+                    mPresenter.loadRankPlayerByWinRate();
                     mRecordTitle.setText(getString(R.string.rank_win_rate));
+                    mNowSpinnerItem = getString(R.string.rank_win_rate);
 
                 } else if (parent.getSelectedItem().toString().equals(getString(R.string.rank_av_score))) {
-                    mPresenter.loadRankPlayerByScore();
+                    mPresenter.loadRankPlayerByAvScore();
                     mRecordTitle.setText(getString(R.string.rank_av_score));
+                    mNowSpinnerItem = getString(R.string.rank_av_score);
 
                 } else if (parent.getSelectedItem().toString().equals(getString(R.string.rank_av_rebound))) {
                     mRecordTitle.setText(getString(R.string.rank_av_rebound));
-                    mPresenter.loadRankPlayerByRebound();
+                    mPresenter.loadRankPlayerByAvRebound();
+                    mNowSpinnerItem = getString(R.string.rank_av_rebound);
 
                 } else if (parent.getSelectedItem().toString().equals(getString(R.string.rank_av_foul))) {
-                    mPresenter.loadRankPlayerByFoul();
+                    mPresenter.loadRankPlayerByAvFoul();
                     mRecordTitle.setText(getString(R.string.rank_av_foul));
+                    mNowSpinnerItem = getString(R.string.rank_av_foul);
 
                 } else {
                     Log.d("Kerry", "setSpinnerRankPlayer Error !!");
@@ -159,6 +166,18 @@ public class RankPlayerFragment extends Fragment implements RankPlayerContract.V
     @Override
     public void onRefresh() {
         mSwipeRefreshLayout.setRefreshing(false);
-
+        if (mNowSpinnerItem.equals(getString(R.string.rank_total_games))) {
+            mPresenter.loadRankPlayerByGames();
+        } else if (mNowSpinnerItem.equals(getString(R.string.rank_win_rate))) {
+            mPresenter.loadRankPlayerByWinRate();
+        } else if (mNowSpinnerItem.equals(getString(R.string.rank_av_score))) {
+            mPresenter.loadRankPlayerByAvScore();
+        } else if (mNowSpinnerItem.equals(getString(R.string.rank_av_rebound))) {
+            mPresenter.loadRankPlayerByAvRebound();
+        } else if (mNowSpinnerItem.equals(getString(R.string.rank_av_foul))) {
+            mPresenter.loadRankPlayerByAvFoul();
+        } else {
+            Log.d("Kerry", "Player rank onRefresh Error !!");
+        }
     }
 }

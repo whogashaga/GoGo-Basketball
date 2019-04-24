@@ -9,11 +9,8 @@ import com.kerry.gogobasketball.FirestoreHelper;
 import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.data.User;
-import com.kerry.gogobasketball.rank.RankContract;
-import com.kerry.gogobasketball.rank.player.RankPlayerFragment;
 import com.kerry.gogobasketball.util.Constants;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -40,10 +37,12 @@ public class RankRefereePresenter implements RankRefereeContract.Presenter {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             User user = document.toObject(User.class);
-                            mUserList.add(user);
+                            if (user.getRefereeRecord().getJustices() >= 3) {
+                                mUserList.add(user);
+                            } else {
+                            }
                         }
                         mRankRefereeView.showRankRefereeUi(mUserList, GoGoBasketball.getAppContext().getString(R.string.rank_total_justices));
-                        Log.d(Constants.TAG,"mUserList size = "+mUserList.size());
                     }
                 }).addOnFailureListener(e -> Log.d(Constants.TAG, "loadRankPlayerByGames Error ! "));
     }
@@ -59,9 +58,12 @@ public class RankRefereePresenter implements RankRefereeContract.Presenter {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             User user = document.toObject(User.class);
-                            mUserList.add(user);
+                            if (user.getRefereeRecord().getJustices() >= 3) {
+                                mUserList.add(user);
+                            } else {
+                            }
                         }
-                        mRankRefereeView.showRankRefereeUi(mUserList, GoGoBasketball.getAppContext().getString(R.string.rank_total_rating));
+                        mRankRefereeView.showRankRefereeUi(mUserList, GoGoBasketball.getAppContext().getString(R.string.rank_referee_rating));
                     }
                 }).addOnFailureListener(e -> Log.d(Constants.TAG, "loadRankPlayerByGames Error ! "));
     }

@@ -73,7 +73,7 @@ public class RankRefereeAdapter extends RecyclerView.Adapter {
         if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_total_justices))) {
             holder.getRecordContent().setText(String.valueOf(user.getRefereeRecord().getJustices()));
 
-        } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_total_rating))) {
+        } else if (mRecordType.equals(GoGoBasketball.getAppContext().getString(R.string.rank_referee_rating))) {
             String avRating = avDf.format(user.getRefereeRecord().getAvRating());
             holder.getRecordContent().setText(avRating);
 

@@ -22,12 +22,12 @@ public interface RankPlayerContract {
 
         void loadRankPlayerByGames();
 
-        void loadRankPlayerByWinning();
+        void loadRankPlayerByWinRate();
 
-        void loadRankPlayerByScore();
+        void loadRankPlayerByAvScore();
 
-        void loadRankPlayerByRebound();
+        void loadRankPlayerByAvRebound();
 
-        void loadRankPlayerByFoul();
+        void loadRankPlayerByAvFoul();
     }
 }

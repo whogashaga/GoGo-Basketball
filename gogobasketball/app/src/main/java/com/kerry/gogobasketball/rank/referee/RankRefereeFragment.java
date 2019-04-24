@@ -36,6 +36,7 @@ public class RankRefereeFragment extends Fragment implements RankRefereeContract
     private RankRefereeAdapter mRankRefereeAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private TextView mRecordTitle;
+    private String mNowSpinnerItem;
 
     public RankRefereeFragment() {
         mUserList = new ArrayList<>();
@@ -48,6 +49,7 @@ public class RankRefereeFragment extends Fragment implements RankRefereeContract
     @Override
     public void setPresenter(RankRefereeContract.Presenter presenter) {
         mPresenter = checkNotNull(presenter);
+        mNowSpinnerItem = "";
     }
 
     @Override
@@ -95,7 +97,7 @@ public class RankRefereeFragment extends Fragment implements RankRefereeContract
     public void setSpinnerRankReferee() {
         mRefereeRecordList = new ArrayList<>();
         mRefereeRecordList.add(getString(R.string.rank_total_justices));
-        mRefereeRecordList.add(getString(R.string.rank_total_rating));
+        mRefereeRecordList.add(getString(R.string.rank_referee_rating));
 
         String[] recordArray = new String[mRefereeRecordList.size()];
         recordArray = mRefereeRecordList.toArray(recordArray);
@@ -111,9 +113,9 @@ public class RankRefereeFragment extends Fragment implements RankRefereeContract
                     mPresenter.loadRankRefereeByJustices();
                     mRecordTitle.setText(getString(R.string.rank_total_justices));
 
-                } else if (parent.getSelectedItem().toString().equals(getString(R.string.rank_total_rating))) {
+                } else if (parent.getSelectedItem().toString().equals(getString(R.string.rank_referee_rating))) {
                     mPresenter.loadRankRefereeByRating();
-                    mRecordTitle.setText(getString(R.string.rank_total_rating));
+                    mRecordTitle.setText(getString(R.string.rank_referee_rating));
 
                 } else {
                     Log.d("Kerry", "setSpinnerRankReferee Error !!");
@@ -146,5 +148,10 @@ public class RankRefereeFragment extends Fragment implements RankRefereeContract
     @Override
     public void onRefresh() {
         mSwipeRefreshLayout.setRefreshing(false);
+        if (mNowSpinnerItem.equals(getString(R.string.rank_total_justices))) {
+            mPresenter.loadRankRefereeByJustices();
+        } else if (mNowSpinnerItem.equals(getString(R.string.rank_referee_rating))) {
+            mPresenter.loadRankRefereeByRating();
+        }
     }
 }

@@ -1024,23 +1024,23 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     /* LookingForRoom Presenter */
 
     @Override
-    public void loadRankPlayerByWinning() {
-        mRankPlayerPresenter.loadRankPlayerByWinning();
+    public void loadRankPlayerByWinRate() {
+        mRankPlayerPresenter.loadRankPlayerByWinRate();
     }
 
     @Override
-    public void loadRankPlayerByScore() {
-        mRankPlayerPresenter.loadRankPlayerByScore();
+    public void loadRankPlayerByAvScore() {
+        mRankPlayerPresenter.loadRankPlayerByAvScore();
     }
 
     @Override
-    public void loadRankPlayerByRebound() {
-        mRankPlayerPresenter.loadRankPlayerByRebound();
+    public void loadRankPlayerByAvRebound() {
+        mRankPlayerPresenter.loadRankPlayerByAvRebound();
     }
 
     @Override
-    public void loadRankPlayerByFoul() {
-        mRankPlayerPresenter.loadRankPlayerByFoul();
+    public void loadRankPlayerByAvFoul() {
+        mRankPlayerPresenter.loadRankPlayerByAvFoul();
     }
 
     @Override
