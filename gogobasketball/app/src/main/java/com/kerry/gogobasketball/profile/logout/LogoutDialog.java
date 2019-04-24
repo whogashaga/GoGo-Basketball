@@ -54,6 +54,7 @@ public class LogoutDialog extends DialogFragment implements LogoutContract.View,
                 break;
             case R.id.btn_logout_yes:
                 LoginManager.getInstance().logOut();
+                dismiss();
                 mPresenter.showLogoutSuccessDialog();
                 mPresenter.showLoginFragment();
                 break;

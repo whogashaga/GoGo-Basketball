@@ -1,6 +1,7 @@
 package com.kerry.gogobasketball.profile.logout;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -25,7 +26,6 @@ public class LogoutPresenter implements LogoutContract.Presenter {
 
     @Override
     public void showLoginFragment() {
-
     }
 
     @Override

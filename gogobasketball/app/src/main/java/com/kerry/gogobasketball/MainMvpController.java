@@ -109,11 +109,15 @@ public class MainMvpController {
     @StringDef({
             ROOMS, MAP, PLAYER, REFEREE
     })
-    public @interface HomeItem { }
+    public @interface HomeItem {
+    }
+
     public static final String ROOMS = "ROOMS";
     public static final String MAP = "MAP";
 
-    public @interface RankItem { }
+    public @interface RankItem {
+    }
+
     public static final String PLAYER = "PLAYER";
     public static final String REFEREE = "REFEREE";
 
@@ -144,11 +148,10 @@ public class MainMvpController {
 
         LoginFragment loginFragment = findOrCreateLoginFragment();
 
-        if (mLoginPresenter == null) {
-            mLoginPresenter = new LoginPresenter(loginFragment);
-            mMainPresenter.setLoginPresenter(mLoginPresenter);
-            loginFragment.setPresenter(mMainPresenter);
-        }
+        mLoginPresenter = new LoginPresenter(loginFragment);
+        mMainPresenter.setLoginPresenter(mLoginPresenter);
+        loginFragment.setPresenter(mMainPresenter);
+
     }
 
     /**
@@ -192,7 +195,6 @@ public class MainMvpController {
             profileFragment.setPresenter(mMainPresenter);
         }
     }
-
 
     /**
      * LookingForRooms View
@@ -356,7 +358,7 @@ public class MainMvpController {
 
 
     /**
-     *  CreateUser View
+     * CreateUser View
      */
     void findOrCreateCreateUserView(String userFbId) {
 
@@ -582,6 +584,25 @@ public class MainMvpController {
     }
 
     /**
+     * Login Fragment
+     *
+     * @return LoginFragment
+     */
+    @NonNull
+    private LoginFragment findOrCreateLoginFragment() {
+
+        LoginFragment fragment = (LoginFragment) getFragmentManager().findFragmentByTag(LOGIN);
+
+        if (fragment == null) {
+
+            fragment = LoginFragment.newInstance();
+        }
+
+        ActivityUtils.showOrAddFragmentByTag(getFragmentManager(), fragment, LOGIN);
+        return fragment;
+    }
+
+    /**
      * Want2CreateRoom Fragment
      *
      * @return FaqFragment
@@ -695,22 +716,6 @@ public class MainMvpController {
     }
 
     /**
-     * Login Fragment
-     *
-     * @return HomeFragment
-     */
-    @NonNull
-    private LoginFragment findOrCreateLoginFragment() {
-
-        LoginFragment loginFragment = LoginFragment.newInstance();
-
-        ActivityUtils.addFragmentByTag(
-                getFragmentManager(), loginFragment, LOGIN);
-
-        return loginFragment;
-    }
-
-    /**
      * CreateUser Fragment
      *
      * @return CreateUserFragment
@@ -725,7 +730,6 @@ public class MainMvpController {
 
         return createUserFragment;
     }
-
     /* ------------------------------------------------------------------------------------------ */
 
     /**
