@@ -28,7 +28,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:background="@drawable/border_want2create_room_topbar"
+            android:background="@drawable/border_want2create_room_top_bar"
             android:gravity="center"
             android:paddingStart="16dp"
             android:paddingTop="16dp"

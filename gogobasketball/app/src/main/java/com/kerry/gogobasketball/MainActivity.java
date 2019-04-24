@@ -470,11 +470,22 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
                 mPresenter.updateToolbar(MainActivity.this.getResources().getString(R.string.profile));
                 mPresenter.openProfile();
                 return true;
+
             default:
                 return false;
         }
 
     };
+
+    @Override
+    public void switchProfileUiInitiative() {
+        mBottomNavigation.setSelectedItemId(R.id.navigation_profile);
+    }
+
+    @Override
+    public void switchHotsUiInitiative() {
+        mBottomNavigation.setSelectedItemId(R.id.navigation_home);
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -581,6 +592,16 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     @Override
     public void openChangeIdUi() {
         mMainMvpController.findOrCreateChangeIdView();
+    }
+
+    @Override
+    public void openChangeGenderUi() {
+        mMainMvpController.findOrCreateChangeGenderView();
+    }
+
+    @Override
+    public void openChangePositionUi() {
+        mMainMvpController.findOrCreateChangePositionView();
     }
 
     @Override

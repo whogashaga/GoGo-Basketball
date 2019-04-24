@@ -44,6 +44,9 @@ import com.kerry.gogobasketball.profile.ProfileContract;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
 import com.kerry.gogobasketball.profile.change_id.ChangeIdContract;
 import com.kerry.gogobasketball.profile.change_id.ChangeIdPresenter;
+import com.kerry.gogobasketball.profile.change_position.ChangePositionContract;
+import com.kerry.gogobasketball.profile.change_position.ChangePositionDialog;
+import com.kerry.gogobasketball.profile.change_position.ChangePositionPresenter;
 import com.kerry.gogobasketball.profile.logout.LogoutContract;
 import com.kerry.gogobasketball.profile.logout.LogoutPresenter;
 import com.kerry.gogobasketball.rank.RankContract;
@@ -76,7 +79,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         RefereeResultContract.Presenter, PlayerResultContract.Presenter,
         LoginContract.Presenter, CreateUserContract.Presenter,
         CommentRefereeContract.Presenter, RankRefereeContract.Presenter,
-        RankPlayerContract.Presenter, LogoutContract.Presenter, ChangeIdContract.Presenter {
+        RankPlayerContract.Presenter, LogoutContract.Presenter, ChangeIdContract.Presenter
+        , ChangePositionContract.Presenter {
 
     private FirebaseFirestore mDb;
     private MainContract.View mMainView;
@@ -107,6 +111,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     private LogoutPresenter mLogoutPresenter;
     private ChangeIdPresenter mChangeIdPresenter;
+    private ChangePositionPresenter mChangePositionPresenter;
 
     private static boolean mIsBackKeyDisable;
     private static boolean mIsGamingNow;
@@ -205,6 +210,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mChangeIdPresenter = checkNotNull(changeIdPresenter);
     }
 
+    void setChangePositionPresenter(ChangePositionPresenter changePositionPresenter) {
+        mChangePositionPresenter = checkNotNull(changePositionPresenter);
+    }
+
     @Override
     public void result(int requestCode, int resultCode) {
 
@@ -254,9 +263,17 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mMainView.openProfileUi();
     }
 
+    /**
+     * Switch to Profile by BottomNavigation.setSelectedItemId.
+     */
     @Override
     public void switchToProfileByBottomNavigation() {
+        mMainView.switchProfileUiInitiative();
+    }
 
+    @Override
+    public void switchToHotsByBottomNavigation() {
+        mMainView.switchHotsUiInitiative();
     }
 
     @Override
@@ -748,7 +765,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
 
-
     @Override
     public void getHostNameFromWaitingJoinSlave(String hostName, int nowSort) {
         mPlayerGoingPresenter.getHostNameFromWaitingJoinSlave(hostName, nowSort);
@@ -785,7 +801,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     /* ------------------------------------------------------------------------------------------ */
-    /*  Change ID Dialog */
+    /*  Change Profile Data Dialog */
 
     @Override
     public void onUserNewIdEditTextChange(CharSequence charSequence) {
@@ -795,6 +811,16 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void checkIfUserNewIdExists(Activity activity) {
         mChangeIdPresenter.checkIfUserNewIdExists(activity);
+    }
+
+    @Override
+    public void getPositionFromWheel(String position) {
+        mChangePositionPresenter.getPositionFromWheel(position);
+    }
+
+    @Override
+    public void updatePositionData(Activity activity) {
+        mChangePositionPresenter.updatePositionData(activity);
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -899,6 +925,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                         if (userInfo.getId().equals("")) {
                             mMainView.openCreateUserUi(user.getFacebookId());
                         } else {
+                            showToolbarAndBottomNavigation();
+                            switchToHotsByBottomNavigation();
                             mMainView.openHomeUi();
                         }
                     } else {
@@ -1007,6 +1035,16 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void openChangeIdDialog() {
         mMainView.openChangeIdUi();
+    }
+
+    @Override
+    public void openChangeGender() {
+        mMainView.openChangeGenderUi();
+    }
+
+    @Override
+    public void openChangePosition() {
+        mMainView.openChangePositionUi();
     }
 
     /* ------------------------------------------------------------------------------------------ */

@@ -25,7 +25,7 @@
             style="@style/Want2CreateRoomTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_want2create_room_topbar"
+            android:background="@drawable/border_want2create_room_top_bar"
             android:gravity="center"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"

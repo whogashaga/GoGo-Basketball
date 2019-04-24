@@ -21,8 +21,8 @@ public class ChangeIdPresenter implements ChangeIdContract.Presenter {
     private String mNewId;
 
 
-    public ChangeIdPresenter(@NonNull ChangeIdContract.View commentView) {
-        mChangeIdView = checkNotNull(commentView, "commentView cannot be null!");
+    public ChangeIdPresenter(@NonNull ChangeIdContract.View changeIdView) {
+        mChangeIdView = checkNotNull(changeIdView, "changeIdView cannot be null!");
         mChangeIdView.setPresenter(this);
         mNewId = "";
     }
@@ -51,7 +51,7 @@ public class ChangeIdPresenter implements ChangeIdContract.Presenter {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        Log.d("Kerry", "checkIfUserIdExists task size = " + task.getResult().size());
+                        Log.d(Constants.TAG, "checkIfUserIdExists task size = " + task.getResult().size());
                         if (task.isSuccessful()) {
                             if (task.getResult().size() == 0) {
                                 Log.d("Kerry", "此名稱可以使用");
@@ -76,21 +76,12 @@ public class ChangeIdPresenter implements ChangeIdContract.Presenter {
                 .collection(Constants.USERS)
                 .document(((MainActivity) activity).getFacebookIdString(Constants.FACEBOOK_ID_FILE))
                 .update(Constants.USER_ID, mNewId)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(Constants.TAG, "更換 ID 完成 ！!");
-                        mChangeIdView.showChangeIdSuccessUi();
-                        mChangeIdView.showNewProfileUi();
-                        mChangeIdView.finishChangeIdUi();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e(Constants.TAG, "更換 ID Error !", e);
-            }
-
-        });
+                .addOnSuccessListener(aVoid -> {
+                    Log.d(Constants.TAG, "更換 Position 完成 ！!");
+                    mChangeIdView.showChangeIdSuccessUi();
+                    mChangeIdView.showNewProfileUi();
+                    mChangeIdView.finishChangeIdUi();
+                }).addOnFailureListener(e -> Log.e(Constants.TAG, "更換 Position Error !", e));
     }
 
     @Override

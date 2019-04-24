@@ -97,7 +97,7 @@ public class CreateUserPresenter implements CreateUserContract.Presenter {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        Log.d("Kerry", "checkIfUserIdExists task size = " + task.getResult().size());
+                        Log.d(Constants.TAG, "checkIfUserIdExists task size = " + task.getResult().size());
                         if (task.isSuccessful()) {
                             if (task.getResult().size() == 0) {
                                 Log.d("Kerry", "此名稱可以使用");

@@ -10,7 +10,7 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_toolbar"
-        android:background="@drawable/border_want2create_room_topbar"
+        android:background="@drawable/border_want2create_room_top_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

@@ -27,5 +27,9 @@ public interface ProfileContract {
 
         void openChangeIdDialog();
 
+        void openChangeGender();
+
+        void openChangePosition();
+
     }
 }

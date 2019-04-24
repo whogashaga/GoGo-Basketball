@@ -17,6 +17,8 @@ public class Constants {
 
     public static final String USERS = "users";
     public static final String USER_ID = "id";
+    public static final String USER_POSITION = "position";
+    public static final String USER_GENDER = "gender";
     public static final String PLAYER = "player";
     public static final String REFEREE = "referee";
     public static final String RECORDS = "records";
@@ -43,5 +45,6 @@ public class Constants {
     public static final String COMMENT = "COMMENT";
     public static final String LOGOUT = "LOGOUT";
     public static final String CHANGE_ID = "CHANGE_ID";
+    public static final String CHANGE_POSITION = "CHANGE_POSITION";
 
 }

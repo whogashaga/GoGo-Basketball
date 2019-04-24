@@ -75,6 +75,7 @@ public class CommentRefereeDialog extends DialogFragment implements CommentRefer
                 break;
             case R.id.btn_comment_send_out:
                 mPresenter.queryRefereeUserDocId();
+                mBtnSendOut.setClickable(false);
                 break;
             default:
                 dismiss();

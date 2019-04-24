@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:aigestudio="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialog_change_position">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layout_change_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/outline_looking4room_normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.465"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/text_change_position_title"
+            style="@style/Want2CreateRoomTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_want2create_room_top_bar"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="16dp"
+            android:text="請選擇新位置"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/border_want2create_room_top_bar"
+            app:layout_constraintBottom_toTopOf="@+id/btn_change_position_no"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_change_position_title">
+
+            <com.aigestudio.wheelpicker.WheelPicker
+                android:id="@+id/wheel_change_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_f5f5f5"
+                aigestudio:wheel_atmospheric="true"
+                aigestudio:wheel_curved="true"
+                aigestudio:wheel_cyclic="true"
+                aigestudio:wheel_item_align="center"
+                aigestudio:wheel_item_text_color="#A7A7DB"
+                aigestudio:wheel_item_text_size="18sp"
+                aigestudio:wheel_selected_item_text_color="@color/black_3f3a3a"
+                android:layout_marginBottom="2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+
+
+        <Button
+            android:id="@+id/btn_change_position_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_effect_btn_no"
+            android:text="取消"
+            android:textColor="@color/black_3f3a3a"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_change_position_yes"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btn_change_position_yes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_effect_btn_yes"
+            android:text="確認"
+            android:textColor="@color/black_3f3a3a"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_change_position_no"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_change_position_no"
+            app:layout_constraintTop_toTopOf="@+id/btn_change_position_no" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

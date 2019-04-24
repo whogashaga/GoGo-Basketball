@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aigestudio="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -44,7 +45,7 @@
             style="@style/Want2CreateRoomTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_want2create_room_topbar"
+            android:background="@drawable/border_want2create_room_top_bar"
             android:gravity="center"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
@@ -70,4 +71,5 @@
             app:layout_constraintTop_toBottomOf="@+id/wheel_comment_referee" />
 
     </android.support.constraint.ConstraintLayout>
+
 </android.support.constraint.ConstraintLayout>

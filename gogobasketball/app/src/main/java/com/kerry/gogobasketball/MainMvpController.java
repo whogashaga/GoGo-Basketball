@@ -30,6 +30,9 @@ import com.kerry.gogobasketball.profile.ProfileFragment;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
 import com.kerry.gogobasketball.profile.change_id.ChangeIdDialog;
 import com.kerry.gogobasketball.profile.change_id.ChangeIdPresenter;
+import com.kerry.gogobasketball.profile.change_position.ChangePositionContract;
+import com.kerry.gogobasketball.profile.change_position.ChangePositionDialog;
+import com.kerry.gogobasketball.profile.change_position.ChangePositionPresenter;
 import com.kerry.gogobasketball.profile.logout.LogoutDialog;
 import com.kerry.gogobasketball.profile.logout.LogoutPresenter;
 import com.kerry.gogobasketball.rank.RankFragment;
@@ -78,6 +81,7 @@ public class MainMvpController {
     private CommentRefereePresenter mCommentRefereePresenter;
     private LogoutPresenter mLogoutPresenter;
     private ChangeIdPresenter mChangeIdPresenter;
+    private ChangePositionPresenter mChangePositionPresenter;
 
     private CreateUserPresenter mCreateUserPresenter;
 
@@ -134,14 +138,14 @@ public class MainMvpController {
      * Home Fragment View
      */
     void findOrCreateHomeView() {
-
         HomeFragment homeFragment = findOrCreateHomeFragment();
 
-        if (mHomePresenter == null) {
-            mHomePresenter = new HomePresenter(homeFragment);
-            mMainPresenter.setHomePresenter(mHomePresenter);
-            homeFragment.setPresenter(mMainPresenter);
-        }
+        mHomePresenter = new HomePresenter(homeFragment);
+        mMainPresenter.setHomePresenter(mHomePresenter);
+        homeFragment.setPresenter(mMainPresenter);
+
+        //        if (mHomePresenter == null) {
+//        }
     }
 
     /**
@@ -419,9 +423,51 @@ public class MainMvpController {
     }
 
     /**
-     * CommentRefereeDialog View
+     * ChangeID View
      */
     void findOrCreateChangeIdView() {
+
+        ChangeIdDialog dialog =
+                (ChangeIdDialog) getFragmentManager().findFragmentByTag(Constants.CHANGE_ID);
+
+        if (dialog == null) {
+
+            dialog = new ChangeIdDialog();
+            mChangeIdPresenter = new ChangeIdPresenter(dialog);
+            mMainPresenter.setChangeIdPresenter(mChangeIdPresenter);
+            dialog.setPresenter(mMainPresenter);
+            dialog.show(getFragmentManager(), Constants.CHANGE_ID);
+
+        } else if (!dialog.isAdded()) {
+            dialog.show(getFragmentManager(), Constants.CHANGE_ID);
+        }
+    }
+
+    /**
+     * ChangePosition View
+     */
+    void findOrCreateChangePositionView() {
+
+        ChangePositionDialog dialog =
+                (ChangePositionDialog) getFragmentManager().findFragmentByTag(Constants.CHANGE_POSITION);
+
+        if (dialog == null) {
+
+            dialog = new ChangePositionDialog();
+            mChangePositionPresenter = new ChangePositionPresenter(dialog);
+            mMainPresenter.setChangePositionPresenter(mChangePositionPresenter);
+            dialog.setPresenter(mMainPresenter);
+            dialog.show(getFragmentManager(), Constants.CHANGE_POSITION);
+
+        } else if (!dialog.isAdded()) {
+            dialog.show(getFragmentManager(), Constants.CHANGE_POSITION);
+        }
+    }
+
+    /**
+     * ChangeGender View
+     */
+    void findOrCreateChangeGenderView() {
 
         ChangeIdDialog dialog =
                 (ChangeIdDialog) getFragmentManager().findFragmentByTag(Constants.CHANGE_ID);
@@ -450,16 +496,17 @@ public class MainMvpController {
     @NonNull
     private HomeFragment findOrCreateHomeFragment() {
 
-        HomeFragment homeFragment =
-                (HomeFragment) getFragmentManager().findFragmentByTag(HOME);
+        HomeFragment homeFragment = (HomeFragment) getFragmentManager().findFragmentByTag(HOME);
+//        Log.d("Kerry", "findOrCreateHomeFragment: ");
         if (homeFragment == null) {
+//            Log.d("Kerry", "homeFragment == null ");
             // Create the fragment
             homeFragment = HomeFragment.newInstance();
         }
 
         ActivityUtils.showOrAddFragmentByTag(
                 getFragmentManager(), homeFragment, HOME);
-
+        Log.d("Kerry", "return fragment !");
         return homeFragment;
     }
 

@@ -60,7 +60,7 @@ public class ChangeIdDialog extends DialogFragment implements ChangeIdContract.V
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.dialog_change_id:
+            case R.id.layout_change_id:
                 // do nothing
                 break;
             case R.id.btn_change_id_yes:

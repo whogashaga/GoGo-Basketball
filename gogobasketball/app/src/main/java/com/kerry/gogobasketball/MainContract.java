@@ -32,6 +32,10 @@ public interface MainContract {
 
         void openChangeIdUi();
 
+        void openChangeGenderUi();
+
+        void openChangePositionUi();
+
         void openCheckOutSuccessUi();
 
         void openWait4JoinUi(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId);
@@ -82,6 +86,10 @@ public interface MainContract {
 
         void showActivityBackgroundWhenPortrait();
 
+        void switchProfileUiInitiative();
+
+        void switchHotsUiInitiative();
+
     }
 
     interface Presenter extends BasePresenter {
@@ -99,6 +107,8 @@ public interface MainContract {
 //        void openPayment();
 
         void switchToProfileByBottomNavigation();
+
+        void switchToHotsByBottomNavigation();
 
 //        CatalogItemFragment findWomen();
 

@@ -114,8 +114,10 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                 mPresenter.openChangeIdDialog();
                 break;
             case R.id.btn_profile_change_gender:
+                mPresenter.openChangeGender();
                 break;
             case R.id.btn_profile_change_position:
+                mPresenter.openChangePosition();
                 break;
             case R.id.btn_profile_facebook_logout:
                 mPresenter.openLogoutDialog();

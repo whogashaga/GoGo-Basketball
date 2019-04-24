@@ -57,6 +57,16 @@ public class ProfilePresenter implements ProfileContract.Presenter {
     }
 
     @Override
+    public void openChangeGender() {
+
+    }
+
+    @Override
+    public void openChangePosition() {
+
+    }
+
+    @Override
     public void start() {
 
     }
