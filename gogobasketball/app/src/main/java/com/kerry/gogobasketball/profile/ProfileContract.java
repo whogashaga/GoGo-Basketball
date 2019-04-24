@@ -23,5 +23,7 @@ public interface ProfileContract {
 
         void loadProfileUserData(Activity activity);
 
+        void openLogoutDialog();
+
     }
 }

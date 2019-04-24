@@ -28,6 +28,8 @@ import com.kerry.gogobasketball.playing.referee.RefereeGoingFragment;
 import com.kerry.gogobasketball.playing.referee.RefereeGoingPresenter;
 import com.kerry.gogobasketball.profile.ProfileFragment;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
+import com.kerry.gogobasketball.profile.logout.LogoutDialog;
+import com.kerry.gogobasketball.profile.logout.LogoutPresenter;
 import com.kerry.gogobasketball.rank.RankFragment;
 import com.kerry.gogobasketball.rank.RankPresenter;
 import com.kerry.gogobasketball.rank.player.RankPlayerFragment;
@@ -72,6 +74,7 @@ public class MainMvpController {
     private RefereeResultPresenter mRefereeResultPresenter;
     private PlayerResultPresenter mPlayerResultPresenter;
     private CommentRefereePresenter mCommentRefereePresenter;
+    private LogoutPresenter mLogoutPresenter;
 
     private CreateUserPresenter mCreateUserPresenter;
 
@@ -386,6 +389,27 @@ public class MainMvpController {
         } else if (!dialog.isAdded()) {
 //            mWant2CommentPresenter.setAdd2CartProductData(product);
             dialog.show(getFragmentManager(), Constants.COMMENT);
+        }
+    }
+
+    /**
+     * CommentRefereeDialog View
+     */
+    void findOrCreateLogoutView() {
+
+        LogoutDialog dialog =
+                (LogoutDialog) getFragmentManager().findFragmentByTag(Constants.LOGOUT);
+
+        if (dialog == null) {
+
+            dialog = new LogoutDialog();
+            mLogoutPresenter = new LogoutPresenter(dialog);
+            mMainPresenter.setLogoutPresenter(mLogoutPresenter);
+            dialog.setPresenter(mMainPresenter);
+            dialog.show(getFragmentManager(), Constants.LOGOUT);
+
+        } else if (!dialog.isAdded()) {
+            dialog.show(getFragmentManager(), Constants.LOGOUT);
         }
     }
 

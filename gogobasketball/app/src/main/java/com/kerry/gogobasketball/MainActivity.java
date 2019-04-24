@@ -574,6 +574,11 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
+    public void openLogOutUi() {
+        mMainMvpController.findOrCreateLogoutView();
+    }
+
+    @Override
     public void openCreateUserUi(String userFbId) {
         mMainMvpController.findOrCreateCreateUserView(userFbId);
     }

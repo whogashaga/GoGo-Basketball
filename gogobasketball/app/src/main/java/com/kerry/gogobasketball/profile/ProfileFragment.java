@@ -11,29 +11,36 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.login.LoginManager;
+import com.google.android.gms.maps.GoogleMap;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.ProfileAvatarOutlineProvider;
 import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.ImageManager;
+import com.kerry.gogobasketball.util.UserManager;
 
 import java.text.DecimalFormat;
 
-public class ProfileFragment extends Fragment implements ProfileContract.View {
+public class ProfileFragment extends Fragment implements ProfileContract.View, View.OnClickListener {
 
     private ProfileContract.Presenter mPresenter;
 
     private ImageView mAvatar, mGender, mPosition;
     private TextView mFbName, mUserId;
-
     private TextView mTotalGames, mWinRate;
     private TextView mTotalScore, mTotalRebound, mTotalFoul;
     private TextView mAvScore, mAvRebound, mAvFoul;
-
     private TextView mJustices, mRefereeRating;
+
+    private Button mBtnChangeId;
+    private Button mBtnChangeGender;
+    private Button mBtnChangePosition;
+    private Button mBtnLogout;
 
     public ProfileFragment() {
         // Requires empty public constructor
@@ -88,7 +95,32 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
         mJustices = root.findViewById(R.id.text_profile_total_justices_content);
         mRefereeRating = root.findViewById(R.id.text_profile_referee_rating_content);
 
+        mBtnChangeId = root.findViewById(R.id.btn_profile_change_id);
+        mBtnChangeId.setOnClickListener(this);
+        mBtnChangeGender = root.findViewById(R.id.btn_profile_change_gender);
+        mBtnChangeGender.setOnClickListener(this);
+        mBtnChangePosition = root.findViewById(R.id.btn_profile_change_position);
+        mBtnChangePosition.setOnClickListener(this);
+        mBtnLogout = root.findViewById(R.id.btn_profile_facebook_logout);
+        mBtnLogout.setOnClickListener(this);
+
         return root;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_profile_change_id:
+                break;
+            case R.id.btn_profile_change_gender:
+                break;
+            case R.id.btn_profile_change_position:
+                break;
+            case R.id.btn_profile_facebook_logout:
+                mPresenter.openLogoutDialog();
+                break;
+        }
+
     }
 
     @Override
@@ -178,5 +210,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
     public void showLogoutDialogUi() {
 
     }
+
 
 }

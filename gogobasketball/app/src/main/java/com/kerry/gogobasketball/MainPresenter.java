@@ -42,6 +42,8 @@ import com.kerry.gogobasketball.playing.referee.RefereeGoingContract;
 import com.kerry.gogobasketball.playing.referee.RefereeGoingPresenter;
 import com.kerry.gogobasketball.profile.ProfileContract;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
+import com.kerry.gogobasketball.profile.logout.LogoutContract;
+import com.kerry.gogobasketball.profile.logout.LogoutPresenter;
 import com.kerry.gogobasketball.rank.RankContract;
 import com.kerry.gogobasketball.rank.RankPresenter;
 import com.kerry.gogobasketball.rank.player.RankPlayerContract;
@@ -72,7 +74,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         RefereeResultContract.Presenter, PlayerResultContract.Presenter,
         LoginContract.Presenter, CreateUserContract.Presenter,
         CommentRefereeContract.Presenter, RankRefereeContract.Presenter,
-        RankPlayerContract.Presenter {
+        RankPlayerContract.Presenter, LogoutContract.Presenter {
 
     private FirebaseFirestore mDb;
     private MainContract.View mMainView;
@@ -100,6 +102,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private RefereeResultPresenter mRefereeResultPresenter;
     private PlayerResultPresenter mPlayerResultPresenter;
     private CommentRefereePresenter mCommentRefereePresenter;
+    private LogoutPresenter mLogoutPresenter;
 
     private static boolean mIsBackKeyDisable;
     private static boolean mIsGamingNow;
@@ -190,6 +193,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mCommentRefereePresenter = checkNotNull(commentPresenter);
     }
 
+    void setLogoutPresenter(LogoutPresenter logoutPresenter) {
+        mLogoutPresenter = checkNotNull(logoutPresenter);
+    }
+
     @Override
     public void result(int requestCode, int resultCode) {
 
@@ -198,6 +205,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void result(int requestCode, int resultCode, Intent data) {
 
+    }
+
+    @Override
+    public void logoutFacebookBySdk() {
+        mLogoutPresenter.logoutFacebookBySdk();
     }
 
     @Override
@@ -817,8 +829,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void showCheckOutSuccessDialog() {
-
+    public void showLogoutSuccessDialog() {
+        mMainView.showMessageDialogUi(MessageDialog.LOGOUT_SUCCESS);
     }
 
     @Override
@@ -963,6 +975,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void loadProfileUserData(Activity activity) {
         mProfilePresenter.loadProfileUserData(activity);
+    }
+
+    @Override
+    public void openLogoutDialog() {
+        mMainView.openLogOutUi();
     }
 
     /* ------------------------------------------------------------------------------------------ */

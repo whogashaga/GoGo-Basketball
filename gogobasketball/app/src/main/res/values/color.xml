@@ -24,6 +24,7 @@
     <!-- Red Series -->
     <color name="red_d0021b">#d0021b</color>
     <color name="red_FF001F">#FF001F</color>
+    <color name="red_FF8D96">#FF8D96</color>
 
     <!-- Yellow Series -->
     <color name="yellow_FFB700">#FFB700</color>
@@ -35,6 +36,7 @@
 
     <!-- Blue Series -->
     <color name="blue_facebook">#3b5998</color>
+    <color name="blue_7BA8FF">#7BA8FF</color>
     <color name="blue_BBF6FF">#BBF6FF</color>
 
     <!-- Bottom Navigation -->
