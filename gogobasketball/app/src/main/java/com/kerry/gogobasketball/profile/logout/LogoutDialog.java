@@ -53,9 +53,9 @@ public class LogoutDialog extends DialogFragment implements LogoutContract.View,
                 // do nothing
                 break;
             case R.id.btn_logout_yes:
-                LoginManager.getInstance().logOut();
                 dismiss();
                 mPresenter.showLogoutSuccessDialog();
+                mPresenter.logoutFacebook();
                 mPresenter.showLoginFragment();
                 break;
             case R.id.btn_logout_no:
@@ -71,6 +71,12 @@ public class LogoutDialog extends DialogFragment implements LogoutContract.View,
     public void onResume() {
         super.onResume();
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.hideToolbarAndBottomNavigation();
     }
 
     @Override

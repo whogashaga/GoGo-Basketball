@@ -15,11 +15,15 @@ public interface LogoutContract {
 
         void result(int requestCode, int resultCode);
 
-        void logoutFacebookBySdk();
+        void logoutFacebook();
 
         void showLoginFragment();
 
         void showLogoutSuccessDialog();
+
+        void hideToolbarAndBottomNavigation();
+
+        void showToolbarAndBottomNavigation();
 
     }
 }

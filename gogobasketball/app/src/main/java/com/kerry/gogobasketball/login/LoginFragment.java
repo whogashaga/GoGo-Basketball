@@ -39,6 +39,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     @Override
     public void onResume() {
         super.onResume();
+
     }
 
     @Override
@@ -75,7 +76,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mPresenter.showToolbarAndBottomNavigation();
+//        mPresenter.showToolbarAndBottomNavigation();
     }
 
     @Override

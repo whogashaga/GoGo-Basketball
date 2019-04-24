@@ -208,8 +208,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void logoutFacebookBySdk() {
-        mLogoutPresenter.logoutFacebookBySdk();
+    public void logoutFacebook() {
+        mLogoutPresenter.logoutFacebook();
     }
 
     @Override
@@ -825,7 +825,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void showLoginFragment() {
-        Log.d("Kerry", "MainPresenter showLoginFragment: ");
         mMainView.openLoginUi();
     }
 

@@ -585,6 +585,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
     @Override
     public void openLoginUi() {
+//        hideToolbarUi();
+//        hideBottomNavigationUi();
         mMainMvpController.findOrCreateLoginView();
     }
 
