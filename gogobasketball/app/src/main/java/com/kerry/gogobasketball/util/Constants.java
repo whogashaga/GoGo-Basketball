@@ -42,5 +42,6 @@ public class Constants {
 
     public static final String COMMENT = "COMMENT";
     public static final String LOGOUT = "LOGOUT";
+    public static final String CHANGE_ID = "CHANGE_ID";
 
 }

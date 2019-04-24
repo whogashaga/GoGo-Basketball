@@ -52,6 +52,11 @@ public class ProfilePresenter implements ProfileContract.Presenter {
     }
 
     @Override
+    public void openChangeIdDialog() {
+
+    }
+
+    @Override
     public void start() {
 
     }

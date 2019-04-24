@@ -579,14 +579,17 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
+    public void openChangeIdUi() {
+        mMainMvpController.findOrCreateChangeIdView();
+    }
+
+    @Override
     public void openCreateUserUi(String userFbId) {
         mMainMvpController.findOrCreateCreateUserView(userFbId);
     }
 
     @Override
     public void openLoginUi() {
-//        hideToolbarUi();
-//        hideBottomNavigationUi();
         mMainMvpController.findOrCreateLoginView();
     }
 

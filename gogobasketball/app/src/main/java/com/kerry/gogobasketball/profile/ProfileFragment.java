@@ -111,6 +111,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_profile_change_id:
+                mPresenter.openChangeIdDialog();
                 break;
             case R.id.btn_profile_change_gender:
                 break;

@@ -1,11 +1,21 @@
 package com.kerry.gogobasketball.profile.change_id;
 
+import android.app.Activity;
+
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
 
 public interface ChangeIdContract {
 
     interface View extends BaseView<Presenter> {
+
+        void showIdAlreadyExist();
+
+        void showChangeIdSuccessUi();
+
+        void showNewProfileUi();
+
+        void finishChangeIdUi();
 
     }
 
@@ -17,9 +27,11 @@ public interface ChangeIdContract {
 
         void onUserNewIdEditTextChange(CharSequence charSequence);
 
-        void createUserClickConfirm();
+        void checkIfUserNewIdExists(Activity activity);
 
-        void showChangeIdSuccessDialog();
+        void showDataChangeSuccessDialog();
+
+        void loadProfileUserData(Activity activity);
 
     }
 }

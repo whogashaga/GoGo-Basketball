@@ -9,10 +9,11 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/layout_change_id"
-        android:layout_width="250dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/outline_looking4room_normal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,18 +23,21 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/text_comment_title"
+            android:id="@+id/text_change_id_title"
             style="@style/Want2CreateRoomTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:background="@drawable/border_want2create_room_topbar"
             android:gravity="center"
+            android:paddingStart="16dp"
             android:paddingTop="16dp"
+            android:paddingEnd="8dp"
             android:paddingBottom="16dp"
-            android:text="請輸入新名稱"
+            android:text="確認要更換名稱 ？"
+            android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/edit_change_id"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,24 +69,26 @@
             app:layout_constraintTop_toTopOf="@+id/btn_change_id_no" />
 
         <EditText
-            style="@style/Want2CreateRoomTitle"
             android:id="@+id/edit_change_id"
+            style="@style/Want2CreateRoomTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingTop="8dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/outline_edit_change_id"
+            android:gravity="center"
+            android:hint="@string/enter_new_user_id"
+            android:inputType="textPersonName"
             android:paddingStart="16dp"
+            android:paddingTop="8dp"
             android:paddingEnd="16dp"
             android:paddingBottom="8dp"
-            android:gravity="center"
             android:textSize="16dp"
-            android:background="@drawable/border_want2create_room_topbar"
-            android:inputType="textPersonName"
-            android:text="New Name"
             app:layout_constraintBottom_toTopOf="@+id/btn_change_id_no"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_comment_title" />
+            app:layout_constraintTop_toBottomOf="@+id/text_change_id_title" />
 
 
     </android.support.constraint.ConstraintLayout>

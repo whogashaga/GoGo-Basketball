@@ -89,7 +89,7 @@ public class CreateUserPresenter implements CreateUserContract.Presenter {
 
     @Override
     public void checkIfUserIdExists() {
-        Log.w("Kerry", "mUser.getId() = " + mUser.getId());
+
         FirestoreHelper.getFirestore()
                 .collection(Constants.USERS)
                 .whereEqualTo(Constants.USER_ID, mUser.getId())

@@ -28,6 +28,8 @@ import com.kerry.gogobasketball.playing.referee.RefereeGoingFragment;
 import com.kerry.gogobasketball.playing.referee.RefereeGoingPresenter;
 import com.kerry.gogobasketball.profile.ProfileFragment;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
+import com.kerry.gogobasketball.profile.change_id.ChangeIdDialog;
+import com.kerry.gogobasketball.profile.change_id.ChangeIdPresenter;
 import com.kerry.gogobasketball.profile.logout.LogoutDialog;
 import com.kerry.gogobasketball.profile.logout.LogoutPresenter;
 import com.kerry.gogobasketball.rank.RankFragment;
@@ -75,6 +77,7 @@ public class MainMvpController {
     private PlayerResultPresenter mPlayerResultPresenter;
     private CommentRefereePresenter mCommentRefereePresenter;
     private LogoutPresenter mLogoutPresenter;
+    private ChangeIdPresenter mChangeIdPresenter;
 
     private CreateUserPresenter mCreateUserPresenter;
 
@@ -412,6 +415,27 @@ public class MainMvpController {
 
         } else if (!dialog.isAdded()) {
             dialog.show(getFragmentManager(), Constants.LOGOUT);
+        }
+    }
+
+    /**
+     * CommentRefereeDialog View
+     */
+    void findOrCreateChangeIdView() {
+
+        ChangeIdDialog dialog =
+                (ChangeIdDialog) getFragmentManager().findFragmentByTag(Constants.CHANGE_ID);
+
+        if (dialog == null) {
+
+            dialog = new ChangeIdDialog();
+            mChangeIdPresenter = new ChangeIdPresenter(dialog);
+            mMainPresenter.setChangeIdPresenter(mChangeIdPresenter);
+            dialog.setPresenter(mMainPresenter);
+            dialog.show(getFragmentManager(), Constants.CHANGE_ID);
+
+        } else if (!dialog.isAdded()) {
+            dialog.show(getFragmentManager(), Constants.CHANGE_ID);
         }
     }
 

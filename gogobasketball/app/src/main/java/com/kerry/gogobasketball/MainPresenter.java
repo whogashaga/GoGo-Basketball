@@ -42,6 +42,8 @@ import com.kerry.gogobasketball.playing.referee.RefereeGoingContract;
 import com.kerry.gogobasketball.playing.referee.RefereeGoingPresenter;
 import com.kerry.gogobasketball.profile.ProfileContract;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
+import com.kerry.gogobasketball.profile.change_id.ChangeIdContract;
+import com.kerry.gogobasketball.profile.change_id.ChangeIdPresenter;
 import com.kerry.gogobasketball.profile.logout.LogoutContract;
 import com.kerry.gogobasketball.profile.logout.LogoutPresenter;
 import com.kerry.gogobasketball.rank.RankContract;
@@ -74,7 +76,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         RefereeResultContract.Presenter, PlayerResultContract.Presenter,
         LoginContract.Presenter, CreateUserContract.Presenter,
         CommentRefereeContract.Presenter, RankRefereeContract.Presenter,
-        RankPlayerContract.Presenter, LogoutContract.Presenter {
+        RankPlayerContract.Presenter, LogoutContract.Presenter, ChangeIdContract.Presenter {
 
     private FirebaseFirestore mDb;
     private MainContract.View mMainView;
@@ -102,7 +104,9 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private RefereeResultPresenter mRefereeResultPresenter;
     private PlayerResultPresenter mPlayerResultPresenter;
     private CommentRefereePresenter mCommentRefereePresenter;
+
     private LogoutPresenter mLogoutPresenter;
+    private ChangeIdPresenter mChangeIdPresenter;
 
     private static boolean mIsBackKeyDisable;
     private static boolean mIsGamingNow;
@@ -195,6 +199,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     void setLogoutPresenter(LogoutPresenter logoutPresenter) {
         mLogoutPresenter = checkNotNull(logoutPresenter);
+    }
+
+    void setChangeIdPresenter(ChangeIdPresenter changeIdPresenter) {
+        mChangeIdPresenter = checkNotNull(changeIdPresenter);
     }
 
     @Override
@@ -777,6 +785,19 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     /* ------------------------------------------------------------------------------------------ */
+    /*  Change ID Dialog */
+
+    @Override
+    public void onUserNewIdEditTextChange(CharSequence charSequence) {
+        mChangeIdPresenter.onUserNewIdEditTextChange(charSequence);
+    }
+
+    @Override
+    public void checkIfUserNewIdExists(Activity activity) {
+        mChangeIdPresenter.checkIfUserNewIdExists(activity);
+    }
+
+    /* ------------------------------------------------------------------------------------------ */
 
     @Override
     public void setActivityBackgroundLandScape() {
@@ -834,9 +855,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void showRatingRefereeSuccessDialog() {
-
+    public void showDataChangeSuccessDialog() {
+        mMainView.showMessageDialogUi(MessageDialog.DATA_CHANGE_SUCCESS);
     }
+
 
     @Override
     public void showLoginSuccessDialog() {
@@ -982,6 +1004,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mMainView.openLogOutUi();
     }
 
+    @Override
+    public void openChangeIdDialog() {
+        mMainView.openChangeIdUi();
+    }
+
     /* ------------------------------------------------------------------------------------------ */
     /* Home View Pager Use Only */
 
@@ -1095,6 +1122,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         toastTV.setText(message);
         toast.show();
     }
+
+    /* ------------------------------------------------------------------------------------------ */
 
     @Override
     public void setBackKeyDisable(boolean isBackKeyDisable) {

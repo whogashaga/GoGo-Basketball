@@ -25,5 +25,7 @@ public interface ProfileContract {
 
         void openLogoutDialog();
 
+        void openChangeIdDialog();
+
     }
 }

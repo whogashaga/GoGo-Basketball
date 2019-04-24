@@ -70,7 +70,6 @@ public class LogoutDialog extends DialogFragment implements LogoutContract.View,
     @Override
     public void onResume() {
         super.onResume();
-
     }
 
     @Override

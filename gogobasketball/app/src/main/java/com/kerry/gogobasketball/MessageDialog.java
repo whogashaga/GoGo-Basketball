@@ -1,6 +1,5 @@
 package com.kerry.gogobasketball;
 
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.IntDef;
@@ -20,22 +19,25 @@ public class MessageDialog extends AppCompatDialogFragment {
 
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({
-            LOGIN_SUCCESS, LOGIN_FAIL, CREATE_USER_SUCCESS, SEND_COMMENT_SUCCESS, LOGOUT_SUCCESS
+            LOGIN_SUCCESS, LOGIN_FAIL, CREATE_USER_SUCCESS, SEND_COMMENT_SUCCESS, LOGOUT_SUCCESS, DATA_CHANGE_SUCCESS
     })
-    public @interface MessageType {}
-    public static final int LOGIN_SUCCESS   = 0x11;
-    public static final int LOGIN_FAIL      = 0x12;
-    public static final int CREATE_USER_SUCCESS      = 0x13;
-    public static final int SEND_COMMENT_SUCCESS      = 0x14;
-    public static final int LOGOUT_SUCCESS   = 0x15;
+    public @interface MessageType {
+    }
+
+    public static final int LOGIN_SUCCESS = 0x11;
+    public static final int LOGIN_FAIL = 0x12;
+    public static final int CREATE_USER_SUCCESS = 0x13;
+    public static final int SEND_COMMENT_SUCCESS = 0x14;
+    public static final int LOGOUT_SUCCESS = 0x15;
+    public static final int DATA_CHANGE_SUCCESS = 0x16;
 
     private int mIconRes;
     private String mMessage;
 
-    public MessageDialog() {}
+    public MessageDialog() {
+    }
 
     /**
-     *
      * @param iconRes: Icon Resourse Id
      * @param message: Message Content
      */
@@ -60,9 +62,12 @@ public class MessageDialog extends AppCompatDialogFragment {
                 mMessage = GoGoBasketball.getAppContext().getString(R.string.create_user_success);
                 break;
             case SEND_COMMENT_SUCCESS:
-//                getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 mIconRes = R.drawable.ic_success;
                 mMessage = GoGoBasketball.getAppContext().getString(R.string.send_comment_success);
+                break;
+            case DATA_CHANGE_SUCCESS:
+                mIconRes = R.drawable.ic_success;
+                mMessage = GoGoBasketball.getAppContext().getString(R.string.data_change_success);
                 break;
             default:
 

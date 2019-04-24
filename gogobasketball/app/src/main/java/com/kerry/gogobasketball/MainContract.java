@@ -30,6 +30,8 @@ public interface MainContract {
 
         void openLogOutUi();
 
+        void openChangeIdUi();
+
         void openCheckOutSuccessUi();
 
         void openWait4JoinUi(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId);
@@ -119,8 +121,6 @@ public interface MainContract {
         void onLoginSuccess();
 
         void showLoginFragment();
-
-        void showRatingRefereeSuccessDialog();
 
         void showLoginSuccessDialog();
 
