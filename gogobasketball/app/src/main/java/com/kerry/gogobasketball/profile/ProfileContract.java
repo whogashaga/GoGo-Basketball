@@ -29,7 +29,7 @@ public interface ProfileContract {
 
         void openChangeGender(String currentGender);
 
-        void openChangePosition();
+        void openChangePosition(String currentPosition);
 
     }
 }

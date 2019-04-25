@@ -43,10 +43,12 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     private Button mBtnLogout;
 
     private String mCurrentGender;
+    private String mCurrentPosition;
 
     public ProfileFragment() {
         // Requires empty public constructor
         mCurrentGender = "";
+        mCurrentPosition = "";
     }
 
     public static ProfileFragment newInstance() {
@@ -120,7 +122,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                 mPresenter.openChangeGender(mCurrentGender);
                 break;
             case R.id.btn_profile_change_position:
-                mPresenter.openChangePosition();
+                mPresenter.openChangePosition(mCurrentPosition);
                 break;
             case R.id.btn_profile_facebook_logout:
                 mPresenter.openLogoutDialog();
@@ -146,6 +148,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 
         // set Position
         setPositionImage(user, mPosition);
+        mCurrentPosition = user.getPosition();
 
         // set FB Name
         mFbName.setText(user.getName());

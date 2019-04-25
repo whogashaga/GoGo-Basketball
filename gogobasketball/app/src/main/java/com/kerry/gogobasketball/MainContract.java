@@ -34,7 +34,7 @@ public interface MainContract {
 
         void openChangeGenderUi(String currentGender);
 
-        void openChangePositionUi();
+        void openChangePositionUi(String currentPosition);
 
         void openCheckOutSuccessUi();
 

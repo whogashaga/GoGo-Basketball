@@ -47,7 +47,6 @@ import com.kerry.gogobasketball.profile.change_gender.ChangeGenderPresenter;
 import com.kerry.gogobasketball.profile.change_id.ChangeIdContract;
 import com.kerry.gogobasketball.profile.change_id.ChangeIdPresenter;
 import com.kerry.gogobasketball.profile.change_position.ChangePositionContract;
-import com.kerry.gogobasketball.profile.change_position.ChangePositionDialog;
 import com.kerry.gogobasketball.profile.change_position.ChangePositionPresenter;
 import com.kerry.gogobasketball.profile.logout.LogoutContract;
 import com.kerry.gogobasketball.profile.logout.LogoutPresenter;
@@ -826,8 +825,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void updatePositionData(Activity activity) {
-        mChangePositionPresenter.updatePositionData(activity);
+    public void compareNewOldPosition(Activity activity) {
+        mChangePositionPresenter.compareNewOldPosition(activity);
     }
 
     @Override
@@ -1065,8 +1064,13 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void openChangePosition() {
-        mMainView.openChangePositionUi();
+    public void getNowPositionFromProfile(String currentPosition) {
+        mChangePositionPresenter.getNowPositionFromProfile(currentPosition);
+    }
+
+    @Override
+    public void openChangePosition(String currentPosition) {
+        mMainView.openChangePositionUi(currentPosition);
     }
 
     /* ------------------------------------------------------------------------------------------ */

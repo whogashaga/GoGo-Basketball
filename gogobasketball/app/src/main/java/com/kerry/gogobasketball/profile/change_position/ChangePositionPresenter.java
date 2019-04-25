@@ -18,12 +18,19 @@ public class ChangePositionPresenter implements ChangePositionContract.Presenter
 
     private final ChangePositionContract.View mChangePositionView;
     private String mNewPosition;
+    private String mOldPosition;
 
 
     public ChangePositionPresenter(@NonNull ChangePositionContract.View changePositionView) {
         mChangePositionView = checkNotNull(changePositionView, "changePositionView cannot be null!");
         mChangePositionView.setPresenter(this);
         mNewPosition = "c";
+        mOldPosition = "";
+    }
+
+    @Override
+    public void getNowPositionFromProfile(String currentPosition) {
+        mOldPosition = currentPosition;
     }
 
     @Override
@@ -45,7 +52,17 @@ public class ChangePositionPresenter implements ChangePositionContract.Presenter
     }
 
     @Override
-    public void updatePositionData(Activity activity) {
+    public void compareNewOldPosition(Activity activity) {
+
+        if (mNewPosition.equals(mOldPosition)){
+            mChangePositionView.showErrorPosition();
+        } else {
+            updatePositionData(activity);
+        }
+
+    }
+
+    private void updatePositionData(Activity activity) {
         FirestoreHelper.getFirestore()
                 .collection(Constants.USERS)
                 .document(((MainActivity) activity).getFacebookIdString(Constants.FACEBOOK_ID_FILE))
@@ -53,7 +70,7 @@ public class ChangePositionPresenter implements ChangePositionContract.Presenter
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(Constants.TAG, "更換 ID 完成 ！!");
+                        Log.d(Constants.TAG, "更換 position 完成 ！!");
                         mChangePositionView.showChangePositionSuccessUi();
                         mChangePositionView.showNewProfileUi();
                         mChangePositionView.finishChangePositionUi();
@@ -61,7 +78,7 @@ public class ChangePositionPresenter implements ChangePositionContract.Presenter
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.e(Constants.TAG, "更換 ID Error !", e);
+                Log.e(Constants.TAG, "更換 position Error !", e);
             }
 
         });

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.util.Constants;
 
@@ -28,10 +29,12 @@ public class ChangeGenderDialog extends DialogFragment implements ChangeGenderCo
     private RadioGroup mRadioGroupGender;
     private RadioButton mBoy;
     private RadioButton mGirl;
+    private String mNewGender;
 
     @Override
     public void setPresenter(ChangeGenderContract.Presenter presenter) {
         mPresenter = checkNotNull(presenter);
+        mNewGender = GoGoBasketball.getAppContext().getString(R.string.gender_male);
     }
 
     @Override
@@ -83,9 +86,11 @@ public class ChangeGenderDialog extends DialogFragment implements ChangeGenderCo
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
             case R.id.radios_change_gender_male:
+                mNewGender = getString(R.string.gender_male);
                 mPresenter.getGenderFromRadios(Constants.GENDER_MALE);
                 break;
             case R.id.radios_change_gender_female:
+                mNewGender = getString(R.string.gender_female);
                 mPresenter.getGenderFromRadios(Constants.GENDER_FEMALE);
                 break;
             default:
@@ -113,7 +118,7 @@ public class ChangeGenderDialog extends DialogFragment implements ChangeGenderCo
     public void showErrorGender() {
         mBtnConfirm.setClickable(true);
         if (mBoy.isChecked()) {
-            mPresenter.showErrorToast(getString(R.string.gender_already_male),true);
+            mPresenter.showErrorToast(getString(R.string.gender_already_male), true);
         } else {
             mPresenter.showErrorToast(getString(R.string.gender_already_female), true);
         }

@@ -449,7 +449,7 @@ public class MainMvpController {
     /**
      * ChangePosition View
      */
-    void findOrCreateChangePositionView() {
+    void findOrCreateChangePositionView(String currentPosition) {
 
         ChangePositionDialog dialog =
                 (ChangePositionDialog) getFragmentManager().findFragmentByTag(Constants.CHANGE_POSITION);
@@ -461,6 +461,7 @@ public class MainMvpController {
             mMainPresenter.setChangePositionPresenter(mChangePositionPresenter);
             dialog.setPresenter(mMainPresenter);
             dialog.show(getFragmentManager(), Constants.CHANGE_POSITION);
+            mChangePositionPresenter.getNowPositionFromProfile(currentPosition);
 
         } else if (!dialog.isAdded()) {
             dialog.show(getFragmentManager(), Constants.CHANGE_POSITION);

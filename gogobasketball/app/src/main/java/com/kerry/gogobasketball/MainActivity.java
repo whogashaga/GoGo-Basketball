@@ -600,8 +600,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
-    public void openChangePositionUi() {
-        mMainMvpController.findOrCreateChangePositionView();
+    public void openChangePositionUi(String currentPosition) {
+        mMainMvpController.findOrCreateChangePositionView(currentPosition);
     }
 
     @Override

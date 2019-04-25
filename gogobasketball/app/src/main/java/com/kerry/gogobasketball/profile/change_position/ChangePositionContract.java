@@ -15,6 +15,8 @@ public interface ChangePositionContract {
 
         void finishChangePositionUi();
 
+        void showErrorPosition();
+
     }
 
     interface Presenter extends BasePresenter {
@@ -25,11 +27,13 @@ public interface ChangePositionContract {
 
         void getPositionFromWheel(String position);
 
-        void updatePositionData(Activity activity);
+        void compareNewOldPosition(Activity activity);
 
         void showDataChangeSuccessDialog();
 
         void loadProfileUserData(Activity activity);
+
+        void getNowPositionFromProfile(String currentPosition);
 
     }
 }

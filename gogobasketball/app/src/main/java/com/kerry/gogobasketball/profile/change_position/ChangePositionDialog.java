@@ -4,13 +4,16 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.aigestudio.wheelpicker.WheelPicker;
+import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
+import com.kerry.gogobasketball.util.Constants;
 
 import java.util.ArrayList;
 
@@ -26,12 +29,14 @@ public class ChangePositionDialog extends DialogFragment implements ChangePositi
     private Button mBtnConfirm;
     private WheelPicker mWheelPosition;
     private ArrayList<String> mPositionList;
+    private String mNowPosition;
 
 
     @Override
     public void setPresenter(ChangePositionContract.Presenter presenter) {
         mPresenter = checkNotNull(presenter);
         mPositionList = new ArrayList<>();
+        mNowPosition = GoGoBasketball.getAppContext().getString(R.string.position_center);
     }
 
     @Override
@@ -66,8 +71,8 @@ public class ChangePositionDialog extends DialogFragment implements ChangePositi
                 // do nothing
                 break;
             case R.id.btn_change_position_yes:
-                mPresenter.updatePositionData(getActivity());
                 mBtnConfirm.setClickable(false);
+                mPresenter.compareNewOldPosition(getActivity());
                 break;
             default:
                 dismiss();
@@ -93,7 +98,8 @@ public class ChangePositionDialog extends DialogFragment implements ChangePositi
     public void onItemSelected(WheelPicker picker, Object data, int position) {
         switch (picker.getId()) {
             case R.id.wheel_change_position:
-                mPresenter.getPositionFromWheel(String.valueOf(data));
+                mNowPosition = String.valueOf(data.toString());
+                mPresenter.getPositionFromWheel(String.valueOf(data.toString().trim()));
                 break;
         }
     }
@@ -111,6 +117,24 @@ public class ChangePositionDialog extends DialogFragment implements ChangePositi
     @Override
     public void finishChangePositionUi() {
         dismiss();
+    }
+
+    @Override
+    public void showErrorPosition() {
+        mBtnConfirm.setClickable(true);
+        if (mNowPosition.equals(getString(R.string.position_center))) {
+            mPresenter.showErrorToast(getString(R.string.gender_already_, mNowPosition), true);
+        } else if (mNowPosition.equals(getString(R.string.position_pf))) {
+            mPresenter.showErrorToast(getString(R.string.gender_already_, mNowPosition), true);
+        } else if (mNowPosition.equals(getString(R.string.position_sf))) {
+            mPresenter.showErrorToast(getString(R.string.gender_already_, mNowPosition), true);
+        } else if (mNowPosition.equals(getString(R.string.position_pg))) {
+            mPresenter.showErrorToast(getString(R.string.gender_already_, mNowPosition), true);
+        } else if (mNowPosition.equals(getString(R.string.position_sg))) {
+            mPresenter.showErrorToast(getString(R.string.gender_already_, mNowPosition), true);
+        } else {
+            Log.d(Constants.TAG, "ChangePosition showErrorPosition Error !");
+        }
     }
 
 }

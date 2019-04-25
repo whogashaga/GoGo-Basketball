@@ -62,7 +62,7 @@ public class ProfilePresenter implements ProfileContract.Presenter {
     }
 
     @Override
-    public void openChangePosition() {
+    public void openChangePosition(String currentGender) {
 
     }
 
