@@ -2,8 +2,10 @@ package com.kerry.gogobasketball.home;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -13,10 +15,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.api.GoogleApi;
 import com.kerry.gogobasketball.MainMvpController;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.home.HomeContract;
+import com.kerry.gogobasketball.util.Constants;
 
 public class HomeFragment extends Fragment implements HomeContract.View {
 
@@ -26,7 +33,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
 
-    public HomeFragment(){
+    public HomeFragment() {
 
     }
 
@@ -87,7 +94,5 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mViewPager.setAdapter(mHomeAdapter);
 //        mViewPager.addOnPageChangeListener(
 //                new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
-
     }
-
 }
