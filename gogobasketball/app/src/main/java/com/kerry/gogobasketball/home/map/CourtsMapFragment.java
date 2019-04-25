@@ -4,22 +4,19 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.Manifest;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -30,13 +27,16 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.util.Constants;
 
@@ -54,11 +54,20 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
     private static final String FINE_PERMISSION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COARSE_PERMISSION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+    private static final float DEFAULT_ZOOM = 15;
     private boolean mLocationPermissionGranted = false;
     private SupportMapFragment mapFragment;
-    private GoogleMap mGoogleMap;
+    private GoogleMap mMap;
+    private FusedLocationProviderClient mFusedLocationProviderClient;
 
-    private MapView mMap;
+    private static final String TAG = "Kerry";
+
+    public CourtsMapFragment() {
+    }
+
+    public static CourtsMapFragment newInstance() {
+        return new CourtsMapFragment();
+    }
 
 
     private void getLocationPermission() {
@@ -68,6 +77,7 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
         if (ContextCompat.checkSelfPermission(getActivity(), FINE_PERMISSION) == PackageManager.PERMISSION_GRANTED) {
             if (ContextCompat.checkSelfPermission(getActivity(), COARSE_PERMISSION) == PackageManager.PERMISSION_GRANTED) {
                 mLocationPermissionGranted = true;
+                initMap();
             } else {
                 ActivityCompat.requestPermissions(getActivity(), permissions, MY_PERMISSIONS_REQUEST_LOCATION);
             }
@@ -103,6 +113,38 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
         }
     }
 
+    private void getDeviceLocation() {
+        Log.d("Kerry", "getDeviceLocation: getting the device current location");
+
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
+        try {
+            Task location = mFusedLocationProviderClient.getLastLocation();
+            location.addOnCompleteListener(new OnCompleteListener() {
+                @Override
+                public void onComplete(@NonNull Task task) {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "onComplete: found location!");
+                        Location currentLocation = (Location) task.getResult();
+
+                        moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
+                                DEFAULT_ZOOM);
+
+                    } else {
+                        Log.d(TAG, "onComplete: current location is null!");
+                    }
+                }
+            });
+
+        } catch (SecurityException e) {
+            Log.e("Kerry", "getDeviceLocation: SecurityException" + e.getMessage());
+        }
+    }
+
+    private void moveCamera(LatLng latLng, float zoom) {
+        Log.d(TAG, "moveCamera: moving the camera to:" + latLng.latitude + ", lng: " + latLng.longitude);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
+    }
+
     private void initMap() {
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -110,28 +152,14 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mGoogleMap = googleMap;
+        Log.d(Constants.TAG, "map is ready");
+        mMap = googleMap;
 
-//        googleMap.addMarker(new MarkerOptions()
-//                .position(new LatLng(0, 0))
-//                .title("Marker"));
+        if (mLocationPermissionGranted) {
+            getDeviceLocation();
 
-//        mLocationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-//        mLocation = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-//        mProvider = mLocationManager.getBestProvider(new Criteria(), false);
-//        mLat = mLocation.getLatitude();  // 取得經度
-//        mLong = mLocation.getLongitude(); // 取得緯度
-//        LatLng HOME = new LatLng(mLat, mLong);
-//        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(HOME, 15.0f));//數字越大放越大
-//        //Request location updates:
-//        mLocationManager.requestLocationUpdates(mProvider, 400, 1, this);
-    }
+        }
 
-    public CourtsMapFragment() {
-    }
-
-    public static CourtsMapFragment newInstance() {
-        return new CourtsMapFragment();
     }
 
     @Override
@@ -166,15 +194,7 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
         View root = inflater.inflate(R.layout.fragment_home_child_map, container, false);
 
         if (isServicesOk()) {
-
-
-//            mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-//            if (mapFragment == null) {
-//                FragmentTransaction ft = getFragmentManager().beginTransaction();
-//                mapFragment = SupportMapFragment.newInstance();
-//                ft.replace(R.id.map, mapFragment).commit();
-//            }
-//            mapFragment.getMapAsync(this);
+            getLocationPermission();
         }
 
         return root;
@@ -248,7 +268,6 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
 
     public boolean isServicesOk() {
         Log.d(Constants.TAG, "isServicesOk : checking google services version");
-
 
         int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(getActivity());
 
