@@ -37,18 +37,22 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     private TextView mAvScore, mAvRebound, mAvFoul;
     private TextView mJustices, mRefereeRating;
 
+    private View mBtnHeader;
     private Button mBtnChangeId;
     private Button mBtnChangeGender;
     private Button mBtnChangePosition;
     private Button mBtnLogout;
+    private Button mBtnSetting;
 
     private String mCurrentGender;
     private String mCurrentPosition;
+    private boolean mSettingIsChecked;
 
     public ProfileFragment() {
         // Requires empty public constructor
         mCurrentGender = "";
         mCurrentPosition = "";
+        mSettingIsChecked = false;
     }
 
     public static ProfileFragment newInstance() {
@@ -100,6 +104,8 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         mJustices = root.findViewById(R.id.text_profile_total_justices_content);
         mRefereeRating = root.findViewById(R.id.text_profile_referee_rating_content);
 
+        mBtnHeader = root.findViewById(R.id.layout_profile_btn_header);
+        mBtnHeader.setVisibility(View.GONE);
         mBtnChangeId = root.findViewById(R.id.btn_profile_change_id);
         mBtnChangeId.setOnClickListener(this);
         mBtnChangeGender = root.findViewById(R.id.btn_profile_change_gender);
@@ -108,13 +114,15 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         mBtnChangePosition.setOnClickListener(this);
         mBtnLogout = root.findViewById(R.id.btn_profile_facebook_logout);
         mBtnLogout.setOnClickListener(this);
+        mBtnSetting = root.findViewById(R.id.btn_profile_setting);
+        mBtnSetting.setOnClickListener(this);
 
         return root;
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_profile_change_id:
                 mPresenter.openChangeIdDialog();
                 break;
@@ -126,6 +134,19 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                 break;
             case R.id.btn_profile_facebook_logout:
                 mPresenter.openLogoutDialog();
+                break;
+            case R.id.btn_profile_setting:
+                if (!mSettingIsChecked) {
+                    mBtnHeader.setVisibility(View.VISIBLE);
+                    mBtnSetting.setBackgroundResource(R.drawable.ic_settings_selected);
+                    mSettingIsChecked = true;
+                } else {
+                    mBtnHeader.setVisibility(View.GONE);
+                    mBtnSetting.setBackgroundResource(R.drawable.ic_settings);
+                    mSettingIsChecked = false;
+                }
+                break;
+            default:
                 break;
         }
 

@@ -1,6 +1,5 @@
 package com.kerry.gogobasketball.profile.change_id;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

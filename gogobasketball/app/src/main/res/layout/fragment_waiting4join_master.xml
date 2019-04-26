@@ -55,6 +55,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toTopOf="@+id/btn_waiting_team_a_player1_info"
             app:layout_constraintEnd_toStartOf="@+id/waiting_team_a_player1_position"
             app:layout_constraintHorizontal_bias="0.5"

@@ -15,10 +15,6 @@ public interface Looking4RoomContract {
 
         void showWaitingRoomListUi(ArrayList<WaitingRoomInfo> roomInfoList);
 
-//        boolean hasNextPaging();
-
-//        int getPaging();
-
     }
 
     interface Presenter extends BasePresenter {
@@ -28,10 +24,6 @@ public interface Looking4RoomContract {
         void loadExistedRoomsData4RecyclerView();
 
         void setExistedRoomsData();
-
-        boolean isHomeItemHasNextPaging(@MainMvpController.HomeItem String itemType);
-
-        void onHomeItemScrollToBottom(@MainMvpController.HomeItem String itemType);
 
         void openWant2CreateRoom();
 
@@ -43,5 +35,6 @@ public interface Looking4RoomContract {
 
         void openFindHostDialog();
 
+        void getWaitingRoomFromFindHost(ArrayList<WaitingRoomInfo> list);
     }
 }

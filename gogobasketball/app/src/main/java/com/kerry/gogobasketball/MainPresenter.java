@@ -74,6 +74,8 @@ import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlavePresenter;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomContract;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomPresenter;
 
+import java.util.ArrayList;
+
 public class MainPresenter implements MainContract.Presenter, HomeContract.Presenter,
         Looking4RoomContract.Presenter, CourtsMapContract.Presenter, ProfileContract.Presenter,
         FriendContract.Presenter, RankContract.Presenter, Want2CreateRoomContract.Presenter,
@@ -818,16 +820,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     /*  Change Profile Data Dialog */
 
     @Override
-    public void onUserNewIdEditTextChange(CharSequence charSequence) {
-        mChangeIdPresenter.onUserNewIdEditTextChange(charSequence);
-    }
-
-    @Override
-    public void checkIfUserNewIdExists(Activity activity) {
-        mChangeIdPresenter.checkIfUserNewIdExists(activity);
-    }
-
-    @Override
     public void getPositionFromWheel(String position) {
         mChangePositionPresenter.getPositionFromWheel(position);
     }
@@ -851,13 +843,13 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     /*  Find Host by ID Dialog */
 
     @Override
-    public void showFindSuccessDialog() {
-
+    public void checkIfRoomExists(Activity activity) {
+        mFindHostPresenter.checkIfRoomExists(activity);
     }
 
     @Override
-    public void showFindFailDialog() {
-
+    public void onHostIdEditTextChange(CharSequence charSequence) {
+        mFindHostPresenter.onHostIdEditTextChange(charSequence);
     }
 
     @Override
@@ -1145,18 +1137,13 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
+    public void getWaitingRoomFromFindHost(ArrayList<WaitingRoomInfo> list) {
+        mLooking4RoomPresenter.getWaitingRoomFromFindHost(list);
+    }
+
+    @Override
     public void setExistedRoomsData() {
         mLooking4RoomPresenter.setExistedRoomsData();
-    }
-
-    @Override
-    public boolean isHomeItemHasNextPaging(String itemType) {
-        return false;
-    }
-
-    @Override
-    public void onHomeItemScrollToBottom(String itemType) {
-
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -1216,6 +1203,19 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         toastTV.setTextSize(16);
         toastTV.setText(message);
         toast.show();
+    }
+
+    /* ------------------------------------------------------------------------------------------ */
+    /*  Find Host Dialog */
+
+    @Override
+    public void onUserNewIdEditTextChange(CharSequence charSequence) {
+        mFindHostPresenter.onHostIdEditTextChange(charSequence);
+    }
+
+    @Override
+    public void checkIfUserNewIdExists(Activity activity) {
+        mFindHostPresenter.checkIfRoomExists(activity);
     }
 
     /* ------------------------------------------------------------------------------------------ */

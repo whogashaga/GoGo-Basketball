@@ -102,7 +102,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         mBtnCreateConfirm = root.findViewById(R.id.btn_want2create_build_confirm);
         mBtnCreateConfirm.setOnClickListener(this);
         mBtnCreateConfirm.setClickable(false);
-        mBtnCreateConfirm.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.white));
+        mBtnCreateConfirm.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.gray_cccccc));
 
         mBtnCreateCancel = root.findViewById(R.id.btn_want2create_build_cancel);
         mBtnCreateCancel.setOnClickListener(this);
@@ -265,7 +265,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
 //            mBtnCreateConfirm.setBackgroundResource(R.drawable.btn_effect_custom);
         } else {
             mBtnCreateConfirm.setClickable(false);
-            mBtnCreateConfirm.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.white));
+            mBtnCreateConfirm.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.gray_cccccc));
 //            mBtnCreateConfirm.setBackgroundResource(R.drawable.btn_gray_ripple);
         }
     }
