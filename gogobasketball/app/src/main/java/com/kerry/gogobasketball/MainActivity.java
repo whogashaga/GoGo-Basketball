@@ -5,6 +5,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
@@ -66,13 +67,12 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     private Toolbar mToolbar;
     private TextView mToolbarTitle;
     private ImageView mToolbarLogo;
-    //    private LoginDialog mLoginDialog;
-//    private MessageDialog mMessageDialog;
     private View mBadge;
     private ImageView mDrawerUserImage;
     private TextView mDrawerUserName;
     private TextView mDrawerUserInfo;
     private MainMvpController mMainMvpController;
+    private boolean doubleBackToExitPressedOnce = false;
 
     private MainContract.Presenter mPresenter;
 
@@ -733,7 +733,15 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         } else if (mPresenter.disableBackKey()) {
             // do nothing
         } else {
-            super.onBackPressed();
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
         }
     }
 
