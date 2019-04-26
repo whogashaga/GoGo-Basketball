@@ -75,7 +75,6 @@ public class LogoutDialog extends DialogFragment implements LogoutContract.View,
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mPresenter.hideToolbarAndBottomNavigation();
     }
 
     @Override
