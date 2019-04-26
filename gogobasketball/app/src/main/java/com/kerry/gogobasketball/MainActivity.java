@@ -506,25 +506,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
         switch (item.getItemId()) {
 
-            case R.id.nav_awaiting_payment:
-                string = getString(R.string.awaiting_payment);
-                break;
-            case R.id.nav_awaiting_shipment:
-                string = getString(R.string.awaiting_shipment);
-                break;
-            case R.id.nav_shipped:
-                string = getString(R.string.shipped);
-                break;
-            case R.id.nav_awaiting_review:
-                string = getString(R.string.awaiting_review);
-                break;
-            case R.id.nav_exchange:
-                string = getString(R.string.exchange);
-                break;
-            default:
         }
-
-        Toast.makeText(this, getString(R.string._coming_soon, string), Toast.LENGTH_SHORT).show();
         return true;
     }
 
