@@ -4,6 +4,9 @@ import android.app.Activity;
 
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
+import com.kerry.gogobasketball.data.WaitingRoomInfo;
+
+import java.util.ArrayList;
 
 public interface FindHostContract {
 
@@ -11,7 +14,7 @@ public interface FindHostContract {
 
         void showFindNoHost();
 
-        void showFindHostSuccessUi();
+        void showFindHostSuccessUi(ArrayList<WaitingRoomInfo> list);
 
         void finishFindHostUi();
 
@@ -23,15 +26,12 @@ public interface FindHostContract {
 
         void showErrorToast(String message, boolean isShort);
 
-        void onUserNewIdEditTextChange(CharSequence charSequence);
+        void onHostIdEditTextChange(CharSequence charSequence);
 
-        void checkIfUserNewIdExists(Activity activity);
-
-        void showFindSuccessDialog();
-
-        void showFindFailDialog();
+        void checkIfRoomExists(Activity activity);
 
         void updateRecyclerView(Activity activity);
 
+        void getWaitingRoomFromFindHost(ArrayList<WaitingRoomInfo> list);
     }
 }

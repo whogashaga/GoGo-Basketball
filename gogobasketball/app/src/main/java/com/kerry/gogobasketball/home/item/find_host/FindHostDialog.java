@@ -17,7 +17,10 @@ import android.widget.TextView;
 import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.NameLengthFilter;
+import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.util.Constants;
+
+import java.util.ArrayList;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -72,7 +75,7 @@ public class FindHostDialog extends DialogFragment implements FindHostContract.V
                 if(mChar.length() == 0){
                     mPresenter.showErrorToast("名稱不留白 !", true);
                 } else {
-                    mPresenter.checkIfUserNewIdExists(getActivity());
+                    mPresenter.checkIfRoomExists(getActivity());
                     mBtnConfirm.setClickable(false);
                 }
                 break;
@@ -96,10 +99,10 @@ public class FindHostDialog extends DialogFragment implements FindHostContract.V
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mChar = s;
                 if (!"".equals(s.toString()) && s.length() < 12) {
-                    mPresenter.onUserNewIdEditTextChange(s);
+                    mPresenter.onHostIdEditTextChange(s);
                     Log.e(Constants.TAG, "Change ID onTextChanged : " + s.toString());
                 } else if (s.length() == 0) {
-                    mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.enter_new_user_id), true);
+                    mPresenter.showErrorToast("", true);
                 } else {
                     Log.d(Constants.TAG, "no this kind of situation!");
                 }
@@ -114,13 +117,14 @@ public class FindHostDialog extends DialogFragment implements FindHostContract.V
 
     @Override
     public void showFindNoHost() {
-        mPresenter.showErrorToast("此名稱已有人使用", true);
+        mPresenter.showErrorToast("查無此人", true);
         mBtnConfirm.setClickable(true);
     }
 
     @Override
-    public void showFindHostSuccessUi() {
-
+    public void showFindHostSuccessUi(ArrayList<WaitingRoomInfo> list) {
+        mPresenter.getWaitingRoomFromFindHost(list);
+        dismiss();
     }
 
     @Override

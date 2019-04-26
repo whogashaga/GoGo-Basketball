@@ -3,8 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@null"
+    android:background="#e0f5f5f5"
     tools:context="com.kerry.gogobasketball.profile.ProfileFragment">
+
+    <Button
+        android:id="@+id/btn_profile_setting"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/ic_settings"
+        app:layout_constraintTop_toBottomOf="@+id/layout_profile_header"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/layout_profile_header"
@@ -107,7 +117,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/layout_profile_record_header"
-        android:layout_width="230dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#e0f5f5f5"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -122,8 +132,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
             android:text="@string/profile_player_record_title"
             android:textColor="@color/black_3f3a3a"
             android:textSize="18sp"
@@ -220,7 +228,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="裁判數據"
             android:textColor="@color/black_3f3a3a"
@@ -244,7 +251,7 @@
             style="@style/ProfileRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="16dp"
             android:text="評價"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/text_profile_total_justices_title"
@@ -361,12 +368,13 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/layout_profile_btn_header"
-        android:layout_width="110dp"
+        android:layout_width="134dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:background="#e0f5f5f5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_profile_header"
+        app:layout_constraintTop_toBottomOf="@+id/btn_profile_setting"
         app:layout_constraintVertical_bias="0.0">
 
         <Button
@@ -374,7 +382,7 @@
             style="@style/ProfileBtnTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/btn_effect_custom"
             android:text="@string/profile_change_id"
             app:layout_constraintBottom_toTopOf="@+id/btn_profile_change_gender"

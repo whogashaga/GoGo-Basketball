@@ -77,6 +77,11 @@ public class Looking4RoomPresenter implements Looking4RoomContract.Presenter {
     }
 
     @Override
+    public void getWaitingRoomFromFindHost(ArrayList<WaitingRoomInfo> list) {
+        mLookingForRoomView.showWaitingRoomListUi(list);
+    }
+
+    @Override
     public void result(int requestCode, int resultCode) {
 
     }
@@ -104,16 +109,6 @@ public class Looking4RoomPresenter implements Looking4RoomContract.Presenter {
 
     @Override
     public void start() {
-
-    }
-
-    @Override
-    public boolean isHomeItemHasNextPaging(String itemType) {
-        return false;
-    }
-
-    @Override
-    public void onHomeItemScrollToBottom(String itemType) {
 
     }
 }

@@ -63,17 +63,17 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     private View mView;
     FirebaseFirestore mDb = FirebaseFirestore.getInstance();
 
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mActionBarDrawerToggle;
+//    private DrawerLayout mDrawerLayout;
+    //    private ActionBarDrawerToggle mActionBarDrawerToggle;
     private BottomNavigationView mBottomNavigation;
     private MessageDialog mMessageDialog;
     private Toolbar mToolbar;
     private TextView mToolbarTitle;
     private ImageView mToolbarLogo;
-    private View mBadge;
-    private ImageView mDrawerUserImage;
-    private TextView mDrawerUserName;
-    private TextView mDrawerUserInfo;
+//    private View mBadge;
+//    private ImageView mDrawerUserImage;
+//    private TextView mDrawerUserName;
+//    private TextView mDrawerUserInfo;
     private MainMvpController mMainMvpController;
     private boolean doubleBackToExitPressedOnce = false;
 
@@ -109,7 +109,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         }
         setToolbar();
         setBottomNavigation();
-        setDrawerLayout();
+//        setDrawerLayout();
     }
 
     @Override
@@ -405,32 +405,32 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 //        mPresenter.updateFriendBadge();
     }
 
-    /**
-     * Set Drawer
-     */
-    private void setDrawerLayout() {
+//    /**
+//     * Set Drawer
+//     */
+//    private void setDrawerLayout() {
+//
+//        mDrawerLayout = (DrawerLayout) findViewById(R.id.layout_main);
+//        mDrawerLayout.setFitsSystemWindows(true);
+//        mDrawerLayout.setClipToPadding(false);
+//
+//        mActionBarDrawerToggle = new ActionBarDrawerToggle(
+//                this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+//
+//            @Override
+//            public void onDrawerOpened(View drawerView) {
+//                super.onDrawerOpened(drawerView);
+//
+//                mPresenter.onDrawerOpened();
+//            }
+//        };
+//        mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
+//        mActionBarDrawerToggle.syncState();
+//
+//        NavigationView navigationView = findViewById(R.id.navigation_drawer);
+//        navigationView.setNavigationItemSelectedListener(this);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.layout_main);
-        mDrawerLayout.setFitsSystemWindows(true);
-        mDrawerLayout.setClipToPadding(false);
-
-        mActionBarDrawerToggle = new ActionBarDrawerToggle(
-                this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
-
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-
-                mPresenter.onDrawerOpened();
-            }
-        };
-        mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
-        mActionBarDrawerToggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.navigation_drawer);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        // nav view header
+    // nav view header
 //        mDrawerUserImage = navigationView.getHeaderView(0).findViewById(R.id.image_drawer_avatar);
 //        mDrawerUserImage.setOutlineProvider(new SeatAvatarOutlineProvider());
 //        mDrawerUserImage.setOnClickListener(v -> mPresenter.onClickDrawerAvatar());
@@ -438,7 +438,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 //        mDrawerUserName = navigationView.getHeaderView(0).findViewById(R.id.image_drawer_name);
 //
 //        mDrawerUserInfo = navigationView.getHeaderView(0).findViewById(R.id.image_drawer_info);
-    }
+//    }
 
     /**
      * @return height of status bar
@@ -704,28 +704,10 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
     @Override
     public void setToolbarTitleUi(String title) {
-        if ("".equals(title)) {
 
-            mToolbarTitle.setVisibility(View.GONE);
-            mToolbarLogo.setVisibility(View.VISIBLE);
+        mToolbarTitle.setVisibility(View.VISIBLE);
+        mToolbarTitle.setText(title);
 
-        } else {
-            if (title.equals(getString(R.string.payment))) {
-                mActionBarDrawerToggle.setDrawerIndicatorEnabled(false);
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                mToolbar.setNavigationIcon(R.drawable.toolbar_back);
-                mActionBarDrawerToggle.setToolbarNavigationClickListener(v -> onBackPressed());
-            } else {
-                mActionBarDrawerToggle.setDrawerIndicatorEnabled(true);
-                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                mToolbar.setNavigationIcon(R.drawable.toolbar_menu);
-                mActionBarDrawerToggle.setToolbarNavigationClickListener(null);
-            }
-
-            mToolbarLogo.setVisibility(View.GONE);
-            mToolbarTitle.setVisibility(View.VISIBLE);
-            mToolbarTitle.setText(title);
-        }
     }
 
     @Override
@@ -755,7 +737,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
             }
 
             this.doubleBackToExitPressedOnce = true;
-            Toast.makeText(this, "慾離開請再按一次'返回'", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "想離開請再按一次 ' 返回 ' ", Toast.LENGTH_SHORT).show();
 
             new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
         }
