@@ -7,13 +7,12 @@ import android.support.annotation.NonNull;
 public class CourtsMapPresenter implements CourtsMapContract.Presenter {
 
 
-    private CourtsMapContract.View mMapView;
+    private CourtsMapContract.View mCourtsMapView;
 
 
-    public CourtsMapPresenter(@NonNull CourtsMapContract.View oderItemView) {
-
-        mMapView = checkNotNull(oderItemView, "OrderItemView cannot be null!");
-        mMapView.setPresenter(this);
+    public CourtsMapPresenter(@NonNull CourtsMapContract.View mapView) {
+        mCourtsMapView = checkNotNull(mapView, "mapView cannot be null!");
+        mCourtsMapView.setPresenter(this);
     }
 
 

@@ -31,6 +31,8 @@ import com.kerry.gogobasketball.home.HomePresenter;
 import com.kerry.gogobasketball.home.item.Looking4RoomContract;
 import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
 import com.kerry.gogobasketball.home.item.Looking4RoomPresenter;
+import com.kerry.gogobasketball.home.item.find_host.FindHostContract;
+import com.kerry.gogobasketball.home.item.find_host.FindHostPresenter;
 import com.kerry.gogobasketball.home.map.CourtsMapContract;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapPresenter;
@@ -81,7 +83,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         LoginContract.Presenter, CreateUserContract.Presenter,
         CommentRefereeContract.Presenter, RankRefereeContract.Presenter,
         RankPlayerContract.Presenter, LogoutContract.Presenter, ChangeIdContract.Presenter
-        , ChangePositionContract.Presenter, ChangeGenderContract.Presenter {
+        , ChangePositionContract.Presenter, ChangeGenderContract.Presenter,
+        FindHostContract.Presenter {
 
     private FirebaseFirestore mDb;
     private MainContract.View mMainView;
@@ -114,6 +117,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private ChangeIdPresenter mChangeIdPresenter;
     private ChangePositionPresenter mChangePositionPresenter;
     private ChangeGenderPresenter mChangeGenderPresenter;
+    private FindHostPresenter mFindHostPresenter;
 
     private static boolean mIsBackKeyDisable;
     private static boolean mIsGamingNow;
@@ -218,6 +222,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     void setChangeGenderPresenter(ChangeGenderPresenter changeGenderPresenter) {
         mChangeGenderPresenter = checkNotNull(changeGenderPresenter);
+    }
+
+    void setFindHostPresenter(FindHostPresenter findHostPresenter) {
+        mFindHostPresenter = checkNotNull(findHostPresenter);
     }
 
     @Override
@@ -840,6 +848,24 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     /* ------------------------------------------------------------------------------------------ */
+    /*  Find Host by ID Dialog */
+
+    @Override
+    public void showFindSuccessDialog() {
+
+    }
+
+    @Override
+    public void showFindFailDialog() {
+
+    }
+
+    @Override
+    public void updateRecyclerView(Activity activity) {
+        mFindHostPresenter.updateRecyclerView(activity);
+    }
+
+    /* ------------------------------------------------------------------------------------------ */
 
     @Override
     public void setActivityBackgroundLandScape() {
@@ -1071,6 +1097,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void openChangePosition(String currentPosition) {
         mMainView.openChangePositionUi(currentPosition);
+    }
+
+    @Override
+    public void openFindHostDialog() {
+        mMainView.openFindHostUi();
     }
 
     /* ------------------------------------------------------------------------------------------ */

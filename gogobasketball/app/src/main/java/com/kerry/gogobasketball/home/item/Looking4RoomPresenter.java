@@ -71,10 +71,10 @@ public class Looking4RoomPresenter implements Looking4RoomContract.Presenter {
 
     }
 
-//    @Override
-//    public void openCommentReferee(String refereeName) {
-//
-//    }
+    @Override
+    public void openFindHostDialog() {
+
+    }
 
     @Override
     public void result(int requestCode, int resultCode) {

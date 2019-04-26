@@ -46,7 +46,6 @@ public class UserManager {
     }
 
     private UserManager() {
-//        mFbCallbackManager = CallbackManager.Factory.create();
         mUser = new User();
     }
 

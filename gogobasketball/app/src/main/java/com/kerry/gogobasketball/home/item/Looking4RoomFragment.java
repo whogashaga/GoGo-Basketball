@@ -16,9 +16,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
+import com.google.api.LogDescriptor;
+import com.google.type.LatLng;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.GridSpacingItemDecoration;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
+import com.kerry.gogobasketball.util.Constants;
+import com.kerry.gogobasketball.util.LocationManager;
 
 import java.util.ArrayList;
 
@@ -32,6 +36,7 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
     private ArrayList<WaitingRoomInfo> mRoomInfoList;
     private Button mBtnBuildRoom;
     private Button mRandom;
+    private Button mBtnFindHost;
 
     public Looking4RoomFragment() {
         mRoomInfoList = new ArrayList<>();
@@ -65,6 +70,9 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
         mRandom = root.findViewById(R.id.btn_home_rooms_random);
         mRandom.setOnClickListener(this);
 
+        mBtnFindHost = root.findViewById(R.id.btn_home_rooms_search_host);
+        mBtnFindHost.setOnClickListener(this);
+
         // SwipeRefreshLayout
         mSwipeRefreshLayout = root.findViewById(R.id.swipe_container);
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -88,8 +96,30 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
             case R.id.btn_home_rooms_build:
                 mPresenter.openWant2CreateRoom();
                 break;
+
+            case R.id.btn_home_rooms_search_host:
+
+                mPresenter.openFindHostDialog();
+
+//                LocationManager.getInstance().getDeviceLocation(new LocationManager.LocationCallback() {
+//                    @Override
+//                    public void onSuccess(double latitude, double longitude) {
+//                        Log.d("Kerry", "onSuccess latitude : " + latitude);
+//                        Log.d("Kerry", "onSuccess longitude : " + longitude);
+//                        mPresenter.showErrorToast("My Location\nLat: " + String.valueOf(latitude)
+//                                        + "\nLong: " + String.valueOf(longitude)
+//                                , true);
+//                    }
+//
+//                    @Override
+//                    public void onFail(String errorMessage) {
+//                        Log.d(Constants.TAG, "onFail: getDeviceLocation Fail!");
+//                    }
+//                });
+                break;
+
             case R.id.btn_home_rooms_random:
-//                mPresenter.openCommentReferee("小澤又沐風");
+
                 break;
             default:
                 break;

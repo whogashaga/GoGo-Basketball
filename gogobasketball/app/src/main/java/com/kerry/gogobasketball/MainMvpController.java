@@ -18,6 +18,8 @@ import com.kerry.gogobasketball.home.HomeFragment;
 import com.kerry.gogobasketball.home.HomePresenter;
 import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
 import com.kerry.gogobasketball.home.item.Looking4RoomPresenter;
+import com.kerry.gogobasketball.home.item.find_host.FindHostDialog;
+import com.kerry.gogobasketball.home.item.find_host.FindHostPresenter;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapPresenter;
 import com.kerry.gogobasketball.login.LoginFragment;
@@ -85,6 +87,8 @@ public class MainMvpController {
     private ChangeIdPresenter mChangeIdPresenter;
     private ChangePositionPresenter mChangePositionPresenter;
     private ChangeGenderPresenter mChangeGenderPresenter;
+
+    private FindHostPresenter mFindHostPresenter;
 
     private CreateUserPresenter mCreateUserPresenter;
 
@@ -487,6 +491,27 @@ public class MainMvpController {
 
         } else if (!dialog.isAdded()) {
             dialog.show(getFragmentManager(), Constants.CHANGE_GENDER);
+        }
+    }
+
+    /**
+     * FindHost View
+     */
+    void findOrCreateFindHostView() {
+
+        FindHostDialog dialog =
+                (FindHostDialog) getFragmentManager().findFragmentByTag(Constants.FIND_HOST);
+
+        if (dialog == null) {
+
+            dialog = new FindHostDialog();
+            mFindHostPresenter = new FindHostPresenter(dialog);
+            mMainPresenter.setFindHostPresenter(mFindHostPresenter);
+            dialog.setPresenter(mMainPresenter);
+            dialog.show(getFragmentManager(), Constants.FIND_HOST);
+
+        } else if (!dialog.isAdded()) {
+            dialog.show(getFragmentManager(), Constants.FIND_HOST);
         }
     }
 

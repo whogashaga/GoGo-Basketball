@@ -36,6 +36,8 @@ public interface MainContract {
 
         void openChangePositionUi(String currentPosition);
 
+        void openFindHostUi();
+
         void openCheckOutSuccessUi();
 
         void openWait4JoinUi(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId);

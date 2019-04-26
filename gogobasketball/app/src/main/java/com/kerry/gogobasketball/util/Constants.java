@@ -44,11 +44,22 @@ public class Constants {
     public static final String GENDER_MALE = "male";
     public static final String GENDER_FEMALE = "female";
 
-
+    // dialog
     public static final String COMMENT = "COMMENT";
     public static final String LOGOUT = "LOGOUT";
     public static final String CHANGE_ID = "CHANGE_ID";
     public static final String CHANGE_POSITION = "CHANGE_POSITION";
     public static final String CHANGE_GENDER = "CHANGE_GENDER";
+    public static final String FIND_HOST = "FIND_HOST";
+
+    // courts
+    public static final String COURTS = "courts";
+
+    public static final String DA_AN = "DaanPark";
+    public static final String SONG_SAN_HIGH_SCHOOL = "SongshanHighSchool";
+    public static final String ADIDAS101 = "Adidas101";
+    public static final String YOUTH_PARK = "YouthPark";
+    public static final String XIN_SHENG_VIADUCT = "XinShengViaduct";
+    public static final String TAI_DA_CENTRAL = "TaiDaCentral";
 
 }

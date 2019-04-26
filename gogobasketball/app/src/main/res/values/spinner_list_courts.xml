@@ -3,6 +3,6 @@
     <string-array name="basketball_courts_list">
         <item>@string/young_park</item>
         <item>@string/da_an_park</item>
-        <item>@string/jan_kuo_viaduct</item>
+        <item>@string/xin_sheng_high</item>
     </string-array>
 </resources>

@@ -4,21 +4,17 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.Manifest;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,12 +25,14 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.kerry.gogobasketball.R;
@@ -153,13 +151,44 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
     @Override
     public void onMapReady(GoogleMap googleMap) {
         Log.d(Constants.TAG, "map is ready");
-        mMap = googleMap;
 
+        mMap = googleMap;
+        initCourtsMarker();
         if (mLocationPermissionGranted) {
             getDeviceLocation();
 
+            if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+            mMap.setMyLocationEnabled(true);
         }
+    }
 
+    private void initCourtsMarker() {
+
+        addCourtsMarker(new LatLng(25.043572, 121.565559), getString(R.string.song_san_high_school), "目前人數 : 14");
+        addCourtsMarker(new LatLng(25.032598, 121.561610), getString(R.string.adidas_101), "目前人數 : 7");
+        addCourtsMarker(new LatLng(25.020213, 121.536475), getString(R.string.tai_da_central), "目前人數 : 23");
+        addCourtsMarker(new LatLng(25.031693, 121.535961), getString(R.string.da_an_park), "目前人數 : 8");
+        addCourtsMarker(new LatLng(25.021023, 121.505110), getString(R.string.young_park), "目前人數 : 19");
+        addCourtsMarker(new LatLng(25.045040, 121.530423), getString(R.string.xin_sheng_high), "目前人數 : 17");
+
+    }
+
+    private void addCourtsMarker(LatLng latLng, String title, String snippet) {
+
+        BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.ic_court_pin);
+
+        MarkerOptions markerOptions = new MarkerOptions()
+                .position(latLng)
+                .title(title)
+                .snippet(snippet)
+                .icon(icon);
+
+        mMap.addMarker(markerOptions);
     }
 
     @Override
@@ -198,52 +227,6 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
         }
 
         return root;
-    }
-
-    public boolean checkLocationPermission() {
-        if (ContextCompat.checkSelfPermission(getContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
-                    Manifest.permission.ACCESS_FINE_LOCATION)) {
-
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-                new AlertDialog.Builder(getContext())
-                        .setTitle("開啟 GPS")
-                        .setMessage("想被別人知道你的位置？")
-                        .setPositiveButton("是", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                //Prompt the user once explanation has been shown
-                                ActivityCompat.requestPermissions(getActivity(),
-                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                                        MY_PERMISSIONS_REQUEST_LOCATION);
-                            }
-                        })
-                        .create()
-                        .show();
-
-
-            } else {
-                // No explanation needed, we can request the permission.
-                ActivityCompat.requestPermissions(getActivity(),
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
-            }
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    private void openAppSettingsIntent() {
-        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", getActivity().getPackageName(), null));
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
     }
 
     @Override

@@ -23,12 +23,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.kerry.gogobasketball.data.CourtsInfo;
 import com.kerry.gogobasketball.data.GamingPlayer;
 import com.kerry.gogobasketball.data.GamingReferee;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
@@ -79,12 +82,10 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startActivity(new Intent(this, LogoActivity.class));
+//        startActivity(new Intent(this, LogoActivity.class));
         init();
         mView = this.findViewById(R.id.layout_main);
         mView.setBackgroundResource(R.drawable.wheel_dunk_28);
-//        AnimationDrawable drawable = (AnimationDrawable) mView.getBackground();
-//        drawable.start();
 
 //        createUserInfo();
 //        setUserRecord();
@@ -94,8 +95,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
 //        postCustomObject();
 //        getCustomObject();
-
-//        sortTestDoc();
 
     }
 
@@ -119,39 +118,50 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         UserManager.getInstance().getFbCallbackManager().onActivityResult(requestCode, resultCode, data);
     }
 
-    public void sortTestDoc() {
-
-        mBtnCreateUser = findViewById(R.id.main_layout_create_user);
-        mBtnCreateUser.setVisibility(View.VISIBLE);
-
-        mBtnCreateUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirestoreHelper.getFirestore()
-                        .collection(Constants.USERS)
-                        .orderBy("playerRecord.foul")
-                        .get()
-                        .addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    User user = document.toObject(User.class);
-                                    Log.w(Constants.TAG, "foul = " + user.getPlayerRecord().getFoul());
-//                                        Log.w(Constants.TAG, document.getId() + " => " + document.getData());
-                                }
-                            } else {
-                                Log.w(Constants.TAG, "Error getting documents.", task.getException());
-                            }
-                        });
-            }
-        });
-    }
-
     public void postCustomObject() {
 
-        GamingRoomInfo gamingRoomInfo = new GamingRoomInfo();
-        gamingRoomInfo.setRoomName("今天不回家");
-        gamingRoomInfo.setPlayer1(new GamingPlayer());
-        gamingRoomInfo.setReferee(new GamingReferee());
+        CourtsInfo courtsInfo = new CourtsInfo();
+        courtsInfo.setLocation(getString(R.string.song_san_high_school));
+        courtsInfo.setLatMin(25.043095);
+        courtsInfo.setLongMin(121.563557);
+        courtsInfo.setLatMax(25.044416);
+        courtsInfo.setLongMax(121.565868);
+        courtsInfo.setPopulation(0);
+
+//        courtsInfo.setLocation(getString(R.string.adidas_101));
+//        courtsInfo.setLatMin(25.032135);
+//        courtsInfo.setLongMin(121.561168);
+//        courtsInfo.setLatMax(25.032994);
+//        courtsInfo.setLongMax(121.562496);
+//        courtsInfo.setPopulation(0);
+
+//        courtsInfo.setLocation(getString(R.string.young_park));
+//        courtsInfo.setLatMin(25.020526);
+//        courtsInfo.setLongMin(121.504470);
+//        courtsInfo.setLatMax(25.021701);
+//        courtsInfo.setLongMax(121.505921);
+//        courtsInfo.setPopulation(0);
+
+//        courtsInfo.setLocation(getString(R.string.xin_sheng_high));
+//        courtsInfo.setLatMin(25.044851);
+//        courtsInfo.setLongMin(121.530165);
+//        courtsInfo.setLatMax(25.045585);
+//        courtsInfo.setLongMax(121.530777);
+//        courtsInfo.setPopulation(0);
+
+//        courtsInfo.setLocation(getString(R.string.da_an_park));
+//        courtsInfo.setLatMin(25.030690);
+//        courtsInfo.setLongMin(121.534593);
+//        courtsInfo.setLatMax(25.032751);
+//        courtsInfo.setLongMax(121.537530);
+//        courtsInfo.setPopulation(0);
+
+//        courtsInfo.setLocation(getString(R.string.tai_da_central));
+//        courtsInfo.setLatMin(25.019771);
+//        courtsInfo.setLongMin(121.535612);
+//        courtsInfo.setLatMax(25.020811);
+//        courtsInfo.setLongMax(121.537397);
+//        courtsInfo.setPopulation(0);
 
         mBtnCreateUser = findViewById(R.id.main_layout_create_user);
         mBtnCreateUser.setVisibility(View.VISIBLE);
@@ -159,12 +169,13 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
             @Override
             public void onClick(View v) {
                 FirestoreHelper.getFirestore()
-                        .collection(Constants.GAMING_ROOM)
-                        .add(gamingRoomInfo)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        .collection(Constants.COURTS)
+                        .document(Constants.SONG_SAN_HIGH_SCHOOL)
+                        .set(courtsInfo)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Log.d(Constants.TAG, "gaming room id : " + documentReference.getId());
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Log.d(Constants.TAG, "onComplete: courts update");
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -605,6 +616,11 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
+    public void openFindHostUi() {
+        mMainMvpController.findOrCreateFindHostView();
+    }
+
+    @Override
     public void openCreateUserUi(String userFbId) {
         mMainMvpController.findOrCreateCreateUserView(userFbId);
     }
@@ -739,7 +755,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
             }
 
             this.doubleBackToExitPressedOnce = true;
-            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "慾離開請再按一次'返回'", Toast.LENGTH_SHORT).show();
 
             new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
         }
