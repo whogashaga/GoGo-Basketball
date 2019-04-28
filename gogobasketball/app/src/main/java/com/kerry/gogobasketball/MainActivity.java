@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -87,8 +88,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         mView = this.findViewById(R.id.layout_main);
         mView.setBackgroundResource(R.drawable.wheel_dunk_28);
 
-//        createUserInfo();
-
 //        postCustomObject();
 //        getCustomObject();
 
@@ -97,16 +96,17 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     private void init() {
         setContentView(R.layout.activity_main);
         mMainMvpController = MainMvpController.create(this);
-//        mPresenter.openHome();
+
         if (UserManager.getInstance().isLoggedIn()) {
             mPresenter.onLoginSuccessBeforeOpenApp(getFacebookIdString(Constants.FACEBOOK_ID_FILE));
         } else {
             mPresenter.showLoginFragment();
         }
+
         setToolbar();
         setBottomNavigation();
         mPresenter.getDeviceCurrentLocation(this);
-//        setDrawerLayout();
+//        mPresenter.setLocationHandler(this);
     }
 
     @Override
@@ -119,14 +119,14 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
         CourtsInfo courtsInfo = new CourtsInfo();
 
-//        courtsInfo.setLocation(getString(R.string.song_san_high_school));
-//        courtsInfo.setLat(25.043572);
-//        courtsInfo.setLong(121.565559);
-//        courtsInfo.setLatMin(25.043095);
-//        courtsInfo.setLongMin(121.563557);
-//        courtsInfo.setLatMax(25.044416);
-//        courtsInfo.setLongMax(121.565868);
-//        courtsInfo.setPopulation(0);
+        courtsInfo.setLocation(getString(R.string.song_san_high_school));
+        courtsInfo.setLat(25.043572);
+        courtsInfo.setLong(121.565559);
+        courtsInfo.setLatMin(25.043095);
+        courtsInfo.setLongMin(121.563557);
+        courtsInfo.setLatMax(25.044416);
+        courtsInfo.setLongMax(121.565868);
+        courtsInfo.setPopulation(0);
 
 //        courtsInfo.setLocation(getString(R.string.adidas_101));
 //        courtsInfo.setLat(25.032598);
@@ -164,14 +164,14 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 //        courtsInfo.setLongMax(121.537530);
 //        courtsInfo.setPopulation(0);
 
-        courtsInfo.setLocation(getString(R.string.tai_da_central));
-        courtsInfo.setLat(25.020213);
-        courtsInfo.setLong(121.536475);
-        courtsInfo.setLatMin(25.019771);
-        courtsInfo.setLongMin(121.535612);
-        courtsInfo.setLatMax(25.020811);
-        courtsInfo.setLongMax(121.537397);
-        courtsInfo.setPopulation(0);
+//        courtsInfo.setLocation(getString(R.string.tai_da_central));
+//        courtsInfo.setLat(25.020213);
+//        courtsInfo.setLong(121.536475);
+//        courtsInfo.setLatMin(25.019771);
+//        courtsInfo.setLongMin(121.535612);
+//        courtsInfo.setLatMax(25.020811);
+//        courtsInfo.setLongMax(121.537397);
+//        courtsInfo.setPopulation(0);
 
         mBtnCreateUser = findViewById(R.id.main_layout_create_user);
         mBtnCreateUser.setVisibility(View.VISIBLE);
@@ -180,7 +180,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
             public void onClick(View v) {
                 FirestoreHelper.getFirestore()
                         .collection(Constants.COURTS)
-                        .document(Constants.TAI_DA_CENTRAL)
+                        .document(Constants.SONG_SAN_HIGH_SCHOOL)
                         .set(courtsInfo)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
@@ -211,57 +211,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         });
 
     }
-
-    public void createUserInfo() {
-        mBtnCreateUser = findViewById(R.id.main_layout_create_user);
-        mBtnCreateUser.setVisibility(View.VISIBLE);
-
-        String mAvatar = "https://graph.facebook.com/2177302648995421/picture?type=large";
-        String mDocId = "User2";
-        String mName = mDocId;
-        String mEmail = "kjkj@kamil";
-        String mGender = "female";
-        String mId = "wowowowow";
-        String mPosition = "pf";
-        ArrayList<String> mSkills = new ArrayList<>();
-
-        mSkills.add("cry");
-        mSkills.add("laugh");
-
-//        final DocumentReference docRef = mDb.collection("users").document(mDocId);
-
-        mBtnCreateUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Map<String, Object> user = new HashMap<>();
-                user.put("avatar", mAvatar);
-                user.put("email", mEmail);
-                user.put("gender", mGender);
-                user.put("id", mId);
-                user.put("name", mName);
-                user.put("position", mPosition);
-                user.put("skills", mSkills);
-
-                // Add a new document with a generated ID
-                mDb.collection(Constants.USERS)
-                        .document(mDocId)
-                        .set(user)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d(Constants.TAG, "DocumentSnapshot successfully written!");
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(Constants.TAG, "Error adding document", e);
-                    }
-
-                });
-            }
-        });
-    }
-
 
     /**
      * Let toolbar to extend to status bar.
@@ -678,6 +627,13 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        Log.w("Kerry", "MainActivity onResume: ");
+        mPresenter.setLocationHandler(this);
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
     }
@@ -687,6 +643,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         super.onStop();
         Log.d("Kerry", "MainActivity onStop: ");
         mPresenter.deleteMyDocFromCourtsWhenLeave();
+        mPresenter.removeHandler();
     }
 }
 

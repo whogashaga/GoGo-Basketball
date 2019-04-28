@@ -4,6 +4,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.Gravity;
@@ -17,6 +18,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.create_user.CreateUserContract;
 import com.kerry.gogobasketball.create_user.CreateUserPresenter;
 import com.kerry.gogobasketball.data.CourtsInfo;
@@ -129,10 +132,16 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private static User mUser;
     private static CourtsInfo mCourtsInfo;
     private static String mCourtsLocation;
+    private static Handler mHandler;
+    private static Runnable mRunnable;
 
     public MainPresenter(@NonNull MainContract.View mainView) {
         mMainView = checkNotNull(mainView, "mainView cannot be null!");
         mMainView.setPresenter(this);
+        mCourtsInfo = new CourtsInfo();
+        mUser = new User();
+        mHandler = new Handler();
+        mCourtsLocation = "";
     }
 
     void setHomePresenter(HomePresenter homePresenter) {
@@ -1259,7 +1268,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void getDeviceCurrentLocation(Activity activity) {
-
+        Log.e("Kerry", "getDeviceCurrentLocation: ");
         LocationManager.getInstance().getDeviceLocation(new LocationManager.LocationCallback() {
             @Override
             public void onSuccess(double latitude, double longitude) {
@@ -1273,51 +1282,44 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         });
     }
 
-    public void checkCoordinateScope(Activity activity, double latitude, double longitude) {
+    private void checkCoordinateScope(Activity activity, double latitude, double longitude) {
 
-        if (25.042300 <= latitude && latitude <= 25.044416) {
-            if (121.563557 <= longitude && longitude <= 121.566868) {
-                checkIfUpdateLocation(activity, Constants.SONG_SAN_HIGH_SCHOOL);
-            } else {
-                // do nothing, 不在任何座標範圍內
-            }
-        } else if (25.032135 <= latitude && latitude <= 25.032994) {
-            if (121.561168 <= longitude && longitude <= 121.562496) {
-                checkIfUpdateLocation(activity, Constants.ADIDAS101);
-            } else {
-                // do nothing
-            }
-        } else if (25.03069 <= latitude && latitude <= 25.032751) {
-            if (121.534593 <= longitude && longitude <= 121.53753) {
-                checkIfUpdateLocation(activity, Constants.DA_AN);
-            } else {
-                // do nothing
-            }
-        } else if (25.019771 <= latitude && latitude <= 25.020811) {
-            if (121.535612 <= longitude && longitude <= 121.537397) {
-                checkIfUpdateLocation(activity, Constants.TAI_DA_CENTRAL);
-            } else {
-                // do nothing
-            }
-        } else if (25.044851 <= latitude && latitude <= 25.045585) {
-            if (121.530165 <= longitude && longitude <= 121.530777) {
-                checkIfUpdateLocation(activity, Constants.XIN_SHENG_VIADUCT);
-            } else {
-                // do nothing
-            }
-        } else if (25.020526 <= latitude && latitude <= 25.021701) {
-            if (121.50447 <= longitude && longitude <= 121.505921) {
-                checkIfUpdateLocation(activity, Constants.YOUTH_PARK);
-            } else {
-                // do nothing
-            }
+        if (25.042300 <= latitude && latitude <= 25.044416 &&
+                121.563557 <= longitude && longitude <= 121.566868) {
+            checkIfUpdateLocation(activity, Constants.SONG_SAN_HIGH_SCHOOL);
+
+        } else if (25.032135 <= latitude && latitude <= 25.032994
+                && 121.561168 <= longitude && longitude <= 121.562496) {
+            checkIfUpdateLocation(activity, Constants.ADIDAS101);
+
+        } else if (25.03069 <= latitude && latitude <= 25.032751
+                && 121.534593 <= longitude && longitude <= 121.53753) {
+            checkIfUpdateLocation(activity, Constants.DA_AN);
+
+        } else if (25.019771 <= latitude && latitude <= 25.020811
+                && 121.535612 <= longitude && longitude <= 121.537397) {
+            checkIfUpdateLocation(activity, Constants.TAI_DA_CENTRAL);
+
+        } else if (25.044851 <= latitude && latitude <= 25.045585
+                && 121.530165 <= longitude && longitude <= 121.530777) {
+            checkIfUpdateLocation(activity, Constants.XIN_SHENG_VIADUCT);
+
+        } else if (25.020526 <= latitude && latitude <= 25.021701
+                && 121.50447 <= longitude && longitude <= 121.505921) {
+            checkIfUpdateLocation(activity, Constants.YOUTH_PARK);
+
         } else {
-            Log.d(Constants.TAG, "checkCoordinateScope Error !");
+            Log.d(Constants.TAG, "不在任何球場範圍內");
+            if (!mCourtsLocation.equals("")) {
+                deleteMyDocFromCourtsWhenLeave();
+            } else {
+                Log.d(Constants.TAG, "checkCoordinateScope Error !");
+            }
         }
 
     }
 
-    public void checkIfUpdateLocation(Activity activity, String location) {
+    private void checkIfUpdateLocation(Activity activity, String location) {
 
         mCourtsLocation = location;
         String FacebookId = ((MainActivity) activity).getFacebookIdString(Constants.FACEBOOK_ID_FILE);
@@ -1345,12 +1347,12 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         }).addOnFailureListener(e -> Log.d(Constants.TAG, " getUserProfile Error !!"));
     }
 
-    public void getUserInfo(Activity activity, String location) {
+    private void getUserInfo(Activity activity, String location) {
         UserManager.getInstance().getUserProfile(activity, new UserManager.LoadCallback() {
             @Override
             public void onSuccess(User user) {
                 mUser = user;
-                getCourtsInfo(user, location);
+                getPopulationDocSize(user, location);
             }
 
             @Override
@@ -1365,7 +1367,27 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         });
     }
 
-    public void getCourtsInfo(User user, String location) {
+    private void getPopulationDocSize(User user, String location) {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.COURTS)
+                .document(location)
+                .collection(Constants.PLAYERS)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+
+                            getCourtsInfo(user, location, task.getResult().size());
+
+                        } else {
+                            Log.w("Kerry", "getPopulationDocSize Error", task.getException());
+                        }
+                    }
+                }).addOnFailureListener(e -> Log.e(Constants.TAG, " getPopulationDocSize Error !!"));
+    }
+
+    private void getCourtsInfo(User user, String location, int nowPopulation) {
 
         DocumentReference docRef = FirestoreHelper.getFirestore()
                 .collection(Constants.COURTS)
@@ -1380,7 +1402,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                     CourtsInfo courtsInfo = document.toObject(CourtsInfo.class);
                     mCourtsInfo = courtsInfo;
                     // 人數加一
-                    courtsInfo.setPopulation(courtsInfo.getPopulation() + 1);
+                    courtsInfo.setPopulation(nowPopulation + 1);
                     updateCourtsPopulation(courtsInfo, user, location);
 
                 } else {
@@ -1389,12 +1411,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
             } else {
                 Log.d(Constants.TAG, "get failed with ", task.getException());
             }
-        }).addOnFailureListener(e -> Log.d(Constants.TAG, " getUserProfile Error !!"));
-
-
+        }).addOnFailureListener(e -> Log.e(Constants.TAG, " getUserProfile Error !!"));
     }
 
-    public void updateCourtsPopulation(CourtsInfo courtsInfo, User user, String location) {
+    private void updateCourtsPopulation(CourtsInfo courtsInfo, User user, String location) {
 
         FirestoreHelper.getFirestore()
                 .collection(Constants.COURTS)
@@ -1403,10 +1423,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                 .addOnSuccessListener(aVoid -> {
                     Log.d(Constants.TAG, "加入球場，並改變人數 !");
                     addMyself2Courts(user, location);
-                }).addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
+                }).addOnFailureListener(e -> Log.e(Constants.TAG, "Error adding document", e));
     }
 
-    public void addMyself2Courts(User user, String location) {
+    private void addMyself2Courts(User user, String location) {
         CourtsPeople courtsPeople = new CourtsPeople();
         courtsPeople.setId(user.getId());
 
@@ -1430,7 +1450,9 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         });
     }
 
+    /* ------------------------------------------------------------------------------------------ */
     /* delete when get out app */
+
     @Override
     public void deleteMyDocFromCourtsWhenLeave() {
         FirestoreHelper.getFirestore()
@@ -1440,23 +1462,89 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                 .document(mUser.getFacebookId())
                 .delete()
                 .addOnSuccessListener(aVoid -> {
-                    deleteCourtsPopulation();
-                    Log.d("Kerry", "離開球場，刪除資料");})
-                .addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
+                    checkPopulation();
+                    Log.d("Kerry", "離開球場，刪除資料");
+                })
+                .addOnFailureListener(e -> Log.w(Constants.TAG, "deleteMyDocFromCourtsWhenLeave Error : 無 Doc ID", e));
     }
 
-    public void deleteCourtsPopulation() {
-        mCourtsInfo.setPopulation(mCourtsInfo.getPopulation() - 1);
-        updateCourtsInfoWhenLeave(mCourtsInfo);
+
+    public void checkPopulation() {
+        if (!mCourtsLocation.equals("")) {
+            FirestoreHelper.getFirestore()
+                    .collection(Constants.COURTS)
+                    .document(mCourtsLocation)
+                    .collection(Constants.PLAYERS)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                updateCourtsInfoWhenLeave(task.getResult().size());
+                            } else {
+                                Log.w("Kerry", "checkPopulation Error", task.getException());
+                            }
+                        }
+                    }).addOnFailureListener(e -> Log.e(Constants.TAG, " getPopulationDocSize Error !!"));
+        }
     }
 
-    private void updateCourtsInfoWhenLeave(CourtsInfo courtsInfo) {
+    private void updateCourtsInfoWhenLeave(int nowPopulationSize) {
         FirestoreHelper.getFirestore()
                 .collection(Constants.COURTS)
                 .document(mCourtsLocation)
-                .set(courtsInfo)
+                .update("population", nowPopulationSize)
                 .addOnSuccessListener(aVoid -> {
                     Log.d("Kerry", "離開球場，更新人數");
+                })
+                .addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
+    }
+
+    /* set Handler */
+    @Override
+    public void setLocationHandler(Activity activity) {
+        mRunnable = new Runnable() {
+            @Override
+            public void run() {
+                mHandler.postDelayed(this, 5000);
+                getDeviceCurrentLocation(activity);
+            }
+        };
+        mHandler.postDelayed(mRunnable, 5000);
+    }
+
+    @Override
+    public void removeHandler() {
+        mHandler.removeCallbacks(mRunnable);
+    }
+
+    private void checkCurrentPopulation(Activity activity) {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.COURTS)
+                .document(mCourtsLocation)
+                .collection(Constants.PLAYERS)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Log.w("Kerry", "checkCurrentPopulation size = " + task.getResult().size());
+                        setCorrectPopulation(task.getResult().size(), activity);
+
+                    } else {
+                        Log.w("Kerry", "Error getting documents.", task.getException());
+                    }
+                });
+
+    }
+
+    private void setCorrectPopulation(int population, Activity activity) {
+        mCourtsInfo.setPopulation(population);
+        FirestoreHelper.getFirestore()
+                .collection(Constants.COURTS)
+                .document(mCourtsLocation)
+                .set(mCourtsInfo)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d("Kerry", "自動更新球場人數");
+                    getDeviceCurrentLocation(activity);
                 })
                 .addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
     }

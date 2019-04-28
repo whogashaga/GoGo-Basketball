@@ -39,20 +39,15 @@
         <TextView
             android:id="@+id/waiting_team_a_player1_id"
             style="@style/Waiting4JoinUserId"
-            android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:text="Player1"
-            app:layout_constraintBottom_toTopOf="@+id/waiting_team_a_player1_gender"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player1_avatar"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
+            tools:layout_editor_absoluteX="62dp"
+            tools:layout_editor_absoluteY="22dp" />
 
         <ImageView
             android:id="@+id/waiting_team_a_player1_gender"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:scaleType="centerCrop"
@@ -65,8 +60,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_a_player1_position"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="12dp"
             android:scaleType="centerCrop"
@@ -79,7 +74,7 @@
 
         <Button
             android:id="@+id/btn_waiting_team_a_player1_change_seat"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:background="@null"
@@ -89,13 +84,12 @@
             app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_a_player1_info"
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_a_player1_info"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btn_waiting_team_a_player1_info" />
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_waiting_team_a_player1_info"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -114,7 +108,7 @@
 
         <Button
             android:id="@+id/btn_waiting_team_a_player1_add"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
@@ -166,8 +160,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_a_player2_gender"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_waiting_team_a_player2_info"
@@ -179,8 +173,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_a_player2_position"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="12dp"
             android:scaleType="centerCrop"
@@ -193,7 +187,7 @@
 
         <Button
             android:id="@+id/btn_waiting_team_a_player2_change_seat"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:background="@null"
@@ -203,12 +197,12 @@
             app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_a_player2_info"
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_a_player2_info"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_waiting_team_a_player2_info"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -226,7 +220,7 @@
 
         <Button
             android:id="@+id/btn_waiting_team_a_player2_add"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
@@ -277,8 +271,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_a_player3_gender"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_waiting_team_a_player3_info"
@@ -290,8 +284,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_a_player3_position"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="12dp"
             android:scaleType="centerCrop"
@@ -304,7 +298,7 @@
 
         <Button
             android:id="@+id/btn_waiting_team_a_player3_change_seat"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:background="@null"
@@ -314,13 +308,12 @@
             app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_a_player3_info"
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_a_player3_info"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btn_waiting_team_a_player3_info" />
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_waiting_team_a_player3_info"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -338,7 +331,7 @@
 
         <Button
             android:id="@+id/btn_waiting_team_a_player3_add"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
@@ -392,8 +385,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_b_player1_gender"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
@@ -406,8 +399,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_b_player1_position"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="12dp"
             android:scaleType="centerCrop"
@@ -420,7 +413,7 @@
 
         <Button
             android:id="@+id/btn_waiting_team_b_player1_change_seat"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:background="@null"
@@ -430,12 +423,12 @@
             app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_b_player1_info"
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_b_player1_info"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_waiting_team_b_player1_info"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -452,7 +445,7 @@
 
         <Button
             android:id="@+id/btn_waiting_team_b_player1_add"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
@@ -500,8 +493,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_b_player2_gender"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
@@ -514,8 +507,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_b_player2_position"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="12dp"
             android:scaleType="centerCrop"
@@ -528,7 +521,7 @@
 
         <Button
             android:id="@+id/btn_waiting_team_b_player2_change_seat"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:background="@null"
@@ -538,12 +531,12 @@
             app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_b_player2_info"
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_b_player2_info"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_waiting_team_b_player2_info"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -560,7 +553,7 @@
 
         <Button
             android:id="@+id/btn_waiting_team_b_player2_add"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
@@ -610,8 +603,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_b_player3_gender"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
@@ -624,8 +617,8 @@
 
         <ImageView
             android:id="@+id/waiting_team_b_player3_position"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="12dp"
             android:scaleType="centerCrop"
@@ -638,7 +631,7 @@
 
         <Button
             android:id="@+id/btn_waiting_team_b_player3_change_seat"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:background="@null"
@@ -648,12 +641,12 @@
             app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_b_player3_info"
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_b_player3_info"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_waiting_team_b_player3_info"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -670,7 +663,7 @@
 
         <Button
             android:id="@+id/btn_waiting_team_b_player3_add"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
@@ -724,8 +717,8 @@
 
         <ImageView
             android:id="@+id/waiting_referee_gender"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
@@ -739,8 +732,8 @@
 
         <ImageView
             android:id="@+id/waiting_referee_position"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="12dp"
             android:scaleType="centerCrop"
@@ -753,7 +746,7 @@
 
         <Button
             android:id="@+id/btn_waiting_referee_change_seat"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:background="@null"
@@ -763,12 +756,12 @@
             app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_referee_info"
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_referee_info"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_waiting_referee_info"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -785,7 +778,7 @@
 
         <Button
             android:id="@+id/btn_waiting_referee_add"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
@@ -816,8 +809,8 @@
 
     <ImageButton
         android:id="@+id/btn_waiting4join_message"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="16dp"
         android:background="@null"
         android:src="@drawable/button_effect_chat"
@@ -829,8 +822,8 @@
 
     <ImageButton
         android:id="@+id/btn_waiting4join_group"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="8dp"
         android:background="@null"
         android:src="@drawable/button_effect_friends"
@@ -892,8 +885,8 @@
 
     <Spinner
         android:id="@+id/spinner_timer_selector"
-        android:layout_width="40dp"
-        android:layout_height="30dp"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/outline_minutes"
         android:entries="@array/timer_list"
         android:prompt="@string/select_time"

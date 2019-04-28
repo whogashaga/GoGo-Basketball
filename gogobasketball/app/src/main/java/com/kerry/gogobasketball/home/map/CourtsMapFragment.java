@@ -27,6 +27,7 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
@@ -35,6 +36,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.util.Constants;
 
@@ -188,13 +190,11 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
 
     private void addCourtsMarker(LatLng latLng, String title, String snippet) {
 
-        BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.ic_court_pin);
-
         MarkerOptions markerOptions = new MarkerOptions()
                 .position(latLng)
                 .title(title)
                 .snippet(snippet)
-                .icon(icon);
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_court_pin));
 
         mMap.addMarker(markerOptions);
     }
@@ -213,12 +213,13 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        MapsInitializer.initialize(GoGoBasketball.getAppContext());
     }
 
     @Override
     public void setPresenter(CourtsMapContract.Presenter presenter) {
         mPresenter = checkNotNull(presenter);
+
     }
 
     @Override

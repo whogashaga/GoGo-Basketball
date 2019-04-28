@@ -156,5 +156,9 @@ public interface MainContract {
         void getDeviceCurrentLocation(Activity activity);
 
         void deleteMyDocFromCourtsWhenLeave();
+
+        void setLocationHandler(Activity activity);
+
+        void removeHandler();
     }
 }
