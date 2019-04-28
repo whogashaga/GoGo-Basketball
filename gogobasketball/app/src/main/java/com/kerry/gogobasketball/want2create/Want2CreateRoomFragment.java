@@ -49,7 +49,6 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     private EditText mEditorRoomName;
     private String mRoomName;
     private Spinner mSpinnerCourts;
-    private ArrayList<String> mCourtsList;
     private WaitingRoomInfo mWaitingRoomInfo;
     private WaitingRoomSeats mHostSeatInfo;
     private String mRoomDocId;
@@ -113,19 +112,16 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         mEditorRoomName = root.findViewById(R.id.edit_want2create_room_name_content);
 
         mSpinnerCourts = root.findViewById(R.id.spinner_courts_selector);
-        setSpinnerCourts();
+        mPresenter.getCourtsListFromDb();
 
         return root;
     }
 
-    public void setSpinnerCourts() {
-        mCourtsList = new ArrayList<>();
-        mCourtsList.add("青年公園");
-        mCourtsList.add("大安森林公園");
-        mCourtsList.add("建國高架球場");
 
-        String[] courtsArray = new String[mCourtsList.size()];
-        courtsArray = mCourtsList.toArray(courtsArray);
+    public void setSpinnerCourts(ArrayList<String> courtsList) {
+
+        String[] courtsArray = new String[courtsList.size()];
+        courtsArray = courtsList.toArray(courtsArray);
 
         ArrayAdapter<String> courtsAdapter = new ArrayAdapter<>(GoGoBasketball.getAppContext(),
                 android.R.layout.simple_spinner_dropdown_item, courtsArray);

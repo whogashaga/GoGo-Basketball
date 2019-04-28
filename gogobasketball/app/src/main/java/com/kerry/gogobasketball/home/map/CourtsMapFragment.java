@@ -38,8 +38,11 @@ import com.google.android.gms.tasks.Task;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.util.Constants;
 
+import java.util.ArrayList;
 
-public class CourtsMapFragment extends Fragment implements CourtsMapContract.View, OnMapReadyCallback, LocationListener {
+
+public class CourtsMapFragment extends Fragment implements CourtsMapContract.View,
+        OnMapReadyCallback, LocationListener {
 
     private CourtsMapContract.Presenter mPresenter;
 
@@ -153,7 +156,7 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
         Log.d(Constants.TAG, "map is ready");
 
         mMap = googleMap;
-        initCourtsMarker();
+//        mPresenter.getCurrentCourtPopulation();
         if (mLocationPermissionGranted) {
             getDeviceLocation();
 
@@ -167,14 +170,19 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
         }
     }
 
-    private void initCourtsMarker() {
+    @Override
+    public void getPopulationFromPresenter(ArrayList<String> populationList) {
+        initCourtsMarker(populationList);
+    }
 
-        addCourtsMarker(new LatLng(25.043572, 121.565559), getString(R.string.song_san_high_school), "目前人數 : 14");
-        addCourtsMarker(new LatLng(25.032598, 121.561610), getString(R.string.adidas_101), "目前人數 : 7");
-        addCourtsMarker(new LatLng(25.021023, 121.505110), getString(R.string.young_park), "目前人數 : 19");
-        addCourtsMarker(new LatLng(25.045040, 121.530423), getString(R.string.xin_sheng_high), "目前人數 : 17");
-        addCourtsMarker(new LatLng(25.031693, 121.535961), getString(R.string.da_an_park), "目前人數 : 8");
-        addCourtsMarker(new LatLng(25.020213, 121.536475), getString(R.string.tai_da_central), "目前人數 : 23");
+    private void initCourtsMarker(ArrayList<String> populationList) {
+        Log.d(Constants.TAG, "initCourtsMarker size : " + populationList.size());
+        addCourtsMarker(new LatLng(25.032598, 121.561610), getString(R.string.adidas_101), "目前人數 : " + populationList.get(0));
+        addCourtsMarker(new LatLng(25.031693, 121.535961), getString(R.string.da_an_park), "目前人數 : " + populationList.get(1));
+        addCourtsMarker(new LatLng(25.043572, 121.565559), getString(R.string.song_san_high_school), "目前人數 : " + populationList.get(2));
+        addCourtsMarker(new LatLng(25.020213, 121.536475), getString(R.string.tai_da_central), "目前人數 : " + populationList.get(3));
+        addCourtsMarker(new LatLng(25.045040, 121.530423), getString(R.string.xin_sheng_high), "目前人數 : " + populationList.get(4));
+        addCourtsMarker(new LatLng(25.021023, 121.505110), getString(R.string.young_park), "目前人數 : " + populationList.get(5));
 
     }
 
@@ -192,8 +200,9 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
     }
 
     @Override
-    public void showMapsUi() {
-
+    public void refreshMarkers() {
+        mMap.clear();
+        mPresenter.getCurrentCourtPopulation();
     }
 
     @Override
@@ -227,6 +236,19 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
         }
 
         return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+//        mPresenter.setOnPopulationChangeListener();
+        mPresenter.getCurrentCourtPopulation();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.removeListener();
     }
 
     @Override

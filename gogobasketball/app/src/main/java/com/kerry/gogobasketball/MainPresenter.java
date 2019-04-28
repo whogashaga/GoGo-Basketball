@@ -238,6 +238,21 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
+    public void getCurrentCourtPopulation() {
+        mCourtsMapPresenter.getCurrentCourtPopulation();
+    }
+
+    @Override
+    public void setOnPopulationChangeListener() {
+        mCourtsMapPresenter.setOnPopulationChangeListener();
+    }
+
+    @Override
+    public void removeListener() {
+        mCourtsMapPresenter.removeListener();
+    }
+
+    @Override
     public void logoutFacebook() {
         mLogoutPresenter.logoutFacebook();
     }
@@ -811,6 +826,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void setCreateBtnClickable() {
         mWant2CreateRoomPresenter.setCreateBtnClickable();
+    }
+
+    @Override
+    public void getCourtsListFromDb() {
+        mWant2CreateRoomPresenter.getCourtsListFromDb();
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -1400,6 +1420,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Log.w("Kerry", "加入球場成功 ！");
+                        mCourtsMapPresenter.setOnPopulationChangeListener();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override

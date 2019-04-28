@@ -3,11 +3,15 @@ package com.kerry.gogobasketball.home.map;
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
 
+import java.util.ArrayList;
+
 public interface CourtsMapContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showMapsUi();
+        void getPopulationFromPresenter(ArrayList<String> populationList);
+
+        void refreshMarkers();
 
     }
 
@@ -15,11 +19,11 @@ public interface CourtsMapContract {
 
         void result(int requestCode, int resultCode);
 
-//    void loadExistedRoomsData4RecyclerView();
+        void getCurrentCourtPopulation();
 
-//    void setExistedRoomsData();
+        void setOnPopulationChangeListener();
 
-//        void openDetail(Product product);
+        void removeListener();
 
     }
 }

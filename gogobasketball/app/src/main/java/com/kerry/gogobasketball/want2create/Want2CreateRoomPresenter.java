@@ -6,21 +6,29 @@ import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.FirestoreHelper;
 import com.kerry.gogobasketball.RandomString;
+import com.kerry.gogobasketball.data.CourtsInfo;
 import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.UserManager;
 
+import java.util.ArrayList;
+
 public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Presenter {
 
     private final Want2CreateRoomContract.View mWant2CreateRoomView;
     private WaitingRoomInfo mWaitingRoomInfo;
+    private ArrayList<String> mCourtsList;
     private String mRoomDocId;
     private User mUser;
 
@@ -29,6 +37,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
         mWant2CreateRoomView.setPresenter(this);
 
         mWaitingRoomInfo = new WaitingRoomInfo();
+        mCourtsList = new ArrayList<>();
         mRoomDocId = "";
         mUser = new User();
     }
@@ -130,6 +139,28 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     @Override
     public void setCreateBtnClickable() {
         mWant2CreateRoomView.setCreateRoomBtnClickable();
+    }
+
+    @Override
+    public void getCourtsListFromDb() {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.COURTS)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                CourtsInfo courtsInfo = document.toObject(CourtsInfo.class);
+                                mCourtsList.add(courtsInfo.getLocation());
+                            }
+
+                            mWant2CreateRoomView.setSpinnerCourts(mCourtsList);
+                        } else {
+                            Log.w(Constants.TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
     }
 
     /* ------------------------------------------------------------------------------------------ */

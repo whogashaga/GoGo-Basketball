@@ -7,6 +7,8 @@ import com.kerry.gogobasketball.BaseView;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 
+import java.util.ArrayList;
+
 public interface Want2CreateRoomContract {
 
     interface View extends BaseView<Presenter> {
@@ -14,6 +16,8 @@ public interface Want2CreateRoomContract {
         void getRoomInfoFromPresenter4NextFragment(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats, String roomDocId);
 
         void setCreateRoomBtnClickable();
+
+        void setSpinnerCourts(ArrayList<String> courtsList);
 
         boolean needReferee();
 
@@ -52,5 +56,7 @@ public interface Want2CreateRoomContract {
         void loadProfileUserDataWant2Create(Activity activity);
 
         void setCreateBtnClickable();
+
+        void getCourtsListFromDb();
     }
 }
