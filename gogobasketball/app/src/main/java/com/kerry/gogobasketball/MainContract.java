@@ -1,5 +1,6 @@
 package com.kerry.gogobasketball;
 
+import android.app.Activity;
 import android.content.Intent;
 
 import com.kerry.gogobasketball.data.User;
@@ -151,5 +152,9 @@ public interface MainContract {
         void showErrorToast(String message, boolean isShort);
 
         void onLoginSuccessBeforeOpenApp(String userDocId);
+
+        void getDeviceCurrentLocation(Activity activity);
+
+        void deleteMyDocFromCourtsWhenLeave();
     }
 }

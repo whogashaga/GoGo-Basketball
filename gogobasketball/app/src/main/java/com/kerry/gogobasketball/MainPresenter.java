@@ -17,9 +17,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.kerry.gogobasketball.create_user.CreateUserContract;
 import com.kerry.gogobasketball.create_user.CreateUserPresenter;
+import com.kerry.gogobasketball.data.CourtsInfo;
+import com.kerry.gogobasketball.data.CourtsPeople;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
 import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
@@ -67,6 +68,8 @@ import com.kerry.gogobasketball.result.player.comment.CommentRefereePresenter;
 import com.kerry.gogobasketball.result.referee.RefereeResultContract;
 import com.kerry.gogobasketball.result.referee.RefereeResultPresenter;
 import com.kerry.gogobasketball.util.Constants;
+import com.kerry.gogobasketball.util.LocationManager;
+import com.kerry.gogobasketball.util.UserManager;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterContract;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterPresenter;
 import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlaveContract;
@@ -88,7 +91,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         , ChangePositionContract.Presenter, ChangeGenderContract.Presenter,
         FindHostContract.Presenter {
 
-    private FirebaseFirestore mDb;
     private MainContract.View mMainView;
 
     private HomePresenter mHomePresenter;
@@ -124,14 +126,9 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private static boolean mIsBackKeyDisable;
     private static boolean mIsGamingNow;
     private static boolean mAlreadyComment;
-
-//    public MainPresenter(
-//            @NonNull StylishRepository stylishRepository,
-//            @NonNull MainContract.View mainView) {
-//        mStylishRepository = checkNotNull(stylishRepository, "stylishRepository cannot be null!");
-//        mMainView = checkNotNull(mainView, "mainView cannot be null!");
-//        mMainView.setPresenter(this);
-//    }
+    private static User mUser;
+    private static CourtsInfo mCourtsInfo;
+    private static String mCourtsLocation;
 
     public MainPresenter(@NonNull MainContract.View mainView) {
         mMainView = checkNotNull(mainView, "mainView cannot be null!");
@@ -948,28 +945,25 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                 .collection(Constants.USERS)
                 .document(user.getFacebookId());
 
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d(Constants.TAG, "DocumentSnapshot data: " + document.getData());
-                        User userInfo = document.toObject(User.class);
-                        if (userInfo.getId().equals("")) {
-                            mMainView.openCreateUserUi(user.getFacebookId());
-                        } else {
-                            showToolbarAndBottomNavigation();
-                            switchToHotsByBottomNavigation();
-                            mMainView.openHomeUi();
-                        }
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    Log.d(Constants.TAG, "DocumentSnapshot data: " + document.getData());
+                    User userInfo = document.toObject(User.class);
+                    if (userInfo.getId().equals("")) {
+                        mMainView.openCreateUserUi(user.getFacebookId());
                     } else {
-                        updateUser2FireStore(user);
-                        Log.d(Constants.TAG, "No such document");
+                        showToolbarAndBottomNavigation();
+                        switchToHotsByBottomNavigation();
+                        mMainView.openHomeUi();
                     }
                 } else {
-                    Log.d(Constants.TAG, "get failed with ", task.getException());
+                    updateUser2FireStore(user);
+                    Log.d(Constants.TAG, "No such document");
                 }
+            } else {
+                Log.d(Constants.TAG, "get failed with ", task.getException());
             }
         });
     }
@@ -979,18 +973,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                 .collection(Constants.USERS)
                 .document(user.getFacebookId())
                 .set(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(Constants.TAG, "User登入後資料上傳!");
-                        mMainView.openCreateUserUi(user.getFacebookId());
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w(Constants.TAG, "Error adding document", e);
-            }
-        });
+                .addOnSuccessListener(aVoid -> {
+                    Log.d(Constants.TAG, "User登入後資料上傳!");
+                    mMainView.openCreateUserUi(user.getFacebookId());
+                }).addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
     }
 
     // from MainActivity because already login but haven't create user data
@@ -1008,26 +994,23 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                 .collection(Constants.USERS)
                 .document(userDocId);
 
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d(Constants.TAG, "checkIfUserCreated DocumentSnapshot data: " + document.getData());
-                        User userInfo = document.toObject(User.class);
-                        if (userInfo.getId().equals("")) {
-                            mMainView.openCreateUserUi(userDocId);
-                        } else {
-                            mMainView.openHomeUi();
-                        }
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    Log.d(Constants.TAG, "checkIfUserCreated DocumentSnapshot data: " + document.getData());
+                    User userInfo = document.toObject(User.class);
+                    if (userInfo.getId().equals("")) {
+                        mMainView.openCreateUserUi(userDocId);
                     } else {
-
-                        Log.d(Constants.TAG, "No such document");
+                        mMainView.openHomeUi();
                     }
                 } else {
-                    Log.d(Constants.TAG, "get failed with ", task.getException());
+
+                    Log.d(Constants.TAG, "No such document");
                 }
+            } else {
+                Log.d(Constants.TAG, "get failed with ", task.getException());
             }
         });
     }
@@ -1249,4 +1232,212 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     public boolean have2Comment() {
         return mAlreadyComment;
     }
+
+    /* ------------------------------------------------------------------------------------------ */
+    /* Coordinate */
+    /* 加入 */
+
+    @Override
+    public void getDeviceCurrentLocation(Activity activity) {
+
+        LocationManager.getInstance().getDeviceLocation(new LocationManager.LocationCallback() {
+            @Override
+            public void onSuccess(double latitude, double longitude) {
+                checkCoordinateScope(activity, latitude, longitude);
+            }
+
+            @Override
+            public void onFail(String errorMessage) {
+
+            }
+        });
+    }
+
+    public void checkCoordinateScope(Activity activity, double latitude, double longitude) {
+
+        if (25.042300 <= latitude && latitude <= 25.044416) {
+            if (121.563557 <= longitude && longitude <= 121.566868) {
+                checkIfUpdateLocation(activity, Constants.SONG_SAN_HIGH_SCHOOL);
+            } else {
+                // do nothing, 不在任何座標範圍內
+            }
+        } else if (25.032135 <= latitude && latitude <= 25.032994) {
+            if (121.561168 <= longitude && longitude <= 121.562496) {
+                checkIfUpdateLocation(activity, Constants.ADIDAS101);
+            } else {
+                // do nothing
+            }
+        } else if (25.03069 <= latitude && latitude <= 25.032751) {
+            if (121.534593 <= longitude && longitude <= 121.53753) {
+                checkIfUpdateLocation(activity, Constants.DA_AN);
+            } else {
+                // do nothing
+            }
+        } else if (25.019771 <= latitude && latitude <= 25.020811) {
+            if (121.535612 <= longitude && longitude <= 121.537397) {
+                checkIfUpdateLocation(activity, Constants.TAI_DA_CENTRAL);
+            } else {
+                // do nothing
+            }
+        } else if (25.044851 <= latitude && latitude <= 25.045585) {
+            if (121.530165 <= longitude && longitude <= 121.530777) {
+                checkIfUpdateLocation(activity, Constants.XIN_SHENG_VIADUCT);
+            } else {
+                // do nothing
+            }
+        } else if (25.020526 <= latitude && latitude <= 25.021701) {
+            if (121.50447 <= longitude && longitude <= 121.505921) {
+                checkIfUpdateLocation(activity, Constants.YOUTH_PARK);
+            } else {
+                // do nothing
+            }
+        } else {
+            Log.d(Constants.TAG, "checkCoordinateScope Error !");
+        }
+
+    }
+
+    public void checkIfUpdateLocation(Activity activity, String location) {
+
+        mCourtsLocation = location;
+        String FacebookId = ((MainActivity) activity).getFacebookIdString(Constants.FACEBOOK_ID_FILE);
+
+        DocumentReference docRef = FirestoreHelper.getFirestore()
+                .collection(Constants.COURTS)
+                .document(location)
+                .collection(Constants.PLAYERS)
+                .document(FacebookId);
+
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    Log.d(Constants.TAG, "DocumentSnapshot data: " + document.getData());
+                    // do nothing
+                } else {
+                    Log.d(Constants.TAG, "No such document");
+                    // 更新球場人數
+                    getUserInfo(activity, location);
+                }
+            } else {
+                Log.d(Constants.TAG, "get failed with ", task.getException());
+            }
+        }).addOnFailureListener(e -> Log.d(Constants.TAG, " getUserProfile Error !!"));
+    }
+
+    public void getUserInfo(Activity activity, String location) {
+        UserManager.getInstance().getUserProfile(activity, new UserManager.LoadCallback() {
+            @Override
+            public void onSuccess(User user) {
+                mUser = user;
+                getCourtsInfo(user, location);
+            }
+
+            @Override
+            public void onFail(String errorMessage) {
+                Log.d(Constants.TAG, "onFail: MainPresenter getUserId Error !");
+            }
+
+            @Override
+            public void onInvalidToken(String errorMessage) {
+                Log.d(Constants.TAG, "onInvalidToken: MainPresenter getUserId");
+            }
+        });
+    }
+
+    public void getCourtsInfo(User user, String location) {
+
+        DocumentReference docRef = FirestoreHelper.getFirestore()
+                .collection(Constants.COURTS)
+                .document(location);
+
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    Log.d(Constants.TAG, "DocumentSnapshot data: " + document.getData());
+                    // 取得球場資訊
+                    CourtsInfo courtsInfo = document.toObject(CourtsInfo.class);
+                    mCourtsInfo = courtsInfo;
+                    // 人數加一
+                    courtsInfo.setPopulation(courtsInfo.getPopulation() + 1);
+                    updateCourtsPopulation(courtsInfo, user, location);
+
+                } else {
+                    Log.d(Constants.TAG, "No such document");
+                }
+            } else {
+                Log.d(Constants.TAG, "get failed with ", task.getException());
+            }
+        }).addOnFailureListener(e -> Log.d(Constants.TAG, " getUserProfile Error !!"));
+
+
+    }
+
+    public void updateCourtsPopulation(CourtsInfo courtsInfo, User user, String location) {
+
+        FirestoreHelper.getFirestore()
+                .collection(Constants.COURTS)
+                .document(location)
+                .set(courtsInfo)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d(Constants.TAG, "加入球場，並改變人數 !");
+                    addMyself2Courts(user, location);
+                }).addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
+    }
+
+    public void addMyself2Courts(User user, String location) {
+        CourtsPeople courtsPeople = new CourtsPeople();
+        courtsPeople.setId(user.getId());
+
+        FirestoreHelper.getFirestore()
+                .collection(Constants.COURTS)
+                .document(location)
+                .collection(Constants.PLAYERS)
+                .document(user.getFacebookId())
+                .set(courtsPeople)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.w("Kerry", "加入球場成功 ！");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w(Constants.TAG, "Error adding document", e);
+            }
+        });
+    }
+
+    /* delete when get out app */
+    @Override
+    public void deleteMyDocFromCourtsWhenLeave() {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.COURTS)
+                .document(mCourtsLocation)
+                .collection(Constants.PLAYERS)
+                .document(mUser.getFacebookId())
+                .delete()
+                .addOnSuccessListener(aVoid -> {
+                    deleteCourtsPopulation();
+                    Log.d("Kerry", "離開球場，刪除資料");})
+                .addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
+    }
+
+    public void deleteCourtsPopulation() {
+        mCourtsInfo.setPopulation(mCourtsInfo.getPopulation() - 1);
+        updateCourtsInfoWhenLeave(mCourtsInfo);
+    }
+
+    private void updateCourtsInfoWhenLeave(CourtsInfo courtsInfo) {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.COURTS)
+                .document(mCourtsLocation)
+                .set(courtsInfo)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d("Kerry", "離開球場，更新人數");
+                })
+                .addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
+    }
+
 }

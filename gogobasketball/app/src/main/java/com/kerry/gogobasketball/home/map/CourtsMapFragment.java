@@ -139,7 +139,7 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
     }
 
     private void moveCamera(LatLng latLng, float zoom) {
-        Log.d(TAG, "moveCamera: moving the camera to:" + latLng.latitude + ", lng: " + latLng.longitude);
+        Log.d(TAG, "moving the camera to lat :" + latLng.latitude + ", lng : " + latLng.longitude);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
     }
 
@@ -171,10 +171,10 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
 
         addCourtsMarker(new LatLng(25.043572, 121.565559), getString(R.string.song_san_high_school), "目前人數 : 14");
         addCourtsMarker(new LatLng(25.032598, 121.561610), getString(R.string.adidas_101), "目前人數 : 7");
-        addCourtsMarker(new LatLng(25.020213, 121.536475), getString(R.string.tai_da_central), "目前人數 : 23");
-        addCourtsMarker(new LatLng(25.031693, 121.535961), getString(R.string.da_an_park), "目前人數 : 8");
         addCourtsMarker(new LatLng(25.021023, 121.505110), getString(R.string.young_park), "目前人數 : 19");
         addCourtsMarker(new LatLng(25.045040, 121.530423), getString(R.string.xin_sheng_high), "目前人數 : 17");
+        addCourtsMarker(new LatLng(25.031693, 121.535961), getString(R.string.da_an_park), "目前人數 : 8");
+        addCourtsMarker(new LatLng(25.020213, 121.536475), getString(R.string.tai_da_central), "目前人數 : 23");
 
     }
 

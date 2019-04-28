@@ -19,9 +19,6 @@ public class Constants {
     public static final String USER_ID = "id";
     public static final String USER_POSITION = "position";
     public static final String USER_GENDER = "gender";
-    public static final String PLAYER = "player";
-    public static final String REFEREE = "referee";
-    public static final String RECORDS = "records";
 
     public static final String ROOM_STATUS = "status";
     public static final String STATUS_WAITING = "waiting";
@@ -32,7 +29,7 @@ public class Constants {
     public static final String SORT = "sort";
     public static final String HOST_NAME = "hostName";
 
-    public static final String TOTAL_GAMERS_AMOUNT = "totalPlayerAmount";
+//    public static final String TOTAL_GAMERS_AMOUNT = "totalPlayerAmount";
 
     // position
     public static final String POSITION_CENTER = "c";
@@ -54,6 +51,7 @@ public class Constants {
 
     // courts
     public static final String COURTS = "courts";
+    public static final String PLAYERS = "players";
 
     public static final String DA_AN = "DaanPark";
     public static final String SONG_SAN_HIGH_SCHOOL = "SongshanHighSchool";

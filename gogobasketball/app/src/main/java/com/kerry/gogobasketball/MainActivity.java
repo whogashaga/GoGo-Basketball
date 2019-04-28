@@ -88,10 +88,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         mView.setBackgroundResource(R.drawable.wheel_dunk_28);
 
 //        createUserInfo();
-//        setUserRecord();
-
-//        createGamingRoom();
-//        addPlayingGamers();
 
 //        postCustomObject();
 //        getCustomObject();
@@ -109,6 +105,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         }
         setToolbar();
         setBottomNavigation();
+        mPresenter.getDeviceCurrentLocation(this);
 //        setDrawerLayout();
     }
 
@@ -121,14 +118,19 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     public void postCustomObject() {
 
         CourtsInfo courtsInfo = new CourtsInfo();
-        courtsInfo.setLocation(getString(R.string.song_san_high_school));
-        courtsInfo.setLatMin(25.043095);
-        courtsInfo.setLongMin(121.563557);
-        courtsInfo.setLatMax(25.044416);
-        courtsInfo.setLongMax(121.565868);
-        courtsInfo.setPopulation(0);
+
+//        courtsInfo.setLocation(getString(R.string.song_san_high_school));
+//        courtsInfo.setLat(25.043572);
+//        courtsInfo.setLong(121.565559);
+//        courtsInfo.setLatMin(25.043095);
+//        courtsInfo.setLongMin(121.563557);
+//        courtsInfo.setLatMax(25.044416);
+//        courtsInfo.setLongMax(121.565868);
+//        courtsInfo.setPopulation(0);
 
 //        courtsInfo.setLocation(getString(R.string.adidas_101));
+//        courtsInfo.setLat(25.032598);
+//        courtsInfo.setLong(121.561610);
 //        courtsInfo.setLatMin(25.032135);
 //        courtsInfo.setLongMin(121.561168);
 //        courtsInfo.setLatMax(25.032994);
@@ -136,6 +138,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 //        courtsInfo.setPopulation(0);
 
 //        courtsInfo.setLocation(getString(R.string.young_park));
+//        courtsInfo.setLat(25.021023);
+//        courtsInfo.setLong(121.505110);
 //        courtsInfo.setLatMin(25.020526);
 //        courtsInfo.setLongMin(121.504470);
 //        courtsInfo.setLatMax(25.021701);
@@ -143,6 +147,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 //        courtsInfo.setPopulation(0);
 
 //        courtsInfo.setLocation(getString(R.string.xin_sheng_high));
+//        courtsInfo.setLat(25.045040);
+//        courtsInfo.setLong(121.530423);
 //        courtsInfo.setLatMin(25.044851);
 //        courtsInfo.setLongMin(121.530165);
 //        courtsInfo.setLatMax(25.045585);
@@ -150,18 +156,22 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 //        courtsInfo.setPopulation(0);
 
 //        courtsInfo.setLocation(getString(R.string.da_an_park));
+//        courtsInfo.setLat(25.031693);
+//        courtsInfo.setLong(121.535961);
 //        courtsInfo.setLatMin(25.030690);
 //        courtsInfo.setLongMin(121.534593);
 //        courtsInfo.setLatMax(25.032751);
 //        courtsInfo.setLongMax(121.537530);
 //        courtsInfo.setPopulation(0);
 
-//        courtsInfo.setLocation(getString(R.string.tai_da_central));
-//        courtsInfo.setLatMin(25.019771);
-//        courtsInfo.setLongMin(121.535612);
-//        courtsInfo.setLatMax(25.020811);
-//        courtsInfo.setLongMax(121.537397);
-//        courtsInfo.setPopulation(0);
+        courtsInfo.setLocation(getString(R.string.tai_da_central));
+        courtsInfo.setLat(25.020213);
+        courtsInfo.setLong(121.536475);
+        courtsInfo.setLatMin(25.019771);
+        courtsInfo.setLongMin(121.535612);
+        courtsInfo.setLatMax(25.020811);
+        courtsInfo.setLongMax(121.537397);
+        courtsInfo.setPopulation(0);
 
         mBtnCreateUser = findViewById(R.id.main_layout_create_user);
         mBtnCreateUser.setVisibility(View.VISIBLE);
@@ -170,7 +180,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
             public void onClick(View v) {
                 FirestoreHelper.getFirestore()
                         .collection(Constants.COURTS)
-                        .document(Constants.SONG_SAN_HIGH_SCHOOL)
+                        .document(Constants.TAI_DA_CENTRAL)
                         .set(courtsInfo)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
@@ -184,77 +194,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
                                 Log.w(Constants.TAG, "Error adding document", e);
                             }
                         });
-            }
-        });
-    }
-
-    public void setUserRecord() {
-
-        int number = 500;
-
-        RecordOfPlayer player = new RecordOfPlayer();
-        player.setGames(number);
-        player.setWinning(number);
-        player.setScore(number);
-        player.setRebound(number);
-        player.setFoul(number);
-
-        mBtnCreateUser.setVisibility(View.VISIBLE);
-        mBtnCreateUser = findViewById(R.id.main_layout_create_user);
-
-        mBtnCreateUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String id = "User7";
-
-                // Add a new document with a generated ID
-                mDb.collection(Constants.USERS)
-                        .document(id)
-                        .collection(Constants.RECORDS)
-                        .document(Constants.PLAYER)
-                        .set(player)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d(Constants.TAG, "新增球員數據！!");
-                                setUserReferee(id, number);
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(Constants.TAG, "Error adding document", e);
-                    }
-
-                });
-            }
-        });
-    }
-
-    public void setUserReferee(String id, int number) {
-
-        RecordOfReferee referee = new RecordOfReferee();
-        referee.setJustices(number);
-        referee.setRating(number);
-
-        mBtnCreateUser = findViewById(R.id.main_layout_create_user);
-        mBtnCreateUser.setVisibility(View.VISIBLE);
-
-        // Add a new document with a generated ID
-        mDb.collection(Constants.USERS)
-                .document(id)
-                .collection(Constants.RECORDS)
-                .document(Constants.REFEREE)
-                .set(referee)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(Constants.TAG, "新增裁判數據！!");
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w(Constants.TAG, "Error adding document", e);
             }
         });
     }
@@ -311,41 +250,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Log.d(Constants.TAG, "DocumentSnapshot successfully written!");
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(Constants.TAG, "Error adding document", e);
-                    }
-
-                });
-            }
-        });
-    }
-
-    public void createGamingRoom() {
-        mBtnCreateUser = findViewById(R.id.main_layout_create_user);
-        mBtnCreateUser.setVisibility(View.VISIBLE);
-
-        String playingRoomDocId = "打架啦";
-        String roomName = playingRoomDocId;
-        String location = "青年公園";
-
-        mBtnCreateUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Map<String, Object> playingRoom = new HashMap<>();
-                playingRoom.put("room_name", roomName);
-                playingRoom.put("location", location);
-
-                // Add a new document with a generated ID
-                mDb.collection("playing_room")
-                        .document(playingRoomDocId)
-                        .set(playingRoom)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d(Constants.TAG, "對戰開始 - room info ！");
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -773,6 +677,16 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         return text.toString();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("Kerry", "MainActivity onStop: ");
+        mPresenter.deleteMyDocFromCourtsWhenLeave();
+    }
 }
 

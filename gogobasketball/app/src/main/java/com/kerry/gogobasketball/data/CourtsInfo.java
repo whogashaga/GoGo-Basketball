@@ -3,7 +3,9 @@ package com.kerry.gogobasketball.data;
 public class CourtsInfo {
 
     private String mLocation;
+    private double mLat;
     private double mLatMin;
+    private double mLong;
     private double mLongMin;
     private double mLatMax;
     private double mLongMax;
@@ -11,9 +13,29 @@ public class CourtsInfo {
 
     public CourtsInfo() {
         mLocation = "";
+        mLat = 0;
         mLatMin = 0;
+        mLatMax = 0;
+        mLong = 0;
         mLongMin = 0;
+        mLongMax = 0;
         mPopulation = 0;
+    }
+
+    public double getLat() {
+        return mLat;
+    }
+
+    public void setLat(double mLat) {
+        this.mLat = mLat;
+    }
+
+    public double getLong() {
+        return mLong;
+    }
+
+    public void setLong(double mLong) {
+        this.mLong = mLong;
     }
 
     public String getLocation() {
