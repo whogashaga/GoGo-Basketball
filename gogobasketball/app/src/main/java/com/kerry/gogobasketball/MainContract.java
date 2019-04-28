@@ -149,6 +149,8 @@ public interface MainContract {
 
         boolean have2Comment();
 
+        boolean openingWant2CreateRoom();
+
         void showErrorToast(String message, boolean isShort);
 
         void onLoginSuccessBeforeOpenApp(String userDocId);

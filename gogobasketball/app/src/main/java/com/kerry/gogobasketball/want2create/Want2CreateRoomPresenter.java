@@ -182,6 +182,11 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     }
 
     @Override
+    public void setOpeningWant2CreateNow(boolean isCreatingNow) {
+
+    }
+
+    @Override
     public void hideToolbarAndBottomNavigation() {
 
     }

@@ -64,14 +64,14 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     private View mView;
     FirebaseFirestore mDb = FirebaseFirestore.getInstance();
 
-//    private DrawerLayout mDrawerLayout;
+    //    private DrawerLayout mDrawerLayout;
     //    private ActionBarDrawerToggle mActionBarDrawerToggle;
     private BottomNavigationView mBottomNavigation;
     private MessageDialog mMessageDialog;
     private Toolbar mToolbar;
     private TextView mToolbarTitle;
     private ImageView mToolbarLogo;
-//    private View mBadge;
+    //    private View mBadge;
 //    private ImageView mDrawerUserImage;
 //    private TextView mDrawerUserName;
 //    private TextView mDrawerUserInfo;
@@ -565,17 +565,19 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
         } else if (mPresenter.disableBackKey()) {
             // do nothing
+        } else if (mPresenter.openingWant2CreateRoom()) {
+            super.onBackPressed();
         } else {
             if (doubleBackToExitPressedOnce) {
                 super.onBackPressed();
                 return;
             }
-
             this.doubleBackToExitPressedOnce = true;
-            Toast.makeText(this, "想離開請再按一次 ' 返回 ' ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "離開請再按一次 ' 返回 ' ", Toast.LENGTH_SHORT).show();
 
             new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
         }
+
     }
 
     @Override

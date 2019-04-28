@@ -31,6 +31,8 @@ public interface Want2CreateRoomContract {
 
         void showErrorToast(String message, boolean isShort);
 
+        void setOpeningWant2CreateNow(boolean isCreatingNow);
+
         void hideToolbarAndBottomNavigation();
 
         void showToolbarAndBottomNavigation();

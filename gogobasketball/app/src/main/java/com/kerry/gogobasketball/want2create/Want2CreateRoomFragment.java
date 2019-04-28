@@ -202,6 +202,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.hideToolbarAndBottomNavigation();
+        mPresenter.setOpeningWant2CreateNow(true);
         setEditTextInputSpecialChar(mEditorRoomName);
         mEditorRoomName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -241,6 +242,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         super.onDestroy();
 //        Log.d("Kerry", "Want2CreateRoom fragment onDestroy !!");
         mPresenter.showToolbarAndBottomNavigation();
+        mPresenter.setOpeningWant2CreateNow(false);
     }
 
     @Override

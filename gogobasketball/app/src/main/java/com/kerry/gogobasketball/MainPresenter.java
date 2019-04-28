@@ -129,6 +129,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private static boolean mIsBackKeyDisable;
     private static boolean mIsGamingNow;
     private static boolean mAlreadyComment;
+    private static boolean mOpeningWant2CreateNow;
     private static User mUser;
     private static CourtsInfo mCourtsInfo;
     private static String mCourtsLocation;
@@ -1243,6 +1244,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
+    public void setOpeningWant2CreateNow(boolean isCreatingNow) {
+        mOpeningWant2CreateNow = isCreatingNow;
+    }
+
+    @Override
     public void setHave2Comment(boolean have2) {
         mAlreadyComment = have2;
     }
@@ -1260,6 +1266,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public boolean have2Comment() {
         return mAlreadyComment;
+    }
+
+    @Override
+    public boolean openingWant2CreateRoom() {
+        return mOpeningWant2CreateNow;
     }
 
     /* ------------------------------------------------------------------------------------------ */
