@@ -1,5 +1,6 @@
 package com.kerry.gogobasketball;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,7 +24,9 @@ public class LogoActivity extends BaseActivity {
         AnimationDrawable drawable = (AnimationDrawable) mView.getBackground();
         drawable.start();
 
+        Intent intent = new Intent(LogoActivity.this, MainActivity.class);
         new Handler().postDelayed(() -> {
+            startActivity(intent);
             finish();
         }, mTotalDuration);
     }

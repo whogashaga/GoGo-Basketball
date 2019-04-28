@@ -39,17 +39,22 @@
         <TextView
             android:id="@+id/waiting_team_a_player1_id"
             style="@style/Waiting4JoinUserId"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:text="Player1"
-            tools:layout_editor_absoluteX="62dp"
-            tools:layout_editor_absoluteY="22dp" />
+            app:layout_constraintBottom_toTopOf="@+id/waiting_team_a_player1_gender"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player1_avatar"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/waiting_team_a_player1_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toTopOf="@+id/btn_waiting_team_a_player1_info"
             app:layout_constraintEnd_toStartOf="@+id/waiting_team_a_player1_position"
@@ -92,9 +97,8 @@
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_info_player"
             android:text="@string/person_info"
@@ -103,8 +107,7 @@
             app:layout_constraintEnd_toStartOf="@+id/btn_waiting_team_a_player1_add"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_waiting_team_a_player1_change_seat"
-            app:layout_constraintTop_toBottomOf="@+id/waiting_team_a_player1_gender"
-            app:layout_constraintVertical_bias="0.897" />
+            app:layout_constraintTop_toBottomOf="@+id/waiting_team_a_player1_gender" />
 
         <Button
             android:id="@+id/btn_waiting_team_a_player1_add"
@@ -148,7 +151,7 @@
         <TextView
             android:id="@+id/waiting_team_a_player2_id"
             style="@style/Waiting4JoinUserId"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:text="Player2"
             app:layout_constraintBottom_toTopOf="@+id/waiting_team_a_player2_gender"
@@ -156,7 +159,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player2_avatar"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintVertical_chainStyle="spread" />
 
         <ImageView
             android:id="@+id/waiting_team_a_player2_gender"
@@ -207,7 +210,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_info_player"
             android:text="@string/person_info"
@@ -259,7 +262,7 @@
         <TextView
             android:id="@+id/waiting_team_a_player3_id"
             style="@style/Waiting4JoinUserId"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:text="Player3"
             app:layout_constraintBottom_toTopOf="@+id/waiting_team_a_player3_gender"
@@ -267,7 +270,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/waiting_team_a_player3_avatar"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintVertical_chainStyle="spread" />
 
         <ImageView
             android:id="@+id/waiting_team_a_player3_gender"
@@ -318,7 +321,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_info_player"
             android:text="@string/person_info"
@@ -374,7 +377,7 @@
         <TextView
             android:id="@+id/waiting_team_b_player1_id"
             style="@style/Waiting4JoinUserId"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:text="Player4"
             app:layout_constraintBottom_toTopOf="@+id/waiting_team_b_player1_gender"
@@ -432,7 +435,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_info_player"
             android:text="@string/person_info"
@@ -482,7 +485,7 @@
         <TextView
             android:id="@+id/waiting_team_b_player2_id"
             style="@style/Waiting4JoinUserId"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:text="Player5"
             app:layout_constraintBottom_toTopOf="@+id/waiting_team_b_player2_gender"
@@ -540,7 +543,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_info_player"
             android:text="@string/person_info"
@@ -592,7 +595,7 @@
         <TextView
             android:id="@+id/waiting_team_b_player3_id"
             style="@style/Waiting4JoinUserId"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:text="Player6"
             app:layout_constraintBottom_toTopOf="@+id/waiting_team_b_player3_gender"
@@ -650,7 +653,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_info_player"
             android:text="@string/person_info"
@@ -706,14 +709,15 @@
         <TextView
             android:id="@+id/waiting_referee_id"
             style="@style/Waiting4JoinUserId"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:text="Referee"
             app:layout_constraintBottom_toTopOf="@+id/waiting_referee_gender"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/waiting_referee_avatar"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread" />
 
         <ImageView
             android:id="@+id/waiting_referee_gender"
@@ -765,7 +769,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@null"
             android:drawableTop="@drawable/button_effect_info_referee"
             android:text="@string/person_info"
