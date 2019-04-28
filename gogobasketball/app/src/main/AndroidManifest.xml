@@ -11,9 +11,9 @@
     <application
         android:name=".GoGoBasketball"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher_gogo"
+        android:icon="@mipmap/ic_launcher_gogobasketball"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_gogo"
+        android:roundIcon="@mipmap/ic_launcher_gogobasketball"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 

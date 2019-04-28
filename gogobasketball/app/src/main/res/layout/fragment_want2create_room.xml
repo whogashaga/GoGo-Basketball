@@ -15,7 +15,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
         <TextView
             android:id="@+id/text_want2create_title"
             android:layout_width="wrap_content"
@@ -56,6 +55,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:text="@string/room_name"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
@@ -67,6 +67,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="@string/location"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_want2create_room_name_title" />
 
@@ -78,6 +79,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="@string/referee_or_not"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_want2create_location_title" />
 
@@ -87,14 +89,15 @@
         android:layout_height="@dimen/height_payment_editor"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:paddingStart="16dp"
         android:hint="@string/edit_room_name"
         android:imeOptions="actionNext"
         android:maxLength="10"
         android:maxLines="1"
+        android:paddingStart="16dp"
         android:singleLine="true"
         android:textColor="@color/black_3f3a3a"
         android:textColorHint="@color/gray_646464"
+        android:textSize="16sp"
         android:theme="@style/PaymentColorTheme"
         app:layout_constraintBottom_toBottomOf="@+id/text_want2create_room_name_title"
         app:layout_constraintEnd_toEndOf="parent"
@@ -108,8 +111,8 @@
         android:layout_height="@dimen/height_payment_editor"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:prompt="@string/select_court"
         android:paddingStart="16dp"
+        android:prompt="@string/select_court"
         android:spinnerMode="dialog"
         app:layout_constraintBottom_toBottomOf="@+id/text_want2create_location_title"
         app:layout_constraintEnd_toStartOf="@+id/btn_want2create_refresh"
@@ -121,8 +124,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
-        android:visibility="gone"
         android:background="@null"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/text_want2create_location_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/text_want2create_location_title"
@@ -181,8 +184,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:text="@string/warning_rank_yes"
-        android:textSize="16sp"
         android:textColor="@color/blue_facebook"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/radios_referee_selector"
         app:layout_constraintStart_toStartOf="@+id/text_want2create_referee_title"
         app:layout_constraintTop_toBottomOf="@+id/radios_referee_selector" />
@@ -195,10 +198,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/build_confirm"
-        android:onClick="tapToAnimate"
-        android:textColor="@color/black_3f3a3a"
         android:background="@drawable/btn_effect_custom"
+        android:onClick="tapToAnimate"
+        android:text="@string/build_confirm"
+        android:textColor="@color/black_3f3a3a"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_want2create_build_cancel"
         app:layout_constraintHorizontal_bias="0.5"
@@ -211,10 +215,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="@string/build_cancel"
-        android:onClick="tapToAnimate"
-        android:textColor="@color/black_3f3a3a"
         android:background="@drawable/btn_effect_custom"
+        android:onClick="tapToAnimate"
+        android:text="@string/build_cancel"
+        android:textColor="@color/black_3f3a3a"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/btn_want2create_build_confirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
