@@ -39,9 +39,7 @@
         <TextView
             android:id="@+id/waiting_team_a_player1_id"
             style="@style/Waiting4JoinUserId"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:text="Player1"
             app:layout_constraintBottom_toTopOf="@+id/waiting_team_a_player1_gender"
@@ -817,8 +815,9 @@
         android:layout_height="30dp"
         android:layout_marginEnd="16dp"
         android:background="@null"
-        android:src="@drawable/button_effect_chat"
+        android:scaleType="centerCrop"
 
+        android:src="@drawable/button_effect_chat"
         app:layout_constraintBottom_toBottomOf="@+id/btn_waiting4join_back_arrow"
         app:layout_constraintEnd_toStartOf="@+id/btn_waiting4join_group"
         app:layout_constraintTop_toTopOf="@+id/btn_waiting4join_back_arrow"
@@ -830,6 +829,7 @@
         android:layout_height="30dp"
         android:layout_marginEnd="8dp"
         android:background="@null"
+        android:scaleType="centerCrop"
         android:src="@drawable/button_effect_friends"
         app:layout_constraintBottom_toBottomOf="@+id/btn_waiting4join_message"
         app:layout_constraintEnd_toEndOf="@+id/waiting_team_a_player3_seat"

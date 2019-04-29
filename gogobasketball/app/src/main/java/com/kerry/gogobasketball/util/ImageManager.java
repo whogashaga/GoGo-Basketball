@@ -57,7 +57,7 @@ public class ImageManager {
                 Log.d(Constants.TAG, "LruCache doesn't exist, start download.: " + imageUrl);
 
                 lockImagePairing(imageView, imageUrl);
-                imageView.setImageResource(R.drawable.ic_placeholder);
+                imageView.setImageResource(R.drawable.ic_user_avatar);
 
                 new DownloadImageTask(imageView, imageUrl)
                         .executeOnExecutor(Executors.newCachedThreadPool());

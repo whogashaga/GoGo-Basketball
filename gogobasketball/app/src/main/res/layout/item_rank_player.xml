@@ -34,7 +34,8 @@
         app:layout_constraintEnd_toStartOf="@+id/rank_player_guideline_v1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/image_rank_player_avatar"
-        app:layout_constraintVertical_bias="0.533" />
+        app:layout_constraintVertical_bias="0.533"
+        />
 
     <TextView
         android:id="@+id/text_rank_player_id"
