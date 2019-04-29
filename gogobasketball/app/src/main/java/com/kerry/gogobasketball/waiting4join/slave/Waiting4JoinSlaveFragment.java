@@ -230,7 +230,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
                                  ImageView position, TextView id, Button btnChangeSeat) {
         // set avatar
         if (seatPlayerInfo.getAvatar().equals("")) {
-            avatar.setImageResource(R.drawable.ic_user_avatar);
+            avatar.setImageResource(R.drawable.ic_nav_profile);
         } else {
             ImageManager.getInstance().setImageByUrl(avatar, seatPlayerInfo.getAvatar());
         }

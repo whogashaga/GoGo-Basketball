@@ -1493,7 +1493,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private void deleteMyDocFromCourtsWhenLeave(User user) {
         Log.w("Kerry", "deleteMyDocFromCourtsWhenLeave : mCourtsLocation = " + mCourtsLocation);
         Log.w("Kerry", "deleteMyDocFromCourtsWhenLeave : user.getFacebookId() = " + user.getFacebookId());
-        if (!mCourtsLocation.equals("") && !mUser.getFacebookId().equals("")) {
+        if (!mCourtsLocation.equals("") && !user.getFacebookId().equals("")) {
             FirestoreHelper.getFirestore()
                     .collection(Constants.COURTS)
                     .document(mCourtsLocation)
