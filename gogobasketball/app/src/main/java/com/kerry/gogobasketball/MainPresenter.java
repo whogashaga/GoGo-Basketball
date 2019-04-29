@@ -1219,7 +1219,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     /* ------------------------------------------------------------------------------------------ */
-    /*  Find Host Dialog */
+    /*  change ID Dialog */
 
     @Override
     public void onUserNewIdEditTextChange(CharSequence charSequence) {
@@ -1491,7 +1491,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
 
     private void deleteMyDocFromCourtsWhenLeave(User user) {
-//        Log.w("Kerry", "deleteMyDocFromCourtsWhenLeave : mUser.getFacebookId() = " + mUser.getFacebookId());
+        Log.w("Kerry", "deleteMyDocFromCourtsWhenLeave : mCourtsLocation = " + mCourtsLocation);
+        Log.w("Kerry", "deleteMyDocFromCourtsWhenLeave : user.getFacebookId() = " + user.getFacebookId());
         if (!mCourtsLocation.equals("") && !mUser.getFacebookId().equals("")) {
             FirestoreHelper.getFirestore()
                     .collection(Constants.COURTS)

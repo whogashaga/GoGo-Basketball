@@ -16,7 +16,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/stalinist_one"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/black_3f3a3a"
         android:text="@string/coming_soon"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"

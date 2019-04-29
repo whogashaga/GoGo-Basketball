@@ -83,24 +83,22 @@
 
         <ImageView
             android:id="@+id/image_profile_position"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="100dp"
+            android:layout_marginStart="24dp"
             android:layout_marginBottom="8dp"
             android:src="@drawable/ic_position_center"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/image_profile_gender"
             app:layout_constraintTop_toBottomOf="@+id/text_profile_Id"
             app:layout_constraintVertical_bias="0.578" />
 
         <ImageView
             android:id="@+id/image_profile_gender"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:src="@drawable/ic_female"
@@ -129,7 +127,7 @@
         <TextView
             android:id="@+id/text_profile_player_record_title"
             style="@style/ProfileTitle"
-            android:paddingStart="16dp"
+            android:paddingStart="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -231,7 +229,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:paddingEnd="16dp"
-            android:paddingStart="16dp"
+            android:paddingStart="20dp"
             android:text="裁判數據"
             android:textColor="@color/black_3f3a3a"
             android:textSize="18sp"

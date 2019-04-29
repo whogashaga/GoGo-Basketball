@@ -126,14 +126,14 @@ public class MainMvpController {
     public @interface HomeItem {
     }
 
-    public static final String ROOMS = "ROOMS";
-    public static final String MAP = "MAP";
+    public static final String ROOMS = "找房間";
+    public static final String MAP = "看地圖";
 
     public @interface RankItem {
     }
 
-    public static final String PLAYER = "PLAYER";
-    public static final String REFEREE = "REFEREE";
+    public static final String PLAYER = "球員數據";
+    public static final String REFEREE = "裁判數據";
 
 
     private MainMvpController(@NonNull FragmentActivity activity) {
