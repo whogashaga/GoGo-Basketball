@@ -66,6 +66,7 @@
             android:layout_height="0dp"
             android:layout_above="@+id/bottom_navigation_main"
             android:layout_below="@id/toolbar"
+            android:background="#e0ffffff"
             app:layout_constraintTop_toBottomOf="@id/toolbar"
             app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_main"
             android:orientation="vertical">

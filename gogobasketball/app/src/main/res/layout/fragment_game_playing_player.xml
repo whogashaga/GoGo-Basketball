@@ -113,9 +113,10 @@
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user_avatar" />
+            app:srcCompat="@drawable/ic_nav_profile" />
 
         <TextView
             android:id="@+id/text_playing_player_team_a_player1_id"
@@ -254,7 +255,8 @@
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user_avatar" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_nav_profile" />
 
         <TextView
             android:id="@+id/text_playing_player_team_a_player2_id"
@@ -392,7 +394,8 @@
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user_avatar" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_nav_profile" />
 
         <TextView
             android:id="@+id/text_playing_player_team_a_player3_id"
@@ -531,7 +534,8 @@
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user_avatar" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_nav_profile" />
 
         <TextView
             android:id="@+id/text_playing_player_team_b_player1_id"
@@ -667,7 +671,8 @@
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user_avatar" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_nav_profile" />
 
         <TextView
             android:id="@+id/text_playing_player_team_b_player2_id"
@@ -803,7 +808,8 @@
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user_avatar" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_nav_profile" />
 
         <TextView
             android:id="@+id/text_playing_player_team_b_player3_id"

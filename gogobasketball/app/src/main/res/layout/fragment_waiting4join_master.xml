@@ -34,7 +34,8 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user_avatar" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_nav_profile"/>
 
         <TextView
             android:id="@+id/waiting_team_a_player1_id"
@@ -144,7 +145,8 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user_avatar" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_nav_profile" />
 
         <TextView
             android:id="@+id/waiting_team_a_player2_id"
@@ -255,7 +257,8 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user_avatar" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_nav_profile" />
 
         <TextView
             android:id="@+id/waiting_team_a_player3_id"
@@ -370,7 +373,8 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user_avatar" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_nav_profile" />
 
         <TextView
             android:id="@+id/waiting_team_b_player1_id"
@@ -478,7 +482,8 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user_avatar" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_nav_profile" />
 
         <TextView
             android:id="@+id/waiting_team_b_player2_id"
@@ -588,7 +593,8 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user_avatar" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_nav_profile" />
 
         <TextView
             android:id="@+id/waiting_team_b_player3_id"
@@ -702,7 +708,8 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user_avatar" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_nav_profile" />
 
         <TextView
             android:id="@+id/waiting_referee_id"

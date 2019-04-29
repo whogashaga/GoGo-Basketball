@@ -7,6 +7,8 @@ import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -16,6 +18,8 @@ import com.kerry.gogobasketball.data.CourtsInfo;
 import com.kerry.gogobasketball.util.Constants;
 
 import java.util.ArrayList;
+
+import javax.annotation.Nullable;
 
 public class CourtsMapPresenter implements CourtsMapContract.Presenter {
 
@@ -65,20 +69,28 @@ public class CourtsMapPresenter implements CourtsMapContract.Presenter {
         Query query = FirestoreHelper.getFirestore()
                 .collection(Constants.COURTS);
 
-        mCourtsListener = query.addSnapshotListener((value, e) -> {
-            if (e != null) {
-                Log.w(Constants.TAG, "Listen failed.", e);
-                return;
+        mCourtsListener = query.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value,
+                                @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w(Constants.TAG, "Listen failed.", e);
+                    return;
+                }
+                if (value != null) {
+                    mCourtsMapView.refreshMarkers();
+                } else {
+                }
             }
-            mCourtsMapView.refreshMarkers();
         });
-
-
     }
 
     @Override
     public void removeListener() {
-        mCourtsListener.remove();
+        if (mCourtsListener != null) {
+            mCourtsListener.remove();
+        } else {
+        }
     }
 
     @Override
@@ -93,7 +105,6 @@ public class CourtsMapPresenter implements CourtsMapContract.Presenter {
         void onFail();
 
     }
-
 
 
 }

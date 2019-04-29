@@ -105,7 +105,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private CreateUserPresenter mCreateUserPresenter;
 
     private Looking4RoomPresenter mLooking4RoomPresenter;
-    private CourtsMapPresenter mCourtsMapPresenter;
+    private static CourtsMapPresenter mCourtsMapPresenter;
 
     private RankRefereePresenter mRankRefereePresenter;
     private RankPlayerPresenter mRankPlayerPresenter;
@@ -1223,12 +1223,12 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void onUserNewIdEditTextChange(CharSequence charSequence) {
-        mFindHostPresenter.onHostIdEditTextChange(charSequence);
+        mChangeIdPresenter.onUserNewIdEditTextChange(charSequence);
     }
 
     @Override
     public void checkIfUserNewIdExists(Activity activity) {
-        mFindHostPresenter.checkIfRoomExists(activity);
+        mChangeIdPresenter.checkIfUserNewIdExists(activity);
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -1322,7 +1322,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         } else {
             Log.d(Constants.TAG, "不在任何球場範圍內");
             if (!mCourtsLocation.equals("")) {
-                deleteMyDocFromCourtsWhenLeave();
+                deleteMyDocFromCourtsWhenLeave(mUser);
             } else {
                 Log.d(Constants.TAG, "checkCoordinateScope Error !");
             }
@@ -1362,7 +1362,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         UserManager.getInstance().getUserProfile(activity, new UserManager.LoadCallback() {
             @Override
             public void onSuccess(User user) {
-                mUser = user;
                 getPopulationDocSize(user, location);
             }
 
@@ -1438,6 +1437,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     private void addMyself2Courts(User user, String location) {
+        mUser = user;
+        mCourtsLocation = location;
         CourtsPeople courtsPeople = new CourtsPeople();
         courtsPeople.setId(user.getId());
 
@@ -1450,8 +1451,12 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Log.w("Kerry", "加入球場成功 ！");
-                        mCourtsMapPresenter.setOnPopulationChangeListener();
+                        if (mCourtsMapPresenter != null) {
+                            Log.w("Kerry", "加入球場成功 ！");
+                            mCourtsMapPresenter.setOnPopulationChangeListener();
+                        } else {
+                            Log.w("Kerry", "加入失敗 mCourtsMapPresenter = null");
+                        }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -1465,22 +1470,47 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     /* delete when get out app */
 
     @Override
-    public void deleteMyDocFromCourtsWhenLeave() {
-        FirestoreHelper.getFirestore()
-                .collection(Constants.COURTS)
-                .document(mCourtsLocation)
-                .collection(Constants.PLAYERS)
-                .document(mUser.getFacebookId())
-                .delete()
-                .addOnSuccessListener(aVoid -> {
-                    checkPopulation();
-                    Log.d("Kerry", "離開球場，刪除資料");
-                })
-                .addOnFailureListener(e -> Log.w(Constants.TAG, "deleteMyDocFromCourtsWhenLeave Error : 無 Doc ID", e));
+    public void getUserInfoWhenGetOutOfApp(Activity activity) {
+        UserManager.getInstance().getUserProfile(activity, new UserManager.LoadCallback() {
+            @Override
+            public void onSuccess(User user) {
+                deleteMyDocFromCourtsWhenLeave(user);
+            }
+
+            @Override
+            public void onFail(String errorMessage) {
+                Log.d(Constants.TAG, "onFail: MainPresenter getUserId Error !");
+            }
+
+            @Override
+            public void onInvalidToken(String errorMessage) {
+                Log.d(Constants.TAG, "onInvalidToken: MainPresenter getUserId");
+            }
+        });
     }
 
 
-    public void checkPopulation() {
+    private void deleteMyDocFromCourtsWhenLeave(User user) {
+//        Log.w("Kerry", "deleteMyDocFromCourtsWhenLeave : mUser.getFacebookId() = " + mUser.getFacebookId());
+        if (!mCourtsLocation.equals("") && !mUser.getFacebookId().equals("")) {
+            FirestoreHelper.getFirestore()
+                    .collection(Constants.COURTS)
+                    .document(mCourtsLocation)
+                    .collection(Constants.PLAYERS)
+                    .document(user.getFacebookId())
+                    .delete()
+                    .addOnSuccessListener(aVoid -> {
+                        checkPopulation();
+                        Log.d("Kerry", "離開球場，刪除資料");
+                    })
+                    .addOnFailureListener(e -> Log.w(Constants.TAG, "deleteMyDocFromCourtsWhenLeave Error : 無 Doc ID", e));
+        } else {
+            Log.e("Kerry", "離開球場 刪除資料 Fail");
+        }
+    }
+
+
+    private void checkPopulation() {
         if (!mCourtsLocation.equals("")) {
             FirestoreHelper.getFirestore()
                     .collection(Constants.COURTS)
@@ -1517,47 +1547,16 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mRunnable = new Runnable() {
             @Override
             public void run() {
-                mHandler.postDelayed(this, 5000);
+                mHandler.postDelayed(this, 60000);
                 getDeviceCurrentLocation(activity);
             }
         };
-        mHandler.postDelayed(mRunnable, 5000);
+        mHandler.postDelayed(mRunnable, 60000);
     }
 
     @Override
     public void removeHandler() {
         mHandler.removeCallbacks(mRunnable);
-    }
-
-    private void checkCurrentPopulation(Activity activity) {
-        FirestoreHelper.getFirestore()
-                .collection(Constants.COURTS)
-                .document(mCourtsLocation)
-                .collection(Constants.PLAYERS)
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Log.w("Kerry", "checkCurrentPopulation size = " + task.getResult().size());
-                        setCorrectPopulation(task.getResult().size(), activity);
-
-                    } else {
-                        Log.w("Kerry", "Error getting documents.", task.getException());
-                    }
-                });
-
-    }
-
-    private void setCorrectPopulation(int population, Activity activity) {
-        mCourtsInfo.setPopulation(population);
-        FirestoreHelper.getFirestore()
-                .collection(Constants.COURTS)
-                .document(mCourtsLocation)
-                .set(mCourtsInfo)
-                .addOnSuccessListener(aVoid -> {
-                    Log.d("Kerry", "自動更新球場人數");
-                    getDeviceCurrentLocation(activity);
-                })
-                .addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
     }
 
 }

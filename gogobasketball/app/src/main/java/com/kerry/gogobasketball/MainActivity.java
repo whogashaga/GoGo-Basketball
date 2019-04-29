@@ -638,14 +638,19 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (mPresenter != null) {
+//            mPresenter.deleteMyDocFromCourtsWhenLeave();
+        }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         Log.d("Kerry", "MainActivity onStop: ");
-        mPresenter.deleteMyDocFromCourtsWhenLeave();
-        mPresenter.removeHandler();
+        if (mPresenter != null) {
+            mPresenter.getUserInfoWhenGetOutOfApp(this);
+            mPresenter.removeHandler();
+        }
     }
 }
 

@@ -157,7 +157,7 @@ public interface MainContract {
 
         void getDeviceCurrentLocation(Activity activity);
 
-        void deleteMyDocFromCourtsWhenLeave();
+        void getUserInfoWhenGetOutOfApp(Activity activity);
 
         void setLocationHandler(Activity activity);
 

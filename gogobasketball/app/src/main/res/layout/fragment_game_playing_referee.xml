@@ -119,7 +119,8 @@
             android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user_avatar" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_nav_profile" />
 
         <TextView
             android:id="@+id/playing_team_a_player1_id"
@@ -321,7 +322,8 @@
             android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user_avatar" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_nav_profile" />
 
         <TextView
             android:id="@+id/playing_team_a_player2_id"
@@ -523,7 +525,8 @@
             android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user_avatar" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_nav_profile" />
 
         <TextView
             android:id="@+id/playing_team_a_player3_id"
@@ -726,7 +729,8 @@
             android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user_avatar" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_nav_profile" />
 
         <TextView
             android:id="@+id/playing_team_b_player1_id"
@@ -926,7 +930,8 @@
             android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user_avatar" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_nav_profile" />
 
         <TextView
             android:id="@+id/playing_team_b_player2_id"
@@ -1126,7 +1131,8 @@
             android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user_avatar" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_nav_profile" />
 
         <TextView
             android:id="@+id/playing_team_b_player3_id"
@@ -1315,6 +1321,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/button_effect_stop"
         android:text=""
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/btn_gaming_game_over"
         app:layout_constraintEnd_toEndOf="@+id/btn_gaming_game_over"
         app:layout_constraintStart_toStartOf="@+id/btn_gaming_game_over"
