@@ -33,5 +33,7 @@ public interface LoginContract {
         void onLoginSuccess(User user);
 
         void switchToHotsByBottomNavigation();
+
+        void getLocationPermissionWhenLogin(Activity activity);
     }
 }

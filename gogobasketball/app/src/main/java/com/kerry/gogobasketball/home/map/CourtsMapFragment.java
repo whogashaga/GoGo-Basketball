@@ -72,21 +72,9 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
         return new CourtsMapFragment();
     }
 
-
-    private void getLocationPermission() {
-
-        String[] permissions = {FINE_PERMISSION, COARSE_PERMISSION};
-
-        if (ContextCompat.checkSelfPermission(getActivity(), FINE_PERMISSION) == PackageManager.PERMISSION_GRANTED) {
-            if (ContextCompat.checkSelfPermission(getActivity(), COARSE_PERMISSION) == PackageManager.PERMISSION_GRANTED) {
-                mLocationPermissionGranted = true;
-                initMap();
-            } else {
-                ActivityCompat.requestPermissions(getActivity(), permissions, MY_PERMISSIONS_REQUEST_LOCATION);
-            }
-        } else {
-            ActivityCompat.requestPermissions(getActivity(), permissions, MY_PERMISSIONS_REQUEST_LOCATION);
-        }
+    @Override
+    public void getLocationPermissionGranted(boolean locationPermissionGranted) {
+        mLocationPermissionGranted = locationPermissionGranted;
     }
 
     @Override
@@ -148,7 +136,8 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
     }
 
-    private void initMap() {
+    @Override
+    public void initMap() {
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
@@ -248,7 +237,7 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
         View root = inflater.inflate(R.layout.fragment_home_child_map, container, false);
 
         if (isServicesOk()) {
-            getLocationPermission();
+            mPresenter.getLocationPermission(getActivity());
         }
 
         return root;
@@ -305,7 +294,7 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
             Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(getActivity(), available, 1);
             dialog.show();
         } else {
-            Toast.makeText(getContext(), "You can't make map requset", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "You can't make map request", Toast.LENGTH_SHORT).show();
         }
         return false;
     }

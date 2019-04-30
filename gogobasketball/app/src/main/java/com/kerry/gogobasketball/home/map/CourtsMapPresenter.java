@@ -2,7 +2,12 @@ package com.kerry.gogobasketball.home.map;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +32,9 @@ public class CourtsMapPresenter implements CourtsMapContract.Presenter {
     private CourtsMapContract.View mCourtsMapView;
     private ArrayList<String> mPopulationList;
     private static ListenerRegistration mCourtsListener;
+    private static final String FINE_PERMISSION = Manifest.permission.ACCESS_FINE_LOCATION;
+    private static final String COARSE_PERMISSION = Manifest.permission.ACCESS_COARSE_LOCATION;
+    private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
     public CourtsMapPresenter(@NonNull CourtsMapContract.View mapView) {
         mCourtsMapView = checkNotNull(mapView, "mapView cannot be null!");
@@ -38,6 +46,24 @@ public class CourtsMapPresenter implements CourtsMapContract.Presenter {
     public void result(int requestCode, int resultCode) {
 
     }
+
+    @Override
+    public void getLocationPermission(Activity activity) {
+
+        String[] permissions = {FINE_PERMISSION, COARSE_PERMISSION};
+
+        if (ContextCompat.checkSelfPermission(activity, FINE_PERMISSION) == PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(activity, COARSE_PERMISSION) == PackageManager.PERMISSION_GRANTED) {
+                mCourtsMapView.getLocationPermissionGranted(true);
+                mCourtsMapView.initMap();
+            } else {
+                ActivityCompat.requestPermissions(activity, permissions, MY_PERMISSIONS_REQUEST_LOCATION);
+            }
+        } else {
+            ActivityCompat.requestPermissions(activity, permissions, MY_PERMISSIONS_REQUEST_LOCATION);
+        }
+    }
+
 
     @Override
     public void getCurrentCourtPopulation() {

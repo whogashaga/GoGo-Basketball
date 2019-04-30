@@ -1,7 +1,11 @@
 package com.kerry.gogobasketball.login;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.kerry.gogobasketball.data.User;
@@ -38,6 +42,24 @@ public class LoginPresenter implements LoginContract.Presenter {
                 Log.d(Constants.TAG,"LoginFragment Token 過期!");
             }
         });
+    }
+
+    private final String FINE_PERMISSION = Manifest.permission.ACCESS_FINE_LOCATION;
+    private final String COARSE_PERMISSION = Manifest.permission.ACCESS_COARSE_LOCATION;
+    private final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+    @Override
+    public void getLocationPermissionWhenLogin(Activity activity) {
+        String[] permissions = {FINE_PERMISSION, COARSE_PERMISSION};
+
+        if (ContextCompat.checkSelfPermission(activity, FINE_PERMISSION) == PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(activity, COARSE_PERMISSION) == PackageManager.PERMISSION_GRANTED) {
+
+            } else {
+                ActivityCompat.requestPermissions(activity, permissions, MY_PERMISSIONS_REQUEST_LOCATION);
+            }
+        } else {
+            ActivityCompat.requestPermissions(activity, permissions, MY_PERMISSIONS_REQUEST_LOCATION);
+        }
     }
 
     @Override

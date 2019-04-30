@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.home.map;
 
+import android.app.Activity;
+
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
 
@@ -13,6 +15,10 @@ public interface CourtsMapContract {
 
         void refreshMarkers();
 
+        void initMap();
+
+        void getLocationPermissionGranted(boolean locationPermissionGranted);
+
     }
 
     interface Presenter extends BasePresenter {
@@ -24,6 +30,8 @@ public interface CourtsMapContract {
         void setOnPopulationChangeListener();
 
         void removeListener();
+
+        void getLocationPermission(Activity activity);
 
     }
 }

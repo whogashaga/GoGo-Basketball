@@ -263,6 +263,15 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
+    public void getLocationPermission(Activity activity) {
+        if (mCourtsMapPresenter != null){
+            mCourtsMapPresenter.getLocationPermission(activity);
+        } else {
+            Log.d("Kerry", "getLocationPermission Fail : mCourtsMapPresenter is null !");
+        }
+    }
+
+    @Override
     public void logoutFacebook() {
         mLogoutPresenter.logoutFacebook();
     }
@@ -957,7 +966,12 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mMainView.showMessageDialogUi(MessageDialog.CREATE_USER_SUCCESS);
     }
 
+    @Override
+    public void getLocationPermissionWhenLogin(Activity activity) {
+        mLoginPresenter.getLocationPermissionWhenLogin(activity);
+    }
     // from login fragment
+
     @Override
     public void loginFbOnClick(Activity activity) {
         mLoginPresenter.loginFbOnClick(activity);
