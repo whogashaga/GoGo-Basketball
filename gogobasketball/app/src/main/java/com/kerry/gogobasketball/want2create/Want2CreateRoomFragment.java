@@ -260,11 +260,9 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         if (clickable) {
             mBtnCreateConfirm.setClickable(true);
             mBtnCreateConfirm.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.black_3f3a3a));
-//            mBtnCreateConfirm.setBackgroundResource(R.drawable.btn_effect_custom);
         } else {
             mBtnCreateConfirm.setClickable(false);
             mBtnCreateConfirm.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.gray_cccccc));
-//            mBtnCreateConfirm.setBackgroundResource(R.drawable.btn_gray_ripple);
         }
     }
 

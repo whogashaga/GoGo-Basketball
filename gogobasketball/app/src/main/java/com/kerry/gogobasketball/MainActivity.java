@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
+import com.facebook.AccessToken;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -102,7 +103,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         mMainMvpController = MainMvpController.create(this);
 
         if (UserManager.getInstance().isLoggedIn()) {
-            mPresenter.onLoginSuccessBeforeOpenApp(getFacebookIdString(Constants.FACEBOOK_ID_FILE));
+            mPresenter.onLoginSuccessBeforeOpenApp(AccessToken.getCurrentAccessToken().getUserId().trim());
         } else {
             mPresenter.showLoginFragment();
         }

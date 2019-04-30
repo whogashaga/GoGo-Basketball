@@ -12,8 +12,8 @@ import java.util.regex.Pattern;
 
 public class NameLengthFilter implements InputFilter {
 
-    int MAX_EN; // 最大英文/数字长度 一个汉字算两个字母
-    String regEx = "[\\u4e00-\\u9fa5]"; // unicode编码，判断是否为汉字
+    int MAX_EN; // 最大英文/數字長度 一個漢字算兩个字母
+    String regEx = "[\\u4e00-\\u9fa5]"; // unicode 編碼，判斷是否為漢字
 
     public NameLengthFilter(int mAX_EN) {
         super();
@@ -23,24 +23,23 @@ public class NameLengthFilter implements InputFilter {
     @Override
     public CharSequence filter(CharSequence source, int start, int end,
                                Spanned dest, int dstart, int dend) {
-        int destCount = dest.toString().length()
-                + getChineseCount(dest.toString());
-        int sourceCount = source.toString().length()
-                + getChineseCount(source.toString());
+
+        int destCount = dest.toString().length() + getChineseCount(dest.toString());
+
+        int sourceCount = source.toString().length() + getChineseCount(source.toString());
+
         String speChat = "[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]";
         Pattern pattern = Pattern.compile(speChat);
         Matcher matcher = pattern.matcher(source.toString());
 
         if (destCount + sourceCount > MAX_EN) {
-            Toast.makeText(GoGoBasketball.getAppContext(),
-                    GoGoBasketball.getAppContext().getString(R.string.over_limit_letter_count),
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(GoGoBasketball.getAppContext(), GoGoBasketball.getAppContext().getString(R.string.over_limit_letter_count), Toast.LENGTH_SHORT).show();
             return "";
         } else if (matcher.find()) {
             return "";
         } else if (source.equals(" ") || source.toString().contentEquals("\n")) {
             return "";
-        }else {
+        } else {
             return source;
         }
     }

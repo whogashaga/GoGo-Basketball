@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.facebook.AccessToken;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -74,7 +75,7 @@ public class ChangeIdPresenter implements ChangeIdContract.Presenter {
 
         FirestoreHelper.getFirestore()
                 .collection(Constants.USERS)
-                .document(((MainActivity) activity).getFacebookIdString(Constants.FACEBOOK_ID_FILE))
+                .document(AccessToken.getCurrentAccessToken().getUserId().trim())
                 .update(Constants.USER_ID, mNewId)
                 .addOnSuccessListener(aVoid -> {
                     Log.d(Constants.TAG, "更換 Position 完成 ！!");

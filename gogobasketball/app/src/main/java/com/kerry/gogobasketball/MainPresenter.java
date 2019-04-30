@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -1347,7 +1348,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private void checkIfUpdateLocation(Activity activity, String location) {
 
         mCourtsLocation = location;
-        String FacebookId = ((MainActivity) activity).getFacebookIdString(Constants.FACEBOOK_ID_FILE);
+        String FacebookId = AccessToken.getCurrentAccessToken().getUserId().trim();
 
         DocumentReference docRef = FirestoreHelper.getFirestore()
                 .collection(Constants.COURTS)
@@ -1571,7 +1572,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void removeHandler() {
+        Log.w("Kerry", "removeHandler: ");
         mHandler.removeCallbacks(mRunnable);
+//        mHandler = null;
+//        mRunnable = null;
     }
 
 }

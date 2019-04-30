@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.facebook.AccessToken;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.kerry.gogobasketball.FirestoreHelper;
@@ -51,7 +52,7 @@ public class ChangeGenderPresenter implements ChangeGenderContract.Presenter {
     private void updateGenderData(Activity activity) {
         FirestoreHelper.getFirestore()
                 .collection(Constants.USERS)
-                .document(((MainActivity) activity).getFacebookIdString(Constants.FACEBOOK_ID_FILE))
+                .document(AccessToken.getCurrentAccessToken().getUserId().trim())
                 .update(Constants.USER_GENDER, mNewGender)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

@@ -91,6 +91,7 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
 
         mBtnCreateUserConfirm = root.findViewById(R.id.btn_create_user_confirm);
         mBtnCreateUserConfirm.setOnClickListener(this);
+        mBtnCreateUserConfirm.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.gray_cccccc));
         return root;
     }
 
@@ -178,10 +179,10 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
 
         if (clickable) {
             mBtnCreateUserConfirm.setClickable(true);
-            mBtnCreateUserConfirm.setBackgroundResource(R.drawable.btn_black_ripple);
+            mBtnCreateUserConfirm.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.black_3f3a3a));
         } else {
             mBtnCreateUserConfirm.setClickable(false);
-            mBtnCreateUserConfirm.setBackgroundResource(R.drawable.btn_gray_ripple);
+            mBtnCreateUserConfirm.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.gray_cccccc));
         }
     }
 
