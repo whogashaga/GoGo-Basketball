@@ -1244,6 +1244,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void checkIfUserNewIdExists(Activity activity) {
         mChangeIdPresenter.checkIfUserNewIdExists(activity);
+
     }
 
     /* ------------------------------------------------------------------------------------------ */

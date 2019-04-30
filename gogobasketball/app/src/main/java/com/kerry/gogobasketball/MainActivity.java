@@ -68,17 +68,11 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     private View mView;
     FirebaseFirestore mDb = FirebaseFirestore.getInstance();
 
-    //    private DrawerLayout mDrawerLayout;
-    //    private ActionBarDrawerToggle mActionBarDrawerToggle;
     private BottomNavigationView mBottomNavigation;
     private MessageDialog mMessageDialog;
     private Toolbar mToolbar;
     private TextView mToolbarTitle;
     private ImageView mToolbarLogo;
-    //    private View mBadge;
-//    private ImageView mDrawerUserImage;
-//    private TextView mDrawerUserName;
-//    private TextView mDrawerUserInfo;
     private MainMvpController mMainMvpController;
     private boolean doubleBackToExitPressedOnce = false;
 
@@ -110,8 +104,10 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
         setToolbar();
         setBottomNavigation();
+
         mPresenter.getDeviceCurrentLocation(this);
 //        mPresenter.setLocationHandler(this);
+
     }
 
     @Override
@@ -579,7 +575,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
             }
             this.doubleBackToExitPressedOnce = true;
             Toast.makeText(this, "離開請再按一次 ' 返回 ' ", Toast.LENGTH_SHORT).show();
-
             new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
         }
 
