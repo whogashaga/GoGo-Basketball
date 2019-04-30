@@ -33,6 +33,15 @@ public interface RefereeGoingContract {
 
         void setTextScoreTeamB(String textScoreTeamB);
 
+        void setTextReboundTeamA(String textReboundTeamA);
+
+        void setTextReboundTeamB(String textReboundTeamB);
+
+        void setTextFoulTeamA(String textFoulTeamA);
+
+        void setTextFoulTeamB(String textFoulTeamB);
+
+
         void setTextScoreP1(String textScoreViewP1);
 
         void setBtnClickableScoreMinusP1(boolean clickable);

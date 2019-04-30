@@ -27,7 +27,7 @@ public class ProfilePresenter implements ProfileContract.Presenter {
 
     @Override
     public void loadProfileUserData(Activity activity) {
-        UserManager.getInstance().getUserProfile(activity, new UserManager.LoadCallback() {
+        UserManager.getInstance().getUserProfile(new UserManager.LoadCallback() {
             @Override
             public void onSuccess(User user) {
                 mUser = user;

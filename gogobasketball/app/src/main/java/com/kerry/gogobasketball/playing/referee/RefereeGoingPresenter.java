@@ -10,14 +10,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.FirestoreHelper;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
 import com.kerry.gogobasketball.data.User;
-import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.UserManager;
 
@@ -34,8 +31,9 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
     private int mIntScoreP4, mIntReboundP4, mIntFoulP4;
     private int mIntScoreP5, mIntReboundP5, mIntFoulP5;
     private int mIntScoreP6, mIntReboundP6, mIntFoulP6;
-    private int mIntScoreA;
-    private int mIntScoreB;
+    private int mIntScoreA, mIntScoreB;
+    private int mIntReboundA, mIntReboundB;
+    private int mIntFoulA, mIntFoulB;
 
     public RefereeGoingPresenter(@NonNull RefereeGoingContract.View refereeGoingView) {
         mGamePlayingView = checkNotNull(refereeGoingView, "GamePlayingView cannot be null!");
@@ -138,7 +136,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
 
     @Override
     public void getRefereeUserData(Activity activity) {
-        UserManager.getInstance().getUserProfile(activity, new UserManager.LoadCallback() {
+        UserManager.getInstance().getUserProfile(new UserManager.LoadCallback() {
             @Override
             public void onSuccess(User user) {
                 plusOneJustice(user);
@@ -210,14 +208,34 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
 
     /* ------------------------------------------------------------------------------------------ */
 
-    public int getIntScoreA() {
+    private int getIntScoreA() {
         mIntScoreA = mIntScoreP1 + mIntScoreP2 + mIntScoreP3;
         return mIntScoreA;
     }
 
-    public int getIntScoreB() {
+    private int getIntScoreB() {
         mIntScoreB = mIntScoreP4 + mIntScoreP5 + mIntScoreP6;
         return mIntScoreB;
+    }
+
+    private int getIntReboundA() {
+        mIntReboundA = mIntReboundP1 + mIntReboundP2 + mIntReboundP3;
+        return mIntReboundA;
+    }
+
+    public int getIntReboundB() {
+        mIntReboundB = mIntReboundP4 + mIntReboundP5 + mIntReboundP6;
+        return mIntReboundB;
+    }
+
+    public int getIntFoulA() {
+        mIntFoulA = mIntFoulP1 + mIntFoulP2 + mIntFoulP3;
+        return mIntFoulA;
+    }
+
+    public int getIntFoulB() {
+        mIntFoulB = mIntFoulP4 + mIntFoulP5 + mIntFoulP6;
+        return mIntFoulB;
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -256,6 +274,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
         if (mIntReboundP1 < 20) {
             mIntReboundP1 += 1;
             mGamePlayingView.setTextReboundP1(String.valueOf(mIntReboundP1));
+            mGamePlayingView.setTextReboundTeamA(String.valueOf(getIntReboundA()));
             mGamePlayingView.setBtnClickableReboundMinusP1(true);
         } else {
             mGamePlayingView.setBtnClickableReboundPlusP1(false);
@@ -268,6 +287,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
         if (0 < mIntReboundP1 && mIntReboundP1 < 21) {
             mIntReboundP1 -= 1;
             mGamePlayingView.setTextReboundP1(String.valueOf(mIntReboundP1));
+            mGamePlayingView.setTextReboundTeamA(String.valueOf(getIntReboundA()));
             mGamePlayingView.setBtnClickableReboundPlusP1(true);
         } else {
             mGamePlayingView.setBtnClickableReboundMinusP1(false);
@@ -278,8 +298,8 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
     public void increaseFoulP1() {
         if (mIntFoulP1 < 10) {
             mIntFoulP1 += 1;
-
             mGamePlayingView.setTextFoulP1(String.valueOf(mIntFoulP1));
+            mGamePlayingView.setTextFoulTeamA(String.valueOf(getIntFoulA()));
             mGamePlayingView.setBtnClickableFoulMinusP1(true);
         } else {
             mGamePlayingView.setBtnClickableFoulPlusP1(false);
@@ -291,6 +311,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
         if (0 < mIntFoulP1 && mIntFoulP1 < 11) {
             mIntFoulP1 -= 1;
             mGamePlayingView.setTextFoulP1(String.valueOf(mIntFoulP1));
+            mGamePlayingView.setTextFoulTeamA(String.valueOf(getIntFoulA()));
             mGamePlayingView.setBtnClickableFoulPlusP1(true);
         } else {
             mGamePlayingView.setBtnClickableFoulMinusP1(false);
@@ -333,6 +354,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
         if (mIntReboundP2 < 20) {
             mIntReboundP2 += 1;
             mGamePlayingView.setTextReboundP2(String.valueOf(mIntReboundP2));
+            mGamePlayingView.setTextReboundTeamA(String.valueOf(getIntReboundA()));
             mGamePlayingView.setBtnClickableReboundMinusP2(true);
         } else {
             mGamePlayingView.setBtnClickableReboundPlusP2(false);
@@ -345,6 +367,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
         if (0 < mIntReboundP2 && mIntReboundP2 < 21) {
             mIntReboundP2 -= 1;
             mGamePlayingView.setTextReboundP2(String.valueOf(mIntReboundP2));
+            mGamePlayingView.setTextReboundTeamA(String.valueOf(getIntReboundA()));
             mGamePlayingView.setBtnClickableReboundPlusP2(true);
         } else {
             mGamePlayingView.setBtnClickableReboundMinusP2(false);
@@ -355,7 +378,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
     public void increaseFoulP2() {
         if (mIntFoulP2 < 10) {
             mIntFoulP2 += 1;
-
+            mGamePlayingView.setTextFoulTeamA(String.valueOf(getIntFoulA()));
             mGamePlayingView.setTextFoulP2(String.valueOf(mIntFoulP2));
             mGamePlayingView.setBtnClickableFoulMinusP2(true);
         } else {
@@ -368,6 +391,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
         if (0 < mIntFoulP2 && mIntFoulP2 < 11) {
             mIntFoulP2 -= 1;
             mGamePlayingView.setTextFoulP2(String.valueOf(mIntFoulP2));
+            mGamePlayingView.setTextFoulTeamA(String.valueOf(getIntFoulA()));
             mGamePlayingView.setBtnClickableFoulPlusP2(true);
         } else {
             mGamePlayingView.setBtnClickableFoulMinusP2(false);
@@ -410,6 +434,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
         if (mIntReboundP3 < 20) {
             mIntReboundP3 += 1;
             mGamePlayingView.setTextReboundP3(String.valueOf(mIntReboundP3));
+            mGamePlayingView.setTextReboundTeamA(String.valueOf(getIntReboundA()));
             mGamePlayingView.setBtnClickableReboundMinusP3(true);
         } else {
             mGamePlayingView.setBtnClickableReboundPlusP3(false);
@@ -422,6 +447,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
         if (0 < mIntReboundP3 && mIntReboundP3 < 21) {
             mIntReboundP3 -= 1;
             mGamePlayingView.setTextReboundP3(String.valueOf(mIntReboundP3));
+            mGamePlayingView.setTextReboundTeamA(String.valueOf(getIntReboundA()));
             mGamePlayingView.setBtnClickableReboundPlusP3(true);
         } else {
             mGamePlayingView.setBtnClickableReboundMinusP3(false);
@@ -432,7 +458,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
     public void increaseFoulP3() {
         if (mIntFoulP3 < 10) {
             mIntFoulP3 += 1;
-
+            mGamePlayingView.setTextFoulTeamA(String.valueOf(getIntFoulA()));
             mGamePlayingView.setTextFoulP3(String.valueOf(mIntFoulP3));
             mGamePlayingView.setBtnClickableFoulMinusP3(true);
         } else {
@@ -445,6 +471,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
         if (0 < mIntFoulP3 && mIntFoulP3 < 11) {
             mIntFoulP3 -= 1;
             mGamePlayingView.setTextFoulP3(String.valueOf(mIntFoulP3));
+            mGamePlayingView.setTextFoulTeamA(String.valueOf(getIntFoulA()));
             mGamePlayingView.setBtnClickableFoulPlusP3(true);
         } else {
             mGamePlayingView.setBtnClickableFoulMinusP3(false);
@@ -487,6 +514,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
         if (mIntReboundP4 < 20) {
             mIntReboundP4 += 1;
             mGamePlayingView.setTextReboundP4(String.valueOf(mIntReboundP4));
+            mGamePlayingView.setTextReboundTeamB(String.valueOf(getIntReboundB()));
             mGamePlayingView.setBtnClickableReboundMinusP4(true);
         } else {
             mGamePlayingView.setBtnClickableReboundPlusP4(false);
@@ -499,6 +527,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
         if (0 < mIntReboundP4 && mIntReboundP4 < 21) {
             mIntReboundP4 -= 1;
             mGamePlayingView.setTextReboundP4(String.valueOf(mIntReboundP4));
+            mGamePlayingView.setTextReboundTeamB(String.valueOf(getIntReboundB()));
             mGamePlayingView.setBtnClickableReboundPlusP4(true);
         } else {
             mGamePlayingView.setBtnClickableReboundMinusP4(false);
@@ -511,6 +540,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
             mIntFoulP4 += 1;
 
             mGamePlayingView.setTextFoulP4(String.valueOf(mIntFoulP4));
+            mGamePlayingView.setTextFoulTeamB(String.valueOf(getIntFoulB()));
             mGamePlayingView.setBtnClickableFoulMinusP4(true);
         } else {
             mGamePlayingView.setBtnClickableFoulPlusP4(false);
@@ -522,6 +552,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
         if (0 < mIntFoulP4 && mIntFoulP4 < 11) {
             mIntFoulP4 -= 1;
             mGamePlayingView.setTextFoulP4(String.valueOf(mIntFoulP4));
+            mGamePlayingView.setTextFoulTeamB(String.valueOf(getIntFoulB()));
             mGamePlayingView.setBtnClickableFoulPlusP4(true);
         } else {
             mGamePlayingView.setBtnClickableFoulMinusP4(false);
@@ -564,6 +595,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
         if (mIntReboundP5 < 20) {
             mIntReboundP5 += 1;
             mGamePlayingView.setTextReboundP5(String.valueOf(mIntReboundP5));
+            mGamePlayingView.setTextReboundTeamB(String.valueOf(getIntReboundB()));
             mGamePlayingView.setBtnClickableReboundMinusP5(true);
         } else {
             mGamePlayingView.setBtnClickableReboundPlusP5(false);
@@ -576,6 +608,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
         if (0 < mIntReboundP5 && mIntReboundP5 < 21) {
             mIntReboundP5 -= 1;
             mGamePlayingView.setTextReboundP5(String.valueOf(mIntReboundP5));
+            mGamePlayingView.setTextReboundTeamB(String.valueOf(getIntReboundB()));
             mGamePlayingView.setBtnClickableReboundPlusP5(true);
         } else {
             mGamePlayingView.setBtnClickableReboundMinusP5(false);
@@ -588,6 +621,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
             mIntFoulP5 += 1;
 
             mGamePlayingView.setTextFoulP5(String.valueOf(mIntFoulP5));
+            mGamePlayingView.setTextFoulTeamB(String.valueOf(getIntFoulB()));
             mGamePlayingView.setBtnClickableFoulMinusP5(true);
         } else {
             mGamePlayingView.setBtnClickableFoulPlusP5(false);
@@ -599,6 +633,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
         if (0 < mIntFoulP5 && mIntFoulP5 < 11) {
             mIntFoulP5 -= 1;
             mGamePlayingView.setTextFoulP5(String.valueOf(mIntFoulP5));
+            mGamePlayingView.setTextFoulTeamB(String.valueOf(getIntFoulB()));
             mGamePlayingView.setBtnClickableFoulPlusP5(true);
         } else {
             mGamePlayingView.setBtnClickableFoulMinusP5(false);
@@ -606,7 +641,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
     }
 
     /* ------------------------------------------------------------------------------------------ */
-    /* Player5 */
+    /* Player6 */
 
     @Override
     public void increaseScoreP6() {
@@ -641,6 +676,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
         if (mIntReboundP6 < 20) {
             mIntReboundP6 += 1;
             mGamePlayingView.setTextReboundP6(String.valueOf(mIntReboundP6));
+            mGamePlayingView.setTextReboundTeamB(String.valueOf(getIntReboundB()));
             mGamePlayingView.setBtnClickableReboundMinusP6(true);
         } else {
             mGamePlayingView.setBtnClickableReboundPlusP6(false);
@@ -653,6 +689,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
         if (0 < mIntReboundP6 && mIntReboundP6 < 21) {
             mIntReboundP6 -= 1;
             mGamePlayingView.setTextReboundP6(String.valueOf(mIntReboundP6));
+            mGamePlayingView.setTextReboundTeamB(String.valueOf(getIntReboundB()));
             mGamePlayingView.setBtnClickableReboundPlusP6(true);
         } else {
             mGamePlayingView.setBtnClickableReboundMinusP6(false);
@@ -665,6 +702,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
             mIntFoulP6 += 1;
 
             mGamePlayingView.setTextFoulP6(String.valueOf(mIntFoulP6));
+            mGamePlayingView.setTextFoulTeamB(String.valueOf(getIntFoulB()));
             mGamePlayingView.setBtnClickableFoulMinusP6(true);
         } else {
             mGamePlayingView.setBtnClickableFoulPlusP6(false);
@@ -676,6 +714,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
         if (0 < mIntFoulP6 && mIntFoulP6 < 11) {
             mIntFoulP6 -= 1;
             mGamePlayingView.setTextFoulP6(String.valueOf(mIntFoulP6));
+            mGamePlayingView.setTextFoulTeamB(String.valueOf(getIntFoulB()));
             mGamePlayingView.setBtnClickableFoulPlusP6(true);
         } else {
             mGamePlayingView.setBtnClickableFoulMinusP6(false);

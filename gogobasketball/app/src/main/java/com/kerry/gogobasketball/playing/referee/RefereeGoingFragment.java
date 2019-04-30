@@ -31,7 +31,6 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     private Button mBtnP1ScorePlus, mBtnP1ScoreMinus;
     private Button mBtnP1ReboundPlus, mBtnP1ReboundMinus;
     private Button mBtnP1FoulPlus, mBtnP1FoulMinus;
-    private int mIntScoreP1, mIntReboundP1, mIntFoulP1;
     private TextView mTextP1Score, mTextP1Rebound, mTextP1Foul;
     private ImageView mAvatarP1, mGenderP1, mPositionP1;
     private TextView mTextIdP1;
@@ -40,7 +39,6 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     private Button mBtnP2ReboundPlus, mBtnP2ReboundMinus;
     private Button mBtnP2FoulPlus, mBtnP2FoulMinus;
     private TextView mTextP2Score, mTextP2Rebound, mTextP2Foul;
-    private int mIntScoreP2, mIntReboundP2, mIntFoulP2;
     private ImageView mAvatarP2, mGenderP2, mPositionP2;
     private TextView mTextIdP2;
 
@@ -48,7 +46,6 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     private Button mBtnP3ReboundPlus, mBtnP3ReboundMinus;
     private Button mBtnP3FoulPlus, mBtnP3FoulMinus;
     private TextView mTextP3Score, mTextP3Rebound, mTextP3Foul;
-    private int mIntScoreP3, mIntReboundP3, mIntFoulP3;
     private ImageView mAvatarP3, mGenderP3, mPositionP3;
     private TextView mTextIdP3;
 
@@ -56,7 +53,6 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     private Button mBtnP4ReboundPlus, mBtnP4ReboundMinus;
     private Button mBtnP4FoulPlus, mBtnP4FoulMinus;
     private TextView mTextP4Score, mTextP4Rebound, mTextP4Foul;
-    private int mIntScoreP4, mIntReboundP4, mIntFoulP4;
     private ImageView mAvatarP4, mGenderP4, mPositionP4;
     private TextView mTextIdP4;
 
@@ -64,7 +60,6 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     private Button mBtnP5ReboundPlus, mBtnP5ReboundMinus;
     private Button mBtnP5FoulPlus, mBtnP5FoulMinus;
     private TextView mTextP5Score, mTextP5Rebound, mTextP5Foul;
-    private int mIntScoreP5, mIntReboundP5, mIntFoulP5;
     private ImageView mAvatarP5, mGenderP5, mPositionP5;
     private TextView mTextIdP5;
 
@@ -72,19 +67,16 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     private Button mBtnP6ReboundPlus, mBtnP6ReboundMinus;
     private Button mBtnP6FoulPlus, mBtnP6FoulMinus;
     private TextView mTextP6Score, mTextP6Rebound, mTextP6Foul;
-    private int mIntScoreP6, mIntReboundP6, mIntFoulP6;
     private ImageView mAvatarP6, mGenderP6, mPositionP6;
     private TextView mTextIdP6;
 
     private TextView mTeamScoreA, mTeamScoreB;
-    private int mIntScoreA;
-    private int mIntScoreB;
+    private TextView mTeamReboundA, mTeamReboundB;
+    private TextView mTeamFoulA, mTeamFoulB;
+
     private Button mBtnGameOver;
 
-    private GamingRoomInfo mGamingRoomInfo;
-
     public RefereeGoingFragment() {
-        mGamingRoomInfo = new GamingRoomInfo();
     }
 
     public static RefereeGoingFragment newInstance() {
@@ -206,6 +198,10 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
 
         mTeamScoreA = mRoot.findViewById(R.id.text_gaming_current_score_team_a);
         mTeamScoreB = mRoot.findViewById(R.id.text_gaming_current_score_team_b);
+        mTeamReboundA = mRoot.findViewById(R.id.text_gaming_current_rebound_team_a);
+        mTeamReboundB = mRoot.findViewById(R.id.text_gaming_current_rebound_team_b);
+        mTeamFoulA = mRoot.findViewById(R.id.text_gaming_current_foul_team_a);
+        mTeamFoulB = mRoot.findViewById(R.id.text_gaming_current_foul_team_b);
 
         mBtnGameOver = mRoot.findViewById(R.id.btn_gaming_game_over);
         mBtnGameOver.setOnClickListener(this);
@@ -332,45 +328,6 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
         }
     }
 
-
-
-    private GamingRoomInfo setFinalResult(GamingRoomInfo gamingRoomInfo) {
-
-        gamingRoomInfo.getPlayer1().setScore(mIntScoreP1);
-        gamingRoomInfo.getPlayer1().setRebound(mIntReboundP1);
-        gamingRoomInfo.getPlayer1().setFoul(mIntFoulP1);
-
-        gamingRoomInfo.getPlayer2().setScore(mIntScoreP2);
-        gamingRoomInfo.getPlayer2().setRebound(mIntReboundP2);
-        gamingRoomInfo.getPlayer2().setFoul(mIntFoulP2);
-
-        gamingRoomInfo.getPlayer3().setScore(mIntScoreP3);
-        gamingRoomInfo.getPlayer3().setRebound(mIntReboundP3);
-        gamingRoomInfo.getPlayer3().setFoul(mIntFoulP3);
-
-        gamingRoomInfo.getPlayer4().setScore(mIntScoreP4);
-        gamingRoomInfo.getPlayer4().setRebound(mIntReboundP4);
-        gamingRoomInfo.getPlayer4().setFoul(mIntFoulP4);
-
-        gamingRoomInfo.getPlayer5().setScore(mIntScoreP5);
-        gamingRoomInfo.getPlayer5().setRebound(mIntReboundP5);
-        gamingRoomInfo.getPlayer5().setFoul(mIntFoulP5);
-
-        gamingRoomInfo.getPlayer6().setScore(mIntScoreP6);
-        gamingRoomInfo.getPlayer6().setRebound(mIntReboundP6);
-        gamingRoomInfo.getPlayer6().setFoul(mIntFoulP6);
-
-        if (mIntScoreA > mIntScoreB) {
-            gamingRoomInfo.setWinner("a");
-        } else {
-            gamingRoomInfo.setWinner("b");
-        }
-
-        gamingRoomInfo.setStatus(Constants.STATUS_OVER);
-
-        return gamingRoomInfo;
-    }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -459,7 +416,7 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
 
     @Override
     public void showPlayingGameUi(GamingRoomInfo gamingRoomInfo) {
-        mGamingRoomInfo = gamingRoomInfo;
+
         setPlayerInfo(gamingRoomInfo.getPlayer1(), mAvatarP1, mGenderP1, mPositionP1, mTextIdP1);
         setPlayerInfo(gamingRoomInfo.getPlayer2(), mAvatarP2, mGenderP2, mPositionP2, mTextIdP2);
         setPlayerInfo(gamingRoomInfo.getPlayer3(), mAvatarP3, mGenderP3, mPositionP3, mTextIdP3);
@@ -517,14 +474,32 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
 
     @Override
     public void setTextScoreTeamA(String textScoreTeamA) {
-        mIntScoreA = Integer.valueOf(textScoreTeamA);
         mTeamScoreA.setText(textScoreTeamA);
     }
 
     @Override
     public void setTextScoreTeamB(String textScoreTeamB) {
-        mIntScoreB = Integer.valueOf(textScoreTeamB);
         mTeamScoreB.setText(textScoreTeamB);
+    }
+
+    @Override
+    public void setTextReboundTeamA(String textReboundTeamA) {
+        mTeamReboundA.setText(textReboundTeamA);
+    }
+
+    @Override
+    public void setTextReboundTeamB(String textReboundTeamB) {
+        mTeamReboundB.setText(textReboundTeamB);
+    }
+
+    @Override
+    public void setTextFoulTeamA(String textFoulTeamA) {
+        mTeamFoulA.setText(textFoulTeamA);
+    }
+
+    @Override
+    public void setTextFoulTeamB(String textFoulTeamB) {
+        mTeamFoulB.setText(textFoulTeamB);
     }
 
     /* ------------------------------------------------------------------------------------------ */

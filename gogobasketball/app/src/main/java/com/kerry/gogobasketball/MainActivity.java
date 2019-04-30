@@ -105,7 +105,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         setToolbar();
         setBottomNavigation();
 
-        mPresenter.getDeviceCurrentLocation(this);
+        mPresenter.getDeviceCurrentLocation();
 //        mPresenter.setLocationHandler(this);
 
     }
@@ -632,8 +632,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     protected void onResume() {
         super.onResume();
         Log.w("Kerry", "MainActivity onResume: ");
-        mPresenter.getDeviceCurrentLocation(this);
-        mPresenter.setLocationHandler(this);
+        mPresenter.getDeviceCurrentLocation();
+        mPresenter.setLocationHandler();
     }
 
     @Override
@@ -649,7 +649,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         super.onStop();
         Log.d("Kerry", "MainActivity onStop: ");
         if (mPresenter != null) {
-            mPresenter.getUserInfoWhenGetOutOfApp(this);
+            mPresenter.getUserInfoWhenGetOutOfApp();
             mPresenter.removeHandler();
         }
     }
