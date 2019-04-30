@@ -199,17 +199,24 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
                 .title(title)
                 .snippet(snippet)
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_court_pin));
-
-        mMap.addMarker(markerOptions);
+        if (mMap != null) {
+            mMap.addMarker(markerOptions);
+        } else {
+            Log.d(TAG, "addCourtsMarker Error : mMap is null");
+        }
     }
 
     @Override
     public void refreshMarkers() {
         if (mMap != null) {
             mMap.clear();
+        } else {
+            Log.d(TAG, "refreshMarkers Error: mMap is null");
         }
         if (mPresenter != null) {
             mPresenter.getCurrentCourtPopulation();
+        } else {
+            Log.d(TAG, "refreshMarkers Error: mPresenter is null");
         }
     }
 

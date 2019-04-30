@@ -95,8 +95,7 @@ public class UserManager {
      */
     private void loginFacebook(Context context) {
         LoginManager.getInstance().logInWithReadPermissions(
-                (Activity) context, Arrays.asList("public_profile",
-                        "user_friends", "email"));
+                (Activity) context, Arrays.asList("public_profile", "email"));
     }
 
     private void loginGoGoBasketball(Context context, LoginResult loginResult, LoadCallback loadCallback) {
@@ -138,29 +137,30 @@ public class UserManager {
 
     public void getUserProfile(Activity activity, LoadCallback loadCallback) {
 
-        DocumentReference docRef = FirebaseFirestore.getInstance()
-                .collection(Constants.USERS)
-                .document(((MainActivity) activity).getFacebookIdString(Constants.FACEBOOK_ID_FILE));
+        if (AccessToken.getCurrentAccessToken() != null) {
+            DocumentReference docRef = FirebaseFirestore.getInstance()
+                    .collection(Constants.USERS)
+                    .document(AccessToken.getCurrentAccessToken().getUserId().trim());
 
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d(Constants.TAG, "DocumentSnapshot data: " + document.getData());
-                        User userInfo = document.toObject(User.class);
-                        loadCallback.onSuccess(userInfo);
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            Log.d(Constants.TAG, "DocumentSnapshot data: " + document.getData());
+                            User userInfo = document.toObject(User.class);
+                            loadCallback.onSuccess(userInfo);
+                        } else {
+                            Log.d(Constants.TAG, "No such document");
+                            loadCallback.onFail("No such document!");
+                        }
                     } else {
-                        Log.d(Constants.TAG, "No such document");
-                        loadCallback.onFail("No such document!");
+                        Log.d(Constants.TAG, "get failed with ", task.getException());
                     }
-                } else {
-                    Log.d(Constants.TAG, "get failed with ", task.getException());
                 }
-            }
-        }).addOnFailureListener(e -> Log.d(Constants.TAG, " getUserProfile Error !!"));
-
+            }).addOnFailureListener(e -> Log.d(Constants.TAG, " getUserProfile Error !!"));
+        }
     }
 
     public User getUser() {
