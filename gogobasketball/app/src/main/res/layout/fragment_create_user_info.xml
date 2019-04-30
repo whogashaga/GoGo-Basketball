@@ -94,7 +94,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        android:background="@drawable/outline_radio_btn_referee"
+        android:background="@drawable/outline_radio_btn_timer"
         android:checkedButton="@+id/radios_create_male"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/text_create_user_gender_title"
@@ -110,13 +110,13 @@
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
             android:layout_weight="1"
-            android:background="@drawable/radio_background_referee_mode"
+            android:background="@drawable/radio_background_timer"
             android:button="@null"
             android:gravity="center"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
             android:text="@string/gender_male"
-            android:textColor="@color/black_3f3a3a"
+            android:textColor="@color/white"
             android:textSize="16sp" />
 
         <RadioButton
@@ -127,7 +127,7 @@
             android:layout_marginRight="1dp"
             android:layout_marginBottom="1dp"
             android:layout_weight="1"
-            android:background="@drawable/radio_background_referee_mode"
+            android:background="@drawable/radio_background_timer"
             android:button="@null"
             android:gravity="center"
             android:paddingTop="4dp"

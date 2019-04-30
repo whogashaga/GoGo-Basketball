@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -117,7 +118,7 @@ public class FindHostDialog extends DialogFragment implements FindHostContract.V
 
     @Override
     public void showFindNoHost() {
-        mPresenter.showErrorToast("查無此人", true);
+        mPresenter.showErrorToast("查無此人或房間", true);
         mBtnConfirm.setClickable(true);
     }
 

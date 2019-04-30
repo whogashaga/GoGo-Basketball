@@ -154,7 +154,6 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mSpinnerMinuteSelector = mRoot.findViewById(R.id.spinner_timer_selector);
         mTextMinute = mRoot.findViewById(R.id.text_timer_minutes);
         mSpinnerMinuteSelector.setVisibility(View.INVISIBLE);
-        mTextMinute.setVisibility(View.INVISIBLE);
 
         mAvatarP1 = mRoot.findViewById(R.id.waiting_team_a_player1_avatar);
         mAvatarP1.setOutlineProvider(new SeatAvatarOutlineProvider());

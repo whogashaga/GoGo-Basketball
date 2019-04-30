@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -44,6 +45,8 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
     private EditText mEditUserId;
     private Spinner mSpinnerPosition;
     private RadioGroup mRadioGenderSelector;
+    private RadioButton mRadioMale;
+    private RadioButton mRadioFemale;
     private Button mBtnCreateUserConfirm;
 
     public CreateUserFragment() {
@@ -88,6 +91,9 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
         mSpinnerPosition = root.findViewById(R.id.spinner_create_user_position_selector);
         mSpinnerPosition.getBackground().setAlpha(100);
         setSpinnerPosition();
+
+        mRadioMale = root.findViewById(R.id.radios_create_male);
+        mRadioFemale = root.findViewById(R.id.radios_create_female);
 
         mBtnCreateUserConfirm = root.findViewById(R.id.btn_create_user_confirm);
         mBtnCreateUserConfirm.setOnClickListener(this);
@@ -199,11 +205,13 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
         switch (checkedId) {
             case R.id.radios_create_male:
                 mPresenter.getGenderFromRadioGroup(MALE);
-//                Log.d(Constants.TAG, "radio male = " + MALE);
+                mRadioMale.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.white));
+                mRadioFemale.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.black_3f3a3a));
                 break;
             case R.id.radios_create_female:
                 mPresenter.getGenderFromRadioGroup(FEMALE);
-//                Log.d(Constants.TAG, "radio male = " + FEMALE);
+                mRadioMale.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.black_3f3a3a));
+                mRadioFemale.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.white));
                 break;
             default:
                 break;

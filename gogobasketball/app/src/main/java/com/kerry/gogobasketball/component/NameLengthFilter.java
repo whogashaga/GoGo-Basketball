@@ -2,6 +2,7 @@ package com.kerry.gogobasketball.component;
 
 import android.text.InputFilter;
 import android.text.Spanned;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.kerry.gogobasketball.GoGoBasketball;
@@ -31,6 +32,9 @@ public class NameLengthFilter implements InputFilter {
         String speChat = "[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]";
         Pattern pattern = Pattern.compile(speChat);
         Matcher matcher = pattern.matcher(source.toString());
+
+        Log.e("Kerry", "\nsource: : "+source+"\nstart : "+start+"\nend : "+end+"\ndest : "
+                +dest.toString()+"\ndstart : "+dstart+"\ndend : "+dend);
 
         if (destCount + sourceCount > MAX_EN) {
             Toast.makeText(GoGoBasketball.getAppContext(), GoGoBasketball.getAppContext().getString(R.string.over_limit_letter_count), Toast.LENGTH_SHORT).show();

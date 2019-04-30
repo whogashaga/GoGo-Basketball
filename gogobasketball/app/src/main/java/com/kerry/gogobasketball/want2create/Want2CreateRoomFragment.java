@@ -97,6 +97,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         mRadioGroup = root.findViewById(R.id.radios_referee_selector);
         mRadioGroup.setOnCheckedChangeListener(this);
         mRadioBtnNo = root.findViewById(R.id.radios_referee_no);
+        mRadioBtnYes = root.findViewById(R.id.radios_referee_yes);
 
         mBtnCreateConfirm = root.findViewById(R.id.btn_want2create_build_confirm);
         mBtnCreateConfirm.setOnClickListener(this);
@@ -181,6 +182,8 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         switch (checkedId) {
             case R.id.radios_referee_yes:
                 mTextRefereeWarning.setText("裁判模式結果將列入天梯排名");
+                mRadioBtnYes.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.white));
+                mRadioBtnNo.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.black_3f3a3a));
                 mTextRefereeWarning.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.blue_facebook));
                 mPresenter.getRefereeOnOffFromRadioGroup(true);
                 if (mEditorRoomName.getText().length() != 0) {
@@ -189,6 +192,8 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
                 break;
             case R.id.radios_referee_no:
                 mTextRefereeWarning.setText("目前只支援裁判模式～");
+                mRadioBtnYes.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.black_3f3a3a));
+                mRadioBtnNo.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.white));
                 mTextRefereeWarning.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.red_FF001F));
                 mPresenter.getRefereeOnOffFromRadioGroup(false);
                 setBtnCreateConfirmClickable(false);
