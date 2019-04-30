@@ -135,7 +135,7 @@ public class UserManager {
                 .apply();
     }
 
-    public void getUserProfile(Activity activity, LoadCallback loadCallback) {
+    public void getUserProfile(LoadCallback loadCallback) {
 
         if (AccessToken.getCurrentAccessToken() != null) {
             DocumentReference docRef = FirebaseFirestore.getInstance()

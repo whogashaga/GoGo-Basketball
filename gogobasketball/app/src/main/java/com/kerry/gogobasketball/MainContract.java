@@ -155,11 +155,11 @@ public interface MainContract {
 
         void onLoginSuccessBeforeOpenApp(String userDocId);
 
-        void getDeviceCurrentLocation(Activity activity);
+        void getDeviceCurrentLocation();
 
-        void getUserInfoWhenGetOutOfApp(Activity activity);
+        void getUserInfoWhenGetOutOfApp();
 
-        void setLocationHandler(Activity activity);
+        void setLocationHandler();
 
         void removeHandler();
     }

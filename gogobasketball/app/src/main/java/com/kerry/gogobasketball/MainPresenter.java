@@ -265,7 +265,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void getLocationPermission(Activity activity) {
-        if (mCourtsMapPresenter != null){
+        if (mCourtsMapPresenter != null) {
             mCourtsMapPresenter.getLocationPermission(activity);
         } else {
             Log.d("Kerry", "getLocationPermission Fail : mCourtsMapPresenter is null !");
@@ -1294,12 +1294,12 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     /* 加入 */
 
     @Override
-    public void getDeviceCurrentLocation(Activity activity) {
+    public void getDeviceCurrentLocation() {
         Log.e("Kerry", "getDeviceCurrentLocation: ");
         LocationManager.getInstance().getDeviceLocation(new LocationManager.LocationCallback() {
             @Override
             public void onSuccess(double latitude, double longitude) {
-                checkCoordinateScope(activity, latitude, longitude);
+                checkCoordinateScope(latitude, longitude);
             }
 
             @Override
@@ -1309,31 +1309,31 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         });
     }
 
-    private void checkCoordinateScope(Activity activity, double latitude, double longitude) {
+    private void checkCoordinateScope(double latitude, double longitude) {
 
         if (25.042300 <= latitude && latitude <= 25.044416 &&
                 121.563557 <= longitude && longitude <= 121.566868) {
-            checkIfUpdateLocation(activity, Constants.SONG_SAN_HIGH_SCHOOL);
+            checkIfUpdateLocation(Constants.SONG_SAN_HIGH_SCHOOL);
 
         } else if (25.032135 <= latitude && latitude <= 25.032994
                 && 121.561168 <= longitude && longitude <= 121.562496) {
-            checkIfUpdateLocation(activity, Constants.ADIDAS101);
+            checkIfUpdateLocation(Constants.ADIDAS101);
 
         } else if (25.03069 <= latitude && latitude <= 25.032751
                 && 121.534593 <= longitude && longitude <= 121.53753) {
-            checkIfUpdateLocation(activity, Constants.DA_AN);
+            checkIfUpdateLocation(Constants.DA_AN);
 
         } else if (25.019771 <= latitude && latitude <= 25.020811
                 && 121.535612 <= longitude && longitude <= 121.537397) {
-            checkIfUpdateLocation(activity, Constants.TAI_DA_CENTRAL);
+            checkIfUpdateLocation(Constants.TAI_DA_CENTRAL);
 
         } else if (25.044851 <= latitude && latitude <= 25.045585
                 && 121.530165 <= longitude && longitude <= 121.530777) {
-            checkIfUpdateLocation(activity, Constants.XIN_SHENG_VIADUCT);
+            checkIfUpdateLocation(Constants.XIN_SHENG_VIADUCT);
 
         } else if (25.020526 <= latitude && latitude <= 25.021701
                 && 121.50447 <= longitude && longitude <= 121.505921) {
-            checkIfUpdateLocation(activity, Constants.YOUTH_PARK);
+            checkIfUpdateLocation(Constants.YOUTH_PARK);
 
         } else {
             Log.d(Constants.TAG, "不在任何球場範圍內");
@@ -1346,7 +1346,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     }
 
-    private void checkIfUpdateLocation(Activity activity, String location) {
+    private void checkIfUpdateLocation(String location) {
 
         mCourtsLocation = location;
         String FacebookId = AccessToken.getCurrentAccessToken().getUserId().trim();
@@ -1366,7 +1366,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                 } else {
                     Log.d(Constants.TAG, "No such document");
                     // 更新球場人數
-                    getUserInfo(activity, location);
+                    getUserInfo(location);
                 }
             } else {
                 Log.d(Constants.TAG, "get failed with ", task.getException());
@@ -1374,8 +1374,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         }).addOnFailureListener(e -> Log.d(Constants.TAG, " getUserProfile Error !!"));
     }
 
-    private void getUserInfo(Activity activity, String location) {
-        UserManager.getInstance().getUserProfile(activity, new UserManager.LoadCallback() {
+    private void getUserInfo(String location) {
+        UserManager.getInstance().getUserProfile(new UserManager.LoadCallback() {
             @Override
             public void onSuccess(User user) {
                 getPopulationDocSize(user, location);
@@ -1486,8 +1486,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     /* delete when get out app */
 
     @Override
-    public void getUserInfoWhenGetOutOfApp(Activity activity) {
-        UserManager.getInstance().getUserProfile(activity, new UserManager.LoadCallback() {
+    public void getUserInfoWhenGetOutOfApp() {
+        UserManager.getInstance().getUserProfile(new UserManager.LoadCallback() {
             @Override
             public void onSuccess(User user) {
                 deleteMyDocFromCourtsWhenLeave(user);
@@ -1560,15 +1560,15 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     /* set Handler */
     @Override
-    public void setLocationHandler(Activity activity) {
+    public void setLocationHandler() {
         mRunnable = new Runnable() {
             @Override
             public void run() {
-                mHandler.postDelayed(this, 60000);
-                getDeviceCurrentLocation(activity);
+                mHandler.postDelayed(this, 30000);
+                getDeviceCurrentLocation();
             }
         };
-        mHandler.postDelayed(mRunnable, 60000);
+        mHandler.postDelayed(mRunnable, 30000);
     }
 
     @Override

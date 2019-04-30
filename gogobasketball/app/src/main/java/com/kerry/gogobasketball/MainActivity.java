@@ -632,6 +632,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     protected void onResume() {
         super.onResume();
         Log.w("Kerry", "MainActivity onResume: ");
+        mPresenter.getDeviceCurrentLocation(this);
         mPresenter.setLocationHandler(this);
     }
 
