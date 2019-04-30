@@ -35,7 +35,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ic_nav_profile"/>
+            app:srcCompat="@drawable/ic_user_avatar"/>
 
         <TextView
             android:id="@+id/waiting_team_a_player1_id"
@@ -99,7 +99,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/button_effect_info_player"
+            android:drawableTop="@drawable/button_effect_info_referee"
             android:text="@string/person_info"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -114,8 +114,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/button_effect_add_user"
-            android:text="@string/add_user"
+            android:drawableTop="@drawable/button_effect_delete"
+            android:text="@string/delete_user"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_a_player1_info"
             app:layout_constraintEnd_toEndOf="parent"
@@ -146,7 +146,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ic_nav_profile" />
+            app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
             android:id="@+id/waiting_team_a_player2_id"
@@ -212,7 +212,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/button_effect_info_player"
+            android:drawableTop="@drawable/button_effect_info_referee"
             android:text="@string/person_info"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -227,8 +227,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/button_effect_add_user"
-            android:text="@string/add_user"
+            android:drawableTop="@drawable/button_effect_delete"
+            android:text="@string/delete_user"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_a_player2_info"
             app:layout_constraintEnd_toEndOf="parent"
@@ -258,7 +258,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ic_nav_profile" />
+            app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
             android:id="@+id/waiting_team_a_player3_id"
@@ -324,7 +324,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/button_effect_info_player"
+            android:drawableTop="@drawable/button_effect_info_referee"
             android:text="@string/person_info"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -339,8 +339,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/button_effect_add_user"
-            android:text="@string/add_user"
+            android:drawableTop="@drawable/button_effect_delete"
+            android:text="@string/delete_user"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_a_player3_info"
             app:layout_constraintEnd_toEndOf="parent"
@@ -374,7 +374,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ic_nav_profile" />
+            app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
             android:id="@+id/waiting_team_b_player1_id"
@@ -439,7 +439,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/button_effect_info_player"
+            android:drawableTop="@drawable/button_effect_info_referee"
             android:text="@string/person_info"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -454,8 +454,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/button_effect_add_user"
-            android:text="@string/add_user"
+            android:drawableTop="@drawable/button_effect_delete"
+            android:text="@string/delete_user"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_b_player1_info"
             app:layout_constraintEnd_toEndOf="parent"
@@ -483,7 +483,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ic_nav_profile" />
+            app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
             android:id="@+id/waiting_team_b_player2_id"
@@ -548,7 +548,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/button_effect_info_player"
+            android:drawableTop="@drawable/button_effect_info_referee"
             android:text="@string/person_info"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -563,8 +563,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/button_effect_add_user"
-            android:text="@string/add_user"
+            android:drawableTop="@drawable/button_effect_delete"
+            android:text="@string/delete_user"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_b_player2_info"
             app:layout_constraintEnd_toEndOf="parent"
@@ -594,7 +594,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ic_nav_profile" />
+            app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
             android:id="@+id/waiting_team_b_player3_id"
@@ -659,7 +659,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/button_effect_info_player"
+            android:drawableTop="@drawable/button_effect_info_referee"
             android:text="@string/person_info"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -674,8 +674,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/button_effect_add_user"
-            android:text="@string/add_user"
+            android:drawableTop="@drawable/button_effect_delete"
+            android:text="@string/delete_user"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_team_b_player3_info"
             app:layout_constraintEnd_toEndOf="parent"
@@ -709,7 +709,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ic_nav_profile" />
+            app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
             android:id="@+id/waiting_referee_id"
@@ -791,8 +791,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
-            android:drawableTop="@drawable/button_effect_add_user"
-            android:text="@string/add_user"
+            android:drawableTop="@drawable/button_effect_delete"
+            android:text="@string/delete_user"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_referee_info"
             app:layout_constraintEnd_toEndOf="parent"

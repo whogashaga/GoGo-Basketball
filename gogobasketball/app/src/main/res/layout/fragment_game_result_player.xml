@@ -164,7 +164,7 @@
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_result_player_team_a_score_title"
-        app:srcCompat="@drawable/ic_nav_profile" />
+        app:srcCompat="@drawable/ic_user_avatar" />
 
     <TextView
         android:id="@+id/result_player_team_a_player1_id"
@@ -227,7 +227,7 @@
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="@+id/result_player_team_a_player1_avatar"
         app:layout_constraintTop_toBottomOf="@+id/result_player_team_a_player1_avatar"
-        app:srcCompat="@drawable/ic_nav_profile" />
+        app:srcCompat="@drawable/ic_user_avatar" />
 
     <TextView
         android:id="@+id/result_player_team_a_player2_id"
@@ -289,7 +289,7 @@
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="@+id/result_player_team_a_player1_avatar"
         app:layout_constraintTop_toBottomOf="@+id/result_player_team_a_player2_avatar"
-        app:srcCompat="@drawable/ic_nav_profile" />
+        app:srcCompat="@drawable/ic_user_avatar" />
 
     <TextView
         android:id="@+id/result_player_team_a_player3_id"
@@ -394,7 +394,7 @@
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toEndOf="@+id/text_result_player_score_separation"
         app:layout_constraintTop_toTopOf="@+id/result_player_team_a_player1_avatar"
-        app:srcCompat="@drawable/ic_nav_profile" />
+        app:srcCompat="@drawable/ic_user_avatar" />
 
     <TextView
         android:id="@+id/result_player_team_b_player1_id"
@@ -455,7 +455,7 @@
         app:layout_constraintEnd_toEndOf="@+id/result_player_team_b_player1_avatar"
         app:layout_constraintStart_toStartOf="@+id/result_player_team_b_player1_avatar"
         app:layout_constraintTop_toTopOf="@+id/result_player_team_a_player2_avatar"
-        app:srcCompat="@drawable/ic_nav_profile" />
+        app:srcCompat="@drawable/ic_user_avatar" />
 
     <TextView
         android:id="@+id/result_player_team_b_player2_id"
@@ -516,7 +516,7 @@
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="@+id/result_player_team_b_player1_avatar"
         app:layout_constraintTop_toTopOf="@+id/result_player_team_a_player3_avatar"
-        app:srcCompat="@drawable/ic_nav_profile" />
+        app:srcCompat="@drawable/ic_user_avatar" />
 
     <TextView
         android:id="@+id/result_player_team_b_player3_id"

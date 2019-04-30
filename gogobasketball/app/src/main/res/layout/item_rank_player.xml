@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="@+id/rank_player_guideline_v1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_nav_profile" />
+        app:srcCompat="@drawable/ic_user_avatar" />
 
     <TextView
         android:id="@+id/text_rank_player_ranking"
