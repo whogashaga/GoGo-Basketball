@@ -41,7 +41,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     private TextView mTextMinute;
     private TextView mRoomName;
 
-    private ImageButton mBtnBackStack;
+    private ImageButton mBtnBackStack, mBtnFriend, mBtnChat;
     private Button mBtnCancel;
     private Button mBtnStartGame;
 
@@ -140,6 +140,11 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mRoot.getBackground().setAlpha(200);
 
         mRoomName = mRoot.findViewById(R.id.text_waiting4join_room_name);
+        mBtnFriend = mRoot.findViewById(R.id.btn_waiting4join_group);
+        mBtnFriend.setVisibility(View.INVISIBLE);
+        mBtnChat = mRoot.findViewById(R.id.btn_waiting4join_message);
+        mBtnChat.setOnClickListener(this);
+
         mBtnBackStack = mRoot.findViewById(R.id.btn_waiting4join_back_arrow);
         mBtnBackStack.setOnClickListener(this);
         mBtnBackStack.setClickable(false);
@@ -279,6 +284,10 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
                 }
 
                 break;
+
+            case R.id.btn_waiting4join_message:
+                mPresenter.showErrorToast("Coming Soon !", true);
+                break;
             case R.id.btn_waiting_team_a_player1_change_seat:
                 Log.d(Constants.TAG, "onClick seat1");
                 mPresenter.changeMaster2NewSeat(1);
@@ -308,6 +317,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
                 mPresenter.changeMaster2NewSeat(7);
                 break;
             default:
+
                 break;
         }
     }
