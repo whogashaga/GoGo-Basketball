@@ -269,14 +269,14 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
                 mBtnCancel.setClickable(false);
                 break;
             case R.id.btn_waiting4join_start:
-                mPresenter.initializeGamingRoomInfo();
-                mBtnStartGame.setClickable(false);
-//                if (mCurrentGamerAmount == 7) {
-//                    mPresenter.initializeGamingRoomInfo();
-//                    mBtnStartGame.setClickable(false);
-//                } else {
-//                    mPresenter.showErrorToast("人數不足\n無法開始!", true);
-//                }
+//                mPresenter.initializeGamingRoomInfo();
+//                mBtnStartGame.setClickable(false);
+                if (mCurrentGamerAmount == 7) {
+                    mPresenter.initializeGamingRoomInfo();
+                    mBtnStartGame.setClickable(false);
+                } else {
+                    mPresenter.showErrorToast("人數不足\n無法開始!", true);
+                }
 
                 break;
             case R.id.btn_waiting_team_a_player1_change_seat:

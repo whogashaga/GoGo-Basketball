@@ -207,11 +207,17 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
                 mPresenter.getGenderFromRadioGroup(MALE);
                 mRadioMale.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.white));
                 mRadioFemale.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.black_3f3a3a));
+                if (mEditUserId.getText().length() != 0) {
+                    setBtnCreateConfirmClickable(true);
+                }
                 break;
             case R.id.radios_create_female:
                 mPresenter.getGenderFromRadioGroup(FEMALE);
                 mRadioMale.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.black_3f3a3a));
                 mRadioFemale.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.white));
+                if (mEditUserId.getText().length() != 0) {
+                    setBtnCreateConfirmClickable(true);
+                }
                 break;
             default:
                 break;

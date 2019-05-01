@@ -1575,8 +1575,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     public void removeHandler() {
         Log.w("Kerry", "removeHandler: ");
         mHandler.removeCallbacks(mRunnable);
-//        mHandler = null;
-//        mRunnable = null;
     }
 
 }
