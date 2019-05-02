@@ -1295,11 +1295,12 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void getDeviceCurrentLocation() {
-        Log.e("Kerry", "getDeviceCurrentLocation: ");
+        Log.e("Kerry", "MainPresenter getDeviceCurrentLocation: ");
         LocationManager.getInstance().getDeviceLocation(new LocationManager.LocationCallback() {
             @Override
             public void onSuccess(double latitude, double longitude) {
                 checkCoordinateScope(latitude, longitude);
+
             }
 
             @Override
@@ -1349,29 +1350,32 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private void checkIfUpdateLocation(String location) {
 
         mCourtsLocation = location;
-        String FacebookId = AccessToken.getCurrentAccessToken().getUserId().trim();
+        if (AccessToken.getCurrentAccessToken() != null) {
+            String FacebookId = AccessToken.getCurrentAccessToken().getUserId().trim();
+            DocumentReference docRef = FirestoreHelper.getFirestore()
+                    .collection(Constants.COURTS)
+                    .document(location)
+                    .collection(Constants.PLAYERS)
+                    .document(FacebookId);
 
-        DocumentReference docRef = FirestoreHelper.getFirestore()
-                .collection(Constants.COURTS)
-                .document(location)
-                .collection(Constants.PLAYERS)
-                .document(FacebookId);
-
-        docRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
-                if (document.exists()) {
-                    Log.d(Constants.TAG, "DocumentSnapshot data: " + document.getData());
-                    // do nothing
+            docRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(Constants.TAG, "DocumentSnapshot data: " + document.getData());
+                        // do nothing
+                    } else {
+                        Log.d(Constants.TAG, "No such document");
+                        // 更新球場人數
+                        getUserInfo(location);
+                    }
                 } else {
-                    Log.d(Constants.TAG, "No such document");
-                    // 更新球場人數
-                    getUserInfo(location);
+                    Log.d(Constants.TAG, "get failed with ", task.getException());
                 }
-            } else {
-                Log.d(Constants.TAG, "get failed with ", task.getException());
-            }
-        }).addOnFailureListener(e -> Log.d(Constants.TAG, " getUserProfile Error !!"));
+            }).addOnFailureListener(e -> Log.d(Constants.TAG, " getUserProfile Error !!"));
+        } else {
+            Log.e(Constants.TAG, "checkIfUpdateLocation Error: AccessToken is null !");
+        }
     }
 
     private void getUserInfo(String location) {

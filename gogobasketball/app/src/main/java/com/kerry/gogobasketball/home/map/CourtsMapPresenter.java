@@ -94,6 +94,7 @@ public class CourtsMapPresenter implements CourtsMapContract.Presenter {
     public void setOnPopulationChangeListener() {
         Query query = FirestoreHelper.getFirestore()
                 .collection(Constants.COURTS);
+        Log.w("Kerry", "setOnPopulationChangeListener : " + query.toString());
 
         mCourtsListener = query.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override

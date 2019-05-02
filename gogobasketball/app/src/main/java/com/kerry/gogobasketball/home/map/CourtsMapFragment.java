@@ -105,7 +105,7 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
     }
 
     private void getDeviceLocation() {
-        Log.d("Kerry", "getDeviceLocation: getting the device current location");
+        Log.d("Kerry", "Map Fragment getDeviceLocation");
 
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
         try {
@@ -127,7 +127,7 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
             });
 
         } catch (SecurityException e) {
-            Log.e("Kerry", "getDeviceLocation: SecurityException" + e.getMessage());
+            Log.e("Kerry", "Map Fragment getDeviceLocation: SecurityException" + e.getMessage());
         }
     }
 

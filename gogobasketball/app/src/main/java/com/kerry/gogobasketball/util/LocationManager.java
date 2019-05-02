@@ -33,7 +33,7 @@ public class LocationManager {
     }
 
     public void getDeviceLocation(final LocationCallback locationCallback) {
-        Log.d("Kerry", "getDeviceLocation: getting the device current location");
+        Log.d("Kerry", "Location Manager getDeviceLocation: getting the device current location");
 
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(GoGoBasketball.getAppContext());
         try {

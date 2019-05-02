@@ -33,5 +33,6 @@ public interface CourtsMapContract {
 
         void getLocationPermission(Activity activity);
 
+
     }
 }
