@@ -6,10 +6,20 @@ public class CourtsPeople {
 
     private String mId;
     private String mStatus;
+    private String mFacebookId;
 
     public CourtsPeople() {
         mId = "";
+        mFacebookId = "";
         mStatus = Constants.STATUS_WAITING;
+    }
+
+    public String getFacebookId() {
+        return mFacebookId;
+    }
+
+    public void setFacebookId(String mFacebookId) {
+        this.mFacebookId = mFacebookId;
     }
 
     public String getId() {

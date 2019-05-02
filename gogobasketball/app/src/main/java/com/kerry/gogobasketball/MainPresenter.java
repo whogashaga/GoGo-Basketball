@@ -962,6 +962,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void showLogoutSuccessDialog() {
         mMainView.showMessageDialogUi(MessageDialog.LOGOUT_SUCCESS);
+        getUserInfoWhenGetOutOfApp();
     }
 
     @Override
@@ -1327,7 +1328,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void getDeviceCurrentLocation() {
-        Log.e("Kerry", "MainPresenter getDeviceCurrentLocation: ");
+        Log.d("Kerry", "MainPresenter getDeviceCurrentLocation ");
         LocationManager.getInstance().getDeviceLocation(new LocationManager.LocationCallback() {
             @Override
             public void onSuccess(double latitude, double longitude) {
@@ -1399,7 +1400,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     private void checkIfUpdateLocation(String location) {
-
+        Log.d("Kerry", "checkIfUpdateLocation location = " + location);
         mCourtsLocation = location;
         if (AccessToken.getCurrentAccessToken() != null) {
             String FacebookId = AccessToken.getCurrentAccessToken().getUserId().trim();
@@ -1512,6 +1513,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mCourtsLocation = location;
         CourtsPeople courtsPeople = new CourtsPeople();
         courtsPeople.setId(user.getId());
+        courtsPeople.setFacebookId(user.getFacebookId());
 
         FirestoreHelper.getFirestore()
                 .collection(Constants.COURTS)
@@ -1599,6 +1601,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                             }
                         }
                     }).addOnFailureListener(e -> Log.e(Constants.TAG, " getPopulationDocSize Error !!"));
+        } else {
+            Log.d(Constants.TAG, "checkPopulation Error : mCourtsLocation equals \" \" ");
         }
     }
 

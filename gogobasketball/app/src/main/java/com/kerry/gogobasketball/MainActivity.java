@@ -85,9 +85,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         init();
         mView = this.findViewById(R.id.layout_main);
         mView.setBackgroundResource(R.drawable.wheel_dunk_28);
-
-        postCourtsObject();
-
     }
 
     private void init() {
@@ -102,132 +99,13 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
         setToolbar();
         setBottomNavigation();
-
-        mPresenter.getDeviceCurrentLocation();
+//        mPresenter.getDeviceCurrentLocation();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         UserManager.getInstance().getFbCallbackManager().onActivityResult(requestCode, resultCode, data);
-    }
-
-    public void postCourtsObject() {
-
-        CourtsInfo courtsInfo = new CourtsInfo();
-
-//        courtsInfo.setLocation(getString(R.string.song_san_high_school));
-//        courtsInfo.setLat(25.043572);
-//        courtsInfo.setLong(121.565559);
-//        courtsInfo.setLatMin(25.043095);
-//        courtsInfo.setLongMin(121.563557);
-//        courtsInfo.setLatMax(25.044416);
-//        courtsInfo.setLongMax(121.565868);
-//
-//        courtsInfo.setLocation(getString(R.string.adidas_101));
-//        courtsInfo.setLat(25.032598);
-//        courtsInfo.setLong(121.561610);
-//        courtsInfo.setLatMin(25.032135);
-//        courtsInfo.setLongMin(121.561168);
-//        courtsInfo.setLatMax(25.032994);
-//        courtsInfo.setLongMax(121.562496);
-//
-//        courtsInfo.setLocation(getString(R.string.young_park));
-//        courtsInfo.setLat(25.021023);
-//        courtsInfo.setLong(121.505110);
-//        courtsInfo.setLatMin(25.020526);
-//        courtsInfo.setLongMin(121.504470);
-//        courtsInfo.setLatMax(25.021701);
-//        courtsInfo.setLongMax(121.505921);
-//        courtsInfo.setPopulation(0);
-//
-//        courtsInfo.setLocation(getString(R.string.xin_sheng_high));
-//        courtsInfo.setLat(25.045040);
-//        courtsInfo.setLong(121.530423);
-//        courtsInfo.setLatMin(25.044851);
-//        courtsInfo.setLongMin(121.530165);
-//        courtsInfo.setLatMax(25.045585);
-//        courtsInfo.setLongMax(121.530777);
-//
-//        courtsInfo.setLocation(getString(R.string.da_an_park));
-//        courtsInfo.setLat(25.031693);
-//        courtsInfo.setLong(121.535961);
-//        courtsInfo.setLatMin(25.030690);
-//        courtsInfo.setLongMin(121.534593);
-//        courtsInfo.setLatMax(25.032751);
-//        courtsInfo.setLongMax(121.537530);
-//
-//        courtsInfo.setLocation(getString(R.string.tai_da_central));
-//        courtsInfo.setLat(25.020213);
-//        courtsInfo.setLong(121.536475);
-//        courtsInfo.setLatMin(25.019771);
-//        courtsInfo.setLongMin(121.535612);
-//        courtsInfo.setLatMax(25.020811);
-//        courtsInfo.setLongMax(121.537397);
-
-//        courtsInfo.setLocation(getString(R.string.dinosaur_park));
-//        courtsInfo.setLat(25.008116);
-//        courtsInfo.setLong(121.493991);
-//        courtsInfo.setLatMin(25.007798);
-//        courtsInfo.setLongMin(121.490091);
-//        courtsInfo.setLatMax(25.009361);
-//        courtsInfo.setLongMax(121.494754);
-
-//        courtsInfo.setLocation(getString(R.string.fourth_823_park));
-//        courtsInfo.setLat(25.002419);
-//        courtsInfo.setLong(121.514499);
-//        courtsInfo.setLatMin(25.001918);
-//        courtsInfo.setLongMin(121.514287);
-//        courtsInfo.setLatMax(25.002907);
-//        courtsInfo.setLongMax(121.514901);
-
-//        courtsInfo.setLocation(getString(R.string.green_stone_park));
-//        courtsInfo.setLat(25.018408);
-//        courtsInfo.setLong(121.510075);
-//        courtsInfo.setLatMin(25.017736);
-//        courtsInfo.setLongMin(121.509566);
-//        courtsInfo.setLatMax(25.018961);
-//        courtsInfo.setLongMax(121.510660);
-
-//        courtsInfo.setLocation(getString(R.string.wan_ban_bridge));
-//        courtsInfo.setLat(25.028251);
-//        courtsInfo.setLong(121.483837);
-//        courtsInfo.setLatMin(25.027551);
-//        courtsInfo.setLongMin(121.483664);
-//        courtsInfo.setLatMax(25.028681);
-//        courtsInfo.setLongMax(121.484508);
-
-//        courtsInfo.setLocation(getString(R.string.fu_her_bridge));
-//        courtsInfo.setLat(25.006869);
-//        courtsInfo.setLong(121.528114);
-//        courtsInfo.setLatMin(25.006242);
-//        courtsInfo.setLongMin(121.527342);
-//        courtsInfo.setLatMax(25.007506);
-//        courtsInfo.setLongMax(121.528675);
-
-        mBtnCreateUser = findViewById(R.id.main_layout_create_user);
-        mBtnCreateUser.setVisibility(View.VISIBLE);
-        mBtnCreateUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirestoreHelper.getFirestore()
-                        .collection(Constants.COURTS)
-                        .document(Constants.FU_HER_BRIDGE)
-                        .set(courtsInfo)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Log.d(Constants.TAG, "onComplete: courts update");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(Constants.TAG, "Error adding document", e);
-                            }
-                        });
-            }
-        });
     }
 
     /**
