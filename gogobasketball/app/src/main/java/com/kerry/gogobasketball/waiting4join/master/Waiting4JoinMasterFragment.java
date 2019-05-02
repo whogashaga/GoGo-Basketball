@@ -78,11 +78,13 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     private WaitingRoomInfo mWaitingRoomInfo;
     private int mCurrentGamerAmount;
     private int mNowMasterSort;
+    private ArrayList<WaitingRoomSeats> mSeatsList;
 
     public Waiting4JoinMasterFragment() {
         mWaitingRoomInfo = new WaitingRoomInfo();
         mCurrentGamerAmount = -1;
         mNowMasterSort = -1;
+        mSeatsList = new ArrayList<>();
     }
 
     public static Waiting4JoinMasterFragment newInstance() {
@@ -131,6 +133,11 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         }
     }
 
+    @Override
+    public void openUserDetailUi(String userId) {
+        mPresenter.openUserDetailDialogMaster(userId);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -169,6 +176,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mBtnSeatP1.setOnClickListener(this);
         mSeatP1 = mRoot.findViewById(R.id.waiting_team_a_player1_seat);
         mSeatP1.getBackground().setAlpha(230);
+        mBtnInfoP1 = mRoot.findViewById(R.id.btn_waiting_team_a_player1_info);
+        mBtnInfoP1.setOnClickListener(this);
 
         mAvatarP2 = mRoot.findViewById(R.id.waiting_team_a_player2_avatar);
         mAvatarP2.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -182,6 +191,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mBtnSeatP2.setOnClickListener(this);
         mSeatP2 = mRoot.findViewById(R.id.waiting_team_a_player2_seat);
         mSeatP2.getBackground().setAlpha(230);
+        mBtnInfoP2 = mRoot.findViewById(R.id.btn_waiting_team_a_player2_info);
+        mBtnInfoP2.setOnClickListener(this);
 
         mAvatarP3 = mRoot.findViewById(R.id.waiting_team_a_player3_avatar);
         mAvatarP3.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -195,6 +206,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mBtnSeatP3.setOnClickListener(this);
         mSeatP3 = mRoot.findViewById(R.id.waiting_team_a_player3_seat);
         mSeatP3.getBackground().setAlpha(230);
+        mBtnInfoP3 = mRoot.findViewById(R.id.btn_waiting_team_a_player3_info);
+        mBtnInfoP3.setOnClickListener(this);
 
         mAvatarP4 = mRoot.findViewById(R.id.waiting_team_b_player1_avatar);
         mAvatarP4.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -208,6 +221,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mBtnSeatP4.setOnClickListener(this);
         mSeatP4 = mRoot.findViewById(R.id.waiting_team_b_player1_seat);
         mSeatP4.getBackground().setAlpha(230);
+        mBtnInfoP4 = mRoot.findViewById(R.id.btn_waiting_team_b_player1_info);
+        mBtnInfoP4.setOnClickListener(this);
 
         mAvatarP5 = mRoot.findViewById(R.id.waiting_team_b_player2_avatar);
         mAvatarP5.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -221,6 +236,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mBtnSeatP5.setOnClickListener(this);
         mSeatP5 = mRoot.findViewById(R.id.waiting_team_b_player2_seat);
         mSeatP5.getBackground().setAlpha(230);
+        mBtnInfoP5 = mRoot.findViewById(R.id.btn_waiting_team_b_player2_info);
+        mBtnInfoP5.setOnClickListener(this);
 
         mAvatarP6 = mRoot.findViewById(R.id.waiting_team_b_player3_avatar);
         mAvatarP6.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -234,6 +251,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mBtnSeatP6.setOnClickListener(this);
         mSeatP6 = mRoot.findViewById(R.id.waiting_team_b_player3_seat);
         mSeatP6.getBackground().setAlpha(230);
+        mBtnInfoP6 = mRoot.findViewById(R.id.btn_waiting_team_b_player3_info);
+        mBtnInfoP6.setOnClickListener(this);
 
         mAvatarP7 = mRoot.findViewById(R.id.waiting_referee_avatar);
         mAvatarP7.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -247,6 +266,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mBtnSeatP7.setOnClickListener(this);
         mSeatP7 = mRoot.findViewById(R.id.waiting_referee_seat);
         mSeatP7.getBackground().setAlpha(230);
+        mBtnInfoP7 = mRoot.findViewById(R.id.btn_waiting_referee_info);
+        mBtnInfoP7.setOnClickListener(this);
 
         return mRoot;
     }
@@ -318,8 +339,35 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
                 Log.d(Constants.TAG, "onClick seat7");
                 mPresenter.changeMaster2NewSeat(7);
                 break;
+            case R.id.btn_waiting_team_a_player1_info:
+                Log.d(Constants.TAG, "Info seat1");
+                mPresenter.openUserDetailMaster(1);
+                break;
+            case R.id.btn_waiting_team_a_player2_info:
+                Log.d(Constants.TAG, "Info seat2");
+                mPresenter.openUserDetailMaster(2);
+                break;
+            case R.id.btn_waiting_team_a_player3_info:
+                Log.d(Constants.TAG, "Info seat3");
+                mPresenter.openUserDetailMaster(3);
+                break;
+            case R.id.btn_waiting_team_b_player1_info:
+                Log.d(Constants.TAG, "Info seat4");
+                mPresenter.openUserDetailMaster(4);
+                break;
+            case R.id.btn_waiting_team_b_player2_info:
+                Log.d(Constants.TAG, "Info seat5");
+                mPresenter.openUserDetailMaster(5);
+                break;
+            case R.id.btn_waiting_team_b_player3_info:
+                Log.d(Constants.TAG, "Info seat6");
+                mPresenter.openUserDetailMaster(6);
+                break;
+            case R.id.btn_waiting_referee_info:
+                Log.d(Constants.TAG, "Info seat7");
+                mPresenter.openUserDetailMaster(7);
+                break;
             default:
-
                 break;
         }
     }
@@ -332,7 +380,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
 
     @Override
     public void showWaitingSeatsMasterUi(ArrayList<WaitingRoomSeats> newSeatsList) {
-
+        mSeatsList = newSeatsList;
         for (int i = 0; i < 7; i++) {
             if (i == 0) {
                 setUserSeatInfo(newSeatsList.get(i), 1, mAvatarP1, mGenderP1, mPositionP1, mTextIdP1, mBtnSeatP1);

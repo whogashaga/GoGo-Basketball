@@ -80,6 +80,8 @@ import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterContract;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterPresenter;
 import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlaveContract;
 import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlavePresenter;
+import com.kerry.gogobasketball.waiting4join.user_detail.UserDetailContract;
+import com.kerry.gogobasketball.waiting4join.user_detail.UserDetailPresenter;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomContract;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomPresenter;
 
@@ -95,7 +97,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         CommentRefereeContract.Presenter, RankRefereeContract.Presenter,
         RankPlayerContract.Presenter, LogoutContract.Presenter, ChangeIdContract.Presenter
         , ChangePositionContract.Presenter, ChangeGenderContract.Presenter,
-        FindHostContract.Presenter, InstructionContract.Presenter {
+        FindHostContract.Presenter, InstructionContract.Presenter,
+        UserDetailContract.Presenter {
 
     private MainContract.View mMainView;
 
@@ -129,6 +132,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private ChangeGenderPresenter mChangeGenderPresenter;
     private FindHostPresenter mFindHostPresenter;
     private InstructionPresenter mInstructionPresenter;
+    private UserDetailPresenter mUserDetailPresenter;
 
     private static boolean mIsBackKeyDisable;
     private static boolean mIsGamingNow;
@@ -219,6 +223,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     void setCommentRefereePresenter(CommentRefereePresenter commentPresenter) {
         mCommentRefereePresenter = checkNotNull(commentPresenter);
+    }
+
+    void setUserDetailPresenter(UserDetailPresenter userDetailPresenter) {
+        mUserDetailPresenter = checkNotNull(userDetailPresenter);
     }
 
     void setLogoutPresenter(LogoutPresenter logoutPresenter) {
@@ -1125,6 +1133,17 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mMainView.openInstructionUi();
     }
 
+    @Override
+    public void openUserDetailDialogMaster(String userId) {
+        Log.i("Kerry", "sort 1 id = " + userId);
+        mMainView.openUserDetailUi(userId);
+    }
+
+    @Override
+    public void openUserDetailMaster(int sort) {
+        mWaiting4JoinMasterPresenter.openUserDetailMaster(sort);
+    }
+
     /* ------------------------------------------------------------------------------------------ */
     /* Home View Pager Use Only */
 
@@ -1232,6 +1251,16 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         toastTV.setTextSize(16);
         toastTV.setText(message);
         toast.show();
+    }
+
+    @Override
+    public void getUserIdFromWaiting(String userId) {
+        mUserDetailPresenter.getUserIdFromWaiting(userId);
+    }
+
+    @Override
+    public void queryUserInfoDocId() {
+        mUserDetailPresenter.queryUserInfoDocId();
     }
 
     /* ------------------------------------------------------------------------------------------ */

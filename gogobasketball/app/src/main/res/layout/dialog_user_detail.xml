@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/dialog_user_info">
+    android:id="@+id/dialog_user_detail">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/layout_user_info"
-        android:layout_width="wrap_content"
+        android:id="@+id/layout_user_detail"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
@@ -23,18 +23,18 @@
 
 
         <ImageView
-            android:id="@+id/image_dialog_user_avatar"
+            android:id="@+id/image_detail_user_avatar"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/text_dialog_player_record_title"
-            app:layout_constraintStart_toStartOf="@+id/text_dialog_player_record_title"
+            app:layout_constraintBottom_toTopOf="@+id/text_detail_player_record_title"
+            app:layout_constraintStart_toStartOf="@+id/text_detail_player_record_title"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user_avatar" />
 
         <TextView
-            android:id="@+id/text_dialog_user_id"
+            android:id="@+id/text_detail_user_id"
             style="@style/ProfileTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -44,144 +44,144 @@
             android:text="Loading..."
             android:textColor="@color/black_3f3a3a"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/image_dialog_user_gender"
+            app:layout_constraintBottom_toTopOf="@+id/image_detail_user_gender"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/image_dialog_user_avatar"
-            app:layout_constraintTop_toTopOf="@+id/image_dialog_user_avatar" />
+            app:layout_constraintStart_toEndOf="@+id/image_detail_user_avatar"
+            app:layout_constraintTop_toTopOf="@+id/image_detail_user_avatar" />
 
         <ImageView
-            android:id="@+id/image_dialog_user_gender"
+            android:id="@+id/image_detail_user_gender"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            app:layout_constraintBottom_toBottomOf="@+id/image_dialog_user_avatar"
-            app:layout_constraintStart_toStartOf="@+id/text_dialog_user_id"
-            app:layout_constraintTop_toBottomOf="@+id/text_dialog_user_id"
+            app:layout_constraintBottom_toBottomOf="@+id/image_detail_user_avatar"
+            app:layout_constraintStart_toStartOf="@+id/text_detail_user_id"
+            app:layout_constraintTop_toBottomOf="@+id/text_detail_user_id"
             app:srcCompat="@drawable/ic_female" />
 
         <ImageView
-            android:id="@+id/image_dialog_user_position"
+            android:id="@+id/image_detail_user_position"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/image_dialog_user_gender"
-            app:layout_constraintStart_toEndOf="@+id/image_dialog_user_gender"
-            app:layout_constraintTop_toTopOf="@+id/image_dialog_user_gender"
+            app:layout_constraintBottom_toBottomOf="@+id/image_detail_user_gender"
+            app:layout_constraintStart_toEndOf="@+id/image_detail_user_gender"
+            app:layout_constraintTop_toTopOf="@+id/image_detail_user_gender"
             app:srcCompat="@drawable/ic_position_center" />
 
         <TextView
             style="@style/UserInfoDialog"
-            android:id="@+id/text_dialog_games_title"
+            android:id="@+id/text_detail_games_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="總場次"
             android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/text_dialog_win_rate"
-            app:layout_constraintStart_toStartOf="@+id/text_dialog_win_rate"
-            app:layout_constraintTop_toBottomOf="@+id/text_dialog_player_record_title" />
+            app:layout_constraintBottom_toTopOf="@+id/text_detail_win_rate"
+            app:layout_constraintStart_toStartOf="@+id/text_detail_win_rate"
+            app:layout_constraintTop_toBottomOf="@+id/text_detail_player_record_title" />
 
         <TextView
             style="@style/UserInfoDialog"
-            android:id="@+id/text_dialog_win_rate"
+            android:id="@+id/text_detail_win_rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="勝率"
-            app:layout_constraintBottom_toTopOf="@+id/text_dialog_av_score"
-            app:layout_constraintStart_toStartOf="@+id/text_dialog_av_score"
-            app:layout_constraintTop_toBottomOf="@+id/text_dialog_games_title" />
+            app:layout_constraintBottom_toTopOf="@+id/text_detail_av_score"
+            app:layout_constraintStart_toStartOf="@+id/text_detail_av_score"
+            app:layout_constraintTop_toBottomOf="@+id/text_detail_games_title" />
 
         <TextView
             style="@style/UserInfoDialog"
-            android:id="@+id/text_dialog_av_score"
+            android:id="@+id/text_detail_av_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="8dp"
             android:text="場均得分"
-            app:layout_constraintBottom_toTopOf="@+id/text_dialog_av_rebound"
-            app:layout_constraintEnd_toStartOf="@+id/text_dialog_win_rate_content"
+            app:layout_constraintBottom_toTopOf="@+id/text_detail_av_rebound"
+            app:layout_constraintEnd_toStartOf="@+id/text_detail_win_rate_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_dialog_win_rate" />
+            app:layout_constraintTop_toBottomOf="@+id/text_detail_win_rate" />
 
         <TextView
             style="@style/UserInfoDialog"
-            android:id="@+id/text_dialog_av_rebound"
+            android:id="@+id/text_detail_av_rebound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="場均籃板"
-            app:layout_constraintBottom_toTopOf="@+id/text_dialog_av_foul"
-            app:layout_constraintStart_toStartOf="@+id/text_dialog_av_score"
-            app:layout_constraintTop_toBottomOf="@+id/text_dialog_av_score" />
+            app:layout_constraintBottom_toTopOf="@+id/text_detail_av_foul"
+            app:layout_constraintStart_toStartOf="@+id/text_detail_av_score"
+            app:layout_constraintTop_toBottomOf="@+id/text_detail_av_score" />
 
         <TextView
             style="@style/UserInfoDialog"
-            android:id="@+id/text_dialog_av_foul"
+            android:id="@+id/text_detail_av_foul"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="場均犯規"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/text_dialog_av_rebound"
-            app:layout_constraintTop_toBottomOf="@+id/text_dialog_av_rebound" />
+            app:layout_constraintStart_toStartOf="@+id/text_detail_av_rebound"
+            app:layout_constraintTop_toBottomOf="@+id/text_detail_av_rebound" />
 
         <TextView
             style="@style/UserInfoDialog"
-            android:id="@+id/text_dialog_win_rate_content"
+            android:id="@+id/text_detail_win_rate_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:text="87.00%"
-            app:layout_constraintBottom_toBottomOf="@+id/text_dialog_win_rate"
-            app:layout_constraintEnd_toStartOf="@+id/text_dialog_justices"
-            app:layout_constraintStart_toEndOf="@+id/text_dialog_av_score"
-            app:layout_constraintTop_toTopOf="@+id/text_dialog_win_rate"
+            android:text="@string/text_holder_loading"
+            app:layout_constraintBottom_toBottomOf="@+id/text_detail_win_rate"
+            app:layout_constraintEnd_toStartOf="@+id/text_detail_justices"
+            app:layout_constraintStart_toEndOf="@+id/text_detail_av_score"
+            app:layout_constraintTop_toTopOf="@+id/text_detail_win_rate"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             style="@style/UserInfoDialog"
-            android:id="@+id/text_dialog_game_content"
+            android:id="@+id/text_detail_game_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="87"
-            app:layout_constraintBottom_toBottomOf="@+id/text_dialog_games_title"
-            app:layout_constraintStart_toStartOf="@+id/text_dialog_win_rate_content"
-            app:layout_constraintTop_toTopOf="@+id/text_dialog_games_title" />
+            android:text="@string/text_holder_loading"
+            app:layout_constraintBottom_toBottomOf="@+id/text_detail_games_title"
+            app:layout_constraintStart_toStartOf="@+id/text_detail_win_rate_content"
+            app:layout_constraintTop_toTopOf="@+id/text_detail_games_title" />
 
         <TextView
             style="@style/UserInfoDialog"
-            android:id="@+id/text_dialog_av_score_content"
+            android:id="@+id/text_detail_av_score_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3.87"
-            app:layout_constraintBottom_toBottomOf="@+id/text_dialog_av_score"
-            app:layout_constraintStart_toStartOf="@+id/text_dialog_win_rate_content"
-            app:layout_constraintTop_toTopOf="@+id/text_dialog_av_score" />
+            android:text="@string/text_holder_loading"
+            app:layout_constraintBottom_toBottomOf="@+id/text_detail_av_score"
+            app:layout_constraintStart_toStartOf="@+id/text_detail_win_rate_content"
+            app:layout_constraintTop_toTopOf="@+id/text_detail_av_score" />
 
         <TextView
             style="@style/UserInfoDialog"
-            android:id="@+id/text_dialog_av_rebound_content"
+            android:id="@+id/text_detail_av_rebound_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4.87"
-            app:layout_constraintBottom_toBottomOf="@+id/text_dialog_av_rebound"
-            app:layout_constraintStart_toStartOf="@+id/text_dialog_av_score_content"
-            app:layout_constraintTop_toTopOf="@+id/text_dialog_av_rebound" />
+            android:text="@string/text_holder_loading"
+            app:layout_constraintBottom_toBottomOf="@+id/text_detail_av_rebound"
+            app:layout_constraintStart_toStartOf="@+id/text_detail_av_score_content"
+            app:layout_constraintTop_toTopOf="@+id/text_detail_av_rebound" />
 
         <TextView
             style="@style/UserInfoDialog"
-            android:id="@+id/text_dialog_av_foul_content"
+            android:id="@+id/text_detail_av_foul_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="9.87"
-            app:layout_constraintBottom_toBottomOf="@+id/text_dialog_av_foul"
-            app:layout_constraintStart_toStartOf="@+id/text_dialog_av_rebound_content"
-            app:layout_constraintTop_toTopOf="@+id/text_dialog_av_foul" />
+            android:text="@string/text_holder_loading"
+            app:layout_constraintBottom_toBottomOf="@+id/text_detail_av_foul"
+            app:layout_constraintStart_toStartOf="@+id/text_detail_av_rebound_content"
+            app:layout_constraintTop_toTopOf="@+id/text_detail_av_foul" />
 
         <TextView
             style="@style/UserInfoDialog"
-            android:id="@+id/text_dialog_player_record_title"
+            android:id="@+id/text_detail_player_record_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -189,65 +189,75 @@
             android:textSize="12sp"
             android:textStyle="bold"
             android:textColor="@color/black_3f3a3a"
-            app:layout_constraintBottom_toTopOf="@+id/text_dialog_games_title"
-            app:layout_constraintStart_toStartOf="@+id/text_dialog_games_title"
-            app:layout_constraintTop_toBottomOf="@+id/image_dialog_user_avatar" />
+            app:layout_constraintBottom_toTopOf="@+id/text_detail_games_title"
+            app:layout_constraintStart_toStartOf="@+id/text_detail_games_title"
+            app:layout_constraintTop_toBottomOf="@+id/image_detail_user_avatar" />
 
         <TextView
-            android:id="@+id/text_dialog_referee_record_title"
+            android:id="@+id/text_detail_referee_record_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="裁判數據"
             android:textStyle="bold"
             android:textColor="@color/black_3f3a3a"
-            app:layout_constraintBottom_toBottomOf="@+id/text_dialog_player_record_title"
-            app:layout_constraintStart_toStartOf="@+id/text_dialog_justices"
-            app:layout_constraintTop_toTopOf="@+id/text_dialog_player_record_title" />
+            app:layout_constraintBottom_toBottomOf="@+id/text_detail_player_record_title"
+            app:layout_constraintStart_toStartOf="@+id/text_detail_justices"
+            app:layout_constraintTop_toTopOf="@+id/text_detail_player_record_title" />
 
         <TextView
             style="@style/UserInfoDialog"
-            android:id="@+id/text_dialog_justices"
+            android:id="@+id/text_detail_justices"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:text="執法場次"
-            app:layout_constraintBottom_toBottomOf="@+id/text_dialog_game_content"
-            app:layout_constraintEnd_toStartOf="@+id/textView17"
-            app:layout_constraintStart_toEndOf="@+id/text_dialog_win_rate_content"
-            app:layout_constraintTop_toTopOf="@+id/text_dialog_game_content" />
+            app:layout_constraintBottom_toBottomOf="@+id/text_detail_game_content"
+            app:layout_constraintEnd_toStartOf="@+id/text_detail_referee_rating_content"
+            app:layout_constraintStart_toEndOf="@+id/text_detail_win_rate_content"
+            app:layout_constraintTop_toTopOf="@+id/text_detail_game_content" />
 
         <TextView
             style="@style/UserInfoDialog"
-            android:id="@+id/text_dialog_referee_rating"
+            android:id="@+id/text_detail_referee_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="評價"
-            app:layout_constraintBottom_toBottomOf="@+id/text_dialog_win_rate_content"
-            app:layout_constraintStart_toStartOf="@+id/text_dialog_justices"
-            app:layout_constraintTop_toTopOf="@+id/text_dialog_win_rate_content" />
+            app:layout_constraintBottom_toBottomOf="@+id/text_detail_win_rate_content"
+            app:layout_constraintStart_toStartOf="@+id/text_detail_justices"
+            app:layout_constraintTop_toTopOf="@+id/text_detail_win_rate_content" />
 
         <TextView
             style="@style/UserInfoDialog"
-            android:id="@+id/text_dialog_justices_content"
+            android:id="@+id/text_detail_justices_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="23"
-            app:layout_constraintBottom_toBottomOf="@+id/text_dialog_justices"
-            app:layout_constraintStart_toStartOf="@+id/textView17"
-            app:layout_constraintTop_toTopOf="@+id/text_dialog_justices" />
+            android:text="@string/text_holder_loading"
+            app:layout_constraintBottom_toBottomOf="@+id/text_detail_justices"
+            app:layout_constraintStart_toStartOf="@+id/text_detail_referee_rating_content"
+            app:layout_constraintTop_toTopOf="@+id/text_detail_justices" />
 
         <TextView
             style="@style/UserInfoDialog"
-            android:id="@+id/textView17"
+            android:id="@+id/text_detail_referee_rating_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="16dp"
-            android:text="6.91"
-            app:layout_constraintBottom_toBottomOf="@+id/text_dialog_referee_rating"
+            android:text="@string/text_holder_loading"
+            app:layout_constraintBottom_toBottomOf="@+id/text_detail_referee_rating"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/text_dialog_justices"
-            app:layout_constraintTop_toTopOf="@+id/text_dialog_referee_rating" />
+            app:layout_constraintStart_toEndOf="@+id/text_detail_justices"
+            app:layout_constraintTop_toTopOf="@+id/text_detail_referee_rating" />
+
+        <Button
+            android:id="@+id/btn_user_detail_close"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/button_dialog_close_ripple"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </android.support.constraint.ConstraintLayout>

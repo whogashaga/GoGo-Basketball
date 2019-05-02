@@ -58,6 +58,8 @@ import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterFragment;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterPresenter;
 import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlaveFragment;
 import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlavePresenter;
+import com.kerry.gogobasketball.waiting4join.user_detail.UserDetailDialog;
+import com.kerry.gogobasketball.waiting4join.user_detail.UserDetailPresenter;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomFragment;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomPresenter;
 
@@ -84,6 +86,7 @@ public class MainMvpController {
     private RefereeResultPresenter mRefereeResultPresenter;
     private PlayerResultPresenter mPlayerResultPresenter;
     private CommentRefereePresenter mCommentRefereePresenter;
+    private UserDetailPresenter mUserDetailPresenter;
     private LogoutPresenter mLogoutPresenter;
 
     private ChangeIdPresenter mChangeIdPresenter;
@@ -409,11 +412,35 @@ public class MainMvpController {
         } else if (!dialog.isAdded()) {
 //            mWant2CommentPresenter.setAdd2CartProductData(product);
             dialog.show(getFragmentManager(), Constants.COMMENT);
+            mCommentRefereePresenter.getRefereeNameFromResult(refereeName);
         }
     }
 
     /**
      * CommentRefereeDialog View
+     */
+    void findOrCreateUserDetailView(String userId) {
+
+        UserDetailDialog dialog =
+                (UserDetailDialog) getFragmentManager().findFragmentByTag(Constants.USER_DETAIL);
+
+        if (dialog == null) {
+
+            dialog = new UserDetailDialog();
+            mUserDetailPresenter = new UserDetailPresenter(dialog);
+            mMainPresenter.setUserDetailPresenter(mUserDetailPresenter);
+            mUserDetailPresenter.getUserIdFromWaiting(userId);
+            dialog.setPresenter(mMainPresenter);
+            dialog.show(getFragmentManager(), Constants.USER_DETAIL);
+
+        } else if (!dialog.isAdded()) {
+            dialog.show(getFragmentManager(), Constants.USER_DETAIL);
+            mUserDetailPresenter.getUserIdFromWaiting(userId);
+        }
+    }
+
+    /**
+     * Logout View
      */
     void findOrCreateLogoutView() {
 

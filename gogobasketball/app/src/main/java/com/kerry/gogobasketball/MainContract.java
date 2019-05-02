@@ -55,6 +55,8 @@ public interface MainContract {
 
         void openCommentRefereeUi(String refereeName);
 
+        void openUserDetailUi(String userId);
+
         void openCreateUserUi(String userDocId);
 
         void popBackStackUi();

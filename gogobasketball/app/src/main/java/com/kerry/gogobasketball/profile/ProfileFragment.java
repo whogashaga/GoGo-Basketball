@@ -203,13 +203,11 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         mRefereeRating.setText(refereeRating);
     }
 
-    public void setGenderImage(User user, ImageView position) {
+    public void setGenderImage(User user, ImageView gender) {
         if (user.getGender().equals("male")) {
-            position.setVisibility(View.VISIBLE);
-            position.setImageResource(R.drawable.ic_male);
+            gender.setImageResource(R.drawable.ic_male);
         } else {
-            position.setVisibility(View.VISIBLE);
-            position.setImageResource(R.drawable.ic_female);
+            gender.setImageResource(R.drawable.ic_female);
         }
     }
 

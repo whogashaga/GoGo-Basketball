@@ -43,6 +43,7 @@ public class Constants {
 
     // dialog
     public static final String COMMENT = "COMMENT";
+    public static final String USER_DETAIL = "USER_DETAIL";
     public static final String LOGOUT = "LOGOUT";
     public static final String CHANGE_ID = "CHANGE_ID";
     public static final String CHANGE_POSITION = "CHANGE_POSITION";

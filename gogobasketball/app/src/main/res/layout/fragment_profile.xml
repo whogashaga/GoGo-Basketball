@@ -50,7 +50,7 @@
             android:fontFamily="@font/noto_sans"
             android:letterSpacing="0.05"
             android:maxLines="1"
-            android:text="@string/profile_default_name"
+            android:text="@string/text_holder_loading"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/text_profile_Id"
@@ -59,7 +59,7 @@
             app:layout_constraintStart_toEndOf="@+id/image_profile_avatar"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="spread"
-            tools:text="@string/profile_default_name" />
+            tools:text="@string/text_holder_loading" />
 
         <TextView
             android:id="@+id/text_profile_Id"
@@ -79,7 +79,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/text_profile_name"
             app:layout_constraintTop_toBottomOf="@+id/text_profile_name"
-            tools:text="@string/profile_default_information" />
+            tools:text="@string/text_holder_loading" />
 
         <ImageView
             android:id="@+id/image_profile_position"
@@ -258,7 +258,7 @@
             style="@style/ProfileRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="888"
+            android:text="@string/text_holder_loading"
             app:layout_constraintBottom_toBottomOf="@+id/text_profile_total_games_title"
             app:layout_constraintStart_toStartOf="@+id/text_profile_win_rate_content"
             app:layout_constraintTop_toTopOf="@+id/text_profile_total_games_title" />
@@ -269,7 +269,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="666"
+            android:text="@string/text_holder_loading"
             app:layout_constraintBottom_toBottomOf="@+id/text_profile_win_rate_title"
             app:layout_constraintStart_toEndOf="@+id/text_profile_total_games_title"
             app:layout_constraintTop_toTopOf="@+id/text_profile_win_rate_title" />
@@ -279,7 +279,7 @@
             style="@style/ProfileRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="777"
+            android:text="@string/text_holder_loading"
             app:layout_constraintBottom_toBottomOf="@+id/text_profile_total_score_title"
             app:layout_constraintStart_toStartOf="@+id/text_profile_win_rate_content"
             app:layout_constraintTop_toTopOf="@+id/text_profile_total_score_title" />
@@ -289,7 +289,7 @@
             style="@style/ProfileRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="777"
+            android:text="@string/text_holder_loading"
             app:layout_constraintBottom_toBottomOf="@+id/text_profile_total_rebound_title"
             app:layout_constraintStart_toStartOf="@+id/text_profile_win_rate_content"
             app:layout_constraintTop_toTopOf="@+id/text_profile_total_rebound_title" />
@@ -300,7 +300,7 @@
             style="@style/ProfileRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="555"
+            android:text="@string/text_holder_loading"
             app:layout_constraintBottom_toBottomOf="@+id/text_profile_total_foul_title"
             app:layout_constraintStart_toStartOf="@+id/text_profile_win_rate_content"
             app:layout_constraintTop_toTopOf="@+id/text_profile_total_foul_title" />
@@ -311,7 +311,7 @@
             style="@style/ProfileRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="444"
+            android:text="@string/text_holder_loading"
             app:layout_constraintBottom_toBottomOf="@+id/text_profile_av_score_title"
             app:layout_constraintStart_toStartOf="@+id/text_profile_win_rate_content"
             app:layout_constraintTop_toTopOf="@+id/text_profile_av_score_title" />
@@ -322,7 +322,7 @@
             style="@style/ProfileRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="999"
+            android:text="@string/text_holder_loading"
             app:layout_constraintBottom_toBottomOf="@+id/text_profile_av_rebound_title"
             app:layout_constraintStart_toStartOf="@+id/text_profile_win_rate_content"
             app:layout_constraintTop_toTopOf="@+id/text_profile_av_rebound_title" />
@@ -333,7 +333,7 @@
             style="@style/ProfileRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="222"
+            android:text="@string/text_holder_loading"
             app:layout_constraintBottom_toBottomOf="@+id/text_profile_av_foul_title"
             app:layout_constraintStart_toStartOf="@+id/text_profile_win_rate_content"
             app:layout_constraintTop_toTopOf="@+id/text_profile_av_foul_title" />
@@ -343,7 +343,7 @@
             style="@style/ProfileRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="555"
+            android:text="@string/text_holder_loading"
             app:layout_constraintBottom_toBottomOf="@+id/text_profile_total_justices_title"
             app:layout_constraintStart_toStartOf="@+id/text_profile_win_rate_content"
             app:layout_constraintTop_toTopOf="@+id/text_profile_total_justices_title" />
@@ -353,7 +353,7 @@
             style="@style/ProfileRecordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="555"
+            android:text="@string/text_holder_loading"
             app:layout_constraintBottom_toBottomOf="@+id/text_profile_referee_rating_title"
             app:layout_constraintStart_toStartOf="@+id/text_profile_win_rate_content"
             app:layout_constraintTop_toTopOf="@+id/text_profile_referee_rating_title" />

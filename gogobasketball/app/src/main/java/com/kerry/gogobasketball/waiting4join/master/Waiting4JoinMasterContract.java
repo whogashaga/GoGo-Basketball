@@ -24,6 +24,8 @@ public interface Waiting4JoinMasterContract {
 
         void getGamingRoomInfoFromPresenter4GamingFragment(GamingRoomInfo gamingRoomInfo);
 
+        void openUserDetailUi(String userId);
+
     }
 
     interface Presenter extends BasePresenter {
@@ -63,6 +65,10 @@ public interface Waiting4JoinMasterContract {
         void removeListenerMaster();
 
         void openInstructionDialog();
+
+        void openUserDetailDialogMaster(String userId);
+
+        void openUserDetailMaster(int sort);
     }
 
 }

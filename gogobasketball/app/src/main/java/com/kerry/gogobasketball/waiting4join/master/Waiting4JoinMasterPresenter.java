@@ -53,6 +53,34 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     }
 
     /* ------------------------------------------------------------------------------------------ */
+    @Override
+    public void openUserDetailMaster(int sort) {
+        if (sort == 1) {
+            checkIfShowDetail(1);
+        } else if (sort == 2) {
+            checkIfShowDetail(2);
+        } else if (sort == 3) {
+            checkIfShowDetail(3);
+        } else if (sort == 4) {
+            checkIfShowDetail(4);
+        } else if (sort == 5) {
+            checkIfShowDetail(5);
+        } else if (sort == 6) {
+            checkIfShowDetail(6);
+        } else if (sort == 7) {
+            checkIfShowDetail(7);
+        } else {
+            Log.e("Kerry", "openUserDetailMaster Error ");
+        }
+    }
+
+    private void checkIfShowDetail(int sort) {
+        if (mListForChangeSeat.get(sort - 1) != null && !mListForChangeSeat.get(sort - 1).getId().equals("")) {
+            mWaiting4JoinMasterView.openUserDetailUi(mListForChangeSeat.get(sort - 1).getId());
+        } else {
+            Log.d("Kerry", "openUserDetailMaster 1 Error !");
+        }
+    }
 
     @Override
     public void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatsInfo, String roomDocId) {
@@ -226,11 +254,6 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
         mAllSeatsListenerRegistration.remove();
     }
 
-    @Override
-    public void openInstructionDialog() {
-
-    }
-
     private void getNewSeatsInfo() {
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
@@ -254,7 +277,6 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                         for (int j = 0; j < mSeatsInfoList.size(); j++) {
                             emptySeatsList.set(mSeatsInfoList.get(j).getSort() - 1, mSeatsInfoList.get(j));
                         }
-
 //                            Log.e(Constants.TAG, "EmptyList size = " + emptySeatsList.size());
 
                         mWaiting4JoinMasterView.showWaitingSeatsMasterUi(emptySeatsList);
@@ -265,7 +287,8 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                     } else {
                         Log.w(Constants.TAG, "Master getNewSeatsInfo Error!!", task.getException());
                     }
-                }).addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));;
+                }).addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
+        ;
 
     }
 
@@ -434,6 +457,16 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     }
 
     /* ------------------------------------------------------------------------------------------ */
+
+    @Override
+    public void openInstructionDialog() {
+
+    }
+
+    @Override
+    public void openUserDetailDialogMaster(String userId) {
+
+    }
 
     @Override
     public void showErrorToast(String message, boolean isShort) {
