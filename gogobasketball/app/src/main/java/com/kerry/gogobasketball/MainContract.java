@@ -39,6 +39,8 @@ public interface MainContract {
 
         void openFindHostUi();
 
+        void openInstructionUi();
+
         void openCheckOutSuccessUi();
 
         void openWait4JoinUi(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId);
@@ -138,10 +140,6 @@ public interface MainContract {
         void showLoginSuccessDialog();
 
         void showToast(String message);
-
-        void onDrawerOpened();
-
-        void onClickDrawerAvatar();
 
         boolean disableBackKey();
 

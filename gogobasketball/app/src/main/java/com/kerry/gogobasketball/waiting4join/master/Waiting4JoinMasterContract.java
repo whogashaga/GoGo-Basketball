@@ -61,6 +61,8 @@ public interface Waiting4JoinMasterContract {
         void setActivityBackgroundPortrait();
 
         void removeListenerMaster();
+
+        void openInstructionDialog();
     }
 
 }

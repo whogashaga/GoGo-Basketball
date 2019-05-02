@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +40,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     private TextView mTextMinute;
     private TextView mRoomName;
 
-    private ImageButton mBtnBackStack, mBtnFriend, mBtnChat;
+    private ImageButton mBtnBackStack, mBtnInstruction, mBtnChat;
     private Button mBtnCancel;
     private Button mBtnStartGame;
 
@@ -140,8 +139,9 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mRoot.getBackground().setAlpha(200);
 
         mRoomName = mRoot.findViewById(R.id.text_waiting4join_room_name);
-        mBtnFriend = mRoot.findViewById(R.id.btn_waiting4join_group);
-        mBtnFriend.setVisibility(View.INVISIBLE);
+        mBtnInstruction = mRoot.findViewById(R.id.btn_waiting4join_instruction);
+        mBtnInstruction.setOnClickListener(this);
+
         mBtnChat = mRoot.findViewById(R.id.btn_waiting4join_message);
         mBtnChat.setOnClickListener(this);
 
@@ -282,9 +282,11 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
                 } else {
                     mPresenter.showErrorToast("人數不足\n無法開始!", true);
                 }
+                break;
+            case R.id.btn_waiting4join_instruction:
+                mPresenter.openInstructionDialog();
 
                 break;
-
             case R.id.btn_waiting4join_message:
                 mPresenter.showErrorToast("Coming Soon !", true);
                 break;

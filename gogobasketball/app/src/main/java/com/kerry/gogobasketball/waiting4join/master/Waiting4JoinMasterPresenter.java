@@ -226,6 +226,11 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
         mAllSeatsListenerRegistration.remove();
     }
 
+    @Override
+    public void openInstructionDialog() {
+
+    }
+
     private void getNewSeatsInfo() {
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)

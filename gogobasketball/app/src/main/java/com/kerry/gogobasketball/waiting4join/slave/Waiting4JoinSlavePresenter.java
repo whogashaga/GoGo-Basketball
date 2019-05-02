@@ -359,6 +359,11 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
         mAllSeatsListenerRegistration.remove();
     }
 
+    @Override
+    public void openInstructionDialog() {
+
+    }
+
     private void queryCurrentSort() {
         DocumentReference docRef = FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)

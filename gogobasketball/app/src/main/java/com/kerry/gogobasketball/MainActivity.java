@@ -82,13 +82,11 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
-//        startActivity(new Intent(this, LogoActivity.class));
         init();
         mView = this.findViewById(R.id.layout_main);
         mView.setBackgroundResource(R.drawable.wheel_dunk_28);
 
-//        postCustomObject();
-//        getCustomObject();
+//        postCourtsObject();
 
     }
 
@@ -106,8 +104,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         setBottomNavigation();
 
         mPresenter.getDeviceCurrentLocation();
-//        mPresenter.setLocationHandler(this);
-
     }
 
     @Override
@@ -116,7 +112,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         UserManager.getInstance().getFbCallbackManager().onActivityResult(requestCode, resultCode, data);
     }
 
-    public void postCustomObject() {
+    public void postCourtsObject() {
 
         CourtsInfo courtsInfo = new CourtsInfo();
 
@@ -199,20 +195,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         });
     }
 
-    public void getCustomObject() {
-
-        DocumentReference docRef = mDb.collection("custom_obj")
-                .document("waitingRoomInfo1");
-
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                WaitingRoomInfo waitingRoomInfo = documentSnapshot.toObject(WaitingRoomInfo.class);
-            }
-        });
-
-    }
-
     /**
      * Let toolbar to extend to status bar.
      *
@@ -253,46 +235,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         }
 
         BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(1);
-//        mBadge = LayoutInflater.from(this)
-//                .inflate(R.layout.badge_main_bottom, itemView, true);
 
-//        mPresenter.updateFriendBadge();
     }
-
-//    /**
-//     * Set Drawer
-//     */
-//    private void setDrawerLayout() {
-//
-//        mDrawerLayout = (DrawerLayout) findViewById(R.id.layout_main);
-//        mDrawerLayout.setFitsSystemWindows(true);
-//        mDrawerLayout.setClipToPadding(false);
-//
-//        mActionBarDrawerToggle = new ActionBarDrawerToggle(
-//                this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
-//
-//            @Override
-//            public void onDrawerOpened(View drawerView) {
-//                super.onDrawerOpened(drawerView);
-//
-//                mPresenter.onDrawerOpened();
-//            }
-//        };
-//        mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
-//        mActionBarDrawerToggle.syncState();
-//
-//        NavigationView navigationView = findViewById(R.id.navigation_drawer);
-//        navigationView.setNavigationItemSelectedListener(this);
-
-    // nav view header
-//        mDrawerUserImage = navigationView.getHeaderView(0).findViewById(R.id.image_drawer_avatar);
-//        mDrawerUserImage.setOutlineProvider(new SeatAvatarOutlineProvider());
-//        mDrawerUserImage.setOnClickListener(v -> mPresenter.onClickDrawerAvatar());
-//
-//        mDrawerUserName = navigationView.getHeaderView(0).findViewById(R.id.image_drawer_name);
-//
-//        mDrawerUserInfo = navigationView.getHeaderView(0).findViewById(R.id.image_drawer_info);
-//    }
 
     /**
      * @return height of status bar
@@ -457,6 +401,11 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
+    public void openInstructionUi() {
+        mMainMvpController.findOrCreateInstructionView();
+    }
+
+    @Override
     public void openCreateUserUi(String userFbId) {
         mMainMvpController.findOrCreateCreateUserView(userFbId);
     }
@@ -588,9 +537,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     @Override
     public void showActivityBackgroundWhenPortrait() {
         mView.setBackgroundResource(R.drawable.wheel_dunk_28);
-//        AnimationDrawable drawable = (AnimationDrawable) mView.getBackground();
-//        drawable.start();
-
     }
 
     @Override
@@ -605,8 +551,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     protected void onDestroy() {
         super.onDestroy();
         if (mPresenter != null) {
-            mPresenter.getUserInfoWhenGetOutOfApp();
-            mPresenter.removeHandler();
+//            mPresenter.getUserInfoWhenGetOutOfApp();
+//            mPresenter.removeHandler();
         }
     }
 

@@ -74,6 +74,8 @@ import com.kerry.gogobasketball.result.referee.RefereeResultPresenter;
 import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.LocationManager;
 import com.kerry.gogobasketball.util.UserManager;
+import com.kerry.gogobasketball.waiting4join.instruction.InstructionContract;
+import com.kerry.gogobasketball.waiting4join.instruction.InstructionPresenter;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterContract;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterPresenter;
 import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlaveContract;
@@ -93,7 +95,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         CommentRefereeContract.Presenter, RankRefereeContract.Presenter,
         RankPlayerContract.Presenter, LogoutContract.Presenter, ChangeIdContract.Presenter
         , ChangePositionContract.Presenter, ChangeGenderContract.Presenter,
-        FindHostContract.Presenter {
+        FindHostContract.Presenter, InstructionContract.Presenter {
 
     private MainContract.View mMainView;
 
@@ -126,6 +128,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private ChangePositionPresenter mChangePositionPresenter;
     private ChangeGenderPresenter mChangeGenderPresenter;
     private FindHostPresenter mFindHostPresenter;
+    private InstructionPresenter mInstructionPresenter;
 
     private static boolean mIsBackKeyDisable;
     private static boolean mIsGamingNow;
@@ -236,6 +239,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     void setFindHostPresenter(FindHostPresenter findHostPresenter) {
         mFindHostPresenter = checkNotNull(findHostPresenter);
+    }
+
+    void setInstructionPresenter(InstructionPresenter instructionPresenter) {
+        mInstructionPresenter = checkNotNull(instructionPresenter);
     }
 
     @Override
@@ -971,8 +978,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     public void getLocationPermissionWhenLogin(Activity activity) {
         mLoginPresenter.getLocationPermissionWhenLogin(activity);
     }
-    // from login fragment
 
+    // from login fragment
     @Override
     public void loginFbOnClick(Activity activity) {
         mLoginPresenter.loginFbOnClick(activity);
@@ -980,7 +987,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void onLoginSuccess(User user) {
-//        updateUser2FireStore(user);
         checkIfUserCreatedAfterLogin(user);
     }
 
@@ -1067,16 +1073,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void onDrawerOpened() {
-
-    }
-
-    @Override
-    public void onClickDrawerAvatar() {
-
-    }
-
-    @Override
     public void start() {
 
     }
@@ -1091,7 +1087,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void getNowGenderFromProfile(String currentGender) {
-
+        mChangeGenderPresenter.getNowGenderFromProfile(currentGender);
     }
 
     @Override
@@ -1122,6 +1118,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void openFindHostDialog() {
         mMainView.openFindHostUi();
+    }
+
+    @Override
+    public void openInstructionDialog() {
+        mMainView.openInstructionUi();
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -1300,7 +1301,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
             @Override
             public void onSuccess(double latitude, double longitude) {
                 checkCoordinateScope(latitude, longitude);
-
             }
 
             @Override

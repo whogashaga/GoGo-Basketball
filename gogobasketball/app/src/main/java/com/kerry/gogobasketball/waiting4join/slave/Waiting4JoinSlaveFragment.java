@@ -37,7 +37,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     private RadioGroup mRadioGroupTimer;
     private RadioButton mRadioTimerOn;
     private RadioButton mRadioTimerOff;
-    private ImageButton mBtnBackStack;
+    private ImageButton mBtnBackStack, mBtnInstruction;
     private Button mBtnCancel;
     private TextView mTextRoomName;
     private WaitingRoomInfo mWaitingRoomInfoForFirstTime;
@@ -92,6 +92,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     @Override
     public void onResume() {
         super.onResume();
+        Log.d("Kerry", "asdasd onResume: ");
         mPresenter.hideToolbarAndBottomNavigation();
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
@@ -116,6 +117,8 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mBtnCancel = mRoot.findViewById(R.id.btn_slave_waiting4join_cancel);
         mBtnCancel.setOnClickListener(this);
         mBtnCancel.setClickable(false);
+        mBtnInstruction = mRoot.findViewById(R.id.btn_slave_waiting4join_instruction);
+        mBtnInstruction.setOnClickListener(this);
 
         mRadioTimerOn = mRoot.findViewById(R.id.radio_slave_timer_yes);
         mRadioTimerOn.setClickable(false);
@@ -316,6 +319,9 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
                 getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 mPresenter.showToolbarAndBottomNavigation();
                 mBtnCancel.setClickable(false);
+                break;
+            case R.id.btn_slave_waiting4join_instruction:
+                mPresenter.openInstructionDialog();
                 break;
             case R.id.btn_slave_waiting_team_a_player1_change_seat:
                 Log.d(Constants.TAG, "Joiner onClick seat1");

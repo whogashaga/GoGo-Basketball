@@ -63,6 +63,8 @@ public interface Waiting4JoinSlaveContract {
         void getProfileUserDataSlave(Activity activity);
 
         void removeListenerSlave();
+
+        void openInstructionDialog();
     }
 
 }

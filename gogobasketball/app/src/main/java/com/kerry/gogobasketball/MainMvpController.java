@@ -52,6 +52,8 @@ import com.kerry.gogobasketball.result.referee.RefereeResultFragment;
 import com.kerry.gogobasketball.result.referee.RefereeResultPresenter;
 import com.kerry.gogobasketball.util.ActivityUtils;
 import com.kerry.gogobasketball.util.Constants;
+import com.kerry.gogobasketball.waiting4join.instruction.InstructionDialog;
+import com.kerry.gogobasketball.waiting4join.instruction.InstructionPresenter;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterFragment;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterPresenter;
 import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlaveFragment;
@@ -89,6 +91,7 @@ public class MainMvpController {
     private ChangeGenderPresenter mChangeGenderPresenter;
 
     private FindHostPresenter mFindHostPresenter;
+    private InstructionPresenter mInstructionPresenter;
 
     private CreateUserPresenter mCreateUserPresenter;
 
@@ -513,6 +516,27 @@ public class MainMvpController {
 
         } else if (!dialog.isAdded()) {
             dialog.show(getFragmentManager(), Constants.FIND_HOST);
+        }
+    }
+
+    /**
+     * Instruction View
+     */
+    void findOrCreateInstructionView() {
+
+        InstructionDialog dialog =
+                (InstructionDialog) getFragmentManager().findFragmentByTag(Constants.INSTRUCTION);
+
+        if (dialog == null) {
+
+            dialog = new InstructionDialog();
+            mInstructionPresenter = new InstructionPresenter(dialog);
+            mMainPresenter.setInstructionPresenter(mInstructionPresenter);
+            dialog.setPresenter(mMainPresenter);
+            dialog.show(getFragmentManager(), Constants.INSTRUCTION);
+
+        } else if (!dialog.isAdded()) {
+            dialog.show(getFragmentManager(), Constants.INSTRUCTION);
         }
     }
 

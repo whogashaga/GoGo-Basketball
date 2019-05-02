@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialog_instruction">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layout_instruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/outline_looking4room_normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.465"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/text_instruction_title"
+            style="@style/Want2CreateRoomTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp"
+            android:text="使用說明"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/text_instruction_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_instruction_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="紅框為 A 隊 , 藍框為 B 隊 , 黃框為裁判 , 需湊滿 7 人才可開始遊戲"
+            android:textSize="13sp"
+            android:textColor="@color/black_4B4545"
+            app:layout_constraintBottom_toTopOf="@+id/image_instruction_change_seat"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_instruction_title" />
+
+        <ImageView
+            android:id="@+id/image_instruction_change_seat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/image_instruction_information"
+            app:layout_constraintStart_toStartOf="@+id/text_instruction_content"
+            app:layout_constraintTop_toBottomOf="@+id/text_instruction_content"
+            app:srcCompat="@drawable/ic_change_seat" />
+
+        <ImageView
+            android:id="@+id/image_instruction_information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/image_instruction_delete_seat"
+            app:layout_constraintStart_toStartOf="@+id/image_instruction_change_seat"
+            app:layout_constraintTop_toBottomOf="@+id/image_instruction_change_seat"
+            app:srcCompat="@drawable/ic_info_referee" />
+
+        <ImageView
+            android:id="@+id/image_instruction_delete_seat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/image_instruction_delete_seat_content"
+            app:layout_constraintStart_toStartOf="@+id/image_instruction_information"
+            app:layout_constraintTop_toBottomOf="@+id/image_instruction_information"
+            app:srcCompat="@drawable/ic_delete" />
+
+        <TextView
+            android:id="@+id/image_instruction_change_seat_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text=":  更換隊伍"
+            android:textColor="@color/black_4B4545"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/image_instruction_change_seat"
+            app:layout_constraintStart_toEndOf="@+id/image_instruction_change_seat"
+            app:layout_constraintTop_toTopOf="@+id/image_instruction_change_seat" />
+
+        <TextView
+            android:id="@+id/image_instruction_information_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":  個人資訊"
+            android:textColor="@color/black_4B4545"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/image_instruction_information"
+            app:layout_constraintStart_toStartOf="@+id/image_instruction_change_seat_content"
+            app:layout_constraintTop_toTopOf="@+id/image_instruction_information" />
+
+        <TextView
+            android:id="@+id/image_instruction_delete_seat_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":  踢除玩家 ( 房主才有 )"
+            android:textColor="@color/black_4B4545"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/image_instruction_delete_seat"
+            app:layout_constraintEnd_toStartOf="@+id/image_instruction_start"
+            app:layout_constraintStart_toStartOf="@+id/image_instruction_information_content"
+            app:layout_constraintTop_toTopOf="@+id/image_instruction_delete_seat" />
+
+        <ImageView
+            android:id="@+id/image_instruction_cancel"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/image_instruction_information_content"
+            app:layout_constraintStart_toStartOf="@+id/image_instruction_start"
+            app:layout_constraintTop_toTopOf="@+id/image_instruction_information_content"
+            app:srcCompat="@drawable/ic_cancel" />
+
+        <ImageView
+            android:id="@+id/image_instruction_start"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/image_instruction_delete_seat_content"
+            app:layout_constraintEnd_toStartOf="@+id/text_instruction_start_content"
+            app:layout_constraintStart_toEndOf="@+id/image_instruction_delete_seat_content"
+            app:layout_constraintTop_toTopOf="@+id/image_instruction_delete_seat_content"
+            app:srcCompat="@drawable/ic_start" />
+
+        <ImageView
+            android:id="@+id/image_instruction_previous"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/image_instruction_change_seat_content"
+            app:layout_constraintStart_toStartOf="@+id/image_instruction_cancel"
+            app:layout_constraintTop_toTopOf="@+id/image_instruction_change_seat_content"
+            app:srcCompat="@drawable/ic_previous" />
+        <TextView
+            android:id="@+id/text_instruction_cancel_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":  離開房間"
+            android:textColor="@color/black_4B4545"
+            app:layout_constraintBottom_toBottomOf="@+id/image_instruction_cancel"
+            app:layout_constraintStart_toStartOf="@+id/text_instruction_start_content"
+            app:layout_constraintTop_toTopOf="@+id/image_instruction_cancel" />
+
+        <TextView
+            android:id="@+id/text_instruction_previous_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":  回一上頁"
+            android:textColor="@color/black_4B4545"
+            app:layout_constraintBottom_toBottomOf="@+id/image_instruction_previous"
+            app:layout_constraintStart_toStartOf="@+id/text_instruction_cancel_content"
+            app:layout_constraintTop_toTopOf="@+id/image_instruction_previous" />
+
+        <TextView
+            android:id="@+id/text_instruction_start_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text=":  開始比賽 ( 房主才有 )"
+            android:textColor="@color/black_4B4545"
+            app:layout_constraintBottom_toBottomOf="@+id/image_instruction_start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_instruction_start"
+            app:layout_constraintTop_toTopOf="@+id/image_instruction_start" />
+
+        <ImageView
+            android:id="@+id/btn_instruction_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_login_close" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.constraint.ConstraintLayout>
