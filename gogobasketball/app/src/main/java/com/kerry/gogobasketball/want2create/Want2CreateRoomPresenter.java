@@ -29,7 +29,6 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     private final Want2CreateRoomContract.View mWant2CreateRoomView;
     private WaitingRoomInfo mWaitingRoomInfo;
     private ArrayList<String> mCourtsList;
-    private String mRoomDocId;
     private User mUser;
 
     public Want2CreateRoomPresenter(@NonNull Want2CreateRoomContract.View want2CreateRoomView) {
@@ -38,7 +37,6 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
 
         mWaitingRoomInfo = new WaitingRoomInfo();
         mCourtsList = new ArrayList<>();
-        mRoomDocId = "";
         mUser = new User();
     }
 
@@ -82,11 +80,11 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
 
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
-                .add(waitingRoomInfo)
+                .document(mUser.getFacebookId())
+                .set(waitingRoomInfo)
                 .addOnSuccessListener(documentReference -> {
-                    mRoomDocId = documentReference.getId();
                     // for open waiting4join bind view
-                    mWant2CreateRoomView.getRoomInfoFromPresenter4NextFragment(waitingRoomInfo, hostSeatInfo, documentReference.getId());
+                    mWant2CreateRoomView.getRoomInfoFromPresenter4NextFragment(waitingRoomInfo, hostSeatInfo, mUser.getFacebookId());
                     Log.d(Constants.TAG, "Master創建房間 ！!");
                 })
                 .addOnFailureListener(e -> Log.e(Constants.TAG, "Error adding document", e));
