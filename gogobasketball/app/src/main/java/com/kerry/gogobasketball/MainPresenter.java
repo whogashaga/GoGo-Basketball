@@ -1367,6 +1367,26 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                 && 121.50447 <= longitude && longitude <= 121.505921) {
             checkIfUpdateLocation(Constants.YOUTH_PARK);
 
+        } else if (25.007798 <= latitude && latitude <= 25.009361
+                && 121.490091 <= longitude && longitude <= 121.494754) {
+            checkIfUpdateLocation(Constants.DINOSAUR_PARK);
+
+        } else if (25.001918 <= latitude && latitude <= 25.002907
+                && 121.514287 <= longitude && longitude <= 121.514901) {
+            checkIfUpdateLocation(Constants.FOURTH_PARK);
+
+        } else if (25.006242 <= latitude && latitude <= 25.007506
+                && 121.527342 <= longitude && longitude <= 121.528675) {
+            checkIfUpdateLocation(Constants.FU_HER_BRIDGE);
+
+        } else if (25.017736 <= latitude && latitude <= 25.018961
+                && 121.509566 <= longitude && longitude <= 121.510660) {
+            checkIfUpdateLocation(Constants.GREEN_STONE_PARK);
+
+        } else if (25.027551 <= latitude && latitude <= 25.028681
+                && 121.483664 <= longitude && longitude <= 121.484508) {
+            checkIfUpdateLocation(Constants.WAN_BAN_BRIDGE);
+
         } else {
             Log.d(Constants.TAG, "不在任何球場範圍內");
             if (!mCourtsLocation.equals("")) {
@@ -1393,10 +1413,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        Log.d(Constants.TAG, "DocumentSnapshot data: " + document.getData());
-                        // do nothing
+                        Log.d(Constants.TAG, "已經在球場裡 " + document.getData());
+                        // Already in the court, so do nothing
                     } else {
-                        Log.d(Constants.TAG, "No such document");
+                        Log.d(Constants.TAG, "不在球場，馬上加入");
                         // 更新球場人數
                         getUserInfo(location);
                     }

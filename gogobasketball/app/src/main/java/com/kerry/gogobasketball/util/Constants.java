@@ -61,5 +61,10 @@ public class Constants {
     public static final String YOUTH_PARK = "YouthPark";
     public static final String XIN_SHENG_VIADUCT = "XinShengViaduct";
     public static final String TAI_DA_CENTRAL = "TaiDaCentral";
+    public static final String GREEN_STONE_PARK = "GreenStonePark";
+    public static final String FOURTH_PARK = "FourthPark";
+    public static final String DINOSAUR_PARK = "DinosaurPark";
+    public static final String WAN_BAN_BRIDGE = "WanBanBridge";
+    public static final String FU_HER_BRIDGE = "FuHerbridge";
 
 }

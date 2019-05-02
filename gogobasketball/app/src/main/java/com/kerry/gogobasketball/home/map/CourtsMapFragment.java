@@ -172,10 +172,15 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
         if (getActivity() != null) {
             addCourtsMarker(new LatLng(25.032598, 121.561610), getString(R.string.adidas_101), "目前人數 : " + populationList.get(0));
             addCourtsMarker(new LatLng(25.031693, 121.535961), getString(R.string.da_an_park), "目前人數 : " + populationList.get(1));
-            addCourtsMarker(new LatLng(25.043572, 121.565559), getString(R.string.song_san_high_school), "目前人數 : " + populationList.get(2));
-            addCourtsMarker(new LatLng(25.020213, 121.536475), getString(R.string.tai_da_central), "目前人數 : " + populationList.get(3));
-            addCourtsMarker(new LatLng(25.045040, 121.530423), getString(R.string.xin_sheng_high), "目前人數 : " + populationList.get(4));
-            addCourtsMarker(new LatLng(25.021023, 121.505110), getString(R.string.young_park), "目前人數 : " + populationList.get(5));
+            addCourtsMarker(new LatLng(25.008116, 121.493991), getString(R.string.dinosaur_park), "目前人數 : " + populationList.get(2));
+            addCourtsMarker(new LatLng(25.002419, 121.514499), getString(R.string.fourth_823_park), "目前人數 : " + populationList.get(3));
+            addCourtsMarker(new LatLng(25.006869, 121.528114), getString(R.string.fu_her_bridge), "目前人數 : " + populationList.get(4));
+            addCourtsMarker(new LatLng(25.018408, 121.510075), getString(R.string.green_stone_park), "目前人數 : " + populationList.get(5));
+            addCourtsMarker(new LatLng(25.043572, 121.565559), getString(R.string.song_san_high_school), "目前人數 : " + populationList.get(6));
+            addCourtsMarker(new LatLng(25.020213, 121.536475), getString(R.string.tai_da_central), "目前人數 : " + populationList.get(7));
+            addCourtsMarker(new LatLng(25.028251, 121.483837), getString(R.string.wan_ban_bridge), "目前人數 : " + populationList.get(8));
+            addCourtsMarker(new LatLng(25.045040, 121.530423), getString(R.string.xin_sheng_high), "目前人數 : " + populationList.get(9));
+            addCourtsMarker(new LatLng(25.021023, 121.505110), getString(R.string.young_park), "目前人數 : " + populationList.get(10));
         } else {
             Log.d(TAG, "initCourtsMarker: activity or context is null");
         }
