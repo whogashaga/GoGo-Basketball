@@ -93,7 +93,7 @@
         <item name="android:textColor">@color/gray_646464</item>
         <item name="android:textSize">14sp</item>
         <item name="android:letterSpacing">0.05</item>
-        <item name="android:paddingStart">17sp</item>
+        <item name="android:paddingStart">24sp</item>
         <item name="android:paddingEnd">8dp</item>
     </style>
 

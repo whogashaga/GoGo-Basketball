@@ -11,10 +11,10 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/ic_settings"
-        app:layout_constraintTop_toBottomOf="@+id/layout_profile_header"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_profile_header" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/layout_profile_header"
@@ -44,7 +44,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:fontFamily="@font/noto_sans"
@@ -65,7 +65,7 @@
             android:id="@+id/text_profile_Id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="0dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/noto_sans"
             android:letterSpacing="0.05"
@@ -85,13 +85,11 @@
             android:id="@+id/image_profile_position"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="24dp"
-            android:layout_marginBottom="8dp"
             android:src="@drawable/ic_position_center"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/image_profile_gender"
             app:layout_constraintStart_toEndOf="@+id/image_profile_gender"
-            app:layout_constraintTop_toBottomOf="@+id/text_profile_Id"
+            app:layout_constraintTop_toTopOf="@+id/image_profile_gender"
             app:layout_constraintVertical_bias="0.578" />
 
         <ImageView
@@ -99,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp"
             android:src="@drawable/ic_female"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -127,16 +125,14 @@
         <TextView
             android:id="@+id/text_profile_player_record_title"
             style="@style/ProfileTitle"
-            android:paddingStart="24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:paddingStart="24dp"
             android:text="@string/profile_player_record_title"
             android:textColor="@color/black_3f3a3a"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/text_profile_total_games_title"
-            app:layout_constraintEnd_toStartOf="@+id/text_profile_win_rate_content"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="spread" />
@@ -147,7 +143,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="比賽總場次"
-
             app:layout_constraintBottom_toTopOf="@+id/text_profile_win_rate_title"
             app:layout_constraintStart_toStartOf="@+id/text_profile_player_record_title"
             app:layout_constraintTop_toBottomOf="@+id/text_profile_player_record_title" />
@@ -276,7 +271,7 @@
             android:layout_marginStart="16dp"
             android:text="666"
             app:layout_constraintBottom_toBottomOf="@+id/text_profile_win_rate_title"
-            app:layout_constraintStart_toEndOf="@+id/text_profile_player_record_title"
+            app:layout_constraintStart_toEndOf="@+id/text_profile_total_games_title"
             app:layout_constraintTop_toTopOf="@+id/text_profile_win_rate_title" />
 
         <TextView
@@ -369,12 +364,11 @@
         android:id="@+id/layout_profile_btn_header"
         android:layout_width="134dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_profile_setting"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <Button
             android:id="@+id/btn_profile_change_id"
@@ -435,5 +429,17 @@
 
 
     </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="設定"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_profile_setting"
+        app:layout_constraintStart_toStartOf="@+id/btn_profile_setting"
+        app:layout_constraintTop_toBottomOf="@+id/btn_profile_setting" />
 
 </android.support.constraint.ConstraintLayout>

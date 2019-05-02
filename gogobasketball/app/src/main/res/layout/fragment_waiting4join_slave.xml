@@ -50,8 +50,8 @@
 
         <ImageView
             android:id="@+id/slave_waiting_team_a_player1_gender"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="8dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_slave_waiting_team_a_player1_info"
             app:layout_constraintStart_toEndOf="@+id/slave_waiting_team_a_player1_avatar"
@@ -60,8 +60,8 @@
 
         <ImageView
             android:id="@+id/slave_waiting_team_a_player1_position"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
             android:scaleType="centerCrop"
@@ -74,7 +74,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_team_a_player1_change_seat"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:background="@drawable/btn_ripple_waiting4join"
@@ -89,7 +89,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_team_a_player1_info"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -106,7 +106,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_team_a_player1_add"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
@@ -157,8 +157,8 @@
 
         <ImageView
             android:id="@+id/slave_waiting_team_a_player2_gender"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="8dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_slave_waiting_team_a_player2_info"
             app:layout_constraintEnd_toStartOf="@+id/slave_waiting_team_a_player2_position"
@@ -169,8 +169,8 @@
 
         <ImageView
             android:id="@+id/slave_waiting_team_a_player2_position"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
             android:scaleType="centerCrop"
@@ -183,7 +183,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_team_a_player2_change_seat"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:background="@null"
@@ -198,7 +198,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_team_a_player2_info"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -215,7 +215,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_team_a_player2_add"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
@@ -265,8 +265,8 @@
 
         <ImageView
             android:id="@+id/slave_waiting_team_a_player3_gender"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="8dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_slave_waiting_team_a_player3_info"
             app:layout_constraintEnd_toStartOf="@+id/slave_waiting_team_a_player3_position"
@@ -277,8 +277,8 @@
 
         <ImageView
             android:id="@+id/slave_waiting_team_a_player3_position"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
             android:scaleType="centerCrop"
@@ -291,7 +291,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_team_a_player3_change_seat"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:background="@null"
@@ -306,7 +306,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_team_a_player3_info"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -323,7 +323,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_team_a_player3_add"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
@@ -376,8 +376,8 @@
 
         <ImageView
             android:id="@+id/slave_waiting_team_b_player1_gender"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="8dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_slave_waiting_team_b_player1_info"
             app:layout_constraintStart_toEndOf="@+id/slave_waiting_team_b_player1_avatar"
@@ -386,8 +386,8 @@
 
         <ImageView
             android:id="@+id/slave_waiting_team_b_player1_position"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
             android:scaleType="centerCrop"
@@ -400,7 +400,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_team_b_player1_change_seat"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:background="@null"
@@ -415,7 +415,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_team_b_player1_info"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -432,7 +432,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_team_b_player1_add"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
@@ -480,8 +480,8 @@
 
         <ImageView
             android:id="@+id/slave_waiting_team_b_player2_gender"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="8dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_slave_waiting_team_b_player2_info"
             app:layout_constraintEnd_toStartOf="@+id/slave_waiting_team_b_player2_position"
@@ -492,8 +492,8 @@
 
         <ImageView
             android:id="@+id/slave_waiting_team_b_player2_position"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
             android:scaleType="centerCrop"
@@ -506,7 +506,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_team_b_player2_change_seat"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:background="@null"
@@ -521,7 +521,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_team_b_player2_info"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -538,7 +538,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_team_b_player2_add"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
@@ -587,8 +587,8 @@
 
         <ImageView
             android:id="@+id/slave_waiting_team_b_player3_gender"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="8dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_slave_waiting_team_b_player3_info"
             app:layout_constraintEnd_toStartOf="@+id/slave_waiting_team_b_player3_position"
@@ -599,8 +599,8 @@
 
         <ImageView
             android:id="@+id/slave_waiting_team_b_player3_position"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
             android:scaleType="centerCrop"
@@ -613,7 +613,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_team_b_player3_change_seat"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:background="@null"
@@ -628,7 +628,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_team_b_player3_info"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -645,7 +645,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_team_b_player3_add"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
@@ -699,8 +699,8 @@
 
         <ImageView
             android:id="@+id/slave_waiting_referee_gender"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="8dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_slave_waiting_referee_info"
             app:layout_constraintEnd_toStartOf="@+id/slave_waiting_referee_position"
@@ -711,8 +711,8 @@
 
         <ImageView
             android:id="@+id/slave_waiting_referee_position"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
             android:scaleType="centerCrop"
@@ -725,7 +725,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_referee_change_seat"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:background="@null"
@@ -740,7 +740,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_referee_info"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -757,7 +757,7 @@
 
         <Button
             android:id="@+id/btn_slave_waiting_referee_add"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"

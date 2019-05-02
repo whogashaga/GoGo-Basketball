@@ -34,6 +34,7 @@ public class ChangeIdDialog extends DialogFragment implements ChangeIdContract.V
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(STYLE_NO_FRAME, R.style.CommentRefereeDialog);
+        mChar = "";
     }
 
     @Nullable
