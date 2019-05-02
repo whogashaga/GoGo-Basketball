@@ -15,11 +15,9 @@ import android.widget.Toast;
 import com.facebook.AccessToken;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.create_user.CreateUserContract;
 import com.kerry.gogobasketball.create_user.CreateUserPresenter;
@@ -1134,8 +1132,12 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void openUserDetailDialogMaster(String userId) {
-        Log.i("Kerry", "sort 1 id = " + userId);
+    public void openUserDetailSlave(int sort) {
+        mWaiting4JoinSlavePresenter.openUserDetailSlave(sort);
+    }
+
+    @Override
+    public void openUserDetailDialog(String userId) {
         mMainView.openUserDetailUi(userId);
     }
 

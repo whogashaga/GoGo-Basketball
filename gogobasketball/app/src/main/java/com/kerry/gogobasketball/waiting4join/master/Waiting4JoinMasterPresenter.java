@@ -464,7 +464,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     }
 
     @Override
-    public void openUserDetailDialogMaster(String userId) {
+    public void openUserDetailDialog(String userId) {
 
     }
 

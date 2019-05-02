@@ -66,7 +66,7 @@ public interface Waiting4JoinMasterContract {
 
         void openInstructionDialog();
 
-        void openUserDetailDialogMaster(String userId);
+        void openUserDetailDialog(String userId);
 
         void openUserDetailMaster(int sort);
     }

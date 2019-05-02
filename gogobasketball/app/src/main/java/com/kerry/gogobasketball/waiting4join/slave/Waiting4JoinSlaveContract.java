@@ -26,6 +26,8 @@ public interface Waiting4JoinSlaveContract {
         void openRefereeGamingUi(String hostName);
 
         void setBackBtnClickable();
+
+        void openUserDetailUi(String userId);
     }
 
     interface Presenter extends BasePresenter {
@@ -65,6 +67,10 @@ public interface Waiting4JoinSlaveContract {
         void removeListenerSlave();
 
         void openInstructionDialog();
+
+        void openUserDetailDialog(String userId);
+
+        void openUserDetailSlave(int sort);
     }
 
 }

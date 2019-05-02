@@ -135,7 +135,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
 
     @Override
     public void openUserDetailUi(String userId) {
-        mPresenter.openUserDetailDialogMaster(userId);
+        mPresenter.openUserDetailDialog(userId);
     }
 
     @Nullable

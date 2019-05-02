@@ -61,6 +61,35 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     }
 
     @Override
+    public void openUserDetailSlave(int sort) {
+        if (sort == 1) {
+            checkIfShowDetail(1);
+        } else if (sort == 2) {
+            checkIfShowDetail(2);
+        } else if (sort == 3) {
+            checkIfShowDetail(3);
+        } else if (sort == 4) {
+            checkIfShowDetail(4);
+        } else if (sort == 5) {
+            checkIfShowDetail(5);
+        } else if (sort == 6) {
+            checkIfShowDetail(6);
+        } else if (sort == 7) {
+            checkIfShowDetail(7);
+        } else {
+            Log.e("Kerry", "openUserDetailMaster Error ");
+        }
+    }
+
+    private void checkIfShowDetail(int sort) {
+        if (mListForChangeSeat.get(sort - 1) != null && !mListForChangeSeat.get(sort - 1).getId().equals("")) {
+            mWaiting4JoinView.openUserDetailUi(mListForChangeSeat.get(sort - 1).getId());
+        } else {
+            Log.d("Kerry", "openUserDetailMaster 1 Error !");
+        }
+    }
+
+    @Override
     public void getProfileUserDataSlave(Activity activity) {
         UserManager.getInstance().getUserProfile(new UserManager.LoadCallback() {
             @Override
@@ -359,11 +388,6 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
         mAllSeatsListenerRegistration.remove();
     }
 
-    @Override
-    public void openInstructionDialog() {
-
-    }
-
     private void queryCurrentSort() {
         DocumentReference docRef = FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
@@ -492,6 +516,16 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     }
 
     /* ------------------------------------------------------------------------------------------ */
+
+    @Override
+    public void openInstructionDialog() {
+
+    }
+
+    @Override
+    public void openUserDetailDialog(String userId) {
+
+    }
 
     @Override
     public void setActivityBackgroundLandScape() {
