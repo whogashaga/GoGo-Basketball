@@ -64,7 +64,6 @@ public class CourtsMapPresenter implements CourtsMapContract.Presenter {
         }
     }
 
-
     @Override
     public void getCurrentCourtPopulation() {
         mPopulationList.clear();

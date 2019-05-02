@@ -1473,7 +1473,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                     public void onComplete(@NonNull Task<Void> task) {
                         if (mCourtsMapPresenter != null) {
                             Log.w("Kerry", "加入球場成功 ！");
-                            mCourtsMapPresenter.setOnPopulationChangeListener();
+//                            mCourtsMapPresenter.setOnPopulationChangeListener();
                         } else {
                             Log.w("Kerry", "加入失敗 mCourtsMapPresenter = null");
                         }
@@ -1565,13 +1565,15 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     /* set Handler */
     @Override
     public void setLocationHandler() {
-        mRunnable = new Runnable() {
-            @Override
-            public void run() {
-                mHandler.postDelayed(this, 30000);
-                getDeviceCurrentLocation();
-            }
-        };
+        if (mRunnable == null) {
+            mRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    mHandler.postDelayed(this, 30000);
+                    getDeviceCurrentLocation();
+                }
+            };
+        }
         mHandler.postDelayed(mRunnable, 30000);
     }
 

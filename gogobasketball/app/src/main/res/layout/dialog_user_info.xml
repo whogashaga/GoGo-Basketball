@@ -51,17 +51,17 @@
 
         <ImageView
             android:id="@+id/image_dialog_user_gender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             app:layout_constraintBottom_toBottomOf="@+id/image_dialog_user_avatar"
             app:layout_constraintStart_toStartOf="@+id/text_dialog_user_id"
             app:layout_constraintTop_toBottomOf="@+id/text_dialog_user_id"
             app:srcCompat="@drawable/ic_female" />
 
         <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/image_dialog_user_position"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/image_dialog_user_gender"
             app:layout_constraintStart_toEndOf="@+id/image_dialog_user_gender"

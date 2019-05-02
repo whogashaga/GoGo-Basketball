@@ -113,9 +113,6 @@ public class UserManager {
                             mUser.setFacebookId(String.valueOf(facebookId));
                             loadCallback.onSuccess(mUser);
 
-                            ((MainActivity) context).saveFacebookIdFile(String.valueOf(facebookId));
-//                            updateUser2FireStore(mUser, loadCallback);
-
                         } catch (JSONException e) {
                             Log.e(Constants.TAG, "unexpected JSON exception", e);
                         }

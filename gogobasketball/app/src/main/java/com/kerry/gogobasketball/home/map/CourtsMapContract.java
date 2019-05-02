@@ -32,7 +32,5 @@ public interface CourtsMapContract {
         void removeListener();
 
         void getLocationPermission(Activity activity);
-
-
     }
 }

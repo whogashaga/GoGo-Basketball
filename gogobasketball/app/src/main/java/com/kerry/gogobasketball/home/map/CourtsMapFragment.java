@@ -138,6 +138,7 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
 
     @Override
     public void initMap() {
+        Log.i(TAG, "MapFragment initMap: ");
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
@@ -145,7 +146,7 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
     @Override
     public void onMapReady(GoogleMap googleMap) {
         Log.d(Constants.TAG, "map is ready");
-
+        mPresenter.setOnPopulationChangeListener();
         mMap = googleMap;
 //        mPresenter.getCurrentCourtPopulation();
         if (mLocationPermissionGranted) {
@@ -167,7 +168,7 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
     }
 
     private void initCourtsMarker(ArrayList<String> populationList) {
-        Log.d(Constants.TAG, "initCourtsMarker size : " + populationList.size());
+        Log.i(Constants.TAG, "initCourtsMarker size : " + populationList.size());
         if (getActivity() != null) {
             addCourtsMarker(new LatLng(25.032598, 121.561610), getString(R.string.adidas_101), "目前人數 : " + populationList.get(0));
             addCourtsMarker(new LatLng(25.031693, 121.535961), getString(R.string.da_an_park), "目前人數 : " + populationList.get(1));
@@ -246,7 +247,7 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mPresenter.setOnPopulationChangeListener();
+
         mPresenter.getCurrentCourtPopulation();
     }
 

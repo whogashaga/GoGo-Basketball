@@ -593,41 +593,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
     }
 
-    public void saveFacebookIdFile(String facebookIdString) {
-        File file = new File(getFilesDir(), Constants.FACEBOOK_ID_FILE);
-        String fileContents = facebookIdString;
-        FileOutputStream outputStream;
-
-        try {
-            outputStream = openFileOutput(Constants.FACEBOOK_ID_FILE, Context.MODE_PRIVATE);
-            outputStream.write(fileContents.getBytes());
-            outputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public String getFacebookIdString(String fileName) {
-
-        StringBuilder text = new StringBuilder();
-        try {
-
-            FileInputStream fIS = getApplicationContext().openFileInput(fileName);
-            InputStreamReader isr = new InputStreamReader(fIS, "UTF-8");
-            BufferedReader br = new BufferedReader(isr);
-
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                text.append(line);
-            }
-            br.close();
-        } catch (IOException e) {
-            Log.e("Error!", "Error occured while reading text file from Internal Storage!");
-        }
-        return text.toString();
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -640,7 +605,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     protected void onDestroy() {
         super.onDestroy();
         if (mPresenter != null) {
-//            mPresenter.deleteMyDocFromCourtsWhenLeave();
+            mPresenter.getUserInfoWhenGetOutOfApp();
+            mPresenter.removeHandler();
         }
     }
 
