@@ -3,6 +3,7 @@ package com.kerry.gogobasketball.home.item;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -56,6 +57,14 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
         mRoomInfoList.addAll(roomInfoList);
         mLooking4RoomAdapter.updateData(mRoomInfoList);
 //        Log.d(Constants.TAG,"list size in fragment = " + mRoomInfoList.size());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getActivity() != null){
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
     }
 
     @Nullable

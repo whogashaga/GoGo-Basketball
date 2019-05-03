@@ -73,7 +73,9 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
     @Override
     public void onResume() {
         super.onResume();
-        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        if (getActivity() != null){
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
         mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
 
@@ -139,7 +141,9 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
             case R.id.btn_result_referee_back_lobby:
                 mPresenter.deleteGamingRoom();
                 mPresenter.openHome();
-                getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                if (getActivity() != null){
+                    getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                }
                 getFragmentManager().popBackStack(0, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 mPresenter.showToolbarAndBottomNavigation();
                 mPresenter.setActivityBackgroundPortrait();
@@ -188,7 +192,9 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
     @Override
     public void onPause() {
         super.onPause();
-
+        if (getActivity() != null){
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
     }
 
     @Override

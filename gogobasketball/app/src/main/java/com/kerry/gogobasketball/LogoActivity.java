@@ -20,9 +20,9 @@ public class LogoActivity extends BaseActivity {
         setContentView(R.layout.activity_logo);
 
         mView = this.findViewById(R.id.layout_logo);
-        mView.setBackgroundResource(R.drawable.anim_logo_wheel_dunk);
-        AnimationDrawable drawable = (AnimationDrawable) mView.getBackground();
-        drawable.start();
+//        mView.setBackgroundResource(R.drawable.anim_logo_wheel_dunk);
+//        AnimationDrawable drawable = (AnimationDrawable) mView.getBackground();
+//        drawable.start();
 
         Intent intent = new Intent(LogoActivity.this, MainActivity.class);
         new Handler().postDelayed(() -> {
