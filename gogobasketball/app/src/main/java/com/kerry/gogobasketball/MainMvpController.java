@@ -812,7 +812,7 @@ public class MainMvpController {
 
         RefereeGoingFragment gamePlayingFragmentOfReferee = RefereeGoingFragment.newInstance();
 
-        ActivityUtils.showOrAddFragmentByTag(
+        ActivityUtils.addFragmentByTag(
                 getFragmentManager(), gamePlayingFragmentOfReferee, GOING4REFEREE);
 
         return gamePlayingFragmentOfReferee;
@@ -829,7 +829,7 @@ public class MainMvpController {
 
         PlayerGoingFragment gamePlayingFragmentOfPlayer = PlayerGoingFragment.newInstance();
 
-        ActivityUtils.showOrAddFragmentByTag(
+        ActivityUtils.addFragmentByTag(
                 getFragmentManager(), gamePlayingFragmentOfPlayer, GOING4PLAYER);
 
         return gamePlayingFragmentOfPlayer;
@@ -845,7 +845,7 @@ public class MainMvpController {
 
         RefereeResultFragment refereeResultFragment = RefereeResultFragment.newInstance();
 
-        ActivityUtils.showOrAddFragmentByTag(
+        ActivityUtils.addFragmentByTag(
                 getFragmentManager(), refereeResultFragment, RESULT4REFEREE);
 
         return refereeResultFragment;
@@ -861,7 +861,7 @@ public class MainMvpController {
 
         PlayerResultFragment playerResultFragment = PlayerResultFragment.newInstance();
 
-        ActivityUtils.showOrAddFragmentByTag(
+        ActivityUtils.addFragmentByTag(
                 getFragmentManager(), playerResultFragment, RESULT4PLAYER);
 
         return playerResultFragment;
