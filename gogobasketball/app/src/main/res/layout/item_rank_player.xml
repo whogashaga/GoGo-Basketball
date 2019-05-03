@@ -12,9 +12,10 @@
         android:id="@+id/image_rank_player_avatar"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/rank_player_guideline_v1"
         app:layout_constraintTop_toTopOf="parent"
@@ -54,8 +55,9 @@
 
     <ImageView
         android:id="@+id/image_rank_player_gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/text_rank_player_id"
         app:layout_constraintStart_toStartOf="@+id/rank_player_guideline_v2"
         app:layout_constraintTop_toTopOf="@+id/text_rank_player_id"
@@ -63,8 +65,9 @@
 
     <ImageView
         android:id="@+id/image_rank_player_position"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/image_rank_player_gender"
         app:layout_constraintEnd_toStartOf="@+id/rank_player_guideline_v3"
         app:layout_constraintTop_toTopOf="@+id/image_rank_player_gender"
@@ -94,12 +97,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="131dp" />
+        app:layout_constraintGuide_end="128dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/rank_player_guideline_v3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="65dp" />
+        app:layout_constraintGuide_end="70dp" />
 </android.support.constraint.ConstraintLayout>
