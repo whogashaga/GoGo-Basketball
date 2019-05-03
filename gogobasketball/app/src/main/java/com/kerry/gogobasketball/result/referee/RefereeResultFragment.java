@@ -73,7 +73,10 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
     @Override
     public void onResume() {
         super.onResume();
-        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        Log.e("Kerry", "Result onResume: ");
+        if (getActivity() != null) {
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
         mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
 
@@ -135,12 +138,14 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_result_referee_back_lobby:
                 mPresenter.deleteGamingRoom();
-                mPresenter.openHome();
-                getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                if (getActivity() != null) {
+                    getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                }
                 getFragmentManager().popBackStack(0, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+//                mPresenter.openHome();
                 mPresenter.showToolbarAndBottomNavigation();
                 mPresenter.setActivityBackgroundPortrait();
                 mPresenter.setBackKeyDisable(false);
@@ -158,7 +163,7 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
         setPlayerInfo(gamingRoomInfo.getPlayer5(), mAvatarP5, mTextIdP5, mTextP5Score, mTextP5Rebound, mTextP5Foul);
         setPlayerInfo(gamingRoomInfo.getPlayer6(), mAvatarP6, mTextIdP6, mTextP6Score, mTextP6Rebound, mTextP6Foul);
 
-        if (gamingRoomInfo.getWinner().equals("a")){
+        if (gamingRoomInfo.getWinner().equals("a")) {
             mTextWinner.setText("Red");
             mTextWinner.setTextColor(Color.RED);
         } else {
@@ -188,14 +193,15 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
     @Override
     public void onPause() {
         super.onPause();
-
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mPresenter.deleteGamingRoom();
-//        Log.d("Kerry", "Referee Result onDestroy: ");
+        if(mPresenter != null){
+            mPresenter.deleteGamingRoom();
+        }
+        Log.e("Kerry", "Referee Result onDestroy: ");
     }
 
     @Override

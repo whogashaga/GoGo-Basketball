@@ -63,7 +63,7 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
     private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationProviderClient;
 
-    private static final String TAG = "Kerry";
+    private static final String TAG = Constants.TAG;
 
     public CourtsMapFragment() {
     }
@@ -105,7 +105,7 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
     }
 
     private void getDeviceLocation() {
-        Log.d("Kerry", "Map Fragment getDeviceLocation");
+        Log.d(Constants.TAG, "Map Fragment getDeviceLocation");
 
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
         try {
@@ -127,7 +127,7 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
             });
 
         } catch (SecurityException e) {
-            Log.e("Kerry", "Map Fragment getDeviceLocation: SecurityException" + e.getMessage());
+            Log.e(Constants.TAG, "Map Fragment getDeviceLocation: SecurityException" + e.getMessage());
         }
     }
 

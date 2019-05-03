@@ -107,8 +107,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     @Override
     public void onResume() {
         super.onResume();
-//        Log.d("Kerry", " Waiting4JoinMasterContract onResume: ");
-
+        Log.d("Kerry", " Waiting4JoinMasterFragment onResume: ");
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
@@ -129,9 +128,22 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         if (mNowMasterSort == 7) {
             mPresenter.openGamePlayingOfReferee(gamingRoomInfo.getHostName());
             mPresenter.deleteHostInfoWhenLeave();
+            mPresenter.removeListenerMaster();
         } else {
             mPresenter.openGamePlayingOfPlayer(gamingRoomInfo.getHostName(), mNowMasterSort);
             mPresenter.deleteHostInfoWhenLeave();
+            mPresenter.removeListenerMaster();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("Kerry", "Waiting4Join fragment onDestroy !!");
+        if (mPresenter != null) {
+            mPresenter.deleteHostInfoWhenLeave();
+            mPresenter.setBackKeyDisable(false);
+            mPresenter.removeListenerMaster();
         }
     }
 
@@ -272,14 +284,6 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         return mRoot;
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-//        Log.d("Kerry", "Waiting4Join fragment onDestroy !!");
-        mPresenter.deleteHostInfoWhenLeave();
-        mPresenter.setBackKeyDisable(false);
-        mPresenter.removeListenerMaster();
-    }
 
     @Override
     public void onClick(View v) {

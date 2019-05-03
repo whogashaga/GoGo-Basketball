@@ -50,6 +50,7 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
 
     private Button mBtnCommentReferee;
     private Button mBtnBack2Lobby;
+    private TextView mTextRatinFirst;
     private String mHostName;
     private String mRefereeName;
 
@@ -141,6 +142,8 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
         mBtnBack2Lobby = mRoot.findViewById(R.id.btn_result_player_back_lobby);
         mBtnBack2Lobby.setOnClickListener(this);
 
+        mTextRatinFirst = mRoot.findViewById(R.id.text_give_rating_first);
+
         return mRoot;
     }
 
@@ -153,13 +156,13 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
                 break;
             case R.id.btn_result_player_back_lobby:
                 mBtnBack2Lobby.setClickable(false);
-                mPresenter.openHome();
-                getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                if (getActivity() != null) {
+                    getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                }
                 getFragmentManager().popBackStack(0, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 mPresenter.showToolbarAndBottomNavigation();
                 mPresenter.setActivityBackgroundPortrait();
                 mPresenter.setBackKeyDisable(false);
-                onDestroy();
                 break;
         }
     }
@@ -169,6 +172,7 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
         mPresenter.setHave2Comment(false);
         mBtnCommentReferee.setVisibility(View.INVISIBLE);
         mBtnBack2Lobby.setVisibility(View.VISIBLE);
+        mTextRatinFirst.setVisibility(View.INVISIBLE);
     }
 
     @Override

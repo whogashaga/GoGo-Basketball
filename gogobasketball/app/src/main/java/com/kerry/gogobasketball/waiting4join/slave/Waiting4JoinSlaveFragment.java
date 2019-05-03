@@ -315,7 +315,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
             case R.id.btn_slave_waiting4join_back_arrow:
                 mPresenter.removeListenerSlave();
                 mPresenter.finishWaiting4JoinSlaveUi();
-                if(getActivity() != null){
+                if (getActivity() != null) {
                     getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 }
                 mPresenter.showToolbarAndBottomNavigation();
@@ -324,7 +324,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
             case R.id.btn_slave_waiting4join_cancel:
                 mPresenter.removeListenerSlave();
                 mPresenter.finishWaiting4JoinSlaveUi();
-                if(getActivity() != null){
+                if (getActivity() != null) {
                     getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 }
                 mPresenter.showToolbarAndBottomNavigation();
@@ -425,13 +425,15 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
 
     @Override
     public void closeSlaveUiBecauseMasterOutFirst() {
-        mPresenter.showErrorToast("房主落跑...", false);
-        mPresenter.finishWaiting4JoinSlaveUi();
-        mPresenter.showToolbarAndBottomNavigation();
+        if (mPresenter != null) {
+            mPresenter.showErrorToast("房主落跑...", false);
+            mPresenter.finishWaiting4JoinSlaveUi();
+            mPresenter.showToolbarAndBottomNavigation();
+            mPresenter.deleteSeatsInfoWhenLeaveRoom();
+        }
         if (getActivity() != null) {
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
-//        mPresenter.deleteSeatsInfoWhenLeaveRoom();
     }
 
     @Override
@@ -471,8 +473,10 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void onDestroy() {
         super.onDestroy();
         Log.e("Kerry", "Slave onDestroy: ");
-        mPresenter.setBackKeyDisable(false);
-        mPresenter.deleteSeatsInfoWhenLeaveRoom();
+        if (mPresenter != null) {
+            mPresenter.setBackKeyDisable(false);
+            mPresenter.deleteSeatsInfoWhenLeaveRoom();
+        }
     }
 
     @Override

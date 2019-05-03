@@ -281,7 +281,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         if (mCourtsMapPresenter != null) {
             mCourtsMapPresenter.getLocationPermission(activity);
         } else {
-            Log.d("Kerry", "getLocationPermission Fail : mCourtsMapPresenter is null !");
+            Log.d(Constants.TAG, "getLocationPermission Fail : mCourtsMapPresenter is null !");
         }
     }
 
@@ -1473,7 +1473,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                             getCourtsInfo(user, location, task.getResult().size());
 
                         } else {
-                            Log.w("Kerry", "getPopulationDocSize Error", task.getException());
+                            Log.w(Constants.TAG, "getPopulationDocSize Error", task.getException());
                         }
                     }
                 }).addOnFailureListener(e -> Log.e(Constants.TAG, " getPopulationDocSize Error !!"));
@@ -1535,10 +1535,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (mCourtsMapPresenter != null) {
-                            Log.w("Kerry", "加入球場成功 ！");
+                            Log.w(Constants.TAG, "加入球場成功 ！");
 //                            mCourtsMapPresenter.setOnPopulationChangeListener();
                         } else {
-                            Log.w("Kerry", "加入失敗 mCourtsMapPresenter = null");
+                            Log.w(Constants.TAG, "加入失敗 mCourtsMapPresenter = null");
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -1574,8 +1574,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
 
     private void deleteMyDocFromCourtsWhenLeave(User user) {
-        Log.w("Kerry", "deleteMyDocFromCourtsWhenLeave : mCourtsLocation = " + mCourtsLocation);
-        Log.w("Kerry", "deleteMyDocFromCourtsWhenLeave : user.getFacebookId() = " + user.getFacebookId());
+        Log.w(Constants.TAG, "deleteMyDocFromCourtsWhenLeave : mCourtsLocation = " + mCourtsLocation);
+        Log.w(Constants.TAG, "deleteMyDocFromCourtsWhenLeave : user.getFacebookId() = " + user.getFacebookId());
         if (!mCourtsLocation.equals("") && !user.getFacebookId().equals("")) {
             FirestoreHelper.getFirestore()
                     .collection(Constants.COURTS)
@@ -1585,11 +1585,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                     .delete()
                     .addOnSuccessListener(aVoid -> {
                         checkPopulation();
-                        Log.d("Kerry", "離開球場，刪除資料");
+                        Log.d(Constants.TAG, "離開球場，刪除資料");
                     })
                     .addOnFailureListener(e -> Log.w(Constants.TAG, "deleteMyDocFromCourtsWhenLeave Error : 無 Doc ID", e));
         } else {
-            Log.e("Kerry", "離開球場 刪除資料 Fail");
+            Log.e(Constants.TAG, "離開球場 刪除資料 Fail");
         }
     }
 
@@ -1607,7 +1607,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                             if (task.isSuccessful()) {
                                 updateCourtsInfoWhenLeave(task.getResult().size());
                             } else {
-                                Log.w("Kerry", "checkPopulation Error", task.getException());
+                                Log.w(Constants.TAG, "checkPopulation Error", task.getException());
                             }
                         }
                     }).addOnFailureListener(e -> Log.e(Constants.TAG, " getPopulationDocSize Error !!"));
@@ -1622,7 +1622,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                 .document(mCourtsLocation)
                 .update("population", nowPopulationSize)
                 .addOnSuccessListener(aVoid -> {
-                    Log.d("Kerry", "離開球場，更新人數");
+                    Log.d(Constants.TAG, "離開球場，更新人數");
                 })
                 .addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
     }

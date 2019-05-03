@@ -36,7 +36,9 @@ public class PlayerGoingFragment extends Fragment implements PlayerGoingContract
     public void onResume() {
         super.onResume();
         mPresenter.hideToolbarAndBottomNavigation();
-        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        if (getActivity() != null) {
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
         mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
 
@@ -74,7 +76,9 @@ public class PlayerGoingFragment extends Fragment implements PlayerGoingContract
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mPresenter.setGamingNowMessage(false);
+        if (mPresenter != null) {
+            mPresenter.setGamingNowMessage(false);
+        }
     }
 
 

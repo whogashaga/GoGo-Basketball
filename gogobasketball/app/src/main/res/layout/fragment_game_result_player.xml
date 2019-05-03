@@ -567,4 +567,17 @@
         app:layout_constraintStart_toStartOf="@+id/text_result_player_foul_team_b_player1"
         app:layout_constraintTop_toTopOf="@+id/result_player_team_b_player3_id" />
 
+    <TextView
+        android:id="@+id/text_give_rating_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:paddingEnd="16dp"
+        android:textSize="16sp"
+        android:textColor="@color/red_FF001F"
+        android:text="欲返回大廳 , 請先評價裁判 ---＞"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_result_player_rating_referee"
+        app:layout_constraintEnd_toStartOf="@+id/btn_result_player_rating_referee"
+        app:layout_constraintTop_toTopOf="@+id/btn_result_player_rating_referee" />
+
 </android.support.constraint.ConstraintLayout>

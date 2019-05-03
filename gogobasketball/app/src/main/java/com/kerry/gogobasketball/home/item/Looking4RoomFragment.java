@@ -3,6 +3,7 @@ package com.kerry.gogobasketball.home.item;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -94,24 +95,7 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
                 break;
 
             case R.id.btn_home_rooms_find_host:
-
                 mPresenter.openFindHostDialog();
-
-//                LocationManager.getInstance().getDeviceLocation(new LocationManager.LocationCallback() {
-//                    @Override
-//                    public void onSuccess(double latitude, double longitude) {
-//                        Log.d("Kerry", "onSuccess latitude : " + latitude);
-//                        Log.d("Kerry", "onSuccess longitude : " + longitude);
-//                        mPresenter.showErrorToast("My Location\nLat: " + String.valueOf(latitude)
-//                                        + "\nLong: " + String.valueOf(longitude)
-//                                , true);
-//                    }
-//
-//                    @Override
-//                    public void onFail(String errorMessage) {
-//                        Log.d(Constants.TAG, "onFail: getDeviceLocation Fail!");
-//                    }
-//                });
                 break;
 
             default:
