@@ -46,31 +46,31 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
 
     private ImageView mAvatarP1, mGenderP1, mPositionP1;
     private TextView mTextIdP1;
-    private Button mBtnSeatP1, mBtnInfoP1, mBtnAddFriendP1;
+    private Button mBtnSeatP1, mBtnInfoP1, mBtnDeleteP1;
 
     private ImageView mAvatarP2, mGenderP2, mPositionP2;
     private TextView mTextIdP2;
-    private Button mBtnSeatP2, mBtnInfoP2, mBtnAddFriendP2;
+    private Button mBtnSeatP2, mBtnInfoP2, mBtnDeleteP2;
 
     private ImageView mAvatarP3, mGenderP3, mPositionP3;
     private TextView mTextIdP3;
-    private Button mBtnSeatP3, mBtnInfoP3, mBtnAddFriendP3;
+    private Button mBtnSeatP3, mBtnInfoP3, mBtnDeleteP3;
 
     private ImageView mAvatarP4, mGenderP4, mPositionP4;
     private TextView mTextIdP4;
-    private Button mBtnSeatP4, mBtnInfoP4, mBtnAddFriendP4;
+    private Button mBtnSeatP4, mBtnInfoP4, mBtnDeleteP4;
 
     private ImageView mAvatarP5, mGenderP5, mPositionP5;
     private TextView mTextIdP5;
-    private Button mBtnSeatP5, mBtnInfoP5, mBtnAddFriendP5;
+    private Button mBtnSeatP5, mBtnInfoP5, mBtnDeleteP5;
 
     private ImageView mAvatarP6, mGenderP6, mPositionP6;
     private TextView mTextIdP6;
-    private Button mBtnSeatP6, mBtnInfoP6, mBtnAddFriendP6;
+    private Button mBtnSeatP6, mBtnInfoP6, mBtnDeleteP6;
 
     private ImageView mAvatarP7, mGenderP7, mPositionP7;
     private TextView mTextIdP7;
-    private Button mBtnSeatP7, mBtnInfoP7, mBtnAddFriendP7;
+    private Button mBtnSeatP7, mBtnInfoP7, mBtnDeleteP7;
 
     private View mSeatP1, mSeatP2, mSeatP3;
     private View mSeatP4, mSeatP5, mSeatP6, mSeatP7;
@@ -78,12 +78,14 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     private WaitingRoomInfo mWaitingRoomInfo;
     private int mCurrentGamerAmount;
     private int mNowMasterSort;
+    private int mNewSortForDeleteBtn;
     private ArrayList<WaitingRoomSeats> mSeatsList;
 
     public Waiting4JoinMasterFragment() {
         mWaitingRoomInfo = new WaitingRoomInfo();
         mCurrentGamerAmount = -1;
         mNowMasterSort = -1;
+        mNewSortForDeleteBtn = 1;
         mSeatsList = new ArrayList<>();
     }
 
@@ -178,6 +180,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mSeatP1.getBackground().setAlpha(230);
         mBtnInfoP1 = mRoot.findViewById(R.id.btn_waiting_team_a_player1_info);
         mBtnInfoP1.setOnClickListener(this);
+        mBtnDeleteP1 = mRoot.findViewById(R.id.btn_waiting_team_a_player1_delete);
+        mBtnDeleteP1.setOnClickListener(this);
 
         mAvatarP2 = mRoot.findViewById(R.id.waiting_team_a_player2_avatar);
         mAvatarP2.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -185,14 +189,13 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mPositionP2 = mRoot.findViewById(R.id.waiting_team_a_player2_position);
         mTextIdP2 = mRoot.findViewById(R.id.waiting_team_a_player2_id);
         mBtnSeatP2 = mRoot.findViewById(R.id.btn_waiting_team_a_player2_change_seat);
-        mBtnInfoP2 = mRoot.findViewById(R.id.btn_waiting_team_a_player2_info);
-        mBtnAddFriendP2 = mRoot.findViewById(R.id.btn_waiting_team_a_player2_add);
-        mBtnSeatP2 = mRoot.findViewById(R.id.btn_waiting_team_a_player2_change_seat);
         mBtnSeatP2.setOnClickListener(this);
         mSeatP2 = mRoot.findViewById(R.id.waiting_team_a_player2_seat);
         mSeatP2.getBackground().setAlpha(230);
         mBtnInfoP2 = mRoot.findViewById(R.id.btn_waiting_team_a_player2_info);
         mBtnInfoP2.setOnClickListener(this);
+        mBtnDeleteP2 = mRoot.findViewById(R.id.btn_waiting_team_a_player2_delete);
+        mBtnDeleteP2.setOnClickListener(this);
 
         mAvatarP3 = mRoot.findViewById(R.id.waiting_team_a_player3_avatar);
         mAvatarP3.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -200,14 +203,14 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mPositionP3 = mRoot.findViewById(R.id.waiting_team_a_player3_position);
         mTextIdP3 = mRoot.findViewById(R.id.waiting_team_a_player3_id);
         mBtnSeatP3 = mRoot.findViewById(R.id.btn_waiting_team_a_player3_change_seat);
-        mBtnInfoP3 = mRoot.findViewById(R.id.btn_waiting_team_a_player3_info);
-        mBtnAddFriendP3 = mRoot.findViewById(R.id.btn_waiting_team_a_player3_add);
-        mBtnSeatP3 = mRoot.findViewById(R.id.btn_waiting_team_a_player3_change_seat);
         mBtnSeatP3.setOnClickListener(this);
         mSeatP3 = mRoot.findViewById(R.id.waiting_team_a_player3_seat);
         mSeatP3.getBackground().setAlpha(230);
         mBtnInfoP3 = mRoot.findViewById(R.id.btn_waiting_team_a_player3_info);
         mBtnInfoP3.setOnClickListener(this);
+        mBtnDeleteP3 = mRoot.findViewById(R.id.btn_waiting_team_a_player3_delete);
+        mBtnDeleteP3.setOnClickListener(this);
+
 
         mAvatarP4 = mRoot.findViewById(R.id.waiting_team_b_player1_avatar);
         mAvatarP4.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -215,14 +218,14 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mPositionP4 = mRoot.findViewById(R.id.waiting_team_b_player1_position);
         mTextIdP4 = mRoot.findViewById(R.id.waiting_team_b_player1_id);
         mBtnSeatP4 = mRoot.findViewById(R.id.btn_waiting_team_b_player1_change_seat);
-        mBtnInfoP4 = mRoot.findViewById(R.id.btn_waiting_team_b_player1_info);
-        mBtnAddFriendP4 = mRoot.findViewById(R.id.btn_waiting_team_b_player1_add);
-        mBtnSeatP4 = mRoot.findViewById(R.id.btn_waiting_team_b_player1_change_seat);
         mBtnSeatP4.setOnClickListener(this);
         mSeatP4 = mRoot.findViewById(R.id.waiting_team_b_player1_seat);
         mSeatP4.getBackground().setAlpha(230);
         mBtnInfoP4 = mRoot.findViewById(R.id.btn_waiting_team_b_player1_info);
         mBtnInfoP4.setOnClickListener(this);
+        mBtnDeleteP4 = mRoot.findViewById(R.id.btn_waiting_team_b_player1_delete);
+        mBtnDeleteP4.setOnClickListener(this);
+
 
         mAvatarP5 = mRoot.findViewById(R.id.waiting_team_b_player2_avatar);
         mAvatarP5.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -230,29 +233,27 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mPositionP5 = mRoot.findViewById(R.id.waiting_team_b_player2_position);
         mTextIdP5 = mRoot.findViewById(R.id.waiting_team_b_player2_id);
         mBtnSeatP5 = mRoot.findViewById(R.id.btn_waiting_team_b_player2_change_seat);
-        mBtnInfoP5 = mRoot.findViewById(R.id.btn_waiting_team_b_player2_info);
-        mBtnAddFriendP5 = mRoot.findViewById(R.id.btn_waiting_team_b_player2_add);
-        mBtnSeatP5 = mRoot.findViewById(R.id.btn_waiting_team_b_player2_change_seat);
         mBtnSeatP5.setOnClickListener(this);
         mSeatP5 = mRoot.findViewById(R.id.waiting_team_b_player2_seat);
         mSeatP5.getBackground().setAlpha(230);
         mBtnInfoP5 = mRoot.findViewById(R.id.btn_waiting_team_b_player2_info);
         mBtnInfoP5.setOnClickListener(this);
+        mBtnDeleteP5 = mRoot.findViewById(R.id.btn_waiting_team_b_player2_delete);
+        mBtnDeleteP5.setOnClickListener(this);
 
         mAvatarP6 = mRoot.findViewById(R.id.waiting_team_b_player3_avatar);
         mAvatarP6.setOutlineProvider(new SeatAvatarOutlineProvider());
         mGenderP6 = mRoot.findViewById(R.id.waiting_team_b_player3_gender);
         mPositionP6 = mRoot.findViewById(R.id.waiting_team_b_player3_position);
         mTextIdP6 = mRoot.findViewById(R.id.waiting_team_b_player3_id);
-        mBtnSeatP6 = mRoot.findViewById(R.id.btn_waiting_team_b_player3_change_seat);
-        mBtnInfoP6 = mRoot.findViewById(R.id.btn_waiting_team_b_player3_info);
-        mBtnAddFriendP6 = mRoot.findViewById(R.id.btn_waiting_team_b_player3_add);
-        mBtnSeatP6 = mRoot.findViewById(R.id.btn_waiting_team_b_player3_change_seat);
-        mBtnSeatP6.setOnClickListener(this);
         mSeatP6 = mRoot.findViewById(R.id.waiting_team_b_player3_seat);
         mSeatP6.getBackground().setAlpha(230);
+        mBtnSeatP6 = mRoot.findViewById(R.id.btn_waiting_team_b_player3_change_seat);
+        mBtnSeatP6.setOnClickListener(this);
         mBtnInfoP6 = mRoot.findViewById(R.id.btn_waiting_team_b_player3_info);
         mBtnInfoP6.setOnClickListener(this);
+        mBtnDeleteP6 = mRoot.findViewById(R.id.btn_waiting_team_b_player3_delete);
+        mBtnDeleteP6.setOnClickListener(this);
 
         mAvatarP7 = mRoot.findViewById(R.id.waiting_referee_avatar);
         mAvatarP7.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -260,14 +261,13 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mPositionP7 = mRoot.findViewById(R.id.waiting_referee_position);
         mTextIdP7 = mRoot.findViewById(R.id.waiting_referee_id);
         mBtnSeatP7 = mRoot.findViewById(R.id.btn_waiting_referee_change_seat);
-        mBtnInfoP7 = mRoot.findViewById(R.id.btn_waiting_referee_info);
-        mBtnAddFriendP7 = mRoot.findViewById(R.id.btn_waiting_referee_add);
-        mBtnSeatP7 = mRoot.findViewById(R.id.btn_waiting_referee_change_seat);
         mBtnSeatP7.setOnClickListener(this);
         mSeatP7 = mRoot.findViewById(R.id.waiting_referee_seat);
         mSeatP7.getBackground().setAlpha(230);
         mBtnInfoP7 = mRoot.findViewById(R.id.btn_waiting_referee_info);
         mBtnInfoP7.setOnClickListener(this);
+        mBtnDeleteP7 = mRoot.findViewById(R.id.btn_waiting_referee_delete);
+        mBtnDeleteP7.setOnClickListener(this);
 
         return mRoot;
     }
@@ -314,30 +314,44 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
             case R.id.btn_waiting_team_a_player1_change_seat:
                 Log.d(Constants.TAG, "onClick seat1");
                 mPresenter.changeMaster2NewSeat(1);
+                mNewSortForDeleteBtn = 1;
+                mBtnSeatP1.setClickable(false);
                 break;
             case R.id.btn_waiting_team_a_player2_change_seat:
                 Log.d(Constants.TAG, "onClick seat2");
                 mPresenter.changeMaster2NewSeat(2);
+                mNewSortForDeleteBtn = 2;
+                mBtnSeatP2.setClickable(false);
                 break;
             case R.id.btn_waiting_team_a_player3_change_seat:
                 Log.d(Constants.TAG, "onClick seat3");
                 mPresenter.changeMaster2NewSeat(3);
+                mNewSortForDeleteBtn = 3;
+                mBtnSeatP3.setClickable(false);
                 break;
             case R.id.btn_waiting_team_b_player1_change_seat:
                 Log.d(Constants.TAG, "onClick seat4");
                 mPresenter.changeMaster2NewSeat(4);
+                mNewSortForDeleteBtn = 4;
+                mBtnSeatP4.setClickable(false);
                 break;
             case R.id.btn_waiting_team_b_player2_change_seat:
                 Log.d(Constants.TAG, "onClick seat5");
                 mPresenter.changeMaster2NewSeat(5);
+                mNewSortForDeleteBtn = 5;
+                mBtnSeatP5.setClickable(false);
                 break;
             case R.id.btn_waiting_team_b_player3_change_seat:
                 Log.d(Constants.TAG, "onClick seat6");
                 mPresenter.changeMaster2NewSeat(6);
+                mNewSortForDeleteBtn = 6;
+                mBtnSeatP6.setClickable(false);
                 break;
             case R.id.btn_waiting_referee_change_seat:
                 Log.d(Constants.TAG, "onClick seat7");
                 mPresenter.changeMaster2NewSeat(7);
+                mNewSortForDeleteBtn = 7;
+                mBtnSeatP7.setClickable(false);
                 break;
             case R.id.btn_waiting_team_a_player1_info:
                 Log.d(Constants.TAG, "Info seat1");
@@ -367,6 +381,34 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
                 Log.d(Constants.TAG, "Info seat7");
                 mPresenter.openUserDetailMaster(7);
                 break;
+            case R.id.btn_waiting_team_a_player1_delete:
+                Log.d("Kerry", "Delete seat1");
+                mPresenter.kickOutPlayer(1);
+                break;
+            case R.id.btn_waiting_team_a_player2_delete:
+                Log.d("Kerry", "Delete seat2");
+                mPresenter.kickOutPlayer(2);
+                break;
+            case R.id.btn_waiting_team_a_player3_delete:
+                Log.d("Kerry", "Delete seat3");
+                mPresenter.kickOutPlayer(3);
+                break;
+            case R.id.btn_waiting_team_b_player1_delete:
+                Log.d("Kerry", "Delete seat4");
+                mPresenter.kickOutPlayer(4);
+                break;
+            case R.id.btn_waiting_team_b_player2_delete:
+                Log.d("Kerry", "Delete seat5");
+                mPresenter.kickOutPlayer(5);
+                break;
+            case R.id.btn_waiting_team_b_player3_delete:
+                Log.d("Kerry", "Delete seat6");
+                mPresenter.kickOutPlayer(6);
+                break;
+            case R.id.btn_waiting_referee_delete:
+                Log.d("Kerry", "Delete seat7");
+                mPresenter.kickOutPlayer(7);
+                break;
             default:
                 break;
         }
@@ -383,19 +425,19 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         mSeatsList = newSeatsList;
         for (int i = 0; i < 7; i++) {
             if (i == 0) {
-                setUserSeatInfo(newSeatsList.get(i), 1, mAvatarP1, mGenderP1, mPositionP1, mTextIdP1, mBtnSeatP1);
+                setUserSeatInfo(newSeatsList.get(i), 1, mAvatarP1, mGenderP1, mPositionP1, mTextIdP1, mBtnSeatP1, mBtnDeleteP1);
             } else if (i == 1) {
-                setUserSeatInfo(newSeatsList.get(i), 2, mAvatarP2, mGenderP2, mPositionP2, mTextIdP2, mBtnSeatP2);
+                setUserSeatInfo(newSeatsList.get(i), 2, mAvatarP2, mGenderP2, mPositionP2, mTextIdP2, mBtnSeatP2, mBtnDeleteP2);
             } else if (i == 2) {
-                setUserSeatInfo(newSeatsList.get(i), 3, mAvatarP3, mGenderP3, mPositionP3, mTextIdP3, mBtnSeatP3);
+                setUserSeatInfo(newSeatsList.get(i), 3, mAvatarP3, mGenderP3, mPositionP3, mTextIdP3, mBtnSeatP3, mBtnDeleteP3);
             } else if (i == 3) {
-                setUserSeatInfo(newSeatsList.get(i), 4, mAvatarP4, mGenderP4, mPositionP4, mTextIdP4, mBtnSeatP4);
+                setUserSeatInfo(newSeatsList.get(i), 4, mAvatarP4, mGenderP4, mPositionP4, mTextIdP4, mBtnSeatP4, mBtnDeleteP4);
             } else if (i == 4) {
-                setUserSeatInfo(newSeatsList.get(i), 5, mAvatarP5, mGenderP5, mPositionP5, mTextIdP5, mBtnSeatP5);
+                setUserSeatInfo(newSeatsList.get(i), 5, mAvatarP5, mGenderP5, mPositionP5, mTextIdP5, mBtnSeatP5, mBtnDeleteP5);
             } else if (i == 5) {
-                setUserSeatInfo(newSeatsList.get(i), 6, mAvatarP6, mGenderP6, mPositionP6, mTextIdP6, mBtnSeatP6);
+                setUserSeatInfo(newSeatsList.get(i), 6, mAvatarP6, mGenderP6, mPositionP6, mTextIdP6, mBtnSeatP6, mBtnDeleteP6);
             } else if (i == 6) {
-                setUserSeatInfo(newSeatsList.get(i), 7, mAvatarP7, mGenderP7, mPositionP7, mTextIdP7, mBtnSeatP7);
+                setUserSeatInfo(newSeatsList.get(i), 7, mAvatarP7, mGenderP7, mPositionP7, mTextIdP7, mBtnSeatP7, mBtnDeleteP7);
             } else {
                 Log.d(Constants.TAG, "showWaitingSeatsSlaveUi Error!!");
             }
@@ -406,7 +448,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
 
     private void setUserSeatInfo(WaitingRoomSeats seatPlayerInfo, int sort,
                                  ImageView avatar, ImageView gender,
-                                 ImageView position, TextView id, Button btnChangeSeat) {
+                                 ImageView position, TextView id,
+                                 Button btnChangeSeat, Button btnKickOut) {
         // set avatar
         if (seatPlayerInfo.getAvatar().equals("")) {
             avatar.setImageResource(R.drawable.ic_user_avatar);
@@ -439,7 +482,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
 
         // set id
         if (seatPlayerInfo.getId().equals("")) {
-            if(sort == 7){
+            if (sort == 7) {
                 id.setText("Referee");
             } else {
                 id.setText("Player" + String.valueOf(sort));
@@ -449,10 +492,19 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         }
 
         // set btn change seat
+        btnChangeSeat.setClickable(true);
         if (seatPlayerInfo.isSeatAvailable()) {
             btnChangeSeat.setVisibility(View.VISIBLE);
         } else {
             btnChangeSeat.setVisibility(View.GONE);
+        }
+
+//        Log.e("Kerry", "mNewSortForDeleteBtn = " + mNewSortForDeleteBtn + "\nsort = " + sort);
+        // set Btn kick out
+        if (mNewSortForDeleteBtn == sort) {
+            btnKickOut.setVisibility(View.GONE);
+        } else {
+            btnKickOut.setVisibility(View.VISIBLE);
         }
 
     }

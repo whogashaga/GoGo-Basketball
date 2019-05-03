@@ -1147,6 +1147,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mWaiting4JoinMasterPresenter.openUserDetailMaster(sort);
     }
 
+    @Override
+    public void kickOutPlayer(int sort) {
+        mWaiting4JoinMasterPresenter.kickOutPlayer(sort);
+    }
+
     /* ------------------------------------------------------------------------------------------ */
     /* Home View Pager Use Only */
 
@@ -1328,7 +1333,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void getDeviceCurrentLocation() {
-        Log.d("Kerry", "MainPresenter getDeviceCurrentLocation ");
+        Log.d(Constants.TAG, "MainPresenter getDeviceCurrentLocation ");
         LocationManager.getInstance().getDeviceLocation(new LocationManager.LocationCallback() {
             @Override
             public void onSuccess(double latitude, double longitude) {
@@ -1400,7 +1405,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     private void checkIfUpdateLocation(String location) {
-        Log.d("Kerry", "checkIfUpdateLocation location = " + location);
+        Log.d(Constants.TAG, "checkIfUpdateLocation location = " + location);
         mCourtsLocation = location;
         if (AccessToken.getCurrentAccessToken() != null) {
             String FacebookId = AccessToken.getCurrentAccessToken().getUserId().trim();
@@ -1634,7 +1639,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void removeHandler() {
-        Log.w("Kerry", "removeHandler: ");
+        Log.w(Constants.TAG, "removeHandler: ");
         mHandler.removeCallbacks(mRunnable);
     }
 

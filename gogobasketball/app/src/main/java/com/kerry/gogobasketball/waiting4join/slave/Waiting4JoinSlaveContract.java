@@ -28,6 +28,8 @@ public interface Waiting4JoinSlaveContract {
         void setBackBtnClickable();
 
         void openUserDetailUi(String userId);
+
+        void finishByKickedOut();
     }
 
     interface Presenter extends BasePresenter {

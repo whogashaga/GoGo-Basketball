@@ -458,6 +458,14 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mPresenter.openUserDetailDialog(userId);
     }
 
+    @Override
+    public void finishByKickedOut() {
+        mPresenter.showErrorToast("人家不想跟你打球 !", false);
+        mPresenter.finishWaiting4JoinSlaveUi();
+        mPresenter.showToolbarAndBottomNavigation();
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+
 
     @Override
     public boolean isActive() {

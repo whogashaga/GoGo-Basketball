@@ -78,7 +78,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
         if (mListForChangeSeat.get(sort - 1) != null && !mListForChangeSeat.get(sort - 1).getId().equals("")) {
             mWaiting4JoinMasterView.openUserDetailUi(mListForChangeSeat.get(sort - 1).getId());
         } else {
-            Log.d("Kerry", "openUserDetailMaster 1 Error !");
+            Log.d("Kerry", "openUserDetailMaster Error !");
         }
     }
 
@@ -93,6 +93,70 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
 
         setRoomSnapshotListerMaster(roomDocId);
         setAllSeatSnapshotListerSlave();
+    }
+
+    @Override
+    public void kickOutPlayer(int sort) {
+        if (sort == 1) {
+            checkIfSomeOne2KickOut(1);
+        } else if (sort == 2) {
+            checkIfSomeOne2KickOut(2);
+        } else if (sort == 3) {
+            checkIfSomeOne2KickOut(3);
+        } else if (sort == 4) {
+            checkIfSomeOne2KickOut(4);
+        } else if (sort == 5) {
+            checkIfSomeOne2KickOut(5);
+        } else if (sort == 6) {
+            checkIfSomeOne2KickOut(6);
+        } else if (sort == 7) {
+            checkIfSomeOne2KickOut(7);
+        } else {
+            Log.e("Kerry", "kickOutPlayer Error ");
+        }
+    }
+
+    private void checkIfSomeOne2KickOut(int sort) {
+        Log.d("Kerry", "checkIfSomeOne2KickOut sort = " + sort);
+        if (mListForChangeSeat.get(sort - 1) != null && !mListForChangeSeat.get(sort - 1).getId().equals("")) {
+            findOuterDocId(sort);
+        } else {
+            Log.d("Kerry", "openUserDetailMaster Error !");
+        }
+    }
+
+    private void findOuterDocId(int sort) {
+        Log.d("Kerry", "findOuterDocId sort = " + sort);
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .collection(Constants.WAITING_SEATS)
+                .whereEqualTo("sort", sort)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            // 只有一筆，跑 for 沒關係
+                            changeSeat2Unavaliable(document.getId().toString().trim());
+                            Log.d("Kerry", "findOuterDocId = " + document.getId());
+                        }
+                    } else {
+                        Log.w(Constants.TAG, "Error getting documents.", task.getException());
+                    }
+                }).addOnFailureListener(e -> Log.w(Constants.TAG, "Error getting documents.", e));
+    }
+
+    private void changeSeat2Unavaliable(String outerDocId) {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .collection(Constants.WAITING_SEATS)
+                .document(outerDocId)
+                .update("seatAvailable", true)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d(Constants.TAG, "Master發出剔除指令 !");
+                })
+                .addOnFailureListener(e -> Log.w(Constants.TAG, "Error updating document", e));
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -185,9 +249,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
             } else {
                 Log.d(Constants.TAG, "球員間換位，數字不變！");
             }
-
         }
-
         updateRoomInfoAfterChangeSeatMaster();
     }
 

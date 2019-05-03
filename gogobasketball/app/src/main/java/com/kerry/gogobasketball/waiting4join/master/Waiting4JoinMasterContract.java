@@ -69,6 +69,8 @@ public interface Waiting4JoinMasterContract {
         void openUserDetailDialog(String userId);
 
         void openUserDetailMaster(int sort);
+
+        void kickOutPlayer(int sort);
     }
 
 }
