@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.StringDef;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 
 import com.kerry.gogobasketball.create_user.CreateUserFragment;
 import com.kerry.gogobasketball.create_user.CreateUserPresenter;
@@ -106,7 +105,7 @@ public class MainMvpController {
 
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({
-            HOME, FRIEND, RANK, PROFILE, WANT2CREATEROOM, WAITING4JOIN, GOING4REFEREE, GOING4PLAYER,
+            HOME, FRIEND, RANK, PROFILE, WANT2CREATEROOM, WAITING4JOINMASTER, WAITING4JOINSLAVE, GOING4REFEREE, GOING4PLAYER,
             RESULT4REFEREE, RESULT4PLAYER, LOGIN, CREATE1USER
     })
     public @interface FragmentType {
@@ -117,7 +116,8 @@ public class MainMvpController {
     static final String RANK = "RANK";
     static final String PROFILE = "PROFILE";
     static final String WANT2CREATEROOM = "WANT2CREATEROOM";
-    static final String WAITING4JOIN = "WAITING4JOIN";
+    static final String WAITING4JOINMASTER = "WAITING4JOINMASTER";
+    static final String WAITING4JOINSLAVE = "WAITING4JOINSLAVE";
     static final String GOING4REFEREE = "GOING4REFEREE";
     static final String GOING4PLAYER = "GOING4PLAYER";
     static final String RESULT4REFEREE = "RESULT4REFEREE";
@@ -317,7 +317,6 @@ public class MainMvpController {
 
         mWaiting4JoinSlavePresenter = new Waiting4JoinSlavePresenter(waiting4JoinSlaveFragment);
         mWaiting4JoinSlavePresenter.getHostNameFromLooking4Room(waitingRoomInfo);
-
         mMainPresenter.setWaiting4JoinSlavePresenter(mWaiting4JoinSlavePresenter);
         waiting4JoinSlaveFragment.setPresenter(mMainPresenter);
     }
@@ -782,7 +781,7 @@ public class MainMvpController {
         Waiting4JoinMasterFragment waiting4JoinFragmentFragment = Waiting4JoinMasterFragment.newInstance();
 
         ActivityUtils.addFragmentByTag(
-                getFragmentManager(), waiting4JoinFragmentFragment, WAITING4JOIN);
+                getFragmentManager(), waiting4JoinFragmentFragment, WAITING4JOINMASTER);
 
         return waiting4JoinFragmentFragment;
     }
@@ -798,7 +797,7 @@ public class MainMvpController {
         Waiting4JoinSlaveFragment waiting4JoinSlaveFragment = Waiting4JoinSlaveFragment.newInstance();
 
         ActivityUtils.addFragmentByTag(
-                getFragmentManager(), waiting4JoinSlaveFragment, WAITING4JOIN);
+                getFragmentManager(), waiting4JoinSlaveFragment, WAITING4JOINSLAVE);
 
         return waiting4JoinSlaveFragment;
     }

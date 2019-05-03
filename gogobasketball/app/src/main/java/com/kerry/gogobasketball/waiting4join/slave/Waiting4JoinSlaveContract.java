@@ -64,7 +64,7 @@ public interface Waiting4JoinSlaveContract {
 
         void setActivityBackgroundPortrait();
 
-        void getProfileUserDataSlave(Activity activity);
+        void getProfileUserDataSlave();
 
         void removeListenerSlave();
 

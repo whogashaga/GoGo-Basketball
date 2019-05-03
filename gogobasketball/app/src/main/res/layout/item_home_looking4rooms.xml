@@ -71,10 +71,11 @@
 
     <ImageView
         android:id="@+id/image_item_player_pic"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/image_item_room_pic"
         app:layout_constraintStart_toStartOf="@+id/image_item_room_pic"

@@ -739,8 +739,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void getProfileUserDataSlave(Activity activity) {
-        mWaiting4JoinSlavePresenter.getProfileUserDataSlave(activity);
+    public void getProfileUserDataSlave() {
+        mWaiting4JoinSlavePresenter.getProfileUserDataSlave();
     }
 
     @Override

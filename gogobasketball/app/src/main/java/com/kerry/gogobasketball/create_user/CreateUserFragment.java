@@ -89,7 +89,6 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
         mRadioGenderSelector.setOnCheckedChangeListener(this);
 
         mSpinnerPosition = root.findViewById(R.id.spinner_create_user_position_selector);
-        mSpinnerPosition.getBackground().setAlpha(100);
         setSpinnerPosition();
 
         mRadioMale = root.findViewById(R.id.radios_create_male);

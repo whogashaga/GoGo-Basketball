@@ -383,30 +383,37 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
                 break;
             case R.id.btn_waiting_team_a_player1_delete:
                 Log.d("Kerry", "Delete seat1");
+                mBtnDeleteP1.setClickable(false);
                 mPresenter.kickOutPlayer(1);
                 break;
             case R.id.btn_waiting_team_a_player2_delete:
                 Log.d("Kerry", "Delete seat2");
+                mBtnDeleteP2.setClickable(false);
                 mPresenter.kickOutPlayer(2);
                 break;
             case R.id.btn_waiting_team_a_player3_delete:
                 Log.d("Kerry", "Delete seat3");
+                mBtnDeleteP3.setClickable(false);
                 mPresenter.kickOutPlayer(3);
                 break;
             case R.id.btn_waiting_team_b_player1_delete:
                 Log.d("Kerry", "Delete seat4");
+                mBtnDeleteP4.setClickable(false);
                 mPresenter.kickOutPlayer(4);
                 break;
             case R.id.btn_waiting_team_b_player2_delete:
                 Log.d("Kerry", "Delete seat5");
+                mBtnDeleteP5.setClickable(false);
                 mPresenter.kickOutPlayer(5);
                 break;
             case R.id.btn_waiting_team_b_player3_delete:
                 Log.d("Kerry", "Delete seat6");
+                mBtnDeleteP6.setClickable(false);
                 mPresenter.kickOutPlayer(6);
                 break;
             case R.id.btn_waiting_referee_delete:
                 Log.d("Kerry", "Delete seat7");
+                mBtnDeleteP7.setClickable(false);
                 mPresenter.kickOutPlayer(7);
                 break;
             default:
@@ -492,9 +499,9 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         }
 
         // set btn change seat
-        btnChangeSeat.setClickable(true);
         if (seatPlayerInfo.isSeatAvailable()) {
             btnChangeSeat.setVisibility(View.VISIBLE);
+            btnChangeSeat.setClickable(true);
         } else {
             btnChangeSeat.setVisibility(View.GONE);
         }
@@ -505,6 +512,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
             btnKickOut.setVisibility(View.GONE);
         } else {
             btnKickOut.setVisibility(View.VISIBLE);
+            btnKickOut.setClickable(true);
         }
 
     }

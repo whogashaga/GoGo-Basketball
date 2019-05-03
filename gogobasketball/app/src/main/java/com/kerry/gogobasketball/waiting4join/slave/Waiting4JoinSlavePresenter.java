@@ -90,11 +90,12 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     }
 
     @Override
-    public void getProfileUserDataSlave(Activity activity) {
+    public void getProfileUserDataSlave() {
         UserManager.getInstance().getUserProfile(new UserManager.LoadCallback() {
             @Override
             public void onSuccess(User user) {
                 mUser = user;
+                getRoomDocId();
             }
 
             @Override
@@ -112,7 +113,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     @Override
     public void getHostNameFromLooking4Room(WaitingRoomInfo waitingRoomInfo) {
         mWaitingRoomInfo = waitingRoomInfo;
-        getRoomDocId();
+        getProfileUserDataSlave();
     }
 
     private void getRoomDocId() {
@@ -211,6 +212,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     private void updateJoinerInfo2FireBase(WaitingRoomSeats joinerInfo, String roomId) {
 
         mSeatDocId = joinerInfo.getId();
+        Log.w("Kerry", "joinerInfo.getId() = " + joinerInfo.getId());
 
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
