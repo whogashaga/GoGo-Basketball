@@ -116,6 +116,11 @@ public class CreateUserPresenter implements CreateUserContract.Presenter {
     }
 
     @Override
+    public void finishCreateUser() {
+
+    }
+
+    @Override
     public void createUserClickConfirm() {
 
         FirestoreHelper.getFirestore()

@@ -25,7 +25,9 @@ import android.widget.Toast;
 import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.MainActivity;
 import com.kerry.gogobasketball.R;
+import com.kerry.gogobasketball.component.NameInputFilter;
 import com.kerry.gogobasketball.component.NameLengthFilter;
+import com.kerry.gogobasketball.component.SizeFilterWithTextAndLetter;
 import com.kerry.gogobasketball.util.Constants;
 
 import java.util.ArrayList;
@@ -48,6 +50,7 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
     private RadioButton mRadioMale;
     private RadioButton mRadioFemale;
     private Button mBtnCreateUserConfirm;
+    private Button mBtnCancel;
 
     public CreateUserFragment() {
         // Requires empty public constructor
@@ -97,6 +100,11 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
         mBtnCreateUserConfirm = root.findViewById(R.id.btn_create_user_confirm);
         mBtnCreateUserConfirm.setOnClickListener(this);
         mBtnCreateUserConfirm.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.gray_cccccc));
+
+        mBtnCancel = root.findViewById(R.id.btn_create_user_cancel);
+        mBtnCancel.setOnClickListener(this);
+        mBtnCancel.setVisibility(View.GONE);
+
         return root;
     }
 
@@ -108,6 +116,10 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
 //                mPresenter.createUserClickConfirm();
                 mPresenter.checkIfUserIdExists();
                 mBtnCreateUserConfirm.setClickable(false);
+                break;
+            case R.id.btn_create_user_cancel:
+                Log.e("Kerry", "btn_create_user_cancel onClick ! ");
+                mPresenter.finishCreateUser();
                 break;
             default:
         }
@@ -146,7 +158,8 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
         super.onViewCreated(view, savedInstanceState);
         mPresenter.hideToolbarAndBottomNavigation();
         setBtnCreateConfirmClickable(true);
-        mEditUserId.setFilters(new NameLengthFilter[]{new NameLengthFilter(12)});
+        mEditUserId.setFilters(new InputFilter[]{new NameInputFilter(getContext(),12)});
+//        mEditUserId.setFilters(new InputFilter[]{new SizeFilterWithTextAndLetter(12,6)});
         mEditUserId.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -160,7 +173,6 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
                     setBtnCreateConfirmClickable(true);
                     Log.e(Constants.TAG, "Create User Fragment onTextChanged : " + s.toString());
                 } else if (s.length() == 0) {
-                    mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.edit_user_id), true);
                     setBtnCreateConfirmClickable(false);
                 } else {
                     Log.d(Constants.TAG, "no this kind of situation!");

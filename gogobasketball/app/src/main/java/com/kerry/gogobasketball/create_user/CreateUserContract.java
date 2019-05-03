@@ -43,5 +43,7 @@ public interface CreateUserContract {
         void onCreateUserSuccess();
 
         void checkIfUserIdExists();
+
+        void finishCreateUser();
     }
 }
