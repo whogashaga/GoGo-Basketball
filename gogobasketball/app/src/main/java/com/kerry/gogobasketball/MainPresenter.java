@@ -1398,6 +1398,26 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                 && 121.483664 <= longitude && longitude <= 121.484508) {
             checkIfUpdateLocation(Constants.WAN_BAN_BRIDGE);
 
+        } else if (25.032995 <= latitude && latitude <= 25.034521
+                && 121.486989 <= longitude && longitude <= 121.488330) {
+            checkIfUpdateLocation(Constants.SHUANG_YUAN_RIVER);
+
+        } else if (25.013862 <= latitude && latitude <= 25.015228
+                && 121.525101 <= longitude && longitude <= 121.526356) {
+            checkIfUpdateLocation(Constants.GU_TING_RIVER);
+
+        } else if (24.991043 <= latitude && latitude <= 24.992618
+                && 121.527668 <= longitude && longitude <= 121.529181) {
+            checkIfUpdateLocation(Constants.XIU_LANG_BRIDGE);
+
+        } else if (25.052797 <= latitude && latitude <= 25.053949
+                && 121.573592 <= longitude && longitude <= 121.575089) {
+            checkIfUpdateLocation(Constants.MAC_HANDSOME_BRIDGE);
+
+        } else if (25.068288 <= latitude && latitude <= 25.068973
+                && 121.532206 <= longitude && longitude <= 121.533075) {
+            checkIfUpdateLocation(Constants.XIN_SHENG_PARK);
+
         } else {
             Log.d(Constants.TAG, "不在任何球場範圍內");
             if (!mCourtsLocation.equals("")) {

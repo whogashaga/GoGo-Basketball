@@ -353,25 +353,6 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
     }
 
-    private void checkIfBeingKickedOut() {
-        DocumentReference docRef = FirestoreHelper.getFirestore()
-                .collection(Constants.WAITING_ROOM)
-                .document(mRoomDocId)
-                .collection(Constants.WAITING_SEATS)
-                .document(mSeatDocId);
-
-        docRef.get().addOnSuccessListener(documentSnapshot -> {
-            if (documentSnapshot.exists()) {
-                WaitingRoomSeats waitingRoomSeats = documentSnapshot.toObject(WaitingRoomSeats.class);
-                if (waitingRoomSeats.isSeatAvailable()) {
-                    mWaiting4JoinView.finishByKickedOut();
-                } else {
-                    getNewSeatsInfo();
-                }
-            }
-        }).addOnFailureListener(e -> Log.d(Constants.TAG, "checkTotalPlayerAmountSlave Error！"));
-    }
-
     private void setRoomSnapshotListerSlave() {
 
         DocumentReference docRef = FirestoreHelper.getFirestore()
@@ -395,13 +376,31 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 } else if (newRoomInfo.getStatus().equals(Constants.STATUS_GAMING)) {
                     queryCurrentSort();
                 }
-//                getNewSeatsInfo();
                 checkIfBeingKickedOut();
 
             } else {
                 Log.d(Constants.TAG, "Current data: null");
             }
         });
+    }
+
+    private void checkIfBeingKickedOut() {
+        DocumentReference docRef = FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .collection(Constants.WAITING_SEATS)
+                .document(mSeatDocId);
+
+        docRef.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                WaitingRoomSeats waitingRoomSeats = documentSnapshot.toObject(WaitingRoomSeats.class);
+                if (waitingRoomSeats.isSeatAvailable()) {
+                    mWaiting4JoinView.finishByKickedOut();
+                } else {
+                    getNewSeatsInfo();
+                }
+            }
+        }).addOnFailureListener(e -> Log.d(Constants.TAG, "checkTotalPlayerAmountSlave Error！"));
     }
 
     @Override

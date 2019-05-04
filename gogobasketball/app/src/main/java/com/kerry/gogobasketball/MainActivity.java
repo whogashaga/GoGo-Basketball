@@ -100,7 +100,9 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         setToolbar();
         setBottomNavigation();
 //        mPresenter.getDeviceCurrentLocation();
+
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

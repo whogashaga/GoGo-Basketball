@@ -14,7 +14,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +29,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -176,11 +174,17 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
             addCourtsMarker(new LatLng(25.002419, 121.514499), getString(R.string.fourth_823_park), "目前人數 : " + populationList.get(3));
             addCourtsMarker(new LatLng(25.006869, 121.528114), getString(R.string.fu_her_bridge), "目前人數 : " + populationList.get(4));
             addCourtsMarker(new LatLng(25.018408, 121.510075), getString(R.string.green_stone_park), "目前人數 : " + populationList.get(5));
-            addCourtsMarker(new LatLng(25.043572, 121.565559), getString(R.string.song_san_high_school), "目前人數 : " + populationList.get(6));
-            addCourtsMarker(new LatLng(25.020213, 121.536475), getString(R.string.tai_da_central), "目前人數 : " + populationList.get(7));
-            addCourtsMarker(new LatLng(25.028251, 121.483837), getString(R.string.wan_ban_bridge), "目前人數 : " + populationList.get(8));
-            addCourtsMarker(new LatLng(25.045040, 121.530423), getString(R.string.xin_sheng_high), "目前人數 : " + populationList.get(9));
-            addCourtsMarker(new LatLng(25.021023, 121.505110), getString(R.string.young_park), "目前人數 : " + populationList.get(10));
+            addCourtsMarker(new LatLng(25.014367, 121.525744), getString(R.string.gu_ting_river), "目前人數 : " + populationList.get(6));
+            addCourtsMarker(new LatLng(25.053201, 121.574055), getString(R.string.mac_handsome_bridge), "目前人數 : " + populationList.get(7));
+            addCourtsMarker(new LatLng(25.033570, 121.488031), getString(R.string.shuang_yuan_river), "目前人數 : " + populationList.get(8));
+            addCourtsMarker(new LatLng(25.043572, 121.565559), getString(R.string.song_san_high_school), "目前人數 : " + populationList.get(9));
+            addCourtsMarker(new LatLng(25.020213, 121.536475), getString(R.string.tai_da_central), "目前人數 : " + populationList.get(10));
+            addCourtsMarker(new LatLng(25.028251, 121.483837), getString(R.string.wan_ban_bridge), "目前人數 : " + populationList.get(11));
+            addCourtsMarker(new LatLng(25.068558, 121.532685), getString(R.string.xin_sheng_park), "目前人數 : " + populationList.get(12));
+            addCourtsMarker(new LatLng(25.045040, 121.530423), getString(R.string.xin_sheng_high), "目前人數 : " + populationList.get(13));
+            addCourtsMarker(new LatLng(24.991559, 121.528378), getString(R.string.xiu_lang_bridge), "目前人數 : " + populationList.get(14));
+            addCourtsMarker(new LatLng(25.021023, 121.505110), getString(R.string.younth_park), "目前人數 : " + populationList.get(15));
+
         } else {
             Log.d(TAG, "initCourtsMarker: activity or context is null");
         }

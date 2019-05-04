@@ -66,5 +66,9 @@ public class Constants {
     public static final String DINOSAUR_PARK = "DinosaurPark";
     public static final String WAN_BAN_BRIDGE = "WanBanBridge";
     public static final String FU_HER_BRIDGE = "FuHerbridge";
-
+    public static final String SHUANG_YUAN_RIVER = "ShuangYuanRiver";
+    public static final String GU_TING_RIVER = "GuTingRiver";
+    public static final String XIU_LANG_BRIDGE = "XiuLangBridge";
+    public static final String MAC_HANDSOME_BRIDGE = "MacHandsomeBridge";
+    public static final String XIN_SHENG_PARK = "XinShengPark";
 }
