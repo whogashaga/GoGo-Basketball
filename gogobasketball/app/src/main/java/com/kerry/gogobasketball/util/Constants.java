@@ -71,4 +71,6 @@ public class Constants {
     public static final String XIU_LANG_BRIDGE = "XiuLangBridge";
     public static final String MAC_HANDSOME_BRIDGE = "MacHandsomeBridge";
     public static final String XIN_SHENG_PARK = "XinShengPark";
+    public static final String BA_DER_PARK = "BaDerPark";
+    public static final String BANQIAO_SECOND = "BanqiaoSecond";
 }

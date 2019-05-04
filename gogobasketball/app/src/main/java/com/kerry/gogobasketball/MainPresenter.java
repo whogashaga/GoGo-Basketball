@@ -1418,6 +1418,14 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                 && 121.532206 <= longitude && longitude <= 121.533075) {
             checkIfUpdateLocation(Constants.XIN_SHENG_PARK);
 
+        } else if (25.023490 <= latitude && latitude <= 25.025483
+                && 121.474695 <= longitude && longitude <= 121.476583) {
+            checkIfUpdateLocation(Constants.BA_DER_PARK);
+
+        } else if (25.012900 <= latitude && latitude <= 25.014651
+                && 121.457014 <= longitude && longitude <= 121.458474) {
+            checkIfUpdateLocation(Constants.BANQIAO_SECOND);
+
         } else {
             Log.d(Constants.TAG, "不在任何球場範圍內");
             if (!mCourtsLocation.equals("")) {
