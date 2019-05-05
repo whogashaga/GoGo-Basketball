@@ -464,6 +464,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
+    public void forced2FinishGaming() {
+        mRefereeGoingPresenter.forced2FinishGaming();
+    }
+
+    @Override
     public void updateGameResultOfPlayer(GamingRoomInfo gamingRoomInfo) {
         mRefereeGoingPresenter.updateGameResultOfPlayer(gamingRoomInfo);
     }
@@ -474,8 +479,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void forced2FinishGaming() {
-
+    public void removeListenerPlayer() {
+        mPlayerGoingPresenter.removeListenerPlayer();
     }
 
     @Override

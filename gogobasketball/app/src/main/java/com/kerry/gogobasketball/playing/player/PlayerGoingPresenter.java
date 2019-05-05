@@ -9,6 +9,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.FirestoreHelper;
@@ -23,7 +24,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
 
     private final PlayerGoingContract.View mGamePlayingView;
-
+    private ListenerRegistration mRoomListenerRegistration;
     private String mRoomDocId;
 
     public PlayerGoingPresenter(@NonNull PlayerGoingContract.View waiting4JoinView) {
@@ -34,6 +35,7 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
 
     @Override
     public void getHostNameFromWaitingJoinSlave(String hostName, int nowSort) {
+//        mHostName = hostName;
         getDocId(hostName, nowSort);
     }
 
@@ -51,7 +53,7 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
 
                                 // 只有一筆，跑 for 沒關係
                                 mRoomDocId = document.getId();
-                                setGamingRoomSnapshotListerPlayer(document.getId(), nowSort);
+                                setGamingRoomSnapshotListerPlayer(nowSort);
 
                             }
                         } else {
@@ -62,13 +64,14 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
     }
 
 
-    private void setGamingRoomSnapshotListerPlayer(String roomDocId, int nowSort) {
+    private void setGamingRoomSnapshotListerPlayer(int nowSort) {
 
+        Log.w("Kerry", "setGamingRoomSnapshotListerPlayer !");
         final DocumentReference docRef = FirestoreHelper.getFirestore()
                 .collection(Constants.GAMING_ROOM)
-                .document(roomDocId);
+                .document(mRoomDocId);
 
-        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+        mRoomListenerRegistration = docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot snapshot,
                                 @Nullable FirebaseFirestoreException e) {
@@ -81,7 +84,10 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
                     GamingRoomInfo newRoomInfo = snapshot.toObject(GamingRoomInfo.class);
 
                     if (newRoomInfo.getStatus().equals(Constants.STATUS_OVER)) {
+                        Log.w("Kerry", "Got Game Over !");
                         mGamePlayingView.openGameResultPlayerUi(newRoomInfo.getHostName(), nowSort);
+                    } else {
+                        Log.w("Kerry", "didn't get Game Over !");
                     }
 
                 } else {
@@ -89,6 +95,11 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
                 }
             }
         });
+    }
+
+    @Override
+    public void removeListenerPlayer() {
+        mRoomListenerRegistration.remove();
     }
 
     @Override
@@ -123,11 +134,6 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
 
     @Override
     public void openGameResultPlayer(String hostName, int nowSort) {
-
-    }
-
-    @Override
-    public void forced2FinishGaming() {
 
     }
 

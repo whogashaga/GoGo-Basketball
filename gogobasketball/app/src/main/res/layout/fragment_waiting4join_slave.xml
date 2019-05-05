@@ -822,8 +822,8 @@
 
     <ImageButton
         android:id="@+id/btn_slave_waiting4join_instruction"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:background="@null"
@@ -918,13 +918,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.33" />
+        app:layout_constraintGuide_percent="0.30" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.74" />
+        app:layout_constraintGuide_percent="0.71" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="說明"
+        app:layout_constraintEnd_toEndOf="@+id/btn_slave_waiting4join_instruction"
+        app:layout_constraintStart_toStartOf="@+id/btn_slave_waiting4join_instruction"
+        app:layout_constraintTop_toBottomOf="@+id/btn_slave_waiting4join_instruction" />
 
 </android.support.constraint.ConstraintLayout>

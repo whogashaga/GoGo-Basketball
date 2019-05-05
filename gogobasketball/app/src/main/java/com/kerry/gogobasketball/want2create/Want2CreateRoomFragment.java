@@ -26,7 +26,6 @@ import android.widget.TextView;
 
 import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
-import com.kerry.gogobasketball.component.NameLengthFilter;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.util.Constants;
@@ -223,13 +222,13 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
                         // do nothing
                     } else {
                         setBtnCreateConfirmClickable(true);
-                        if (s.length() == 10) {
-                            mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.at_most_10_word), true);
+                        if (s.length() == 20) {
+                            mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.at_most_20_word), true);
                         }
                     }
                 } else if (s.length() == 0) {
                     setBtnCreateConfirmClickable(false);
-                    mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.edit_room_name), true);
+//                    mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.edit_room_name), true);
                 } else {
                     Log.d(Constants.TAG, "no this kind of situation!");
                 }
@@ -282,14 +281,15 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
                 Matcher matcher = pattern.matcher(source.toString());
                 if (matcher.find()) {
                     return "";
-                } else if (source.equals(" ") || source.toString().contentEquals("\n")) {
-                    return "";
-                } else {
+//                } else if (source.equals(" ") || source.toString().contentEquals("\n")) {
+//                    return "";
+                }
+                else {
                     return null;
                 }
             }
         };
-        editText.setFilters(new InputFilter[]{filter, new InputFilter.LengthFilter(10)});
+        editText.setFilters(new InputFilter[]{filter, new InputFilter.LengthFilter(20)});
     }
 
 }

@@ -30,7 +30,7 @@ public interface PlayerGoingContract {
 
         void openGameResultPlayer(String hostName, int nowSort);
 
-        void forced2FinishGaming();
+        void removeListenerPlayer();
 
         void setBackKeyDisable(boolean isBackKeyDisable);
 

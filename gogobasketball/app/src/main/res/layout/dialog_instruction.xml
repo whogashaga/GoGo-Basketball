@@ -45,10 +45,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
             android:text="紅框為 A 隊 , 藍框為 B 隊 , 黃框為裁判 , 需湊滿 7 人才可開始遊戲"
-            android:textSize="13sp"
             android:textColor="@color/black_4B4545"
+            android:textSize="13sp"
             app:layout_constraintBottom_toTopOf="@+id/image_instruction_change_seat"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_instruction_title" />
 

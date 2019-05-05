@@ -45,7 +45,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     @Override
     public void onResume() {
         super.onResume();
-
+        Log.v("Kerry", "LoginFragment onResume !");
     }
 
     @Override
@@ -73,9 +73,6 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        mLayout.setBackgroundResource(R.drawable.anim_layout_home);
-//        AnimationDrawable drawable = (AnimationDrawable) mLayout.getBackground();
-//        drawable.start();
         mPresenter.hideToolbarAndBottomNavigation();
         if (isServicesOk()) {
             mPresenter.getLocationPermissionWhenLogin(getActivity());
@@ -85,6 +82,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.v("Kerry", "LoginFragment onDestroy !");
 //        mPresenter.showToolbarAndBottomNavigation();
     }
 

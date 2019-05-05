@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.StringDef;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 
 import com.kerry.gogobasketball.create_user.CreateUserFragment;
 import com.kerry.gogobasketball.create_user.CreateUserPresenter;
@@ -368,10 +369,10 @@ public class MainMvpController {
     void findOrCreatePlayerResultView(String hostName, int nowSort) {
 
         PlayerResultFragment playerResultFragment = createPlayerResultFragment();
-
-        mPlayerResultPresenter = new PlayerResultPresenter(playerResultFragment);
+        if (mPlayerResultPresenter == null) {
+            mPlayerResultPresenter = new PlayerResultPresenter(playerResultFragment);
+        }
         mPlayerResultPresenter.getHostNameFromPlayerGoing(hostName, nowSort);
-
         mMainPresenter.setPlayerResultPresenter(mPlayerResultPresenter);
         playerResultFragment.setPresenter(mMainPresenter);
     }
@@ -858,7 +859,7 @@ public class MainMvpController {
      */
     @NonNull
     private PlayerResultFragment createPlayerResultFragment() {
-
+        Log.d("Kerry", "createPlayerResultFragment: ");
         PlayerResultFragment playerResultFragment = PlayerResultFragment.newInstance();
 
         ActivityUtils.addFragmentByTag(

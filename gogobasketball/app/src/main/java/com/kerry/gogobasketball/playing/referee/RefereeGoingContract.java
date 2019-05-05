@@ -253,7 +253,5 @@ public interface RefereeGoingContract {
 
         void forced2FinishGaming();
 
-
-
     }
 }

@@ -318,6 +318,8 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
                 if (getActivity() != null) {
                     getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 }
+                mPresenter.setBackKeyDisable(false);
+                mPresenter.deleteSeatsInfoWhenLeaveRoom();
                 mPresenter.showToolbarAndBottomNavigation();
                 mBtnBackStack.setClickable(false);
                 break;
@@ -327,6 +329,8 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
                 if (getActivity() != null) {
                     getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 }
+                mPresenter.setBackKeyDisable(false);
+                mPresenter.deleteSeatsInfoWhenLeaveRoom();
                 mPresenter.showToolbarAndBottomNavigation();
                 mBtnCancel.setClickable(false);
                 break;
@@ -426,14 +430,16 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     @Override
     public void closeSlaveUiBecauseMasterOutFirst() {
         if (mPresenter != null) {
-            mPresenter.showErrorToast("房主落跑...", false);
             mPresenter.finishWaiting4JoinSlaveUi();
-            mPresenter.showToolbarAndBottomNavigation();
+            mPresenter.setBackKeyDisable(false);
             mPresenter.deleteSeatsInfoWhenLeaveRoom();
+            mPresenter.showErrorToast("房主落跑...", false);
+            if (getActivity() != null) {
+                getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            }
+            mPresenter.showToolbarAndBottomNavigation();
         }
-        if (getActivity() != null) {
-            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
+
     }
 
     @Override
@@ -461,11 +467,16 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
 
     @Override
     public void finishByKickedOut() {
-        mPresenter.showErrorToast("人家不想跟你打球 !", false);
-        mPresenter.showToolbarAndBottomNavigation();
-        mPresenter.finishWaiting4JoinSlaveUi();
-        if (getActivity() != null) {
-            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        if (mPresenter != null) {
+            mPresenter.removeListenerSlave();
+            mPresenter.finishWaiting4JoinSlaveUi();
+            mPresenter.setBackKeyDisable(false);
+            mPresenter.deleteSeatsInfoWhenLeaveRoom();
+            mPresenter.showErrorToast("人家不想跟你打球 !", false);
+            if (getActivity() != null) {
+                getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            }
+            mPresenter.showToolbarAndBottomNavigation();
         }
     }
 
@@ -475,9 +486,10 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         Log.e("Kerry", "Slave onDestroy: ");
         if (mPresenter != null) {
             mPresenter.setBackKeyDisable(false);
-            mPresenter.deleteSeatsInfoWhenLeaveRoom();
+//            mPresenter.deleteSeatsInfoWhenLeaveRoom();
         }
     }
+
 
     @Override
     public boolean isActive() {
