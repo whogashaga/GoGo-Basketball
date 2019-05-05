@@ -34,8 +34,10 @@ public class FriendPresenter implements FriendContract.Presenter {
             setWaitingSeatInfo("https://graph.facebook.com/2712588565425023/picture?type=large",
                     Constants.GENDER_MALE, "AKA小安老師", Constants.POSITION_SG, 2);
         } else if (position == 2) {
-            setWaitingSeatInfo("https://graph.facebook.com/2349781725073504/picture?type=large",
-                    Constants.GENDER_MALE, "感林梁家輝", Constants.POSITION_CENTER, 3);
+//            setWaitingSeatInfo("https://graph.facebook.com/2349781725073504/picture?type=large",
+//                    Constants.GENDER_MALE, "感林梁家輝", Constants.POSITION_CENTER, 3);
+            setWaitingSeatInfo("https://graph.facebook.com/2656927084321759/picture?type=large",
+                    Constants.GENDER_MALE, "某王姓房東", Constants.POSITION_PF, 3);
         } else if (position == 3) {
             setWaitingSeatInfo("https://graph.facebook.com/2308451832569744/picture?type=large",
                     Constants.GENDER_FEMALE, "安卓女王", Constants.POSITION_PG, 4);
@@ -65,7 +67,7 @@ public class FriendPresenter implements FriendContract.Presenter {
     private void updateDemoSeat(WaitingRoomSeats waitingRoomSeats) {
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
-                .document("2681615865187626")
+                .document("2349781725073504")
                 .collection(Constants.WAITING_SEATS)
                 .document(waitingRoomSeats.getId())
                 .set(waitingRoomSeats)
@@ -79,7 +81,7 @@ public class FriendPresenter implements FriendContract.Presenter {
     public void updateDemoTotalNumber() {
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
-                .document("2681615865187626")
+                .document("2349781725073504")
                 .update("totalPlayerAmount", 7)
                 .addOnSuccessListener(aVoid -> {
                     Log.d("Kerry", "Demo 總人數更新完成！");
@@ -91,7 +93,7 @@ public class FriendPresenter implements FriendContract.Presenter {
     private void updateDemoPlayerNumber() {
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
-                .document("2681615865187626")
+                .document("2349781725073504")
                 .update("playerAmount", 6)
                 .addOnSuccessListener(aVoid -> {
                     Log.d("Kerry", "Demo 球員人數更新完成！");
