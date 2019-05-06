@@ -15,6 +15,8 @@ public interface MainContract {
 
     interface View extends BaseView<Presenter> {
 
+        void openHomeByBackStack();
+
         void openHomeUi();
 
         void openProfileUi();

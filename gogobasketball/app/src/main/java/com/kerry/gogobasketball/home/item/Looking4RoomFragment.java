@@ -59,6 +59,12 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
 //        Log.d(Constants.TAG,"list size in fragment = " + mRoomInfoList.size());
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i("Kerry", "Looking4RoomFragment onResume !");
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -114,6 +120,12 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
     public void onRefresh() {
         mSwipeRefreshLayout.setRefreshing(false);
         mPresenter.loadExistedRoomsData4RecyclerView();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("Kerry", "Looking4RoomFragment onDestroy !");
     }
 
     @Override

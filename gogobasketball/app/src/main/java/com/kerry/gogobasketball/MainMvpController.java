@@ -159,8 +159,6 @@ public class MainMvpController {
         mMainPresenter.setHomePresenter(mHomePresenter);
         homeFragment.setPresenter(mMainPresenter);
 
-        //        if (mHomePresenter == null) {
-//        }
     }
 
     /**
@@ -579,10 +577,9 @@ public class MainMvpController {
     private HomeFragment findOrCreateHomeFragment() {
 
         HomeFragment homeFragment = (HomeFragment) getFragmentManager().findFragmentByTag(HOME);
-//        Log.d("Kerry", "findOrCreateHomeFragment: ");
+        Log.w("Kerry", "findOrCreateHomeFragment: ");
         if (homeFragment == null) {
-//            Log.d("Kerry", "homeFragment == null ");
-            // Create the fragment
+            Log.w("Kerry", "homeFragment == null ");
             homeFragment = HomeFragment.newInstance();
         }
 

@@ -103,6 +103,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
             mPresenter.showLoginSuccessDialog();
             mPresenter.onLoginSuccess(user);
         }
+        onDestroy();
     }
 
     @Override

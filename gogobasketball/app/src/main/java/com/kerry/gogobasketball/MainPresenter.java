@@ -293,6 +293,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void openHome() {
         mMainView.openHomeUi();
+        Log.d("Kerry", "openHome: openHomeUi ");
     }
 
     @Override
@@ -389,6 +390,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void onCreateUserSuccess() {
+        Log.d("Kerry", "onCreateUserSuccess: openHomeUi");
         mMainView.openHomeUi();
     }
 
@@ -972,6 +974,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void showLogoutSuccessDialog() {
         mMainView.showMessageDialogUi(MessageDialog.LOGOUT_SUCCESS);
+        hideToolbarAndBottomNavigation();
         getUserInfoWhenGetOutOfApp();
     }
 
@@ -1024,7 +1027,9 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                     } else {
                         showToolbarAndBottomNavigation();
                         switchToHotsByBottomNavigation();
-                        mMainView.openHomeUi();
+                        Log.d("Kerry", "checkIfUserCreatedAfterLogin: openHomeUi");
+                        mMainView.openHomeByBackStack();
+//                        mMainView.openHomeUi();
                     }
                 } else {
                     updateUser2FireStore(user);
@@ -1071,6 +1076,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                     if (userInfo.getId().equals("")) {
                         mMainView.openCreateUserUi(userDocId);
                     } else {
+                        Log.d("Kerry", "checkIfUserCreated: openHomeUi");
                         mMainView.openHomeUi();
                     }
                 } else {
