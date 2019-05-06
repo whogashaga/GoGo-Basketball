@@ -28,8 +28,10 @@ public class FriendPresenter implements FriendContract.Presenter {
     @Override
     public void postDemoPlayer(int position) {
         if (position == 0) {
-            setWaitingSeatInfo("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXudOnx50pI_xbeMB5R_KL9Xc_nI16QsSD2Ne5oD5gkisX-bJZ",
-                    Constants.GENDER_FEMALE, "一塊海綿", Constants.POSITION_SF, 1);
+//            setWaitingSeatInfo("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXudOnx50pI_xbeMB5R_KL9Xc_nI16QsSD2Ne5oD5gkisX-bJZ",
+//                    Constants.GENDER_FEMALE, "一塊海綿", Constants.POSITION_SF, 1);
+            setWaitingSeatInfo("https://graph.facebook.com/2712588565425023/picture?type=large",
+                    Constants.GENDER_MALE, "AKA小安老師", Constants.POSITION_SG, 1);
         } else if (position == 1) {
             setWaitingSeatInfo("https://graph.facebook.com/2712588565425023/picture?type=large",
                     Constants.GENDER_MALE, "AKA小安老師", Constants.POSITION_SG, 2);
