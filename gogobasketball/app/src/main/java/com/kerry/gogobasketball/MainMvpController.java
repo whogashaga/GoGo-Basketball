@@ -134,7 +134,7 @@ public class MainMvpController {
     public @interface HomeItem {
     }
 
-    public static final String ROOMS = "找房間";
+    public static final String ROOMS = "找比賽";
     public static final String MAP = "看地圖";
 
     public @interface RankItem {
