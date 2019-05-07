@@ -223,7 +223,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
                     } else {
                         setBtnCreateConfirmClickable(true);
                         if (s.length() == 20) {
-                            mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.at_most_20_word), true);
+                            mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.at_most_10_word), true);
                         }
                     }
                 } else if (s.length() == 0) {
