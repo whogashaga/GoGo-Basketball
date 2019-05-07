@@ -118,7 +118,7 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
                 mBtnCreateUserConfirm.setClickable(false);
                 break;
             case R.id.btn_create_user_cancel:
-                Log.e("Kerry", "btn_create_user_cancel onClick ! ");
+                Log.e(Constants.TAG, "btn_create_user_cancel onClick ! ");
                 mPresenter.finishCreateUser();
                 break;
             default:

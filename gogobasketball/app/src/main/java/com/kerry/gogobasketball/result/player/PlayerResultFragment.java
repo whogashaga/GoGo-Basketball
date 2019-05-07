@@ -87,7 +87,7 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
     }
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        Log.d("Kerry", "PlayerResult onCreateView: ");
+        Log.d(Constants.TAG, "PlayerResult onCreateView: ");
         mRoot = inflater.inflate(R.layout.fragment_game_result_player, container, false);
         mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         mRoot.getBackground().setAlpha(200);

@@ -100,10 +100,10 @@ public class CreateUserPresenter implements CreateUserContract.Presenter {
                         Log.d(Constants.TAG, "checkIfUserIdExists task size = " + task.getResult().size());
                         if (task.isSuccessful()) {
                             if (task.getResult().size() == 0) {
-                                Log.d("Kerry", "此名稱可以使用");
+                                Log.d(Constants.TAG, "此名稱可以使用");
                                 createUserClickConfirm();
                             } else {
-                                Log.d("Kerry", "名稱已有人使用");
+                                Log.d(Constants.TAG, "名稱已有人使用");
                                 mCreateUserView.showIdAlreadyExist();
                             }
                         } else {

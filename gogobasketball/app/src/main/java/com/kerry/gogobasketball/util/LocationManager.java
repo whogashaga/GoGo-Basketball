@@ -52,7 +52,7 @@ public class LocationManager {
             });
 
         } catch (SecurityException e) {
-            Log.e("Kerry", "getDeviceLocation: SecurityException" + e.getMessage());
+            Log.e(Constants.TAG, "getDeviceLocation: SecurityException" + e.getMessage());
         }
     }
 

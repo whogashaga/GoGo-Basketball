@@ -77,7 +77,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
         } else if (sort == 7) {
             checkIfShowDetail(7);
         } else {
-            Log.e("Kerry", "openUserDetailMaster Error ");
+            Log.e(Constants.TAG, "openUserDetailMaster Error ");
         }
     }
 
@@ -85,7 +85,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
         if (mListForChangeSeat.get(sort - 1) != null && !mListForChangeSeat.get(sort - 1).getId().equals("")) {
             mWaiting4JoinView.openUserDetailUi(mListForChangeSeat.get(sort - 1).getId());
         } else {
-            Log.d("Kerry", "openUserDetailMaster 1 Error !");
+            Log.d(Constants.TAG, "openUserDetailMaster 1 Error !");
         }
     }
 
@@ -212,7 +212,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     private void updateJoinerInfo2FireBase(WaitingRoomSeats joinerInfo, String roomId) {
 
         mSeatDocId = joinerInfo.getId();
-        Log.w("Kerry", "joinerInfo.getId() = " + joinerInfo.getId());
+        Log.w(Constants.TAG, "joinerInfo.getId() = " + joinerInfo.getId());
 
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)

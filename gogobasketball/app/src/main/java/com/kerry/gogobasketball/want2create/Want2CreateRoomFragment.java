@@ -73,7 +73,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     @Override
     public void onResume() {
         super.onResume();
-//        Log.d("Kerry", " Want2CreateRoom onResume: ");
+        Log.d(Constants.TAG, " Want2CreateRoom onResume: ");
         mPresenter.setActivityBackgroundPortrait();
     }
 
@@ -216,14 +216,14 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!"".equals(s.toString()) && s.length() < 11) {
+                if (!"".equals(s.toString()) && s.length() < 16) {
                     mPresenter.onRoomNameEditTextChange(s);
                     if (mRadioBtnNo.isChecked()) {
                         // do nothing
                     } else {
                         setBtnCreateConfirmClickable(true);
-                        if (s.length() == 20) {
-                            mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.at_most_10_word), true);
+                        if (s.length() == 15) {
+                            mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.at_most_15_word), true);
                         }
                     }
                 } else if (s.length() == 0) {
@@ -244,7 +244,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     @Override
     public void onDestroy() {
         super.onDestroy();
-//        Log.d("Kerry", "Want2CreateRoom fragment onDestroy !!");
+        Log.d(Constants.TAG, "Want2CreateRoom fragment onDestroy !!");
         mPresenter.showToolbarAndBottomNavigation();
         mPresenter.setOpeningWant2CreateNow(false);
     }
@@ -281,15 +281,15 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
                 Matcher matcher = pattern.matcher(source.toString());
                 if (matcher.find()) {
                     return "";
-//                } else if (source.equals(" ") || source.toString().contentEquals("\n")) {
-//                    return "";
+                } else if (source.toString().contentEquals("\n")) {
+                    return "";
                 }
                 else {
                     return null;
                 }
             }
         };
-        editText.setFilters(new InputFilter[]{filter, new InputFilter.LengthFilter(20)});
+        editText.setFilters(new InputFilter[]{filter, new InputFilter.LengthFilter(15)});
     }
 
 }

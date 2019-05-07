@@ -70,7 +70,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
         } else if (sort == 7) {
             checkIfShowDetail(7);
         } else {
-            Log.e("Kerry", "openUserDetailMaster Error ");
+            Log.e(Constants.TAG, "openUserDetailMaster Error ");
         }
     }
 
@@ -78,7 +78,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
         if (mListForChangeSeat.get(sort - 1) != null && !mListForChangeSeat.get(sort - 1).getId().equals("")) {
             mWaiting4JoinMasterView.openUserDetailUi(mListForChangeSeat.get(sort - 1).getId());
         } else {
-            Log.d("Kerry", "openUserDetailMaster Error !");
+            Log.d(Constants.TAG, "openUserDetailMaster Error !");
         }
     }
 
@@ -112,21 +112,21 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
         } else if (sort == 7) {
             checkIfSomeOne2KickOut(7);
         } else {
-            Log.e("Kerry", "kickOutPlayer Error ");
+            Log.e(Constants.TAG, "kickOutPlayer Error ");
         }
     }
 
     private void checkIfSomeOne2KickOut(int sort) {
-        Log.d("Kerry", "checkIfSomeOne2KickOut sort = " + sort);
+        Log.d(Constants.TAG, "checkIfSomeOne2KickOut sort = " + sort);
         if (mListForChangeSeat.get(sort - 1) != null && !mListForChangeSeat.get(sort - 1).getId().equals("")) {
             findOuterDocId(sort);
         } else {
-            Log.d("Kerry", "openUserDetailMaster Error !");
+            Log.d(Constants.TAG, "openUserDetailMaster Error !");
         }
     }
 
     private void findOuterDocId(int sort) {
-        Log.d("Kerry", "findOuterDocId sort = " + sort);
+        Log.d(Constants.TAG, "findOuterDocId sort = " + sort);
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
@@ -138,7 +138,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             // 只有一筆，跑 for 沒關係
                             changeSeat2Unavaliable(document.getId().toString().trim());
-                            Log.d("Kerry", "findOuterDocId = " + document.getId());
+                            Log.d(Constants.TAG, "findOuterDocId = " + document.getId());
                         }
                     } else {
                         Log.w(Constants.TAG, "Error getting documents.", task.getException());

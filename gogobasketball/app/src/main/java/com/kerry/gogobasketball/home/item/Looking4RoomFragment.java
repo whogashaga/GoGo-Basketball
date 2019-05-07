@@ -62,7 +62,7 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
     @Override
     public void onResume() {
         super.onResume();
-        Log.i("Kerry", "Looking4RoomFragment onResume !");
+        Log.i(Constants.TAG, "Looking4RoomFragment onResume !");
     }
 
     @Nullable
@@ -125,7 +125,7 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d("Kerry", "Looking4RoomFragment onDestroy !");
+        Log.d(Constants.TAG, "Looking4RoomFragment onDestroy !");
     }
 
     @Override

@@ -293,7 +293,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void openHome() {
         mMainView.openHomeUi();
-        Log.d("Kerry", "openHome: openHomeUi ");
+        Log.d(Constants.TAG, "openHome: openHomeUi ");
     }
 
     @Override
@@ -390,7 +390,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public void onCreateUserSuccess() {
-        Log.d("Kerry", "onCreateUserSuccess: openHomeUi");
+        Log.d(Constants.TAG, "onCreateUserSuccess: openHomeUi");
         mMainView.openHomeUi();
     }
 
@@ -1027,7 +1027,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                     } else {
                         showToolbarAndBottomNavigation();
                         switchToHotsByBottomNavigation();
-                        Log.d("Kerry", "checkIfUserCreatedAfterLogin: openHomeUi");
+                        Log.d(Constants.TAG, "checkIfUserCreatedAfterLogin: openHomeUi");
                         mMainView.openHomeByBackStack();
 //                        mMainView.openHomeUi();
                     }
@@ -1076,7 +1076,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                     if (userInfo.getId().equals("")) {
                         mMainView.openCreateUserUi(userDocId);
                     } else {
-                        Log.d("Kerry", "checkIfUserCreated: openHomeUi");
+                        Log.d(Constants.TAG, "checkIfUserCreated: openHomeUi");
                         mMainView.openHomeUi();
                     }
                 } else {

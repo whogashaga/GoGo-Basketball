@@ -92,7 +92,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     @Override
     public void onResume() {
         super.onResume();
-        Log.i("Kerry", "Waiting4JoinSlaveFragment onResume: ");
+        Log.i(Constants.TAG, "Waiting4JoinSlaveFragment onResume: ");
         mPresenter.hideToolbarAndBottomNavigation();
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
@@ -484,7 +484,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.e("Kerry", "Slave onDestroy: ");
+        Log.e(Constants.TAG, "Slave onDestroy: ");
         if (mPresenter != null) {
             mPresenter.setBackKeyDisable(false);
 //            mPresenter.deleteSeatsInfoWhenLeaveRoom();

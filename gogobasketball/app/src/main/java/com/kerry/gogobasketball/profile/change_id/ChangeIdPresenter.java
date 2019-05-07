@@ -55,10 +55,10 @@ public class ChangeIdPresenter implements ChangeIdContract.Presenter {
                         Log.d(Constants.TAG, "checkIfUserIdExists task size = " + task.getResult().size());
                         if (task.isSuccessful()) {
                             if (task.getResult().size() == 0) {
-                                Log.d("Kerry", "此名稱可以使用");
+                                Log.d(Constants.TAG, "此名稱可以使用");
                                 createUserClickConfirm(activity);
                             } else {
-                                Log.d("Kerry", "名稱已有人使用");
+                                Log.d(Constants.TAG, "名稱已有人使用");
                                 mChangeIdView.showIdAlreadyExist();
                             }
                         } else {

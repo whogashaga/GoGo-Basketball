@@ -45,7 +45,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     @Override
     public void onResume() {
         super.onResume();
-        Log.v("Kerry", "LoginFragment onResume !");
+        Log.v(Constants.TAG, "LoginFragment onResume !");
     }
 
     @Override
@@ -82,7 +82,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.v("Kerry", "LoginFragment onDestroy !");
+        Log.v(Constants.TAG, "LoginFragment onDestroy !");
 //        mPresenter.showToolbarAndBottomNavigation();
     }
 

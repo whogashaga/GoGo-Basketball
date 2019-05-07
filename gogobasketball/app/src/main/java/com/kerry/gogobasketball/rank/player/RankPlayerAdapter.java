@@ -92,7 +92,7 @@ public class RankPlayerAdapter extends RecyclerView.Adapter {
             String avFoul = avDf.format(user.getPlayerRecord().getAvFoul());
             holder.getRecordContent().setText(avFoul);
         } else {
-            Log.d("Kerry", "Rank Player Adapter bindView Error !!");
+            Log.d(Constants.TAG, "Rank Player Adapter bindView Error !!");
         }
 
     }

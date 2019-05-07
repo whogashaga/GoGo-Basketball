@@ -72,7 +72,7 @@ public class ChangeGenderDialog extends DialogFragment implements ChangeGenderCo
                 // do nothing
                 break;
             case R.id.btn_change_gender_yes:
-                Log.d("Kerry", "onClick: ");
+                Log.d(Constants.TAG, "onClick: ");
                 mBtnConfirm.setClickable(false);
                 mPresenter.compareOldNewGender(getActivity());
                 break;

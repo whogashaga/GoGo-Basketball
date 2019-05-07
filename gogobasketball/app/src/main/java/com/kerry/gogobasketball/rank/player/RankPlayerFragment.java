@@ -19,6 +19,7 @@ import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.GridSpacingItemDecoration;
 import com.kerry.gogobasketball.data.User;
+import com.kerry.gogobasketball.util.Constants;
 
 import java.util.ArrayList;
 
@@ -137,7 +138,7 @@ public class RankPlayerFragment extends Fragment implements RankPlayerContract.V
                     mNowSpinnerItem = getString(R.string.rank_av_foul);
 
                 } else {
-                    Log.d("Kerry", "setSpinnerRankPlayer Error !!");
+                    Log.d(Constants.TAG, "setSpinnerRankPlayer Error !!");
                 }
             }
 
@@ -177,7 +178,7 @@ public class RankPlayerFragment extends Fragment implements RankPlayerContract.V
         } else if (mNowSpinnerItem.equals(getString(R.string.rank_av_foul))) {
             mPresenter.loadRankPlayerByAvFoul();
         } else {
-            Log.d("Kerry", "Player rank onRefresh Error !!");
+            Log.d(Constants.TAG, "Player rank onRefresh Error !!");
         }
     }
 }

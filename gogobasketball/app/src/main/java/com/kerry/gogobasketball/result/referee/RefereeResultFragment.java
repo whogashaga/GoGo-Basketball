@@ -73,7 +73,7 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
     @Override
     public void onResume() {
         super.onResume();
-        Log.e("Kerry", "Result onResume: ");
+        Log.e(Constants.TAG, "Result onResume: ");
         if (getActivity() != null) {
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
@@ -145,7 +145,6 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
                     getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 }
                 getFragmentManager().popBackStack(0, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-//                mPresenter.openHome();
                 mPresenter.showToolbarAndBottomNavigation();
                 mPresenter.setActivityBackgroundPortrait();
                 mPresenter.setBackKeyDisable(false);
@@ -201,7 +200,7 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
         if(mPresenter != null){
             mPresenter.deleteGamingRoom();
         }
-        Log.e("Kerry", "Referee Result onDestroy: ");
+        Log.e(Constants.TAG, "Referee Result onDestroy: ");
     }
 
     @Override

@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
+import com.kerry.gogobasketball.util.Constants;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,7 +34,7 @@ public class NameLengthFilter implements InputFilter {
         Pattern pattern = Pattern.compile(speChat);
         Matcher matcher = pattern.matcher(source.toString());
 
-        Log.e("Kerry", "\nsource: : "+source+"\nstart : "+start+"\nend : "+end+"\ndest : "
+        Log.e(Constants.TAG, "\nsource: : "+source+"\nstart : "+start+"\nend : "+end+"\ndest : "
                 +dest.toString()+"\ndstart : "+dstart+"\ndend : "+dend);
 
         if (destCount + sourceCount > MAX_EN) {

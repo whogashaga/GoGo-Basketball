@@ -107,7 +107,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("Kerry", " Waiting4JoinMasterFragment onResume: ");
+        Log.d(Constants.TAG, " Waiting4JoinMasterFragment onResume: ");
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
@@ -139,7 +139,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d("Kerry", "Waiting4Join fragment onDestroy !!");
+        Log.d(Constants.TAG, "Waiting4Join fragment onDestroy !!");
         if (mPresenter != null) {
             mPresenter.deleteHostInfoWhenLeave();
             mPresenter.setBackKeyDisable(false);
@@ -386,37 +386,37 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
                 mPresenter.openUserDetailMaster(7);
                 break;
             case R.id.btn_waiting_team_a_player1_delete:
-                Log.d("Kerry", "Delete seat1");
+                Log.d(Constants.TAG, "Delete seat1");
                 mBtnDeleteP1.setClickable(false);
                 mPresenter.kickOutPlayer(1);
                 break;
             case R.id.btn_waiting_team_a_player2_delete:
-                Log.d("Kerry", "Delete seat2");
+                Log.d(Constants.TAG, "Delete seat2");
                 mBtnDeleteP2.setClickable(false);
                 mPresenter.kickOutPlayer(2);
                 break;
             case R.id.btn_waiting_team_a_player3_delete:
-                Log.d("Kerry", "Delete seat3");
+                Log.d(Constants.TAG, "Delete seat3");
                 mBtnDeleteP3.setClickable(false);
                 mPresenter.kickOutPlayer(3);
                 break;
             case R.id.btn_waiting_team_b_player1_delete:
-                Log.d("Kerry", "Delete seat4");
+                Log.d(Constants.TAG, "Delete seat4");
                 mBtnDeleteP4.setClickable(false);
                 mPresenter.kickOutPlayer(4);
                 break;
             case R.id.btn_waiting_team_b_player2_delete:
-                Log.d("Kerry", "Delete seat5");
+                Log.d(Constants.TAG, "Delete seat5");
                 mBtnDeleteP5.setClickable(false);
                 mPresenter.kickOutPlayer(5);
                 break;
             case R.id.btn_waiting_team_b_player3_delete:
-                Log.d("Kerry", "Delete seat6");
+                Log.d(Constants.TAG, "Delete seat6");
                 mBtnDeleteP6.setClickable(false);
                 mPresenter.kickOutPlayer(6);
                 break;
             case R.id.btn_waiting_referee_delete:
-                Log.d("Kerry", "Delete seat7");
+                Log.d(Constants.TAG, "Delete seat7");
                 mBtnDeleteP7.setClickable(false);
                 mPresenter.kickOutPlayer(7);
                 break;
@@ -510,7 +510,6 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
             btnChangeSeat.setVisibility(View.GONE);
         }
 
-//        Log.e("Kerry", "mNewSortForDeleteBtn = " + mNewSortForDeleteBtn + "\nsort = " + sort);
         // set Btn kick out
         if (mNewSortForDeleteBtn == sort) {
             btnKickOut.setVisibility(View.GONE);

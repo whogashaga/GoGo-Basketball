@@ -34,14 +34,14 @@ public class ChangeGenderPresenter implements ChangeGenderContract.Presenter {
 
     @Override
     public void getGenderFromRadios(String gender) {
-        Log.e("Kerry", "getGenderFromRadios : " + gender);
+        Log.e(Constants.TAG, "getGenderFromRadios : " + gender);
         mNewGender = gender;
     }
 
     @Override
     public void compareOldNewGender(Activity activity) {
-        Log.d("Kerry", "Old gender : " + mOldGender);
-        Log.d("Kerry", "New gender : " + mNewGender);
+        Log.d(Constants.TAG, "Old gender : " + mOldGender);
+        Log.d(Constants.TAG, "New gender : " + mNewGender);
         if (mNewGender.equals(mOldGender)) {
             mChangeGenderView.showErrorGender();
         } else {

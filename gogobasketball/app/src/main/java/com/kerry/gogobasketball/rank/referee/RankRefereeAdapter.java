@@ -78,7 +78,7 @@ public class RankRefereeAdapter extends RecyclerView.Adapter {
             holder.getRecordContent().setText(avRating);
 
         } else {
-            Log.d("Kerry", "Rank Referee Adapter bindView Error !!");
+            Log.d(Constants.TAG, "Rank Referee Adapter bindView Error !!");
         }
 
     }

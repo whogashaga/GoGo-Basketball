@@ -32,7 +32,7 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
 
     @Override
     public void getHostNameFromPlayerGoing(String hostName, int currentSort) {
-        Log.d("Kerry", "getHostNameFromPlayerGoing HostName = " + hostName);
+        Log.d(Constants.TAG, "getHostNameFromPlayerGoing HostName = " + hostName);
         mHostName = hostName;
         mGameResultView.getHostNameFromPresenter(hostName, currentSort);
     }
@@ -49,7 +49,7 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("Kerry", "mRoomDocId = " + document.getId());
+                                Log.d(Constants.TAG, "mRoomDocId = " + document.getId());
                                 mRoomDocId = document.getId();
                                 GamingRoomInfo gamingRoomInfo = document.toObject(GamingRoomInfo.class);
                                 mGameResultView.showResultPlayerUi(gamingRoomInfo, currentSort);

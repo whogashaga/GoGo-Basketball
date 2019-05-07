@@ -19,6 +19,7 @@ import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.GridSpacingItemDecoration;
 import com.kerry.gogobasketball.data.User;
+import com.kerry.gogobasketball.util.Constants;
 
 import java.util.ArrayList;
 
@@ -118,7 +119,7 @@ public class RankRefereeFragment extends Fragment implements RankRefereeContract
                     mRecordTitle.setText(getString(R.string.rank_referee_rating));
 
                 } else {
-                    Log.d("Kerry", "setSpinnerRankReferee Error !!");
+                    Log.d(Constants.TAG, "setSpinnerRankReferee Error !!");
                 }
             }
 

@@ -96,7 +96,7 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     @Override
     public void onResume() {
         super.onResume();
-        Log.i("Kerry","RefereeGoing onResume !");
+        Log.i(Constants.TAG,"RefereeGoing onResume !");
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
@@ -381,7 +381,7 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.i("Kerry", "Referee Going fragment onDestroy !!");
+        Log.i(Constants.TAG, "Referee Going fragment onDestroy !!");
     }
 
     @Override

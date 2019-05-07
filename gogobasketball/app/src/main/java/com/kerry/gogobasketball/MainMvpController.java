@@ -577,9 +577,9 @@ public class MainMvpController {
     private HomeFragment findOrCreateHomeFragment() {
 
         HomeFragment homeFragment = (HomeFragment) getFragmentManager().findFragmentByTag(HOME);
-        Log.w("Kerry", "findOrCreateHomeFragment: ");
+        Log.w(Constants.TAG, "findOrCreateHomeFragment: ");
         if (homeFragment == null) {
-            Log.w("Kerry", "homeFragment == null ");
+            Log.w(Constants.TAG, "homeFragment == null ");
             homeFragment = HomeFragment.newInstance();
         }
 
@@ -856,7 +856,7 @@ public class MainMvpController {
      */
     @NonNull
     private PlayerResultFragment createPlayerResultFragment() {
-        Log.d("Kerry", "createPlayerResultFragment: ");
+        Log.d(Constants.TAG, "createPlayerResultFragment: ");
         PlayerResultFragment playerResultFragment = PlayerResultFragment.newInstance();
 
         ActivityUtils.addFragmentByTag(

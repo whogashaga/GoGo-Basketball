@@ -25,7 +25,7 @@ public class UserDetailPresenter implements UserDetailContract.Presenter {
 
     @Override
     public void getUserIdFromWaiting(String userId) {
-        Log.d("Kerry", "UserDetailPresenter getUserIdFromWaiting userID = " + userId);
+        Log.d(Constants.TAG, "UserDetailPresenter getUserIdFromWaiting userID = " + userId);
         FirestoreHelper.getFirestore()
                 .collection(Constants.USERS)
                 .whereEqualTo(Constants.USER_ID, userId)

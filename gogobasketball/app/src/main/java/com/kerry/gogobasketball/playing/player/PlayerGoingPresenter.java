@@ -66,7 +66,7 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
 
     private void setGamingRoomSnapshotListerPlayer(int nowSort) {
 
-        Log.w("Kerry", "setGamingRoomSnapshotListerPlayer !");
+        Log.w(Constants.TAG, "setGamingRoomSnapshotListerPlayer !");
         final DocumentReference docRef = FirestoreHelper.getFirestore()
                 .collection(Constants.GAMING_ROOM)
                 .document(mRoomDocId);
@@ -84,10 +84,10 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
                     GamingRoomInfo newRoomInfo = snapshot.toObject(GamingRoomInfo.class);
 
                     if (newRoomInfo.getStatus().equals(Constants.STATUS_OVER)) {
-                        Log.w("Kerry", "Got Game Over !");
+                        Log.w(Constants.TAG, "Got Game Over !");
                         mGamePlayingView.openGameResultPlayerUi(newRoomInfo.getHostName(), nowSort);
                     } else {
-                        Log.w("Kerry", "didn't get Game Over !");
+                        Log.w(Constants.TAG, "didn't get Game Over !");
                     }
 
                 } else {
