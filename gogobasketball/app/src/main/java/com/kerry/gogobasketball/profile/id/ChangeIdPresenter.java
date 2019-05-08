@@ -9,8 +9,9 @@ import android.util.Log;
 import com.facebook.AccessToken;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FirestoreHelper;
+import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.util.Constants;
 
 public class ChangeIdPresenter implements ChangeIdContract.Presenter {
@@ -42,7 +43,7 @@ public class ChangeIdPresenter implements ChangeIdContract.Presenter {
 
     @Override
     public void checkIfUserNewIdExists(Activity activity) {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.USERS)
                 .whereEqualTo(Constants.USER_ID, mNewId)
                 .get()
@@ -70,7 +71,7 @@ public class ChangeIdPresenter implements ChangeIdContract.Presenter {
 
     public void createUserClickConfirm(Activity activity) {
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.USERS)
                 .document(AccessToken.getCurrentAccessToken().getUserId().trim())
                 .update(Constants.USER_ID, mNewId)

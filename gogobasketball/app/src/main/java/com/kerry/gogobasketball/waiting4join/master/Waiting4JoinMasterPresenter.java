@@ -5,19 +5,17 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FirestoreHelper;
+import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.data.GamingPlayer;
 import com.kerry.gogobasketball.data.GamingReferee;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
@@ -127,11 +125,11 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
 
     private void findOuterDocId(int sort) {
         Log.d(Constants.TAG, "findOuterDocId sort = " + sort);
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
-                .whereEqualTo("sort", sort)
+                .whereEqualTo(Constants.SORT, sort)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -147,7 +145,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     }
 
     private void changeSeat2Unavaliable(String outerDocId) {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
@@ -172,11 +170,11 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     }
 
     private void findCurrentSeatDocId(int newSort) {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
-                .whereEqualTo("sort", mCurrentSort)
+                .whereEqualTo(Constants.SORT, mCurrentSort)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -195,7 +193,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
 
         ArrayList<Integer> existedSortList = new ArrayList<>();
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
@@ -218,7 +216,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
 
 
     private void updateSortForChangeSeatMaster(String seatDocId, int newSort) {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
@@ -254,7 +252,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     }
 
     private void updateRoomInfoAfterChangeSeatMaster() {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .set(mWaitingRoomInfo)
@@ -266,7 +264,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     /* Listener */
 
     private void setAllSeatSnapshotListerSlave() {
-        Query query = FirestoreHelper.getFirestore()
+        Query query = FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS);
@@ -286,7 +284,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
 
     private void setRoomSnapshotListerMaster(String roomDocId) {
 
-        final DocumentReference docRef = FirestoreHelper.getFirestore()
+        final DocumentReference docRef = FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(roomDocId);
 
@@ -317,7 +315,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     }
 
     private void getNewSeatsInfo() {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
@@ -339,7 +337,6 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                         for (int j = 0; j < mSeatsInfoList.size(); j++) {
                             emptySeatsList.set(mSeatsInfoList.get(j).getSort() - 1, mSeatsInfoList.get(j));
                         }
-//                            Log.e("Kerry, "EmptyList size = " + emptySeatsList.size());
 
                         mWaiting4JoinMasterView.showWaitingSeatsMasterUi(emptySeatsList);
 
@@ -359,7 +356,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
 
     @Override
     public void deleteHostInfoWhenLeave() {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
@@ -375,7 +372,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
 
     private void checkTotalPlayerAmountMaster() {
         DocumentReference docRef =
-                FirestoreHelper.getFirestore()
+                FirebaseFirestore.getInstance()
                         .collection(Constants.WAITING_ROOM)
                         .document(mRoomDocId);
 
@@ -411,7 +408,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
 
     private void updatePlayerAmountWhenLeaveMaster() {
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .set(mWaitingRoomInfo)
@@ -426,7 +423,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
 
 
     private void updateStatus2Closed() {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .update(Constants.ROOM_STATUS, Constants.STATUS_CLOSED)
@@ -442,7 +439,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
 
     private void deleteRoomDocWhenLeave() {
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .delete().addOnSuccessListener(aVoid -> Log.d(Constants.TAG, "Master delete 房間 doc！"))
@@ -467,7 +464,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
         gamingRoomInfo.setPlayer6(setGamingPlayerInfo(6));
         gamingRoomInfo.setReferee(setGamingRefereeInfo());
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.GAMING_ROOM)
                 .add(gamingRoomInfo)
                 .addOnSuccessListener(documentReference -> {
@@ -478,7 +475,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     }
 
     private void updateRoomStatus2Gaming(GamingRoomInfo gamingRoomInfo) {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .update(Constants.ROOM_STATUS, Constants.STATUS_GAMING)

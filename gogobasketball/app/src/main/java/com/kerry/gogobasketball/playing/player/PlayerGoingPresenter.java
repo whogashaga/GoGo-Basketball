@@ -10,13 +10,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FirestoreHelper;
+import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
-import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.util.Constants;
 
 import javax.annotation.Nullable;
@@ -40,7 +40,7 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
     }
 
     private void getDocId(String hostName, int nowSort) {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.GAMING_ROOM)
                 .whereEqualTo(Constants.HOST_NAME, hostName)
                 .get()
@@ -64,7 +64,7 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
     private void setGamingRoomSnapshotListerPlayer(int nowSort) {
 
         Log.w(Constants.TAG, "setGamingRoomSnapshotListerPlayer !");
-        final DocumentReference docRef = FirestoreHelper.getFirestore()
+        final DocumentReference docRef = FirebaseFirestore.getInstance()
                 .collection(Constants.GAMING_ROOM)
                 .document(mRoomDocId);
 

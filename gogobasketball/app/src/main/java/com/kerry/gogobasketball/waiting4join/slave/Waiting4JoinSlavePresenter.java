@@ -8,11 +8,11 @@ import android.util.Log;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FirestoreHelper;
 import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
@@ -109,7 +109,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
     private void getRoomDocId() {
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .whereEqualTo(Constants.HOST_NAME, mWaitingRoomInfo.getHostName())
                 .get()
@@ -145,7 +145,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
     private void queryExistedSort() {
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
@@ -190,7 +190,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
     private void updateRoomInfoWhenJoin(WaitingRoomInfo waitingRoomInfo) {
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .set(waitingRoomInfo)
@@ -205,7 +205,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
         mSeatDocId = joinerInfo.getId();
         Log.w(Constants.TAG, "joinerInfo.getId() = " + joinerInfo.getId());
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(roomId)
                 .collection(Constants.WAITING_SEATS)
@@ -232,11 +232,11 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     }
 
     private void findCurrentSeatDocId(int newSort) {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
-                .whereEqualTo("sort", mIntJoinerSort)
+                .whereEqualTo(Constants.SORT, mIntJoinerSort)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -257,7 +257,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
         mExistedSortList.clear();
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
@@ -281,7 +281,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     }
 
     private void updateSortForChangeSeatSlave(String seatDocId, int newSort) {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
@@ -316,7 +316,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     }
 
     private void updateRoomInfoAfterChangeSeatSlave() {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .set(mWaitingRoomInfo)
@@ -328,7 +328,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     /* Listener */
 
     private void setAllSnapshotListerSlave() {
-        Query query = FirestoreHelper.getFirestore()
+        Query query = FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS);
@@ -346,7 +346,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
     private void setRoomSnapshotListerSlave() {
 
-        DocumentReference docRef = FirestoreHelper.getFirestore()
+        DocumentReference docRef = FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId);
 
@@ -376,7 +376,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     }
 
     private void checkIfBeingKickedOut() {
-        DocumentReference docRef = FirestoreHelper.getFirestore()
+        DocumentReference docRef = FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
@@ -401,7 +401,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     }
 
     private void queryCurrentSort() {
-        DocumentReference docRef = FirestoreHelper.getFirestore()
+        DocumentReference docRef = FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
@@ -423,7 +423,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     }
 
     private void getNewSeatsInfo() {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
@@ -463,7 +463,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     @Override
     public void deleteSeatsInfoWhenLeaveRoom() {
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
@@ -475,7 +475,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     @Override
     public void checkTotalPlayerAmountSlave() {
         DocumentReference docRef =
-                FirestoreHelper.getFirestore()
+                FirebaseFirestore.getInstance()
                         .collection(Constants.WAITING_ROOM)
                         .document(mRoomDocId);
 
@@ -510,7 +510,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
     private void updateRoomInfoWhenLeaveSlave() {
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .set(mWaitingRoomInfo)
@@ -520,7 +520,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
     @Override
     public void deleteRoomDocSlave() {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .delete().addOnSuccessListener(aVoid -> Log.d(Constants.TAG, "只剩一個 slave 最後離去！"))

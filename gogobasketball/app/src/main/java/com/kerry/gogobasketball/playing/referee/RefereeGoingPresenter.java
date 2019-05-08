@@ -10,9 +10,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FirestoreHelper;
+import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
 import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.util.Constants;
@@ -73,7 +74,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
     @Override
     public void getGamingRoomFromFireStore(String hostName) {
         Log.d(Constants.TAG, "getGamingRoomFromFireStore hostName = " + hostName);
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.GAMING_ROOM)
                 .whereEqualTo(Constants.HOST_NAME, hostName)
                 .get()
@@ -114,7 +115,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
 
     @Override
     public void updateGameResultOfPlayer(GamingRoomInfo gamingRoomInfo) {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.GAMING_ROOM)
                 .document(mRoomDocId)
                 .set(gamingRoomInfo)
@@ -160,7 +161,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
     }
 
     private void updateRefereeJustice(User user) {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.USERS)
                 .document(user.getFacebookId())
                 .set(user)

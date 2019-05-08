@@ -5,9 +5,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.kerry.gogobasketball.FirestoreHelper;
+import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.data.User;
@@ -29,7 +30,7 @@ public class RankRefereePresenter implements RankRefereeContract.Presenter {
     @Override
     public void loadRankRefereeByJustices() {
         mUserList.clear();
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.USERS)
                 .orderBy("refereeRecord.justices", Query.Direction.DESCENDING)
                 .get()
@@ -51,7 +52,7 @@ public class RankRefereePresenter implements RankRefereeContract.Presenter {
     @Override
     public void loadRankRefereeByRating() {
         mUserList.clear();
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.USERS)
                 .orderBy("refereeRecord.avRating", Query.Direction.DESCENDING)
                 .get()

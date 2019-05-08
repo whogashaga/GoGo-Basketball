@@ -9,8 +9,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FirestoreHelper;
+import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.data.User;
@@ -40,7 +41,7 @@ public class CreateUserPresenter implements CreateUserContract.Presenter {
 
     private void getUserDocFromLoginUpdate(String userFbId) {
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.USERS)
                 .document(userFbId)
                 .get()
@@ -83,7 +84,7 @@ public class CreateUserPresenter implements CreateUserContract.Presenter {
     @Override
     public void checkIfUserIdExists() {
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.USERS)
                 .whereEqualTo(Constants.USER_ID, mUser.getId())
                 .get()
@@ -116,7 +117,7 @@ public class CreateUserPresenter implements CreateUserContract.Presenter {
     @Override
     public void createUserClickConfirm() {
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.USERS)
                 .document(mUser.getFacebookId())
                 .set(mUser)

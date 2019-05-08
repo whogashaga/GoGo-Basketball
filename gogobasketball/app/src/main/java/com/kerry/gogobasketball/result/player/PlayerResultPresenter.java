@@ -9,9 +9,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FirestoreHelper;
+import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.data.GamingPlayer;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
 import com.kerry.gogobasketball.data.User;
@@ -40,7 +41,7 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
     @Override
     public void getRoomInfoFromFireStorePlayer(String hostName, int currentSort) {
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.GAMING_ROOM)
                 .whereEqualTo(Constants.HOST_NAME, hostName)
                 .get()
@@ -84,7 +85,7 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
 
     private void getUserDocId(GamingPlayer gamingPlayer, String winner, int currentSort) {
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.USERS)
                 .whereEqualTo(Constants.USER_ID, gamingPlayer.getId())
                 .get()
@@ -149,7 +150,7 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
 
     private void updatePersonalRecord2User(User user) {
         Log.d(Constants.TAG, "updatePersonalRecord2User @ ");
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.USERS)
                 .document(user.getFacebookId())
                 .set(user)

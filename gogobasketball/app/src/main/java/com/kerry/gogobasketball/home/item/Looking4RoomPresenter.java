@@ -8,10 +8,11 @@ import android.util.Log;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FirestoreHelper;
+import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.util.Constants;
 
@@ -35,7 +36,7 @@ public class Looking4RoomPresenter implements Looking4RoomContract.Presenter {
     @Override
     public void loadExistedRoomsData4RecyclerView() {
         mWaitingRoomInfoList.clear();
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .orderBy("totalPlayerAmount")
                 .get()
@@ -55,7 +56,7 @@ public class Looking4RoomPresenter implements Looking4RoomContract.Presenter {
 
     @Override
     public void setRoomListSnapshotListerSlave() {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override

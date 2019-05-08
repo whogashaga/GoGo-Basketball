@@ -9,9 +9,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FirestoreHelper;
+import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
 import com.kerry.gogobasketball.util.Constants;
 
@@ -39,7 +40,7 @@ public class RefereeResultPresenter implements RefereeResultContract.Presenter {
     @Override
     public void getRoomInfoFromFireStore(String hostName) {
         Log.e(Constants.TAG, "getRoomFromFireStore hostName = " + hostName);
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.GAMING_ROOM)
                 .whereEqualTo(Constants.HOST_NAME, hostName)
                 .get()
@@ -61,7 +62,7 @@ public class RefereeResultPresenter implements RefereeResultContract.Presenter {
 
     @Override
     public void deleteGamingRoom() {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.GAMING_ROOM)
                 .document(mRoomDocId)
                 .delete()

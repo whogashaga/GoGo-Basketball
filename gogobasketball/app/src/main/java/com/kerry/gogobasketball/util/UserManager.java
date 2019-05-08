@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -16,18 +15,11 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FirestoreHelper;
 import com.kerry.gogobasketball.GoGoBasketball;
-import com.kerry.gogobasketball.MainActivity;
-import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.data.User;
 
 import java.util.Arrays;
@@ -105,7 +97,7 @@ public class UserManager {
                     public void onCompleted(JSONObject object, GraphResponse response) {
                         try {
                             String name = object.getString("name");
-                            long facebookId = object.getLong("id");
+                            long facebookId = object.getLong(Constants.USER_ID);
                             String profileImage = "https://graph.facebook.com/" + String.valueOf(facebookId) + "/picture?type=large";
                             mUser.setName(name);
                             mUser.setAvatar(profileImage);

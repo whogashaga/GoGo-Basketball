@@ -6,12 +6,11 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FirestoreHelper;
+import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.util.Constants;
 
@@ -43,7 +42,7 @@ public class CommentRefereePresenter implements CommentRefereeContract.Presenter
 
     @Override
     public void queryRefereeUserDocId() {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.USERS)
                 .whereEqualTo(Constants.USER_ID, mRefereeName)
                 .get()
@@ -75,7 +74,7 @@ public class CommentRefereePresenter implements CommentRefereeContract.Presenter
     }
 
     private void updateRefereeRating2FireStore(User user) {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.USERS)
                 .document(user.getFacebookId())
                 .set(user)

@@ -7,17 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FirestoreHelper;
-import com.kerry.gogobasketball.GoGoBasketball;
+import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.util.Constants;
@@ -80,7 +79,7 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
 
     private void determineOpenWaiting4Join(WaitingRoomInfo waitingRoomInfo) {
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .whereEqualTo(Constants.HOST_NAME, waitingRoomInfo.getHostName())
                 .get()
@@ -99,7 +98,7 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
     }
 
     private void determinePlayerAmount(String roomDocId) {
-        DocumentReference docRef = FirestoreHelper.getFirestore()
+        DocumentReference docRef = FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(roomDocId);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

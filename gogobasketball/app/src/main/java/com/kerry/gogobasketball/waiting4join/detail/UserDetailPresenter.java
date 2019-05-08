@@ -8,9 +8,10 @@ import android.util.Log;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FirestoreHelper;
+import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.util.Constants;
 
@@ -26,7 +27,7 @@ public class UserDetailPresenter implements UserDetailContract.Presenter {
     @Override
     public void getUserIdFromWaiting(String userId) {
         Log.d(Constants.TAG, "UserDetailPresenter getUserIdFromWaiting userID = " + userId);
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.USERS)
                 .whereEqualTo(Constants.USER_ID, userId)
                 .get()

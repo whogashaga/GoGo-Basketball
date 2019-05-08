@@ -2,13 +2,13 @@ package com.kerry.gogobasketball;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class FirestoreHelper {
+public class FireStoreHelper {
 
     public static FirebaseFirestore mDb = FirebaseFirestore.getInstance();
 
-    public FirestoreHelper() {}
+    public FireStoreHelper() {}
 
-    public static FirebaseFirestore getFirestore() {
+    public static FirebaseFirestore getFireStore() {
         return mDb;
     }
 }

@@ -10,9 +10,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FirestoreHelper;
+import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.data.CourtsInfo;
 import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
@@ -76,7 +77,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
         waitingRoomInfo.setRefereeAmount(0);
         waitingRoomInfo.setStatus(Constants.STATUS_WAITING);
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mUser.getFacebookId())
                 .set(waitingRoomInfo)
@@ -92,7 +93,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     @Override
     public void updateUserInfo2FireBase(WaitingRoomSeats hostPlayer, String roomDocId) {
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(roomDocId)
                 .collection(Constants.WAITING_SEATS)
@@ -139,7 +140,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
 
     @Override
     public void getCourtsListFromDb() {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.COURTS)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

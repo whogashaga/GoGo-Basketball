@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.create1user.CreateUserContract;
 import com.kerry.gogobasketball.create1user.CreateUserPresenter;
@@ -968,7 +969,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     private void checkIfUserCreatedAfterLogin(User user) {
 
-        DocumentReference docRef = FirestoreHelper.getFirestore()
+        DocumentReference docRef = FirebaseFirestore.getInstance()
                 .collection(Constants.USERS)
                 .document(user.getFacebookId());
 
@@ -998,7 +999,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     private void updateUser2FireStore(User user) {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.USERS)
                 .document(user.getFacebookId())
                 .set(user)
@@ -1019,7 +1020,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
         Log.d(Constants.TAG, "checkIfUserCreate doc id = " + userDocId);
 
-        DocumentReference docRef = FirestoreHelper.getFirestore()
+        DocumentReference docRef = FirebaseFirestore.getInstance()
                 .collection(Constants.USERS)
                 .document(userDocId);
 
@@ -1403,7 +1404,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mCourtsLocation = location;
         if (AccessToken.getCurrentAccessToken() != null) {
             String facebookId = AccessToken.getCurrentAccessToken().getUserId().trim();
-            DocumentReference docRef = FirestoreHelper.getFirestore()
+            DocumentReference docRef = FirebaseFirestore.getInstance()
                     .collection(Constants.COURTS)
                     .document(location)
                     .collection(Constants.PLAYERS)
@@ -1449,7 +1450,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     private void getPopulationDocSize(User user, String location) {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.COURTS)
                 .document(location)
                 .collection(Constants.PLAYERS)
@@ -1470,7 +1471,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     private void getCourtsInfo(User user, String location, int nowPopulation) {
 
-        DocumentReference docRef = FirestoreHelper.getFirestore()
+        DocumentReference docRef = FirebaseFirestore.getInstance()
                 .collection(Constants.COURTS)
                 .document(location);
 
@@ -1497,7 +1498,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     private void updateCourtsPopulation(CourtsInfo courtsInfo, User user, String location) {
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.COURTS)
                 .document(location)
                 .set(courtsInfo)
@@ -1514,7 +1515,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         courtsPeople.setId(user.getId());
         courtsPeople.setFacebookId(user.getFacebookId());
 
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.COURTS)
                 .document(location)
                 .collection(Constants.PLAYERS)
@@ -1566,7 +1567,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         Log.w(Constants.TAG, "deleteMyDocFromCourtsWhenLeave : mCourtsLocation = " + mCourtsLocation);
         Log.w(Constants.TAG, "deleteMyDocFromCourtsWhenLeave : user.getFacebookId() = " + user.getFacebookId());
         if (!mCourtsLocation.equals("") && !user.getFacebookId().equals("")) {
-            FirestoreHelper.getFirestore()
+            FirebaseFirestore.getInstance()
                     .collection(Constants.COURTS)
                     .document(mCourtsLocation)
                     .collection(Constants.PLAYERS)
@@ -1585,7 +1586,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     private void checkPopulation() {
         if (!mCourtsLocation.equals("")) {
-            FirestoreHelper.getFirestore()
+            FirebaseFirestore.getInstance()
                     .collection(Constants.COURTS)
                     .document(mCourtsLocation)
                     .collection(Constants.PLAYERS)
@@ -1606,7 +1607,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     private void updateCourtsInfoWhenLeave(int nowPopulationSize) {
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.COURTS)
                 .document(mCourtsLocation)
                 .update("population", nowPopulationSize)

@@ -2,7 +2,6 @@ package com.kerry.gogobasketball.home.map;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -13,12 +12,13 @@ import android.util.Log;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FirestoreHelper;
+import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.data.CourtsInfo;
 import com.kerry.gogobasketball.util.Constants;
 
@@ -64,7 +64,7 @@ public class CourtsMapPresenter implements CourtsMapContract.Presenter {
     @Override
     public void getCurrentCourtPopulation() {
         mPopulationList.clear();
-        FirestoreHelper.getFirestore()
+        FirebaseFirestore.getInstance()
                 .collection(Constants.COURTS)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -87,7 +87,7 @@ public class CourtsMapPresenter implements CourtsMapContract.Presenter {
 
     @Override
     public void setOnPopulationChangeListener() {
-        Query query = FirestoreHelper.getFirestore()
+        Query query = FirebaseFirestore.getInstance()
                 .collection(Constants.COURTS);
         Log.w(Constants.TAG, "setOnPopulationChangeListener : " + query.toString());
 
