@@ -18,5 +18,8 @@ public interface FriendContract {
 
         void result(int requestCode, int resultCode);
 
+        void postDemoPlayer(int position);
+
+        void updateDemoTotalNumber();
     }
 }

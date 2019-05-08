@@ -262,6 +262,16 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
+    public void postDemoPlayer(int position) {
+        mFriendPresenter.postDemoPlayer(position);
+    }
+
+    @Override
+    public void updateDemoTotalNumber() {
+        mFriendPresenter.updateDemoTotalNumber();
+    }
+
+    @Override
     public void getCurrentCourtPopulation() {
         mCourtsMapPresenter.getCurrentCourtPopulation();
     }
