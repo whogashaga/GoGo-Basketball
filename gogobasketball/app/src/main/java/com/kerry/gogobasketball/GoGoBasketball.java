@@ -20,9 +20,4 @@ public class GoGoBasketball extends Application {
         return mContext;
     }
 
-//    public static StylishSQLiteHelper getSQLiteHelper() {
-//        if (mStylishSQLiteHelper == null) mStylishSQLiteHelper = new StylishSQLiteHelper(getAppContext());
-//        return mStylishSQLiteHelper;
-//    }
-
 }

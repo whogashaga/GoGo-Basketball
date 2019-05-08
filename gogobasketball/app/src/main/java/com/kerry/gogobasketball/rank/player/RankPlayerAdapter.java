@@ -1,5 +1,6 @@
 package com.kerry.gogobasketball.rank.player;
 
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -59,16 +60,10 @@ public class RankPlayerAdapter extends RecyclerView.Adapter {
         holder.getTextUserId().setText(user.getId());
 
         // set Gender
-        if (user.getGender().equals("male")) {
-            holder.getGender().setImageResource(R.drawable.ic_male);
-        } else {
-            holder.getGender().setImageResource(R.drawable.ic_female);
-        }
+        ImageManager.getInstance().setGenderImage(holder.getGender(), user.getGender());
 
         // set Position
-        setPositionImage(user, holder.getUserPosition());
-
-
+        ImageManager.getInstance().setPositionImage(holder.getUserPosition(), user.getPosition());
 
         // set Record
         DecimalFormat avDf = new DecimalFormat("0.00");
@@ -95,23 +90,6 @@ public class RankPlayerAdapter extends RecyclerView.Adapter {
             Log.d(Constants.TAG, "Rank Player Adapter bindView Error !!");
         }
 
-    }
-
-    public void setPositionImage(User user, ImageView imageView) {
-
-        if (user.getPosition().equals(Constants.POSITION_PG)) {
-            imageView.setImageResource(R.drawable.ic_position_pg);
-        } else if (user.getPosition().equals(Constants.POSITION_SG)) {
-            imageView.setImageResource(R.drawable.ic_position_sg);
-        } else if (user.getPosition().equals(Constants.POSITION_SF)) {
-            imageView.setImageResource(R.drawable.ic_position_sf);
-        } else if (user.getPosition().equals(Constants.POSITION_PF)) {
-            imageView.setImageResource(R.drawable.ic_position_pf);
-        } else if (user.getPosition().equals(Constants.POSITION_CENTER)) {
-            imageView.setImageResource(R.drawable.ic_position_center);
-        } else {
-            Log.e(Constants.TAG, "Set Position Image Error!!");
-        }
     }
 
     private class RankPlayerViewHolder extends RecyclerView.ViewHolder {

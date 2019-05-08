@@ -250,11 +250,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
             gender.setVisibility(View.INVISIBLE);
         } else {
             gender.setVisibility(View.VISIBLE);
-            if (seatPlayerInfo.getGender().equals("male")) {
-                gender.setImageResource(R.drawable.ic_male);
-            } else {
-                gender.setImageResource(R.drawable.ic_female);
-            }
+            ImageManager.getInstance().setGenderImage(gender, seatPlayerInfo.getGender());
         }
 
         // set Position image
@@ -266,7 +262,8 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
                 mPositionP7.setImageResource(R.drawable.ic_position_referee);
             } else {
                 position.setVisibility(View.VISIBLE);
-                setPositionImage(seatPlayerInfo, position);
+//                setPositionImage(seatPlayerInfo, position);
+                ImageManager.getInstance().setPositionImage(position, seatPlayerInfo.getPosition());
             }
         }
 
@@ -289,26 +286,6 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         }
 
     }
-
-    public void setPositionImage(WaitingRoomSeats waitPlayerInfo, ImageView imageView) {
-
-        if (waitPlayerInfo.getPosition().equals(Constants.POSITION_PG)) {
-            imageView.setImageResource(R.drawable.ic_position_pg);
-        } else if (waitPlayerInfo.getPosition().equals(Constants.POSITION_SG)) {
-            imageView.setImageResource(R.drawable.ic_position_sg);
-        } else if (waitPlayerInfo.getPosition().equals(Constants.POSITION_SF)) {
-            imageView.setImageResource(R.drawable.ic_position_sf);
-        } else if (waitPlayerInfo.getPosition().equals(Constants.POSITION_PF)) {
-            imageView.setImageResource(R.drawable.ic_position_pf);
-        } else if (waitPlayerInfo.getPosition().equals(Constants.POSITION_CENTER)) {
-            imageView.setImageResource(R.drawable.ic_position_center);
-        } else if (waitPlayerInfo.getPosition().equals("r")) {
-            imageView.setImageResource(R.drawable.ic_position_referee);
-        } else {
-            Log.e(Constants.TAG, "Set Position Error!!");
-        }
-    }
-
 
     @Override
     public void onClick(View v) {

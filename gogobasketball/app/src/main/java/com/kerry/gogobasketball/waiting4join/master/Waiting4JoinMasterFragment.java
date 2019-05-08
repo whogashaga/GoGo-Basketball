@@ -473,11 +473,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
             gender.setVisibility(View.INVISIBLE);
         } else {
             gender.setVisibility(View.VISIBLE);
-            if (seatPlayerInfo.getGender().equals("male")) {
-                gender.setImageResource(R.drawable.ic_male);
-            } else {
-                gender.setImageResource(R.drawable.ic_female);
-            }
+            ImageManager.getInstance().setGenderImage(gender, seatPlayerInfo.getGender());
         }
 
         // set Position image
@@ -488,7 +484,8 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
             mPositionP7.setImageResource(R.drawable.ic_position_referee);
         } else {
             position.setVisibility(View.VISIBLE);
-            setPositionImage(seatPlayerInfo, position);
+//            setPositionImage(seatPlayerInfo, position);
+            ImageManager.getInstance().setPositionImage(position,seatPlayerInfo.getPosition());
         }
 
         // set id
@@ -520,34 +517,15 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
 
     }
 
-    public void setPositionImage(WaitingRoomSeats waitPlayerInfo, ImageView imageView) {
-
-        if (waitPlayerInfo.getPosition().equals(Constants.POSITION_PG)) {
-            imageView.setImageResource(R.drawable.ic_position_pg);
-        } else if (waitPlayerInfo.getPosition().equals(Constants.POSITION_SG)) {
-            imageView.setImageResource(R.drawable.ic_position_sg);
-        } else if (waitPlayerInfo.getPosition().equals(Constants.POSITION_SF)) {
-            imageView.setImageResource(R.drawable.ic_position_sf);
-        } else if (waitPlayerInfo.getPosition().equals(Constants.POSITION_PF)) {
-            imageView.setImageResource(R.drawable.ic_position_pf);
-        } else if (waitPlayerInfo.getPosition().equals(Constants.POSITION_CENTER)) {
-            imageView.setImageResource(R.drawable.ic_position_center);
-        } else {
-            Log.e(Constants.TAG, "Set Position Image Error!!");
-        }
-    }
-
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
             case R.id.radios_timer_yes:
-//                mSpinnerMinuteSelector.setVisibility(View.VISIBLE);
                 mTextMinute.setVisibility(View.VISIBLE);
                 mBtnStartGame.setBackgroundResource(R.drawable.ic_start_unclick);
                 mBtnStartGame.setClickable(false);
                 break;
             case R.id.radios_timer_no:
-//                mSpinnerMinuteSelector.setVisibility(View.INVISIBLE);
                 mTextMinute.setVisibility(View.INVISIBLE);
                 mBtnStartGame.setBackgroundResource(R.drawable.button_effect_start);
                 mBtnStartGame.setClickable(true);

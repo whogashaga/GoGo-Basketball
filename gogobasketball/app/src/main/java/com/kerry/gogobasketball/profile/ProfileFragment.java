@@ -164,11 +164,13 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         ImageManager.getInstance().setImageByUrl(mAvatar, user.getAvatar());
 
         // set Gender
-        setGenderImage(user, mGender);
+//        setGenderImage(user, mGender);
+        ImageManager.getInstance().setGenderImage(mGender, user.getGender());
         mCurrentGender = user.getGender();
 
         // set Position
-        setPositionImage(user, mPosition);
+//        setPositionImage(user, mPosition);
+        ImageManager.getInstance().setPositionImage(mPosition, user.getPosition());
         mCurrentPosition = user.getPosition();
 
         // set FB Name
@@ -201,33 +203,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 
         String refereeRating = avDf.format(user.getRefereeRecord().getAvRating());
         mRefereeRating.setText(refereeRating);
-    }
-
-    public void setGenderImage(User user, ImageView gender) {
-        if (user.getGender().equals("male")) {
-            gender.setImageResource(R.drawable.ic_male);
-        } else {
-            gender.setImageResource(R.drawable.ic_female);
-        }
-    }
-
-    public void setPositionImage(User user, ImageView imageView) {
-
-        if (user.getPosition().equals(Constants.POSITION_PG)) {
-            imageView.setImageResource(R.drawable.ic_position_pg);
-        } else if (user.getPosition().equals(Constants.POSITION_SG)) {
-            imageView.setImageResource(R.drawable.ic_position_sg);
-        } else if (user.getPosition().equals(Constants.POSITION_SF)) {
-            imageView.setImageResource(R.drawable.ic_position_sf);
-        } else if (user.getPosition().equals(Constants.POSITION_PF)) {
-            imageView.setImageResource(R.drawable.ic_position_pf);
-        } else if (user.getPosition().equals(Constants.POSITION_CENTER)) {
-            imageView.setImageResource(R.drawable.ic_position_center);
-        } else if (user.getPosition().equals("r")) {
-            imageView.setImageResource(R.drawable.ic_position_referee);
-        } else {
-            Log.e(Constants.TAG, "Set Position Error!!");
-        }
     }
 
     @Override

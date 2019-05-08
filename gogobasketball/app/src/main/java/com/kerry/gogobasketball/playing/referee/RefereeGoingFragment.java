@@ -428,35 +428,15 @@ public class RefereeGoingFragment extends Fragment implements RefereeGoingContra
 
     private void setPlayerInfo(GamingPlayer gamingPlayer, ImageView avatar,
                                ImageView gender, ImageView position, TextView textId) {
+        // set Avatar
         ImageManager.getInstance().setImageByUrl(avatar, gamingPlayer.getAvatar());
-        setGenderImage(gender, gamingPlayer.getGender());
-        setPositionImage(position, gamingPlayer.getPosition());
+        // set Gender
+//        setGenderImage(gender, gamingPlayer.getGender());
+        ImageManager.getInstance().setGenderImage(gender, gamingPlayer.getPosition());
+        // set Position
+        ImageManager.getInstance().setPositionImage(position, gamingPlayer.getPosition());
+        // set ID
         textId.setText(gamingPlayer.getId());
-    }
-
-    private void setGenderImage(ImageView genderImage, String genderStr) {
-
-        if (genderStr.equals("male")) {
-            genderImage.setImageResource(R.drawable.ic_male);
-        } else {
-            genderImage.setImageResource(R.drawable.ic_female);
-        }
-    }
-
-    private void setPositionImage(ImageView imageView, String positionStr) {
-        if (positionStr.equals(Constants.POSITION_PG)) {
-            imageView.setImageResource(R.drawable.ic_position_pg);
-        } else if (positionStr.equals(Constants.POSITION_SG)) {
-            imageView.setImageResource(R.drawable.ic_position_sg);
-        } else if (positionStr.equals(Constants.POSITION_SF)) {
-            imageView.setImageResource(R.drawable.ic_position_sf);
-        } else if (positionStr.equals(Constants.POSITION_PF)) {
-            imageView.setImageResource(R.drawable.ic_position_pf);
-        } else if (positionStr.equals(Constants.POSITION_CENTER)) {
-            imageView.setImageResource(R.drawable.ic_position_center);
-        } else {
-            Log.e(Constants.TAG, "Set Position Error!!");
-        }
     }
 
     @Override

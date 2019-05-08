@@ -150,4 +150,35 @@ public class ImageManager {
     private boolean isImagePairingCorrect(ImageView imageView, String url) {
         return imageView.getTag().equals(url);
     }
+
+    public void setPositionImage(ImageView imageView, String position) {
+        switch (position) {
+            case Constants.POSITION_PG:
+                imageView.setImageResource(R.drawable.ic_position_pg);
+                break;
+            case Constants.POSITION_SG:
+                imageView.setImageResource(R.drawable.ic_position_sg);
+                break;
+            case Constants.POSITION_SF:
+                imageView.setImageResource(R.drawable.ic_position_sf);
+                break;
+            case Constants.POSITION_PF:
+                imageView.setImageResource(R.drawable.ic_position_pf);
+                break;
+            case Constants.POSITION_CENTER:
+                imageView.setImageResource(R.drawable.ic_position_center);
+                break;
+            default:
+                Log.e(Constants.TAG, "Set Position Image Error!!");
+                break;
+        }
+    }
+
+    public void setGenderImage(ImageView image, String gender) {
+        if (gender.equals(Constants.GENDER_MALE)) {
+            image.setImageResource(R.drawable.ic_male);
+        } else {
+            image.setImageResource(R.drawable.ic_female);
+        }
+    }
 }
