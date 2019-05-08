@@ -1,17 +1,13 @@
 package com.kerry.gogobasketball.waiting4join.slave;
 
-import android.app.Activity;
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -24,11 +20,6 @@ import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.UserManager;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Presenter {
 

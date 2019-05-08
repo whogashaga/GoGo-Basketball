@@ -18,23 +18,23 @@ public class CourtsPeople {
         return mFacebookId;
     }
 
-    public void setFacebookId(String mFacebookId) {
-        this.mFacebookId = mFacebookId;
+    public void setFacebookId(String facebookId) {
+        this.mFacebookId = facebookId;
     }
 
     public String getId() {
         return mId;
     }
 
-    public void setId(String mId) {
-        this.mId = mId;
+    public void setId(String id) {
+        this.mId = id;
     }
 
     public String getStatus() {
         return mStatus;
     }
 
-    public void setStatus(String mStatus) {
-        this.mStatus = mStatus;
+    public void setStatus(String status) {
+        this.mStatus = status;
     }
 }

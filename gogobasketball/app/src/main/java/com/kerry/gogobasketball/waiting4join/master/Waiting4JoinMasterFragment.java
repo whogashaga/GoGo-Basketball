@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.waiting4join.master;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -26,8 +28,6 @@ import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.ImageManager;
 
 import java.util.ArrayList;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Waiting4JoinMasterFragment extends Fragment implements Waiting4JoinMasterContract.View,
         View.OnClickListener, RadioGroup.OnCheckedChangeListener {
@@ -128,11 +128,11 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         if (mNowMasterSort == 7) {
             mPresenter.openGamePlayingOfReferee(gamingRoomInfo.getHostName());
             mPresenter.deleteHostInfoWhenLeave();
-            mPresenter.removeListenerMaster();
+//            mPresenter.removeListenerMaster();
         } else {
             mPresenter.openGamePlayingOfPlayer(gamingRoomInfo.getHostName(), mNowMasterSort);
             mPresenter.deleteHostInfoWhenLeave();
-            mPresenter.removeListenerMaster();
+//            mPresenter.removeListenerMaster();
         }
     }
 

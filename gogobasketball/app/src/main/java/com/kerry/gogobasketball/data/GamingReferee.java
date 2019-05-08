@@ -5,7 +5,7 @@ public class GamingReferee extends WaitingRoomSeats {
     private int mJustices;
     private int mRating;
 
-    public GamingReferee(){
+    public GamingReferee() {
         mJustices = 0;
         mRating = 0;
     }

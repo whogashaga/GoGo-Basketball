@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.result.player;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -14,8 +16,6 @@ import com.kerry.gogobasketball.data.GamingPlayer;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
 import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.util.Constants;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class PlayerResultPresenter implements PlayerResultContract.Presenter {
 
@@ -32,7 +32,7 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
 
     @Override
     public void getHostNameFromPlayerGoing(String hostName, int currentSort) {
-        Log.d(Constants.TAG, "getHostNameFromPlayerGoing HostName = " + hostName);
+        Log.e("Kerry", "getHostNameFromPlayerGoing HostName = " + hostName);
         mHostName = hostName;
         mGameResultView.getHostNameFromPresenter(hostName, currentSort);
     }
@@ -155,7 +155,7 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
                 .set(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(Void aVoid) {
+                    public void onSuccess(Void avoid) {
                         Log.d(Constants.TAG, "個人紀錄上傳完成 ！!");
                     }
                 }).addOnFailureListener(new OnFailureListener() {

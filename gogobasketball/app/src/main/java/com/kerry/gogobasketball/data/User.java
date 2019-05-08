@@ -29,8 +29,8 @@ public class User {
         return mName;
     }
 
-    public void setName(String mName) {
-        this.mName = mName;
+    public void setName(String name) {
+        this.mName = name;
     }
 
     public String getAvatar() {

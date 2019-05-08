@@ -1,11 +1,10 @@
 package com.kerry.gogobasketball.profile.logout;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.facebook.login.LoginManager;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class LogoutPresenter implements LogoutContract.Presenter {
 

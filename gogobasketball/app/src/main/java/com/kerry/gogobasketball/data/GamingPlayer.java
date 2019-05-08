@@ -7,7 +7,7 @@ public class GamingPlayer extends WaitingRoomSeats {
     private int mRebound;
     private boolean mIsWinning;
 
-    public GamingPlayer(){
+    public GamingPlayer() {
         mScore = 0;
         mRebound = 0;
         mFoul = 0;

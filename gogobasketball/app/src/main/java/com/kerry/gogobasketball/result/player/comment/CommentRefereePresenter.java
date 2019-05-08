@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.result.player.comment;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -12,8 +14,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.FirestoreHelper;
 import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.util.Constants;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class CommentRefereePresenter implements CommentRefereeContract.Presenter {
 

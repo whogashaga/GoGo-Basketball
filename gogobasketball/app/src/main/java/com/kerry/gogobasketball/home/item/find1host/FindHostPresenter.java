@@ -1,4 +1,6 @@
-package com.kerry.gogobasketball.home.item.find_host;
+package com.kerry.gogobasketball.home.item.find1host;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -13,8 +15,6 @@ import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.util.Constants;
 
 import java.util.ArrayList;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class FindHostPresenter implements FindHostContract.Presenter {
 
@@ -54,7 +54,7 @@ public class FindHostPresenter implements FindHostContract.Presenter {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         Log.d(Constants.TAG, "checkIfUserIdExists task size = " + task.getResult().size());
                         if (task.isSuccessful()) {
-                            if(task.getResult().size() == 0) {
+                            if (task.getResult().size() == 0) {
                                 mFindHostView.showFindNoHost();
                             } else {
                                 for (QueryDocumentSnapshot document : task.getResult()) {

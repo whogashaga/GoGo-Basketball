@@ -1,12 +1,12 @@
 package com.kerry.gogobasketball.rank;
 
+import static com.kerry.gogobasketball.MainMvpController.PLAYER;
+import static com.kerry.gogobasketball.MainMvpController.REFEREE;
+
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
-import static com.kerry.gogobasketball.MainMvpController.PLAYER;
-import static com.kerry.gogobasketball.MainMvpController.REFEREE;
 
 public class RankAdapter extends FragmentPagerAdapter {
 

@@ -80,40 +80,40 @@ public class GamingRoomInfo {
         return mPlayer2;
     }
 
-    public void setPlayer2(GamingPlayer mPlayer2) {
-        this.mPlayer2 = mPlayer2;
+    public void setPlayer2(GamingPlayer player2) {
+        this.mPlayer2 = player2;
     }
 
     public GamingPlayer getPlayer3() {
         return mPlayer3;
     }
 
-    public void setPlayer3(GamingPlayer mPlayer3) {
-        this.mPlayer3 = mPlayer3;
+    public void setPlayer3(GamingPlayer player3) {
+        this.mPlayer3 = player3;
     }
 
     public GamingPlayer getPlayer4() {
         return mPlayer4;
     }
 
-    public void setPlayer4(GamingPlayer mPlayer4) {
-        this.mPlayer4 = mPlayer4;
+    public void setPlayer4(GamingPlayer player4) {
+        this.mPlayer4 = player4;
     }
 
     public GamingPlayer getPlayer5() {
         return mPlayer5;
     }
 
-    public void setPlayer5(GamingPlayer mPlayer5) {
-        this.mPlayer5 = mPlayer5;
+    public void setPlayer5(GamingPlayer player5) {
+        this.mPlayer5 = player5;
     }
 
     public GamingPlayer getPlayer6() {
         return mPlayer6;
     }
 
-    public void setPlayer6(GamingPlayer mPlayer6) {
-        this.mPlayer6 = mPlayer6;
+    public void setPlayer6(GamingPlayer player6) {
+        this.mPlayer6 = player6;
     }
 
     public GamingReferee getReferee() {

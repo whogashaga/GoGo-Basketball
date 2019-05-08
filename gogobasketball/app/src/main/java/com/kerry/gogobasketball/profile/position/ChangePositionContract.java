@@ -1,4 +1,4 @@
-package com.kerry.gogobasketball.profile.change_position;
+package com.kerry.gogobasketball.profile.position;
 
 import android.app.Activity;
 

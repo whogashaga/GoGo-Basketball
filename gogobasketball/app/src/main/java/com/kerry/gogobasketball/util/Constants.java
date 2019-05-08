@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.util;
 
+import android.Manifest;
+
 public class Constants {
 
     public static final String TAG = "GoGoBasketball_TAG";
@@ -73,4 +75,8 @@ public class Constants {
     public static final String XIN_SHENG_PARK = "XinShengPark";
     public static final String BA_DER_PARK = "BaDerPark";
     public static final String BANQIAO_SECOND = "BanqiaoSecond";
+
+    public static final String FINE_PERMISSION = Manifest.permission.ACCESS_FINE_LOCATION;
+    public static final String COARSE_PERMISSION = Manifest.permission.ACCESS_COARSE_LOCATION;
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 }

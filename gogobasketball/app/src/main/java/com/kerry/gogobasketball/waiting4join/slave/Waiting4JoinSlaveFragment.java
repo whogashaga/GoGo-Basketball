@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.waiting4join.slave;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -25,8 +27,6 @@ import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.ImageManager;
 
 import java.util.ArrayList;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinSlaveContract.View, View.OnClickListener {
 

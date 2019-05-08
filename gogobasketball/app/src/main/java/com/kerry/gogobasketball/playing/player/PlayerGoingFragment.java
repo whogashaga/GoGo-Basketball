@@ -1,18 +1,19 @@
 package com.kerry.gogobasketball.playing.player;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.kerry.gogobasketball.R;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class PlayerGoingFragment extends Fragment implements PlayerGoingContract.View {
 
@@ -35,6 +36,7 @@ public class PlayerGoingFragment extends Fragment implements PlayerGoingContract
     @Override
     public void onResume() {
         super.onResume();
+        Log.i("Kerry", "PlayerGoing onResume !");
         mPresenter.hideToolbarAndBottomNavigation();
         if (getActivity() != null) {
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -50,7 +52,7 @@ public class PlayerGoingFragment extends Fragment implements PlayerGoingContract
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        mRoot = inflater.inflate(R.layout.fragment_game_playing_player_demo, container, false);
+        mRoot = inflater.inflate(R.layout.fragment_game_playing_player, container, false);
 
         return mRoot;
     }
@@ -76,6 +78,7 @@ public class PlayerGoingFragment extends Fragment implements PlayerGoingContract
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.i("Kerry", "PlayerGoing onDestroy !");
         if (mPresenter != null) {
             mPresenter.setGamingNowMessage(false);
         }

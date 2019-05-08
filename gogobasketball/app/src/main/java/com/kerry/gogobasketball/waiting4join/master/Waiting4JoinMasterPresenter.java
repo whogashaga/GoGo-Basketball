@@ -206,7 +206,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                             WaitingRoomSeats seatInfo = document.toObject(WaitingRoomSeats.class);
                             existedSortList.add(seatInfo.getSort());
                         }
-//                            Log.d(Constants.TAG, "Master existedSortList = " + existedSortList.get(0));
+//                            Log.d("Kerry, "Master existedSortList = " + existedSortList.get(0));
                         updateSortForChangeSeatMaster(seatDocIdForUpdate, newSort);
                         changeRoomPlayerAmountAfterChangeSeatMaster(existedSortList, newSort);
 
@@ -226,7 +226,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                 .update(Constants.SORT, newSort)
                 .addOnSuccessListener(aVoid -> {
                     mCurrentSort = newSort;
-                    Log.d(Constants.TAG, "DocumentSnapshot successfully updated!");
+                    Log.d(Constants.TAG, "Master sort successfully updated!");
                 })
                 .addOnFailureListener(e -> Log.w(Constants.TAG, "Error updating document", e));
     }
@@ -339,7 +339,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                         for (int j = 0; j < mSeatsInfoList.size(); j++) {
                             emptySeatsList.set(mSeatsInfoList.get(j).getSort() - 1, mSeatsInfoList.get(j));
                         }
-//                            Log.e(Constants.TAG, "EmptyList size = " + emptySeatsList.size());
+//                            Log.e("Kerry, "EmptyList size = " + emptySeatsList.size());
 
                         mWaiting4JoinMasterView.showWaitingSeatsMasterUi(emptySeatsList);
 
@@ -366,7 +366,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                 .document(mHostSeatInfo.getId())
                 .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
-            public void onSuccess(Void aVoid) {
+            public void onSuccess(Void avoid) {
                 Log.d(Constants.TAG, "刪除 Master Seat！");
                 checkTotalPlayerAmountMaster();
             }
@@ -417,7 +417,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                 .set(mWaitingRoomInfo)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(Void aVoid) {
+                    public void onSuccess(Void avoid) {
                         updateStatus2Closed();
                         Log.d(Constants.TAG, "Master 跳狗，更新人數！");
                     }
@@ -432,7 +432,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                 .update(Constants.ROOM_STATUS, Constants.STATUS_CLOSED)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(Void aVoid) {
+                    public void onSuccess(Void avoid) {
                         Log.d(Constants.TAG, "Room status 改為 close");
                         deleteRoomDocWhenLeave();
                     }
@@ -477,8 +477,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                 .addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
     }
 
-    @Override
-    public void updateRoomStatus2Gaming(GamingRoomInfo gamingRoomInfo) {
+    private void updateRoomStatus2Gaming(GamingRoomInfo gamingRoomInfo) {
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
@@ -487,7 +486,6 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                     Log.d(Constants.TAG, "Room status 改為 gaming!!");
                     mWaiting4JoinMasterView.getGamingRoomInfoFromPresenter4GamingFragment(gamingRoomInfo);
                     removeListenerMaster();
-//                        deleteHostInfoWhenLeave();
                 })
                 .addOnFailureListener(e -> Log.w(Constants.TAG, "Error updating document", e));
     }

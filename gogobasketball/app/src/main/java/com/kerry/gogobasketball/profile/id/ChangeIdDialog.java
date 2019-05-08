@@ -1,4 +1,6 @@
-package com.kerry.gogobasketball.profile.change_id;
+package com.kerry.gogobasketball.profile.id;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,8 +19,6 @@ import android.widget.EditText;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.NameInputFilter;
 import com.kerry.gogobasketball.util.Constants;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ChangeIdDialog extends DialogFragment implements ChangeIdContract.View, View.OnClickListener {
 
@@ -64,7 +64,7 @@ public class ChangeIdDialog extends DialogFragment implements ChangeIdContract.V
                 // do nothing
                 break;
             case R.id.btn_change_id_yes:
-                if(mChar.length() == 0){
+                if (mChar.length() == 0) {
                     mPresenter.showErrorToast("名稱不留白 !", true);
                 } else {
                     mPresenter.checkIfUserNewIdExists(getActivity());
@@ -80,7 +80,7 @@ public class ChangeIdDialog extends DialogFragment implements ChangeIdContract.V
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mEditNewId.setFilters(new InputFilter[]{new NameInputFilter(getContext(),12)});
+        mEditNewId.setFilters(new InputFilter[]{new NameInputFilter(getContext(), 12)});
         mEditNewId.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

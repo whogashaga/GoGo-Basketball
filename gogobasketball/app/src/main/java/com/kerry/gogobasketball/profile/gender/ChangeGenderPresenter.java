@@ -1,4 +1,6 @@
-package com.kerry.gogobasketball.profile.change_gender;
+package com.kerry.gogobasketball.profile.gender;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -8,10 +10,7 @@ import com.facebook.AccessToken;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.kerry.gogobasketball.FirestoreHelper;
-import com.kerry.gogobasketball.MainActivity;
 import com.kerry.gogobasketball.util.Constants;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ChangeGenderPresenter implements ChangeGenderContract.Presenter {
 
@@ -54,21 +53,12 @@ public class ChangeGenderPresenter implements ChangeGenderContract.Presenter {
                 .collection(Constants.USERS)
                 .document(AccessToken.getCurrentAccessToken().getUserId().trim())
                 .update(Constants.USER_GENDER, mNewGender)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(Constants.TAG, "更換 ID 完成 ！!");
-                        mChangeGenderView.showChangeGenderSuccessUi();
-                        mChangeGenderView.showNewProfileUi();
-                        mChangeGenderView.finishChangeGenderUi();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e(Constants.TAG, "更換 ID Error !", e);
-            }
-
-        });
+                .addOnSuccessListener(avoid -> {
+                    Log.d(Constants.TAG, "更換 ID 完成 ！!");
+                    mChangeGenderView.showChangeGenderSuccessUi();
+                    mChangeGenderView.showNewProfileUi();
+                    mChangeGenderView.finishChangeGenderUi();
+                }).addOnFailureListener(e -> Log.e(Constants.TAG, "更換 ID Error !", e));
     }
 
     @Override

@@ -1,8 +1,7 @@
-package com.kerry.gogobasketball.create_user;
+package com.kerry.gogobasketball.create1user;
 
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
-import com.kerry.gogobasketball.data.User;
 
 public interface CreateUserContract {
 

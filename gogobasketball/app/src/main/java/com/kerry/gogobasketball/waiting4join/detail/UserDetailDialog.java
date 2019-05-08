@@ -1,10 +1,11 @@
-package com.kerry.gogobasketball.waiting4join.user_detail;
+package com.kerry.gogobasketball.waiting4join.detail;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +16,9 @@ import android.widget.TextView;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.SeatAvatarOutlineProvider;
 import com.kerry.gogobasketball.data.User;
-import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.ImageManager;
 
 import java.text.DecimalFormat;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class UserDetailDialog extends DialogFragment implements UserDetailContract.View, View.OnClickListener {
 

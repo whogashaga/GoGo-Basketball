@@ -1,4 +1,6 @@
-package com.kerry.gogobasketball.profile.change_gender;
+package com.kerry.gogobasketball.profile.gender;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,8 +17,6 @@ import android.widget.RadioGroup;
 import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.util.Constants;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ChangeGenderDialog extends DialogFragment implements ChangeGenderContract.View,
         View.OnClickListener, RadioGroup.OnCheckedChangeListener {

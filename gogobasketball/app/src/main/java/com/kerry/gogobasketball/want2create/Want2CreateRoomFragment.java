@@ -283,8 +283,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
                     return "";
                 } else if (source.toString().contentEquals("\n")) {
                     return "";
-                }
-                else {
+                } else {
                     return null;
                 }
             }

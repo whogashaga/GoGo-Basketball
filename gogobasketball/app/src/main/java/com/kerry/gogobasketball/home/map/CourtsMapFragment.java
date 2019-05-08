@@ -46,22 +46,12 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
 
     private CourtsMapContract.Presenter mPresenter;
 
-    private double mLat;
-    private double mLong;
-    private LocationManager mLocationManager;
-    private Location mLocation;
-    private String mProvider;
-
-    private static final String FINE_PERMISSION = Manifest.permission.ACCESS_FINE_LOCATION;
-    private static final String COARSE_PERMISSION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private static final float DEFAULT_ZOOM = 15;
     private boolean mLocationPermissionGranted = false;
     private SupportMapFragment mapFragment;
     private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationProviderClient;
-
-    private static final String TAG = Constants.TAG;
 
     public CourtsMapFragment() {
     }
@@ -112,14 +102,14 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
                 @Override
                 public void onComplete(@NonNull Task task) {
                     if (task.isSuccessful()) {
-                        Log.d(TAG, "onComplete: found location!");
+                        Log.d(Constants.TAG, "onComplete: found location!");
                         Location currentLocation = (Location) task.getResult();
 
                         moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
                                 DEFAULT_ZOOM);
 
                     } else {
-                        Log.d(TAG, "onComplete: current location is null!");
+                        Log.d(Constants.TAG, "onComplete: current location is null!");
                     }
                 }
             });
@@ -130,13 +120,13 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
     }
 
     private void moveCamera(LatLng latLng, float zoom) {
-        Log.d(TAG, "moving the camera to lat :" + latLng.latitude + ", lng : " + latLng.longitude);
+        Log.d(Constants.TAG, "moving the camera to lat :" + latLng.latitude + ", lng : " + latLng.longitude);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
     }
 
     @Override
     public void initMap() {
-        Log.i(TAG, "MapFragment initMap: ");
+        Log.i(Constants.TAG, "MapFragment initMap: ");
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
@@ -188,7 +178,7 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
             addCourtsMarker(new LatLng(25.021023, 121.505110), getString(R.string.younth_park), "目前人數 : " + populationList.get(17));
 
         } else {
-            Log.d(TAG, "initCourtsMarker: activity or context is null");
+            Log.d(Constants.TAG, "initCourtsMarker: activity or context is null");
         }
 
     }
@@ -203,7 +193,7 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
         if (mMap != null) {
             mMap.addMarker(markerOptions);
         } else {
-            Log.d(TAG, "addCourtsMarker Error : mMap is null");
+            Log.d(Constants.TAG, "addCourtsMarker Error : mMap is null");
         }
     }
 
@@ -212,12 +202,12 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
         if (mMap != null) {
             mMap.clear();
         } else {
-            Log.d(TAG, "refreshMarkers Error: mMap is null");
+            Log.d(Constants.TAG, "refreshMarkers Error: mMap is null");
         }
         if (mPresenter != null) {
             mPresenter.getCurrentCourtPopulation();
         } else {
-            Log.d(TAG, "refreshMarkers Error: mPresenter is null");
+            Log.d(Constants.TAG, "refreshMarkers Error: mPresenter is null");
         }
     }
 
@@ -268,7 +258,7 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
         if (mPresenter != null) {
             mPresenter.removeListener();
         } else {
-
+            Log.d(Constants.TAG, "onDestroy: ");
         }
     }
 

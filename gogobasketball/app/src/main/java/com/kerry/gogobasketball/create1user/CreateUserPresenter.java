@@ -1,27 +1,20 @@
-package com.kerry.gogobasketball.create_user;
+package com.kerry.gogobasketball.create1user;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.view.Gravity;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.FirestoreHelper;
 import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.util.Constants;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class CreateUserPresenter implements CreateUserContract.Presenter {
 
@@ -129,7 +122,7 @@ public class CreateUserPresenter implements CreateUserContract.Presenter {
                 .set(mUser)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(Void aVoid) {
+                    public void onSuccess(Void avoid) {
                         Log.d(Constants.TAG, "創建角色完成 ！!");
                         mCreateUserView.showCreateUserSuccessUi();
                     }
@@ -138,7 +131,6 @@ public class CreateUserPresenter implements CreateUserContract.Presenter {
             public void onFailure(@NonNull Exception e) {
                 Log.e(Constants.TAG, "創建角色 Error adding document", e);
             }
-
         });
     }
 

@@ -9,7 +9,7 @@ public class WaitingRoomSeats {
     private int mSort;
     private boolean mSeatAvailable;
 
-    public WaitingRoomSeats(){
+    public WaitingRoomSeats() {
         mAvatar = "";
         mId = "";
         mPosition = "";

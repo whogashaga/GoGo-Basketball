@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.rank.player;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -12,8 +14,6 @@ import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.util.Constants;
 
 import java.util.ArrayList;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class RankPlayerPresenter implements RankPlayerContract.Presenter {
 
@@ -40,6 +40,7 @@ public class RankPlayerPresenter implements RankPlayerContract.Presenter {
                             if (user.getPlayerRecord().getGames() >= 10) {
                                 mUserList.add(user);
                             } else {
+                                Log.d(Constants.TAG, "loadRankPlayerByGames: ");
                             }
                         }
                         mRankPlayerView.showRankPlayerUi(mUserList, GoGoBasketball.getAppContext().getString(R.string.rank_total_games));
@@ -60,7 +61,9 @@ public class RankPlayerPresenter implements RankPlayerContract.Presenter {
                             User user = document.toObject(User.class);
                             if (user.getPlayerRecord().getGames() >= 10) {
                                 mUserList.add(user);
-                            } else {}
+                            } else {
+                                Log.d(Constants.TAG, "loadRankPlayerByWinRate: ");
+                            }
                         }
                         mRankPlayerView.showRankPlayerUi(mUserList, GoGoBasketball.getAppContext().getString(R.string.rank_win_rate));
                     }
@@ -80,7 +83,9 @@ public class RankPlayerPresenter implements RankPlayerContract.Presenter {
                             User user = document.toObject(User.class);
                             if (user.getPlayerRecord().getGames() >= 10) {
                                 mUserList.add(user);
-                            } else {}
+                            } else {
+                                Log.d(Constants.TAG, "loadRankPlayerByAvScore: ");
+                            }
                         }
                         mRankPlayerView.showRankPlayerUi(mUserList, GoGoBasketball.getAppContext().getString(R.string.rank_av_score));
                     }
@@ -100,7 +105,9 @@ public class RankPlayerPresenter implements RankPlayerContract.Presenter {
                             User user = document.toObject(User.class);
                             if (user.getPlayerRecord().getGames() >= 10) {
                                 mUserList.add(user);
-                            } else {}
+                            } else {
+                                Log.d(Constants.TAG, "loadRankPlayerByAvRebound: ");
+                            }
                         }
                         mRankPlayerView.showRankPlayerUi(mUserList,GoGoBasketball.getAppContext().getString(R.string.rank_av_rebound));
                     }
@@ -120,7 +127,9 @@ public class RankPlayerPresenter implements RankPlayerContract.Presenter {
                             User user = document.toObject(User.class);
                             if (user.getPlayerRecord().getGames() >= 10) {
                                 mUserList.add(user);
-                            } else {}
+                            } else {
+                                Log.d(Constants.TAG, "loadRankPlayerByAvFoul: ");
+                            }
                         }
                         mRankPlayerView.showRankPlayerUi(mUserList, GoGoBasketball.getAppContext().getString(R.string.rank_av_foul));
                     }

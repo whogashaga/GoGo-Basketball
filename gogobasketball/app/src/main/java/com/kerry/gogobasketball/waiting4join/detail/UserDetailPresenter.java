@@ -1,4 +1,6 @@
-package com.kerry.gogobasketball.waiting4join.user_detail;
+package com.kerry.gogobasketball.waiting4join.detail;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -11,8 +13,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.FirestoreHelper;
 import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.util.Constants;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class UserDetailPresenter implements UserDetailContract.Presenter {
 

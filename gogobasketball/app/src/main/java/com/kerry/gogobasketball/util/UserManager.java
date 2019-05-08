@@ -30,11 +30,10 @@ import com.kerry.gogobasketball.MainActivity;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.data.User;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.Arrays;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class UserManager {
 

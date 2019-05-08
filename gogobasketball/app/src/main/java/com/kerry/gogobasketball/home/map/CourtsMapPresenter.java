@@ -32,9 +32,6 @@ public class CourtsMapPresenter implements CourtsMapContract.Presenter {
     private CourtsMapContract.View mCourtsMapView;
     private ArrayList<String> mPopulationList;
     private static ListenerRegistration mCourtsListener;
-    private static final String FINE_PERMISSION = Manifest.permission.ACCESS_FINE_LOCATION;
-    private static final String COARSE_PERMISSION = Manifest.permission.ACCESS_COARSE_LOCATION;
-    private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
     public CourtsMapPresenter(@NonNull CourtsMapContract.View mapView) {
         mCourtsMapView = checkNotNull(mapView, "mapView cannot be null!");
@@ -50,17 +47,17 @@ public class CourtsMapPresenter implements CourtsMapContract.Presenter {
     @Override
     public void getLocationPermission(Activity activity) {
 
-        String[] permissions = {FINE_PERMISSION, COARSE_PERMISSION};
+        String[] permissions = {Constants.FINE_PERMISSION, Constants.COARSE_PERMISSION};
 
-        if (ContextCompat.checkSelfPermission(activity, FINE_PERMISSION) == PackageManager.PERMISSION_GRANTED) {
-            if (ContextCompat.checkSelfPermission(activity, COARSE_PERMISSION) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(activity, Constants.FINE_PERMISSION) == PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(activity, Constants.COARSE_PERMISSION) == PackageManager.PERMISSION_GRANTED) {
                 mCourtsMapView.getLocationPermissionGranted(true);
                 mCourtsMapView.initMap();
             } else {
-                ActivityCompat.requestPermissions(activity, permissions, MY_PERMISSIONS_REQUEST_LOCATION);
+                ActivityCompat.requestPermissions(activity, permissions, Constants.MY_PERMISSIONS_REQUEST_LOCATION);
             }
         } else {
-            ActivityCompat.requestPermissions(activity, permissions, MY_PERMISSIONS_REQUEST_LOCATION);
+            ActivityCompat.requestPermissions(activity, permissions, Constants.MY_PERMISSIONS_REQUEST_LOCATION);
         }
     }
 
@@ -77,7 +74,6 @@ public class CourtsMapPresenter implements CourtsMapContract.Presenter {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 CourtsInfo courtsInfo = document.toObject(CourtsInfo.class);
                                 mPopulationList.add(String.valueOf(courtsInfo.getPopulation()));
-                                Log.e(Constants.TAG, "population = " + courtsInfo.getPopulation());
                             }
                             Log.i(Constants.TAG, "size = " + mPopulationList.size());
                             mCourtsMapView.getPopulationFromPresenter(mPopulationList);
@@ -106,6 +102,7 @@ public class CourtsMapPresenter implements CourtsMapContract.Presenter {
                 if (value != null) {
                     mCourtsMapView.refreshMarkers();
                 } else {
+                    Log.d(Constants.TAG, "onEvent FAIL !");
                 }
             }
         });
@@ -116,6 +113,7 @@ public class CourtsMapPresenter implements CourtsMapContract.Presenter {
         if (mCourtsListener != null) {
             mCourtsListener.remove();
         } else {
+            Log.d(Constants.TAG, "MapFragment mCourtsListener is null !");
         }
     }
 
@@ -123,14 +121,4 @@ public class CourtsMapPresenter implements CourtsMapContract.Presenter {
     public void start() {
 
     }
-
-    public interface getCurrentCourtPopulationCallback {
-
-        void onSuccess(ArrayList<String> populationList);
-
-        void onFail();
-
-    }
-
-
 }

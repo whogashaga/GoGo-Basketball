@@ -10,11 +10,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.FirestoreHelper;
-import com.kerry.gogobasketball.RandomString;
 import com.kerry.gogobasketball.data.CourtsInfo;
 import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
@@ -102,7 +100,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
                 .set(hostPlayer)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(Void aVoid) {
+                    public void onSuccess(Void avoid) {
                         Log.d(Constants.TAG, "Master進入房間 ！!");
                     }
                 }).addOnFailureListener(new OnFailureListener() {

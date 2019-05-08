@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.result.player;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,8 +22,6 @@ import com.kerry.gogobasketball.data.GamingPlayer;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
 import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.ImageManager;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class PlayerResultFragment extends Fragment implements PlayerResultContract.View, View.OnClickListener {
 
@@ -76,6 +76,7 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
     @Override
     public void onResume() {
         super.onResume();
+        Log.e("Kerry", "PlayerResultFragment onResume: ");
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
@@ -225,6 +226,7 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.e("Kerry", "PlayerResultFragment onDestroy: ");
     }
 
     @Override

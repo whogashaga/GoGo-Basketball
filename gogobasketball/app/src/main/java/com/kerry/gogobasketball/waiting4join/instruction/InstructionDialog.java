@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.waiting4join.instruction;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,8 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.kerry.gogobasketball.R;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class InstructionDialog extends DialogFragment implements InstructionContract.View, View.OnClickListener {
 

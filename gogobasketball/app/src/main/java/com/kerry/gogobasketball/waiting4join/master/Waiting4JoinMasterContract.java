@@ -50,8 +50,6 @@ public interface Waiting4JoinMasterContract {
 
         void deleteHostInfoWhenLeave();
 
-        void updateRoomStatus2Gaming(GamingRoomInfo gamingRoomInfo);
-
         void initializeGamingRoomInfo();
 
         void setActivityBackgroundLandScape();

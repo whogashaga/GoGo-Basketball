@@ -1,4 +1,4 @@
-package com.kerry.gogobasketball.waiting4join.user_detail;
+package com.kerry.gogobasketball.waiting4join.detail;
 
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;

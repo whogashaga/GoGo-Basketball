@@ -1,8 +1,8 @@
 package com.kerry.gogobasketball.waiting4join.instruction;
 
-import android.support.annotation.NonNull;
-
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import android.support.annotation.NonNull;
 
 public class InstructionPresenter implements InstructionContract.Presenter {
 

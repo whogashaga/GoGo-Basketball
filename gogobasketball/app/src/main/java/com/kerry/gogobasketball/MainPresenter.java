@@ -19,8 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.create_user.CreateUserContract;
-import com.kerry.gogobasketball.create_user.CreateUserPresenter;
+import com.kerry.gogobasketball.create1user.CreateUserContract;
+import com.kerry.gogobasketball.create1user.CreateUserPresenter;
 import com.kerry.gogobasketball.data.CourtsInfo;
 import com.kerry.gogobasketball.data.CourtsPeople;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
@@ -34,8 +34,8 @@ import com.kerry.gogobasketball.home.HomePresenter;
 import com.kerry.gogobasketball.home.item.Looking4RoomContract;
 import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
 import com.kerry.gogobasketball.home.item.Looking4RoomPresenter;
-import com.kerry.gogobasketball.home.item.find_host.FindHostContract;
-import com.kerry.gogobasketball.home.item.find_host.FindHostPresenter;
+import com.kerry.gogobasketball.home.item.find1host.FindHostContract;
+import com.kerry.gogobasketball.home.item.find1host.FindHostPresenter;
 import com.kerry.gogobasketball.home.map.CourtsMapContract;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapPresenter;
@@ -47,12 +47,12 @@ import com.kerry.gogobasketball.playing.referee.RefereeGoingContract;
 import com.kerry.gogobasketball.playing.referee.RefereeGoingPresenter;
 import com.kerry.gogobasketball.profile.ProfileContract;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
-import com.kerry.gogobasketball.profile.change_gender.ChangeGenderContract;
-import com.kerry.gogobasketball.profile.change_gender.ChangeGenderPresenter;
-import com.kerry.gogobasketball.profile.change_id.ChangeIdContract;
-import com.kerry.gogobasketball.profile.change_id.ChangeIdPresenter;
-import com.kerry.gogobasketball.profile.change_position.ChangePositionContract;
-import com.kerry.gogobasketball.profile.change_position.ChangePositionPresenter;
+import com.kerry.gogobasketball.profile.gender.ChangeGenderContract;
+import com.kerry.gogobasketball.profile.gender.ChangeGenderPresenter;
+import com.kerry.gogobasketball.profile.id.ChangeIdContract;
+import com.kerry.gogobasketball.profile.id.ChangeIdPresenter;
+import com.kerry.gogobasketball.profile.position.ChangePositionContract;
+import com.kerry.gogobasketball.profile.position.ChangePositionPresenter;
 import com.kerry.gogobasketball.profile.logout.LogoutContract;
 import com.kerry.gogobasketball.profile.logout.LogoutPresenter;
 import com.kerry.gogobasketball.rank.RankContract;
@@ -78,8 +78,8 @@ import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterContract;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterPresenter;
 import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlaveContract;
 import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlavePresenter;
-import com.kerry.gogobasketball.waiting4join.user_detail.UserDetailContract;
-import com.kerry.gogobasketball.waiting4join.user_detail.UserDetailPresenter;
+import com.kerry.gogobasketball.waiting4join.detail.UserDetailContract;
+import com.kerry.gogobasketball.waiting4join.detail.UserDetailPresenter;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomContract;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomPresenter;
 
@@ -93,8 +93,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         RefereeResultContract.Presenter, PlayerResultContract.Presenter,
         LoginContract.Presenter, CreateUserContract.Presenter,
         CommentRefereeContract.Presenter, RankRefereeContract.Presenter,
-        RankPlayerContract.Presenter, LogoutContract.Presenter, ChangeIdContract.Presenter
-        , ChangePositionContract.Presenter, ChangeGenderContract.Presenter,
+        RankPlayerContract.Presenter, LogoutContract.Presenter, ChangeIdContract.Presenter,
+        ChangePositionContract.Presenter, ChangeGenderContract.Presenter,
         FindHostContract.Presenter, InstructionContract.Presenter,
         UserDetailContract.Presenter {
 
@@ -790,11 +790,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void updateRoomStatus2Gaming(GamingRoomInfo gamingRoomInfo) {
-        mWaiting4JoinMasterPresenter.updateRoomStatus2Gaming(gamingRoomInfo);
-    }
-
-    @Override
     public void initializeGamingRoomInfo() {
         mWaiting4JoinMasterPresenter.initializeGamingRoomInfo();
     }
@@ -1320,8 +1315,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     private void checkCoordinateScope(double latitude, double longitude) {
 
-        if (25.042300 <= latitude && latitude <= 25.044416 &&
-                121.563557 <= longitude && longitude <= 121.566868) {
+        if (25.042300 <= latitude && latitude <= 25.044416
+                && 121.563557 <= longitude && longitude <= 121.566868) {
             checkIfUpdateLocation(Constants.SONG_SAN_HIGH_SCHOOL);
 
         } else if (25.032135 <= latitude && latitude <= 25.032994
@@ -1407,12 +1402,12 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         Log.d(Constants.TAG, "checkIfUpdateLocation location = " + location);
         mCourtsLocation = location;
         if (AccessToken.getCurrentAccessToken() != null) {
-            String FacebookId = AccessToken.getCurrentAccessToken().getUserId().trim();
+            String facebookId = AccessToken.getCurrentAccessToken().getUserId().trim();
             DocumentReference docRef = FirestoreHelper.getFirestore()
                     .collection(Constants.COURTS)
                     .document(location)
                     .collection(Constants.PLAYERS)
-                    .document(FacebookId);
+                    .document(facebookId);
 
             docRef.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {

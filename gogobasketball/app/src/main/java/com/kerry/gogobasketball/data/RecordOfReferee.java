@@ -18,16 +18,16 @@ public class RecordOfReferee {
         return mPopulation;
     }
 
-    public void setCommenter(int mPopulation) {
-        this.mPopulation = mPopulation;
+    public void setCommenter(int population) {
+        this.mPopulation = population;
     }
 
     public float getAvRating() {
         return mCommenter;
     }
 
-    public void setAvRating(float mAvRating) {
-        this.mCommenter = mAvRating;
+    public void setAvRating(float avRating) {
+        this.mCommenter = avRating;
     }
 
     public int getJustices() {

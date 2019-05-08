@@ -1,21 +1,21 @@
-package com.kerry.gogobasketball.profile.change_id;
+package com.kerry.gogobasketball.profile.gender;
 
 import android.app.Activity;
 
 import com.kerry.gogobasketball.BasePresenter;
 import com.kerry.gogobasketball.BaseView;
 
-public interface ChangeIdContract {
+public interface ChangeGenderContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showIdAlreadyExist();
-
-        void showChangeIdSuccessUi();
+        void showChangeGenderSuccessUi();
 
         void showNewProfileUi();
 
-        void finishChangeIdUi();
+        void finishChangeGenderUi();
+
+        void showErrorGender();
 
     }
 
@@ -25,13 +25,15 @@ public interface ChangeIdContract {
 
         void showErrorToast(String message, boolean isShort);
 
-        void onUserNewIdEditTextChange(CharSequence charSequence);
+        void getGenderFromRadios(String gender);
 
-        void checkIfUserNewIdExists(Activity activity);
+        void compareOldNewGender(Activity activity);
 
         void showDataChangeSuccessDialog();
 
         void loadProfileUserData(Activity activity);
+
+        void getNowGenderFromProfile(String currentGender);
 
     }
 }

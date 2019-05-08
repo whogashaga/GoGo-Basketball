@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.playing.player;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -18,8 +20,6 @@ import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.util.Constants;
 
 import javax.annotation.Nullable;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
 
@@ -49,12 +49,9 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                GamingRoomInfo gamingRoomInfo = document.toObject(GamingRoomInfo.class);
-
                                 // 只有一筆，跑 for 沒關係
                                 mRoomDocId = document.getId();
                                 setGamingRoomSnapshotListerPlayer(nowSort);
-
                             }
                         } else {
                             Log.w(Constants.TAG, "Error getting documents.", task.getException());
@@ -86,6 +83,8 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
                     if (newRoomInfo.getStatus().equals(Constants.STATUS_OVER)) {
                         Log.w(Constants.TAG, "Got Game Over !");
                         mGamePlayingView.openGameResultPlayerUi(newRoomInfo.getHostName(), nowSort);
+                        Log.d("Kerry", "PlayerGoingPresenter newRoomInfo.getHostName() = " + newRoomInfo.getHostName());
+                        removeListenerPlayer();
                     } else {
                         Log.w(Constants.TAG, "didn't get Game Over !");
                     }
@@ -99,6 +98,7 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
 
     @Override
     public void removeListenerPlayer() {
+        Log.d("Kerry", "PlayerGoing removeListenerPlayer !");
         mRoomListenerRegistration.remove();
     }
 

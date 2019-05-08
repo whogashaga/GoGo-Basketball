@@ -1,4 +1,6 @@
-package com.kerry.gogobasketball.profile.change_position;
+package com.kerry.gogobasketball.profile.position;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,8 +19,6 @@ import com.kerry.gogobasketball.util.Constants;
 
 import java.util.ArrayList;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 public class ChangePositionDialog extends DialogFragment implements ChangePositionContract.View,
         View.OnClickListener, WheelPicker.OnItemSelectedListener {
 
@@ -30,7 +30,6 @@ public class ChangePositionDialog extends DialogFragment implements ChangePositi
     private WheelPicker mWheelPosition;
     private ArrayList<String> mPositionList;
     private String mNowPosition;
-
 
     @Override
     public void setPresenter(ChangePositionContract.Presenter presenter) {
@@ -100,6 +99,8 @@ public class ChangePositionDialog extends DialogFragment implements ChangePositi
             case R.id.wheel_change_position:
                 mNowPosition = String.valueOf(data.toString());
                 mPresenter.getPositionFromWheel(String.valueOf(data.toString().trim()));
+                break;
+            default:
                 break;
         }
     }

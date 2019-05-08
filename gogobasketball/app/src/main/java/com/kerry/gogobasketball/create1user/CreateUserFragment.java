@@ -1,4 +1,6 @@
-package com.kerry.gogobasketball.create_user;
+package com.kerry.gogobasketball.create1user;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,13 +29,8 @@ import com.kerry.gogobasketball.util.Constants;
 
 import java.util.ArrayList;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 public class CreateUserFragment extends Fragment implements CreateUserContract.View,
         RadioGroup.OnCheckedChangeListener, View.OnClickListener {
-
-    private final String MALE = "male";
-    private final String FEMALE = "female";
 
     private CreateUserContract.Presenter mPresenter;
     private ArrayList<String> mPositionList;
@@ -208,7 +205,7 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
             case R.id.radios_create_male:
-                mPresenter.getGenderFromRadioGroup(MALE);
+                mPresenter.getGenderFromRadioGroup(Constants.GENDER_MALE);
                 mRadioMale.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.white));
                 mRadioFemale.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.black_3f3a3a));
                 if (mEditUserId.getText().length() != 0) {
@@ -216,7 +213,7 @@ public class CreateUserFragment extends Fragment implements CreateUserContract.V
                 }
                 break;
             case R.id.radios_create_female:
-                mPresenter.getGenderFromRadioGroup(FEMALE);
+                mPresenter.getGenderFromRadioGroup(Constants.GENDER_FEMALE);
                 mRadioMale.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.black_3f3a3a));
                 mRadioFemale.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.white));
                 if (mEditUserId.getText().length() != 0) {

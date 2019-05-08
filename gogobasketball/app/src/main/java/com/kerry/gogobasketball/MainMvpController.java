@@ -8,8 +8,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 
-import com.kerry.gogobasketball.create_user.CreateUserFragment;
-import com.kerry.gogobasketball.create_user.CreateUserPresenter;
+import com.kerry.gogobasketball.create1user.CreateUserFragment;
+import com.kerry.gogobasketball.create1user.CreateUserPresenter;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.friends.FriendFragment;
@@ -18,8 +18,8 @@ import com.kerry.gogobasketball.home.HomeFragment;
 import com.kerry.gogobasketball.home.HomePresenter;
 import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
 import com.kerry.gogobasketball.home.item.Looking4RoomPresenter;
-import com.kerry.gogobasketball.home.item.find_host.FindHostDialog;
-import com.kerry.gogobasketball.home.item.find_host.FindHostPresenter;
+import com.kerry.gogobasketball.home.item.find1host.FindHostDialog;
+import com.kerry.gogobasketball.home.item.find1host.FindHostPresenter;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 import com.kerry.gogobasketball.home.map.CourtsMapPresenter;
 import com.kerry.gogobasketball.login.LoginFragment;
@@ -30,14 +30,14 @@ import com.kerry.gogobasketball.playing.referee.RefereeGoingFragment;
 import com.kerry.gogobasketball.playing.referee.RefereeGoingPresenter;
 import com.kerry.gogobasketball.profile.ProfileFragment;
 import com.kerry.gogobasketball.profile.ProfilePresenter;
-import com.kerry.gogobasketball.profile.change_gender.ChangeGenderDialog;
-import com.kerry.gogobasketball.profile.change_gender.ChangeGenderPresenter;
-import com.kerry.gogobasketball.profile.change_id.ChangeIdDialog;
-import com.kerry.gogobasketball.profile.change_id.ChangeIdPresenter;
-import com.kerry.gogobasketball.profile.change_position.ChangePositionDialog;
-import com.kerry.gogobasketball.profile.change_position.ChangePositionPresenter;
 import com.kerry.gogobasketball.profile.logout.LogoutDialog;
 import com.kerry.gogobasketball.profile.logout.LogoutPresenter;
+import com.kerry.gogobasketball.profile.gender.ChangeGenderDialog;
+import com.kerry.gogobasketball.profile.gender.ChangeGenderPresenter;
+import com.kerry.gogobasketball.profile.id.ChangeIdDialog;
+import com.kerry.gogobasketball.profile.id.ChangeIdPresenter;
+import com.kerry.gogobasketball.profile.position.ChangePositionDialog;
+import com.kerry.gogobasketball.profile.position.ChangePositionPresenter;
 import com.kerry.gogobasketball.rank.RankFragment;
 import com.kerry.gogobasketball.rank.RankPresenter;
 import com.kerry.gogobasketball.rank.player.RankPlayerFragment;
@@ -58,8 +58,8 @@ import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterFragment;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterPresenter;
 import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlaveFragment;
 import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlavePresenter;
-import com.kerry.gogobasketball.waiting4join.user_detail.UserDetailDialog;
-import com.kerry.gogobasketball.waiting4join.user_detail.UserDetailPresenter;
+import com.kerry.gogobasketball.waiting4join.detail.UserDetailDialog;
+import com.kerry.gogobasketball.waiting4join.detail.UserDetailPresenter;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomFragment;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomPresenter;
 
@@ -341,7 +341,9 @@ public class MainMvpController {
 
         PlayerGoingFragment playerGoingFragment = createPlayerGoingFragment();
 
-        mPlayerGoingPresenter = new PlayerGoingPresenter(playerGoingFragment);
+        if (mPlayerGoingPresenter == null) {
+            mPlayerGoingPresenter = new PlayerGoingPresenter(playerGoingFragment);
+        }
         mPlayerGoingPresenter.getHostNameFromWaitingJoinSlave(hostName, nowSort);
 
         mMainPresenter.setPlayerGoingPresenter(mPlayerGoingPresenter);
@@ -856,13 +858,15 @@ public class MainMvpController {
      */
     @NonNull
     private PlayerResultFragment createPlayerResultFragment() {
-        Log.d(Constants.TAG, "createPlayerResultFragment: ");
+        Log.d("Kerry", "createPlayerResultFragment: ");
+
         PlayerResultFragment playerResultFragment = PlayerResultFragment.newInstance();
 
         ActivityUtils.addFragmentByTag(
                 getFragmentManager(), playerResultFragment, RESULT4PLAYER);
 
         return playerResultFragment;
+
     }
 
     /**

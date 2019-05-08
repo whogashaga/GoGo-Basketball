@@ -28,15 +28,15 @@ public class RecordOfPlayer {
         return mAvWinRate;
     }
 
-    public void setAvWinRate(float mAvWinRate) {
-        this.mAvWinRate = mAvWinRate;
+    public void setAvWinRate(float avWinRate) {
+        this.mAvWinRate = avWinRate;
     }
 
     public float getAvScore() {
         return mAvScore;
     }
 
-    public void setAvScore(float mAvScore) {
+    public void setAvScore(float avScore) {
         this.mAvScore = mAvScore;
     }
 
@@ -44,16 +44,16 @@ public class RecordOfPlayer {
         return mAvRebound;
     }
 
-    public void setAvRebound(float mAvRebound) {
-        this.mAvRebound = mAvRebound;
+    public void setAvRebound(float avRebound) {
+        this.mAvRebound = avRebound;
     }
 
     public float getAvFoul() {
         return mAvFoul;
     }
 
-    public void setAvFoul(float mAvFoul) {
-        this.mAvFoul = mAvFoul;
+    public void setAvFoul(float avFoul) {
+        this.mAvFoul = avFoul;
     }
 
     public int getGames() {

@@ -26,63 +26,63 @@ public class CourtsInfo {
         return mLat;
     }
 
-    public void setLat(double mLat) {
-        this.mLat = mLat;
+    public void setLat(double lat) {
+        this.mLat = lat;
     }
 
     public double getLong() {
         return mLong;
     }
 
-    public void setLong(double mLong) {
-        this.mLong = mLong;
+    public void setLong(double lng) {
+        this.mLong = lng;
     }
 
     public String getLocation() {
         return mLocation;
     }
 
-    public void setLocation(String mLocation) {
-        this.mLocation = mLocation;
+    public void setLocation(String location) {
+        this.mLocation = location;
     }
 
     public double getLatMin() {
         return mLatMin;
     }
 
-    public void setLatMin(double mLatMin) {
-        this.mLatMin = mLatMin;
+    public void setLatMin(double latMin) {
+        this.mLatMin = latMin;
     }
 
     public double getLongMin() {
         return mLongMin;
     }
 
-    public void setLongMin(double mLongMin) {
-        this.mLongMin = mLongMin;
+    public void setLongMin(double longMin) {
+        this.mLongMin = longMin;
     }
 
     public double getLatMax() {
         return mLatMax;
     }
 
-    public void setLatMax(double mLatMax) {
-        this.mLatMax = mLatMax;
+    public void setLatMax(double latMax) {
+        this.mLatMax = latMax;
     }
 
     public double getLongMax() {
         return mLongMax;
     }
 
-    public void setLongMax(double mLongMax) {
-        this.mLongMax = mLongMax;
+    public void setLongMax(double longMax) {
+        this.mLongMax = longMax;
     }
 
     public int getPopulation() {
         return mPopulation;
     }
 
-    public void setPopulation(int mPopulation) {
-        this.mPopulation = mPopulation;
+    public void setPopulation(int population) {
+        this.mPopulation = population;
     }
 }

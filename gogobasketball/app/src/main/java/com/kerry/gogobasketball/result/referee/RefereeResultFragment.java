@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.result.referee;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,8 +23,6 @@ import com.kerry.gogobasketball.data.GamingPlayer;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
 import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.ImageManager;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class RefereeResultFragment extends Fragment implements RefereeResultContract.View, View.OnClickListener {
 
@@ -149,6 +149,9 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
                 mPresenter.setActivityBackgroundPortrait();
                 mPresenter.setBackKeyDisable(false);
                 break;
+
+            default:
+                break;
         }
     }
 
@@ -197,7 +200,7 @@ public class RefereeResultFragment extends Fragment implements RefereeResultCont
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(mPresenter != null){
+        if (mPresenter != null) {
             mPresenter.deleteGamingRoom();
         }
         Log.e(Constants.TAG, "Referee Result onDestroy: ");

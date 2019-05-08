@@ -1,4 +1,6 @@
-package com.kerry.gogobasketball.profile.change_position;
+package com.kerry.gogobasketball.profile.position;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -9,11 +11,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.kerry.gogobasketball.FirestoreHelper;
 import com.kerry.gogobasketball.GoGoBasketball;
-import com.kerry.gogobasketball.MainActivity;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.util.Constants;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ChangePositionPresenter implements ChangePositionContract.Presenter {
 
@@ -55,7 +54,7 @@ public class ChangePositionPresenter implements ChangePositionContract.Presenter
     @Override
     public void compareNewOldPosition(Activity activity) {
 
-        if (mNewPosition.equals(mOldPosition)){
+        if (mNewPosition.equals(mOldPosition)) {
             mChangePositionView.showErrorPosition();
         } else {
             updatePositionData(activity);
@@ -68,21 +67,12 @@ public class ChangePositionPresenter implements ChangePositionContract.Presenter
                 .collection(Constants.USERS)
                 .document(AccessToken.getCurrentAccessToken().getUserId().trim())
                 .update(Constants.USER_POSITION, mNewPosition)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(Constants.TAG, "更換 position 完成 ！!");
-                        mChangePositionView.showChangePositionSuccessUi();
-                        mChangePositionView.showNewProfileUi();
-                        mChangePositionView.finishChangePositionUi();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e(Constants.TAG, "更換 position Error !", e);
-            }
-
-        });
+                .addOnSuccessListener(avoid -> {
+                    Log.d(Constants.TAG, "更換 position 完成 ！!");
+                    mChangePositionView.showChangePositionSuccessUi();
+                    mChangePositionView.showNewProfileUi();
+                    mChangePositionView.finishChangePositionUi();
+                }).addOnFailureListener(e -> Log.e(Constants.TAG, "更換 position Error !", e));
     }
 
     @Override

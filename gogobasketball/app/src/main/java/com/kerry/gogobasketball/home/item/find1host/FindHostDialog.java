@@ -1,4 +1,6 @@
-package com.kerry.gogobasketball.home.item.find_host;
+package com.kerry.gogobasketball.home.item.find1host;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,8 +23,6 @@ import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.util.Constants;
 
 import java.util.ArrayList;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class FindHostDialog extends DialogFragment implements FindHostContract.View, View.OnClickListener {
 
@@ -72,7 +72,7 @@ public class FindHostDialog extends DialogFragment implements FindHostContract.V
                 // do nothing
                 break;
             case R.id.btn_change_id_yes:
-                if(mChar.length() == 0){
+                if (mChar.length() == 0) {
                     mPresenter.showErrorToast("名稱不留白 !", true);
                 } else {
                     mPresenter.checkIfRoomExists(getActivity());

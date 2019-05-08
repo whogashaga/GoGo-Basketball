@@ -120,7 +120,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
                 .set(gamingRoomInfo)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(Void aVoid) {
+                    public void onSuccess(Void avoid) {
                         Log.d(Constants.TAG, "Referee 將每人戰績上傳!");
                         mGamePlayingView.setGamingNow(false);
                         Log.d(Constants.TAG, "Referee Going gamingRoomInfo.getHostName() = ");
@@ -251,7 +251,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
             mGamePlayingView.setTextScoreTeamA(String.valueOf(getIntScoreA()));
             mGamePlayingView.setBtnClickableScoreMinusP1(true);
         } else {
-
+            Log.d(Constants.TAG, "increaseScoreP1: ");
         }
     }
 
@@ -331,7 +331,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
             mGamePlayingView.setTextScoreTeamA(String.valueOf(getIntScoreA()));
             mGamePlayingView.setBtnClickableScoreMinusP2(true);
         } else {
-
+            Log.d(Constants.TAG, "increaseScoreP2: ");
         }
     }
 
@@ -411,7 +411,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
             mGamePlayingView.setTextScoreTeamA(String.valueOf(getIntScoreA()));
             mGamePlayingView.setBtnClickableScoreMinusP3(true);
         } else {
-
+            Log.d(Constants.TAG, "increaseScoreP3: ");
         }
     }
 
@@ -491,7 +491,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
             mGamePlayingView.setTextScoreTeamB(String.valueOf(getIntScoreB()));
             mGamePlayingView.setBtnClickableScoreMinusP4(true);
         } else {
-
+            Log.d(Constants.TAG, "increaseScoreP4: ");
         }
     }
 
@@ -572,7 +572,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
             mGamePlayingView.setTextScoreTeamB(String.valueOf(getIntScoreB()));
             mGamePlayingView.setBtnClickableScoreMinusP5(true);
         } else {
-
+            Log.d(Constants.TAG, "increaseScoreP5: ");
         }
     }
 
@@ -653,7 +653,7 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
             mGamePlayingView.setTextScoreTeamB(String.valueOf(getIntScoreB()));
             mGamePlayingView.setBtnClickableScoreMinusP6(true);
         } else {
-
+            Log.d(Constants.TAG, "increaseScoreP6: ");
         }
     }
 

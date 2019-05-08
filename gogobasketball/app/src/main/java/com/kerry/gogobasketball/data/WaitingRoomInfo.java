@@ -32,8 +32,8 @@ public class WaitingRoomInfo {
         return mHostName;
     }
 
-    public void setHostName(String mHostName) {
-        this.mHostName = mHostName;
+    public void setHostName(String hostName) {
+        this.mHostName = hostName;
     }
 
     public String getRoomName() {

@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.login;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -20,8 +22,6 @@ import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.UserManager;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class LoginFragment extends Fragment implements LoginContract.View, View.OnClickListener {
 

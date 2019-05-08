@@ -1,5 +1,7 @@
 package com.kerry.gogobasketball.rank.player;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,8 +24,6 @@ import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.util.Constants;
 
 import java.util.ArrayList;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class RankPlayerFragment extends Fragment implements RankPlayerContract.View, SwipeRefreshLayout.OnRefreshListener {
 

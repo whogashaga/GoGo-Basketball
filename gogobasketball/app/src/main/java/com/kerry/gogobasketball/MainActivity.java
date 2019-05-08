@@ -185,13 +185,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // Handle navigation view item clicks here.
-
-        String string = "";
-
-        switch (item.getItemId()) {
-
-        }
         return true;
     }
 
@@ -415,6 +408,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     public void showActivityBackgroundWhenPortrait() {
         mView.setBackgroundResource(R.drawable.wheel_dunk_28);
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -427,6 +421,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     protected void onDestroy() {
         super.onDestroy();
         if (mPresenter != null) {
+            Log.w(Constants.TAG, "MainActivity onDestroy: ");
         }
     }
 
