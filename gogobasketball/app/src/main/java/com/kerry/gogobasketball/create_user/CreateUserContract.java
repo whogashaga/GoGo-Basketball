@@ -24,8 +24,6 @@ public interface CreateUserContract {
 
         void showToolbarAndBottomNavigation();
 
-        void showCreateSuccessDialog();
-
         void showErrorToast(String message, boolean isShort);
 
         void getUserIniInfoFromLogin(String userFbId);

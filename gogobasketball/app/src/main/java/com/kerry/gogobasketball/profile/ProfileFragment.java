@@ -210,10 +210,4 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         return false;
     }
 
-    @Override
-    public void showLogoutDialogUi() {
-
-    }
-
-
 }

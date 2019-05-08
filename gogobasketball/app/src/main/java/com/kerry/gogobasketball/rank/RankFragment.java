@@ -73,11 +73,6 @@ public class RankFragment extends Fragment implements RankContract.View {
     }
 
     @Override
-    public void showRankUi() {
-
-    }
-
-    @Override
     public boolean isActive() {
         return false;
     }

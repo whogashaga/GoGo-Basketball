@@ -2,7 +2,6 @@ package com.kerry.gogobasketball;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,8 +11,6 @@ import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -26,22 +23,7 @@ import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.AccessToken;
-import com.google.android.gms.maps.MapsInitializer;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.kerry.gogobasketball.data.CourtsInfo;
-import com.kerry.gogobasketball.data.GamingPlayer;
-import com.kerry.gogobasketball.data.GamingReferee;
-import com.kerry.gogobasketball.data.GamingRoomInfo;
-import com.kerry.gogobasketball.data.RecordOfPlayer;
-import com.kerry.gogobasketball.data.RecordOfReferee;
-import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
@@ -50,16 +32,6 @@ import com.kerry.gogobasketball.rank.player.RankPlayerFragment;
 import com.kerry.gogobasketball.rank.referee.RankRefereeFragment;
 import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.UserManager;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -200,14 +172,15 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
     };
 
-    @Override
-    public void switchProfileUiInitiative() {
-        mBottomNavigation.setSelectedItemId(R.id.navigation_profile);
-    }
 
     @Override
     public void switchHotsUiInitiative() {
         mBottomNavigation.setSelectedItemId(R.id.navigation_home);
+    }
+
+    @Override
+    public void switchProfileUiInitiative() {
+        mBottomNavigation.setSelectedItemId(R.id.navigation_profile);
     }
 
     @Override
@@ -340,11 +313,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
-    public void openCheckOutSuccessUi() {
-
-    }
-
-    @Override
     public void popBackStackUi() {
         getSupportFragmentManager().popBackStack();
     }
@@ -387,11 +355,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
-    public void showToastUi(String message) {
-
-    }
-
-    @Override
     public void hideToolbarUi() {
         mToolbar.setVisibility(View.GONE);
     }
@@ -416,16 +379,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
         mToolbarTitle.setVisibility(View.VISIBLE);
         mToolbarTitle.setText(title);
-
-    }
-
-    @Override
-    public void closeDrawerUi() {
-
-    }
-
-    @Override
-    public void showDrawerUserUi() {
 
     }
 
@@ -462,7 +415,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     public void showActivityBackgroundWhenPortrait() {
         mView.setBackgroundResource(R.drawable.wheel_dunk_28);
     }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -475,8 +427,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     protected void onDestroy() {
         super.onDestroy();
         if (mPresenter != null) {
-//            mPresenter.getUserInfoWhenGetOutOfApp();
-//            mPresenter.removeHandler();
         }
     }
 

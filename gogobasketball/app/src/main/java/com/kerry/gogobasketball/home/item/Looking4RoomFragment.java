@@ -47,11 +47,6 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
     }
 
     @Override
-    public void showRoomsUi() {
-
-    }
-
-    @Override
     public void showWaitingRoomListUi(ArrayList<WaitingRoomInfo> roomInfoList) {
         mRoomInfoList.clear();
         mRoomInfoList.addAll(roomInfoList);

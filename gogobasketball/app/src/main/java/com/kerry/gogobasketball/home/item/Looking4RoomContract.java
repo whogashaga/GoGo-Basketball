@@ -11,8 +11,6 @@ public interface Looking4RoomContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showRoomsUi();
-
         void showWaitingRoomListUi(ArrayList<WaitingRoomInfo> roomInfoList);
 
     }

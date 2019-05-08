@@ -14,7 +14,6 @@ public interface ProfileContract {
 
         boolean isActive();
 
-        void showLogoutDialogUi();
     }
 
     interface Presenter extends BasePresenter {

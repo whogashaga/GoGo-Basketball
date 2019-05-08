@@ -83,7 +83,7 @@ public class LogoutDialog extends DialogFragment implements LogoutContract.View,
     }
 
     @Override
-    public void openLoginFragment() {
-
+    public void finishLogoutUi() {
+        dismiss();
     }
 }

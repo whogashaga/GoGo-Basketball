@@ -358,10 +358,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     /**
      * Open CreateUserFragment
      */
-    @Override
-    public void showCreateSuccessDialog() {
-
-    }
 
     @Override
     public void getUserIniInfoFromLogin(String userFbId) {
@@ -426,11 +422,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mRefereeGoingPresenter.getGamingRoomFromFireStore(hostName);
     }
 
-    @Override
-    public void loadPlayersInfoFromFirebase() {
-        mRefereeGoingPresenter.loadRefereeInfoFromFirebase();
-    }
-
     /**
      * Open GameResult
      */
@@ -443,11 +434,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void getRoomInfoFromFireStore(String hostName) {
         mRefereeResultPresenter.getRoomInfoFromFireStore(hostName);
-    }
-
-    @Override
-    public void forced2FinishPlayingUi() {
-
     }
 
     @Override
@@ -483,11 +469,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     @Override
     public void removeListenerPlayer() {
         mPlayerGoingPresenter.removeListenerPlayer();
-    }
-
-    @Override
-    public void finishResultResultUi() {
-
     }
 
     /**
@@ -942,28 +923,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void hideBottomNavigation() {
-
-    }
-
-    @Override
-    public void showBottomNavigation() {
-
-    }
-
-    @Override
-    public void updateFriendBadge() {
-
-    }
-
-    @Override
     public void updateToolbar(String title) {
         mMainView.setToolbarTitleUi(title);
-    }
-
-    @Override
-    public void onLoginSuccess() {
-
     }
 
     @Override
@@ -1087,12 +1048,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                 Log.d(Constants.TAG, "get failed with ", task.getException());
             }
         });
-    }
-
-    @Override
-    public void showToast(String message) {
-
-
     }
 
     @Override

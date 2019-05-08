@@ -564,11 +564,6 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     }
 
     @Override
-    public boolean needTimer() {
-        return false;
-    }
-
-    @Override
     public boolean isActive() {
         return false;
     }

@@ -106,14 +106,8 @@ public class CommentRefereeDialog extends DialogFragment implements CommentRefer
 
     @Override
     public void finishCommentUi() {
-//        mPresenter.showErrorToast("送出評論成功\n可以返回大廳",false);
         dismiss();
         mPresenter.showSendCommentSuccessDialog();
         mPresenter.showBack2LobbyButtonPlayerResult();
-    }
-
-    @Override
-    public void setDialogTitle(String refereeName) {
-
     }
 }

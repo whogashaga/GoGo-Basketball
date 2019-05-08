@@ -9,8 +9,6 @@ public interface RankContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showRankUi();
-
         boolean isActive();
 
     }

@@ -25,10 +25,6 @@ public interface RefereeResultContract {
 
         void showToolbarAndBottomNavigation();
 
-        void openHome();
-
-        void finishResultResultUi();
-
         void setBackKeyDisable(boolean isBackKeyDisable);
 
         void getHostNameFromRefereeGoing(String hostName);

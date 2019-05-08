@@ -768,11 +768,6 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
     }
 
     @Override
-    public void forced2FinishPlayingUi() {
-
-    }
-
-    @Override
     public void forced2FinishGaming() {
 
     }

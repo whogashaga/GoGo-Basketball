@@ -35,8 +35,6 @@ public interface PlayerResultContract {
 
         void setActivityBackgroundPortrait();
 
-        void openHome();
-
         void openCommentReferee(String refereeName);
 
         void setBack2LobbyVisible();

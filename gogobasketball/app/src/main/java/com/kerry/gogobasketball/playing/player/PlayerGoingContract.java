@@ -6,8 +6,6 @@ import com.kerry.gogobasketball.BaseView;
 public interface PlayerGoingContract {
     interface View extends BaseView<Presenter> {
 
-        void showPlayingGameUi();
-
         void openGameResultPlayerUi(String hostName, int nowSort);
 
         boolean isActive();
@@ -21,12 +19,6 @@ public interface PlayerGoingContract {
         void hideToolbarAndBottomNavigation();
 
         void showToolbarAndBottomNavigation();
-
-        void loadPlayersInfoFromFirebase();
-
-        void loadRefereeInfoFromFirebase();
-
-        void forced2FinishPlayingUi();
 
         void openGameResultPlayer(String hostName, int nowSort);
 

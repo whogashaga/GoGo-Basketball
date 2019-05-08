@@ -7,7 +7,7 @@ public interface LogoutContract {
 
     interface View extends BaseView<Presenter> {
 
-        void openLoginFragment();
+        void finishLogoutUi();
 
     }
 

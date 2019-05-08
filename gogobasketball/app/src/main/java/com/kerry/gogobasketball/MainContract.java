@@ -43,8 +43,6 @@ public interface MainContract {
 
         void openInstructionUi();
 
-        void openCheckOutSuccessUi();
-
         void openWait4JoinUi(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId);
 
         void openGamePlayingOfRefereeUi(String hostName);
@@ -73,8 +71,6 @@ public interface MainContract {
 
         void showMessageDialogUi(@MessageDialog.MessageType int type);
 
-        void showToastUi(String message);
-
         void hideToolbarUi();
 
         void showToolbarUi();
@@ -83,13 +79,7 @@ public interface MainContract {
 
         void showBottomNavigationUi();
 
-//        void updateFriendBadgeUi(int amount);
-
         void setToolbarTitleUi(String title);
-
-        void closeDrawerUi();
-
-        void showDrawerUserUi();
 
         void showActivityBackgroundWhenLandScape();
 
@@ -113,37 +103,17 @@ public interface MainContract {
 
         void openProfile();
 
-//        void openPayment();
-
         void switchToProfileByBottomNavigation();
 
         void switchToHotsByBottomNavigation();
-
-//        CatalogItemFragment findWomen();
-
-//        CatalogItemFragment findMen();
-
-//        CatalogItemFragment findAccessories();
 
         void hideToolbarAndBottomNavigation();
 
         void showToolbarAndBottomNavigation();
 
-        void hideBottomNavigation();
-
-        void showBottomNavigation();
-
-        void updateFriendBadge();
-
         void updateToolbar(String title);
 
-        void onLoginSuccess();
-
         void showLoginFragment();
-
-        void showLoginSuccessDialog();
-
-        void showToast(String message);
 
         boolean disableBackKey();
 

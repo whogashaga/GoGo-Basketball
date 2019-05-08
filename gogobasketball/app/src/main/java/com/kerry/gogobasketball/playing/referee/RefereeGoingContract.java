@@ -164,8 +164,6 @@ public interface RefereeGoingContract {
 
         void loadRefereeInfoFromFirebase();
 
-        void forced2FinishPlayingUi();
-
         void checkWhichTeamWon();
 
         void increaseScoreP1();

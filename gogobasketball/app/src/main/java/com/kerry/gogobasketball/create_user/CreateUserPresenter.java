@@ -153,11 +153,6 @@ public class CreateUserPresenter implements CreateUserContract.Presenter {
     }
 
     @Override
-    public void showCreateSuccessDialog() {
-
-    }
-
-    @Override
     public void result(int requestCode, int resultCode) {
 
     }

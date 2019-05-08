@@ -7,8 +7,6 @@ public interface CommentRefereeContract {
 
     interface View extends BaseView<Presenter> {
 
-        void setDialogTitle(String hostName);
-
         void finishCommentUi();
 
     }

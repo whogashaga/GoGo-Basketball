@@ -81,12 +81,6 @@ public class PlayerGoingFragment extends Fragment implements PlayerGoingContract
         }
     }
 
-
-    @Override
-    public void showPlayingGameUi() {
-
-    }
-
     @Override
     public void openGameResultPlayerUi(String hostName, int nowSort) {
         mPresenter.openGameResultPlayer(hostName, nowSort);

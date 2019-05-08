@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.InputFilter;
-import android.text.Spanned;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,19 +19,13 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.kerry.gogobasketball.GoGoBasketball;
-import com.kerry.gogobasketball.MainActivity;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.NameInputFilter;
-import com.kerry.gogobasketball.component.NameLengthFilter;
-import com.kerry.gogobasketball.component.SizeFilterWithTextAndLetter;
 import com.kerry.gogobasketball.util.Constants;
 
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

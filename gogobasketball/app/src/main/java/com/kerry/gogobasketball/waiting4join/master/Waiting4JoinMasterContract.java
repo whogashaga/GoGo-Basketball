@@ -12,8 +12,6 @@ public interface Waiting4JoinMasterContract {
 
     interface View extends BaseView<Presenter> {
 
-        boolean needTimer();
-
         boolean isActive();
 
         void getNewPlayerAmount(int newPlayerAmount, int nowMasterSort);
@@ -49,8 +47,6 @@ public interface Waiting4JoinMasterContract {
         void showErrorToast(String message, boolean isShort);
 
         void changeMaster2NewSeat(int newSort);
-
-//        void changeRoomPlayerAmountAfterChangeSeatMaster();
 
         void deleteHostInfoWhenLeave();
 

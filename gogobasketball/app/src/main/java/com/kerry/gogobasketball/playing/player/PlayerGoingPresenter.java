@@ -118,21 +118,6 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
     }
 
     @Override
-    public void loadPlayersInfoFromFirebase() {
-
-    }
-
-    @Override
-    public void loadRefereeInfoFromFirebase() {
-
-    }
-
-    @Override
-    public void forced2FinishPlayingUi() {
-
-    }
-
-    @Override
     public void openGameResultPlayer(String hostName, int nowSort) {
 
     }

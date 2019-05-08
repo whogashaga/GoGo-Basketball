@@ -14,11 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.kerry.gogobasketball.GoGoBasketball;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.component.NameInputFilter;
-import com.kerry.gogobasketball.component.NameLengthFilter;
-import com.kerry.gogobasketball.component.SizeFilterWithTextAndLetter;
 import com.kerry.gogobasketball.util.Constants;
 
 import static com.google.common.base.Preconditions.checkNotNull;

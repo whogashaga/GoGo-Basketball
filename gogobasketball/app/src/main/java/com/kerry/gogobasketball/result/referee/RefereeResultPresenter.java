@@ -105,16 +105,6 @@ public class RefereeResultPresenter implements RefereeResultContract.Presenter {
     }
 
     @Override
-    public void openHome() {
-
-    }
-
-    @Override
-    public void finishResultResultUi() {
-
-    }
-
-    @Override
     public void setBackKeyDisable(boolean isBackKeyDisable) {
 
     }
