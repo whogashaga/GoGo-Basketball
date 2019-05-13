@@ -12,7 +12,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.data.GamingPlayer;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
 import com.kerry.gogobasketball.data.User;
@@ -94,7 +93,6 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                // 只有一筆，跑 for 沒關係
                                 User user = document.toObject(User.class);
                                 Log.e(Constants.TAG, "document.toObject(User.class) ID = " + user.getId());
                                 setRecords2User(user, gamingPlayer, winner, currentSort);

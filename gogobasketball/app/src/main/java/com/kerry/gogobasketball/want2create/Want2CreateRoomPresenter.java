@@ -2,7 +2,6 @@ package com.kerry.gogobasketball.want2create;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -13,7 +12,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.data.CourtsInfo;
 import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;

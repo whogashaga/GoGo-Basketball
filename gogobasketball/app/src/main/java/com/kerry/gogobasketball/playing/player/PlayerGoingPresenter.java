@@ -15,7 +15,6 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
 import com.kerry.gogobasketball.util.Constants;
 
@@ -49,7 +48,6 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                // 只有一筆，跑 for 沒關係
                                 mRoomDocId = document.getId();
                                 setGamingRoomSnapshotListerPlayer(nowSort);
                             }

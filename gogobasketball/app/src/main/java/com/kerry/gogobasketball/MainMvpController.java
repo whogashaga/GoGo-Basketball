@@ -315,7 +315,7 @@ public class MainMvpController {
         Waiting4JoinSlaveFragment waiting4JoinSlaveFragment = createWaiting4JoinSlaveFragment();
 
         mWaiting4JoinSlavePresenter = new Waiting4JoinSlavePresenter(waiting4JoinSlaveFragment);
-        mWaiting4JoinSlavePresenter.getHostNameFromLooking4Room(waitingRoomInfo);
+        mWaiting4JoinSlavePresenter.setHostNameFromLooking4Room(waitingRoomInfo);
         mMainPresenter.setWaiting4JoinSlavePresenter(mWaiting4JoinSlavePresenter);
         waiting4JoinSlaveFragment.setPresenter(mMainPresenter);
     }

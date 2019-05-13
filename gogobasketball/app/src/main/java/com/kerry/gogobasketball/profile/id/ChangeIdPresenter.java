@@ -11,7 +11,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.util.Constants;
 
 public class ChangeIdPresenter implements ChangeIdContract.Presenter {

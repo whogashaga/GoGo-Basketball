@@ -25,15 +25,15 @@ public interface RefereeResultContract {
 
         void showToolbarAndBottomNavigation();
 
+        void setActivityBackgroundLandScape();
+
+        void setActivityBackgroundPortrait();
+
         void setBackKeyDisable(boolean isBackKeyDisable);
 
         void getHostNameFromRefereeGoing(String hostName);
 
         void getRoomInfoFromFireStore(String hostName);
-
-        void setActivityBackgroundLandScape();
-
-        void setActivityBackgroundPortrait();
 
         void deleteGamingRoom();
 

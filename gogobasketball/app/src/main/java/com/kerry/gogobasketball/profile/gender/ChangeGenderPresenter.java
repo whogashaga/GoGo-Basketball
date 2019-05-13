@@ -8,7 +8,6 @@ import android.util.Log;
 
 import com.facebook.AccessToken;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.util.Constants;
 
 public class ChangeGenderPresenter implements ChangeGenderContract.Presenter {

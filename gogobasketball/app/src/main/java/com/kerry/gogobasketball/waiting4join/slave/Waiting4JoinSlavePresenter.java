@@ -81,7 +81,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     }
 
     @Override
-    public void getProfileUserDataSlave() {
+    public void loadJoinerUserData() {
         UserManager.getInstance().getUserProfile(new UserManager.LoadCallback() {
             @Override
             public void onSuccess(User user) {
@@ -102,9 +102,9 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     }
 
     @Override
-    public void getHostNameFromLooking4Room(WaitingRoomInfo waitingRoomInfo) {
+    public void setHostNameFromLooking4Room(WaitingRoomInfo waitingRoomInfo) {
         mWaitingRoomInfo = waitingRoomInfo;
-        getProfileUserDataSlave();
+        loadJoinerUserData();
     }
 
     private void getRoomDocId() {
@@ -117,7 +117,6 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                     if (task.isSuccessful()) {
                         Log.d(Constants.TAG, "doc size : " + task.getResult().size());
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            // 只有一筆，跑 for 沒關係
                             mRoomDocId = document.getId();
                             changeRoomPlayerAmountWhenJoin(document.getId());
                         }
@@ -173,7 +172,6 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
     private void setJoinerInfo() {
 
-        // 都是 hardcode 的，屆時要帶入 user info
         mJoinerInfo.setAvatar(mUser.getAvatar());
         mJoinerInfo.setPosition(mUser.getPosition());
         mJoinerInfo.setSort(mIntJoinerSort);
@@ -243,7 +241,6 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                // 只有一筆，跑 for 沒關係
                                 queryExistedSortForChangeSeatSlave(document.getId(), newSort);
                             }
                         } else {
@@ -338,14 +335,12 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 Log.w(Constants.TAG, "Listen failed.", e);
                 return;
             }
-//            getNewSeatsInfo();
             checkIfBeingKickedOut();
         });
 
     }
 
     private void setRoomSnapshotListerSlave() {
-
         DocumentReference docRef = FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId);
@@ -362,7 +357,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
                 if (newRoomInfo.getStatus().equals(Constants.STATUS_CLOSED)) {
 
-                    mWaiting4JoinView.closeSlaveUiBecauseMasterOutFirst();
+                    mWaiting4JoinView.finishByMasterLeaveFirst();
 
                 } else if (newRoomInfo.getStatus().equals(Constants.STATUS_GAMING)) {
                     queryCurrentSort();
@@ -462,7 +457,6 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
     @Override
     public void deleteSeatsInfoWhenLeaveRoom() {
-
         FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
@@ -495,7 +489,6 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     }
 
     private void changeRoomPlayerAmountWhenLeaveSlave() {
-
         if (mJoinerInfo.getSort() == 0 || mJoinerInfo.getSort() == 1
                 || mJoinerInfo.getSort() == 2 || mJoinerInfo.getSort() == 3
                 || mJoinerInfo.getSort() == 4 || mJoinerInfo.getSort() == 5
@@ -509,7 +502,6 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     }
 
     private void updateRoomInfoWhenLeaveSlave() {
-
         FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)

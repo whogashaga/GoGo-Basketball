@@ -86,7 +86,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        mPresenter.getProfileUserDataSlave();
+//        mPresenter.loadJoinerUserData();
     }
 
     @Override
@@ -406,7 +406,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     }
 
     @Override
-    public void closeSlaveUiBecauseMasterOutFirst() {
+    public void finishByMasterLeaveFirst() {
         if (mPresenter != null) {
             mPresenter.finishWaiting4JoinSlaveUi();
             mPresenter.setBackKeyDisable(false);

@@ -733,8 +733,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void getProfileUserDataSlave() {
-        mWaiting4JoinSlavePresenter.getProfileUserDataSlave();
+    public void loadJoinerUserData() {
+        mWaiting4JoinSlavePresenter.loadJoinerUserData();
     }
 
     @Override
@@ -743,8 +743,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void getHostNameFromLooking4Room(WaitingRoomInfo waitingRoomInfo) {
-        mWaiting4JoinSlavePresenter.getHostNameFromLooking4Room(waitingRoomInfo);
+    public void setHostNameFromLooking4Room(WaitingRoomInfo waitingRoomInfo) {
+        mWaiting4JoinSlavePresenter.setHostNameFromLooking4Room(waitingRoomInfo);
     }
 
     @Override

@@ -25,15 +25,15 @@ public interface PlayerResultContract {
 
         void showToolbarAndBottomNavigation();
 
+        void setActivityBackgroundLandScape();
+
+        void setActivityBackgroundPortrait();
+
         void setBackKeyDisable(boolean isBackKeyDisable);
 
         void getHostNameFromPlayerGoing(String hostName, int nowSort);
 
         void getRoomInfoFromFireStorePlayer(String hostName, int nowSort);
-
-        void setActivityBackgroundLandScape();
-
-        void setActivityBackgroundPortrait();
 
         void openCommentReferee(String refereeName);
 

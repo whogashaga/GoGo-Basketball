@@ -10,7 +10,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.util.Constants;
 

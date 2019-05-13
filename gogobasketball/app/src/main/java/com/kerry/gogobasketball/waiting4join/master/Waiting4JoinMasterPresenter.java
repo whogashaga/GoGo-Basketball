@@ -133,7 +133,6 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            // 只有一筆，跑 for 沒關係
                             changeSeat2Unavaliable(document.getId().toString().trim());
                             Log.d(Constants.TAG, "findOuterDocId = " + document.getId());
                         }

@@ -19,17 +19,17 @@ public interface Waiting4JoinSlaveContract {
 
         void showWaitingSeatsSlaveUi(ArrayList<WaitingRoomSeats> newSeatsList);
 
-        void closeSlaveUiBecauseMasterOutFirst();
-
         void openPlayerGamingUi(String hostName, int nowSort);
 
         void openRefereeGamingUi(String hostName);
 
-        void setBackBtnClickable();
-
         void openUserDetailUi(String userId);
 
+        void finishByMasterLeaveFirst();
+
         void finishByKickedOut();
+
+        void setBackBtnClickable();
     }
 
     interface Presenter extends BasePresenter {
@@ -42,6 +42,10 @@ public interface Waiting4JoinSlaveContract {
 
         void showToolbarAndBottomNavigation();
 
+        void setActivityBackgroundLandScape();
+
+        void setActivityBackgroundPortrait();
+
         void showErrorToast(String message, boolean isShort);
 
         void openGamePlayingOfReferee(String hostName);
@@ -50,21 +54,17 @@ public interface Waiting4JoinSlaveContract {
 
         void finishWaiting4JoinSlaveUi();
 
-        void getHostNameFromLooking4Room(WaitingRoomInfo waitingRoomInfo);
-
-        void deleteSeatsInfoWhenLeaveRoom();
+        void setHostNameFromLooking4Room(WaitingRoomInfo waitingRoomInfo);
 
         void changeSlave2NewSeat(int newSort);
 
         void checkTotalPlayerAmountSlave();
 
+        void deleteSeatsInfoWhenLeaveRoom();
+
         void deleteRoomDocSlave();
 
-        void setActivityBackgroundLandScape();
-
-        void setActivityBackgroundPortrait();
-
-        void getProfileUserDataSlave();
+        void loadJoinerUserData();
 
         void removeListenerSlave();
 

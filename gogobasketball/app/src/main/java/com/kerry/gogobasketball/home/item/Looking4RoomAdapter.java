@@ -16,7 +16,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.R;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.util.Constants;

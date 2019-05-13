@@ -11,7 +11,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.util.Constants;
 
@@ -60,7 +59,6 @@ public class FindHostPresenter implements FindHostContract.Presenter {
                             } else {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                     WaitingRoomInfo waitingRoomInfo = document.toObject(WaitingRoomInfo.class);
-                                    // 只有一筆，跑 for 沒關係
                                     ArrayList<WaitingRoomInfo> list = new ArrayList<>();
                                     list.add(waitingRoomInfo);
                                     mFindHostView.showFindHostSuccessUi(list);
