@@ -37,7 +37,7 @@ public class RecordOfPlayer {
     }
 
     public void setAvScore(float avScore) {
-        this.mAvScore = mAvScore;
+        this.mAvScore = avScore;
     }
 
     public float getAvRebound() {
