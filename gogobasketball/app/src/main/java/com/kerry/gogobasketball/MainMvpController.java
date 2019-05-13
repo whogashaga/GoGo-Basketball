@@ -301,7 +301,7 @@ public class MainMvpController {
         Waiting4JoinMasterFragment waiting4JoinFragment = createWaiting4JoinFragment();
 
         mWaiting4JoinMasterPresenter = new Waiting4JoinMasterPresenter(waiting4JoinFragment);
-        mWaiting4JoinMasterPresenter.getRoomInfoFromWant2Create(waitingRoomInfo, hostSeatsInfo, roomDocId);
+        mWaiting4JoinMasterPresenter.setRoomInfoFromWant2Create(waitingRoomInfo, hostSeatsInfo, roomDocId);
 
         mMainPresenter.setWaiting4JoinPresenter(mWaiting4JoinMasterPresenter);
         waiting4JoinFragment.setPresenter(mMainPresenter);

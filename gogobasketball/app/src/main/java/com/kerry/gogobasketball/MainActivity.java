@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -72,7 +73,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
         setToolbar();
         setBottomNavigation();
-//        mPresenter.getDeviceCurrentLocation();
     }
 
     @Override

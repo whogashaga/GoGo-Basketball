@@ -31,34 +31,34 @@ public interface Want2CreateRoomContract {
 
         void showErrorToast(String message, boolean isShort);
 
-        void setOpeningWant2CreateNow(boolean isCreatingNow);
+        void setWant2CreateNow(boolean isCreatingNow);
 
         void hideToolbarAndBottomNavigation();
 
         void showToolbarAndBottomNavigation();
 
-        void updateRoomInfo2FireStore();
+        void updateRoomInfo2Cloud();
 
-        void updateUserInfo2FireBase(WaitingRoomSeats hostPlayer, String roomDocId);
-
-        void getCourtLocationFromSpinner(String courtLocation);
-
-        void getRefereeOnOffFromRadioGroup(boolean needReferee);
-
-        void openWaitingJoin(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId);
-
-        void finishWant2CreateRoomUi();
+        void updateHostSeat2Cloud(WaitingRoomSeats hostPlayer, String roomDocId);
 
         void onRoomNameEditTextChange(CharSequence charSequence);
+
+        void getSpinnerCourtLocation(String courtLocation);
+
+        void getRadioRefereeMode(boolean needReferee);
+
+        void openWaitingJoinMaster(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId);
+
+        void finishWant2CreateRoomUi();
 
         void setActivityBackgroundLandScape();
 
         void setActivityBackgroundPortrait();
 
-        void loadProfileUserDataWant2Create(Activity activity);
+        void loadHostUserData();
 
         void setCreateBtnClickable();
 
-        void getCourtsListFromDb();
+        void getCourtsListFromCloud();
     }
 }

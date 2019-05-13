@@ -40,12 +40,12 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     }
 
     @Override
-    public void getCourtLocationFromSpinner(String courtLocation) {
+    public void getSpinnerCourtLocation(String courtLocation) {
         mWaitingRoomInfo.setCourtLocation(courtLocation);
     }
 
     @Override
-    public void getRefereeOnOffFromRadioGroup(boolean justice) {
+    public void getRadioRefereeMode(boolean justice) {
         mWaitingRoomInfo.setJustice(justice);
     }
 
@@ -56,7 +56,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     }
 
     @Override
-    public void updateRoomInfo2FireStore() {
+    public void updateRoomInfo2Cloud() {
 
         //  set Host Player Info (hardcode，屆時要帶入 user info)
         WaitingRoomSeats hostSeatInfo = new WaitingRoomSeats();
@@ -91,7 +91,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     }
 
     @Override
-    public void updateUserInfo2FireBase(WaitingRoomSeats hostPlayer, String roomDocId) {
+    public void updateHostSeat2Cloud(WaitingRoomSeats hostPlayer, String roomDocId) {
 
         FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
@@ -114,7 +114,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     }
 
     @Override
-    public void loadProfileUserDataWant2Create(Activity activity) {
+    public void loadHostUserData() {
         UserManager.getInstance().getUserProfile(new UserManager.LoadCallback() {
             @Override
             public void onSuccess(User user) {
@@ -139,7 +139,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     }
 
     @Override
-    public void getCourtsListFromDb() {
+    public void getCourtsListFromCloud() {
         FirebaseFirestore.getInstance()
                 .collection(Constants.COURTS)
                 .get()
@@ -164,7 +164,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     /* implement in MainPresenter */
 
     @Override
-    public void openWaitingJoin(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId) {
+    public void openWaitingJoinMaster(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId) {
 
     }
 
@@ -179,7 +179,7 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
     }
 
     @Override
-    public void setOpeningWant2CreateNow(boolean isCreatingNow) {
+    public void setWant2CreateNow(boolean isCreatingNow) {
 
     }
 

@@ -124,15 +124,13 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
     }
 
     @Override
-    public void getGamingRoomInfoFromPresenter4GamingFragment(GamingRoomInfo gamingRoomInfo) {
+    public void openGamingUi(GamingRoomInfo gamingRoomInfo) {
         if (mNowMasterSort == 7) {
             mPresenter.openGamePlayingOfReferee(gamingRoomInfo.getHostName());
-            mPresenter.deleteHostInfoWhenLeave();
-//            mPresenter.removeListenerMaster();
+            mPresenter.deleteHostSeatWhenLeave();
         } else {
             mPresenter.openGamePlayingOfPlayer(gamingRoomInfo.getHostName(), mNowMasterSort);
-            mPresenter.deleteHostInfoWhenLeave();
-//            mPresenter.removeListenerMaster();
+            mPresenter.deleteHostSeatWhenLeave();
         }
     }
 
@@ -141,7 +139,7 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
         super.onDestroy();
         Log.d(Constants.TAG, "Waiting4Join fragment onDestroy !!");
         if (mPresenter != null) {
-            mPresenter.deleteHostInfoWhenLeave();
+            mPresenter.deleteHostSeatWhenLeave();
             mPresenter.setBackKeyDisable(false);
             mPresenter.removeListenerMaster();
         }
@@ -299,8 +297,6 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
                 mBtnCancel.setClickable(false);
                 break;
             case R.id.btn_waiting4join_start:
-//                mPresenter.initializeGamingRoomInfo();
-//                mBtnStartGame.setClickable(false);
                 if (mCurrentGamerAmount == 7) {
                     mPresenter.initializeGamingRoomInfo();
                     mBtnStartGame.setClickable(false);
@@ -310,7 +306,6 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
                 break;
             case R.id.btn_waiting4join_instruction:
                 mPresenter.openInstructionDialog();
-
                 break;
             case R.id.btn_waiting4join_message:
                 mPresenter.showErrorToast("Coming Soon !", true);
@@ -514,7 +509,6 @@ public class Waiting4JoinMasterFragment extends Fragment implements Waiting4Join
             btnKickOut.setVisibility(View.VISIBLE);
             btnKickOut.setClickable(true);
         }
-
     }
 
     @Override

@@ -14,15 +14,15 @@ public interface Waiting4JoinMasterContract {
 
         boolean isActive();
 
+        void openGamingUi(GamingRoomInfo gamingRoomInfo);
+
+        void openUserDetailUi(String userId);
+
         void getNewPlayerAmount(int newPlayerAmount, int nowMasterSort);
 
         void getRoomInfoFromPresenter(WaitingRoomInfo waitingRoomInfo);
 
         void showWaitingSeatsMasterUi(ArrayList<WaitingRoomSeats> newSeatsList);
-
-        void getGamingRoomInfoFromPresenter4GamingFragment(GamingRoomInfo gamingRoomInfo);
-
-        void openUserDetailUi(String userId);
 
     }
 
@@ -36,25 +36,25 @@ public interface Waiting4JoinMasterContract {
 
         void showToolbarAndBottomNavigation();
 
+        void setActivityBackgroundLandScape();
+
+        void setActivityBackgroundPortrait();
+
         void openGamePlayingOfReferee(String hostName);
 
         void openGamePlayingOfPlayer(String hostName, int nowSort);
 
         void finishWaiting4JoinUi();
 
-        void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatsInfo, String roomDocId);
+        void setRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatsInfo, String roomDocId);
 
         void showErrorToast(String message, boolean isShort);
 
         void changeMaster2NewSeat(int newSort);
 
-        void deleteHostInfoWhenLeave();
+        void deleteHostSeatWhenLeave();
 
         void initializeGamingRoomInfo();
-
-        void setActivityBackgroundLandScape();
-
-        void setActivityBackgroundPortrait();
 
         void removeListenerMaster();
 

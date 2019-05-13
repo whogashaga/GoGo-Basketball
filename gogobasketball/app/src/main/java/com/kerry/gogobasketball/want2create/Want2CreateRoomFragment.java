@@ -1,5 +1,6 @@
 package com.kerry.gogobasketball.want2create;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import android.content.Intent;
@@ -8,12 +9,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -67,7 +70,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter.loadProfileUserDataWant2Create(getActivity());
+        mPresenter.loadHostUserData();
     }
 
     @Override
@@ -112,7 +115,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         mEditorRoomName = root.findViewById(R.id.edit_want2create_room_name_content);
 
         mSpinnerCourts = root.findViewById(R.id.spinner_courts_selector);
-        mPresenter.getCourtsListFromDb();
+        mPresenter.getCourtsListFromCloud();
 
         return root;
     }
@@ -129,8 +132,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         mSpinnerCourts.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                Log.e(Constants.TAG, "now selected = " + parent.getSelectedItem().toString());
-                mPresenter.getCourtLocationFromSpinner(parent.getSelectedItem().toString());
+                mPresenter.getSpinnerCourtLocation(parent.getSelectedItem().toString());
             }
 
             @Override
@@ -148,7 +150,9 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
                 if (mRadioBtnNo.isChecked()) {
                     mPresenter.showErrorToast("只支援裁判模式！", true);
                 } else {
-                    mPresenter.updateRoomInfo2FireStore();
+                    mPresenter.updateRoomInfo2Cloud();
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(mEditorRoomName.getWindowToken(), 0);
                 }
                 break;
             case R.id.btn_want2create_build_cancel:
@@ -167,8 +171,8 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         mWaitingRoomInfo = waitingRoomInfo;
         mHostSeatInfo = waitingRoomSeats;
         mRoomDocId = roomDocId;
-        mPresenter.openWaitingJoin(waitingRoomInfo, waitingRoomSeats, roomDocId);
-        mPresenter.updateUserInfo2FireBase(waitingRoomSeats, roomDocId);
+        mPresenter.openWaitingJoinMaster(waitingRoomInfo, waitingRoomSeats, roomDocId);
+        mPresenter.updateHostSeat2Cloud(waitingRoomSeats, roomDocId);
     }
 
     @Override
@@ -184,7 +188,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
                 mRadioBtnYes.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.white));
                 mRadioBtnNo.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.black_3f3a3a));
                 mTextRefereeWarning.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.blue_facebook));
-                mPresenter.getRefereeOnOffFromRadioGroup(true);
+                mPresenter.getRadioRefereeMode(true);
                 if (mEditorRoomName.getText().length() != 0) {
                     setBtnCreateConfirmClickable(true);
                 }
@@ -194,7 +198,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
                 mRadioBtnYes.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.black_3f3a3a));
                 mRadioBtnNo.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.white));
                 mTextRefereeWarning.setTextColor(GoGoBasketball.getAppContext().getColor(R.color.red_FF001F));
-                mPresenter.getRefereeOnOffFromRadioGroup(false);
+                mPresenter.getRadioRefereeMode(false);
                 setBtnCreateConfirmClickable(false);
                 break;
             default:
@@ -206,7 +210,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.hideToolbarAndBottomNavigation();
-        mPresenter.setOpeningWant2CreateNow(true);
+        mPresenter.setWant2CreateNow(true);
         setEditTextInputSpecialChar(mEditorRoomName);
         mEditorRoomName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -228,7 +232,6 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
                     }
                 } else if (s.length() == 0) {
                     setBtnCreateConfirmClickable(false);
-//                    mPresenter.showErrorToast(GoGoBasketball.getAppContext().getString(R.string.edit_room_name), true);
                 } else {
                     Log.d(Constants.TAG, "no this kind of situation!");
                 }
@@ -246,7 +249,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         super.onDestroy();
         Log.d(Constants.TAG, "Want2CreateRoom fragment onDestroy !!");
         mPresenter.showToolbarAndBottomNavigation();
-        mPresenter.setOpeningWant2CreateNow(false);
+        mPresenter.setWant2CreateNow(false);
     }
 
     @Override

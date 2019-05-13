@@ -15,7 +15,6 @@ import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.kerry.gogobasketball.FireStoreHelper;
 import com.kerry.gogobasketball.data.GamingPlayer;
 import com.kerry.gogobasketball.data.GamingReferee;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
@@ -81,7 +80,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     }
 
     @Override
-    public void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatsInfo, String roomDocId) {
+    public void setRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatsInfo, String roomDocId) {
 
         mWaitingRoomInfo = waitingRoomInfo;
         mHostSeatInfo = hostSeatsInfo;
@@ -355,7 +354,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     /* delete 流程 */
 
     @Override
-    public void deleteHostInfoWhenLeave() {
+    public void deleteHostSeatWhenLeave() {
         FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
@@ -481,7 +480,7 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                 .update(Constants.ROOM_STATUS, Constants.STATUS_GAMING)
                 .addOnSuccessListener(aVoid -> {
                     Log.d(Constants.TAG, "Room status 改為 gaming!!");
-                    mWaiting4JoinMasterView.getGamingRoomInfoFromPresenter4GamingFragment(gamingRoomInfo);
+                    mWaiting4JoinMasterView.openGamingUi(gamingRoomInfo);
                     removeListenerMaster();
                 })
                 .addOnFailureListener(e -> Log.w(Constants.TAG, "Error updating document", e));

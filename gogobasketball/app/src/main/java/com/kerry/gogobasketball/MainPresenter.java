@@ -136,7 +136,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private static boolean mIsBackKeyDisable;
     private static boolean mIsGamingNow;
     private static boolean mAlreadyComment;
-    private static boolean mOpeningWant2CreateNow;
+    private static boolean mIsCreatingRoomNow;
     private static User mUser;
     private static CourtsInfo mCourtsInfo;
     private static String mCourtsLocation;
@@ -771,12 +771,12 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     /* Waiting Master */
 
     @Override
-    public void getRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId) {
-        mWaiting4JoinMasterPresenter.getRoomInfoFromWant2Create(waitingRoomInfo, hostSeatInfo, roomDocId);
+    public void setRoomInfoFromWant2Create(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId) {
+        mWaiting4JoinMasterPresenter.setRoomInfoFromWant2Create(waitingRoomInfo, hostSeatInfo, roomDocId);
     }
 
     @Override
-    public void openWaitingJoin(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId) {
+    public void openWaitingJoinMaster(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId) {
         mMainView.openWait4JoinUi(waitingRoomInfo, hostSeatInfo, roomDocId);
     }
 
@@ -786,8 +786,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void deleteHostInfoWhenLeave() {
-        mWaiting4JoinMasterPresenter.deleteHostInfoWhenLeave();
+    public void deleteHostSeatWhenLeave() {
+        mWaiting4JoinMasterPresenter.deleteHostSeatWhenLeave();
     }
 
     @Override
@@ -821,28 +821,28 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void updateRoomInfo2FireStore() {
-        mWant2CreateRoomPresenter.updateRoomInfo2FireStore();
+    public void updateRoomInfo2Cloud() {
+        mWant2CreateRoomPresenter.updateRoomInfo2Cloud();
     }
 
     @Override
-    public void updateUserInfo2FireBase(WaitingRoomSeats hostPlayer, String roomDocId) {
-        mWant2CreateRoomPresenter.updateUserInfo2FireBase(hostPlayer, roomDocId);
+    public void updateHostSeat2Cloud(WaitingRoomSeats hostPlayer, String roomDocId) {
+        mWant2CreateRoomPresenter.updateHostSeat2Cloud(hostPlayer, roomDocId);
     }
 
     @Override
-    public void getCourtLocationFromSpinner(String courtLocation) {
-        mWant2CreateRoomPresenter.getCourtLocationFromSpinner(courtLocation);
+    public void getSpinnerCourtLocation(String courtLocation) {
+        mWant2CreateRoomPresenter.getSpinnerCourtLocation(courtLocation);
     }
 
     @Override
-    public void getRefereeOnOffFromRadioGroup(boolean justice) {
-        mWant2CreateRoomPresenter.getRefereeOnOffFromRadioGroup(justice);
+    public void getRadioRefereeMode(boolean justice) {
+        mWant2CreateRoomPresenter.getRadioRefereeMode(justice);
     }
 
     @Override
-    public void loadProfileUserDataWant2Create(Activity activity) {
-        mWant2CreateRoomPresenter.loadProfileUserDataWant2Create(activity);
+    public void loadHostUserData() {
+        mWant2CreateRoomPresenter.loadHostUserData();
     }
 
     @Override
@@ -851,8 +851,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void getCourtsListFromDb() {
-        mWant2CreateRoomPresenter.getCourtsListFromDb();
+    public void getCourtsListFromCloud() {
+        mWant2CreateRoomPresenter.getCourtsListFromCloud();
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -1265,8 +1265,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void setOpeningWant2CreateNow(boolean isCreatingNow) {
-        mOpeningWant2CreateNow = isCreatingNow;
+    public void setWant2CreateNow(boolean isCreatingNow) {
+        mIsCreatingRoomNow = isCreatingNow;
     }
 
     @Override
@@ -1291,7 +1291,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     @Override
     public boolean openingWant2CreateRoom() {
-        return mOpeningWant2CreateNow;
+        return mIsCreatingRoomNow;
     }
 
     /* ------------------------------------------------------------------------------------------ */
