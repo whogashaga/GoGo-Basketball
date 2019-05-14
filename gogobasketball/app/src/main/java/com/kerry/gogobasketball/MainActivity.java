@@ -38,10 +38,7 @@ import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends BaseActivity implements MainContract.View, NavigationView.OnNavigationItemSelectedListener {
 
-    private Button mBtnCreateUser;
     private View mView;
-    FirebaseFirestore mDb = FirebaseFirestore.getInstance();
-
     private BottomNavigationView mBottomNavigation;
     private MessageDialog mMessageDialog;
     private Toolbar mToolbar;

@@ -109,11 +109,6 @@ public class CreateUserPresenter implements CreateUserContract.Presenter {
     }
 
     @Override
-    public void finishCreateUser() {
-
-    }
-
-    @Override
     public void createUserClickConfirm() {
 
         FirebaseFirestore.getInstance()
@@ -124,6 +119,11 @@ public class CreateUserPresenter implements CreateUserContract.Presenter {
                     Log.d(Constants.TAG, "創建角色完成 ！!");
                     mCreateUserView.showCreateUserSuccessUi();
                 }).addOnFailureListener(e -> Log.e(Constants.TAG, "創建角色 Error adding document", e));
+    }
+
+    @Override
+    public void finishCreateUser() {
+
     }
 
     @Override

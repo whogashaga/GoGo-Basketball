@@ -138,15 +138,17 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private static boolean mAlreadyComment;
     private static boolean mIsCreatingRoomNow;
     private static User mUser;
-    private static CourtsInfo mCourtsInfo;
     private static String mCourtsLocation;
     private static Handler mHandler;
     private static Runnable mRunnable;
 
+    public MainPresenter() {
+        // for testing use
+    }
+
     public MainPresenter(@NonNull MainContract.View mainView) {
         mMainView = checkNotNull(mainView, "mainView cannot be null!");
         mMainView.setPresenter(this);
-        mCourtsInfo = new CourtsInfo();
         mUser = new User();
         mHandler = new Handler();
         mCourtsLocation = "";
@@ -1486,7 +1488,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                     Log.d(Constants.TAG, "DocumentSnapshot data: " + document.getData());
                     // 取得球場資訊
                     CourtsInfo courtsInfo = document.toObject(CourtsInfo.class);
-                    mCourtsInfo = courtsInfo;
                     // 人數加一
                     courtsInfo.setPopulation(nowPopulation + 1);
                     updateCourtsPopulation(courtsInfo, user, location);
@@ -1525,22 +1526,14 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                 .collection(Constants.PLAYERS)
                 .document(user.getFacebookId())
                 .set(courtsPeople)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (mCourtsMapPresenter != null) {
-                            Log.w(Constants.TAG, "加入球場成功 ！");
+                .addOnCompleteListener(task -> {
+                    if (mCourtsMapPresenter != null) {
+                        Log.w(Constants.TAG, "加入球場成功 ！");
 //                            mCourtsMapPresenter.setOnPopulationChangeListener();
-                        } else {
-                            Log.w(Constants.TAG, "加入失敗 mCourtsMapPresenter = null");
-                        }
+                    } else {
+                        Log.w(Constants.TAG, "加入失敗 mCourtsMapPresenter = null");
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w(Constants.TAG, "Error adding document", e);
-            }
-        });
+                }).addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
     }
 
     /* ------------------------------------------------------------------------------------------ */
