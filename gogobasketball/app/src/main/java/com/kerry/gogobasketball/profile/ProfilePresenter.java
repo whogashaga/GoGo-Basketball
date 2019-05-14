@@ -12,12 +12,10 @@ public class ProfilePresenter implements ProfileContract.Presenter {
 
 
     private final ProfileContract.View mProfileView;
-    private User mUser;
 
     public ProfilePresenter(@NonNull ProfileContract.View profileView) {
         mProfileView = checkNotNull(profileView, "profileView cannot be null!");
         mProfileView.setPresenter(this);
-        mUser = new User();
     }
 
     @Override
@@ -30,7 +28,6 @@ public class ProfilePresenter implements ProfileContract.Presenter {
         UserManager.getInstance().getUserProfile(new UserManager.LoadCallback() {
             @Override
             public void onSuccess(User user) {
-                mUser = user;
                 mProfileView.showUserUi(user);
             }
 

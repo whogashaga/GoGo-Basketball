@@ -17,7 +17,7 @@ public class User {
     public User() {
         mAvatar = "";
         mId = "";
-        mPosition = GoGoBasketball.getAppContext().getString(R.string.position_center);
+        mPosition = "c";
         mGender = "male";
         mFacebookId = "";
         mName = "";

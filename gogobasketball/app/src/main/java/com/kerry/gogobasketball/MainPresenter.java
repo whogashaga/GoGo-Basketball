@@ -142,10 +142,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private static Handler mHandler;
     private static Runnable mRunnable;
 
-    public MainPresenter() {
-        // for testing use
-    }
-
     public MainPresenter(@NonNull MainContract.View mainView) {
         mMainView = checkNotNull(mainView, "mainView cannot be null!");
         mMainView.setPresenter(this);

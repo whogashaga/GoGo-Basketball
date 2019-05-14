@@ -20,25 +20,22 @@ public class MainPresenterTest {
 
     @Mock
     MainActivity mMainActivity;
-//    MainActivity mMainActivity = new MainActivity();
-
     @Mock
     MainContract.View mView;
-
-    @Spy
+    @Mock
     MainPresenter mMainPresenter;
 
     @Before
     public void setup() {
 //        MockitoAnnotations.initMocks(this);
-        mMainPresenter = new MainPresenter();
+        mMainPresenter = new MainPresenter(mView);
     }
 
     @Test
     public void testCoordinateScope() {
         String location = Constants.SONG_SAN_HIGH_SCHOOL;
         double latitude = 25.042300;
-        double longitude = 121.566869;
+        double longitude = 121.566867;
         System.out.print("checkCoordinateScope = " + mMainPresenter.checkCoordinateScope(latitude, longitude));
         assertEquals(mMainPresenter.checkCoordinateScope(latitude, longitude), location);
 
