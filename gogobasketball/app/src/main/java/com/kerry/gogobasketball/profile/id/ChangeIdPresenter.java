@@ -63,8 +63,8 @@ public class ChangeIdPresenter implements ChangeIdContract.Presenter {
                         }
                     }
                 }).addOnFailureListener(e -> {
-            Log.w(Constants.TAG, "checkIfUserIdExists Error !");
-        });
+                    Log.w(Constants.TAG, "checkIfUserIdExists Error !");
+                });
     }
 
 

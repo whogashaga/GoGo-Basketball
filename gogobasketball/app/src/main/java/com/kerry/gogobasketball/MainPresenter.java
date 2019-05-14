@@ -52,10 +52,10 @@ import com.kerry.gogobasketball.profile.gender.ChangeGenderContract;
 import com.kerry.gogobasketball.profile.gender.ChangeGenderPresenter;
 import com.kerry.gogobasketball.profile.id.ChangeIdContract;
 import com.kerry.gogobasketball.profile.id.ChangeIdPresenter;
-import com.kerry.gogobasketball.profile.position.ChangePositionContract;
-import com.kerry.gogobasketball.profile.position.ChangePositionPresenter;
 import com.kerry.gogobasketball.profile.logout.LogoutContract;
 import com.kerry.gogobasketball.profile.logout.LogoutPresenter;
+import com.kerry.gogobasketball.profile.position.ChangePositionContract;
+import com.kerry.gogobasketball.profile.position.ChangePositionPresenter;
 import com.kerry.gogobasketball.rank.RankContract;
 import com.kerry.gogobasketball.rank.RankPresenter;
 import com.kerry.gogobasketball.rank.player.RankPlayerContract;
@@ -73,14 +73,14 @@ import com.kerry.gogobasketball.result.referee.RefereeResultPresenter;
 import com.kerry.gogobasketball.util.Constants;
 import com.kerry.gogobasketball.util.LocationManager;
 import com.kerry.gogobasketball.util.UserManager;
+import com.kerry.gogobasketball.waiting4join.detail.UserDetailContract;
+import com.kerry.gogobasketball.waiting4join.detail.UserDetailPresenter;
 import com.kerry.gogobasketball.waiting4join.instruction.InstructionContract;
 import com.kerry.gogobasketball.waiting4join.instruction.InstructionPresenter;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterContract;
 import com.kerry.gogobasketball.waiting4join.master.Waiting4JoinMasterPresenter;
 import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlaveContract;
 import com.kerry.gogobasketball.waiting4join.slave.Waiting4JoinSlavePresenter;
-import com.kerry.gogobasketball.waiting4join.detail.UserDetailContract;
-import com.kerry.gogobasketball.waiting4join.detail.UserDetailPresenter;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomContract;
 import com.kerry.gogobasketball.want2create.Want2CreateRoomPresenter;
 
@@ -350,12 +350,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mMainView.showToolbarUi();
         mMainView.showBottomNavigationUi();
     }
-
-    @Override
-    public void loadProfileUserData() {
-
-    }
-
     /**
      * Open CreateUserFragment
      */
@@ -1532,11 +1526,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w(Constants.TAG, "Error adding document", e);
-            }
-        });
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(Constants.TAG, "Error adding document", e);
+                    }
+                });
     }
 
     /* ------------------------------------------------------------------------------------------ */

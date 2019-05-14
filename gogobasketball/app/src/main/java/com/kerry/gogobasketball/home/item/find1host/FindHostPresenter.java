@@ -69,8 +69,8 @@ public class FindHostPresenter implements FindHostContract.Presenter {
                         }
                     }
                 }).addOnFailureListener(e -> {
-            Log.w(Constants.TAG, "checkIfUserIdExists Error !");
-        });
+                    Log.w(Constants.TAG, "checkIfUserIdExists Error !");
+                });
     }
 
     @Override

@@ -30,24 +30,16 @@ public class UserDetailPresenter implements UserDetailContract.Presenter {
                 .collection(Constants.USERS)
                 .whereEqualTo(Constants.USER_ID, userId)
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                User user = document.toObject(User.class);
-                                mUserDetailView.shotDetailUi(user);
-                            }
-                        } else {
-                            Log.w(Constants.TAG, "Error getting documents.", task.getException());
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            User user = document.toObject(User.class);
+                            mUserDetailView.shotDetailUi(user);
                         }
+                    } else {
+                        Log.w(Constants.TAG, "Error getting documents.", task.getException());
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d(Constants.TAG, "getUserIdFromWaiting onFailure Error !");
-            }
-        });
+                }).addOnFailureListener(e -> Log.d(Constants.TAG, "getUserIdFromWaiting onFailure Error !"));
     }
 
     @Override

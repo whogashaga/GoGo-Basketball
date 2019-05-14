@@ -104,8 +104,8 @@ public class CreateUserPresenter implements CreateUserContract.Presenter {
                         }
                     }
                 }).addOnFailureListener(e -> {
-            Log.w(Constants.TAG, "checkIfUserIdExists Error !");
-        });
+                    Log.w(Constants.TAG, "checkIfUserIdExists Error !");
+                });
     }
 
     @Override
@@ -120,18 +120,10 @@ public class CreateUserPresenter implements CreateUserContract.Presenter {
                 .collection(Constants.USERS)
                 .document(mUser.getFacebookId())
                 .set(mUser)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void avoid) {
-                        Log.d(Constants.TAG, "創建角色完成 ！!");
-                        mCreateUserView.showCreateUserSuccessUi();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e(Constants.TAG, "創建角色 Error adding document", e);
-            }
-        });
+                .addOnSuccessListener(avoid -> {
+                    Log.d(Constants.TAG, "創建角色完成 ！!");
+                    mCreateUserView.showCreateUserSuccessUi();
+                }).addOnFailureListener(e -> Log.e(Constants.TAG, "創建角色 Error adding document", e));
     }
 
     @Override

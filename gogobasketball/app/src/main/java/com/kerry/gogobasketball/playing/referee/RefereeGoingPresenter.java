@@ -118,20 +118,12 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
                 .collection(Constants.GAMING_ROOM)
                 .document(mRoomDocId)
                 .set(gamingRoomInfo)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void avoid) {
-                        Log.d(Constants.TAG, "Referee 將每人戰績上傳!");
-                        mGamePlayingView.setGamingNow(false);
-                        Log.d(Constants.TAG, "Referee Going gamingRoomInfo.getHostName() = ");
-                        mGamePlayingView.openGameResultRefereeUi(gamingRoomInfo.getHostName());
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w(Constants.TAG, "Error adding document", e);
-            }
-        });
+                .addOnSuccessListener(avoid -> {
+                    Log.d(Constants.TAG, "Referee 將每人戰績上傳!");
+                    mGamePlayingView.setGamingNow(false);
+                    Log.d(Constants.TAG, "Referee Going gamingRoomInfo.getHostName() = ");
+                    mGamePlayingView.openGameResultRefereeUi(gamingRoomInfo.getHostName());
+                }).addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
     }
 
     @Override

@@ -102,8 +102,8 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
                         }
                     }
                 }).addOnFailureListener(e -> {
-            Log.d(Constants.TAG, "getUserDocId Error ! ");
-        });
+                    Log.d(Constants.TAG, "getUserDocId Error ! ");
+                });
     }
 
     private void setRecords2User(User user, GamingPlayer gamingPlayer, String winner, int currentSort) {
@@ -152,18 +152,8 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
                 .collection(Constants.USERS)
                 .document(user.getFacebookId())
                 .set(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void avoid) {
-                        Log.d(Constants.TAG, "個人紀錄上傳完成 ！!");
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e(Constants.TAG, "紀錄上傳失敗！", e);
-            }
-
-        });
+                .addOnSuccessListener(avoid -> Log.d(Constants.TAG, "個人紀錄上傳完成 ！!"))
+                .addOnFailureListener(e -> Log.e(Constants.TAG, "紀錄上傳失敗！", e));
     }
 
     @Override

@@ -97,18 +97,8 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
                 .collection(Constants.WAITING_SEATS)
                 .document(hostPlayer.getId())
                 .set(hostPlayer)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void avoid) {
-                        Log.d(Constants.TAG, "Master進入房間 ！!");
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e(Constants.TAG, "Error adding document", e);
-            }
-
-        });
+                .addOnSuccessListener(avoid -> Log.d(Constants.TAG, "Master進入房間 ！!"))
+                .addOnFailureListener(e -> Log.e(Constants.TAG, "Error adding document", e));
     }
 
     @Override
@@ -141,21 +131,17 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
         FirebaseFirestore.getInstance()
                 .collection(Constants.COURTS)
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                CourtsInfo courtsInfo = document.toObject(CourtsInfo.class);
-                                mCourtsList.add(courtsInfo.getLocation());
-                            }
-
-                            mWant2CreateRoomView.setSpinnerCourts(mCourtsList);
-                        } else {
-                            Log.w(Constants.TAG, "Error getting documents.", task.getException());
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            CourtsInfo courtsInfo = document.toObject(CourtsInfo.class);
+                            mCourtsList.add(courtsInfo.getLocation());
                         }
+                        mWant2CreateRoomView.setSpinnerCourts(mCourtsList);
+                    } else {
+                        Log.w(Constants.TAG, "Error getting documents.", task.getException());
                     }
-                });
+                }).addOnFailureListener(e -> Log.e(Constants.TAG, "onFailure: ", e));
     }
 
     /* ------------------------------------------------------------------------------------------ */

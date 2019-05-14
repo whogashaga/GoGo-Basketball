@@ -65,18 +65,8 @@ public class RefereeResultPresenter implements RefereeResultContract.Presenter {
                 .collection(Constants.GAMING_ROOM)
                 .document(mRoomDocId)
                 .delete()
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(Constants.TAG, "刪除 gaming room document!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(Constants.TAG, "deleteGamingRoom Error !", e);
-                    }
-                });
+                .addOnSuccessListener(avoid -> Log.d(Constants.TAG, "刪除 gaming room document!"))
+                .addOnFailureListener(e -> Log.w(Constants.TAG, "deleteGamingRoom Error !", e));
     }
 
     @Override

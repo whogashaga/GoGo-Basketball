@@ -359,13 +359,10 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                 .document(mRoomDocId)
                 .collection(Constants.WAITING_SEATS)
                 .document(mHostSeatInfo.getId())
-                .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void avoid) {
-                Log.d(Constants.TAG, "刪除 Master Seat！");
-                checkTotalPlayerAmountMaster();
-            }
-        }).addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
+                .delete().addOnSuccessListener(avoid -> {
+                    Log.d(Constants.TAG, "刪除 Master Seat！");
+                    checkTotalPlayerAmountMaster();
+                }).addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
     }
 
     private void checkTotalPlayerAmountMaster() {
@@ -374,19 +371,16 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                         .collection(Constants.WAITING_ROOM)
                         .document(mRoomDocId);
 
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
+        docRef.get().addOnSuccessListener(documentSnapshot -> {
 
-                if (documentSnapshot.exists()) {
-                    WaitingRoomInfo waitingRoomInfo = documentSnapshot.toObject(WaitingRoomInfo.class);
-                    if (waitingRoomInfo.getTotalPlayerAmount() == 0) {
-                        deleteRoomDocWhenLeave();
-                        Log.d(Constants.TAG, "Master 最後一個離開！");
-                    } else {
-                        changeRoomPlayerAmountWhenLeaveMaster();
-                        Log.d(Constants.TAG, "Master 是跳狗！");
-                    }
+            if (documentSnapshot.exists()) {
+                WaitingRoomInfo waitingRoomInfo = documentSnapshot.toObject(WaitingRoomInfo.class);
+                if (waitingRoomInfo.getTotalPlayerAmount() == 0) {
+                    deleteRoomDocWhenLeave();
+                    Log.d(Constants.TAG, "Master 最後一個離開！");
+                } else {
+                    changeRoomPlayerAmountWhenLeaveMaster();
+                    Log.d(Constants.TAG, "Master 是跳狗！");
                 }
             }
         }).addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));

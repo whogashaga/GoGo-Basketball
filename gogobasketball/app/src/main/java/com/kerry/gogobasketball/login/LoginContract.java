@@ -24,8 +24,6 @@ public interface LoginContract {
 
         void showToolbarAndBottomNavigation();
 
-        void loadProfileUserData();
-
         void loginFbOnClick(Activity activity);
 
         void showLoginSuccessDialog();
