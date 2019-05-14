@@ -16,6 +16,11 @@ public class MainPresenterTest {
     MainPresenter mMainPresenter = new MainPresenter(mMainActivity);
 
     @Test
+    public void testIfCreateUser(){
+
+    }
+
+    @Test
     public void testCoodinate(){
         
     }

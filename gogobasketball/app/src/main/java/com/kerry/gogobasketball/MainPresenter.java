@@ -350,6 +350,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mMainView.showToolbarUi();
         mMainView.showBottomNavigationUi();
     }
+
     /**
      * Open CreateUserFragment
      */
@@ -1298,7 +1299,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         LocationManager.getInstance().getDeviceLocation(new LocationManager.LocationCallback() {
             @Override
             public void onSuccess(double latitude, double longitude) {
-                checkCoordinateScope(latitude, longitude);
+                getCourtsLocation(latitude, longitude);
             }
 
             @Override
@@ -1308,79 +1309,88 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         });
     }
 
-    private void checkCoordinateScope(double latitude, double longitude) {
+    private void getCourtsLocation(double latitude, double longitude) {
+
+        if (checkCoordinateScope(latitude, longitude) != null) {
+            checkIfUpdateLocation(checkCoordinateScope(latitude, longitude));
+        } else {
+            Log.w(Constants.TAG, "MainPresenter getCourtsLocation : location is null !");
+        }
+    }
+
+    public String checkCoordinateScope(double latitude, double longitude) {
 
         if (25.042300 <= latitude && latitude <= 25.044416
                 && 121.563557 <= longitude && longitude <= 121.566868) {
-            checkIfUpdateLocation(Constants.SONG_SAN_HIGH_SCHOOL);
+            return Constants.SONG_SAN_HIGH_SCHOOL;
 
         } else if (25.032135 <= latitude && latitude <= 25.032994
                 && 121.561168 <= longitude && longitude <= 121.562496) {
-            checkIfUpdateLocation(Constants.ADIDAS101);
+            return Constants.ADIDAS101;
 
         } else if (25.03069 <= latitude && latitude <= 25.032751
                 && 121.534593 <= longitude && longitude <= 121.53753) {
-            checkIfUpdateLocation(Constants.DA_AN);
+            return Constants.DA_AN;
 
         } else if (25.019771 <= latitude && latitude <= 25.020811
                 && 121.535612 <= longitude && longitude <= 121.537397) {
-            checkIfUpdateLocation(Constants.TAI_DA_CENTRAL);
+            return Constants.TAI_DA_CENTRAL;
 
         } else if (25.044851 <= latitude && latitude <= 25.045585
                 && 121.530165 <= longitude && longitude <= 121.530777) {
-            checkIfUpdateLocation(Constants.XIN_SHENG_VIADUCT);
+            return Constants.XIN_SHENG_VIADUCT;
 
         } else if (25.020526 <= latitude && latitude <= 25.021701
                 && 121.50447 <= longitude && longitude <= 121.505921) {
-            checkIfUpdateLocation(Constants.YOUTH_PARK);
+            return Constants.YOUTH_PARK;
 
         } else if (25.007798 <= latitude && latitude <= 25.009361
                 && 121.490091 <= longitude && longitude <= 121.494754) {
-            checkIfUpdateLocation(Constants.DINOSAUR_PARK);
+            return Constants.DINOSAUR_PARK;
 
         } else if (25.001918 <= latitude && latitude <= 25.002907
                 && 121.514287 <= longitude && longitude <= 121.514901) {
-            checkIfUpdateLocation(Constants.FOURTH_PARK);
+            return Constants.FOURTH_PARK;
 
         } else if (25.006242 <= latitude && latitude <= 25.007506
                 && 121.527342 <= longitude && longitude <= 121.528675) {
-            checkIfUpdateLocation(Constants.FU_HER_BRIDGE);
+            return Constants.FU_HER_BRIDGE;
 
         } else if (25.017736 <= latitude && latitude <= 25.018961
                 && 121.509566 <= longitude && longitude <= 121.510660) {
-            checkIfUpdateLocation(Constants.GREEN_STONE_PARK);
+            return Constants.GREEN_STONE_PARK;
 
         } else if (25.027551 <= latitude && latitude <= 25.028681
                 && 121.483664 <= longitude && longitude <= 121.484508) {
-            checkIfUpdateLocation(Constants.WAN_BAN_BRIDGE);
+            return Constants.WAN_BAN_BRIDGE;
 
         } else if (25.032995 <= latitude && latitude <= 25.034521
                 && 121.486989 <= longitude && longitude <= 121.488330) {
-            checkIfUpdateLocation(Constants.SHUANG_YUAN_RIVER);
+            return Constants.SHUANG_YUAN_RIVER;
 
         } else if (25.013862 <= latitude && latitude <= 25.015228
                 && 121.525101 <= longitude && longitude <= 121.526356) {
-            checkIfUpdateLocation(Constants.GU_TING_RIVER);
+            return Constants.GU_TING_RIVER;
 
         } else if (24.991043 <= latitude && latitude <= 24.992618
                 && 121.527668 <= longitude && longitude <= 121.529181) {
-            checkIfUpdateLocation(Constants.XIU_LANG_BRIDGE);
+            return Constants.XIU_LANG_BRIDGE;
 
         } else if (25.052797 <= latitude && latitude <= 25.053949
                 && 121.573592 <= longitude && longitude <= 121.575089) {
-            checkIfUpdateLocation(Constants.MAC_HANDSOME_BRIDGE);
+            return Constants.MAC_HANDSOME_BRIDGE;
 
         } else if (25.068288 <= latitude && latitude <= 25.068973
                 && 121.532206 <= longitude && longitude <= 121.533075) {
-            checkIfUpdateLocation(Constants.XIN_SHENG_PARK);
+            return Constants.XIN_SHENG_PARK;
 
         } else if (25.023490 <= latitude && latitude <= 25.025483
                 && 121.474695 <= longitude && longitude <= 121.476583) {
-            checkIfUpdateLocation(Constants.BA_DER_PARK);
+            return Constants.BA_DER_PARK;
 
         } else if (25.012900 <= latitude && latitude <= 25.014651
                 && 121.457014 <= longitude && longitude <= 121.458474) {
-            checkIfUpdateLocation(Constants.BANQIAO_SECOND);
+            return Constants.BANQIAO_SECOND;
 
         } else {
             Log.d(Constants.TAG, "不在任何球場範圍內");
@@ -1389,8 +1399,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
             } else {
                 Log.d(Constants.TAG, "checkCoordinateScope Error !");
             }
+            return null;
         }
-
     }
 
     private void checkIfUpdateLocation(String location) {
@@ -1526,11 +1536,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(Constants.TAG, "Error adding document", e);
-                    }
-                });
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w(Constants.TAG, "Error adding document", e);
+            }
+        });
     }
 
     /* ------------------------------------------------------------------------------------------ */
