@@ -412,8 +412,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 mWaiting4JoinView.openPlayerGamingUi(mWaitingRoomInfo.getHostName(), currentSeat.getSort());
                 removeListenerSlave();
             }
-        })
-                .addOnFailureListener(e -> Log.d(Constants.TAG, "Slave queryCurrentSort Error！"));
+        }).addOnFailureListener(e -> Log.d(Constants.TAG, "Slave queryCurrentSort Error！"));
 
     }
 
