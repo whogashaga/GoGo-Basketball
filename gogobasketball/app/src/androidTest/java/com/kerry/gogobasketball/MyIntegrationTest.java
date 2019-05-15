@@ -1,5 +1,6 @@
 package com.kerry.gogobasketball;
 
+import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -8,18 +9,13 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
-import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.pressKey;
 import static android.support.test.espresso.action.ViewActions.typeText;
-import static android.support.test.espresso.matcher.ViewMatchers.hasSibling;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
+@LargeTest
 @RunWith(AndroidJUnit4.class)
 public class MyIntegrationTest {
 
@@ -38,16 +34,20 @@ public class MyIntegrationTest {
         Thread.sleep(5000);
         onView(withId(R.id.btn_home_rooms_build)).perform(click());
 
-        // type room name
+        /* -------------------------------------------------------------------------------------- */
+        /* Want2CreateRoom */
         onView(withId(R.id.fragment_want2_create_room));
-        Thread.sleep(5000);
-        onView(withId(R.id.edit_want2create_room_name_content)).
-                perform(typeText("TestRoom;"),closeSoftKeyboard());
 
-        Thread.sleep(5000);
+        // type room name
+        Thread.sleep(3000);
+        onView(withId(R.id.edit_want2create_room_name_content)).
+                perform(typeText("TestRoom"),closeSoftKeyboard());
+
+        Thread.sleep(6000);
         onView(withId(R.id.btn_want2create_build_confirm)).perform(click());
 
-        // waiting room
+        /* -------------------------------------------------------------------------------------- */
+        /* Waiting4Join */
         onView(withId(R.id.fragment_waiting4join_master));
 
         // change to referee seat
@@ -55,17 +55,66 @@ public class MyIntegrationTest {
         onView(withId(R.id.btn_waiting_referee_change_seat)).perform(click());
 
         // give mock data
-        
 
         // start game
         Thread.sleep(10000);
         onView(withId(R.id.btn_waiting4join_start)).perform(click());
+
+        /* -------------------------------------------------------------------------------------- */
+        /* RefereeGoing */
+
+        onView(withId(R.id.layout_playing_referee));
+        Thread.sleep(3000);
+        onView(withId(R.id.btn_playing_team_a_player1_point_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_a_player2_point_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_a_player3_point_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_b_player1_point_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_b_player2_point_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_b_player3_point_plus)).perform(click());
+
+        Thread.sleep(1000);
+        onView(withId(R.id.btn_playing_team_a_player1_rebound_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_a_player2_rebound_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_a_player3_rebound_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_b_player1_rebound_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_b_player2_rebound_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_b_player3_rebound_plus)).perform(click());
+
+        Thread.sleep(1000);
+        onView(withId(R.id.btn_playing_team_a_player1_foul_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_a_player2_foul_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_a_player3_foul_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_b_player1_foul_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_b_player2_foul_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_b_player3_foul_plus)).perform(click());
+
+        Thread.sleep(1000);
+        onView(withId(R.id.btn_playing_team_a_player1_point_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_b_player1_point_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_a_player2_rebound_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_b_player2_rebound_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_a_player3_foul_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_b_player3_foul_plus)).perform(click());
+
+        Thread.sleep(1000);
+        onView(withId(R.id.btn_playing_team_b_player3_point_plus)).perform(click());
+        onView(withId(R.id.btn_playing_team_b_player3_point_plus)).perform(click());
+
+        Thread.sleep(3000);
+        onView(withId(R.id.btn_gaming_game_over)).perform(click());
+
+        /* -------------------------------------------------------------------------------------- */
+        /* RefereeResult */
+        onView(withId(R.id.fragment_result_referee));
+
+        Thread.sleep(5000);
+        onView(withId(R.id.btn_result_referee_back_lobby)).perform(click());
 
     }
 
     @After
     public void custom() throws Exception {
         // do something
-        Thread.sleep(8000);
+        Thread.sleep(6000);
     }
 }

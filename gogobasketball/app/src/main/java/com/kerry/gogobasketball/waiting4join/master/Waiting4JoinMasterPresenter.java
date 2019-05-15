@@ -345,8 +345,6 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
                         Log.w(Constants.TAG, "Master getNewSeatsInfo Error!!", task.getException());
                     }
                 }).addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
-        ;
-
     }
 
     /* ------------------------------------------------------------------------------------------ */
