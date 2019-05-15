@@ -133,14 +133,14 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private InstructionPresenter mInstructionPresenter;
     private UserDetailPresenter mUserDetailPresenter;
 
-    private static boolean mIsBackKeyDisable;
-    private static boolean mIsGamingNow;
-    private static boolean mAlreadyComment;
-    private static boolean mIsCreatingRoomNow;
-    private static User mUser;
-    private static String mCourtsLocation;
-    private static Handler mHandler;
-    private static Runnable mRunnable;
+    private boolean mIsBackKeyDisable;
+    private boolean mIsGamingNow;
+    private boolean mAlreadyComment;
+    private boolean mIsCreatingRoomNow;
+    private User mUser;
+    private String mCourtsLocation;
+    private Handler mHandler;
+    private Runnable mRunnable;
 
     public MainPresenter(@NonNull MainContract.View mainView) {
         mMainView = checkNotNull(mainView, "mainView cannot be null!");

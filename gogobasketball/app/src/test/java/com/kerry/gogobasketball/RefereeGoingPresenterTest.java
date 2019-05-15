@@ -1,6 +1,5 @@
 package com.kerry.gogobasketball;
 
-import com.kerry.gogobasketball.data.GamingRoomInfo;
 import com.kerry.gogobasketball.playing.referee.RefereeGoingContract;
 import com.kerry.gogobasketball.playing.referee.RefereeGoingPresenter;
 
@@ -11,7 +10,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.*;
 
 public class RefereeGoingPresenterTest {
@@ -23,7 +21,7 @@ public class RefereeGoingPresenterTest {
     RefereeGoingContract.View mView;
     @Mock
     RefereeGoingPresenter mPresenter;
-    @Mock
+
 
 
     @Before
