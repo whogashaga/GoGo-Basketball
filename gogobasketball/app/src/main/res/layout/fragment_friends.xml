@@ -8,19 +8,24 @@
     android:background="@color/white">
 
     <Button
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:id="@+id/button_tony"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="1 - Tony"
+        android:text="1 - 王兄"
+        android:background="@drawable/background_effect_looking4room"
         app:layout_constraintBottom_toTopOf="@+id/button_an_teacher"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:id="@+id/button_an_teacher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,6 +33,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="2 - 小安老師"
+        android:background="@drawable/background_effect_looking4room"
         app:layout_constraintBottom_toTopOf="@+id/button_mike"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -35,48 +41,62 @@
         app:layout_constraintTop_toBottomOf="@+id/button_tony" />
 
     <Button
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:id="@+id/button_mike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="3 - mike"
+        android:background="@drawable/background_effect_looking4room"
         app:layout_constraintBottom_toTopOf="@+id/button_johnson"
         app:layout_constraintEnd_toEndOf="@+id/button_an_teacher"
         app:layout_constraintStart_toStartOf="@+id/button_an_teacher"
         app:layout_constraintTop_toBottomOf="@+id/button_an_teacher" />
 
     <Button
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:id="@+id/button_johnson"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="4 - claire"
+        android:background="@drawable/background_effect_looking4room"
         app:layout_constraintBottom_toTopOf="@+id/button_claire"
         app:layout_constraintEnd_toEndOf="@+id/button_mike"
         app:layout_constraintStart_toStartOf="@+id/button_mike"
         app:layout_constraintTop_toBottomOf="@+id/button_mike" />
 
     <Button
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:id="@+id/button_claire"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="5 - johnson"
+        android:background="@drawable/background_effect_looking4room"
         app:layout_constraintBottom_toTopOf="@+id/button_mark"
         app:layout_constraintEnd_toEndOf="@+id/button_johnson"
         app:layout_constraintStart_toStartOf="@+id/button_johnson"
         app:layout_constraintTop_toBottomOf="@+id/button_johnson" />
 
     <Button
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:id="@+id/button_mark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="6 - kim"
-        app:layout_constraintBottom_toTopOf="@+id/button_update_number"
+        android:background="@drawable/background_effect_looking4room"
+        app:layout_constraintBottom_toTopOf="@+id/button_update_6_member"
         app:layout_constraintEnd_toEndOf="@+id/button_claire"
         app:layout_constraintStart_toStartOf="@+id/button_claire"
         app:layout_constraintTop_toBottomOf="@+id/button_claire" />
 
     <Button
-        android:id="@+id/button_update_number"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:id="@+id/button_update_6_member"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -84,10 +104,25 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/background_effect_looking4room"
-        android:text="更新人數"
+        android:text="更新為 6 人"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_update_7_member"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_mark" />
+
+    <Button
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:id="@+id/button_update_7_member"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="更新為 7 人"
+        android:background="@drawable/background_effect_looking4room"
+        app:layout_constraintBottom_toBottomOf="@+id/button_update_6_member"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_update_6_member"
+        app:layout_constraintTop_toTopOf="@+id/button_update_6_member" />
 
 </android.support.constraint.ConstraintLayout>

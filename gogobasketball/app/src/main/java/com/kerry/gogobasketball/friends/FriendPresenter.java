@@ -13,11 +13,13 @@ public class FriendPresenter implements FriendContract.Presenter {
 
     private final FriendContract.View mFriendView;
     private WaitingRoomSeats mWaitingRoomSeats;
+    private String mFbId;
 
     public FriendPresenter(@NonNull FriendContract.View friendView) {
         mFriendView = checkNotNull(friendView, "FriendView cannot be null!");
         mFriendView.setPresenter(this);
         mWaitingRoomSeats = new WaitingRoomSeats();
+        mFbId = "2681615865187626";
     }
 
     @Override
@@ -60,7 +62,7 @@ public class FriendPresenter implements FriendContract.Presenter {
     private void updateDemoSeat(WaitingRoomSeats waitingRoomSeats) {
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
-                .document("2681615865187626")
+                .document(mFbId)
                 .collection(Constants.WAITING_SEATS)
                 .document(waitingRoomSeats.getId())
                 .set(waitingRoomSeats)
@@ -71,23 +73,39 @@ public class FriendPresenter implements FriendContract.Presenter {
     }
 
     @Override
-    public void updateDemoTotalNumber() {
+    public void updateDemoTotalNumber(int amount) {
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
-                .document("2681615865187626")
-                .update("totalPlayerAmount", 6)
+                .document(mFbId)
+                .update("totalPlayerAmount", amount)
                 .addOnSuccessListener(aVoid -> {
-                    Log.d("Kerry", "Demo 總人數更新完成！");
-                    updateDemoPlayerNumber();
+                    Log.d("Kerry", "Demo 總人數更新為 " + amount);
+                    if (amount == 6){
+                        updateDemoPlayerNumber5();
+                    } else {
+                        updateDemoPlayerNumber6();
+                    }
                 })
                 .addOnFailureListener(e -> Log.w(Constants.TAG, "Error updating document", e));
     }
 
-    private void updateDemoPlayerNumber() {
+    private void updateDemoPlayerNumber5() {
         FirestoreHelper.getFirestore()
                 .collection(Constants.WAITING_ROOM)
-                .document("2681615865187626")
+                .document(mFbId)
                 .update("playerAmount", 5)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d("Kerry", "Demo 球員人數更新完成！");
+
+                })
+                .addOnFailureListener(e -> Log.w(Constants.TAG, "Error updating document", e));
+    }
+
+    private void updateDemoPlayerNumber6() {
+        FirestoreHelper.getFirestore()
+                .collection(Constants.WAITING_ROOM)
+                .document(mFbId)
+                .update("playerAmount", 6)
                 .addOnSuccessListener(aVoid -> {
                     Log.d("Kerry", "Demo 球員人數更新完成！");
 

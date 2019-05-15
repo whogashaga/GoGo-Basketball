@@ -20,6 +20,6 @@ public interface FriendContract {
 
         void postDemoPlayer(int position);
 
-        void updateDemoTotalNumber();
+        void updateDemoTotalNumber(int memberCount);
     }
 }

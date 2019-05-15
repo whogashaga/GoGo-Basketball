@@ -21,7 +21,8 @@ public class FriendFragment extends Fragment implements FriendContract.View, Vie
     private Button mBtnJohnson;
     private Button mBtnClaire;
     private Button mBtnKimJonAn;
-    private Button mBtnUpdateNumber;
+    private Button mBtnUpdateNumber6;
+    private Button mBtnUpdateNumber7;
     private Button mBtnTony;
 
     public FriendFragment() {
@@ -79,8 +80,11 @@ public class FriendFragment extends Fragment implements FriendContract.View, Vie
         mBtnKimJonAn = root.findViewById(R.id.button_mark);
         mBtnKimJonAn.setOnClickListener(this);
 
-        mBtnUpdateNumber = root.findViewById(R.id.button_update_number);
-        mBtnUpdateNumber.setOnClickListener(this);
+        mBtnUpdateNumber6 = root.findViewById(R.id.button_update_6_member);
+        mBtnUpdateNumber6.setOnClickListener(this);
+
+        mBtnUpdateNumber7 = root.findViewById(R.id.button_update_7_member);
+        mBtnUpdateNumber7.setOnClickListener(this);
 
         return root;
     }
@@ -106,8 +110,11 @@ public class FriendFragment extends Fragment implements FriendContract.View, Vie
             case R.id.button_mark:
                 mPresenter.postDemoPlayer(5);
                 break;
-            case R.id.button_update_number:
-                mPresenter.updateDemoTotalNumber();
+            case R.id.button_update_6_member:
+                mPresenter.updateDemoTotalNumber(6);
+                break;
+            case R.id.button_update_7_member:
+                mPresenter.updateDemoTotalNumber(7);
                 break;
         }
     }

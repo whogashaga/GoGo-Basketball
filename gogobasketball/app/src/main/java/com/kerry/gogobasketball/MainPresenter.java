@@ -267,8 +267,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void updateDemoTotalNumber() {
-        mFriendPresenter.updateDemoTotalNumber();
+    public void updateDemoTotalNumber(int memberCount) {
+        mFriendPresenter.updateDemoTotalNumber(memberCount);
     }
 
     @Override
