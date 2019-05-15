@@ -66,7 +66,6 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
     @Override
     public void getHostNameFromWaitingJoin(String hostName) {
         mHostName = hostName;
-//        mGamingRoomInfo.setHostName(hostName);
         mGamePlayingView.getHostNameFromPresenter(hostName);
     }
 
@@ -200,17 +199,17 @@ public class RefereeGoingPresenter implements RefereeGoingContract.Presenter {
 
     /* ------------------------------------------------------------------------------------------ */
 
-    private int getIntScoreA() {
+    public int getIntScoreA() {
         mIntScoreA = mIntScoreP1 + mIntScoreP2 + mIntScoreP3;
         return mIntScoreA;
     }
 
-    private int getIntScoreB() {
+    public int getIntScoreB() {
         mIntScoreB = mIntScoreP4 + mIntScoreP5 + mIntScoreP6;
         return mIntScoreB;
     }
 
-    private int getIntReboundA() {
+    public int getIntReboundA() {
         mIntReboundA = mIntReboundP1 + mIntReboundP2 + mIntReboundP3;
         return mIntReboundA;
     }

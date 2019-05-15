@@ -8,20 +8,29 @@ import com.kerry.gogobasketball.util.ImageManager;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
-import static org.junit.Assert.*;
+import static junit.framework.TestCase.assertNotNull;
+import static net.bytebuddy.matcher.ElementMatchers.is;
+import static org.hamcrest.core.IsNull.notNullValue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
-public class ImageMangerTest {
+
+@RunWith(RobolectricTestRunner.class)
+@Config(constants = BuildConfig.class, sdk = 26)
+public class ImageManagerTest {
+
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock
     ImageView mockPositionImage;
-
     @Mock
     ImageView mockGenderImage;
 
@@ -36,6 +45,11 @@ public class ImageMangerTest {
     }
 
     @Test
+    public void testActivityLifeCycle() throws Exception {
+
+    }
+
+    @Test
     public void testPositionImage() {
         ImageManager.getInstance().setGenderImage(mockPositionImage, Constants.GENDER_FEMALE);
         assertEquals(mPositionImage, mockPositionImage);
@@ -47,5 +61,4 @@ public class ImageMangerTest {
         assertEquals(mGenderImage, mockGenderImage);
 
     }
-
 }
