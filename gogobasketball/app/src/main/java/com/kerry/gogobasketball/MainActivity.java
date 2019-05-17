@@ -93,8 +93,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
         mToolbarTitle = mToolbar.findViewById(R.id.text_toolbar_title);
         mToolbarTitle.setVisibility(View.VISIBLE);
-        mToolbarLogo = mToolbar.findViewById(R.id.image_toolbar_logo);
-        mToolbarLogo.setVisibility(View.GONE);
     }
 
     /**
