@@ -8,26 +8,33 @@ GoGoBasketball is an app that aims to get those people together, those who love 
     * When user launches the App, the App will get user fine location by using GPS or Network
     * Users will be asked for their permissions during runtime to access their location information
     * If location services is not available, default locations will be used
-    * User can view the real-time user amount on the courts in Google Maps
 
 
-*  Main Functions
+
+*  Google Map
+
    * At the Home Page, users are provided with the lastest users amount on the courts, allows user to choose which basketball courts to go
+   * User can view the real-time user amount on the courts in Google Maps
 
 
 * Start a Game
+
   * At the Home Page, users are provided with the lastest users amount on the courts
 
 
 * Ranking
+
   * GoGoBasketball provides a precise ranking system for those who are highly competitive
 
 
 * Profile
+
   * Profile shows the lastest personal records, also provide user intuitive interface to update personal information
 
 
 # ScreenShot
+<img src="https://github.com/whogashaga/GoGo-Basketball/blob/refactor_0512/screenshot/1.png" width="150" > <img src="https://github.com/whogashaga/GoGo-Basketball/blob/refactor_0512/screenshot/2.png" width="150" > <img src="https://github.com/whogashaga/GoGo-Basketball/blob/refactor_0512/screenshot/6.png" width="150" > <img src="https://github.com/whogashaga/GoGo-Basketball/blob/refactor_0512/screenshot/3.png" height="150" > <img src="https://github.com/whogashaga/GoGo-Basketball/blob/refactor_0512/screenshot/4.png" height="150" > <img src="https://github.com/whogashaga/GoGo-Basketball/blob/refactor_0512/screenshot/5.png" height="150" >
+
 
 # Implemented
   * Design Patterns
