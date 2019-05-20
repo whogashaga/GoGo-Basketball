@@ -14,12 +14,16 @@ GoGoBasketball is an app that aims to get those people together, those who love 
 *  Google Map
 
    * At the Home Page, users are provided with the lastest users amount on the courts, allows user to choose which basketball courts to go
-   * User can view the real-time user amount on the courts in Google Maps
+   * User can view the real-time user amount on the courts in Google Map
 
+* Waiting Room
+
+  * After users get to the courts, they can join the waiting rooms, which are waiting for 6 players and 1 referee
 
 * Start a Game
 
-  * At the Home Page, users are provided with the lastest users amount on the courts
+  * If there are 7 players in the same room, they can start a game
+  * Referee could record players data via user-friendly interface and update these data
 
 
 * Ranking
@@ -34,8 +38,11 @@ GoGoBasketball is an app that aims to get those people together, those who love 
 
 # ScreenShot
 <img src="https://github.com/whogashaga/GoGo-Basketball/blob/refactor_0512/screenshot/1.png" width="150" > <img src="https://github.com/whogashaga/GoGo-Basketball/blob/refactor_0512/screenshot/2.png" width="150" > <img src="https://github.com/whogashaga/GoGo-Basketball/blob/refactor_0512/screenshot/6.png" width="150" >
+
 <img src="https://github.com/whogashaga/GoGo-Basketball/blob/refactor_0512/screenshot/3.png" height="150" >
+
 <img src="https://github.com/whogashaga/GoGo-Basketball/blob/refactor_0512/screenshot/4.png" height="150" >
+
 <img src="https://github.com/whogashaga/GoGo-Basketball/blob/refactor_0512/screenshot/5.png" height="150" >
 
 
