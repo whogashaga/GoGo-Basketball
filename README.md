@@ -37,14 +37,8 @@ GoGoBasketball is an app that aims to get those people together, those who love 
 
 
 # ScreenShot
-<img src="https://i.imgur.com/jyJwbrS.png" width="150" > <span style="display:inline-block; width: 20px;"></span> <img src="https://i.imgur.com/L3dI1Ti.png" width="150" > <span style="display:inline-block; width: 20px;"></span> <img src="https://i.imgur.com/k1LHEO5.png" width="150" >
 
-<img src="https://i.imgur.com/F0fVMnt.png?1" height="150" >
-
-<img src="https://i.imgur.com/1FFcp5j.png?1" height="150" >
-
-<img src="https://i.imgur.com/SHHoJhM.png?1" height="150" >
-
+<img src="https://i.imgur.com/jyJwbrS.png" width="180" > </span> <img src="https://i.imgur.com/L3dI1Ti.png" width="180" > </span> <img src="https://i.imgur.com/k1LHEO5.png" width="180" > <br /><img src="https://i.imgur.com/F0fVMnt.png?1" height="180" > <br /><img src="https://i.imgur.com/1FFcp5j.png?1" height="180" > <br /><img src="https://i.imgur.com/SHHoJhM.png?1" height="180" >
 
 
 # Implemented
