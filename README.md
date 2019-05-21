@@ -38,12 +38,9 @@ GoGoBasketball is an app that aims to get those people together, those who love 
 
 # ScreenShot
 <img src="https://github.com/whogashaga/GoGo-Basketball/blob/master/screenshot/1.png" width="150" >  <img src="https://github.com/whogashaga/GoGo-Basketball/blob/master/screenshot/2.png" width="150" >  <img src="https://github.com/whogashaga/GoGo-Basketball/blob/master/screenshot/3.png" width="150" >
-
 <img src="https://github.com/whogashaga/GoGo-Basketball/blob/master/screenshot/4.png" height="150" >
-
 <img src="https://github.com/whogashaga/GoGo-Basketball/blob/master/screenshot/5.png" height="150" >
-
-<br /><img src="https://github.com/whogashaga/GoGo-Basketball/blob/master/screenshot/6.png" height="150" >
+<img src="https://github.com/whogashaga/GoGo-Basketball/blob/master/screenshot/6.png" height="150" >
 
 
 
