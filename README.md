@@ -37,7 +37,7 @@ GoGoBasketball is an app that aims to get those people together, those who love 
 
 
 # ScreenShot
-<img src="https://i.imgur.com/jyJwbrS.png" width="150" > <span style="display:inline-block; width: 10px;"></span> <img src="https://i.imgur.com/L3dI1Ti.png" width="150" > <span style="display:inline-block; width: 10px;"></span> <img src="https://i.imgur.com/k1LHEO5.png" width="150" >
+<img src="https://i.imgur.com/jyJwbrS.png" width="150" > <span style="display:inline-block; width: 20px;"></span> <img src="https://i.imgur.com/L3dI1Ti.png" width="150" > <span style="display:inline-block; width: 20px;"></span> <img src="https://i.imgur.com/k1LHEO5.png" width="150" >
 
 <img src="https://i.imgur.com/F0fVMnt.png?1" height="150" >
 
@@ -61,4 +61,4 @@ GoGoBasketball is an app that aims to get those people together, those who love 
   * 1.0.6
 
 # Contact
-  * chen081501@hotmail.com
+Kerry Chen<br />chen081501@hotmail.com
