@@ -6,7 +6,9 @@ GoGoBasketball is an app that aims to get those people together, those who love 
 
   * Location Services
     * When user launches the App, the App will get user fine location by using GPS or Network
+
     * Users will be asked for their permissions during runtime to access their location information
+
     * If location services is not available, default locations will be used
 
 
@@ -14,22 +16,28 @@ GoGoBasketball is an app that aims to get those people together, those who love 
 *  Google Map
 
    * At the Home Page, users are provided with the lastest users amount on the courts, allows user to choose which basketball courts to go
-   * User can view the real-time user amount on the courts in Google Map
+
+   * User can view the real-time number of active users on the courts in Google Map
 
 * Waiting Room
 
   * After users get to the courts, they can join the waiting rooms, which are waiting for 6 players and 1 referee
 
+
 * Start a Game
 
   * If there are 7 players in the same room, they can start a game
+
   * Referee could record players data via user-friendly interface and update these data
 
 
-* Ranking
+* Records Ranking
 
-  * GoGoBasketball provides a precise ranking system for those who are highly competitive
+  * GoGoBasketball provides a precise ranking system of Player Data and Referee data
 
+  * Player Data includes total games number, winning percentage, average points, averages rebound and average fouls
+
+ * Referee Data includes total justices number, average referee rating
 
 * Profile
 
