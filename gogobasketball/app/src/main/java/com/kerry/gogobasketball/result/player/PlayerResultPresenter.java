@@ -33,6 +33,7 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
     @Override
     public void getHostNameFromPlayerGoing(String hostName, int currentSort) {
         Log.e("Kerry", "getHostNameFromPlayerGoing HostName = " + hostName);
+        Log.e("Kerry", "getHostNameFromPlayerGoing currentSort = " + currentSort);
         mHostName = hostName;
         mGameResultView.getHostNameFromPresenter(hostName, currentSort);
     }
@@ -49,11 +50,11 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(Constants.TAG, "mRoomDocId = " + document.getId());
+                                Log.d("Kerry", "mRoomDocId = " + document.getId());
                                 mRoomDocId = document.getId();
                                 GamingRoomInfo gamingRoomInfo = document.toObject(GamingRoomInfo.class);
                                 mGameResultView.showResultPlayerUi(gamingRoomInfo, currentSort);
-                                Log.w(Constants.TAG, "gamingRoomInfo = " + gamingRoomInfo.toString());
+                                Log.w("Kerry", "gamingRoomInfo = " + gamingRoomInfo.toString());
                                 getPlayerRecordFromRoom(gamingRoomInfo, currentSort);
                             }
                         } else {
@@ -152,7 +153,7 @@ public class PlayerResultPresenter implements PlayerResultContract.Presenter {
                 .collection(Constants.USERS)
                 .document(user.getFacebookId())
                 .set(user)
-                .addOnSuccessListener(avoid -> Log.d(Constants.TAG, "個人紀錄上傳完成 ！!"))
+                .addOnSuccessListener(avoid -> Log.d("Kerry", "個人紀錄上傳完成 ！!"))
                 .addOnFailureListener(e -> Log.e(Constants.TAG, "紀錄上傳失敗！", e));
     }
 

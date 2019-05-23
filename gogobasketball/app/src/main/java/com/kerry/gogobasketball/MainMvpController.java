@@ -370,8 +370,10 @@ public class MainMvpController {
 
         PlayerResultFragment playerResultFragment = createPlayerResultFragment();
         if (mPlayerResultPresenter == null) {
+            Log.d("Kerry", "findOrCreatePlayerResultView new 一個新的 presenter ");
             mPlayerResultPresenter = new PlayerResultPresenter(playerResultFragment);
         }
+        Log.d("Kerry", "findOrCreatePlayerResultView hostName = " + hostName);
         mPlayerResultPresenter.getHostNameFromPlayerGoing(hostName, nowSort);
         mMainPresenter.setPlayerResultPresenter(mPlayerResultPresenter);
         playerResultFragment.setPresenter(mMainPresenter);
@@ -410,7 +412,6 @@ public class MainMvpController {
             dialog.show(getFragmentManager(), Constants.COMMENT);
 
         } else if (!dialog.isAdded()) {
-//            mWant2CommentPresenter.setAdd2CartProductData(product);
             dialog.show(getFragmentManager(), Constants.COMMENT);
             mCommentRefereePresenter.getRefereeNameFromResult(refereeName);
         }

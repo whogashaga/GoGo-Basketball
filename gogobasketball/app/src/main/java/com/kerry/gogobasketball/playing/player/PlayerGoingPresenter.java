@@ -81,7 +81,7 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
                     if (newRoomInfo.getStatus().equals(Constants.STATUS_OVER)) {
                         Log.w(Constants.TAG, "Got Game Over !");
                         mGamePlayingView.openGameResultPlayerUi(newRoomInfo.getHostName(), nowSort);
-                        Log.d("Kerry", "PlayerGoingPresenter newRoomInfo.getHostName() = " + newRoomInfo.getHostName());
+                        Log.i("Kerry", "PlayerGoingPresenter newRoomInfo.getHostName() = " + newRoomInfo.getHostName());
                         removeListenerPlayer();
                     } else {
                         Log.w(Constants.TAG, "didn't get Game Over !");
@@ -96,7 +96,7 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
 
     @Override
     public void removeListenerPlayer() {
-        Log.d("Kerry", "PlayerGoing removeListenerPlayer !");
+        Log.i("Kerry", "PlayerGoing removeListenerPlayer !");
         mRoomListenerRegistration.remove();
     }
 

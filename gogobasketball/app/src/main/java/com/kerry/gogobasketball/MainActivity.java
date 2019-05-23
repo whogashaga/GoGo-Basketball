@@ -2,7 +2,10 @@ package com.kerry.gogobasketball;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -62,14 +65,19 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         setContentView(R.layout.activity_main);
         mMainMvpController = MainMvpController.create(this);
 
-        if (UserManager.getInstance().isLoggedIn()) {
-            mPresenter.onLoginSuccessBeforeOpenApp(AccessToken.getCurrentAccessToken().getUserId().trim());
+        if(checkNetworkConnented()){
+            if (UserManager.getInstance().isLoggedIn()) {
+                mPresenter.onLoginSuccessBeforeOpenApp(AccessToken.getCurrentAccessToken().getUserId().trim());
+            } else {
+                mPresenter.showLoginFragment();
+            }
+
+            setToolbar();
+            setBottomNavigation();
         } else {
-            mPresenter.showLoginFragment();
+            mPresenter.showErrorToast("請先開啟網路並重啟 App", false);
         }
 
-        setToolbar();
-        setBottomNavigation();
     }
 
     @Override
@@ -191,6 +199,18 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     @Override
     public void openHomeByBackStack() {
         getFragmentManager().popBackStack(0, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    }
+
+    public boolean checkNetworkConnented() {
+        boolean connected = false;
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            connected = true;
+        } else {
+            connected = false;
+        }
+        return connected;
     }
 
     /* ------------------------------------------------------------------------------------------ */
