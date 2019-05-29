@@ -89,6 +89,8 @@ public interface MainContract {
 
         void switchHotsUiInitiative();
 
+        void stopGettingLocationService();
+
     }
 
     interface Presenter extends BasePresenter {

@@ -19,15 +19,12 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.AccessToken;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
@@ -59,13 +56,15 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         init();
         mView = this.findViewById(R.id.layout_main);
         mView.setBackgroundResource(R.drawable.wheel_dunk_28);
+        Intent startIntent = new Intent(this, GetLocationService.class);
+        startService(startIntent);
     }
 
     private void init() {
         setContentView(R.layout.activity_main);
         mMainMvpController = MainMvpController.create(this);
 
-        if(checkNetworkConnented()){
+        if (checkNetworkConnented()) {
             if (UserManager.getInstance().isLoggedIn()) {
                 mPresenter.onLoginSuccessBeforeOpenApp(AccessToken.getCurrentAccessToken().getUserId().trim());
             } else {
@@ -428,8 +427,10 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     protected void onResume() {
         super.onResume();
         Log.w(Constants.TAG, "MainActivity onResume: ");
-        mPresenter.getDeviceCurrentLocation();
-        mPresenter.setLocationHandler();
+        if (mPresenter != null) {
+//        mPresenter.getDeviceCurrentLocation();
+//        mPresenter.setLocationHandler();
+        }
     }
 
     @Override
@@ -437,7 +438,16 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         super.onDestroy();
         if (mPresenter != null) {
             Log.w(Constants.TAG, "MainActivity onDestroy: ");
+            Intent stopIntent = new Intent(this, GetLocationService.class);
+            stopService(stopIntent);
         }
+    }
+
+    @Override
+    public void stopGettingLocationService() {
+        Log.w(Constants.TAG, "MainActivity stopGettingLocationService: ");
+        Intent stopIntent = new Intent(this, GetLocationService.class);
+        stopService(stopIntent);
     }
 
     @Override
@@ -445,8 +455,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         super.onStop();
         Log.d(Constants.TAG, "MainActivity onStop: ");
         if (mPresenter != null) {
-            mPresenter.getUserInfoWhenGetOutOfApp();
-            mPresenter.removeHandler();
+//            mPresenter.getUserInfoWhenGetOutOfApp();
+//            mPresenter.removeHandler();
         }
     }
 }

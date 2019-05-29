@@ -110,7 +110,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private CreateUserPresenter mCreateUserPresenter;
 
     private Looking4RoomPresenter mLooking4RoomPresenter;
-    private static CourtsMapPresenter mCourtsMapPresenter;
+    private CourtsMapPresenter mCourtsMapPresenter;
 
     private RankRefereePresenter mRankRefereePresenter;
     private RankPlayerPresenter mRankPlayerPresenter;
@@ -925,7 +925,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     public void showLogoutSuccessDialog() {
         mMainView.showMessageDialogUi(MessageDialog.LOGOUT_SUCCESS);
         hideToolbarAndBottomNavigation();
-        getUserInfoWhenGetOutOfApp();
+//        getUserInfoWhenGetOutOfApp();
+        mMainView.stopGettingLocationService();
     }
 
     @Override
@@ -1595,7 +1596,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
                         }
                     }).addOnFailureListener(e -> Log.e(Constants.TAG, " getPopulationDocSize Error !!"));
         } else {
-            Log.d(Constants.TAG, "checkPopulation Error : mCourtsLocation equals \" \" ");
+            Log.d(Constants.TAG, "checkPopulation Error : mCourtsLocation equals \"\" ");
         }
     }
 

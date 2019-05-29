@@ -83,6 +83,10 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+
+        <service android:name=".GetLocationService"
+            android:stopWithTask="false" />
+
     </application>
 
 </manifest>
