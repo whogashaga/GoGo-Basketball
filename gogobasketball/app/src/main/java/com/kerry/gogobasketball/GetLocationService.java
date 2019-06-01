@@ -340,7 +340,7 @@ public class GetLocationService extends Service {
 
 
     private void deleteMyDocFromCourtsWhenLeave(User user) {
-        Log.w("Kerry", "deleteMyDocFromCourtsWhenLeave : mCourtsLocation = " + mCourtsLocation);
+        Log.w("Kerry", "deleteMyDocFromCourtsWhenLeave : mCourtsLocation = " + "'" + mCourtsLocation + "'");
         Log.w("Kerry", "deleteMyDocFromCourtsWhenLeave : user.getFacebookId() = " + user.getFacebookId());
         if (!mCourtsLocation.equals("") && !user.getFacebookId().equals("")) {
             FirebaseFirestore.getInstance()
