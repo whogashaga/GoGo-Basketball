@@ -129,12 +129,5 @@ public interface MainContract {
 
         void onLoginSuccessBeforeOpenApp(String userDocId);
 
-        void getDeviceCurrentLocation();
-
-        void getUserInfoWhenGetOutOfApp();
-
-        void setLocationHandler();
-
-        void removeHandler();
     }
 }

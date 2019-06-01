@@ -427,10 +427,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     protected void onResume() {
         super.onResume();
         Log.w(Constants.TAG, "MainActivity onResume: ");
-        if (mPresenter != null) {
-//        mPresenter.getDeviceCurrentLocation();
-//        mPresenter.setLocationHandler();
-        }
     }
 
     @Override
@@ -454,10 +450,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     protected void onStop() {
         super.onStop();
         Log.d(Constants.TAG, "MainActivity onStop: ");
-        if (mPresenter != null) {
-//            mPresenter.getUserInfoWhenGetOutOfApp();
-//            mPresenter.removeHandler();
-        }
     }
 }
 
