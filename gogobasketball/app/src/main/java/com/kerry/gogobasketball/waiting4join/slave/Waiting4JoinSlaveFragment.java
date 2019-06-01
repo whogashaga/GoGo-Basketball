@@ -137,6 +137,8 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mBtnInfoP1 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player1_info);
         mBtnInfoP1.setOnClickListener(this);
         mBtnAddFriendP1 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player1_add);
+        mBtnSeatP1.setClickable(false);
+        mBtnInfoP1.setClickable(false);
 
         mAvatarP2 = mRoot.findViewById(R.id.slave_waiting_team_a_player2_avatar);
         mAvatarP2.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -148,6 +150,8 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mBtnInfoP2 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player2_info);
         mBtnInfoP2.setOnClickListener(this);
         mBtnAddFriendP2 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player2_add);
+        mBtnSeatP2.setClickable(false);
+        mBtnInfoP2.setClickable(false);
 
         mAvatarP3 = mRoot.findViewById(R.id.slave_waiting_team_a_player3_avatar);
         mAvatarP3.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -159,6 +163,8 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mBtnInfoP3 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player3_info);
         mBtnInfoP3.setOnClickListener(this);
         mBtnAddFriendP3 = mRoot.findViewById(R.id.btn_slave_waiting_team_a_player3_add);
+        mBtnSeatP3.setClickable(false);
+        mBtnInfoP3.setClickable(false);
 
         mAvatarP4 = mRoot.findViewById(R.id.slave_waiting_team_b_player1_avatar);
         mAvatarP4.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -170,6 +176,8 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mBtnInfoP4 = mRoot.findViewById(R.id.btn_slave_waiting_team_b_player1_info);
         mBtnInfoP4.setOnClickListener(this);
         mBtnAddFriendP4 = mRoot.findViewById(R.id.btn_slave_waiting_team_b_player1_add);
+        mBtnSeatP4.setClickable(false);
+        mBtnInfoP4.setClickable(false);
 
         mAvatarP5 = mRoot.findViewById(R.id.slave_waiting_team_b_player2_avatar);
         mAvatarP5.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -181,6 +189,8 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mBtnInfoP5 = mRoot.findViewById(R.id.btn_slave_waiting_team_b_player2_info);
         mBtnInfoP5.setOnClickListener(this);
         mBtnAddFriendP5 = mRoot.findViewById(R.id.btn_slave_waiting_team_b_player2_add);
+        mBtnSeatP5.setClickable(false);
+        mBtnInfoP5.setClickable(false);
 
         mAvatarP6 = mRoot.findViewById(R.id.slave_waiting_team_b_player3_avatar);
         mAvatarP6.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -192,6 +202,8 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mBtnInfoP6 = mRoot.findViewById(R.id.btn_slave_waiting_team_b_player3_info);
         mBtnInfoP6.setOnClickListener(this);
         mBtnAddFriendP6 = mRoot.findViewById(R.id.btn_slave_waiting_team_b_player3_add);
+        mBtnSeatP6.setClickable(false);
+        mBtnInfoP6.setClickable(false);
 
         mAvatarP7 = mRoot.findViewById(R.id.slave_waiting_referee_avatar);
         mAvatarP7.setOutlineProvider(new SeatAvatarOutlineProvider());
@@ -203,6 +215,8 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         mBtnInfoP7 = mRoot.findViewById(R.id.btn_slave_waiting_referee_info);
         mBtnInfoP7.setOnClickListener(this);
         mBtnAddFriendP7 = mRoot.findViewById(R.id.btn_slave_waiting_referee_add);
+        mBtnSeatP7.setClickable(false);
+        mBtnInfoP7.setClickable(false);
 
         return mRoot;
     }
@@ -436,6 +450,24 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void setBackBtnClickable() {
         mBtnCancel.setClickable(true);
         mBtnBackStack.setClickable(true);
+    }
+
+    @Override
+    public void setSeatBtnClickable() {
+        mBtnSeatP1.setClickable(true);
+        mBtnInfoP1.setClickable(true);
+        mBtnSeatP2.setClickable(true);
+        mBtnInfoP2.setClickable(true);
+        mBtnSeatP3.setClickable(true);
+        mBtnInfoP3.setClickable(true);
+        mBtnSeatP4.setClickable(true);
+        mBtnInfoP4.setClickable(true);
+        mBtnSeatP5.setClickable(true);
+        mBtnInfoP5.setClickable(true);
+        mBtnSeatP6.setClickable(true);
+        mBtnInfoP6.setClickable(true);
+        mBtnSeatP7.setClickable(true);
+        mBtnInfoP7.setClickable(true);
     }
 
     @Override

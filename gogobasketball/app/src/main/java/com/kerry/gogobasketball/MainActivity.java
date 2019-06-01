@@ -407,7 +407,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
                 return;
             }
             this.doubleBackToExitPressedOnce = true;
-            Toast.makeText(this, "離開請再按一次 ' 返回 ' ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "再按一次退出 GoGoBasketball", Toast.LENGTH_SHORT).show();
             new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
         }
 

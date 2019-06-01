@@ -30,6 +30,8 @@ public interface Waiting4JoinSlaveContract {
         void finishByKickedOut();
 
         void setBackBtnClickable();
+
+        void setSeatBtnClickable();
     }
 
     interface Presenter extends BasePresenter {
