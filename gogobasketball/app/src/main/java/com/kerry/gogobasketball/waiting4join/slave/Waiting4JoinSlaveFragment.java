@@ -496,7 +496,6 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         Log.e(Constants.TAG, "Slave onDestroy: ");
         if (mPresenter != null) {
             mPresenter.setBackKeyDisable(false);
-//            mPresenter.deleteSeatsInfoWhenLeaveRoom();
         }
     }
 

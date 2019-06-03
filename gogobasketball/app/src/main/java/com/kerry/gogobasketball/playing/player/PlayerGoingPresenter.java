@@ -75,7 +75,7 @@ public class PlayerGoingPresenter implements PlayerGoingContract.Presenter {
                     return;
                 }
                 if (snapshot != null && snapshot.exists()) {
-                    Log.d(Constants.TAG, "Slave Room Current data: " + snapshot.getData());
+                    Log.d(Constants.TAG, "Player Playing Room Current data: " + snapshot.getData());
                     GamingRoomInfo newRoomInfo = snapshot.toObject(GamingRoomInfo.class);
 
                     if (newRoomInfo.getStatus().equals(Constants.STATUS_OVER)) {
