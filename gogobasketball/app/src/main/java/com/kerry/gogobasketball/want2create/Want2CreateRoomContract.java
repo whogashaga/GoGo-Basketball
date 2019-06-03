@@ -13,7 +13,7 @@ public interface Want2CreateRoomContract {
 
     interface View extends BaseView<Presenter> {
 
-        void getRoomInfoFromPresenter4NextFragment(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats, String roomDocId);
+        void openWaitingJoinMasterUi(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats, String roomDocId);
 
         void setCreateRoomBtnClickable();
 
@@ -22,6 +22,8 @@ public interface Want2CreateRoomContract {
         boolean needReferee();
 
         boolean isActive();
+
+        void closeProgressDialogUi();
 
     }
 
@@ -37,7 +39,7 @@ public interface Want2CreateRoomContract {
 
         void showToolbarAndBottomNavigation();
 
-        void updateRoomInfo2Cloud();
+        void setRoomInfo();
 
         void updateHostSeat2Cloud(WaitingRoomSeats hostPlayer, String roomDocId);
 
@@ -60,5 +62,9 @@ public interface Want2CreateRoomContract {
         void setCreateBtnClickable();
 
         void getCourtsListFromCloud();
+
+        void openProgressDialog();
+
+        void closeProgressDialog();
     }
 }

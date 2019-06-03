@@ -9,7 +9,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.InputFilter;
-import android.text.InputType;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -150,7 +149,8 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
                 if (mRadioBtnNo.isChecked()) {
                     mPresenter.showErrorToast("只支援裁判模式！", true);
                 } else {
-                    mPresenter.updateRoomInfo2Cloud();
+                    mPresenter.openProgressDialog();
+                    mPresenter.setRoomInfo();
                     InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(mEditorRoomName.getWindowToken(), 0);
                 }
@@ -167,7 +167,7 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
     }
 
     @Override
-    public void getRoomInfoFromPresenter4NextFragment(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats, String roomDocId) {
+    public void openWaitingJoinMasterUi(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats waitingRoomSeats, String roomDocId) {
         mWaitingRoomInfo = waitingRoomInfo;
         mHostSeatInfo = waitingRoomSeats;
         mRoomDocId = roomDocId;
@@ -250,6 +250,11 @@ public class Want2CreateRoomFragment extends Fragment implements Want2CreateRoom
         Log.d(Constants.TAG, "Want2CreateRoom fragment onDestroy !!");
         mPresenter.showToolbarAndBottomNavigation();
         mPresenter.setWant2CreateNow(false);
+    }
+
+    @Override
+    public void closeProgressDialogUi() {
+        mPresenter.closeProgressDialog();
     }
 
     @Override

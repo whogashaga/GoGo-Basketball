@@ -112,8 +112,8 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
 
         mTextRoomName = mRoot.findViewById(R.id.text_slave_waiting4join_room_name);
         mBtnBackStack = mRoot.findViewById(R.id.btn_slave_waiting4join_back_arrow);
-        mBtnBackStack.setClickable(false);
         mBtnBackStack.setOnClickListener(this);
+        mBtnBackStack.setClickable(false);
         mBtnCancel = mRoot.findViewById(R.id.btn_slave_waiting4join_cancel);
         mBtnCancel.setOnClickListener(this);
         mBtnCancel.setClickable(false);

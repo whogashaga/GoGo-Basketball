@@ -5,13 +5,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.data.CourtsInfo;
 import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
@@ -49,14 +44,13 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
 
     @Override
     public void onRoomNameEditTextChange(CharSequence roomName) {
-//        Log.d(Constants.TAG, "room name = " + roomName.length());
         mWaitingRoomInfo.setRoomName(roomName.toString());
     }
 
     @Override
-    public void updateRoomInfo2Cloud() {
+    public void setRoomInfo() {
 
-        //  set Host Player Info (hardcode，屆時要帶入 user info)
+        //  set Host Player Info
         WaitingRoomSeats hostSeatInfo = new WaitingRoomSeats();
         hostSeatInfo.setAvatar(mUser.getAvatar());
         hostSeatInfo.setPosition(mUser.getPosition());
@@ -75,17 +69,21 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
         waitingRoomInfo.setRefereeAmount(0);
         waitingRoomInfo.setStatus(Constants.STATUS_WAITING);
 
+        updateRoomInfo2Cloud(waitingRoomInfo, hostSeatInfo);
+
+    }
+
+    public void updateRoomInfo2Cloud(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo) {
         FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mUser.getFacebookId())
                 .set(waitingRoomInfo)
                 .addOnSuccessListener(documentReference -> {
                     // for open waiting4join bind view
-                    mWant2CreateRoomView.getRoomInfoFromPresenter4NextFragment(waitingRoomInfo, hostSeatInfo, mUser.getFacebookId());
+                    mWant2CreateRoomView.openWaitingJoinMasterUi(waitingRoomInfo, hostSeatInfo, mUser.getFacebookId());
                     Log.d(Constants.TAG, "Master創建房間 ！!");
                 })
                 .addOnFailureListener(e -> Log.e(Constants.TAG, "Error adding document", e));
-
     }
 
     @Override
@@ -97,7 +95,10 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
                 .collection(Constants.WAITING_SEATS)
                 .document(hostPlayer.getId())
                 .set(hostPlayer)
-                .addOnSuccessListener(avoid -> Log.d(Constants.TAG, "Master進入房間 ！!"))
+                .addOnSuccessListener(avoid -> {
+                    Log.d(Constants.TAG, "Master進入房間 ！!");
+                    mWant2CreateRoomView.closeProgressDialogUi();
+                })
                 .addOnFailureListener(e -> Log.e(Constants.TAG, "Error adding document", e));
     }
 
@@ -146,6 +147,16 @@ public class Want2CreateRoomPresenter implements Want2CreateRoomContract.Present
 
     /* ------------------------------------------------------------------------------------------ */
     /* implement in MainPresenter */
+
+    @Override
+    public void openProgressDialog() {
+
+    }
+
+    @Override
+    public void closeProgressDialog() {
+
+    }
 
     @Override
     public void openWaitingJoinMaster(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId) {

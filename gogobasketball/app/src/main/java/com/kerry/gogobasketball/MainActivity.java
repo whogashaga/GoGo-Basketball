@@ -456,17 +456,25 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
 
     @Override
     public void openProgressDialogUi() {
-        mProgressDialog = new ProgressDialog(this, AlertDialog.THEME_HOLO_DARK);
-        mProgressDialog.setTitle(" GoGoBasketball ");
-        mProgressDialog.setMessage("正在載入 ...");
-        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        mProgressDialog.setCancelable(false);
-        mProgressDialog.show();
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this, AlertDialog.THEME_HOLO_DARK);
+            mProgressDialog.setTitle(" GoGoBasketball ");
+            mProgressDialog.setMessage("正在載入 ...");
+            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.show();
+        } else {
+            mProgressDialog.show();
+        }
     }
 
     @Override
     public void closeProgressDialogUi() {
-        mProgressDialog.dismiss();
+        if (mProgressDialog != null) {
+            mProgressDialog.dismiss();
+        } else {
+            Log.d("Kerry", "closeProgressDialogUi : mProgressDialog is null");
+        }
     }
 
     @Override

@@ -506,6 +506,11 @@ public class Waiting4JoinMasterPresenter implements Waiting4JoinMasterContract.P
     /* ------------------------------------------------------------------------------------------ */
 
     @Override
+    public void closeProgressDialog() {
+
+    }
+
+    @Override
     public void openInstructionDialog() {
 
     }

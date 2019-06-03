@@ -814,8 +814,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void updateRoomInfo2Cloud() {
-        mWant2CreateRoomPresenter.updateRoomInfo2Cloud();
+    public void setRoomInfo() {
+        mWant2CreateRoomPresenter.setRoomInfo();
     }
 
     @Override
