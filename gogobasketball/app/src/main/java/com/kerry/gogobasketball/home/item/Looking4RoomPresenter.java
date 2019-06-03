@@ -82,6 +82,16 @@ public class Looking4RoomPresenter implements Looking4RoomContract.Presenter {
     }
 
     @Override
+    public void openProgressDialog() {
+
+    }
+
+    @Override
+    public void closeProgressDialog() {
+
+    }
+
+    @Override
     public void result(int requestCode, int resultCode) {
 
     }

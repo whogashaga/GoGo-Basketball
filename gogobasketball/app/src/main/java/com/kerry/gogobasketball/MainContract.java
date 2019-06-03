@@ -91,6 +91,10 @@ public interface MainContract {
 
         void stopGettingLocationService();
 
+        void openProgressDialogUi();
+
+        void closeProgressDialogUi();
+
     }
 
     interface Presenter extends BasePresenter {
@@ -128,6 +132,10 @@ public interface MainContract {
         void showErrorToast(String message, boolean isShort);
 
         void onLoginSuccessBeforeOpenApp(String userDocId);
+
+        void openProgressDialog();
+
+        void closeProgressDialog();
 
     }
 }

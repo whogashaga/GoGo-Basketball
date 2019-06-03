@@ -500,6 +500,11 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
         }
     }
 
+    @Override
+    public void closeProgressDialogUi() {
+        mPresenter.closeProgressDialog();
+    }
+
 
     @Override
     public boolean isActive() {

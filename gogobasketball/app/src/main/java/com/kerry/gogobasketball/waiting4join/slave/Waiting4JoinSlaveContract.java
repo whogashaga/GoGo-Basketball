@@ -32,6 +32,8 @@ public interface Waiting4JoinSlaveContract {
         void setBackBtnClickable();
 
         void setSeatBtnClickable();
+
+        void closeProgressDialogUi();
     }
 
     interface Presenter extends BasePresenter {
@@ -75,6 +77,8 @@ public interface Waiting4JoinSlaveContract {
         void openUserDetailDialog(String userId);
 
         void openUserDetailSlave(int sort);
+
+        void closeProgressDialog();
     }
 
 }

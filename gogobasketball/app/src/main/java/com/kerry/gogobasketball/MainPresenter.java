@@ -1009,7 +1009,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         checkIfUserCreated(userFbDocId);
     }
 
-
     private void checkIfUserCreated(String userDocId) {
 
         Log.d(Constants.TAG, "checkIfUserCreate doc id = " + userDocId);
@@ -1220,6 +1219,16 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         toastTV.setTextSize(16);
         toastTV.setText(message);
         toast.show();
+    }
+
+    @Override
+    public void openProgressDialog() {
+        mMainView.openProgressDialogUi();
+    }
+
+    @Override
+    public void closeProgressDialog() {
+        mMainView.closeProgressDialogUi();
     }
 
     @Override

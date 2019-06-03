@@ -2,6 +2,8 @@ package com.kerry.gogobasketball;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -15,16 +17,19 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.AccessToken;
+import com.github.ybq.android.spinkit.style.Wave;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
 import com.kerry.gogobasketball.data.WaitingRoomSeats;
 import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
@@ -32,6 +37,7 @@ import com.kerry.gogobasketball.home.map.CourtsMapFragment;
 import com.kerry.gogobasketball.rank.player.RankPlayerFragment;
 import com.kerry.gogobasketball.rank.referee.RankRefereeFragment;
 import com.kerry.gogobasketball.util.Constants;
+import com.kerry.gogobasketball.util.ProgressDialogUtil;
 import com.kerry.gogobasketball.util.UserManager;
 
 import io.fabric.sdk.android.Fabric;
@@ -444,6 +450,23 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         Log.w(Constants.TAG, "MainActivity stopGettingLocationService: ");
         Intent stopIntent = new Intent(this, GetLocationService.class);
         stopService(stopIntent);
+    }
+
+    ProgressDialog mProgressDialog;
+
+    @Override
+    public void openProgressDialogUi() {
+        mProgressDialog = new ProgressDialog(this, AlertDialog.THEME_HOLO_DARK);
+        mProgressDialog.setTitle(" GoGoBasketball ");
+        mProgressDialog.setMessage("正在載入 ...");
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.show();
+    }
+
+    @Override
+    public void closeProgressDialogUi() {
+        mProgressDialog.dismiss();
     }
 
     @Override

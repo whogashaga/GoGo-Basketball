@@ -78,19 +78,6 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <!--&lt;!&ndash; Container for contents of drawer - use NavigationView to make configuration easier &ndash;&gt;-->
-    <!--<android.support.design.widget.NavigationView-->
-        <!--android:id="@+id/navigation_drawer"-->
-        <!--android:layout_width="@dimen/width_drawer"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_gravity="start"-->
-        <!--android:fitsSystemWindows="true"-->
-        <!--app:headerLayout="@layout/nav_header_drawer"-->
-        <!--app:itemIconTint="@drawable/drawer_item_selector"-->
-        <!--app:itemTextColor="@drawable/drawer_item_selector"-->
-        <!--app:menu="@menu/menu_drawer"-->
-        <!--app:theme="@style/DrawerMenuItem">-->
 
-    <!--</android.support.design.widget.NavigationView>-->
 
 </android.support.v4.widget.DrawerLayout>

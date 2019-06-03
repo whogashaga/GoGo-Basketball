@@ -215,6 +215,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                     mWaiting4JoinView.setSeatBtnClickable();
                     setRoomSnapshotListerSlave();
                     setAllSnapshotListerSlave();
+                    mWaiting4JoinView.closeProgressDialogUi();
                 }).addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
     }
 
@@ -578,6 +579,11 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
     @Override
     public void finishWaiting4JoinSlaveUi() {
+
+    }
+
+    @Override
+    public void closeProgressDialog() {
 
     }
 

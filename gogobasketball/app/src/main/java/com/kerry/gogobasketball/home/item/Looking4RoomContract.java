@@ -34,5 +34,9 @@ public interface Looking4RoomContract {
         void openFindHostDialog();
 
         void getWaitingRoomFromFindHost(ArrayList<WaitingRoomInfo> list);
+
+        void openProgressDialog();
+
+        void closeProgressDialog();
     }
 }

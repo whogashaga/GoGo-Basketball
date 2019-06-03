@@ -70,6 +70,7 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
             @Override
             public void onClick(View v) {
                 holder.getLayout().setClickable(false);
+                mPresenter.openProgressDialog();
                 determineOpenWaiting4Join(waitingRoomInfo);
             }
         });
@@ -107,6 +108,7 @@ public class Looking4RoomAdapter extends RecyclerView.Adapter {
                 if (waitingRoomInfo.getTotalPlayerAmount() < 7) {
                     mPresenter.openWaiting4JoinSlave(waitingRoomInfo);
                 } else {
+                    mPresenter.closeProgressDialog();
                     mPresenter.showErrorToast("\"" + waitingRoomInfo.getRoomName() + "\" 人數已滿 !", true);
                 }
             }
