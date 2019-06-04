@@ -62,8 +62,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         init();
         mView = this.findViewById(R.id.layout_main);
         mView.setBackgroundResource(R.drawable.wheel_dunk_28);
-        Intent startIntent = new Intent(this, GetLocationService.class);
-        startService(startIntent);
     }
 
     private void init() {
@@ -436,12 +434,26 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        Intent startIntent = new Intent(this, GetLocationService.class);
+        startService(startIntent);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(Constants.TAG, "MainActivity onStop: ");
+        Intent stopIntent = new Intent(this, GetLocationService.class);
+        stopService(stopIntent);
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         if (mPresenter != null) {
             Log.w(Constants.TAG, "MainActivity onDestroy: ");
-            Intent stopIntent = new Intent(this, GetLocationService.class);
-            stopService(stopIntent);
+
         }
     }
 
@@ -475,12 +487,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
         } else {
             Log.d("Kerry", "closeProgressDialogUi : mProgressDialog is null");
         }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(Constants.TAG, "MainActivity onStop: ");
     }
 }
 

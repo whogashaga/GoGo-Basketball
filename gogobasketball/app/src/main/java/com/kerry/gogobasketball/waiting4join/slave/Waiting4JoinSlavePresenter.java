@@ -118,28 +118,13 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                         Log.d(Constants.TAG, "doc size : " + task.getResult().size());
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             mRoomDocId = document.getId();
-                            changeRoomPlayerAmountWhenJoin(document.getId());
+//                            changeRoomPlayerAmountWhenJoin(document.getId());
+                            queryExistedSort();
                         }
                     } else {
                         Log.w(Constants.TAG, "Error getting documents.", task.getException());
                     }
                 }).addOnFailureListener(e -> Log.w(Constants.TAG, "queryExistedSort Error", e));
-    }
-
-    private void changeRoomPlayerAmountWhenJoin(String roomId) {
-        if (mWaitingRoomInfo.getPlayerAmount() < 6) {
-            mWaitingRoomInfo.setPlayerAmount(mWaitingRoomInfo.getPlayerAmount() + 1);
-
-            queryExistedSort();
-
-        } else if (mWaitingRoomInfo.getPlayerAmount() == 6 && mWaitingRoomInfo.getRefereeAmount() < 1) {
-            mWaitingRoomInfo.setRefereeAmount(1);
-
-            queryExistedSort();
-
-        } else {
-            Log.d(Constants.TAG, "Slave Join Room Error !");
-        }
     }
 
     private void queryExistedSort() {
@@ -182,20 +167,63 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
         // 把自己這筆加進去，for bind view
         mSeatsInfoList.add(mJoinerInfo);
         mWaiting4JoinView.showRoomName(mWaitingRoomInfo);
-        updateRoomInfoWhenJoin(mWaitingRoomInfo);
+
+//        updateRoomInfoWhenJoin(mWaitingRoomInfo);
+//        getCurrentSeatsNumber();
+        checkTeam(mSeatsInfoList);
 
     }
 
-    private void updateRoomInfoWhenJoin(WaitingRoomInfo waitingRoomInfo) {
+    private void checkTeam(ArrayList<WaitingRoomSeats> list) {
+        int playerNum = 0;
+        int refereeNum = 0;
+
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getSort() < 7) {
+                playerNum++;
+            } else {
+                refereeNum++;
+            }
+        }
+        updatePlayerAmount(playerNum, refereeNum);
+    }
+
+    private void updatePlayerAmount(int playerNum, int refereeNum) {
 
         FirebaseFirestore.getInstance()
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
-                .set(waitingRoomInfo)
+                .update("playerAmount", playerNum)
                 .addOnSuccessListener(aVoid -> {
-                    Log.d(Constants.TAG, "Slave 加入，並改變房間人數");
+                    Log.d("Kerry", "Player 人數更新為 " + playerNum);
+                    updateRefereeAmount(refereeNum, playerNum + refereeNum);
+                })
+                .addOnFailureListener(e -> Log.w(Constants.TAG, "Error updating document", e));
+
+    }
+
+    private void updateRefereeAmount(int refereeNum, int totalNum) {
+        FirebaseFirestore.getInstance()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .update("refereeAmount", refereeNum)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d("Kerry", "Referee 人數更新為 " + refereeNum);
+                    updateTotalAmount(totalNum);
+                })
+                .addOnFailureListener(e -> Log.w(Constants.TAG, "Error updating document", e));
+    }
+
+    private void updateTotalAmount(int totalNum) {
+        FirebaseFirestore.getInstance()
+                .collection(Constants.WAITING_ROOM)
+                .document(mRoomDocId)
+                .update("totalPlayerAmount", totalNum)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d("Kerry", "Referee 人數更新為 " + totalNum);
                     updateJoinerInfo2FireBase(mJoinerInfo, mRoomDocId);
-                }).addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
+                })
+                .addOnFailureListener(e -> Log.w(Constants.TAG, "Error updating document", e));
     }
 
     private void updateJoinerInfo2FireBase(WaitingRoomSeats joinerInfo, String roomId) {
@@ -215,7 +243,7 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                     mWaiting4JoinView.setSeatBtnClickable();
                     setRoomSnapshotListerSlave();
                     setAllSnapshotListerSlave();
-                    mWaiting4JoinView.closeProgressDialogUi();
+
                 }).addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
     }
 
@@ -490,10 +518,12 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
     }
 
     private void changeRoomPlayerAmountWhenLeaveSlave() {
-        if (mJoinerInfo.getSort() == 0 || mJoinerInfo.getSort() == 1
-                || mJoinerInfo.getSort() == 2 || mJoinerInfo.getSort() == 3
-                || mJoinerInfo.getSort() == 4 || mJoinerInfo.getSort() == 5
-                || mJoinerInfo.getSort() == 6) {
+
+        Log.e("Kerry", "mJoinerInfo = " + mJoinerInfo.getSort());
+        if (mIntJoinerSort == 0 || mIntJoinerSort == 1
+                || mIntJoinerSort == 2 || mIntJoinerSort == 3
+                || mIntJoinerSort == 4 || mIntJoinerSort == 5
+                || mIntJoinerSort == 6) {
             mWaitingRoomInfo.setPlayerAmount(mWaitingRoomInfo.getPlayerAmount() - 1);
             updateRoomInfoWhenLeaveSlave();
         } else {

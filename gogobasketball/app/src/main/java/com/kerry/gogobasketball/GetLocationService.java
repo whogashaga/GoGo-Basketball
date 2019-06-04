@@ -27,6 +27,7 @@ public class GetLocationService extends Service {
     private User mUser;
     private Runnable mRunnable;
     private Handler mHandler;
+    private int mDelayTime;
 
     @Override
     public void onCreate() {
@@ -34,11 +35,12 @@ public class GetLocationService extends Service {
         mCourtsLocation = "";
         mUser = new User();
         mHandler = new Handler();
+        mDelayTime = 30000;
 
         mRunnable = new Runnable() {
             @Override
             public void run() {
-                mHandler.postDelayed(this, 5000);
+                mHandler.postDelayed(this, mDelayTime);
                 getDeviceCurrentLocation();
                 Log.w("Kerry", "Service onCreate : getDeviceCurrentLocation()");
             }
@@ -71,13 +73,10 @@ public class GetLocationService extends Service {
     public void onTaskRemoved(Intent rootIntent) {
         Log.e("Kerry", "Service onTaskRemoved !");
         super.onTaskRemoved(rootIntent);
-//        getUserInfoWhenGetOutOfApp();
-//        mHandler.removeCallbacks(mRunnable);
-//        stopSelf();
     }
 
     public void startGettingLocation() {
-        mHandler.postDelayed(mRunnable, 5000);
+        mHandler.postDelayed(mRunnable, mDelayTime);
     }
 
 

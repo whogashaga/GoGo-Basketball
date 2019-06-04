@@ -299,6 +299,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
             btnChangeSeat.setVisibility(View.GONE);
         }
 
+        mPresenter.closeProgressDialog();
     }
 
     @Override
