@@ -880,7 +880,7 @@ public class MainMvpController {
 
         CreateUserFragment createUserFragment = CreateUserFragment.newInstance();
 
-        ActivityUtils.addFragmentByTagStateLoss(
+        ActivityUtils.addFragmentByTag(
                 getFragmentManager(), createUserFragment, CREATE1USER);
 
         return createUserFragment;

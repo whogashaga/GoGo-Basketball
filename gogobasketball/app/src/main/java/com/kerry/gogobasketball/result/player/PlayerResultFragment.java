@@ -76,7 +76,7 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
     @Override
     public void onResume() {
         super.onResume();
-        Log.e("Kerry", "PlayerResultFragment onResume: ");
+        Log.i("Lifecycle", "PlayerResultFragment onResume: ");
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
@@ -226,7 +226,7 @@ public class PlayerResultFragment extends Fragment implements PlayerResultContra
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.e("Kerry", "PlayerResultFragment onDestroy: ");
+        Log.e("Lifecycle", "PlayerResultFragment onDestroy: ");
     }
 
     @Override

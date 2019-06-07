@@ -36,7 +36,7 @@ public class PlayerGoingFragment extends Fragment implements PlayerGoingContract
     @Override
     public void onResume() {
         super.onResume();
-        Log.i("Kerry", "PlayerGoing onResume !");
+        Log.i("Lifecycle", "PlayerGoing onResume !");
         mPresenter.hideToolbarAndBottomNavigation();
         if (getActivity() != null) {
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -78,7 +78,7 @@ public class PlayerGoingFragment extends Fragment implements PlayerGoingContract
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.i("Kerry", "PlayerGoing onDestroy !");
+        Log.i("Lifecycle", "PlayerGoing onDestroy !");
         if (mPresenter != null) {
             mPresenter.setGamingNowMessage(false);
         }

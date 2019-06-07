@@ -58,6 +58,7 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
     public void onResume() {
         super.onResume();
         Log.i(Constants.TAG, "Looking4RoomFragment onResume !");
+        Log.i("Lifecycle", "Looking4RoomFragment onResume !");
     }
 
     @Nullable
@@ -121,13 +122,13 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
     public void onDestroy() {
         super.onDestroy();
         Log.d(Constants.TAG, "Looking4RoomFragment onDestroy !");
+        Log.d("Lifecycle", "Looking4RoomFragment onDestroy !");
     }
 
     @Override
     public void setPresenter(Looking4RoomContract.Presenter presenter) {
         mPresenter = checkNotNull(presenter);
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

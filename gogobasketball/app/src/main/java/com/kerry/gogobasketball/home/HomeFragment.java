@@ -66,6 +66,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     public void onResume() {
         super.onResume();
         Log.w(Constants.TAG, "home fragment onResume !!");
+        Log.w("Lifecycle", "home fragment onResume !!");
         if (getActivity() != null) {
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
@@ -87,6 +88,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     public void onDestroy() {
         super.onDestroy();
         Log.d(Constants.TAG, "home fragment onDestroy !!");
+        Log.d("Lifecycle", "home fragment onDestroy !!");
     }
 
     @Override

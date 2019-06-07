@@ -105,8 +105,10 @@ public class CourtsMapFragment extends Fragment implements CourtsMapContract.Vie
                         Log.d(Constants.TAG, "onComplete: found location!");
                         Location currentLocation = (Location) task.getResult();
 
-                        moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
-                                DEFAULT_ZOOM);
+                        if (currentLocation != null) {
+                            moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
+                                    DEFAULT_ZOOM);
+                        }
 
                     } else {
                         Log.d(Constants.TAG, "onComplete: current location is null!");

@@ -421,8 +421,16 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
     @Override
     public void removeListenerSlave() {
-        mRoomListenerRegistration.remove();
-        mAllSeatsListenerRegistration.remove();
+        if (mRoomListenerRegistration != null) {
+            mRoomListenerRegistration.remove();
+            if (mAllSeatsListenerRegistration != null) {
+                mAllSeatsListenerRegistration.remove();
+            } else {
+                Log.d(Constants.TAG, "mAllSeatsListenerRegistration is null !");
+            }
+        } else {
+            Log.d(Constants.TAG, "mRoomListenerRegistration is null !");
+        }
     }
 
     private void queryCurrentSort() {
