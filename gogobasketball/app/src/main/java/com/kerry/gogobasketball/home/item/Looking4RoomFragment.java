@@ -56,10 +56,21 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
     }
 
     @Override
+    public void closeProgressDialogUi() {
+        mPresenter.closeProgressDialog();
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         Log.i(Constants.TAG, "Looking4RoomFragment onResume !");
         Log.i("Lifecycle", "Looking4RoomFragment onResume !");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d("Lifecycle", "onStart: ");
     }
 
     @Nullable

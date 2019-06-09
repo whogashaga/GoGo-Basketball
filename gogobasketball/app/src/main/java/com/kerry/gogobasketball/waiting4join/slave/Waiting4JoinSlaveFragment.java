@@ -306,6 +306,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_slave_waiting4join_back_arrow:
+                mPresenter.openProgressDialog();
                 mPresenter.removeListenerSlave();
                 mPresenter.finishWaiting4JoinSlaveUi();
                 if (getActivity() != null) {
@@ -317,6 +318,7 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
                 mBtnBackStack.setClickable(false);
                 break;
             case R.id.btn_slave_waiting4join_cancel:
+                mPresenter.openProgressDialog();
                 mPresenter.removeListenerSlave();
                 mPresenter.finishWaiting4JoinSlaveUi();
                 if (getActivity() != null) {
@@ -504,6 +506,11 @@ public class Waiting4JoinSlaveFragment extends Fragment implements Waiting4JoinS
     @Override
     public void closeProgressDialogUi() {
         mPresenter.closeProgressDialog();
+    }
+
+    @Override
+    public void updateLooking4RoomUi() {
+        mPresenter.loadExistedRoomsData4RecyclerView();
     }
 
 

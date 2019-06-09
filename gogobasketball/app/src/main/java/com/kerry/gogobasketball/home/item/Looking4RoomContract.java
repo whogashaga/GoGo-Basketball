@@ -13,6 +13,8 @@ public interface Looking4RoomContract {
 
         void showWaitingRoomListUi(ArrayList<WaitingRoomInfo> roomInfoList);
 
+        void closeProgressDialogUi();
+
     }
 
     interface Presenter extends BasePresenter {
@@ -28,8 +30,6 @@ public interface Looking4RoomContract {
         void openWaiting4JoinSlave(WaitingRoomInfo waitingRoomInfo);
 
         void showErrorToast(String message, boolean isShort);
-
-        void setRoomListSnapshotListerSlave();
 
         void openFindHostDialog();
 

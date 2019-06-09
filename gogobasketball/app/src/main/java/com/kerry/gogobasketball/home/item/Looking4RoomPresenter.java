@@ -48,33 +48,22 @@ public class Looking4RoomPresenter implements Looking4RoomContract.Presenter {
                                 mWaitingRoomInfoList.add(waitingRoomInfo);
                             }
                             mLookingForRoomView.showWaitingRoomListUi(mWaitingRoomInfoList);
+                            mLookingForRoomView.closeProgressDialogUi();
                         }
                     }
                 });
     }
 
-    @Override
-    public void setRoomListSnapshotListerSlave() {
-        FirebaseFirestore.getInstance()
-                .collection(Constants.WAITING_ROOM)
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value,
-                                        @Nullable FirebaseFirestoreException e) {
-                        if (e != null) {
-                            Log.w(Constants.TAG, "Listen failed.", e);
-                            return;
-                        }
-                        loadExistedRoomsData4RecyclerView();
-                    }
-                });
+    /*--------------------------------------------------------------------------------------------*/
+    /* For FindHost and CourtsFilter update */
 
-    }
 
     @Override
     public void updateLooking4RoomView(ArrayList<WaitingRoomInfo> list) {
         mLookingForRoomView.showWaitingRoomListUi(list);
     }
+
+    /*--------------------------------------------------------------------------------------------*/
 
     @Override
     public void openFindHostDialog() {

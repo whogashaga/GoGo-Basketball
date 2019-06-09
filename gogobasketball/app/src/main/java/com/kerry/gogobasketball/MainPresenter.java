@@ -1167,12 +1167,6 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         mLooking4RoomPresenter.loadExistedRoomsData4RecyclerView();
     }
 
-
-    @Override
-    public void setRoomListSnapshotListerSlave() {
-        mLooking4RoomPresenter.setRoomListSnapshotListerSlave();
-    }
-
     @Override
     public void updateLooking4RoomView(ArrayList<WaitingRoomInfo> list) {
         mLooking4RoomPresenter.updateLooking4RoomView(list);

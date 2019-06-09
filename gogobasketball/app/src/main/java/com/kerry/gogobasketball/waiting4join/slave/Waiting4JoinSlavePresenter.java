@@ -545,7 +545,10 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
                 .collection(Constants.WAITING_ROOM)
                 .document(mRoomDocId)
                 .set(mWaitingRoomInfo)
-                .addOnSuccessListener(aVoid -> Log.d(Constants.TAG, "Slave 離開，刪除資料"))
+                .addOnSuccessListener(aVoid -> {
+                    Log.d(Constants.TAG, "Slave 離開，刪除資料");
+                    mWaiting4JoinView.updateLooking4RoomUi();
+                })
                 .addOnFailureListener(e -> Log.w(Constants.TAG, "Error adding document", e));
     }
 
@@ -622,6 +625,16 @@ public class Waiting4JoinSlavePresenter implements Waiting4JoinSlaveContract.Pre
 
     @Override
     public void closeProgressDialog() {
+
+    }
+
+    @Override
+    public void loadExistedRoomsData4RecyclerView() {
+
+    }
+
+    @Override
+    public void openProgressDialog() {
 
     }
 
