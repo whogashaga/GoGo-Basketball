@@ -1,4 +1,4 @@
-package com.kerry.gogobasketball.home.item.find1host;
+package com.kerry.gogobasketball.home.item.filter;
 
 import android.app.Activity;
 
@@ -8,15 +8,17 @@ import com.kerry.gogobasketball.data.WaitingRoomInfo;
 
 import java.util.ArrayList;
 
-public interface FindHostContract {
+public interface CourtsFilterContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showFindNoHost();
+        void setWheelPicker(ArrayList<String> courtsList);
 
-        void showFindHostSuccessUi(ArrayList<WaitingRoomInfo> list);
+        void showFindNoCourts();
 
-        void finishFindHostUi();
+        void showCourtsFilterSuccessUi(ArrayList<WaitingRoomInfo> list);
+
+        void finishCourtsFilterUi();
 
     }
 
@@ -26,12 +28,14 @@ public interface FindHostContract {
 
         void showErrorToast(String message, boolean isShort);
 
-        void onHostIdEditTextChange(CharSequence charSequence);
-
-        void checkIfRoomExists(Activity activity);
-
         void updateRecyclerView(Activity activity);
 
+        void queryCourts();
+
         void updateLooking4RoomView(ArrayList<WaitingRoomInfo> list);
+
+        void getLocationFromWheel(String position);
+
+        void getCourtsListFromFirebase();
     }
 }

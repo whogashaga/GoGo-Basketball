@@ -125,7 +125,7 @@ public class FindHostDialog extends DialogFragment implements FindHostContract.V
 
     @Override
     public void showFindHostSuccessUi(ArrayList<WaitingRoomInfo> list) {
-        mPresenter.getWaitingRoomFromFindHost(list);
+        mPresenter.updateLooking4RoomView(list);
         dismiss();
     }
 

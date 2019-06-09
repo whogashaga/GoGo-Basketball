@@ -50,9 +50,23 @@
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_home_rooms_build"
+        app:layout_constraintEnd_toStartOf="@+id/btn_home_rooms_filter"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_home_rooms_filter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_effect_btn_find_host"
+        android:fontFamily="@font/noto_sans"
+        android:text="篩選場地"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_home_rooms_find_host"
+        app:layout_constraintEnd_toStartOf="@+id/btn_home_rooms_build"
+        app:layout_constraintStart_toEndOf="@+id/btn_home_rooms_find_host"
+        app:layout_constraintTop_toTopOf="@+id/btn_home_rooms_find_host" />
 
     <Button
         android:id="@+id/btn_home_rooms_build"
@@ -65,7 +79,7 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/btn_home_rooms_find_host"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_home_rooms_find_host"
+        app:layout_constraintStart_toEndOf="@+id/btn_home_rooms_filter"
         app:layout_constraintTop_toTopOf="@+id/btn_home_rooms_find_host" />
 
 </android.support.constraint.ConstraintLayout>

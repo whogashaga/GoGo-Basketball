@@ -37,6 +37,7 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
     private ArrayList<WaitingRoomInfo> mRoomInfoList;
     private Button mBtnBuildRoom;
     private Button mBtnFindHost;
+    private Button mBtnFilter;
 
     public Looking4RoomFragment() {
         mRoomInfoList = new ArrayList<>();
@@ -72,6 +73,9 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
         mBtnFindHost = root.findViewById(R.id.btn_home_rooms_find_host);
         mBtnFindHost.setOnClickListener(this);
 
+        mBtnFilter = root.findViewById(R.id.btn_home_rooms_filter);
+        mBtnFilter.setOnClickListener(this);
+
         // SwipeRefreshLayout
         mSwipeRefreshLayout = root.findViewById(R.id.swipe_container);
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -98,6 +102,10 @@ public class Looking4RoomFragment extends Fragment implements Looking4RoomContra
 
             case R.id.btn_home_rooms_find_host:
                 mPresenter.openFindHostDialog();
+                break;
+
+            case R.id.btn_home_rooms_filter:
+                mPresenter.openCourtsFilterDialog();
                 break;
 
             default:

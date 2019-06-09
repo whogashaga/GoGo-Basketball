@@ -6,7 +6,6 @@ import android.content.Context;
 public class GoGoBasketball extends Application {
 
     private static Context mContext;
-//    private static StylishSQLiteHelper mStylishSQLiteHelper;
 
     public GoGoBasketball() {}
 

@@ -82,7 +82,7 @@ public class ChangePositionDialog extends DialogFragment implements ChangePositi
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        Log.d("Kerry", "change position onViewCreated: ");
         mPositionList.add(getString(R.string.position_center));
         mPositionList.add(getString(R.string.position_pf));
         mPositionList.add(getString(R.string.position_sf));
@@ -90,6 +90,7 @@ public class ChangePositionDialog extends DialogFragment implements ChangePositi
         mPositionList.add(getString(R.string.position_sg));
         mWheelPosition.setOnItemSelectedListener(this);
         mWheelPosition.setData(mPositionList);
+        Log.d("Kerry", "mPositionList size = " + mPositionList.size());
 
     }
 

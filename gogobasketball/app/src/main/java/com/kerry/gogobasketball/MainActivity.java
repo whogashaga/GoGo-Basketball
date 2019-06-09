@@ -309,6 +309,11 @@ public class MainActivity extends BaseActivity implements MainContract.View, Nav
     }
 
     @Override
+    public void openCourtsFilterUi() {
+        mMainMvpController.findOrCreateCourtsFilterView();
+    }
+
+    @Override
     public void openInstructionUi() {
         mMainMvpController.findOrCreateInstructionView();
     }

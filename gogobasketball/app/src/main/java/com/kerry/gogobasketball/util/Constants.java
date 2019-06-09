@@ -51,6 +51,7 @@ public class Constants {
     public static final String CHANGE_POSITION = "CHANGE_POSITION";
     public static final String CHANGE_GENDER = "CHANGE_GENDER";
     public static final String FIND_HOST = "FIND_HOST";
+    public static final String COURTS_FILTER = "COURTS_FILTER";
     public static final String INSTRUCTION = "INSTRUCTION";
 
     // courts

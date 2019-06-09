@@ -72,13 +72,13 @@ public class Looking4RoomPresenter implements Looking4RoomContract.Presenter {
     }
 
     @Override
-    public void openFindHostDialog() {
-
+    public void updateLooking4RoomView(ArrayList<WaitingRoomInfo> list) {
+        mLookingForRoomView.showWaitingRoomListUi(list);
     }
 
     @Override
-    public void getWaitingRoomFromFindHost(ArrayList<WaitingRoomInfo> list) {
-        mLookingForRoomView.showWaitingRoomListUi(list);
+    public void openFindHostDialog() {
+
     }
 
     @Override
@@ -88,6 +88,11 @@ public class Looking4RoomPresenter implements Looking4RoomContract.Presenter {
 
     @Override
     public void closeProgressDialog() {
+
+    }
+
+    @Override
+    public void openCourtsFilterDialog() {
 
     }
 

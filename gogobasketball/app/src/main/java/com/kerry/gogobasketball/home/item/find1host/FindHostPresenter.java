@@ -79,7 +79,7 @@ public class FindHostPresenter implements FindHostContract.Presenter {
     }
 
     @Override
-    public void getWaitingRoomFromFindHost(ArrayList<WaitingRoomInfo> list) {
+    public void updateLooking4RoomView(ArrayList<WaitingRoomInfo> list) {
 
     }
 

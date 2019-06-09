@@ -18,6 +18,8 @@ import com.kerry.gogobasketball.home.HomeFragment;
 import com.kerry.gogobasketball.home.HomePresenter;
 import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
 import com.kerry.gogobasketball.home.item.Looking4RoomPresenter;
+import com.kerry.gogobasketball.home.item.filter.CourtsFilterDialog;
+import com.kerry.gogobasketball.home.item.filter.CourtsFilterPresenter;
 import com.kerry.gogobasketball.home.item.find1host.FindHostDialog;
 import com.kerry.gogobasketball.home.item.find1host.FindHostPresenter;
 import com.kerry.gogobasketball.home.map.CourtsMapFragment;
@@ -94,6 +96,7 @@ public class MainMvpController {
     private ChangeGenderPresenter mChangeGenderPresenter;
 
     private FindHostPresenter mFindHostPresenter;
+    private CourtsFilterPresenter mCourtsFilterPresenter;
     private InstructionPresenter mInstructionPresenter;
 
     private CreateUserPresenter mCreateUserPresenter;
@@ -544,6 +547,27 @@ public class MainMvpController {
 
         } else if (!dialog.isAdded()) {
             dialog.show(getFragmentManager(), Constants.FIND_HOST);
+        }
+    }
+
+    /**
+     * CourtsFilter View
+     */
+    void findOrCreateCourtsFilterView() {
+
+        CourtsFilterDialog dialog =
+                (CourtsFilterDialog) getFragmentManager().findFragmentByTag(Constants.COURTS_FILTER);
+
+        if (dialog == null) {
+
+            dialog = new CourtsFilterDialog();
+            mCourtsFilterPresenter = new CourtsFilterPresenter(dialog);
+            mMainPresenter.setCourtsFilterPresenter(mCourtsFilterPresenter);
+            dialog.setPresenter(mMainPresenter);
+            dialog.show(getFragmentManager(), Constants.COURTS_FILTER);
+
+        } else if (!dialog.isAdded()) {
+            dialog.show(getFragmentManager(), Constants.COURTS_FILTER);
         }
     }
 

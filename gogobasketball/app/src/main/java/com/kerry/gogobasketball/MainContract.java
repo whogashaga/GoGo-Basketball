@@ -41,6 +41,8 @@ public interface MainContract {
 
         void openFindHostUi();
 
+        void openCourtsFilterUi();
+
         void openInstructionUi();
 
         void openWait4JoinUi(WaitingRoomInfo waitingRoomInfo, WaitingRoomSeats hostSeatInfo, String roomDocId);

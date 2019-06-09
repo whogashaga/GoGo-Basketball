@@ -12,18 +12,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.facebook.AccessToken;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.kerry.gogobasketball.create1user.CreateUserContract;
 import com.kerry.gogobasketball.create1user.CreateUserPresenter;
-import com.kerry.gogobasketball.data.CourtsInfo;
-import com.kerry.gogobasketball.data.CourtsPeople;
 import com.kerry.gogobasketball.data.GamingRoomInfo;
 import com.kerry.gogobasketball.data.User;
 import com.kerry.gogobasketball.data.WaitingRoomInfo;
@@ -35,6 +28,8 @@ import com.kerry.gogobasketball.home.HomePresenter;
 import com.kerry.gogobasketball.home.item.Looking4RoomContract;
 import com.kerry.gogobasketball.home.item.Looking4RoomFragment;
 import com.kerry.gogobasketball.home.item.Looking4RoomPresenter;
+import com.kerry.gogobasketball.home.item.filter.CourtsFilterContract;
+import com.kerry.gogobasketball.home.item.filter.CourtsFilterPresenter;
 import com.kerry.gogobasketball.home.item.find1host.FindHostContract;
 import com.kerry.gogobasketball.home.item.find1host.FindHostPresenter;
 import com.kerry.gogobasketball.home.map.CourtsMapContract;
@@ -71,8 +66,6 @@ import com.kerry.gogobasketball.result.player.comment.CommentRefereePresenter;
 import com.kerry.gogobasketball.result.referee.RefereeResultContract;
 import com.kerry.gogobasketball.result.referee.RefereeResultPresenter;
 import com.kerry.gogobasketball.util.Constants;
-import com.kerry.gogobasketball.util.LocationManager;
-import com.kerry.gogobasketball.util.UserManager;
 import com.kerry.gogobasketball.waiting4join.detail.UserDetailContract;
 import com.kerry.gogobasketball.waiting4join.detail.UserDetailPresenter;
 import com.kerry.gogobasketball.waiting4join.instruction.InstructionContract;
@@ -97,7 +90,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
         RankPlayerContract.Presenter, LogoutContract.Presenter, ChangeIdContract.Presenter,
         ChangePositionContract.Presenter, ChangeGenderContract.Presenter,
         FindHostContract.Presenter, InstructionContract.Presenter,
-        UserDetailContract.Presenter {
+        UserDetailContract.Presenter, CourtsFilterContract.Presenter {
 
     private MainContract.View mMainView;
 
@@ -130,6 +123,7 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     private ChangePositionPresenter mChangePositionPresenter;
     private ChangeGenderPresenter mChangeGenderPresenter;
     private FindHostPresenter mFindHostPresenter;
+    private CourtsFilterPresenter mCourtsFilterPresenter;
     private InstructionPresenter mInstructionPresenter;
     private UserDetailPresenter mUserDetailPresenter;
 
@@ -244,6 +238,10 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
 
     void setFindHostPresenter(FindHostPresenter findHostPresenter) {
         mFindHostPresenter = checkNotNull(findHostPresenter);
+    }
+
+    void setCourtsFilterPresenter(CourtsFilterPresenter courtsFilterPresenter) {
+        mCourtsFilterPresenter = checkNotNull(courtsFilterPresenter);
     }
 
     void setInstructionPresenter(InstructionPresenter instructionPresenter) {
@@ -890,6 +888,24 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     /* ------------------------------------------------------------------------------------------ */
+    /* CourtsFilter Presenter */
+
+    @Override
+    public void getLocationFromWheel(String position) {
+        mCourtsFilterPresenter.getLocationFromWheel(position);
+    }
+
+    @Override
+    public void getCourtsListFromFirebase() {
+        mCourtsFilterPresenter.getCourtsListFromFirebase();
+    }
+
+    @Override
+    public void queryCourts() {
+        mCourtsFilterPresenter.queryCourts();
+    }
+
+    /* ------------------------------------------------------------------------------------------ */
 
     @Override
     public void setActivityBackgroundLandScape() {
@@ -1088,6 +1104,11 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
+    public void openCourtsFilterDialog() {
+        mMainView.openCourtsFilterUi();
+    }
+
+    @Override
     public void openInstructionDialog() {
         mMainView.openInstructionUi();
     }
@@ -1153,8 +1174,8 @@ public class MainPresenter implements MainContract.Presenter, HomeContract.Prese
     }
 
     @Override
-    public void getWaitingRoomFromFindHost(ArrayList<WaitingRoomInfo> list) {
-        mLooking4RoomPresenter.getWaitingRoomFromFindHost(list);
+    public void updateLooking4RoomView(ArrayList<WaitingRoomInfo> list) {
+        mLooking4RoomPresenter.updateLooking4RoomView(list);
     }
 
     @Override

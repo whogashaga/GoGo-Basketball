@@ -9,11 +9,11 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/layout_change_position"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/outline_looking4room_normal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,7 +25,7 @@
         <TextView
             android:id="@+id/text_change_position_title"
             style="@style/Want2CreateRoomTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_want2create_room_top_bar"
             android:gravity="center"
@@ -40,6 +40,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/layout_wheel_holder"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
@@ -52,7 +53,7 @@
 
             <com.aigestudio.wheelpicker.WheelPicker
                 android:id="@+id/wheel_change_position"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@color/gray_f5f5f5"
                 aigestudio:wheel_atmospheric="true"
